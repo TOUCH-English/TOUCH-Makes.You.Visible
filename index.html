@@ -342,7 +342,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   .bottom-dock{background:rgba(255,255,255,.97)}
 }
 /* mode: bottom (full-width bar) */
-.dock--bottom{left:0;right:0;bottom:0;flex-direction:row;border-radius:0;border-left:0;border-right:0;border-bottom:0;box-shadow:0 -10px 34px rgba(20,33,50,.1)}
+.dock--bottom{left:50%;right:auto;bottom:20px;transform:translateX(-50%);width:auto;max-width:calc(100% - 36px);flex-direction:row;border-radius:999px;border:1px solid rgba(255,255,255,.6);box-shadow:0 14px 40px rgba(20,33,50,.18),inset 0 1px 0 rgba(255,255,255,.6)}
 /* mode: left / right (vertical edge bar) */
 .dock--left{left:0;top:50%;transform:translateY(-50%);flex-direction:column;border-radius:0 20px 20px 0;border-left:0}
 .dock--right{right:0;top:50%;transform:translateY(-50%);flex-direction:column;border-radius:20px 0 0 20px;border-right:0}
@@ -364,7 +364,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 /* tab bar */
 .tabbar{display:flex;gap:2px;overflow:auto;scrollbar-width:none}
 .tabbar::-webkit-scrollbar{display:none}
-.dock--bottom .tabbar{flex:1;flex-direction:row;justify-content:center;padding:6px 14px 9px;max-width:1180px;margin:0 auto}
+.dock--bottom .tabbar{flex:0 1 auto;flex-direction:row;justify-content:center;padding:7px 9px;overflow-x:auto}
 .dock--left .tabbar,.dock--right .tabbar,.dock--floating .tabbar{flex-direction:column;padding:4px 8px 10px;max-height:min(74vh,560px);overflow-y:auto}
 .tab-item{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;
   padding:6px 11px;border-radius:13px;color:var(--faint);min-width:56px;transition:background .15s,color .15s;position:relative}
@@ -402,7 +402,27 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .lm-opt.f .glyph::after{right:3px;bottom:3px;width:9px;height:7px}
 .lm-reset{width:100%;margin-top:8px;padding:9px;border-radius:10px;background:var(--blue);color:#fff;font-size:12.5px;font-weight:600;transition:.15s}
 .lm-reset:hover{background:var(--blue-deep)}
+.lm-reset--ghost{background:rgba(255,255,255,.6);color:var(--blue);border:1px solid var(--line-strong);margin-top:6px}
+.lm-reset--ghost:hover{background:var(--blue-tint);color:var(--blue-deep)}
 .lm-hint{font-size:11px;color:var(--faint);text-align:center;padding:8px 4px 2px;line-height:1.4}
+.lm-sep{height:1px;background:var(--line);margin:11px 2px 4px}
+.lm-edit{display:flex;align-items:center;gap:9px;width:100%;padding:9px 8px;border-radius:10px;font-size:12.5px;font-weight:600;color:var(--ink);transition:.14s}
+.lm-edit:hover{background:rgba(42,91,215,.07)}
+.lm-edit__box{flex:none;width:19px;height:19px;border-radius:6px;border:1.7px solid var(--line-strong);display:grid;place-items:center;transition:.14s}
+.lm-edit__box svg{width:12px;height:12px;opacity:0;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;transition:opacity .14s}
+.lm-edit.is-on .lm-edit__box{background:var(--blue);border-color:var(--blue)}
+.lm-edit.is-on .lm-edit__box svg{opacity:1}
+.lm-edit__tx .zh{color:var(--faint);font-weight:500;margin-left:4px}
+
+/* ---- tab item reordering (Edit navigation mode) ---- */
+.tabbar.editing .tab-item{cursor:grab}
+.tabbar.editing .tab-item:active{cursor:grabbing}
+.tabbar.editing .tab-item{animation:tabwiggle .9s ease-in-out infinite}
+.tabbar.editing .tab-item:nth-child(even){animation-delay:.12s}
+@keyframes tabwiggle{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.2deg)}}
+.tab-item.is-dragging{animation:none!important;cursor:grabbing;transform:scale(1.14);z-index:6;
+  box-shadow:0 12px 26px rgba(20,33,50,.26);background:var(--red-tint);
+  outline:2px dashed var(--red);outline-offset:1px;transition:transform .12s ease}
 
 /* ---------- Asset placeholder ---------- */
 .asset{background:repeating-linear-gradient(45deg,#EEF2FA,#EEF2FA 10px,#E7EDF8 10px,#E7EDF8 20px);
@@ -668,14 +688,16 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   .tb-brand__name{display:none}
   .tb-divider{display:none}
   .stage-area{padding:24px 16px 104px!important}
-  /* mobile: dock always stays a bottom bar, no dragging */
-  .bottom-dock{left:0!important;right:0!important;bottom:0!important;top:auto!important;
-    transform:none!important;flex-direction:row!important;border-radius:0!important}
-  .bottom-dock.is-dragging{transform:none!important;box-shadow:0 -10px 34px rgba(20,33,50,.1)!important}
+  /* mobile: floating rounded bottom bar, no dragging */
+  .bottom-dock{left:10px!important;right:10px!important;bottom:10px!important;top:auto!important;
+    transform:none!important;width:auto!important;max-width:none!important;flex-direction:row!important;
+    border-radius:24px!important;border:1px solid rgba(255,255,255,.6)!important;
+    box-shadow:0 10px 30px rgba(20,33,50,.16)!important}
+  .bottom-dock.is-dragging{transform:none!important}
   .dock-grip{display:none!important}
   .layout-btn{display:none!important}
   .dock--bottom .tabbar,.dock--left .tabbar,.dock--right .tabbar,.dock--floating .tabbar{
-    flex-direction:row!important;justify-content:flex-start!important;padding:6px 10px 9px!important;max-height:none!important;overflow-x:auto!important}
+    flex-direction:row!important;justify-content:flex-start!important;padding:7px 8px!important;max-height:none!important;overflow-x:auto!important}
   .tab-item{min-width:52px;padding:6px 8px}
   .fivec{grid-template-columns:repeat(2,1fr)}
   .cflow{grid-template-columns:1fr}
@@ -742,7 +764,13 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           <button class="lm-opt f" data-mode="floating" role="menuitem"><span class="glyph"></span>Floating</button>
         </div>
         <button class="lm-reset" id="lmReset">Reset to default</button>
-        <div class="lm-hint">Tip: drag the ⠿ handle to move it freely.</div>
+        <div class="lm-sep"></div>
+        <button class="lm-edit" id="navEditToggle" aria-pressed="false">
+          <span class="lm-edit__box"><svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg></span>
+          <span class="lm-edit__tx">Edit navigation order <span class="zh">编辑导航顺序</span></span>
+        </button>
+        <button class="lm-reset lm-reset--ghost" id="navResetOrder">Reset order <span class="zh">恢复默认顺序</span></button>
+        <div class="lm-hint">Drag the ⠿ handle to move the bar. Turn on Edit to drag tabs into a new order.</div>
       </div>
     </header>
 
@@ -1200,6 +1228,73 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     tabbar.appendChild(b);
   });
 
+  /* ---------- TAB ITEM REORDERING (Edit navigation) ---------- */
+  (function(){
+    var tb=tabbar;
+    var LSKEY="te_taborder_v1";
+    var DEFAULT=STAGES.map(function(_,i){return i;});
+    function isMobile(){return window.matchMedia("(max-width:860px)").matches;}
+    function curOrder(){return $$(".tab-item",tb).map(function(t){return +t.getAttribute("data-jump");});}
+    function applyOrder(order){order.forEach(function(idx){var el=tb.querySelector('.tab-item[data-jump="'+idx+'"]');if(el)tb.appendChild(el);});}
+    function saveOrder(){try{localStorage.setItem(LSKEY,JSON.stringify(curOrder()));}catch(e){}}
+    function loadOrder(){try{var s=JSON.parse(localStorage.getItem(LSKEY));if(Array.isArray(s)&&s.length===DEFAULT.length&&s.slice().sort(function(a,b){return a-b;}).every(function(v,k){return v===k;}))applyOrder(s);}catch(e){}}
+    loadOrder();
+
+    var editing=false;
+    function setEditing(on){
+      if(isMobile())on=false;
+      editing=on;
+      tb.classList.toggle("editing",on);
+      $$(".tab-item",tb).forEach(function(t){t.draggable=on;});
+      var btn=$("#navEditToggle");
+      if(btn){btn.classList.toggle("is-on",on);btn.setAttribute("aria-pressed",on);}
+    }
+    var et=$("#navEditToggle");
+    if(et)et.addEventListener("click",function(e){e.stopPropagation();setEditing(!editing);});
+    var ro=$("#navResetOrder");
+    if(ro)ro.addEventListener("click",function(e){e.stopPropagation();applyOrder(DEFAULT);saveOrder();});
+
+    // HTML5 drag-and-drop reorder (desktop, edit mode)
+    var dragEl=null, ghost=null;
+    function vertical(){var d=$("#dock");return !!(d&&!d.classList.contains("dock--bottom"));}
+    function getAfter(coord){
+      var best=null, bestOff=-Infinity;
+      $$(".tab-item:not(.is-dragging)",tb).forEach(function(c){
+        var b=c.getBoundingClientRect();
+        var off=vertical()?(coord-(b.top+b.height/2)):(coord-(b.left+b.width/2));
+        if(off<0 && off>bestOff){bestOff=off;best=c;}
+      });
+      return best;
+    }
+    tb.addEventListener("dragstart",function(e){
+      var item=e.target.closest(".tab-item");
+      if(!editing||isMobile()||!item){e.preventDefault();return;}
+      dragEl=item;
+      if(e.dataTransfer){
+        e.dataTransfer.effectAllowed="move";
+        try{e.dataTransfer.setData("text/plain","");}catch(_){}
+        if(!ghost){ghost=document.createElement("canvas");ghost.width=ghost.height=1;}
+        try{e.dataTransfer.setDragImage(ghost,0,0);}catch(_){}
+      }
+      requestAnimationFrame(function(){item.classList.add("is-dragging");});
+    });
+    tb.addEventListener("dragover",function(e){
+      if(!dragEl)return;
+      e.preventDefault();
+      if(e.dataTransfer)e.dataTransfer.dropEffect="move";
+      var after=getAfter(vertical()?e.clientY:e.clientX);
+      if(after==null){tb.appendChild(dragEl);}
+      else if(after!==dragEl){tb.insertBefore(dragEl,after);}
+    });
+    tb.addEventListener("drop",function(e){if(dragEl)e.preventDefault();});
+    tb.addEventListener("dragend",function(){
+      if(!dragEl)return;
+      dragEl.classList.remove("is-dragging");
+      dragEl=null; saveOrder();
+    });
+    window.addEventListener("resize",function(){if(isMobile()&&editing)setEditing(false);});
+  })();
+
   /* ---------- BUILD ROADMAP (ascending staircase) ---------- */
   var roadmap=$("#roadmap");
   LEVELS.forEach(function(l,i){
@@ -1484,16 +1579,18 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     current=i;
     stages.forEach(function(s,j){s.classList.toggle("is-active",j===i);});
     var tabs=$$(".tab-item");
-    tabs.forEach(function(n,j){
-      n.classList.toggle("is-active",j===i);
-      n.classList.toggle("is-done",j<i);
-      if(j===i){n.setAttribute("aria-current","step");}else{n.removeAttribute("aria-current");}
+    tabs.forEach(function(n){
+      var idx=+n.getAttribute("data-jump");
+      n.classList.toggle("is-active",idx===i);
+      n.classList.toggle("is-done",idx<i);
+      if(idx===i){n.setAttribute("aria-current","step");}else{n.removeAttribute("aria-current");}
     });
     $("#tbTitle").innerHTML=STAGES[i].t+' <span class="zh">'+STAGES[i].zh+'</span>';
     $("#tbEyebrow").textContent="Step "+(i+1);
     $("#scNow").textContent=i+1;
     window.scrollTo({top:0,behavior:"auto"});
-    if(tabs[i] && tabs[i].scrollIntoView){tabs[i].scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});}
+    var activeTab=tabbar.querySelector('.tab-item[data-jump="'+i+'"]');
+    if(activeTab && activeTab.scrollIntoView){activeTab.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});}
     if(i===8 && $(".rec-btn.is-active")){renderRec($(".rec-btn.is-active").getAttribute("data-rec"));}
   }
   $("#scTotal").textContent=STAGES.length;
