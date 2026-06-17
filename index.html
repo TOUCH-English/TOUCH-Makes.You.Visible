@@ -472,21 +472,23 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .stage-advisor__tx .zh{color:var(--muted)}
 .stage-advisor__lead{font-family:var(--display);font-weight:700;font-size:14.5px}
 .stage-advisor__lead .zh{font-weight:500}
-/* Dean attribution card (Authority Badge) — IPA Stage 01 */
+/* Dean Signature Section (Authority Badge) — bottom of IPA Stage 01 */
 .dean-ava{position:relative;border-radius:50%;overflow:hidden;flex:none;display:grid;place-items:center;border:2px solid rgba(255,255,255,.92);
   background:linear-gradient(150deg,color-mix(in srgb,var(--c) 34%,#fff),color-mix(in srgb,var(--c) 60%,#fff));
   box-shadow:0 6px 16px -7px color-mix(in srgb,var(--c) 55%,transparent)}
 .dean-ava__fallback{font-family:var(--display);font-weight:800;color:#fff;letter-spacing:.02em}
 .dean-ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.deanB-wrap{display:flex;justify-content:flex-end;margin:-4px 0 4px}
-.deanB{display:flex;align-items:center;gap:13px;padding:11px 18px;border-radius:18px;text-align:left;
-  background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
-  border:1px solid rgba(255,255,255,.82);box-shadow:0 14px 34px -20px color-mix(in srgb,var(--c) 48%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}
-.deanB .dean-ava{width:46px;height:46px}
-.deanB .dean-ava__fallback{font-size:15px}
-.deanB__tag{display:block;font-family:var(--display);font-weight:800;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
-.deanB__name{display:block;font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);line-height:1.2;margin-top:1px}
-.deanB__role{display:block;font-size:11.5px;color:var(--muted)}
+.dean-ava.has-img .dean-ava__fallback{display:none}
+.dean-sign{margin-top:24px;padding-top:24px;text-align:center;border-top:1px solid color-mix(in srgb,var(--c) 14%,var(--line))}
+.dean-sign__eyebrow{display:block;font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in srgb,var(--c) 65%,var(--muted));margin-bottom:14px}
+.dean-card{display:inline-flex;align-items:center;gap:16px;padding:15px 24px;border-radius:20px;text-align:left;
+  background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+  border:1px solid rgba(255,255,255,.85);box-shadow:0 18px 44px -22px color-mix(in srgb,var(--c) 52%,transparent),0 0 26px -10px color-mix(in srgb,var(--c) 32%,transparent),inset 0 1px 0 rgba(255,255,255,.92)}
+.dean-card .dean-ava{width:56px;height:56px}
+.dean-card .dean-ava__fallback{font-size:18px}
+.dean-card__tag{display:block;font-family:var(--display);font-weight:800;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.dean-card__name{display:block;font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink);line-height:1.2;margin-top:2px}
+.dean-card__role{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}
 /* ===== First 24 Lessons — Learn / Use / Reflect flow ===== */
 .les-flow{display:flex;flex-direction:column;gap:5px}
 .les-card{position:relative;border-radius:20px;padding:22px 24px;overflow:hidden;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
@@ -1326,7 +1328,6 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   .stage-cards{grid-template-columns:1fr}
   .stage-advisor{flex-direction:column;gap:11px}
   .stage-emblem{width:92px;height:92px}
-  .deanB-wrap{justify-content:center}
   .les-card__grid{grid-template-columns:1fr}
   .ldetail__grid{grid-template-columns:1fr}
   .lcell{padding:14px 8px}
@@ -2612,12 +2613,6 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           '<p class="mhero__sub">IPA pronunciation + learning mindset — a monthly recharge led by Mr. Fong. <span class="zh">音标发音 + 学习思维，由院长每月亲自带领的学习充电。</span></p>'+
         '</header>'+
         '<div class="goal-body">'+
-          '<div class="deanB-wrap"><!-- Dean photo: upload to assets/characters/enzo.png -->'+
-            '<div class="deanB">'+
-              '<span class="dean-ava"><span class="dean-ava__fallback">EF</span><img src="assets/characters/enzo.png" alt="Mr. Enzo Fong" onerror="this.style.display=\'none\'"></span>'+
-              '<span><span class="deanB__tag">Guided by</span><span class="deanB__name">Mr. Enzo Fong</span><span class="deanB__role">Founder &amp; Dean · TOUCH English</span></span>'+
-            '</div>'+
-          '</div>'+
           '<div class="stage-cards">'+cards+'</div>'+
           '<div class="stage-advisor">'+
             '<span class="stage-advisor__ic">'+sv("mic")+'</span>'+
@@ -2627,6 +2622,13 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           '<div class="goal-quote"><span class="goal-quote__ic">'+wave+'</span>Stage helps you practise. IPA helps you find your voice. <span class="zh">舞台帮助你练习。音标帮助你找到自己的声音。</span></div>'+
           '<div class="goal-cta-wrap"><!-- Replace with TOUCH Learning Recharge Link -->'+
             '<a class="goal-cta" href="#"><span>Learning Recharge</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>'+
+          '<div class="dean-sign"><!-- Dean photo: upload to assets/characters/enzo.png -->'+
+            '<span class="dean-sign__eyebrow">From the Dean · 院长亲自带领</span>'+
+            '<div class="dean-card">'+
+              '<span class="dean-ava"><span class="dean-ava__fallback">EF</span><img src="assets/characters/enzo.png" alt="Mr. Enzo Fong" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'"></span>'+
+              '<span><span class="dean-card__tag">Guided by</span><span class="dean-card__name">Mr. Enzo Fong</span><span class="dean-card__role">Founder &amp; Dean · TOUCH English</span></span>'+
+            '</div>'+
+          '</div>'+
         '</div>'+
       '</div>';
     }
