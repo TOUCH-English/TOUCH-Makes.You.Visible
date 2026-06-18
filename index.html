@@ -532,6 +532,237 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .lcell.is-active .lcell__ic{transform:scale(1.06)}
 .lcell__t{font-family:var(--display);font-weight:800;font-size:14.5px;color:var(--ink);line-height:1.2}
 .lcell__t .zh{display:block;font-weight:600;font-size:12px;color:var(--muted);margin-top:2px}
+.lcell-wrap{display:flex;flex-direction:column;gap:9px}
+.lcell-wrap .lcell{flex:1}
+.mini-glass-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;text-align:center;line-height:1.25;
+  font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--c);
+  padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.5);border:1px solid color-mix(in srgb,var(--c) 22%,var(--line));
+  -webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
+  box-shadow:0 6px 16px -12px color-mix(in srgb,var(--c) 45%,transparent);transition:background .18s,border-color .18s,box-shadow .18s,transform .18s}
+.mini-glass-btn:hover{background:color-mix(in srgb,var(--c) 12%,#fff);border-color:color-mix(in srgb,var(--c) 42%,#fff);box-shadow:0 8px 18px -10px color-mix(in srgb,var(--c) 48%,transparent);transform:translateY(-1px)}
+.mini-glass-btn svg{flex:none;width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
+/* Advisor Note — discreet settings entry */
+.adv-note-wrap{display:flex;justify-content:center;margin-top:18px}
+.adv-note{display:inline-flex;align-items:center;gap:6px;background:none;border:0;cursor:pointer;padding:6px 8px;
+  font-family:var(--body);font-size:11px;font-weight:500;color:var(--faint);opacity:.55;transition:opacity .18s,color .18s}
+.adv-note:hover{opacity:1;color:var(--muted)}
+.adv-note svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* Advisor Link Settings modal (independent of the 5C modal) */
+.adv-modal{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
+.adv-modal.is-open{opacity:1}
+.adv-modal__bg{position:absolute;inset:0;background:rgba(14,28,56,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.adv-modal__card{position:relative;width:100%;max-width:440px;max-height:calc(100vh - 60px);overflow-y:auto;border-radius:22px;padding:24px 24px 20px;
+  background:linear-gradient(170deg,rgba(255,255,255,.9),rgba(255,255,255,.78));-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  border:1px solid rgba(255,255,255,.9);box-shadow:0 32px 80px -28px rgba(14,36,86,.5),inset 0 1px 0 rgba(255,255,255,.95);transform:translateY(8px) scale(.99);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.adv-modal.is-open .adv-modal__card{transform:none}
+.adv-modal__head{margin-bottom:16px}
+.adv-modal__title{display:block;font-family:var(--display);font-weight:800;font-size:18px;color:var(--ink)}
+.adv-modal__sub{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.adv-field{display:block;margin-bottom:13px}
+.adv-field span{display:block;font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--ink);margin-bottom:6px}
+.adv-field input{width:100%;font-family:var(--body);font-size:13px;color:var(--ink);padding:10px 13px;border-radius:12px;
+  background:rgba(255,255,255,.7);border:1px solid var(--line);outline:none;transition:border-color .15s,box-shadow .15s}
+.adv-field input:focus{border-color:var(--blue-bright);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue-bright) 16%,transparent)}
+.adv-modal__hint{font-size:11.5px;color:var(--muted);margin:2px 2px 16px}
+.adv-modal__btns{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.adv-modal__btns-r{display:flex;gap:10px}
+.adv-btn{font-family:var(--display);font-weight:700;font-size:13px;padding:9px 16px;border-radius:12px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s,transform .15s,box-shadow .15s}
+.adv-btn:hover{transform:translateY(-1px)}
+.adv-btn--ghost{background:rgba(255,255,255,.5);border-color:var(--line);color:var(--muted)}
+.adv-btn--ghost:hover{color:var(--ink);border-color:var(--line-strong,var(--muted))}
+.adv-btn--save{background:linear-gradient(150deg,var(--blue-bright),var(--blue));color:#fff;box-shadow:0 12px 26px -10px color-mix(in srgb,var(--blue-bright) 60%,transparent)}
+/* Learning Recharge YouTube popup (independent modal) */
+.yt-modal{position:fixed;inset:0;z-index:130;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
+.yt-modal.is-open{opacity:1}
+.yt-modal__bg{position:absolute;inset:0;background:rgba(10,18,40,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.yt-modal__card{position:relative;width:88vw;max-width:760px;border-radius:22px;padding:14px;
+  background:linear-gradient(170deg,rgba(255,255,255,.85),rgba(255,255,255,.72));-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  border:1px solid rgba(255,255,255,.9);box-shadow:0 32px 80px -28px rgba(14,36,86,.6),inset 0 1px 0 rgba(255,255,255,.95);
+  transform:translateY(8px) scale(.99);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.yt-modal.is-open .yt-modal__card{transform:none}
+.yt-modal__frame{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.5)}
+.yt-modal__frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.yt-modal__x{position:absolute;top:-13px;right:-13px;width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;
+  background:#fff;color:var(--ink);box-shadow:0 10px 26px -8px rgba(0,0,0,.45);z-index:2;transition:transform .15s}
+.yt-modal__x:hover{transform:scale(1.06)}
+.yt-modal__x svg{width:18px;height:18px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+/* Student Success Stories video gallery (independent modal) — 5C bright frosted glass */
+.gallery-modal{position:fixed;inset:0;z-index:135;display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;transition:opacity .24s ease}
+.gallery-modal.is-open{opacity:1}
+.gallery-modal__bg{position:absolute;inset:0;background:rgba(28,46,82,.36);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px)}
+.gallery-modal__card{position:relative;width:95vw;max-width:1180px;height:88vh;display:flex;flex-direction:column;border-radius:28px;overflow:hidden;
+  background:
+    radial-gradient(74% 50% at 5% -8%, color-mix(in srgb,var(--blue-bright) 15%,transparent), transparent 60%),
+    radial-gradient(64% 54% at 102% -4%, color-mix(in srgb,#7C5CFF 12%,transparent), transparent 56%),
+    radial-gradient(92% 66% at 50% 122%, color-mix(in srgb,var(--ok) 10%,transparent), transparent 60%),
+    linear-gradient(168deg, rgba(255,255,255,.95), rgba(244,248,255,.88));
+  -webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 42px 104px -36px rgba(14,36,86,.42), inset 0 1px 0 rgba(255,255,255,.96);
+  transform:translateY(14px) scale(.99);transition:transform .26s cubic-bezier(.2,.8,.2,1)}
+.gallery-modal.is-open .gallery-modal__card{transform:none}
+/* head */
+.gallery-modal__head{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:20px 22px 17px;flex:none}
+.gallery-modal__head::after{content:"";position:absolute;left:24px;right:24px;bottom:0;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--blue-bright) 30%,transparent),transparent)}
+.gallery-stat{justify-self:start;display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:12px;color:var(--blue);
+  padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.62);border:1px solid var(--line);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 6px 16px -10px rgba(14,36,86,.35)}
+.gallery-stat svg{width:15px;height:15px;stroke:var(--blue-bright);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.gallery-modal__titles{text-align:center;min-width:0}
+.gallery-modal__title{display:block;font-family:var(--display);font-weight:800;font-size:25px;letter-spacing:-.02em;line-height:1.05;white-space:nowrap}
+.gallery-modal__title .w1{color:var(--ink)}
+.gallery-modal__title .w2{background:linear-gradient(92deg,var(--blue-bright),#7C5CFF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gallery-modal__title .w3{background:linear-gradient(92deg,var(--blue),var(--blue-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+.gallery-modal__sub{display:block;font-size:12.5px;color:var(--muted);margin-top:5px}
+.gallery-modal__x{justify-self:end;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.66);cursor:pointer;display:grid;place-items:center;color:var(--muted);transition:transform .15s,color .15s,background .15s}
+.gallery-modal__x:hover{transform:scale(1.06);color:var(--ink);background:rgba(255,255,255,.9)}
+.gallery-modal__x svg{width:17px;height:17px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+/* body + foot */
+.gallery-modal__body{flex:1;min-height:0;overflow-y:auto;padding:22px 24px}
+.gallery-modal__foot{flex:none;display:flex;align-items:center;justify-content:center;gap:9px;padding:13px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line)}
+.gallery-modal__foot svg{width:16px;height:16px;stroke:var(--blue-bright);stroke-width:1.8;fill:none}
+.gallery-modal__foot b{color:var(--ink);font-weight:600}
+/* stage: collapsed = grid only; expanded = cards left, player right */
+.gallery-stage{display:grid;grid-template-columns:1fr;gap:20px}
+.gallery-stage.is-expanded{grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr)}
+/* glass grid of story cards */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;align-content:start}
+.gallery-stage.is-expanded .gallery-grid{grid-template-columns:repeat(2,1fr);gap:13px}
+.gstory{position:relative;display:flex;flex-direction:column;text-align:left;cursor:pointer;padding:0;
+  border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.72);
+  background:linear-gradient(165deg, rgba(255,255,255,.86), rgba(255,255,255,.56));
+  -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+  box-shadow:0 16px 36px -24px rgba(20,33,50,.3), inset 0 1px 0 rgba(255,255,255,.92);
+  transition:transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s, border-color .22s}
+.gstory::before{content:"";position:absolute;inset:0;border-radius:18px;padding:1.2px;pointer-events:none;z-index:5;
+  background:linear-gradient(150deg, color-mix(in srgb,var(--gc,var(--blue-bright)) 72%,transparent), transparent 40%, transparent 60%, color-mix(in srgb,var(--gc,var(--blue-bright)) 38%,transparent));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+  opacity:.45;transition:opacity .22s}
+.gstory:hover::before,.gstory.is-active::before{opacity:1}
+.gstory:hover{transform:translateY(-5px) scale(1.025);
+  box-shadow:0 28px 52px -22px color-mix(in srgb,var(--gc,var(--blue-bright)) 42%,rgba(20,33,50,.35)), 0 0 28px -8px color-mix(in srgb,var(--gc,var(--blue-bright)) 40%,transparent), inset 0 1px 0 rgba(255,255,255,.96);
+  border-color:color-mix(in srgb,var(--gc,var(--blue-bright)) 32%,rgba(255,255,255,.72))}
+.gstory.is-active{border-color:color-mix(in srgb,var(--gc,var(--blue-bright)) 60%,transparent);
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--gc,var(--blue-bright)) 34%,transparent), 0 22px 46px -18px color-mix(in srgb,var(--gc,var(--blue-bright)) 50%,transparent), inset 0 1px 0 rgba(255,255,255,.96)}
+.gstory__thumb{position:relative;aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden;
+  background:radial-gradient(120% 120% at 50% 0%, color-mix(in srgb,var(--gc,var(--blue-bright)) 32%,#fff), color-mix(in srgb,var(--gc,var(--blue-bright)) 58%,var(--blue)))}
+.gstory__thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.gstory__thumb::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 44%,rgba(14,36,86,.42));opacity:.5;transition:opacity .25s}
+.gstory:hover .gstory__thumb::after{opacity:.3}
+.gstory__yt{position:absolute;top:10px;left:10px;z-index:2;width:32px;height:23px;border-radius:6px;background:#FF0000;display:grid;place-items:center;box-shadow:0 5px 12px -4px rgba(224,48,59,.5)}
+.gstory__yt svg{width:15px;height:15px;fill:#fff;margin-left:1px}
+.gstory__play{position:relative;z-index:2;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;
+  box-shadow:0 10px 24px -8px rgba(14,36,86,.45),0 0 0 8px rgba(255,255,255,.22);transition:transform .22s,box-shadow .22s}
+.gstory:hover .gstory__play{transform:scale(1.12);box-shadow:0 12px 28px -8px rgba(14,36,86,.5),0 0 0 10px color-mix(in srgb,var(--gc,var(--blue-bright)) 32%,rgba(255,255,255,.28))}
+.gstory__play svg{width:20px;height:20px;fill:var(--gc,var(--blue));margin-left:2px}
+.gstory__len{position:absolute;right:10px;bottom:10px;z-index:2;font-family:var(--display);font-weight:700;font-size:11px;color:#fff;padding:2px 7px;border-radius:6px;background:rgba(14,36,86,.72)}
+.gstory__meta{display:flex;flex-direction:column;padding:13px 14px 15px}
+.gstory__name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink);letter-spacing:-.01em}
+.gstory__role{font-size:11px;color:var(--muted);font-weight:600;margin-top:3px}
+.gstory__desc{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:8px}
+.gstory__cta{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--display);font-weight:700;font-size:11px;color:var(--gc,var(--blue-bright));transition:gap .2s}
+.gstory:hover .gstory__cta{gap:8px}
+.gstory__cta svg{width:12px;height:12px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+/* compact cards in expanded mode */
+.gallery-stage.is-expanded .gstory__desc,.gallery-stage.is-expanded .gstory__cta{display:none}
+.gallery-stage.is-expanded .gstory__meta{padding:10px 12px 12px}
+.gallery-stage.is-expanded .gstory__name{font-size:13px}
+.gallery-stage.is-expanded .gstory__role{font-size:10px;margin-top:2px}
+.gallery-stage.is-expanded .gstory__play{width:40px;height:40px}
+.gallery-stage.is-expanded .gstory__play svg{width:17px;height:17px}
+/* expanded player — YouTube wrapped in a frosted-glass bezel */
+.gallery-player{display:none}
+.gallery-stage.is-expanded .gallery-player{display:block;animation:rise .34s ease both}
+.gallery-player__frame{position:relative;aspect-ratio:16/9;border-radius:22px;overflow:hidden;
+  background:linear-gradient(165deg, rgba(255,255,255,.62), rgba(255,255,255,.32));
+  -webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
+  border:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 38%,rgba(255,255,255,.78));
+  box-shadow:0 30px 64px -28px rgba(14,36,86,.5), 0 0 42px -12px color-mix(in srgb,var(--gc,var(--blue-bright)) 42%,transparent), inset 0 1px 0 rgba(255,255,255,.9)}
+.gallery-player__frame iframe{position:absolute;inset:7px;width:calc(100% - 14px);height:calc(100% - 14px);border:0;border-radius:15px;display:block;background:#000;box-shadow:0 8px 22px -8px rgba(14,36,86,.45)}
+.gallery-player__meta{margin-top:16px;padding:17px 19px;border-radius:17px;
+  background:linear-gradient(165deg, rgba(255,255,255,.84), rgba(255,255,255,.56));
+  -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+  border:1px solid rgba(255,255,255,.72);box-shadow:0 14px 36px -24px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.92),0 0 26px -14px color-mix(in srgb,var(--gc,var(--blue-bright)) 36%,transparent)}
+.gallery-player__top{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.gallery-player__name{font-family:var(--display);font-weight:800;font-size:21px;color:var(--ink);letter-spacing:-.01em}
+.gallery-player__chip{font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.02em;color:#fff;padding:4px 12px;border-radius:999px;
+  background:var(--gc,var(--blue-bright));box-shadow:0 7px 18px -7px color-mix(in srgb,var(--gc,var(--blue-bright)) 75%,transparent)}
+.gallery-player__role{font-size:12.5px;color:var(--muted);margin-top:6px;font-weight:600}
+.gallery-player__quote{position:relative;margin-top:13px;font-size:14px;line-height:1.6;color:var(--ink);padding-left:18px}
+.gallery-player__quote::before{content:"\201C";position:absolute;left:-3px;top:-6px;font-size:34px;line-height:1;font-family:Georgia,serif;color:color-mix(in srgb,var(--gc,var(--blue-bright)) 75%,transparent)}
+.gallery-player__yt{display:inline-flex;align-items:center;gap:7px;margin-top:15px;font-family:var(--display);font-weight:700;font-size:12px;color:#fff;text-decoration:none;
+  padding:8px 14px;border-radius:999px;background:#FF0000;box-shadow:0 9px 20px -7px rgba(224,48,59,.55);transition:transform .15s,box-shadow .15s}
+.gallery-player__yt:hover{transform:translateY(-1px);box-shadow:0 13px 26px -8px rgba(224,48,59,.6)}
+.gallery-player__yt svg{width:16px;height:16px;fill:#fff}
+.gallery-player__hint{display:none;align-items:flex-start;gap:8px;margin-top:13px;padding:11px 13px;border-radius:12px;
+  background:color-mix(in srgb,var(--blue-bright) 8%,#fff);border:1px solid var(--line);font-size:11.5px;line-height:1.55;color:var(--muted)}
+.gallery-player__hint svg{width:15px;height:15px;flex:none;margin-top:1px;stroke:var(--blue-bright);stroke-width:2;fill:none}
+.gallery-player__hint code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5px;background:rgba(20,33,50,.07);padding:1px 5px;border-radius:5px;color:var(--ink)}
+.gallery-player__frame.is-fallback{background:linear-gradient(165deg,rgba(255,255,255,.5),rgba(255,255,255,.28))}
+.gallery-player__notice{position:absolute;inset:7px;border-radius:15px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;text-align:center;padding:26px;
+  background-size:cover;background-position:center;background-color:#0b1530;box-shadow:0 8px 22px -8px rgba(14,36,86,.45)}
+.gallery-player__notice::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,16,40,.42),rgba(8,16,40,.72))}
+.gallery-player__nbadge{position:relative;z-index:1;width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.93);display:grid;place-items:center;box-shadow:0 10px 26px -8px rgba(0,0,0,.5),0 0 0 8px rgba(255,255,255,.14)}
+.gallery-player__nbadge svg{width:24px;height:24px;stroke:var(--blue);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.gallery-player__ntext{position:relative;z-index:1;font-family:var(--body);font-size:12.5px;line-height:1.6;color:#eef3ff;text-shadow:0 2px 8px rgba(0,0,0,.5);max-width:360px}
+.gallery-player__ntext b{font-weight:700;color:#fff}
+@media (max-width:880px){
+  .gallery-modal__card{height:90vh;width:96vw}
+  .gallery-modal__title{font-size:21px}
+  .gallery-stage.is-expanded{grid-template-columns:1fr}
+  .gallery-stage.is-expanded .gallery-player{order:-1}
+  .gallery-stage.is-expanded .gallery-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:720px){
+  .gallery-stat{display:none}
+  .gallery-modal__head{grid-template-columns:1fr auto}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:13px}
+  .gallery-stage.is-expanded .gallery-grid{grid-template-columns:repeat(3,1fr);gap:10px}
+}
+/* Recognised & awarded -> clickable card + official page popup */
+.why--link{cursor:pointer;position:relative}
+.why--link:hover{border-color:color-mix(in srgb,var(--blue-bright) 32%,var(--line));box-shadow:0 16px 40px -22px color-mix(in srgb,var(--blue-bright) 55%,transparent)}
+.why__view{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--blue-bright);opacity:.85;transition:gap .15s,opacity .15s}
+.why--link:hover .why__view{opacity:1;gap:8px}
+.why__view svg{width:12px;height:12px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+/* Location chip hover/tap preview (Google-Maps style) */
+.loc[data-loc]{cursor:pointer}
+.loc-pop{position:fixed;z-index:125;width:236px;max-width:80vw;opacity:0;pointer-events:none;transform:translateY(4px);transition:opacity .16s ease,transform .16s ease}
+.loc-pop.is-open{opacity:1;pointer-events:auto;transform:none}
+.loc-pop__card{position:relative;border-radius:16px;padding:13px 15px;
+  background:linear-gradient(170deg,rgba(255,255,255,.94),rgba(255,255,255,.82));-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid rgba(255,255,255,.9);box-shadow:0 22px 54px -24px rgba(14,36,86,.5),inset 0 1px 0 rgba(255,255,255,.95)}
+.loc-pop__area{font-family:var(--display);font-weight:800;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-bright)}
+.loc-pop__name{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);margin-top:2px;line-height:1.2}
+.loc-pop__desc{font-size:12px;color:var(--muted);line-height:1.5;margin:5px 0 0}
+.loc-pop__link{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--blue-bright);text-decoration:none;transition:gap .15s}
+.loc-pop__link:hover{gap:8px}
+.loc-pop__link svg{width:12px;height:12px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.loc-pop__arrow{position:absolute;bottom:-6px;width:12px;height:12px;transform:translateX(-50%) rotate(45deg);background:rgba(255,255,255,.86);border-right:1px solid rgba(255,255,255,.9);border-bottom:1px solid rgba(255,255,255,.9)}
+.loc-pop.is-below .loc-pop__arrow{bottom:auto;top:-6px;border-right:0;border-bottom:0;border-left:1px solid rgba(255,255,255,.9);border-top:1px solid rgba(255,255,255,.9)}
+.site-modal{position:fixed;inset:0;z-index:135;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
+.site-modal.is-open{opacity:1}
+.site-modal__bg{position:absolute;inset:0;background:rgba(10,18,40,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.site-modal__card{position:relative;width:90vw;max-width:960px;height:78vh;display:flex;flex-direction:column;border-radius:22px;overflow:hidden;
+  background:linear-gradient(170deg,rgba(255,255,255,.9),rgba(255,255,255,.8));-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  border:1px solid rgba(255,255,255,.9);box-shadow:0 32px 80px -28px rgba(14,36,86,.55),inset 0 1px 0 rgba(255,255,255,.95);
+  transform:translateY(10px) scale(.99);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.site-modal.is-open .site-modal__card{transform:none}
+.site-modal__head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 14px 12px 20px;border-bottom:1px solid var(--line);flex:none}
+.site-modal__title{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink)}
+.site-modal__title .zh{font-weight:600;font-size:12.5px;color:var(--muted)}
+.site-modal__x{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.7);cursor:pointer;display:grid;place-items:center;color:var(--muted);flex:none;transition:transform .15s,color .15s}
+.site-modal__x:hover{transform:scale(1.06);color:var(--ink)}
+.site-modal__x svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.site-modal__body{position:relative;flex:1;min-height:0;background:#fff}
+.site-modal__frame{width:100%;height:100%;border:0;display:block}
+.site-modal__loading{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(170deg,#fff,#F4F6FB)}
+.site-modal__loading.is-done{display:none}
+.site-modal__loading p{font-family:var(--display);font-weight:600;font-size:13px;color:var(--muted);margin:0}
+.site-modal__spin{width:30px;height:30px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--blue-bright);animation:locSpin .8s linear infinite}
+@keyframes locSpin{to{transform:rotate(360deg)}}
+.site-modal__fallback{position:absolute;inset:0;z-index:2;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:30px;background:linear-gradient(170deg,#fff,#F4F6FB)}
+.site-modal__fallback.is-shown{display:flex}
+.site-modal__fallback p{font-family:var(--display);font-weight:700;color:var(--ink);font-size:15px;margin:0}
 .ldetail{margin-top:16px}
 .ldetail__in{border-radius:20px;padding:24px 26px;animation:rise .4s cubic-bezier(.2,.8,.2,1);
   background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);
@@ -1332,6 +1563,8 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   .ldetail__grid{grid-template-columns:1fr}
   .lcell{padding:14px 8px}
   .lcell__t{font-size:12.5px}
+  .mini-glass-btn{font-size:10px;padding:7px 8px;gap:4px}
+  .mini-glass-btn svg{width:11px;height:11px}
   .lcell__ic{width:38px;height:38px}
   .sys-emblem{width:92px;height:92px}
   .les-card__n{font-size:32px;top:16px;right:18px}
@@ -1574,21 +1807,21 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
         </div>
         <div class="why-grid">
           <div class="why"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4 3 7 7 8 4-1 7-4 7-8V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg></div><span class="badge">Accredited</span><div class="t">MOE recognised</div><div class="d">Licensed by the Ministry of Education Malaysia to run English courses for adults.</div></div>
-          <div class="why"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18"/><circle cx="16.5" cy="14.5" r="1.3" fill="currentColor" stroke="none"/></svg></div><span class="badge">Corporate</span><div class="t">HRDC claimable</div><div class="d">Certified HRD Corp training provider — claimable for companies.</div></div>
+          <div class="why why--link" data-hrdc role="button" tabindex="0" onclick="openHRDC()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openHRDC();}"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18"/><circle cx="16.5" cy="14.5" r="1.3" fill="currentColor" stroke="none"/></svg></div><span class="badge">Corporate</span><div class="t">HRDC claimable</div><div class="d">Certified HRD Corp training provider — claimable for companies.</div><span class="why__view">View details <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></div>
           <div class="why"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2.5"/><path d="M4 9h16M9 3v4M15 3v4"/></svg></div><div class="stat">14<span style="font-size:18px">yrs</span></div><div class="t">Teaching experience</div><div class="d">Years of adult English education. <span style="color:var(--faint)">※ verify number</span></div></div>
-          <div class="why"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 5.5a3 3 0 0 1 0 5.8"/><path d="M20.5 19a5.5 5.5 0 0 0-4-5.3"/></svg></div><div class="stat">12,000+</div><div class="t">Learners trained</div><div class="d">Working adults guided to speak with confidence. <span style="color:var(--faint)">※ verify number</span></div></div>
-          <div class="why"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="m8.5 13.5-1.5 7 5-2.5 5 2.5-1.5-7"/></svg></div><span class="badge">Award-winning</span><div class="t">Recognised &amp; awarded</div><div class="d">Sin Chew Service Excellence, PUMAS, Influential Educator, IELTS Gold Member.</div></div>
-          <div class="why"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2 2 0 0 1 10 3.5h4a2 2 0 0 1 2 2V7"/><path d="M3 12.5h18"/></svg></div><div class="t">Practical workplace focus</div><div class="d">Speaking for meetings, clients and daily life — not exam drilling.</div></div>
+          <div class="why why--link" data-stories role="button" tabindex="0" onclick="openStories()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openStories();}"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 5.5a3 3 0 0 1 0 5.8"/><path d="M20.5 19a5.5 5.5 0 0 0-4-5.3"/></svg></div><div class="stat">16,397+</div><div class="t">Learners trained</div><div class="d">Working adults guided to speak with confidence.</div><span class="why__view">Watch stories <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></div>
+          <div class="why why--link" data-awards role="button" tabindex="0" onclick="openAwards()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openAwards();}"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="m8.5 13.5-1.5 7 5-2.5 5 2.5-1.5-7"/></svg></div><span class="badge">Award-winning</span><div class="t">Recognised &amp; awarded</div><div class="d">Sin Chew Service Excellence, PUMAS, Influential Educator, IELTS Gold Member.</div><span class="why__view">View awards <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></div>
+          <div class="why why--link" data-pwe role="button" tabindex="0" onclick="openPWE()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openPWE();}"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7V5.5A2 2 0 0 1 10 3.5h4a2 2 0 0 1 2 2V7"/><path d="M3 12.5h18"/></svg></div><div class="t">PWE- Industry Visit</div><div class="d">A structured pre-planning approach that helps learners achieve both short-term and long-term goals. It provides a clear roadmap, guiding consistent practice and ensuring visible progress toward defined outcomes.</div><span class="why__view">View details <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></div>
         </div>
         <div class="locations">
           <h4><span class="loc-pin"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Where you can learn · 上课地点</h4>
           <div class="loc-row">
-            <span class="loc"><b>Johor:</b> Mount Austin</span>
-            <span class="loc"><b>Johor:</b> Sutera Utama</span>
-            <span class="loc"><b>Johor:</b> Bukit Indah</span>
-            <span class="loc"><b>Johor:</b> Kulai</span>
-            <span class="loc"><b>Selangor:</b> Setia Alam</span>
-            <span class="loc"><b>Online:</b> Live class on Zoom</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Mount Austin" data-desc="Our Johor flagship centre in Mount Austin." data-map="#"><b>Johor:</b> Mount Austin</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Sutera Utama" data-desc="Centre in Sutera Utama, near Skudai." data-map="#"><b>Johor:</b> Sutera Utama</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Bukit Indah" data-desc="Westside centre serving Bukit Indah & Iskandar Puteri." data-map="#"><b>Johor:</b> Bukit Indah</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Kulai" data-desc="Northern Johor centre in Kulai town." data-map="#"><b>Johor:</b> Kulai</span>
+            <span class="loc" data-loc data-area="Selangor" data-name="Setia Alam" data-desc="Klang Valley centre in Setia Alam." data-map="#"><b>Selangor:</b> Setia Alam</span>
+            <span class="loc" data-loc data-area="Online" data-name="Live class on Zoom" data-desc="Join live, interactive lessons online via Zoom." data-map="#"><b>Online:</b> Live class on Zoom</span>
           </div>
         </div>
         <div class="adv-cue" data-cue><strong>Advisor cue:</strong> match the proof to their worry — MOE/awards for "is this legit?", HRDC for company-sponsored learners, workplace-focus for career-driven inquiries.</div>
@@ -2621,7 +2854,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           '</div>'+
           '<div class="goal-quote"><span class="goal-quote__ic">'+wave+'</span>Stage helps you practise. IPA helps you find your voice. <span class="zh">舞台帮助你练习。音标帮助你找到自己的声音。</span></div>'+
           '<div class="goal-cta-wrap"><!-- Replace with TOUCH Learning Recharge Link -->'+
-            '<a class="goal-cta" href="#"><span>Learning Recharge</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>'+
+            '<a class="goal-cta" href="#" onclick="ipaPlay();return false;"><span>Learning Recharge</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>'+
           '<div class="dean-sign"><!-- Dean photo: upload to assets/characters/enzo.png -->'+
             '<span class="dean-sign__eyebrow">From the Dean · 院长亲自带领</span>'+
             '<div class="dean-card">'+
@@ -2634,13 +2867,13 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     }
     // ===== First 24 Lessons — System page: 3 selectors + shared detail area =====
     var LFLOW=[
-      {t:"Before Class", zh:"课前", c:"var(--blue-bright)", ci:"#1F5FD0",
+      {t:"Before Class", zh:"课前", c:"var(--blue-bright)", ci:"#1F5FD0", btn:"Open Before Class", url:"https://tec.touchenglish.edu.my/appointment/217778",
        purpose:{en:"Prepare your mind before learning.",zh:"让学生在上课前先进入学习状态。"},
        details:[{en:"Preview lesson materials",zh:"预习课堂内容"},{en:"Prepare questions",zh:"准备问题"},{en:"Review key vocabulary",zh:"复习关键词汇"},{en:"Get ready to speak",zh:"准备开口练习"}]},
-      {t:"During Class", zh:"上课", c:"var(--red)", ci:"#C2351C",
+      {t:"During Class", zh:"上课", c:"var(--red)", ci:"#C2351C", btn:"Open During Class", url:"#",
        purpose:{en:"Learn by speaking and participating.",zh:"透过开口和参与来学习。"},
        details:[{en:"Join speaking practice",zh:"参与口语练习"},{en:"Use sentence structures",zh:"使用句型表达"},{en:"Take part in role play",zh:"进行角色扮演"},{en:"Communicate with classmates",zh:"和同学互动沟通"}]},
-      {t:"After Class", zh:"课后", c:"var(--ok)", ci:"#15875A",
+      {t:"After Class", zh:"课后", c:"var(--ok)", ci:"#15875A", btn:"Open After Class", url:"#",
        purpose:{en:"Review, reflect, and continue growing.",zh:"复习、反思，并持续成长。"},
        details:[{en:"Review teacher feedback",zh:"回顾老师反馈"},{en:"Watch selected recording parts",zh:"观看重点课堂片段"},{en:"Practise weak areas",zh:"练习需要加强的地方"},{en:"Prepare for the next lesson",zh:"准备下一堂课"}]}
     ];
@@ -2649,12 +2882,210 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       '<svg class="svg-ic" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.3L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/><circle cx="8.5" cy="11.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="11.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="11.5" r="1.1" fill="currentColor" stroke="none"/></svg>',
       '<svg class="svg-ic" viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3 4v4h4"/></svg>'
     ];
-    function lessonsPage(){
-      var cells=LFLOW.map(function(f,i){
-        return '<button class="lcell'+(i===0?' is-active':'')+'" data-lc="'+i+'" style="--c:'+f.c+';--ci:'+f.ci+'">'+
-          '<span class="lcell__ic">'+CFICONS[i]+'</span>'+
-          '<span class="lcell__t">'+f.t+'<span class="zh">'+f.zh+'</span></span>'+
+    // Advisor-editable links (persisted in localStorage; empty/missing -> default)
+    var LINK_DEFAULTS={before:"https://tec.touchenglish.edu.my/appointment/187258",during:"https://tec.touchenglish.edu.my/appointment/187258",after:"https://tec.touchenglish.edu.my/appointment/187258",book:"https://tec.touchenglish.edu.my/appointment/timetable#"};
+    var LINK_KEY="te_advisor_links_v1";
+    function linksSaved(){try{return JSON.parse(localStorage.getItem(LINK_KEY))||{};}catch(e){return {};}}
+    function linksGet(){var s=linksSaved(),o={};["before","during","after","book"].forEach(function(k){var v=s[k];o[k]=(v&&(""+v).trim())?(""+v).trim():LINK_DEFAULTS[k];});return o;}
+    function linksSave(o){try{localStorage.setItem(LINK_KEY,JSON.stringify(o));}catch(e){}}
+    function linksReset(){try{localStorage.removeItem(LINK_KEY);}catch(e){}}
+    // ----- Stage 01 "Learning Recharge" YouTube popup -----
+    var IPA_VIDEO="MVW8tgTO18I"; // youtube.com/live/MVW8tgTO18I -> embed
+    window.ipaPlay=function(){
+      var old=document.getElementById("ytModal"); if(old)old.remove();
+      var m=document.createElement("div"); m.id="ytModal"; m.className="yt-modal";
+      m.innerHTML='<div class="yt-modal__bg"></div>'+
+        '<div class="yt-modal__card" role="dialog" aria-modal="true" aria-label="Learning Recharge">'+
+          '<button type="button" class="yt-modal__x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'+
+          '<div class="yt-modal__frame"><iframe src="https://www.youtube.com/embed/'+IPA_VIDEO+'?rel=0&autoplay=1" title="Learning Recharge" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'+
+        '</div>';
+      document.body.appendChild(m);
+      var escH=function(e){ if(e.key==="Escape"){e.stopPropagation();e.preventDefault();close();} };
+      function close(){ var f=m.querySelector("iframe"); if(f)f.src=""; document.removeEventListener("keydown",escH,true); m.remove(); }
+      m.querySelector(".yt-modal__bg").addEventListener("click",close);
+      m.querySelector(".yt-modal__x").addEventListener("click",close);
+      document.addEventListener("keydown",escH,true);
+      void m.offsetWidth; m.classList.add("is-open");
+    };
+    // ----- Official-page popup (iframe + fallback), reused by award/PWE cards -----
+    window.openSitePopup=function(URL,titleHtml,btnLabel){
+      btnLabel=btnLabel||"Open Official Page";
+      var old=document.getElementById("siteModal"); if(old)old.remove();
+      var m=document.createElement("div"); m.id="siteModal"; m.className="site-modal";
+      m.innerHTML='<div class="site-modal__bg"></div>'+
+        '<div class="site-modal__card" role="dialog" aria-modal="true" aria-label="Official page">'+
+          '<div class="site-modal__head"><span class="site-modal__title">'+titleHtml+'</span>'+
+            '<button type="button" class="site-modal__x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'+
+          '<div class="site-modal__body">'+
+            '<iframe class="site-modal__frame" src="'+URL+'" title="Official page" referrerpolicy="no-referrer-when-downgrade"></iframe>'+
+            '<div class="site-modal__loading"><span class="site-modal__spin"></span><p>Loading official page…</p></div>'+
+            '<div class="site-modal__fallback"><p>This official page cannot be embedded here.</p>'+
+              '<a class="goal-cta" href="'+URL+'" target="_blank" rel="noopener noreferrer"><span>'+btnLabel+'</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>'+
+          '</div>'+
+        '</div>';
+      document.body.appendChild(m);
+      var frame=m.querySelector(".site-modal__frame"), loadEl=m.querySelector(".site-modal__loading"), fb=m.querySelector(".site-modal__fallback"), loaded=false;
+      var t=setTimeout(function(){ if(!loaded){ loadEl.classList.add("is-done"); frame.style.display="none"; fb.classList.add("is-shown"); } },18000);
+      frame.addEventListener("load",function(){ loaded=true; clearTimeout(t); loadEl.classList.add("is-done"); });
+      var escH=function(e){ if(e.key==="Escape"){e.stopPropagation();e.preventDefault();close();} };
+      function close(){ clearTimeout(t); if(frame)frame.src=""; document.removeEventListener("keydown",escH,true); m.remove(); }
+      m.querySelector(".site-modal__bg").addEventListener("click",close);
+      m.querySelector(".site-modal__x").addEventListener("click",close);
+      document.addEventListener("keydown",escH,true);
+      void m.offsetWidth; m.classList.add("is-open");
+    };
+    window.openAwards=function(){ window.openSitePopup("https://touchenglish.edu.my/en/awards-esg",'Recognised &amp; awarded <span class="zh">· Awards & ESG</span>',"Open Official Awards Page"); };
+    window.openPWE=function(){ window.openSitePopup("https://touchenglish.edu.my/en/proven#pweApplication",'PWE - Industry Visit <span class="zh">· Proven</span>',"Open Official Page"); };
+    window.openHRDC=function(){ window.openSitePopup("https://www.touchenglish.edu.my/en/course#hrdc",'HRDC claimable <span class="zh">· Corporate Training</span>',"Open Official Page"); };
+    // ----- "Learners trained" -> Student Success Stories video gallery -----
+    var STORIES=[
+      {name:"Vivi", role:"Swimming Coach \u00b7 Pre-Level 1", vid:"dW0WfzzcQJY", desc:"From basic English to speaking more confidently in real-life situations."},
+      {name:"Lim Yoke Fen", role:"Level 4 Learner", vid:"BSom6KeM69E", desc:"Improved higher-level communication and presentation confidence."},
+      {name:"Xiao Ting", role:"SPM Student \u00b7 Level 1", vid:"_Na5XJUTZYE", desc:"Built a stronger foundation and became more confident to speak."},
+      {name:"Sally", role:"Quantity Surveyor \u00b7 Level 3", vid:"BbB0WMARIw8", desc:"Strengthened workplace communication and professional expression."},
+      {name:"Mark", role:"Programmer \u00b7 Level 3", vid:"qhlJQ8baMIE", desc:"Improved speaking confidence for work and daily communication."},
+      {name:"Kai Xin", role:"Conveying Skill \u00b7 Level 2", vid:"tMJCH5m2H9g", desc:"Learned to express ideas more clearly and confidently."}
+    ];
+    // accent palette cycled per story (5C-style glass colour coding, tuned for dark glass)
+    var STORY_ACCENTS=["var(--blue-bright)","var(--ok)","#7C5CFF","#E08A1E","#0EA5C4","var(--red)"];
+    window.openStories=function(){
+      var isFile=(location.protocol==="file:");
+      function watchURL(vid){ return "https://www.youtube.com/watch?v="+vid; }
+      function emb(vid,ap){
+        var u="https://www.youtube-nocookie.com/embed/"+vid+"?rel=0&modestbranding=1&playsinline=1";
+        if(ap)u+="&autoplay=1";
+        if(!isFile)u+="&origin="+encodeURIComponent(location.origin);
+        return u;
+      }
+      var ytBadge='<span class="gstory__yt"><svg viewBox="0 0 24 24"><path d="M8 6v12l10-6z"/></svg></span>';
+      var old=document.getElementById("galleryModal"); if(old)old.remove();
+      var m=document.createElement("div"); m.id="galleryModal"; m.className="gallery-modal";
+      var cards=STORIES.map(function(s,i){
+        var gc=STORY_ACCENTS[i%STORY_ACCENTS.length];
+        var len=s.len?'<span class="gstory__len">'+s.len+'</span>':'';
+        var role=s.role?'<span class="gstory__role">'+s.role+'</span>':'';
+        return '<button type="button" class="gstory" data-gi="'+i+'" style="--gc:'+gc+'">'+
+          '<span class="gstory__thumb"><img src="https://img.youtube.com/vi/'+s.vid+'/hqdefault.jpg" alt="" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'">'+ytBadge+'<span class="gstory__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>'+len+'</span>'+
+          '<span class="gstory__meta">'+
+            '<span class="gstory__name">'+s.name+'</span>'+role+
+            '<span class="gstory__desc">'+s.desc+'</span>'+
+            '<span class="gstory__cta">Watch story <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>'+
+          '</span>'+
         '</button>';
+      }).join("");
+      m.innerHTML='<div class="gallery-modal__bg"></div>'+
+        '<div class="gallery-modal__card" role="dialog" aria-modal="true" aria-label="Student Success Stories">'+
+          '<div class="gallery-modal__head">'+
+            '<span class="gallery-stat"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 5.5a3 3 0 0 1 0 5.8"/><path d="M20.5 19a5.5 5.5 0 0 0-4-5.3"/></svg>16,397+ Learners trained</span>'+
+            '<div class="gallery-modal__titles"><span class="gallery-modal__title"><span class="w1">Student</span> <span class="w2">Success</span> <span class="w3">Stories</span></span><span class="gallery-modal__sub">Real learners. Real progress. Real confidence.</span></div>'+
+            '<button type="button" class="gallery-modal__x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'+
+          '</div>'+
+          '<div class="gallery-modal__body">'+
+            '<div class="gallery-stage">'+
+              '<div class="gallery-grid">'+cards+'</div>'+
+              '<div class="gallery-player">'+
+                '<div class="gallery-player__frame"></div>'+
+                '<div class="gallery-player__meta">'+
+                  '<div class="gallery-player__top"><span class="gallery-player__name"></span><span class="gallery-player__chip"></span></div>'+
+                  '<div class="gallery-player__role"></div>'+
+                  '<p class="gallery-player__quote"></p>'+
+                  '<a class="gallery-player__yt" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5v-7l6.5 3.5Z"/></svg>Watch on YouTube</a>'+
+                  '<div class="gallery-player__hint"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span>Opened as a local file (file://), so the embedded player can\u2019t load (YouTube Error 153). Run a local server \u2014 e.g. <code>python3 -m http.server</code> then open <code>http://localhost:8000</code> \u2014 or just click \u201cWatch on YouTube\u201d above.</span></div>'+
+                '</div>'+
+              '</div>'+
+            '</div>'+
+          '</div>'+
+          '<div class="gallery-modal__foot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z"/></svg><span>Real stories from real <b>TOUCH English</b> learners</span></div>'+
+        '</div>';
+      document.body.appendChild(m);
+      var stage=m.querySelector(".gallery-stage"), player=m.querySelector(".gallery-player"), frame=m.querySelector(".gallery-player__frame"), body=m.querySelector(".gallery-modal__body");
+      function select(i){
+        var first=!stage.classList.contains("is-expanded");
+        stage.classList.add("is-expanded");
+        player.style.setProperty("--gc",STORY_ACCENTS[i%STORY_ACCENTS.length]);
+        var vid=STORIES[i].vid;
+        if(isFile){
+          // file:// cannot host an embedded player (YouTube Error 153) — show a passive notice only, no auto-redirect.
+          frame.classList.add("is-fallback");
+          frame.innerHTML='<div class="gallery-player__notice" style="background-image:url(https://img.youtube.com/vi/'+vid+'/hqdefault.jpg)">'+
+            '<span class="gallery-player__nbadge"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></span>'+
+            '<span class="gallery-player__ntext">In-page playback runs on <b>http://localhost</b> or an <b>https://</b> site. Opened as a local <b>file://</b>, so use the <b>Watch on YouTube</b> button below for now.</span>'+
+          '</div>';
+        } else {
+          // localhost / https: play inline inside the glass iframe (no redirect).
+          frame.classList.remove("is-fallback");
+          var fr=frame.querySelector("iframe");
+          if(!fr){ fr=document.createElement("iframe"); fr.title="Featured story"; fr.setAttribute("frameborder","0"); fr.setAttribute("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"); fr.allowFullscreen=true; fr.setAttribute("referrerpolicy","strict-origin-when-cross-origin"); frame.appendChild(fr); }
+          fr.src=emb(vid,1);
+        }
+        var role=STORIES[i].role||"", job=role, level="";
+        if(role.indexOf("\u00b7")>=0){ var parts=role.split("\u00b7"); job=parts[0].trim(); level=parts.slice(1).join("\u00b7").trim(); }
+        player.querySelector(".gallery-player__name").textContent=STORIES[i].name;
+        var chip=player.querySelector(".gallery-player__chip");
+        chip.textContent=level; chip.style.display=level?"":"none";
+        player.querySelector(".gallery-player__role").textContent=job;
+        player.querySelector(".gallery-player__quote").textContent=STORIES[i].desc;
+        player.querySelector(".gallery-player__yt").setAttribute("href",watchURL(vid));
+        player.querySelector(".gallery-player__hint").style.display=isFile?"flex":"none";
+        m.querySelectorAll(".gstory").forEach(function(c,ci){c.classList.toggle("is-active",ci===i);});
+        if(first){ try{ body.scrollTo({top:0,behavior:"smooth"}); }catch(e){ body.scrollTop=0; } }
+      }
+      m.querySelectorAll(".gstory").forEach(function(c){ c.addEventListener("click",function(){ select(+c.getAttribute("data-gi")); }); });
+      var escH=function(e){ if(e.key==="Escape"){e.stopPropagation();e.preventDefault();close();} };
+      function close(){ var fr=frame.querySelector("iframe"); if(fr)fr.src=""; document.removeEventListener("keydown",escH,true); m.remove(); }
+      m.querySelector(".gallery-modal__bg").addEventListener("click",close);
+      m.querySelector(".gallery-modal__x").addEventListener("click",close);
+      document.addEventListener("keydown",escH,true);
+      void m.offsetWidth; m.classList.add("is-open");
+    };
+    // ----- Location chips: Google-Maps-style hover/tap preview -----
+    (function(){
+      var chips=[].slice.call(document.querySelectorAll('.locations .loc[data-loc]'));
+      if(!chips.length)return;
+      var pop=document.createElement('div'); pop.className='loc-pop'; pop.id='locPop';
+      pop.innerHTML='<div class="loc-pop__card">'+
+        '<span class="loc-pop__area"></span><div class="loc-pop__name"></div><p class="loc-pop__desc"></p>'+
+        '<a class="loc-pop__link" target="_blank" rel="noopener noreferrer"><span>View location</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>'+
+        '<span class="loc-pop__arrow"></span></div>';
+      document.body.appendChild(pop);
+      var aEl=pop.querySelector('.loc-pop__area'),nEl=pop.querySelector('.loc-pop__name'),dEl=pop.querySelector('.loc-pop__desc'),lEl=pop.querySelector('.loc-pop__link'),arrow=pop.querySelector('.loc-pop__arrow');
+      var hideT=null,current=null;
+      function fill(c){ aEl.textContent=c.getAttribute('data-area')||''; nEl.textContent=c.getAttribute('data-name')||''; dEl.textContent=c.getAttribute('data-desc')||''; lEl.setAttribute('href',c.getAttribute('data-map')||'#'); }
+      function position(c){
+        var pr=pop.getBoundingClientRect(), cr=c.getBoundingClientRect(), gap=11, w=pr.width, h=pr.height;
+        var cx=cr.left+cr.width/2, left=Math.round(cx-w/2);
+        left=Math.max(8,Math.min(left,window.innerWidth-w-8));
+        var top=Math.round(cr.top-h-gap), below=false;
+        if(top<8){ top=Math.round(cr.bottom+gap); below=true; }
+        pop.classList.toggle('is-below',below);
+        pop.style.left=left+'px'; pop.style.top=top+'px';
+        arrow.style.left=Math.max(14,Math.min(cx-left,w-14))+'px';
+      }
+      function show(c){ if(hideT){clearTimeout(hideT);hideT=null;} current=c; fill(c); position(c); pop.classList.add('is-open'); }
+      function hide(){ pop.classList.remove('is-open'); current=null; }
+      function scheduleHide(){ if(hideT)clearTimeout(hideT); hideT=setTimeout(hide,130); }
+      var canHover=window.matchMedia&&window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+      if(canHover){
+        chips.forEach(function(c){ c.addEventListener('mouseenter',function(){show(c);}); c.addEventListener('mouseleave',scheduleHide); });
+        pop.addEventListener('mouseenter',function(){ if(hideT){clearTimeout(hideT);hideT=null;} });
+        pop.addEventListener('mouseleave',scheduleHide);
+        window.addEventListener('scroll',hide,true);
+      } else {
+        chips.forEach(function(c){ c.addEventListener('click',function(e){ e.stopPropagation(); if(current===c){hide();} else {show(c);} }); });
+        document.addEventListener('click',function(e){ if(current && !pop.contains(e.target)) hide(); });
+        window.addEventListener('scroll',hide,true);
+      }
+    })();
+    function lessonsPage(){
+      var L=linksGet(), LKEYS=["before","during","after"];
+      var cells=LFLOW.map(function(f,i){
+        return '<div class="lcell-wrap" style="--c:'+f.c+';--ci:'+f.ci+'">'+
+          '<button class="lcell'+(i===0?' is-active':'')+'" data-lc="'+i+'">'+
+            '<span class="lcell__ic">'+CFICONS[i]+'</span>'+
+            '<span class="lcell__t">'+f.t+'<span class="zh">'+f.zh+'</span></span>'+
+          '</button>'+
+          '<a class="mini-glass-btn" data-link="'+LKEYS[i]+'" href="'+L[LKEYS[i]]+'" target="_blank" rel="noopener noreferrer"><span>'+f.btn+'</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>'+
+        '</div>';
       }).join("");
       return '<div class="goal lessons">'+
         '<header class="mhero">'+
@@ -2692,8 +3123,9 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
         '<div class="goal-body">'+
           '<div class="lcells">'+cells+'</div>'+
           '<div class="ldetail" id="lDetail"></div>'+
-          '<div class="goal-cta-wrap"><!-- Replace with actual Learning System URL -->'+
-            '<a class="goal-cta" href="https://tec.touchenglish.edu.my/appointment/timetable#" target="_blank" rel="noopener noreferrer"><span>Book Classroom Experience <span class="zh">预约课堂体验</span></span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>'+
+          '<div class="goal-cta-wrap">'+
+            '<a class="goal-cta" data-link="book" href="'+L.book+'" target="_blank" rel="noopener noreferrer"><span>Book Classroom Experience <span class="zh">预约课堂体验</span></span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>'+
+          '<div class="adv-note-wrap"><button type="button" class="adv-note" id="advNote" aria-label="Advisor link settings"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button></div>'+
         '</div>'+
       '</div>';
     }
@@ -2714,6 +3146,47 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
         render(+n.getAttribute("data-lc"));
       });
       render(0); // default selection
+      // ----- Advisor Link Settings (backdrop entry via Advisor Note) -----
+      function applyLinks(){
+        var L=linksGet();
+        fbody.querySelectorAll(".mini-glass-btn[data-link]").forEach(function(a){var k=a.getAttribute("data-link");if(L[k])a.setAttribute("href",L[k]);});
+        var bk=fbody.querySelector('.goal-cta[data-link="book"]'); if(bk)bk.setAttribute("href",L.book);
+      }
+      var note=fbody.querySelector("#advNote");
+      if(note){
+        var modal=null, escH=null;
+        function closeModal(){ if(escH){document.removeEventListener("keydown",escH,true);escH=null;} if(modal){modal.remove();modal=null;} }
+        function openModal(){
+          var s=linksSaved();
+          modal=document.createElement("div"); modal.className="adv-modal"; modal.id="advModal";
+          modal.innerHTML='<div class="adv-modal__bg"></div>'+
+            '<div class="adv-modal__card" role="dialog" aria-modal="true" aria-label="Advisor Link Settings">'+
+              '<div class="adv-modal__head"><span class="adv-modal__title">Advisor Link Settings</span><span class="adv-modal__sub">每个按钮的链接 · 仅保存在本机浏览器</span></div>'+
+              '<label class="adv-field"><span>Before Class Link</span><input type="url" data-k="before" placeholder="'+LINK_DEFAULTS.before+'"></label>'+
+              '<label class="adv-field"><span>During Class Link</span><input type="url" data-k="during" placeholder="'+LINK_DEFAULTS.during+'"></label>'+
+              '<label class="adv-field"><span>After Class Link</span><input type="url" data-k="after" placeholder="'+LINK_DEFAULTS.after+'"></label>'+
+              '<label class="adv-field"><span>Book Classroom Experience Link</span><input type="url" data-k="book" placeholder="'+LINK_DEFAULTS.book+'"></label>'+
+              '<p class="adv-modal__hint">留空即使用默认链接。Leave blank to keep the default.</p>'+
+              '<div class="adv-modal__btns"><button type="button" class="adv-btn adv-btn--ghost" data-act="reset">Reset to Default</button>'+
+                '<span class="adv-modal__btns-r"><button type="button" class="adv-btn adv-btn--ghost" data-act="cancel">Cancel</button><button type="button" class="adv-btn adv-btn--save" data-act="save">Save</button></span></div>'+
+            '</div>';
+          document.body.appendChild(modal);
+          ["before","during","after","book"].forEach(function(k){var inp=modal.querySelector('[data-k="'+k+'"]'); if(inp)inp.value=(s[k]||"");});
+          void modal.offsetWidth; modal.classList.add("is-open");
+          modal.querySelector(".adv-modal__bg").addEventListener("click",closeModal);
+          modal.querySelectorAll("[data-act]").forEach(function(btn){
+            btn.addEventListener("click",function(){
+              var act=btn.getAttribute("data-act");
+              if(act==="cancel"){closeModal();return;}
+              if(act==="reset"){linksReset();["before","during","after","book"].forEach(function(k){var inp=modal.querySelector('[data-k="'+k+'"]');if(inp)inp.value="";});applyLinks();return;}
+              if(act==="save"){var o={};["before","during","after","book"].forEach(function(k){o[k]=(modal.querySelector('[data-k="'+k+'"]').value||"").trim();});linksSave(o);applyLinks();closeModal();}
+            });
+          });
+          escH=function(e){if(e.key==="Escape"){e.stopPropagation();e.preventDefault();closeModal();}};
+          document.addEventListener("keydown",escH,true);
+        }
+        note.addEventListener("click",openModal);
+      }
     }
     function renderFocus(i){
       cur=i; var s=SYS[i];
