@@ -658,15 +658,18 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .gstory__meta{display:flex;flex-direction:column;padding:13px 14px 15px}
 .gstory__name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink);letter-spacing:-.01em}
 .gstory__role{font-size:11px;color:var(--muted);font-weight:600;margin-top:3px}
-.gstory__desc{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:8px}
-.gstory__cta{display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--display);font-weight:700;font-size:11px;color:var(--gc,var(--blue-bright));transition:gap .2s}
-.gstory:hover .gstory__cta{gap:8px}
-.gstory__cta svg{width:12px;height:12px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-/* compact cards in expanded mode */
-.gallery-stage.is-expanded .gstory__desc,.gallery-stage.is-expanded .gstory__cta{display:none}
+.gstory__lvlrow{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:9px}
+.gstory__lvl{display:inline-flex;align-items:center;font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:.01em;line-height:1.3;
+  color:var(--gtx,#fff);background:var(--gc,var(--blue-bright));padding:3px 9px;border-radius:7px;
+  box-shadow:0 5px 13px -5px color-mix(in srgb,var(--gc,var(--blue-bright)) 70%,transparent)}
+.gstory__skill{font-size:10px;font-weight:700;color:color-mix(in srgb,var(--gc,var(--muted)) 78%,var(--ink));letter-spacing:.01em}
+.gstory__desc{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:9px}
+/* compact cards in expanded mode — keep just name + level badge */
+.gallery-stage.is-expanded .gstory__desc,.gallery-stage.is-expanded .gstory__role,.gallery-stage.is-expanded .gstory__skill{display:none}
 .gallery-stage.is-expanded .gstory__meta{padding:10px 12px 12px}
 .gallery-stage.is-expanded .gstory__name{font-size:13px}
-.gallery-stage.is-expanded .gstory__role{font-size:10px;margin-top:2px}
+.gallery-stage.is-expanded .gstory__lvlrow{margin-top:6px}
+.gallery-stage.is-expanded .gstory__lvl{font-size:9px;padding:2px 7px}
 .gallery-stage.is-expanded .gstory__play{width:40px;height:40px}
 .gallery-stage.is-expanded .gstory__play svg{width:17px;height:17px}
 /* expanded player — YouTube wrapped in a frosted-glass bezel */
@@ -684,7 +687,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   border:1px solid rgba(255,255,255,.72);box-shadow:0 14px 36px -24px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.92),0 0 26px -14px color-mix(in srgb,var(--gc,var(--blue-bright)) 36%,transparent)}
 .gallery-player__top{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
 .gallery-player__name{font-family:var(--display);font-weight:800;font-size:21px;color:var(--ink);letter-spacing:-.01em}
-.gallery-player__chip{font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.02em;color:#fff;padding:4px 12px;border-radius:999px;
+.gallery-player__chip{font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.02em;color:var(--gtx,#fff);padding:4px 12px;border-radius:999px;
   background:var(--gc,var(--blue-bright));box-shadow:0 7px 18px -7px color-mix(in srgb,var(--gc,var(--blue-bright)) 75%,transparent)}
 .gallery-player__role{font-size:12.5px;color:var(--muted);margin-top:6px;font-weight:600}
 .gallery-player__quote{position:relative;margin-top:13px;font-size:14px;line-height:1.6;color:var(--ink);padding-left:18px}
@@ -2939,15 +2942,55 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     window.openHRDC=function(){ window.openSitePopup("https://www.touchenglish.edu.my/en/course#hrdc",'HRDC claimable <span class="zh">· Corporate Training</span>',"Open Official Page"); };
     // ----- "Learners trained" -> Student Success Stories video gallery -----
     var STORIES=[
-      {name:"Vivi", role:"Swimming Coach \u00b7 Pre-Level 1", vid:"dW0WfzzcQJY", desc:"From basic English to speaking more confidently in real-life situations."},
-      {name:"Lim Yoke Fen", role:"Level 4 Learner", vid:"BSom6KeM69E", desc:"Improved higher-level communication and presentation confidence."},
-      {name:"Xiao Ting", role:"SPM Student \u00b7 Level 1", vid:"_Na5XJUTZYE", desc:"Built a stronger foundation and became more confident to speak."},
-      {name:"Sally", role:"Quantity Surveyor \u00b7 Level 3", vid:"BbB0WMARIw8", desc:"Strengthened workplace communication and professional expression."},
-      {name:"Mark", role:"Programmer \u00b7 Level 3", vid:"qhlJQ8baMIE", desc:"Improved speaking confidence for work and daily communication."},
-      {name:"Kai Xin", role:"Conveying Skill \u00b7 Level 2", vid:"tMJCH5m2H9g", desc:"Learned to express ideas more clearly and confidently."}
+      {name:"Ms. Vivi", role:"Swimming Coach", level:"Pre-Beginner \u00b7 Copy Skills", youtubeId:"dW0WfzzcQJY",
+       cardSummary:"Started from imitation and built steady confidence.",
+       fullStory:"Ms. Vivi is a swimming coach who began at the Pre-Beginner stage with Copy (imitation) Skills. Within just two months, she has shown steady and confident progress in her English, proving that even beginners can grow when they learn step by step."},
+      {name:"Xiao Ting", role:"Student", level:"Level 1 \u00b7 Construct Skills", youtubeId:"_Na5XJUTZYE",
+       cardSummary:"A before-and-after journey of structured progress.",
+       fullStory:"Xiao Ting\u2019s Level 1 Construct Skills journey shows that progress is always possible with dedication. Through structured learning and consistent effort, her before-and-after presentation clearly reflects how much she has improved."},
+      {name:"Ms. Yoke Ling", role:"Learner", level:"Level 1 \u2192 Level 2 \u00b7 Conveying Skills", youtubeId:"GQ11rMdGThE",
+       cardSummary:"Praised by her manager for her English growth.",
+       fullStory:"Ms. Yoke Ling was praised by her manager for her English improvement. Her journey from Level 1 Copying Skills to Level 2 Conveying Skills shows that every step of progress matters and can be noticed in real life."},
+      {name:"Ms. Kai Xin", role:"Professional Advisor", level:"Level 2 \u00b7 Conveying Skills", youtubeId:"tMJCH5m2H9g",
+       cardSummary:"From fear of mistakes to confident stage sharing.",
+       fullStory:"Ms. Kai Xin is a professional advisor who started at Level 2. She once feared making mistakes when speaking English, but now she can confidently demonstrate Conveying Skills on stage with clarity and confidence."},
+      {name:"Ms. Vanda Pang", role:"Teacher", level:"Level 3 \u00b7 Convincing Skills", youtubeId:"Ggoq5G9avJ8",
+       cardSummary:"Ready to grow further in her education career.",
+       fullStory:"Ms. Vanda Pang is a dedicated teacher who once struggled with English at work. After reaching Level 3 Convincing Skills, she is now more prepared to advance confidently in her education career."},
+      {name:"Vivian", role:"IELTS Learner", level:"IELTS Band 6.5", youtubeId:"J7fBJLvH2d4",
+       cardSummary:"Achieved IELTS 6.5 and pursued her Australia dream.",
+       fullStory:"Vivian achieved an IELTS Band 6.5 and fulfilled her dream of working in Australia. Her story is an inspiring example of perseverance, consistent effort, and believing in long-term growth."},
+      {name:"Mr. Shawn", role:"Working Professional", level:"Level 1 \u2192 Level 2 \u00b7 Conveying Skills", youtubeId:"iuqZKTf44bQ",
+       cardSummary:"Now expresses ideas clearly to his Swiss boss.",
+       fullStory:"Mr. Shawn once struggled to express his ideas clearly to his Swiss boss. After progressing from Level 1 to Level 2, he is now able to communicate his thoughts more clearly and confidently using Conveying Skills."},
+      {name:"Mr. Wei Leong", role:"Singapore Working Adult", level:"Level 1 \u2192 Level 3 \u00b7 5C Transformation", youtubeId:"GmtQmlFOioo",
+       cardSummary:"Recognised by his boss and earned a promotion.",
+       fullStory:"Mr. Wei Leong works in Singapore and grew from Level 1 to Level 3 through the 5C transformation. His boss recognised his English improvement, and this progress helped him earn a promotion."},
+      {name:"Ms. Winnie", role:"Administrative Officer", level:"Growth Story", youtubeId:"zF83rTejl3c",
+       cardSummary:"From operator to administrative officer.",
+       fullStory:"Ms. Winnie\u2019s journey from operator to administrative officer shows how Touch English helped open new doors of opportunity. Her growth reflects how confidence in English can support real career progress."}
     ];
-    // accent palette cycled per story (5C-style glass colour coding, tuned for dark glass)
-    var STORY_ACCENTS=["var(--blue-bright)","var(--ok)","#7C5CFF","#E08A1E","#0EA5C4","var(--red)"];
+    // Level badge colours aligned to the 5C / Level system (Copy=P1 gold, Construct=L1 green, Convey=L2 blue, Convince=L3 red, Captivate=L4 navy) + IELTS / 5C / Growth accents
+    function levelStyle(lv){
+      var s=(lv||"").toLowerCase();
+      // 1) defining skill name wins
+      if(s.indexOf("captivat")>=0) return {c:"#15335E",t:"#fff"};
+      if(s.indexOf("convinc")>=0)  return {c:"#E8472B",t:"#fff"};
+      if(s.indexOf("convey")>=0)   return {c:"#1F9FE6",t:"#fff"};
+      if(s.indexOf("construct")>=0)return {c:"#2E9E50",t:"#fff"};
+      if(s.indexOf("copy")>=0||s.indexOf("pre-beginner")>=0) return {c:"#EBB12A",t:"#4A3700"};
+      // 2) special tags
+      if(s.indexOf("ielts")>=0)    return {c:"#7C5CFF",t:"#fff"};
+      if(s.indexOf("5c")>=0||s.indexOf("transformation")>=0) return {c:"#2A5BD7",t:"#fff"};
+      if(s.indexOf("growth")>=0)   return {c:"#14A2B8",t:"#fff"};
+      // 3) bare level number fallback
+      if(s.indexOf("level 4")>=0)  return {c:"#15335E",t:"#fff"};
+      if(s.indexOf("level 3")>=0)  return {c:"#E8472B",t:"#fff"};
+      if(s.indexOf("level 2")>=0)  return {c:"#1F9FE6",t:"#fff"};
+      if(s.indexOf("level 1")>=0)  return {c:"#2E9E50",t:"#fff"};
+      return {c:"#14A2B8",t:"#fff"};
+    }
+    function levelSplit(lv){ var p=(lv||"").split("\u00b7"); return {main:(p[0]||"").trim(), skill:p.slice(1).join("\u00b7").trim()}; }
     window.openStories=function(){
       var isFile=(location.protocol==="file:");
       function watchURL(vid){ return "https://www.youtube.com/watch?v="+vid; }
@@ -2961,15 +3004,15 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       var old=document.getElementById("galleryModal"); if(old)old.remove();
       var m=document.createElement("div"); m.id="galleryModal"; m.className="gallery-modal";
       var cards=STORIES.map(function(s,i){
-        var gc=STORY_ACCENTS[i%STORY_ACCENTS.length];
-        var len=s.len?'<span class="gstory__len">'+s.len+'</span>':'';
-        var role=s.role?'<span class="gstory__role">'+s.role+'</span>':'';
-        return '<button type="button" class="gstory" data-gi="'+i+'" style="--gc:'+gc+'">'+
-          '<span class="gstory__thumb"><img src="https://img.youtube.com/vi/'+s.vid+'/hqdefault.jpg" alt="" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'">'+ytBadge+'<span class="gstory__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>'+len+'</span>'+
+        var ls=levelStyle(s.level), lp=levelSplit(s.level);
+        var skill=lp.skill?'<span class="gstory__skill">'+lp.skill+'</span>':'';
+        return '<button type="button" class="gstory" data-gi="'+i+'" style="--gc:'+ls.c+';--gtx:'+ls.t+'">'+
+          '<span class="gstory__thumb"><img src="https://img.youtube.com/vi/'+s.youtubeId+'/hqdefault.jpg" alt="" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'">'+ytBadge+'<span class="gstory__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>'+
           '<span class="gstory__meta">'+
-            '<span class="gstory__name">'+s.name+'</span>'+role+
-            '<span class="gstory__desc">'+s.desc+'</span>'+
-            '<span class="gstory__cta">Watch story <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>'+
+            '<span class="gstory__name">'+s.name+'</span>'+
+            '<span class="gstory__role">'+s.role+'</span>'+
+            '<span class="gstory__lvlrow"><span class="gstory__lvl">'+lp.main+'</span>'+skill+'</span>'+
+            '<span class="gstory__desc">'+s.cardSummary+'</span>'+
           '</span>'+
         '</button>';
       }).join("");
@@ -3002,8 +3045,10 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       function select(i){
         var first=!stage.classList.contains("is-expanded");
         stage.classList.add("is-expanded");
-        player.style.setProperty("--gc",STORY_ACCENTS[i%STORY_ACCENTS.length]);
-        var vid=STORIES[i].vid;
+        var st=STORIES[i], ls=levelStyle(st.level), lp=levelSplit(st.level);
+        player.style.setProperty("--gc",ls.c);
+        player.style.setProperty("--gtx",ls.t);
+        var vid=st.youtubeId;
         if(isFile){
           // file:// cannot host an embedded player (YouTube Error 153) — show a passive notice only, no auto-redirect.
           frame.classList.add("is-fallback");
@@ -3018,13 +3063,11 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           if(!fr){ fr=document.createElement("iframe"); fr.title="Featured story"; fr.setAttribute("frameborder","0"); fr.setAttribute("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"); fr.allowFullscreen=true; fr.setAttribute("referrerpolicy","strict-origin-when-cross-origin"); frame.appendChild(fr); }
           fr.src=emb(vid,1);
         }
-        var role=STORIES[i].role||"", job=role, level="";
-        if(role.indexOf("\u00b7")>=0){ var parts=role.split("\u00b7"); job=parts[0].trim(); level=parts.slice(1).join("\u00b7").trim(); }
-        player.querySelector(".gallery-player__name").textContent=STORIES[i].name;
+        player.querySelector(".gallery-player__name").textContent=st.name;
         var chip=player.querySelector(".gallery-player__chip");
-        chip.textContent=level; chip.style.display=level?"":"none";
-        player.querySelector(".gallery-player__role").textContent=job;
-        player.querySelector(".gallery-player__quote").textContent=STORIES[i].desc;
+        chip.textContent=lp.main; chip.style.display=lp.main?"":"none";
+        player.querySelector(".gallery-player__role").textContent=lp.skill?(st.role+" \u00b7 "+lp.skill):st.role;
+        player.querySelector(".gallery-player__quote").textContent=st.fullStory;
         player.querySelector(".gallery-player__yt").setAttribute("href",watchURL(vid));
         player.querySelector(".gallery-player__hint").style.display=isFile?"flex":"none";
         m.querySelectorAll(".gstory").forEach(function(c,ci){c.classList.toggle("is-active",ci===i);});
