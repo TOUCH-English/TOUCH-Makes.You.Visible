@@ -1820,6 +1820,45 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 @keyframes ecoCore{0%{opacity:0;transform:scale(.5)}60%{opacity:1}100%{opacity:1;transform:scale(1)}}
 @keyframes ecoGlow{0%{opacity:0;transform:scale(.45)}40%{opacity:.6}100%{opacity:.3;transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){.eco-disc,.eco-core,.eco-core-glow,.eco-lab,.eco-node-ic{opacity:1!important;animation:none!important;transform:none!important}}
+
+/* level recommendation tool (stage 9) */
+.lvtool{background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.1);border-radius:20px;padding:18px 20px;margin-top:6px}
+.lvtool__row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.lvtool__lab{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink)}
+.lvtool__lab .zh{font-weight:500;color:var(--muted);font-size:12.5px}
+.lvtool__count{display:inline-flex;background:var(--blue-tint);border-radius:12px;padding:4px;gap:4px}
+.lvtool__count button{border:none;background:transparent;font-family:var(--display);font-weight:700;font-size:14px;color:var(--blue);width:44px;height:34px;border-radius:9px;cursor:pointer;transition:.2s}
+.lvtool__count button.is-active{background:var(--blue);color:#fff;box-shadow:0 4px 12px -4px var(--blue)}
+.lvtool__learners{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.lvset{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.55);border:1px solid var(--line)}
+.lvset__name{font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--ink);min-width:84px}
+.lvset__to{color:var(--faint);font-weight:700}
+.lvfield{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+.lvsel{font-family:var(--display);font-weight:600;font-size:13.5px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:7px 10px;cursor:pointer}
+.lvsel:focus{outline:none;border-color:var(--blue-bright)}
+.lvmods{margin-top:18px;display:flex;flex-direction:column;gap:20px}
+.lvmod__head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.lvmod__name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink)}
+.lvmod__path{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.lvpath__chip{font-family:var(--display);font-weight:700;font-size:12px;padding:4px 10px;border-radius:8px;background:color-mix(in srgb,var(--c) 16%,#fff);border:1px solid color-mix(in srgb,var(--c) 48%,#fff);color:var(--ink)}
+.lvpath__arr{color:var(--faint);font-weight:700}
+.lvmap{display:flex;align-items:stretch;gap:6px;overflow-x:auto;padding-bottom:4px}
+.lvmap::-webkit-scrollbar{height:0}
+.lvcard{flex:1 1 0;min-width:128px;border-radius:16px;padding:13px;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.08);transition:opacity .35s,filter .35s,box-shadow .35s}
+.lvcard.is-active{background:color-mix(in srgb,var(--c) 11%,rgba(255,255,255,.66));border-color:color-mix(in srgb,var(--c) 52%,#fff);box-shadow:0 16px 36px -12px color-mix(in srgb,var(--c) 42%,transparent)}
+.lvcard.is-faded{opacity:.24;filter:blur(1.4px) saturate(.7);min-width:86px;flex:0 0 auto;align-self:center}
+.lvcard__head{display:flex;align-items:center;gap:8px}
+.lvcard__chip{font-family:var(--display);font-weight:800;font-size:12px;padding:3px 9px;border-radius:8px;flex:none}
+.lvcard__name{font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--ink)}
+.lvcard.is-faded .lvcard__name{color:var(--muted)}
+.lvcard__cefr{margin-top:6px;font-size:11px;color:var(--muted);letter-spacing:.2px}
+.lvcard__items{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.lvcard__items li{display:flex;gap:7px;align-items:flex-start;font-size:11.5px;line-height:1.35;color:var(--ink)}
+.lvcard__items i{color:var(--muted);font-style:normal;font-size:10.5px}
+.lvdot{width:6px;height:6px;border-radius:50%;background:var(--c);margin-top:5px;flex:none}
+.lvconn{align-self:center;color:var(--faint);font-weight:700;font-size:18px;flex:none;opacity:.45}
+.lvconn.on{color:color-mix(in srgb,var(--blue) 65%,#fff);opacity:1}
+@media(max-width:760px){.lvcard{min-width:158px}.lvcard.is-faded{min-width:96px}}
 </style>
 </head>
 <body>
@@ -2066,23 +2105,23 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       <!-- ===== 9. RECOMMENDED PATH ===== -->
       <section class="stage" data-title="Recommended path" data-zh="推荐路线" data-index="9">
         <div class="section-intro">
-          <span class="eyebrow">A starting point that fits</span>
-          <h2 class="h2">Where to begin, and where it leads</h2>
-          <p class="lead">Choose the inquiry's current situation to map a recommended path. <span class="zh">根据情况显示建议路线。</span></p>
+          <span class="eyebrow">Level recommendation</span>
+          <h2 class="h2">Where the learner is — and where they're going</h2>
+          <p class="lead">Set each learner's current and target level to map the recommended path across the five TOUCH levels. <span class="zh">设置每位学员的当前与目标 Level，自动显示推荐路线。</span></p>
         </div>
-        <div class="rec-pick" id="recPick">
-          <button class="rec-btn" data-rec="zero"><span class="ico">🌱</span><span><span class="en">Zero foundation</span><br><span class="zh">完全零基础</span></span></button>
-          <button class="rec-btn" data-rec="simple"><span class="ico">💬</span><span><span class="en">Can speak simple sentences</span><br><span class="zh">能讲简单句子</span></span></button>
-          <button class="rec-btn" data-rec="adult"><span class="ico">🏢</span><span><span class="en">Working adult communication</span><br><span class="zh">职场日常沟通</span></span></button>
-          <button class="rec-btn" data-rec="career"><span class="ico">🎤</span><span><span class="en">Career presentation / meetings</span><br><span class="zh">演说·会议表达</span></span></button>
+        <div class="lvtool">
+          <div class="lvtool__row">
+            <span class="lvtool__lab">Number of learners <span class="zh">学员人数</span></span>
+            <div class="lvtool__count" id="lvCount">
+              <button type="button" data-n="1" class="is-active">1</button>
+              <button type="button" data-n="2">2</button>
+              <button type="button" data-n="3">3</button>
+            </div>
+          </div>
+          <div class="lvtool__learners" id="lvLearners"></div>
         </div>
-        <div class="glass-stage" style="margin-top:20px">
-          <span class="glow" style="background:var(--l1);left:6%;bottom:20%"></span>
-          <span class="glow" style="background:var(--l2);left:42%;top:10%"></span>
-          <span class="glow" style="background:var(--l3);right:8%;bottom:16%"></span>
-          <div class="rec-result" id="recResult"><div class="empty">Select a situation above to see the recommended level path. <span class="zh">选择情况查看路线。</span></div></div>
-        </div>
-        <div class="adv-cue" data-cue><strong>Advisor cue:</strong> their pain-point selections from stage 2 are summarised here — connect "you told me X" to the recommended starting level.</div>
+        <div class="lvmods" id="lvMods"></div>
+        <div class="adv-cue" data-cue><strong>Advisor cue:</strong> set the learner's current and target level — the highlighted levels are the recommended path; the faded ones stay on screen as the full level map for reference.</div>
       </section>
 
       <!-- ===== 10. CLOSING / CTA ===== -->
@@ -2597,27 +2636,59 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   });
   if($("#advOut")) renderAdv("work");
 
-  /* ---------- RECOMMENDED PATH ---------- */
-  function renderRec(key){
-    var r=RECPATHS[key];
-    var chips='<span class="rec-step start">'+r.start+'</span><span class="rec-arrow">→</span>';
-    r.path.forEach(function(p,i){
-      var cls="rec-step c-"+p+(i===r.path.length-1?" goal":"");
-      chips+='<span class="'+cls+'">'+LVNAME[p]+'</span>';
-      if(i<r.path.length-1)chips+='<span class="rec-arrow">→</span>';
-    });
-    var painHtml="";
-    if(painSel.length){
-      painHtml='<div class="summary-bar" style="margin-top:18px;background:var(--blue)"><span class="pill" style="background:#fff;color:var(--blue)">They told you</span><span>'+painSel.join(" · ")+'</span></div>';
-    }
-    $("#recResult").innerHTML='<div class="rec-path">'+chips+'</div><p class="rec-note">'+r.note+'<span class="zh">'+r.zh+'</span></p>'+painHtml;
+  /* ---------- LEVEL RECOMMENDATION TOOL ---------- */
+  function renderRec(){}
+  var LVSHORT=["Pre-Beginner","Level 1","Level 2","Level 3","Level 4"];
+  var LVDATA=FIVEC.map(function(f){return {chip:f.chip,col:f.col,ctxt:f.txt,cefr:f.cefr,classes:f.classes,core:f.core,items:f.gain.slice(0,5)};});
+  var lvCount=1;
+  var lvState=[{c:1,t:3},{c:0,t:2},{c:2,t:4}];
+  function lvOptions(sel){var o="";for(var i=0;i<5;i++){o+='<option value="'+i+'"'+(i===sel?" selected":"")+'>'+LVSHORT[i]+'</option>';}return o;}
+  function renderLearners(){
+    var box=$("#lvLearners"); if(!box)return; var h="";
+    for(var i=0;i<lvCount;i++){var st=lvState[i];
+      h+='<div class="lvset"><span class="lvset__name">Learner '+(i+1)+'</span>'+
+         '<label class="lvfield"><span>Current</span><select class="lvsel" data-learner="'+i+'" data-kind="c">'+lvOptions(st.c)+'</select></label>'+
+         '<span class="lvset__to">→</span>'+
+         '<label class="lvfield"><span>Target</span><select class="lvsel" data-learner="'+i+'" data-kind="t">'+lvOptions(st.t)+'</select></label></div>';}
+    box.innerHTML=h;
   }
-  $("#recPick").addEventListener("click",function(e){
-    var b=e.target.closest(".rec-btn"); if(!b)return;
-    $$(".rec-btn").forEach(function(x){x.classList.toggle("is-active",x===b);});
-    renderRec(b.getAttribute("data-rec"));
-    scrollToReveal($("#recResult"));
-  });
+  function renderMods(){
+    var box=$("#lvMods"); if(!box)return; var html="";
+    for(var i=0;i<lvCount;i++){
+      var st=lvState[i], lo=Math.min(st.c,st.t), hi=Math.max(st.c,st.t), p, k;
+      var path="";
+      for(p=lo;p<=hi;p++){path+='<span class="lvpath__chip" style="--c:'+LVDATA[p].col+'">'+LVSHORT[p]+'</span>'+(p<hi?'<span class="lvpath__arr">→</span>':'');}
+      var cards="";
+      for(k=0;k<5;k++){
+        var L=LVDATA[k], active=(k>=lo&&k<=hi);
+        if(active){
+          var items="";
+          L.items.forEach(function(it){items+='<li><span class="lvdot"></span><span>'+it.en+' <i>'+it.zh+'</i></span></li>';});
+          cards+='<div class="lvcard is-active" style="--c:'+L.col+'">'+
+            '<div class="lvcard__head"><span class="lvcard__chip" style="background:'+L.col+';color:'+L.ctxt+'">'+L.chip+'</span><span class="lvcard__name">'+LVSHORT[k]+'</span></div>'+
+            '<div class="lvcard__cefr">'+L.cefr+' · '+L.classes+'</div>'+
+            '<ul class="lvcard__items">'+items+'</ul></div>';
+        }else{
+          cards+='<div class="lvcard is-faded" style="--c:'+L.col+'">'+
+            '<div class="lvcard__head"><span class="lvcard__chip" style="background:'+L.col+';color:'+L.ctxt+'">'+L.chip+'</span><span class="lvcard__name">'+LVSHORT[k]+'</span></div></div>';
+        }
+        if(k<4)cards+='<span class="lvconn'+(k>=lo&&k<hi?" on":"")+'">›</span>';
+      }
+      html+='<div class="lvmod"><div class="lvmod__head"><span class="lvmod__name">Learner '+(i+1)+'</span><span class="lvmod__path">'+path+'</span></div><div class="lvmap">'+cards+'</div></div>';
+    }
+    box.innerHTML=html;
+  }
+  (function(){
+    var cnt=$("#lvCount"), learners=$("#lvLearners");
+    if(cnt){cnt.addEventListener("click",function(e){var b=e.target.closest("button[data-n]"); if(!b)return;
+      lvCount=parseInt(b.getAttribute("data-n"),10);
+      $$("#lvCount button").forEach(function(x){x.classList.toggle("is-active",x===b);});
+      renderLearners(); renderMods();});}
+    if(learners){learners.addEventListener("change",function(e){var s=e.target.closest("select.lvsel"); if(!s)return;
+      var li=parseInt(s.getAttribute("data-learner"),10), kind=s.getAttribute("data-kind");
+      lvState[li][kind]=parseInt(s.value,10); renderMods();});}
+    if($("#lvLearners")){renderLearners(); renderMods();}
+  })();
 
   /* ---------- LEARNING SYSTEM (consultation journey) ---------- */
   (function(){
