@@ -274,24 +274,20 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .sys{margin-top:8px}
 /* ===== JOURNEY MAP — steps scattered along a winding route ===== */
 .sys-overview{position:relative;overflow:hidden;border-radius:26px;min-height:380px;
-  background:
-    radial-gradient(120% 95% at 82% 8%, color-mix(in srgb,#7C5CFF 16%,transparent), transparent 58%),
-    radial-gradient(110% 85% at 8% 96%, color-mix(in srgb,var(--blue-bright) 16%,transparent), transparent 55%),
-    linear-gradient(162deg,#eef1fb,#e6eaf7);
-  border:1px solid rgba(255,255,255,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 18px 46px -24px rgba(20,33,50,.3)}
+  background:linear-gradient(135deg,#EEF2FB,#E4EBF7)}
 .sys--exploring .sys-overview{display:none}
 /* soft atmosphere orbs */
-.sys-overview::before,.sys-overview::after{content:"";position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;pointer-events:none;z-index:0}
-.sys-overview::before{width:280px;height:280px;background:color-mix(in srgb,#7C5CFF 40%,transparent);top:-90px;right:6%}
-.sys-overview::after{width:240px;height:240px;background:color-mix(in srgb,var(--blue-bright) 36%,transparent);bottom:-80px;left:8%}
+.sys-overview::before,.sys-overview::after{content:none}
+.sys-overview>.glow{position:absolute;width:300px;height:300px;border-radius:50%;
+  filter:blur(66px);opacity:.46;z-index:0;pointer-events:none}
 /* the winding route */
 .sys-path{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
-.sys-path path{fill:none;stroke:color-mix(in srgb,#7C5CFF 55%,#fff);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:1 9;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.7}
-.sys-path .glow{stroke:color-mix(in srgb,#7C5CFF 45%,#fff);stroke-width:7;stroke-dasharray:none;opacity:.22;filter:blur(3px)}
+.sys-path path{fill:none;stroke:color-mix(in srgb,var(--blue-bright) 48%,#fff);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:1 9;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.7}
+.sys-path .glow{stroke:color-mix(in srgb,var(--blue-bright) 40%,#fff);stroke-width:7;stroke-dasharray:none;opacity:.22;filter:blur(3px)}
 /* a step on the map = a floating glass icon card */
 .sys-node{position:absolute;transform:translate(-50%,-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:9px;width:118px;padding:14px 10px 12px;border-radius:20px;text-align:center;cursor:pointer;
-  background:linear-gradient(155deg,rgba(255,255,255,.34),rgba(255,255,255,.14));-webkit-backdrop-filter:blur(26px) saturate(170%);backdrop-filter:blur(26px) saturate(170%);
-  border:1px solid rgba(255,255,255,.9);box-shadow:0 12px 30px -18px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.95),inset 0 0 22px rgba(255,255,255,.16);
+  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+  border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.1);
   transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,background .22s ease,border-color .22s ease}
 .sys-node::after{display:none}
 .sys-node:hover{transform:translate(-50%,-50%) translateY(-5px) scale(1.03);box-shadow:0 22px 40px -16px rgba(20,33,50,.34),inset 0 1px 0 rgba(255,255,255,.95);background:linear-gradient(155deg,rgba(255,255,255,.46),rgba(255,255,255,.22))}
@@ -2809,6 +2805,11 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       '</button>';
     }).join("");
     ov.innerHTML=
+      '<span class="glow" style="background:var(--p1);left:2%;bottom:26%"></span>'+
+      '<span class="glow" style="background:var(--l1);left:24%;top:8%"></span>'+
+      '<span class="glow" style="background:var(--l2);left:45%;bottom:18%"></span>'+
+      '<span class="glow" style="background:var(--l3);left:66%;top:6%"></span>'+
+      '<span class="glow" style="background:var(--l4);right:2%;bottom:22%"></span>'+
       '<svg class="sys-path" viewBox="0 0 100 100" preserveAspectRatio="none"><path class="glow"/><path class="line"/></svg>'+
       '<span class="sys-flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 22V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6 4h11l-2.2 3.5L17 11H6Z" fill="currentColor" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span>'+
       nodesHTML;
