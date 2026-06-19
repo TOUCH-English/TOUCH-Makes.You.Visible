@@ -1139,6 +1139,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .team-av__ph{font-family:var(--display);font-weight:800;font-size:17px;color:var(--blue);opacity:.8}
 .team-av__ring img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;z-index:1}
 .team-av__ring img.team-av--noimg{display:none}
+.team-av__ring.has-photo .team-av__ph{display:none}
 .team-av:hover .team-av__ring{transform:scale(1.09) translateY(-2px);
   border-color:color-mix(in srgb,var(--gc,var(--blue-bright)) 30%,rgba(255,255,255,.9));
   box-shadow:0 9px 20px -8px color-mix(in srgb,var(--gc,var(--blue-bright)) 30%,transparent),0 0 20px -6px color-mix(in srgb,var(--gc,var(--blue-bright)) 34%,transparent),inset 0 1.5px 2px rgba(255,255,255,.95),inset 0 -4px 7px -4px color-mix(in srgb,var(--gc,var(--blue-bright)) 14%,transparent)}
@@ -1181,6 +1182,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .profile-pop__ph{font-family:var(--display);font-weight:800;font-size:30px;color:var(--blue);opacity:.82}
 .profile-pop__orb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;z-index:1}
 .profile-pop__orb img.team-av--noimg{display:none}
+.profile-pop__orb.has-photo .profile-pop__ph{display:none}
 .profile-pop__id{min-width:0}
 .profile-pop__name{font-family:var(--display);font-weight:800;font-size:23px;color:var(--ink);letter-spacing:-.02em;line-height:1.12}
 .profile-pop__team{display:inline-block;margin-top:8px;font-family:var(--display);font-weight:800;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
@@ -3142,7 +3144,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           return '<div class="team-av" data-gi="'+gi+'" data-mi="'+mi+'" role="button" tabindex="0" aria-label="'+p.n+' profile" style="--d:'+d+'s">'+
             '<span class="team-av__ring">'+
               '<span class="team-av__ph">'+initial(p.n)+'</span>'+
-              '<img alt="'+p.n+'" loading="lazy" src="'+p.img+'" onerror="this.classList.add(\'team-av--noimg\')">'+
+              '<img alt="'+p.n+'" loading="lazy" src="'+p.img+'" onerror="this.classList.add(\'team-av--noimg\')" onload="this.parentNode.classList.add(\'has-photo\')">'+
             '</span>'+
           '</div>';
         }).join("");
@@ -3163,6 +3165,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           '<div class="team-modal__groups">'+groups+'</div>'+
         '</div>';
       document.body.appendChild(m);
+      m.querySelectorAll(".team-av__ring img").forEach(function(im){ if(im.complete && im.naturalWidth>0){ im.parentNode.classList.add("has-photo"); } });
       function closeProfile(){ var pr=document.getElementById("teamProfile"); if(pr){ pr.remove(); } }
       function openProfile(gi,mi){
         var g=TEAM[gi]; if(!g) return; var pn=g.members[mi]; if(!pn) return;
@@ -3178,7 +3181,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
             '<div class="profile-pop__bars"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>'+
             '<button type="button" class="profile-pop__x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'+
             '<div class="profile-pop__head">'+
-              '<div class="profile-pop__av"><span class="profile-pop__orb"><span class="profile-pop__ph">'+initial(pn.n)+'</span><img alt="'+pn.n+'" src="'+pn.img+'" onerror="this.classList.add(\'team-av--noimg\')"></span></div>'+
+              '<div class="profile-pop__av"><span class="profile-pop__orb"><span class="profile-pop__ph">'+initial(pn.n)+'</span><img alt="'+pn.n+'" src="'+pn.img+'" onerror="this.classList.add(\'team-av--noimg\')" onload="this.parentNode.classList.add(\'has-photo\')"></span></div>'+
               '<div class="profile-pop__id"><div class="profile-pop__name">'+pn.n+'</div><span class="profile-pop__team">'+g.group+'</span><div class="profile-pop__role">'+role+'</div></div>'+
             '</div>'+
             '<div class="profile-pop__rule"></div>'+
@@ -3193,6 +3196,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
             '<a class="profile-pop__cta" href="'+url+'" target="_blank" rel="noopener noreferrer">@ TOUCH<svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8"/></svg></a>'+
           '</div>';
         document.body.appendChild(pr);
+        var pim=pr.querySelector(".profile-pop__orb img"); if(pim && pim.complete && pim.naturalWidth>0){ pim.parentNode.classList.add("has-photo"); }
         pr.querySelector(".profile-pop__bg").addEventListener("click",function(e){ e.stopPropagation(); closeProfile(); });
         pr.querySelector(".profile-pop__x").addEventListener("click",function(e){ e.stopPropagation(); closeProfile(); });
         void pr.offsetWidth; pr.classList.add("is-open");
