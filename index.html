@@ -1797,6 +1797,29 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* ecosystem ring (Advisor toolkit) */
+.eco-ring{margin-top:12px;display:flex;justify-content:center}
+.eco-ring .eco-stage{width:100%;max-width:1120px;display:flex;align-items:center;justify-content:center;padding:22px 28px 30px}
+.eco-ring svg{width:100%;max-width:470px;height:auto;display:block;overflow:visible}
+.eco-item{font-family:var(--display);font-weight:600;fill:var(--ink);letter-spacing:.4px}
+.eco-name{font-family:var(--display);font-weight:700;fill:var(--muted);letter-spacing:1px}
+.eco-name--tag{fill:var(--blue);font-weight:800;letter-spacing:1.3px}
+.eco-node-ic{fill:none;stroke:#586a8c;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;color:#586a8c}
+.eco-node-ic *{vector-effect:non-scaling-stroke}
+.eco-person{fill:#46566f}
+.eco-disc{stroke:rgba(255,255,255,.55);stroke-width:1}
+.eco-disc,.eco-core,.eco-core-glow,.eco-lab,.eco-node-ic{opacity:0}
+.eco-disc,.eco-core,.eco-core-glow{transform-box:view-box;transform-origin:460px 460px}
+.eco-ring.is-on .eco-disc{animation-name:ecoRing;animation-duration:.85s;animation-timing-function:cubic-bezier(.25,.7,.25,1);animation-fill-mode:both}
+.eco-ring.is-on .eco-lab,.eco-ring.is-on .eco-node-ic{animation-name:ecoFade;animation-duration:.7s;animation-timing-function:ease;animation-fill-mode:both}
+.eco-ring.is-on .eco-core{animation-name:ecoCore;animation-duration:.95s;animation-timing-function:cubic-bezier(.2,.7,.2,1);animation-fill-mode:both;animation-delay:.1s}
+.eco-ring.is-on .eco-core-glow{animation-name:ecoGlow;animation-duration:1.7s;animation-timing-function:ease;animation-fill-mode:both;animation-delay:.05s}
+@keyframes ecoRing{0%{opacity:0;transform:scale(.97)}100%{opacity:1;transform:scale(1)}}
+@keyframes ecoFade{from{opacity:0}to{opacity:1}}
+@keyframes ecoCore{0%{opacity:0;transform:scale(.5)}60%{opacity:1}100%{opacity:1;transform:scale(1)}}
+@keyframes ecoGlow{0%{opacity:0;transform:scale(.45)}40%{opacity:.6}100%{opacity:.3;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.eco-disc,.eco-core,.eco-core-glow,.eco-lab,.eco-node-ic{opacity:1!important;animation:none!important;transform:none!important}}
 </style>
 </head>
 <body>
@@ -2033,22 +2056,11 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       <!-- ===== 8. ADVISOR TOOLKIT ===== -->
       <section class="stage" data-title="Advisor toolkit" data-zh="顾问讲解辅助" data-index="8">
         <div class="section-intro">
-          <span class="eyebrow">For the advisor</span>
-          <h2 class="h2">Talking points by inquiry situation</h2>
-          <p class="lead">Pick what's driving this inquiry. You'll get the focus to hit and a suggested way to say it. <span class="zh">这一区是给顾问的讲解辅助。</span></p>
+          <span class="eyebrow">The TOUCH ecosystem</span>
+          <h2 class="h2">Everything is designed to make the learner visible</h2>
+          <p class="lead">You're at the centre. Every layer around you — your growth, our system, the 5C skills, the people, and the wider TOUCH ecosystem — works to help you become visible. <span class="zh">你在最中心，所有环都为了让你被看见。</span></p>
         </div>
-        <div class="advisor-zone">
-          <span class="advisor-flag">● Advisor guide — your reference while you talk</span>
-          <div class="adv-pick" id="advPick">
-            <button class="adv-btn is-active" data-adv="work">Work needs · 工作需要</button>
-            <button class="adv-btn" data-adv="daily">Daily communication · 生活沟通</button>
-            <button class="adv-btn" data-adv="future">Further study / future · 升学·未来</button>
-            <button class="adv-btn" data-adv="self">Self-improvement · 自我提升</button>
-            <button class="adv-btn" data-adv="zero">Complete beginner · 零基础</button>
-            <button class="adv-btn" data-adv="stuck">Has basis, can't speak · 有基础讲不出</button>
-          </div>
-          <div class="adv-out" id="advOut"></div>
-        </div>
+        <div class="eco-ring"><div class="eco-stage glass-stage"><span class="glow" style="background:var(--p1);left:9%;top:42%"></span><span class="glow" style="background:var(--l3);left:16%;bottom:22%"></span><span class="glow" style="background:var(--l4);left:47%;bottom:2%;opacity:.3"></span><span class="glow" style="background:var(--l2);right:9%;top:40%"></span><span class="glow" style="background:var(--l1);right:16%;bottom:22%"></span><svg viewBox="0 0 920 920" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TOUCH English ecosystem activating around the learner"><defs><radialGradient id="ecoOrb" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient><radialGradient id="ecoCoreGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient><filter id="ecoLift" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter></defs><circle class="eco-disc" cx="460" cy="460" r="452" fill="rgba(255,255,255,0.34)" filter="url(#ecoLift)" style="animation-delay:6.84s"/><circle class="eco-disc" cx="460" cy="460" r="360" fill="rgba(255,255,255,0.4)" filter="url(#ecoLift)" style="animation-delay:4.91s"/><circle class="eco-disc" cx="460" cy="460" r="268" fill="rgba(255,255,255,0.46)" filter="url(#ecoLift)" style="animation-delay:2.98s"/><circle class="eco-disc" cx="460" cy="460" r="176" fill="rgba(255,255,255,0.54)" filter="url(#ecoLift)" style="animation-delay:1.05s"/><path id="ecoBot406" d="M54,460 A406,406 0 0 0 866,460" fill="none"/><text class="eco-lab eco-name eco-name--tag" font-size="21" text-anchor="middle" style="animation-delay:7.04s"><textPath href="#ecoBot406" startOffset="50%">TOUCH ENGLISH MAKES YOU VISIBLE</textPath></text><path id="ecoIt406_0" d="M54.05,466.49 A406,406 0 0 1 71.57,341.87" fill="none"/><text class="eco-lab eco-item" font-size="17" text-anchor="middle" style="animation-delay:7.54s"><textPath href="#ecoIt406_0" startOffset="50%">COURSES</textPath></text><path id="ecoIt406_1" d="M138.06,212.63 A406,406 0 0 1 259.85,106.77" fill="none"/><text class="eco-lab eco-item" font-size="17" text-anchor="middle" style="animation-delay:7.71s"><textPath href="#ecoIt406_1" startOffset="50%">WORKSHOPS</textPath></text><path id="ecoIt406_2" d="M397.08,58.91 A406,406 0 0 1 522.92,58.91" fill="none"/><text class="eco-lab eco-item" font-size="17" text-anchor="middle" style="animation-delay:7.88s"><textPath href="#ecoIt406_2" startOffset="50%">REVIEWS</textPath></text><path id="ecoIt406_3" d="M611.4,83.29 A406,406 0 0 1 811.98,257.64" fill="none"/><text class="eco-lab eco-item" font-size="17" text-anchor="middle" style="animation-delay:8.05s"><textPath href="#ecoIt406_3" startOffset="50%">SUCCESS STORIES</textPath></text><path id="ecoIt406_4" d="M829.28,291.27 A406,406 0 0 1 861.48,520.41" fill="none"/><text class="eco-lab eco-item" font-size="17" text-anchor="middle" style="animation-delay:8.22s"><textPath href="#ecoIt406_4" startOffset="50%">CAREER GROWTH</textPath></text><path id="ecoBot314" d="M146,460 A314,314 0 0 0 774,460" fill="none"/><text class="eco-lab eco-name" font-size="19" text-anchor="middle" style="animation-delay:5.11s"><textPath href="#ecoBot314" startOffset="50%">SUPPORT TEAM ECOSYSTEM</textPath></text><path id="ecoIt314_0" d="M146.94,484.23 A314,314 0 0 1 165.74,350.41" fill="none"/><text class="eco-lab eco-item" font-size="16" text-anchor="middle" style="animation-delay:5.61s"><textPath href="#ecoIt314_0" startOffset="50%">TEACHERS</textPath></text><path id="ecoIt314_1" d="M207.83,272.9 A314,314 0 0 1 309.82,184.24" fill="none"/><text class="eco-lab eco-item" font-size="16" text-anchor="middle" style="animation-delay:5.78s"><textPath href="#ecoIt314_1" startOffset="50%">ADVISORS</textPath></text><path id="ecoIt314_2" d="M375.91,157.47 A314,314 0 0 1 544.09,157.47" fill="none"/><text class="eco-lab eco-item" font-size="16" text-anchor="middle" style="animation-delay:5.95s"><textPath href="#ecoIt314_2" startOffset="50%">AI SUPPORT</textPath></text><path id="ecoIt314_3" d="M595.02,176.51 A314,314 0 0 1 721.94,286.84" fill="none"/><text class="eco-lab eco-item" font-size="16" text-anchor="middle" style="animation-delay:6.12s"><textPath href="#ecoIt314_3" startOffset="50%">MANAGEMENT</textPath></text><path id="ecoIt314_4" d="M751.18,342.48 A314,314 0 0 1 772.29,492.71" fill="none"/><text class="eco-lab eco-item" font-size="16" text-anchor="middle" style="animation-delay:6.29s"><textPath href="#ecoIt314_4" startOffset="50%">COMMUNITY</textPath></text><path id="ecoBot222" d="M238,460 A222,222 0 0 0 682,460" fill="none"/><text class="eco-lab eco-name" font-size="19" text-anchor="middle" style="animation-delay:3.18s"><textPath href="#ecoBot222" startOffset="50%">5C COMMUNICATION FRAMEWORK</textPath></text><path id="ecoIt222_0" d="M238,461 A222,222 0 0 1 246.88,397.85" fill="none"/><text class="eco-lab eco-item" font-size="15" text-anchor="middle" style="animation-delay:3.68s"><textPath href="#ecoIt222_0" startOffset="50%">COPY</textPath></text><path id="ecoIt222_1" d="M268.56,347.6 A222,222 0 0 1 375.34,254.78" fill="none"/><text class="eco-lab eco-item" font-size="15" text-anchor="middle" style="animation-delay:3.85s"><textPath href="#ecoIt222_1" startOffset="50%">CONSTRUCT</textPath></text><path id="ecoIt222_2" d="M412.37,243.17 A222,222 0 0 1 507.63,243.17" fill="none"/><text class="eco-lab eco-item" font-size="15" text-anchor="middle" style="animation-delay:4.02s"><textPath href="#ecoIt222_2" startOffset="50%">CONVEY</textPath></text><path id="ecoIt222_3" d="M552,257.96 A222,222 0 0 1 647.27,340.78" fill="none"/><text class="eco-lab eco-item" font-size="15" text-anchor="middle" style="animation-delay:4.19s"><textPath href="#ecoIt222_3" startOffset="50%">CONVINCE</textPath></text><path id="ecoIt222_4" d="M658.53,360.66 A222,222 0 0 1 678.22,500.77" fill="none"/><text class="eco-lab eco-item" font-size="15" text-anchor="middle" style="animation-delay:4.36s"><textPath href="#ecoIt222_4" startOffset="50%">CAPTIVATE</textPath></text><g class="eco-lab eco-node-ic" transform="translate(444.4,312.4) scale(1.3)" style="animation-delay:1.75s"><circle cx="12" cy="12" r="8.4"/><circle cx="12" cy="12" r="3.4"/></g><g class="eco-lab eco-node-ic" transform="translate(318.86,403.61) scale(1.3)" style="animation-delay:1.92s"><path d="M12 3.4a5.6 5.6 0 0 0-3.5 10c.6.5 1 1.2 1 2v.3h5v-.3c0-.8.4-1.5 1-2a5.6 5.6 0 0 0-3.5-10z"/><path d="M9.9 18.6h4.2"/><path d="M10.6 20.7h2.8"/></g><g class="eco-lab eco-node-ic" transform="translate(366.81,551.19) scale(1.3)" style="animation-delay:2.09s"><path d="M20 11.4a6.6 6.6 0 0 1-6.6 6.6c-1 0-2-.2-2.9-.6L5 19l1.2-3.3A6.6 6.6 0 1 1 20 11.4z"/></g><g class="eco-lab eco-node-ic" transform="translate(521.99,551.19) scale(1.3)" style="animation-delay:2.26s"><path d="M4 15.6l4.6-4.6 3 3 6.4-6.4"/><path d="M15 7.6h4v4"/></g><g class="eco-lab eco-node-ic" transform="translate(569.94,403.61) scale(1.3)" style="animation-delay:2.43s"><path d="M12 3.4l1.7 4.9 4.9 1.7-4.9 1.7L12 16.6l-1.7-4.9L5.4 11l4.9-1.7z"/></g><circle class="eco-core-glow" cx="460" cy="460" r="118" fill="url(#ecoCoreGlow)"/><g class="eco-core"><circle cx="460" cy="460" r="88" fill="url(#ecoOrb)" filter="url(#ecoLift)" stroke="rgba(255,255,255,.92)" stroke-width="1.5"/><g class="eco-person" transform="translate(460,460)"><circle cx="0" cy="-16" r="18"/><path d="M-30 40 a30 30 0 0 1 60 0 z"/></g></g></svg></div></div>
       </section>
 
       <!-- ===== 9. RECOMMENDED PATH ===== -->
@@ -2577,13 +2589,13 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       '<div class="adv-block script"><div class="lab">Suggested phrasing</div><div class="txt">'+a.script+'</div></div>'+
       '<div class="adv-block"><div class="lab">Likely path</div><div class="path-chips">'+pathChips(a.path)+'</div></div>';
   }
-  $("#advPick").addEventListener("click",function(e){
+  var _advPick=$("#advPick"); if(_advPick) _advPick.addEventListener("click",function(e){
     var b=e.target.closest(".adv-btn"); if(!b)return;
     $$(".adv-btn").forEach(function(x){x.classList.toggle("is-active",x===b);});
     renderAdv(b.getAttribute("data-adv"));
     scrollToReveal($("#advOut"));
   });
-  renderAdv("work");
+  if($("#advOut")) renderAdv("work");
 
   /* ---------- RECOMMENDED PATH ---------- */
   function renderRec(key){
@@ -3934,6 +3946,14 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   $("#modalBg").addEventListener("click",function(e){if(e.target===this)closeModal();});
 
 })();
+</script>
+<script>
+(function(){var er=document.querySelector('.eco-ring');if(!er)return;
+if(!('IntersectionObserver'in window)){er.classList.add('is-on');return;}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){
+ if(e.isIntersecting){er.classList.remove('is-on');void er.getBoundingClientRect();er.classList.add('is-on');}
+ else{er.classList.remove('is-on');}});},{threshold:.3});
+io.observe(er);})();
 </script>
 </body>
 </html>
