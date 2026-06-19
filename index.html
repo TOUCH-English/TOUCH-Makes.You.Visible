@@ -1148,16 +1148,18 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 /* avatar profile preview — Instagram-story / Success-Story glass card */
 .profile-pop{position:fixed;inset:0;z-index:137;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
 .profile-pop.is-open{opacity:1}
-.profile-pop__bg{position:absolute;inset:0;background:radial-gradient(38% 48% at 50% 44%, color-mix(in srgb,var(--gc,var(--blue-bright)) 12%,transparent), transparent 70%),rgba(28,46,82,.3);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.profile-pop__card{position:relative;isolation:isolate;width:362px;max-width:90vw;max-height:88vh;overflow:auto;-webkit-overflow-scrolling:touch;border-radius:24px;padding:30px 24px 22px;
+.profile-pop__bg{position:absolute;inset:0;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  background:radial-gradient(20% 22% at 42% 41%, color-mix(in srgb,#7CC4FF 30%,transparent), transparent 70%),radial-gradient(19% 21% at 60% 40%, color-mix(in srgb,#F4C969 22%,transparent), transparent 72%),radial-gradient(20% 22% at 61% 60%, color-mix(in srgb,#F2A6B3 24%,transparent), transparent 72%),radial-gradient(20% 22% at 40% 60%, color-mix(in srgb,#5FD0C8 26%,transparent), transparent 72%),radial-gradient(34% 42% at 50% 50%, color-mix(in srgb,var(--gc,var(--blue-bright)) 12%,transparent), transparent 72%),rgba(28,46,82,.3)}
+.profile-pop__card{position:relative;isolation:isolate;width:362px;max-width:90vw;max-height:88vh;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;border-radius:24px;padding:30px 24px 22px;
   background:linear-gradient(168deg, rgba(255,255,255,.93), color-mix(in srgb,var(--blue-bright) 5%, rgba(247,250,255,.74)));
   -webkit-backdrop-filter:blur(28px) saturate(165%);backdrop-filter:blur(28px) saturate(165%);
   border:1px solid rgba(255,255,255,.9);box-shadow:0 34px 80px -32px rgba(14,36,86,.42),inset 0 1px 0 rgba(255,255,255,.96);
   transform:scale(.95) translateY(10px);opacity:.4;transition:transform .3s cubic-bezier(.2,.85,.25,1),opacity .3s}
 .profile-pop.is-open .profile-pop__card{transform:none;opacity:1}
-.profile-pop__card::before{content:"";position:absolute;inset:-16% -12%;z-index:-1;border-radius:46px;pointer-events:none;
-  background:radial-gradient(40% 46% at 22% 24%, color-mix(in srgb,#7CC4FF 30%,transparent), transparent 70%),radial-gradient(38% 44% at 82% 28%, color-mix(in srgb,#F2A6B3 24%,transparent), transparent 72%),radial-gradient(44% 50% at 74% 86%, color-mix(in srgb,#F4C969 24%,transparent), transparent 72%),radial-gradient(40% 46% at 18% 84%, color-mix(in srgb,#5FD0C8 26%,transparent), transparent 72%);
-  filter:blur(26px);opacity:.5}
+.profile-pop__card::-webkit-scrollbar{width:0;height:0;display:none}
+.profile-pop__card::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:24px;pointer-events:none;
+  background:radial-gradient(60% 50% at 28% 16%, rgba(255,255,255,.5), transparent 70%);
+  opacity:.6}
 .profile-pop__card::after{content:"";position:absolute;inset:0;border-radius:24px;padding:1px;pointer-events:none;
   background:linear-gradient(150deg, color-mix(in srgb,var(--gc,var(--blue-bright)) 45%,transparent), transparent 45%, transparent 62%, color-mix(in srgb,#7CC4FF 40%,transparent));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:.55}
