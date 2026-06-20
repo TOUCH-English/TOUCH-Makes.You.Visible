@@ -271,9 +271,16 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .eco-chip .z{font-size:11.5px;color:var(--muted)}
 
 /* ---------- Learning System (consultation journey) ---------- */
-.sys{margin-top:8px}
+.sys{margin-top:8px;position:relative}
+.sys-scale{position:absolute;top:14px;right:14px;z-index:5;display:inline-flex;border-radius:11px;overflow:hidden;opacity:.5;
+  background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
+  border:1px solid rgba(255,255,255,.6);box-shadow:0 4px 14px -6px rgba(20,33,50,.16);transition:opacity .2s ease}
+.sys-scale:hover{opacity:1}
+.sys-scale__b{width:30px;height:27px;display:grid;place-items:center;font-family:var(--display);font-weight:600;font-size:15px;line-height:1;color:var(--muted);background:transparent;border:0;cursor:pointer;transition:background .15s,color .15s;-webkit-user-select:none;user-select:none}
+.sys-scale__b:hover{background:rgba(255,255,255,.55);color:var(--ink)}
+.sys-scale__b+.sys-scale__b{border-left:1px solid rgba(255,255,255,.55)}
 /* ===== JOURNEY MAP — steps scattered along a winding route ===== */
-.sys-overview{position:relative;overflow:hidden;border-radius:26px;min-height:380px;
+.sys-overview{position:relative;overflow:hidden;border-radius:26px;min-height:calc(380px * var(--sys-scale,1));
   background:linear-gradient(135deg,#EEF2FB,#E4EBF7)}
 .sys--exploring .sys-overview{display:none}
 /* soft atmosphere orbs */
@@ -285,22 +292,22 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .sys-path path{fill:none;stroke:color-mix(in srgb,var(--blue-bright) 48%,#fff);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:1 9;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.7}
 .sys-path .glow{stroke:color-mix(in srgb,var(--blue-bright) 40%,#fff);stroke-width:7;stroke-dasharray:none;opacity:.22;filter:blur(3px)}
 /* a step on the map = a floating glass icon card */
-.sys-node{position:absolute;transform:translate(-50%,-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:9px;width:118px;padding:14px 10px 12px;border-radius:20px;text-align:center;cursor:pointer;
+.sys-node{position:absolute;transform:translate(-50%,-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:calc(9px * var(--sys-scale,1));width:calc(118px * var(--sys-scale,1));padding:calc(14px * var(--sys-scale,1)) calc(10px * var(--sys-scale,1)) calc(12px * var(--sys-scale,1));border-radius:20px;text-align:center;cursor:pointer;
   background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
   border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.1);
   transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,background .22s ease,border-color .22s ease}
 .sys-node::after{display:none}
 .sys-node:hover{transform:translate(-50%,-50%) translateY(-5px) scale(1.03);box-shadow:0 22px 40px -16px rgba(20,33,50,.34),inset 0 1px 0 rgba(255,255,255,.95);background:linear-gradient(155deg,rgba(255,255,255,.46),rgba(255,255,255,.22))}
-.sys-node__dot{position:relative;z-index:1;width:58px;height:58px;border-radius:18px;display:grid;place-items:center;color:var(--c);
+.sys-node__dot{position:relative;z-index:1;width:calc(58px * var(--sys-scale,1));height:calc(58px * var(--sys-scale,1));border-radius:18px;display:grid;place-items:center;color:var(--c);
   background:linear-gradient(150deg,color-mix(in srgb,var(--c) 26%,rgba(255,255,255,.5)),color-mix(in srgb,var(--c) 10%,rgba(255,255,255,.35)));
   border:1px solid color-mix(in srgb,var(--c) 30%,rgba(255,255,255,.7));
   box-shadow:0 10px 22px -8px color-mix(in srgb,var(--c) 55%,transparent),inset 0 1px 0 rgba(255,255,255,.7);
   transition:transform .22s ease,box-shadow .22s ease,background .22s ease,color .22s ease}
 .sys-node__dot .ic{display:grid;place-items:center}
-.sys-node__dot .ic svg{width:32px;height:32px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sys-node__dot .ic svg{width:calc(32px * var(--sys-scale,1));height:calc(32px * var(--sys-scale,1));stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .sys-node__dot .n{display:none}
-.sys-node__t{font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--ink);line-height:1.2;max-width:104px;opacity:.92}
-.sys-node__t .zh{display:block;font-weight:500;font-size:10px;color:var(--muted);margin-top:2px}
+.sys-node__t{font-family:var(--display);font-weight:700;font-size:calc(11.5px * var(--sys-scale,1));color:var(--ink);line-height:1.2;max-width:calc(104px * var(--sys-scale,1));opacity:.92}
+.sys-node__t .zh{display:block;font-weight:500;font-size:calc(10px * var(--sys-scale,1));color:var(--muted);margin-top:2px}
 /* current step glows on the map */
 .sys-node.is-active{transform:translate(-50%,-50%) scale(1.13);z-index:4;background:linear-gradient(155deg,rgba(255,255,255,.6),rgba(255,255,255,.32));border-color:color-mix(in srgb,var(--c) 45%,#fff);
   box-shadow:0 0 0 5px color-mix(in srgb,var(--c) 16%,transparent),0 24px 54px -10px color-mix(in srgb,var(--c) 62%,transparent),inset 0 1px 0 rgba(255,255,255,.95)}
@@ -309,8 +316,8 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .sys-node.is-active .sys-node__t{color:var(--c)}
 .sys-node.is-active:hover{transform:translate(-50%,-50%) translateY(-4px) scale(1.13)}
 /* summit flag near the final step */
-.sys-flag{position:absolute;transform:translate(-50%,calc(-50% - 56px));z-index:3;pointer-events:none;color:var(--red);opacity:.92;transition:left .2s,top .2s}
-.sys-flag svg{width:30px;height:30px;filter:drop-shadow(0 6px 10px rgba(20,33,50,.25))}
+.sys-flag{position:absolute;transform:translate(-50%,calc(-50% - 56px * var(--sys-scale,1)));z-index:3;pointer-events:none;color:var(--red);opacity:.92;transition:left .2s,top .2s}
+.sys-flag svg{width:calc(30px * var(--sys-scale,1));height:calc(30px * var(--sys-scale,1));filter:drop-shadow(0 6px 10px rgba(20,33,50,.25))}
 /* explore mode */
 .sys-explore{display:none}
 .sys-explore>*{min-width:0}
@@ -361,8 +368,8 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .focus-x:hover{background:#fff;color:var(--ink);transform:scale(1.06)}
 /* hero header */
 .focus-hero{position:relative;display:grid;grid-template-columns:1fr 290px;gap:18px;padding:34px 38px 26px;
-  background:linear-gradient(150deg,color-mix(in srgb,var(--c) 17%,#fff),color-mix(in srgb,var(--c) 4%,#fff) 78%);
-  border-bottom:1px solid color-mix(in srgb,var(--c) 18%,var(--line))}
+  background:linear-gradient(150deg,color-mix(in srgb,var(--c) 11%,#fff),color-mix(in srgb,var(--c) 3%,#fff) 82%);
+  border-bottom:1px solid color-mix(in srgb,var(--c) 11%,var(--line))}
 .focus-step{display:inline-block;font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--c);background:color-mix(in srgb,var(--c) 16%,#fff);padding:5px 12px;border-radius:999px}
 .focus-title{font-family:var(--display);font-weight:800;font-size:34px;line-height:1.08;color:var(--ink);margin:14px 0 2px;letter-spacing:-.01em}
 .focus-zh{font-family:var(--display);font-weight:600;font-size:18px;color:var(--muted);margin-bottom:12px}
@@ -398,12 +405,49 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .focus-gain__ic svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .focus-gain__txt{font-size:14.5px;line-height:1.6;color:var(--ink);margin:0}
 .focus-gain__txt .zh{color:var(--muted)}
+.focus-gain__txt + .focus-gain__txt{margin-top:9px}
+/* Next 24 — subtitle / bilingual bullet list / multi-line block */
+.focus-subtitle{font-family:var(--display);font-weight:700;font-size:15px;color:var(--c);margin:-2px 0 12px;letter-spacing:-.005em}
+.focus-subtitle .zh{font-weight:600;font-size:13px;color:var(--muted);margin-left:7px}
+.focus-block__val p{margin:0 0 8px}
+.focus-block__val p:last-child{margin:0}
+.focus-list{list-style:none;margin:0;padding:0 0 0 19px;display:flex;flex-direction:column;gap:11px}
+.focus-list li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;color:var(--ink)}
+.focus-list li .zh{color:var(--muted)}
+.focus-list__dot{flex:none;width:7px;height:7px;margin-top:7px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 14%,transparent)}
+/* Advisor Note — collapsible, advisor-facing (5C glass) */
+.advnote{margin:22px 38px 6px;border-radius:16px;overflow:hidden;border:1px solid rgba(20,33,50,.1);background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
+.advnote__toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px;cursor:pointer;background:transparent;border:none;text-align:left}
+.advnote__toggle-l{display:inline-flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink)}
+.advnote__toggle-l .zh{font-weight:500;font-size:12.5px;color:var(--muted)}
+.advnote__badge{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 14%,#fff)}
+.advnote__badge svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.advnote__right{display:inline-flex;align-items:center;gap:10px}
+.advnote__hint{font-size:11px;font-weight:600;color:var(--faint);white-space:nowrap}
+.advnote__chev{transition:transform .25s ease;color:var(--muted);font-size:13px;line-height:1}
+.advnote.is-open .advnote__chev{transform:rotate(90deg)}
+.advnote__body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.advnote.is-open .advnote__body{max-height:2200px}
+.advnote__inner{padding:2px 18px 20px;display:flex;flex-direction:column;gap:17px;border-top:1px solid rgba(20,33,50,.07)}
+.advnote__sec h4{font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--ink);margin:13px 0 8px;display:flex;align-items:center;gap:8px}
+.advnote__sec h4 .zh{font-weight:500;font-size:12px;color:var(--faint)}
+.advnote__sec p{font-size:13.5px;line-height:1.65;color:var(--ink);margin:0 0 7px}
+.advnote__sec p:last-child{margin:0}
+.advnote__sec p.zh{color:var(--muted)}
+.advnote__core{font-family:var(--display);font-weight:700;color:var(--c);font-size:14px}
+.advnote__list{list-style:none;margin:2px 0 9px;padding-left:3px;display:flex;flex-direction:column;gap:6px}
+.advnote__list li{font-size:13px;color:var(--muted);display:flex;gap:9px;align-items:center;line-height:1.4}
+.advnote__list li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--c);flex:none;opacity:.7}
+.advnote__mem{margin-top:2px;background:color-mix(in srgb,var(--c) 9%,#fff);border:1px solid color-mix(in srgb,var(--c) 18%,#fff);border-radius:12px;padding:13px 15px}
+.advnote__mem .k{font-family:var(--display);font-weight:800;color:var(--c);font-size:14px;margin-bottom:4px}
+.advnote__mem .zh{font-size:13px;color:var(--muted)}
+@media(max-width:600px){.advnote{margin:18px 18px 6px}.advnote__hint{display:none}}
 /* ===== EPI immersive consultation page (step 1) ===== */
 /* ===== shared glass-mirror hero (Mirror 01 / 02 / 03) ===== */
 .mhero{--mc:var(--c);position:relative;padding:42px 40px 30px;text-align:center;overflow:hidden;
-  background:radial-gradient(120% 100% at 50% -10%, color-mix(in srgb,var(--mc) 14%,#fff), transparent 62%),linear-gradient(172deg,color-mix(in srgb,var(--mc) 10%,#fff),#fff 80%)}
+  background:radial-gradient(120% 100% at 50% -10%, color-mix(in srgb,var(--mc) 9%,#fff), transparent 64%),linear-gradient(172deg,color-mix(in srgb,var(--mc) 6%,#fff),#fff 82%)}
 .epi .mhero{--mc:var(--epi-theme)}
-.mhero::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:color-mix(in srgb,var(--mc) 30%,transparent);filter:blur(80px);top:-170px;left:50%;transform:translateX(-50%);opacity:.5;pointer-events:none}
+.mhero::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:color-mix(in srgb,var(--mc) 19%,transparent);filter:blur(80px);top:-170px;left:50%;transform:translateX(-50%);opacity:.38;pointer-events:none}
 .mframe{position:relative;width:88px;height:108px;margin:0 auto 16px;border-radius:50%;
   background:linear-gradient(160deg,rgba(255,255,255,.55),color-mix(in srgb,var(--mc) 16%,rgba(255,255,255,.22)));
   border:1.5px solid rgba(255,255,255,.9);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
@@ -554,6 +598,34 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .adv-modal__head{margin-bottom:16px}
 .adv-modal__title{display:block;font-family:var(--display);font-weight:800;font-size:18px;color:var(--ink)}
 .adv-modal__sub{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.adv-modal__title-zh{font-weight:600;font-size:13px;color:var(--muted);margin-left:6px}
+.adv-modal__x{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:9px;border:0;cursor:pointer;background:rgba(20,33,50,.06);color:var(--muted);font-size:18px;line-height:1;transition:.15s}
+.adv-modal__x:hover{background:rgba(20,33,50,.12);color:var(--ink)}
+.adv-modal--note .adv-modal__card{max-width:500px;padding-top:22px}
+.adv-modal--note .adv-modal__head{padding-right:40px}
+.advnotes{display:flex;flex-direction:column;gap:15px}
+/* Step 5 — dynamic digital-support buttons (Customer View) */
+.s5links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+.s5link{display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;font-family:var(--display);font-weight:600;font-size:13.5px;color:var(--ink);padding:12px 14px;border-radius:13px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);-webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);box-shadow:0 6px 16px -12px rgba(20,33,50,.2);transition:background .16s,border-color .16s,box-shadow .16s,transform .16s,color .16s}
+.s5link:hover{background:color-mix(in srgb,var(--c) 9%,#fff);border-color:color-mix(in srgb,var(--c) 32%,#fff);color:var(--c);transform:translateY(-2px);box-shadow:0 12px 24px -14px color-mix(in srgb,var(--c) 50%,transparent)}
+.s5link svg{flex:none;width:15px;height:15px;stroke:var(--c);fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;opacity:.75;transition:transform .16s}
+.s5link:hover svg{transform:translateX(2px)}
+.s5link.is-empty{opacity:.5;cursor:default;pointer-events:none}
+.s5link__name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.s5empty{font-size:13px;color:var(--muted)}
+/* Step 5 — Advisor Note: Digital Support Links editor */
+.s5edit{display:flex;flex-direction:column;gap:9px;margin:10px 0 12px}
+.s5row{display:flex;align-items:center;gap:8px}
+.s5row__fields{flex:1;display:flex;flex-direction:column;gap:6px;min-width:0}
+.s5row__fields input{width:100%;font-family:var(--body);font-size:13px;color:var(--ink);padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.7);border:1px solid var(--line);outline:none;transition:border-color .15s,box-shadow .15s}
+.s5row__fields input:focus{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 16%,transparent)}
+.s5row__name{font-weight:600}
+.s5row__del{flex:none;width:30px;height:30px;border-radius:9px;border:1px solid var(--line);background:rgba(255,255,255,.6);color:var(--muted);font-size:17px;line-height:1;cursor:pointer;transition:.15s}
+.s5row__del:hover{background:color-mix(in srgb,var(--red) 10%,#fff);border-color:color-mix(in srgb,var(--red) 35%,#fff);color:var(--red)}
+.s5add{display:inline-flex;align-items:center;gap:7px;font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--c);background:color-mix(in srgb,var(--c) 9%,#fff);border:1px dashed color-mix(in srgb,var(--c) 35%,#fff);border-radius:11px;padding:9px 14px;cursor:pointer;transition:.15s}
+.s5add:hover{background:color-mix(in srgb,var(--c) 15%,#fff)}
+.s5add svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:600px){.s5links{grid-template-columns:1fr}}
 .adv-field{display:block;margin-bottom:13px}
 .adv-field span{display:block;font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--ink);margin-bottom:6px}
 .adv-field input{width:100%;font-family:var(--body);font-size:13px;color:var(--ink);padding:10px 13px;border-radius:12px;
@@ -808,6 +880,8 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   background:linear-gradient(150deg,color-mix(in srgb,var(--epi-theme) 16%,#fff),color-mix(in srgb,var(--epi-theme) 5%,#fff));
   border:1px solid color-mix(in srgb,var(--epi-theme) 24%,#fff);box-shadow:0 20px 44px -22px color-mix(in srgb,var(--epi-theme) 50%,transparent),inset 0 1px 0 rgba(255,255,255,.85)}
 .epi-id__row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:15px}
+/* Step 6 popup skin: unify content panels to soft white glass, theme color stays in icons/text/accents */
+#sysFocus .epi-id,#sysFocus .rev-close,#sysFocus .rev-mirror{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);border:1px solid rgba(255,255,255,.72);box-shadow:0 16px 44px -20px rgba(20,33,50,.16),inset 0 1px 0 rgba(255,255,255,.82)}
 .epi-id__label{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--epi-theme)}
 .epi-id__label .zh{letter-spacing:0;text-transform:none;color:var(--muted);font-weight:500}
 .epi-id__tag{font-size:10px;font-weight:700;color:var(--muted);background:rgba(255,255,255,.75);border:1px solid var(--line);padding:3px 9px;border-radius:999px}
@@ -848,7 +922,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 /* ===== Goal Setting — Future Learning Reflection (Mirror 2.0) ===== */
 .goal-hero{position:relative;padding:46px 40px 32px;text-align:center;overflow:hidden;
   background:radial-gradient(120% 100% at 50% -10%, color-mix(in srgb,var(--c) 16%,#fff), transparent 62%),linear-gradient(172deg,color-mix(in srgb,var(--c) 12%,#fff),#fff 78%)}
-.goal-hero::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:color-mix(in srgb,var(--c) 34%,transparent);filter:blur(80px);top:-160px;left:50%;transform:translateX(-50%);opacity:.5;pointer-events:none}
+.goal-hero::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:color-mix(in srgb,var(--c) 22%,transparent);filter:blur(80px);top:-160px;left:50%;transform:translateX(-50%);opacity:.4;pointer-events:none}
 .goal-eyebrow{position:relative;font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--c)}
 .goal-eyebrow svg{width:15px;height:15px;vertical-align:-3px;margin-right:5px;stroke:currentColor;fill:none;stroke-width:1.7}
 .goal-title{position:relative;font-family:var(--display);font-weight:800;font-size:33px;line-height:1.08;color:var(--ink);margin:14px 0 0;letter-spacing:-.015em}
@@ -1711,11 +1785,11 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   .fivec{grid-template-columns:repeat(2,1fr)}
   .cflow{grid-template-columns:1fr}
   /* Learning System journey map: taller panel, compact floating cards */
-  .sys-overview{min-height:560px;border-radius:22px}
-  .sys-node{width:104px;padding:12px 8px 10px;gap:7px}
-  .sys-node__dot{width:50px;height:50px;border-radius:16px}
-  .sys-node__dot .ic svg{width:28px;height:28px}
-  .sys-node__t{font-size:11px;max-width:90px}
+  .sys-overview{min-height:calc(560px * var(--sys-scale,1));border-radius:22px}
+  .sys-node{width:calc(104px * var(--sys-scale,1));padding:calc(12px * var(--sys-scale,1)) calc(8px * var(--sys-scale,1)) calc(10px * var(--sys-scale,1));gap:calc(7px * var(--sys-scale,1))}
+  .sys-node__dot{width:calc(50px * var(--sys-scale,1));height:calc(50px * var(--sys-scale,1));border-radius:16px}
+  .sys-node__dot .ic svg{width:calc(28px * var(--sys-scale,1));height:calc(28px * var(--sys-scale,1))}
+  .sys-node__t{font-size:calc(11px * var(--sys-scale,1));max-width:calc(90px * var(--sys-scale,1))}
   .sys-node__t .zh{display:none}
   .sysd{padding:22px 18px}
   .sysd__t{font-size:21px}
@@ -1838,7 +1912,8 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .lvsel:focus{outline:none;border-color:var(--blue-bright)}
 .lvmods{margin-top:18px;display:grid;gap:24px;align-items:start}
 .lvmods.cols2{grid-template-columns:1fr 1fr}
-.lvmods.cols1 .lvroad:not(.is-compact){max-width:740px;margin-left:auto;margin-right:auto}
+.lvmods.cols1{grid-template-columns:minmax(0,1fr)}
+.lvmods.cols1 .lvroad:not(.is-compact){width:var(--hero-w,740px);max-width:100%;margin-left:auto;margin-right:auto}
 .lvmod__head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
 .lvmod__name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink)}
 .lvmod__path{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
@@ -1883,6 +1958,15 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .lvroad__vp{overflow:hidden;transition:height .35s ease}
 .lvroad__sc{width:900px;transform-origin:top left;will-change:transform;transition:transform .35s ease}
 .lvroad.is-compact{max-width:560px;margin-left:auto;margin-right:auto}
+.lvstage .lvzoom{position:absolute;top:13px;right:13px;z-index:4;display:inline-flex;align-items:center;gap:1px;padding:3px;border-radius:999px;
+  background:rgba(255,255,255,.32);-webkit-backdrop-filter:blur(13px) saturate(160%);backdrop-filter:blur(13px) saturate(160%);
+  border:1px solid rgba(255,255,255,.5);box-shadow:0 4px 14px rgba(20,33,50,.08);opacity:.58;transition:opacity .25s ease}
+.lvstage .lvzoom:hover{opacity:1}
+.lvzoom__b{width:25px;height:25px;border:none;background:transparent;border-radius:999px;cursor:pointer;font-family:var(--display);font-weight:600;font-size:16px;line-height:1;color:var(--ink);display:flex;align-items:center;justify-content:center;transition:background .15s ease;padding:0}
+.lvzoom__b:hover{background:rgba(31,159,230,.16)}
+.lvzoom__b:disabled{opacity:.3;cursor:default;background:transparent}
+.lvzoom__v{font-family:var(--display);font-weight:600;font-size:11px;color:var(--muted);min-width:36px;text-align:center;user-select:none;letter-spacing:.01em}
+.lvroad.is-compact .lvzoom{display:none}
 .lvroad__head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
 .lvroad__name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink)}
 .lvroad__path{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
@@ -1989,6 +2073,26 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .lvadmin__dot{flex:none;width:10px;height:10px;border-radius:50%}
 .lvadmin__input{flex:1;min-width:200px;font-family:var(--body);font-size:12.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 11px;outline:none;transition:border-color .15s,box-shadow .15s}
 .lvadmin__input:focus{border-color:var(--blue-bright);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue-bright) 18%,transparent)}
+/* ============================================================
+   STEP 6 POPUP = STEP 4 (5C) POPUP SKIN — visual skin only.
+   Shell/hero/panel/section copied from .modal / .cc-modal.
+   KEEPS: step theme colour (--c / --epi-theme) + Before/During/After.
+   ============================================================ */
+/* ---- Shell: copy .modal-bg / .modal ---- */
+#sysFocus.focus-bg{background:rgba(14,36,86,.46);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+#sysFocus .focus-card{background:rgba(255,255,255,.74);-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--c,var(--blue));box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);border-radius:var(--r-lg)}
+#sysFocus .focus-x{top:18px;right:18px;width:34px;height:34px;border-radius:10px;background:rgba(20,33,50,.06);border:none;color:var(--muted);box-shadow:none}
+#sysFocus .focus-x:hover{background:rgba(20,33,50,.12);color:var(--ink);transform:none}
+/* ---- Heroes: sit on the glass shell (no big colour block) ---- */
+#sysFocus .mhero,#sysFocus .goal-hero{background:transparent}
+#sysFocus .mhero::before,#sysFocus .goal-hero::before{display:none}
+#sysFocus .focus-hero{background:transparent;border-bottom:1px solid var(--line)}
+/* ---- Theme-tinted panels -> soft white glass (5C) ---- */
+#sysFocus .focus-gain,#sysFocus .focus-hero__vis{background:rgba(255,255,255,.5)!important;border:1px solid rgba(255,255,255,.7)!important;box-shadow:0 12px 34px -20px rgba(20,33,50,.16),inset 0 1px 0 rgba(255,255,255,.8)!important}
+/* ---- Solid theme icon tiles -> 5C soft-tint round badges (theme colour kept) ---- */
+#sysFocus .rev-head__ic,#sysFocus .rev-badge__ic,#sysFocus .focus-gain__ic,#sysFocus .focus-bigicon,#sysFocus .stage-card__ic,#sysFocus .stage-advisor__ic,#sysFocus .goal-reflect__hic,#sysFocus .goal-focus__hic,#sysFocus .goal-future__hic{color:var(--c)!important;background:color-mix(in srgb,var(--c) 15%,#fff)!important;border:1px solid color-mix(in srgb,var(--c) 22%,#fff)!important;box-shadow:none!important}
+#sysFocus .epi-id__ic,#sysFocus .epi-cog__ic,#sysFocus .epi-sec__ic,#sysFocus .epi-note__ic{color:var(--epi-theme)!important;background:color-mix(in srgb,var(--epi-theme) 15%,#fff)!important;border:1px solid color-mix(in srgb,var(--epi-theme) 22%,#fff)!important;box-shadow:none!important}
+#sysFocus .rev-head__ic svg,#sysFocus .rev-badge__ic svg,#sysFocus .focus-gain__ic svg,#sysFocus .focus-bigicon svg,#sysFocus .stage-card__ic svg,#sysFocus .stage-advisor__ic svg,#sysFocus .goal-reflect__hic svg,#sysFocus .goal-focus__hic svg,#sysFocus .goal-future__hic svg,#sysFocus .epi-id__ic svg,#sysFocus .epi-cog__ic svg,#sysFocus .epi-sec__ic svg,#sysFocus .epi-note__ic svg{stroke:currentColor!important}
 </style>
 </head>
 <body>
@@ -2189,6 +2293,10 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
         </div>
         <p class="lead" id="sysLead" style="margin:0 0 18px">Here's the whole journey. Tap any step and I'll walk you through it one at a time. <span class="zh">这是完整的学习旅程。点任一步，我一步步为你讲解。</span></p>
         <div class="sys" id="sysStage">
+          <div class="sys-scale" role="group" aria-label="Adjust roadmap size">
+            <button class="sys-scale__b" type="button" data-scale="down" aria-label="Reduce roadmap size">&minus;</button>
+            <button class="sys-scale__b" type="button" data-scale="up" aria-label="Enlarge roadmap size">+</button>
+          </div>
           <div class="sys-overview" id="sysOverview"><!-- journey nodes; also acts as mini roadmap when a step modal is open --></div>
         </div>
         <div class="adv-cue" data-cue><strong>Advisor cue:</strong> show the full journey first so they see it's a guided system, not random classes. Then open each step and tie it to their goal.</div>
@@ -2211,11 +2319,11 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
         <div class="locations">
           <h4><span class="loc-pin"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Where you can learn · 上课地点</h4>
           <div class="loc-row">
-            <span class="loc" data-loc data-area="Johor" data-name="Mount Austin" data-addr="Mount Austin, Johor Bahru" data-img="assets/locations/austin.png" data-desc="Our Johor flagship centre in Mount Austin." data-map="#"><b>Johor:</b> Mount Austin</span>
-            <span class="loc" data-loc data-area="Johor" data-name="Sutera Utama" data-addr="Skudai, Johor" data-img="assets/locations/sutera.png" data-desc="Centre in Sutera Utama, near Skudai." data-map="#"><b>Johor:</b> Sutera Utama</span>
-            <span class="loc" data-loc data-area="Johor" data-name="Bukit Indah" data-addr="Iskandar Puteri, Johor" data-img="assets/locations/bi.png" data-desc="Westside centre serving Bukit Indah &amp; Iskandar Puteri." data-map="#"><b>Johor:</b> Bukit Indah</span>
-            <span class="loc" data-loc data-area="Johor" data-name="Kulai" data-addr="Kulai, Johor" data-img="assets/locations/kulai.png" data-desc="Northern Johor centre in Kulai town." data-map="#"><b>Johor:</b> Kulai</span>
-            <span class="loc" data-loc data-area="Selangor" data-name="Setia Alam" data-addr="Setia Alam, Selangor" data-img="assets/locations/sp.png" data-desc="Klang Valley centre in Setia Alam." data-map="#"><b>Selangor:</b> Setia Alam</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Mount Austin" data-addr="7-02, Jalan Mutiara Emas 2A, Taman Mount Austin, 81100 Johor Bahru, Johor" data-img="assets/locations/austin.png" data-desc="Our Johor flagship centre in Mount Austin." data-map="https://maps.app.goo.gl/odkT1HQNE7pc4PTJ9"><b>Johor:</b> Mount Austin</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Sutera Utama" data-addr="90B, Jalan Sutera Tanjung 8/4, Taman Sutera Utama, 81300 Skudai, Johor" data-img="assets/locations/sutera.png" data-desc="Centre in Sutera Utama, near Skudai." data-map="https://maps.app.goo.gl/F8h74Aq7bNKcJCxZ6"><b>Johor:</b> Sutera Utama</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Bukit Indah" data-addr="6A, Jalan Indah 15/1, Taman Bukit Indah, 79100 Iskandar Puteri, Johor" data-img="assets/locations/bi.png" data-desc="Westside centre serving Bukit Indah &amp; Iskandar Puteri." data-map="https://maps.app.goo.gl/MVGCp1yj9zMym4Zo7"><b>Johor:</b> Bukit Indah</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Kulai" data-addr="205A, Jalan Kenanga 29/2, Indahpura, 81000 Kulai, Johor" data-img="assets/locations/kulai.png" data-desc="Northern Johor centre in Kulai town." data-map="https://maps.app.goo.gl/g6rKbcspsin6o1Nr7"><b>Johor:</b> Kulai</span>
+            <span class="loc" data-loc data-area="Selangor" data-name="Setia Alam" data-addr="10-3-1, JALAN SETIA PRIMA P U13/P SETIA ALAM, SEKSYEN, U13, 40170 Shah Alam, Selangor" data-img="assets/locations/sp.png" data-desc="Klang Valley centre in Setia Alam." data-map="https://maps.app.goo.gl/BsvLzCFLFC91jNfa6"><b>Selangor:</b> Setia Alam</span>
             <span class="loc" data-loc data-area="Online" data-name="Live class on Zoom" data-addr="Online \u00b7 Live via Zoom" data-img="assets/locations/online.png" data-desc="Join live, interactive lessons online via Zoom." data-map="#"><b>Online:</b> Live class on Zoom</span>
           </div>
         </div>
@@ -2865,6 +2973,28 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     });
     return cols;
   }
+  var LVZOOM_BASE=925, LVZOOM_MIN=0.7, LVZOOM_MAX=1.2, LVZOOM_STEP=0.1, lvZoom=1;
+  function zoomCtlHTML(){
+    return '<div class="lvzoom" data-zoom-ctl>'+
+      '<button type="button" class="lvzoom__b" data-zoom="out" aria-label="Zoom out">\u2212</button>'+
+      '<span class="lvzoom__v" data-zoom-val>100%</span>'+
+      '<button type="button" class="lvzoom__b" data-zoom="in" aria-label="Zoom in">+</button>'+
+    '</div>';
+  }
+  function applyZoom(){
+    var box=$("#lvMods"); if(!box)return;
+    if(lvCount===1){ box.style.setProperty("--hero-w",(LVZOOM_BASE*lvZoom).toFixed(1)+"px"); }
+    else { box.style.removeProperty("--hero-w"); }
+    var v=box.querySelector("[data-zoom-val]"); if(v)v.textContent=Math.round(lvZoom*100)+"%";
+    var bo=box.querySelector('[data-zoom="out"]'); if(bo)bo.disabled=(lvZoom<=LVZOOM_MIN+0.001);
+    var bi=box.querySelector('[data-zoom="in"]'); if(bi)bi.disabled=(lvZoom>=LVZOOM_MAX-0.001);
+    if(window.requestAnimationFrame)requestAnimationFrame(fitRoads); else fitRoads();
+  }
+  function setZoom(dir){
+    var z=lvZoom+dir*LVZOOM_STEP;
+    if(z<LVZOOM_MIN)z=LVZOOM_MIN; if(z>LVZOOM_MAX)z=LVZOOM_MAX;
+    lvZoom=Math.round(z*100)/100; applyZoom();
+  }
   function fitRoads(){
     var base=900;
     $$("#lvMods .lvroad__vp").forEach(function(vp){
@@ -2890,12 +3020,13 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           '<span class="glow" style="background:var(--l4);right:1%;top:8%"></span>'+
           '<div class="lvroad__vp"><div class="lvroad__sc"><div class="levelmap">'+roadCols(lo,hi)+'</div></div></div>'+
           '<div class="lvroad__detail"></div>'+
+          (lvCount===1?zoomCtlHTML():'')+
         '</div>'+
       '</div>';
     }
     box.className="lvmods"+(lvCount===1?" cols1":" cols2");
     box.innerHTML=html;
-    if(window.requestAnimationFrame)requestAnimationFrame(fitRoads); else setTimeout(fitRoads,30);
+    applyZoom();
   }
   function buildSummary(){
     var box=$("#lvSummary"); if(!box)return; var lines="";
@@ -2961,6 +3092,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   (function(){
     var cnt=$("#lvCount"), learners=$("#lvLearners"), present=$("#lvPresent"), tool=$("#lvTool"), sum=$("#lvSummary"), mods=$("#lvMods"), mbg=$("#modalBg");
     if(mods){mods.addEventListener("click",function(e){
+      var zb=e.target.closest("[data-zoom]"); if(zb){ setZoom(zb.getAttribute("data-zoom")==="in"?1:-1); return; }
       if(e.target.closest("[data-lv-close]")){ closeInline(e.target.closest(".lvroad")); return; }
       var rtog=e.target.closest("[data-res-toggle]"); if(rtog){ var bx=rtog.closest(".lvres"); if(bx)bx.classList.toggle("is-open"); return; }
       var rsave=e.target.closest("[data-res-save]"); if(rsave){ var kk=+rsave.getAttribute("data-res-save"); var inp=rsave.closest(".lvres").querySelector("[data-res-input]"); advisorLinks[lvKey(kk)].youtube=((inp&&inp.value)||"").trim(); var rd=rsave.closest(".lvroad"); var pa=rd&&rd.querySelector(".lvroad__detail"); if(pa){ pa.innerHTML=inlineDetail(kk); pa.classList.add("show"); } return; }
@@ -2990,7 +3122,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
         var li=parseInt(n.getAttribute("data-learner"),10); lvState[li].name=n.value;
         var nm=$('#lvMods .lvroad[data-learner="'+li+'"] .lvroad__name'); if(nm)nm.textContent=learnerName(li);
         if(sum && !sum.hidden) buildSummary();});}
-    if(present){present.addEventListener("click",function(){buildSummary(); if(tool)tool.hidden=true; if(sum)sum.hidden=false; renderMods(); if(typeof scrollToReveal==="function")scrollToReveal($("#lvMods"));});}
+    if(present){present.addEventListener("click",function(){lvZoom=1; buildSummary(); if(tool)tool.hidden=true; if(sum)sum.hidden=false; renderMods(); if(typeof scrollToReveal==="function")scrollToReveal($("#lvMods"));});}
     if(sum){sum.addEventListener("click",function(e){if(e.target.closest("#lvEdit")){if(tool)tool.hidden=false; sum.hidden=true;}});}
     var _rt; window.addEventListener("resize",function(){clearTimeout(_rt);_rt=setTimeout(fitRoads,120);});
     var adminRows=$("#lvAdminRows");
@@ -3148,44 +3280,44 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     var SYS=[
       {t:"EPI Personality Test", zh:"性格学习测评", ic:"person", col:"#2E9E50", short:"EPI",
         concept:"Know how you learn before you start. 先了解你怎么学，再开始。", phase:"Before you start · 课前", focus:"Self-awareness",
-        what:{en:"A short personality &amp; learning-style profile, taken before classes begin.", zh:"开课前先做的性格与学习风格测评。"},
-        does:{en:"Answer a quick questionnaire about how you learn, communicate and stay motivated.", zh:"完成一份关于学习方式、沟通风格与动机的简短问卷。"},
-        helps:{en:"Your teacher tailors pace, feedback and encouragement to your personality from day one.", zh:"老师从第一天就按你的性格调整节奏与鼓励方式，不是一刀切。"}},
+        what:{en:"A quick check of how you learn, before classes start.", zh:"开课前先做的性格与学习风格测评。"},
+        does:{en:"Answer a few easy questions about how you learn.", zh:"完成一份关于学习方式、沟通风格与动机的简短问卷。"},
+        helps:{en:"Your teacher teaches you the way that fits you best.", zh:"老师从第一天就按你的性格调整节奏与鼓励方式，不是一刀切。"}},
       {t:"Goal Setting", zh:"目标设定", ic:"target", col:"#2A5BD7", short:"Goal",
         concept:"Turn a vague wish into a clear target. 把模糊的愿望变成清晰的目标。", phase:"Before you start · 课前", focus:"Direction",
-        what:{en:"A one-on-one conversation to define what success in English means for you.", zh:"一对一设定属于你的英语学习目标。"},
-        does:{en:"Agree on a clear target — speaking up in meetings, travel, interviews, daily life.", zh:"一起定下清晰目标：会议开口、旅游、面试、日常沟通。"},
-        helps:{en:"Every class is measured against your goal, so progress feels real, not vague.", zh:"每堂课都对着你的目标走，进步看得见、不盲目。"}},
+        what:{en:"A one-on-one chat to set your English goal.", zh:"一对一设定属于你的英语学习目标。"},
+        does:{en:"Pick a clear goal — work, travel, interviews, daily life.", zh:"一起定下清晰目标：会议开口、旅游、面试、日常沟通。"},
+        helps:{en:"Every class follows your goal, so progress feels real.", zh:"每堂课都对着你的目标走，进步看得见、不盲目。"}},
       {t:"IPA Tutorial 国际音标", zh:"国际音标入门", ic:"sound", col:"#7C5CFF", short:"IPA",
         concept:"Get pronunciation right from the foundation. 从根基把发音学对。", phase:"Before you start · 课前", focus:"Pronunciation",
-        what:{en:"A foundation tutorial on the International Phonetic Alphabet — the pronunciation system.", zh:"国际音标(发音系统)的基础教学。"},
-        does:{en:"Learn to read and produce English sounds correctly using IPA symbols.", zh:"学会用音标把英语发音读准、发对。"},
-        helps:{en:"Removes the fear of pronunciation early, so you sound clearer and more confident.", zh:"早早消除发音恐惧，开口更清楚、更有底气。"}},
+        what:{en:"A simple intro to English sounds (IPA).", zh:"国际音标(发音系统)的基础教学。"},
+        does:{en:"Learn to say English sounds the right way.", zh:"学会用音标把英语发音读准、发对。"},
+        helps:{en:"You speak clearer and worry less about pronunciation.", zh:"早早消除发音恐惧，开口更清楚、更有底气。"}},
       {t:"First 24 Classes", zh:"课堂学习 · 前 24 节课", ic:"book", col:"#E6A81E", short:"First 24",
         concept:"Build the speaking habit through real practice. 用真实练习建立开口习惯。", phase:"During the course · 课程中", focus:"Speaking habit",
-        what:{en:"The first block of 24 small-group speaking classes.", zh:"第一阶段 24 节小班口语课。"},
-        does:{en:"Practise speaking every class using the 5C method — copy, construct, convey.", zh:"每堂课用 5C 方法开口练习。"},
-        helps:{en:"Builds the core speaking habit and muscle memory through consistent practice.", zh:"透过持续练习建立开口习惯与肌肉记忆。"}},
+        what:{en:"Your first 24 small-group speaking classes.", zh:"第一阶段 24 节小班口语课。"},
+        does:{en:"Speak in every class using the 5C method.", zh:"每堂课用 5C 方法开口练习。"},
+        helps:{en:"You build the habit of speaking, step by step.", zh:"透过持续练习建立开口习惯与肌肉记忆。"}},
       {t:"Learning System", zh:"学员学习系统", ic:"grid", col:"#1F9FE6", short:"System",
         concept:"Keep learning between classes — never blindly. 课堂之间也持续学，不盲目。", phase:"During the course · 课程中", focus:"Continuity",
-        what:{en:"An online system that supports your learning between and around classes.", zh:"课堂之外支持学习的线上系统。"},
-        does:{en:"Track progress, review materials and see your teacher's feedback any time.", zh:"随时看进度、复习教材、查看老师反馈。"},
-        helps:{en:"Learning continues outside the classroom — you're never practising blindly.", zh:"课后也能持续学习，不盲目练。"}},
+        what:{en:"An online system to help you learn between classes.", zh:"课堂之外支持学习的线上系统。"},
+        does:{en:"Check progress, review lessons, and read feedback anytime.", zh:"随时看进度、复习教材、查看老师反馈。"},
+        helps:{en:"You keep learning after class — never on your own.", zh:"课后也能持续学习，不盲目练。"}},
       {t:"Class Review", zh:"课堂复盘", ic:"clipboard", col:"#14A2B8", short:"Review",
         concept:"Consolidate, then sharpen your focus. 先巩固，再聚焦下一步。", phase:"During the course · 课程中", focus:"Consolidation",
-        what:{en:"A structured review after the first block of classes.", zh:"完成前 24 节课后的系统复盘。"},
-        does:{en:"Revisit what you've learned and identify strengths and gaps with your teacher.", zh:"和老师一起回顾收获、找出强项与待加强处。"},
-        helps:{en:"Consolidates your progress and sets the focus for the next block.", zh:"巩固成果，确定下一阶段重点。"}},
+        what:{en:"A review after your first 24 classes.", zh:"完成前 24 节课后的系统复盘。"},
+        does:{en:"Look back with your teacher and find what to improve.", zh:"和老师一起回顾收获、找出强项与待加强处。"},
+        helps:{en:"You lock in progress and set your next focus.", zh:"巩固成果，确定下一阶段重点。"}},
       {t:"Next 24 Classes", zh:"继续上 24 节课", ic:"trend", col:"#3B6FE0", short:"Next 24",
         concept:"Move from sentences to real communication. 从句子进阶到真实沟通。", phase:"During the course · 课程中", focus:"Fluency",
-        what:{en:"The second block of 24 classes, building on your foundation.", zh:"第二阶段 24 节课，在基础上进阶。"},
-        does:{en:"Take on more complex speaking — opinions, persuasion, real situations.", zh:"挑战更复杂的表达：观点、说服、真实情境。"},
-        helps:{en:"Moves you from basic sentences to confident, fuller communication.", zh:"从简单句进阶到更完整、自信的沟通。"}},
+        what:{en:"Your next 24 classes, building on the basics.", zh:"第二阶段 24 节课，在基础上进阶。"},
+        does:{en:"Practise harder speaking — opinions and real situations.", zh:"挑战更复杂的表达：观点、说服、真实情境。"},
+        helps:{en:"You move from simple sentences to real conversations.", zh:"从简单句进阶到更完整、自信的沟通。"}},
       {t:"Final Review + Exam", zh:"期末复盘 + 考试", ic:"trophy", col:"#E0303B", short:"Final",
         concept:"Measure the growth, plan the next goal. 衡量成长，规划下一目标。", phase:"Completion · 完成", focus:"Assessment",
-        what:{en:"A final review and assessment to measure how far you've come.", zh:"期末复盘与测评，衡量你的进步。"},
-        does:{en:"Review the whole journey and take an assessment of your speaking.", zh:"回顾整段旅程，并进行口语测评。"},
-        helps:{en:"Confirms your growth and recommends the next level or next goal.", zh:"确认成长，并建议下一程度或下一目标。"}}
+        what:{en:"A final review and speaking check.", zh:"期末复盘与测评，衡量你的进步。"},
+        does:{en:"Look back at your journey and test your speaking.", zh:"回顾整段旅程，并进行口语测评。"},
+        helps:{en:"You see your growth and set your next goal.", zh:"确认成长，并建议下一程度或下一目标。"}}
     ];
     var cur=0;
 
@@ -3230,6 +3362,60 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     var rt; window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(layoutMap,150);});
 
     function fblock(lab,zh,o){return '<div class="focus-block"><div class="focus-block__lab"><span class="focus-block__mk"></span>'+lab+' <span class="zh">'+zh+'</span></div><div class="focus-block__val">'+o.en+' <span class="zh">'+o.zh+'</span></div></div>';}
+    function advBullets(arr){return '<ul class="advnote__list">'+arr.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>';}
+    function next24Page(){
+      var s=SYS[6];
+      return ''+
+      '<div class="focus-hero">'+
+        '<div class="focus-hero__main">'+
+          '<span class="focus-step">Step 7 of '+SYS.length+'</span>'+
+          '<h3 class="focus-title">Next 24 Classes</h3>'+
+          '<div class="focus-zh">继续上 24 堂课</div>'+
+          '<div class="focus-subtitle">Strengthen &amp; Stabilise <span class="zh">巩固与稳定</span></div>'+
+          '<p class="focus-concept">Move from learning to real communication. <span class="zh">从学习走向真实沟通。</span></p>'+
+          '<p class="focus-concept">This is where English becomes a real skill. <span class="zh">这是英文开始变成真正能力的阶段。</span></p>'+
+          '<div class="focus-chips">'+
+            '<span class="focus-chip"><span class="focus-chip__dot"></span>During the course · 课程中</span>'+
+            '<span class="focus-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.6"/></svg>Focus · Strengthen &amp; Stabilise</span>'+
+          '</div>'+
+        '</div>'+
+        '<div class="focus-hero__vis" aria-hidden="true">'+
+          '<span class="fv-shape fv-shape--1"></span><span class="fv-shape fv-shape--2"></span><span class="fv-shape fv-shape--3"></span>'+
+          '<span class="focus-bigicon">'+sv(s.ic)+'</span>'+
+        '</div>'+
+      '</div>'+
+      '<div class="focus-body">'+
+        '<div class="focus-cols">'+
+          '<div class="focus-main">'+
+            '<div class="focus-block">'+
+              '<div class="focus-block__lab"><span class="focus-block__mk"></span>What this stage is <span class="zh">这是什么</span></div>'+
+              '<div class="focus-block__val">'+
+                '<p>Your next 24 classes focus on strengthening what you learned. <span class="zh">后 24 堂课，重点是巩固前面学到的内容。</span></p>'+
+                '<p>You start using English more naturally and confidently. <span class="zh">你会开始更自然、更有信心地使用英文。</span></p>'+
+              '</div>'+
+            '</div>'+
+            '<div class="focus-block">'+
+              '<div class="focus-block__lab"><span class="focus-block__mk"></span>What you do <span class="zh">你要做什么</span></div>'+
+              '<ul class="focus-list">'+
+                '<li><span class="focus-list__dot"></span><span>Strengthen sentence building <span class="zh">加强句子表达能力</span></span></li>'+
+                '<li><span class="focus-list__dot"></span><span>Improve speaking fluency <span class="zh">提升表达流畅度</span></span></li>'+
+                '<li><span class="focus-list__dot"></span><span>Respond faster in conversations <span class="zh">提升沟通反应速度</span></span></li>'+
+                '<li><span class="focus-list__dot"></span><span>Apply English in real situations <span class="zh">把英文用在真实场景</span></span></li>'+
+              '</ul>'+
+            '</div>'+
+          '</div>'+
+          '<aside class="focus-gain">'+
+            '<div class="focus-gain__h"><span class="focus-gain__ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h7v7"/></svg></span>How it helps you progress <span class="zh">如何帮助你进步</span></div>'+
+            '<p class="focus-gain__txt">Learning is not enough. <span class="zh">学过还不够。</span></p>'+
+            '<p class="focus-gain__txt">You need to use English naturally. <span class="zh">重点是能够自然地用出来。</span></p>'+
+            '<p class="focus-gain__txt">This stage helps you turn knowledge into communication ability. <span class="zh">这个阶段帮助你把知识变成沟通能力。</span></p>'+
+          '</aside>'+
+        '</div>'+
+      '</div>'+
+      '<div class="adv-note-wrap" style="margin:8px 0 30px">'+
+        '<button type="button" class="adv-note" data-advnote="6" aria-label="Advisor Note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button>'+
+      '</div>';
+    }
     // shared glass-mirror hero used by the three Mirror pages
     function mirrorHero(num,en,zh,fnEn,fnZh,subEn,subZh){
       return '<header class="mhero">'+
@@ -3242,10 +3428,10 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     }
     function epiPage(){
       var secs=[
-        {ic:"spark",  c:"#2E9E50", en:"Your Strengths",                     zh:"你的优势",        tx:"We start from what already works for you — the way you naturally take in and use English — and build on it.", txzh:"先找出你本来就擅长的部分，顺着它来教。"},
-        {ic:"hill",   c:"#E6A81E", en:"Possible Learning Challenges",        zh:"可能的学习挑战",  tx:"We notice where you might feel stuck or under pressure, so it never turns into a wall.", txzh:"找出你可能卡住或有压力的地方，别让它变成一道墙。"},
-        {ic:"heart",  c:"#E0303B", en:"How We Can Help",                     zh:"我们如何帮助你",  tx:"Your teacher adapts pace, feedback and encouragement to suit the way you learn.", txzh:"老师按你的方式，调整节奏、反馈与鼓励。"},
-        {ic:"compass",c:"#2A5BD7", en:"Your Recommended Learning Approach",   zh:"为你推荐的学习方式", tx:"A study plan shaped around how you learn best — not a one-size-fits-all course.", txzh:"依你的学习方式量身安排，而不是套用同一套课程。"}
+        {ic:"spark",  c:"#2E9E50", en:"Your Strengths",                     zh:"你的优势",        tx:"We start from what you're already good at, and build on it.", txzh:"先找出你本来就擅长的部分，顺着它来教。"},
+        {ic:"hill",   c:"#E6A81E", en:"Possible Learning Challenges",        zh:"可能的学习挑战",  tx:"We spot where you might get stuck, before it becomes a problem.", txzh:"找出你可能卡住或有压力的地方，别让它变成一道墙。"},
+        {ic:"heart",  c:"#E0303B", en:"How We Can Help",                     zh:"我们如何帮助你",  tx:"Your teacher teaches in the way that suits you.", txzh:"老师按你的方式，调整节奏、反馈与鼓励。"},
+        {ic:"compass",c:"#2A5BD7", en:"Your Recommended Learning Approach",   zh:"为你推荐的学习方式", tx:"A study plan made for how you learn — not one-size-fits-all.", txzh:"依你的学习方式量身安排，而不是套用同一套课程。"}
       ];
       var notes=[
         {ic:"person",en:"How you learn",zh:"你怎么学"},
@@ -3256,7 +3442,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       // subtle theme switcher dots (one per Learning Family)
       var dots=FAMILIES.map(function(f,i){return '<button class="epi-dot'+(i===0?' is-active':'')+'" data-f="'+i+'" aria-label="'+f.name+'"></button>';}).join("");
       return '<div class="epi">'+
-        mirrorHero(1,"See Yourself","看见自己","Learning Profile Analysis","学习画像分析","Understanding how you learn — your style, strengths, and how we can guide you.","了解你的学习方式、优势与挑战，以及我们可以怎样更适合地引导你。")+
+        mirrorHero(1,"See Yourself","看见自己","Learning Profile Analysis","学习画像分析","See how you learn — your style, strengths, and how we guide you.","了解你的学习方式、优势与挑战，以及我们可以怎样更适合地引导你。")+
         '<div class="epi-body">'+
           // ---- Learning Identity card ----
           '<div class="epi-id" id="epiId">'+
@@ -3327,11 +3513,11 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       var focusList=GOAL.focus.map(function(f){return '<div class="goal-chip"><span class="goal-chip__ic">'+sv(f.ic)+'</span><span class="goal-chip__t">'+f.en+'<span class="zh">'+f.zh+'</span></span></div>';}).join("");
       var future=GOAL.future.map(function(f){return '<div class="goal-fnode"><span class="goal-fnode__dot"></span><div class="goal-fnode__card"><div class="goal-fnode__when">'+f.when.en+' <span class="zh">'+f.when.zh+'</span></div><div class="goal-fnode__can">'+f.can.en+' <span class="zh">'+f.can.zh+'</span></div></div></div>';}).join("");
       return '<div class="goal">'+
-        mirrorHero(2,"See Your Future Self","看见未来的自己","Future Learning Blueprint","未来学习蓝图","Seeing the kind of English user you want to become.","看见你未来想成为怎样的英语使用者。")+
+        mirrorHero(2,"See Your Future Self","看见未来的自己","Future Learning Blueprint","未来学习蓝图","See the kind of English speaker you want to be.","看见你未来想成为怎样的英语使用者。")+
         '<div class="goal-body">'+
           // Today -> Future self reflection (no levels / scores)
           '<div class="goal-reflect">'+
-            '<div class="goal-reflect__head"><span class="goal-reflect__hic">'+sv("mirror")+'</span><div><h3>From who you are today, to who you want to become <span class="zh">从现在的你，到你想成为的自己</span></h3></div></div>'+
+            '<div class="goal-reflect__head"><span class="goal-reflect__hic">'+sv("mirror")+'</span><div><h3>From who you are now, to who you want to be <span class="zh">从现在的你，到你想成为的自己</span></h3></div></div>'+
             '<div class="goal-reflect__pair">'+
               '<div class="goal-rcard goal-rcard--now"><span class="goal-rcard__k">Today <span class="zh">目前状态</span></span><ul class="goal-rlist">'+todayList+'</ul></div>'+
               '<span class="goal-reflect__arrow">'+sv("route")+'</span>'+
@@ -3345,7 +3531,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           '</div>'+
           // future journey preview (capability growth, no numbers)
           '<div class="goal-future">'+
-            '<div class="goal-future__head"><span class="goal-future__hic">'+sv("mirror")+'</span><div><h3>See your future self <span class="zh">看见未来的自己</span></h3><p>What this journey makes possible — not numbers. <span class="zh">这趟旅程会让你做到什么，而不是看数字。</span></p></div></div>'+
+            '<div class="goal-future__head"><span class="goal-future__hic">'+sv("mirror")+'</span><div><h3>See your future self <span class="zh">看见未来的自己</span></h3><p>What this journey gives you — not just numbers. <span class="zh">这趟旅程会让你做到什么，而不是看数字。</span></p></div></div>'+
             '<div class="goal-future__line">'+future+'</div>'+
           '</div>'+
           '<div class="goal-quote"><span class="goal-quote__ic">'+sv("mirror")+'</span>EPI showed you who you are. This shows who you want to become. <span class="zh">EPI 照见现在的你；这一步，照见你想成为的自己。</span></div>'+
@@ -3375,9 +3561,9 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
         {k:"Review",en:"see your growth",zh:"看见成长"}
       ].map(function(m){return '<div class="rev-mirror__row"><span class="rev-mirror__ic">'+sv("mirror")+'</span><span class="rev-mirror__k">'+m.k+'</span><span class="rev-mirror__t">'+m.en+' <span class="zh">'+m.zh+'</span></span></div>';}).join("");
       return '<div class="goal review">'+
-        mirrorHero(3,"See Your Growth","看见成长中的自己","Growth Reflection Report","成长回顾报告","After 24 lessons, looking back at your progress and what to strengthen next.","上完 24 堂课后，回顾你的进步与接下来可以继续加强的地方。")+
+        mirrorHero(3,"See Your Growth","看见成长中的自己","Growth Reflection Report","成长回顾报告","After 24 lessons, see your progress and what to work on next.","上完 24 堂课后，回顾你的进步与接下来可以继续加强的地方。")+
         '<div class="goal-body">'+
-          '<p class="rev-intro">After 24 lessons, we pause for a moment to reflect on how far you\'ve come. <span class="zh">完成 24 堂课后，我们一起回顾这段学习旅程。</span></p>'+
+          '<p class="rev-intro">After 24 lessons, let\'s look at how far you\'ve come. <span class="zh">完成 24 堂课后，我们一起回顾这段学习旅程。</span></p>'+
           // Reflection snapshot: what has changed (before -> now, no scores)
           '<div class="rev-snap">'+
             '<div class="rev-head"><span class="rev-head__ic">'+sv("mirror")+'</span><div><h3>What has changed? <span class="zh">过去 VS 现在</span></h3><p>A growth record, not a test record. <span class="zh">这是成长纪录，不是考试纪录。</span></p></div></div>'+
@@ -3423,9 +3609,9 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     function stagePage(){
       var wave='<svg viewBox="0 0 24 24">'+SI.wave+'</svg>';
       var cards=[
-        {ic:"mic",  t:{en:"IPA Pronunciation System",zh:"院长亲录音标系统"}, v:{en:"Build clearer pronunciation from the foundation.",zh:"从基础打稳发音，让开口更清楚。"}},
+        {ic:"mic",  t:{en:"IPA Pronunciation System",zh:"院长亲录音标系统"}, v:{en:"Speak clearer, right from the basics.",zh:"从基础打稳发音，让开口更清楚。"}},
         {ic:"clock",t:{en:"Monthly Online Class",zh:"每月线上教学"},       v:{en:"Learn directly from Mr. Fong every month.",zh:"每个月由院长亲自带领学习。"}},
-        {ic:"bolt", t:{en:"Learning Mindset Recharge",zh:"学习思维充电"},   v:{en:"Improve not only how you sound, but also how you learn.",zh:"不只改善发音，也优化学习方式与学习态度。"}}
+        {ic:"bolt", t:{en:"Learning Mindset Recharge",zh:"学习思维充电"},   v:{en:"Improve how you sound — and how you learn.",zh:"不只改善发音，也优化学习方式与学习态度。"}}
       ].map(function(c){return '<div class="stage-card"><span class="stage-card__ic">'+sv(c.ic)+'</span><div class="stage-card__t">'+c.t.en+'<span class="zh">'+c.t.zh+'</span></div><div class="stage-card__v">'+c.v.en+'<span class="zh">'+c.v.zh+'</span></div></div>';}).join("");
       return '<div class="goal ipa">'+
         '<header class="mhero">'+
@@ -3445,7 +3631,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           '<span class="mhero__label">Stage 01</span>'+
           '<h2 class="mhero__title">Find Your Voice<span class="zh">找到你的声音</span></h2>'+
           '<div class="mhero__fn">Learning Recharge Station <span class="zh">学习充电站</span></div>'+
-          '<p class="mhero__sub">IPA pronunciation + learning mindset — a monthly recharge led by Mr. Fong. <span class="zh">音标发音 + 学习思维，由院长每月亲自带领的学习充电。</span></p>'+
+          '<p class="mhero__sub">Better pronunciation and a better mindset, with Mr. Fong each month. <span class="zh">音标发音 + 学习思维，由院长每月亲自带领的学习充电。</span></p>'+
         '</header>'+
         '<div class="goal-body">'+
           '<div class="stage-cards">'+cards+'</div>'+
@@ -3802,6 +3988,18 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       document.addEventListener("keydown",escH,true);
       void m.offsetWidth; m.classList.add("is-open");
     };
+    // ----- Step 6: subtle +/- roadmap scale control (saved locally) -----
+    (function(){
+      var stage=document.getElementById('sysStage'); if(!stage)return;
+      var KEY='te_sys_scale', MIN=0.82, MAX=1.34, STEP=0.06;
+      function read(){ try{ var v=parseFloat(localStorage.getItem(KEY)); return (v>=MIN&&v<=MAX)?v:1; }catch(e){ return 1; } }
+      function apply(s){ stage.style.setProperty('--sys-scale', s); }
+      var scale=read(); apply(scale);
+      var ctl=stage.querySelector('.sys-scale'); if(!ctl)return;
+      function set(s){ scale=Math.max(MIN,Math.min(MAX,Math.round(s*100)/100)); apply(scale); try{ localStorage.setItem(KEY,scale); }catch(e){} }
+      ctl.addEventListener('click',function(e){ var b=e.target.closest('.sys-scale__b'); if(!b)return; e.preventDefault(); set(scale+(b.getAttribute('data-scale')==='up'?STEP:-STEP)); });
+    })();
+
     // ----- Location chips: Google-Maps-style hover/tap preview -----
     (function(){
       var chips=[].slice.call(document.querySelectorAll('.locations .loc[data-loc]'));
@@ -3901,7 +4099,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           '<span class="mhero__label">Stage 02</span>'+
           '<h2 class="mhero__title">Step Onto The Stage<span class="zh">走上舞台</span></h2>'+
           '<div class="mhero__fn">Classroom Experience <span class="zh">课堂体验</span></div>'+
-          '<p class="mhero__sub">This is where you step into class, take part, and start practising. <span class="zh">这是你走进课堂、参与其中、开始练习的地方。</span></p>'+
+          '<p class="mhero__sub">This is where you join class, take part, and start speaking. <span class="zh">这是你走进课堂、参与其中、开始练习的地方。</span></p>'+
         '</header>'+
         '<div class="goal-body">'+
           '<div class="lcells">'+cells+'</div>'+
@@ -3971,6 +4169,148 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
         note.addEventListener("click",openModal);
       }
     }
+    // ===== Step 5 dynamic digital-support buttons (data-driven, advisor-editable) =====
+    var S5_DEFAULTS=[{name:"Timetable",link:"https://tec.touchenglish.edu.my/appointment/timetable#"},{name:"Teacher Feedback",link:"https://tec.touchenglish.edu.my/appointment/184130"},{name:"Lesson Summary",link:"https://tec.touchenglish.edu.my/user/10407/assessment/3"},{name:"Training Kit",link:"https://tec.touchenglish.edu.my/practice/user/10407"}];
+    var S5_KEY="te_step5_links_v1";
+    function s5esc(s){return (""+s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+    function s5Get(){try{var a=JSON.parse(localStorage.getItem(S5_KEY));if(Array.isArray(a)&&a.length)return a;}catch(e){} return S5_DEFAULTS.map(function(d){return {name:d.name,link:d.link};});}
+    function s5Save(a){try{localStorage.setItem(S5_KEY,JSON.stringify(a));}catch(e){}}
+    function s5Reset(){try{localStorage.removeItem(S5_KEY);}catch(e){}}
+    function s5ButtonsHTML(){
+      var arr=s5Get();
+      if(!arr.length)return '<p class="s5empty">No functions yet. <span class="zh">尚未设置功能。</span></p>';
+      return '<div class="s5links">'+arr.map(function(it){
+        var nm=s5esc(it.name||"Untitled"), lk=(it.link||"").trim(), has=lk&&lk!=="#";
+        return '<a class="s5link'+(has?'':' is-empty')+'"'+(has?' href="'+s5esc(lk)+'" target="_blank" rel="noopener noreferrer"':'')+'>'+
+          '<span class="s5link__name">'+nm+'</span>'+
+          '<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>';
+      }).join("")+'</div>';
+    }
+    function refreshS5Buttons(){var w=fbody.querySelector("#s5links-wrap"); if(w)w.innerHTML=s5ButtonsHTML();}
+    function s5EditRow(name,link){
+      return '<div class="s5row">'+
+        '<div class="s5row__fields">'+
+          '<input class="s5row__name" type="text" value="'+s5esc(name||"")+'" placeholder="Button name 按钮名称">'+
+          '<input class="s5row__link" type="url" value="'+s5esc(link||"")+'" placeholder="https://...">'+
+        '</div>'+
+        '<button type="button" class="s5row__del" data-s5del aria-label="Remove">\u00d7</button>'+
+      '</div>';
+    }
+    function step5AdvBody(){
+      var arr=s5Get();
+      return '<div class="advnotes">'+
+        '<div class="advnote__sec"><h4>Digital Support Links <span class="zh">数字支持链接</span></h4>'+
+          '<p class="zh">管理客户端的功能按钮：可修改名称与链接，或新增功能。保存后，Customer View 的按钮会自动更新。</p>'+
+          '<div class="s5edit" id="s5edit">'+arr.map(function(it){return s5EditRow(it.name,it.link);}).join("")+'</div>'+
+          '<button type="button" class="s5add" data-s5add><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14"/></svg>Add Function <span class="zh">新增功能</span></button>'+
+        '</div>'+
+        '<div class="adv-modal__btns" style="margin-top:4px"><button type="button" class="adv-btn adv-btn--ghost" data-s5reset>Reset to Default</button>'+
+          '<span class="adv-modal__btns-r"><button type="button" class="adv-btn adv-btn--ghost" data-s5cancel>Cancel</button><button type="button" class="adv-btn adv-btn--save" data-s5save>Save</button></span></div>'+
+      '</div>';
+    }
+    function step5AdvMount(modal, close){
+      var edit=modal.querySelector("#s5edit"); if(!edit)return;
+      var add=modal.querySelector("[data-s5add]"); if(add)add.addEventListener("click",function(){edit.insertAdjacentHTML("beforeend",s5EditRow("",""));});
+      edit.addEventListener("click",function(e){var d=e.target.closest("[data-s5del]");if(d){var r=d.closest(".s5row");if(r)r.remove();}});
+      var cc=modal.querySelector("[data-s5cancel]"); if(cc)cc.addEventListener("click",close);
+      var rs=modal.querySelector("[data-s5reset]"); if(rs)rs.addEventListener("click",function(){s5Reset();edit.innerHTML=S5_DEFAULTS.map(function(d){return s5EditRow(d.name,d.link);}).join("");});
+      var sv2=modal.querySelector("[data-s5save]"); if(sv2)sv2.addEventListener("click",function(){
+        var a=[].slice.call(edit.querySelectorAll(".s5row")).map(function(r){return {name:(r.querySelector(".s5row__name").value||"").trim(),link:(r.querySelector(".s5row__link").value||"").trim()};}).filter(function(o){return o.name;});
+        s5Save(a); refreshS5Buttons(); close();
+      });
+    }
+    function learningSystemPage(){
+      var s=SYS[4];
+      return ''+
+      '<div class="focus-hero">'+
+        '<div class="focus-hero__main">'+
+          '<span class="focus-step">Step 5 of '+SYS.length+'</span>'+
+          '<h3 class="focus-title">Learning System</h3>'+
+          '<div class="focus-zh">学员学习系统</div>'+
+          '<div class="focus-subtitle">TOUCH System &amp; Digital Support <span class="zh">学员应用系统</span></div>'+
+          '<p class="focus-concept">Your learning continues beyond the classroom. <span class="zh">你的学习不只发生在课堂上。</span></p>'+
+          '<p class="focus-concept">TOUCH provides a complete support system for your learning journey. <span class="zh">TOUCH 提供完整的学习支持系统。</span></p>'+
+          '<div class="focus-chips">'+
+            '<span class="focus-chip"><span class="focus-chip__dot"></span>During the course · 课程中</span>'+
+            '<span class="focus-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.6"/></svg>Focus · Digital Support</span>'+
+          '</div>'+
+        '</div>'+
+        '<div class="focus-hero__vis" aria-hidden="true">'+
+          '<span class="fv-shape fv-shape--1"></span><span class="fv-shape fv-shape--2"></span><span class="fv-shape fv-shape--3"></span>'+
+          '<span class="focus-bigicon">'+sv(s.ic)+'</span>'+
+        '</div>'+
+      '</div>'+
+      '<div class="focus-body">'+
+        '<div class="focus-cols">'+
+          '<div class="focus-main">'+
+            '<div class="focus-block">'+
+              '<div class="focus-block__lab"><span class="focus-block__mk"></span>What this stage is <span class="zh">这是什么</span></div>'+
+              '<div class="focus-block__val">'+
+                '<p>This is the system students use to manage learning and track progress. <span class="zh">这是学员用来管理学习和追踪进度的系统。</span></p>'+
+                '<p>It supports learning before, during, and after class. <span class="zh">它帮助你管理课前、课中与课后的学习。</span></p>'+
+              '</div>'+
+            '</div>'+
+            '<div class="focus-block">'+
+              '<div class="focus-block__lab"><span class="focus-block__mk"></span>Quick Access <span class="zh">快捷入口</span></div>'+
+              '<div id="s5links-wrap">'+s5ButtonsHTML()+'</div>'+
+            '</div>'+
+          '</div>'+
+          '<aside class="focus-gain">'+
+            '<div class="focus-gain__h"><span class="focus-gain__ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h7v7"/></svg></span>How it helps you progress <span class="zh">如何帮助你进步</span></div>'+
+            '<p class="focus-gain__txt">Learning becomes clearer and more organized. <span class="zh">学习会变得更清楚、更有系统。</span></p>'+
+            '<p class="focus-gain__txt">You always know what to do next. <span class="zh">你会清楚知道自己的下一步。</span></p>'+
+            '<p class="focus-gain__txt">This helps you improve consistently. <span class="zh">帮助你稳定进步。</span></p>'+
+          '</aside>'+
+        '</div>'+
+      '</div>'+
+      '<div class="adv-note-wrap" style="margin:8px 0 30px">'+
+        '<button type="button" class="adv-note" data-advnote="4" aria-label="Advisor Note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button>'+
+      '</div>';
+    }
+    // ===== Reusable Advisor Note (standard presentation, same as "Step Onto The Stage") =====
+    function next24AdvBody(){
+      return '<div class="advnotes">'+
+        '<div class="advnote__sec"><h4>Core Message <span class="zh">核心概念</span></h4>'+
+          '<p class="advnote__core">First 24 = Learn &amp; Adapt　·　Next 24 = Strengthen &amp; Stabilise</p>'+
+          '<p class="zh">客户一定要听懂：前 24 堂课是适应。后 24 堂课是稳定输出。这是两个不同阶段。</p></div>'+
+        '<div class="advnote__sec"><h4>Why this stage matters <span class="zh">为什么这个阶段重要</span></h4>'+
+          '<p class="zh">很多 learner 在前半段会出现这种情况：</p>'+
+          advBullets(['上课听得懂','做练习会','老师问也会回答'])+
+          '<p class="zh">但是到了真实生活：</p>'+
+          advBullets(['反应慢','容易卡住','还是会 translate from Chinese'])+
+          '<p class="zh">这代表：Knowledge 有了，但 Ability 还不够稳定。</p>'+
+          '<p class="zh">所以后 24 堂课的目标是：让英文从「知道」，变成「会用」。</p></div>'+
+        '<div class="advnote__sec"><h4>How advisor should explain <span class="zh">Advisor 要怎样讲</span></h4>'+
+          '<p class="zh">你可以这样跟客户讲：</p>'+
+          '<p class="zh">「前 24 堂课，你主要是在学习和适应英文环境。后 24 堂课，我们更专注在巩固和稳定。</p>'+
+          '<p class="zh">因为英文不是学过就算了。真正重要的是：当你在工作、生活、会议、presentation 的时候，你能不能自然讲出来。</p>'+
+          '<p class="zh">这就是后 24 堂课最重要的目标。」</p></div>'+
+        '<div class="advnote__sec"><h4>Customer Memory Point <span class="zh">客户记忆点</span></h4>'+
+          '<div class="advnote__mem"><div class="k">Next 24 Classes = Strengthen &amp; Stabilise</div>'+
+          '<div class="zh">记忆点：不是学过而已。而是用得出来。</div></div></div>'+
+      '</div>';
+    }
+    var ADVNOTE={ 4:{title:"Advisor Note", zh:"顾问讲解备注", build:step5AdvBody, mount:step5AdvMount}, 6:{title:"Advisor Note", zh:"顾问讲解备注", build:next24AdvBody} };
+    function openAdvNote(i){
+      var d=ADVNOTE[i]; if(!d)return;
+      var m=document.createElement("div"); m.className="adv-modal adv-modal--note"; m.id="advNoteModal";
+      m.style.setProperty("--c",(SYS[i]&&SYS[i].col)||"#2A5BD7");
+      m.innerHTML='<div class="adv-modal__bg"></div>'+
+        '<div class="adv-modal__card" role="dialog" aria-modal="true" aria-label="Advisor Note">'+
+          '<button type="button" class="adv-modal__x" data-anx aria-label="Close">×</button>'+
+          '<div class="adv-modal__head"><span class="adv-modal__title">'+d.title+' <span class="adv-modal__title-zh">'+d.zh+'</span></span><span class="adv-modal__sub">For advisor · 仅供顾问参考</span></div>'+
+          d.build()+
+        '</div>';
+      document.body.appendChild(m);
+      void m.offsetWidth; m.classList.add("is-open");
+      var escH;
+      function close(){ if(escH)document.removeEventListener("keydown",escH,true); if(m){m.remove();m=null;} }
+      m.querySelector(".adv-modal__bg").addEventListener("click",close);
+      m.querySelector("[data-anx]").addEventListener("click",close);
+      escH=function(e){ if(e.key==="Escape"){e.stopPropagation();e.preventDefault();close();} };
+      document.addEventListener("keydown",escH,true);
+      if(d.mount)d.mount(m,close);
+    }
     function renderFocus(i){
       cur=i; var s=SYS[i];
       fcard.style.setProperty("--c",s.col);
@@ -3984,8 +4324,12 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       } else if(i===3){
         fbody.innerHTML=lessonsPage();
         mountLessons();
+      } else if(i===4){
+        fbody.innerHTML=learningSystemPage();
       } else if(i===5){
         fbody.innerHTML=reviewPage();
+      } else if(i===6){
+        fbody.innerHTML=next24Page();
       } else {
       fbody.innerHTML=
         '<div class="focus-hero">'+
@@ -4034,6 +4378,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     ov.addEventListener("click",function(e){var n=e.target.closest(".sys-node");if(!n)return;openFocus(+n.getAttribute("data-s"));});
     fmini.addEventListener("click",function(e){var n=e.target.closest(".focus-mini__item");if(!n)return;renderFocus(+n.getAttribute("data-s"));});
     $("#sysFocusX").addEventListener("click",closeFocus);
+    fbody.addEventListener("click",function(e){var t=e.target.closest(".adv-note[data-advnote]");if(!t)return;openAdvNote(+t.getAttribute("data-advnote"));});
     focus.addEventListener("click",function(e){if(e.target===focus)closeFocus();});
     document.addEventListener("keydown",function(e){if(e.key==="Escape"&&focus.classList.contains("open"))closeFocus();});
   })();
