@@ -1836,7 +1836,9 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .lvfield{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
 .lvsel{font-family:var(--display);font-weight:600;font-size:13.5px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:7px 10px;cursor:pointer}
 .lvsel:focus{outline:none;border-color:var(--blue-bright)}
-.lvmods{margin-top:18px;display:flex;flex-direction:column;gap:20px}
+.lvmods{margin-top:18px;display:grid;gap:24px;align-items:start}
+.lvmods.cols2{grid-template-columns:1fr 1fr}
+.lvmods.cols1 .lvroad:not(.is-compact){max-width:740px;margin-left:auto;margin-right:auto}
 .lvmod__head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
 .lvmod__name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink)}
 .lvmod__path{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
@@ -1859,6 +1861,135 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .lvconn{align-self:center;color:var(--faint);font-weight:700;font-size:18px;flex:none;opacity:.45}
 .lvconn.on{color:color-mix(in srgb,var(--blue) 65%,#fff);opacity:1}
 @media(max-width:760px){.lvcard{min-width:158px}.lvcard.is-faded{min-width:96px}}
+
+/* level recommendation v2 — collapsible selector + summary + full roadmaps */
+.lvtool__actions{margin-top:14px;display:flex;justify-content:flex-end}
+.lvtool__present{font-family:var(--display);font-weight:700;font-size:14px;color:#fff;background:var(--blue);border:none;border-radius:12px;padding:11px 20px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 20px -8px var(--blue);transition:.2s}
+.lvtool__present:hover{background:var(--blue-deep);transform:translateY(-1px)}
+.lvtool__present .zh{font-weight:500;opacity:.85;font-size:12.5px}
+.lvtool__present .arr{font-weight:800}
+.lvsummary[hidden]{display:none}
+.lvsummary{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:6px;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.1);border-radius:18px;padding:14px 18px}
+.lvsum__main{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.lvsum__count{font-family:var(--display);font-weight:800;font-size:14.5px;color:var(--ink)}
+.lvsum__count .zh{font-weight:500;color:var(--muted);font-size:12px}
+.lvsum__lines{display:flex;gap:8px;flex-wrap:wrap}
+.lvsum__line{font-family:var(--display);font-size:12.5px;color:var(--muted);background:var(--blue-tint);padding:5px 11px;border-radius:9px}
+.lvsum__line b{color:var(--blue);font-weight:800;margin-right:4px}
+.lvsum__arr{color:var(--faint)}
+.lvsum__edit{font-family:var(--display);font-weight:700;font-size:13px;color:var(--blue);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:8px 16px;cursor:pointer;white-space:nowrap}
+.lvsum__edit:hover{border-color:var(--blue-bright)}
+.lvsum__edit .zh{font-weight:500;color:var(--muted);font-size:11px}
+.lvroad{min-width:0}
+.lvroad__vp{overflow:hidden;transition:height .35s ease}
+.lvroad__sc{width:900px;transform-origin:top left;will-change:transform;transition:transform .35s ease}
+.lvroad.is-compact{max-width:560px;margin-left:auto;margin-right:auto}
+.lvroad__head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.lvroad__name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink)}
+.lvroad__path{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.lvroad .lvl-col{cursor:pointer}
+.lvroad .lvl-col.is-faded{transition:opacity .25s,filter .25s}
+.lvroad .lvl-col.is-faded:hover{opacity:.42;filter:blur(.6px) saturate(.7)}
+.lvmore{margin-top:18px}
+.lvmore .cc-learn{width:100%}
+.lvl-col.is-faded{opacity:.24;filter:blur(1.2px) saturate(.55)}
+.lvl-col.is-faded .lvl-col__bar{box-shadow:0 8px 20px -14px var(--c),inset 0 0 0 1px rgba(255,255,255,.18)}
+.lvl-col.is-faded .lvl-col__skill,.lvl-col.is-faded .lvl-col__title{color:var(--faint)}
+
+/* level recommendation v3 — inline detail panel (1-2 learners) */
+.lvroad__detail{margin-top:0}
+.lvroad__detail{position:relative}
+.lvroad__detail.show{margin-top:0}
+.lvinline{position:relative;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);border:1px solid rgba(255,255,255,.72);box-shadow:0 16px 46px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.75);border-radius:22px;padding:24px;animation:rise .3s ease}
+.lvinline__x{position:absolute;top:12px;right:12px;width:30px;height:30px;border:none;border-radius:50%;background:rgba(20,33,50,.06);color:var(--muted);font-size:18px;cursor:pointer;line-height:1}
+.lvinline__x:hover{background:rgba(20,33,50,.12)}
+.lvinline__title{font-family:var(--display);font-weight:800;font-size:20px;color:var(--ink);margin:0 40px 4px 0}
+.lvroad .lvl-col.is-open .lvl-col__bar{outline:3px solid rgba(255,255,255,.95);outline-offset:-8px;box-shadow:0 0 0 4px rgba(255,255,255,.72),0 28px 64px -10px var(--c),inset 0 2px 0 rgba(255,255,255,.5)}
+.lvroad .lvl-col.is-faded.is-open{opacity:.6;filter:none}
+
+/* level recommendation v4 — light inline intro strip */
+.lvstrip{display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:relative;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);border:1px solid rgba(255,255,255,.7);border-top:3px solid color-mix(in srgb,var(--c) 70%,#fff);box-shadow:0 10px 26px -12px color-mix(in srgb,var(--c) 32%,transparent);border-radius:14px;padding:13px 16px;animation:rise .28s ease}
+.lvstrip__chip{font-family:var(--display);font-weight:800;font-size:13px;padding:5px 11px;border-radius:9px;flex:none}
+.lvstrip__txt{display:flex;flex-direction:column;gap:1px;min-width:0}
+.lvstrip__name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink)}
+.lvstrip__name i{font-style:normal;font-weight:500;font-size:12.5px;color:var(--muted);margin-left:5px;font-family:var(--cjk)}
+.lvstrip__meta{font-size:11.5px;color:var(--ci);font-weight:700}
+.lvstrip__desc{flex:1 1 220px;min-width:0;font-size:13px;color:var(--muted);line-height:1.4}
+.lvstrip__more{margin-left:auto;flex:none;font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--txt);background:var(--c);border:none;border-radius:10px;padding:9px 15px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;box-shadow:0 6px 16px -8px var(--c)}
+.lvstrip__more:hover{filter:brightness(.96)}
+.lvstrip__more .zh{font-weight:500;opacity:.9}
+.lvstrip__x{flex:none;width:28px;height:28px;border:none;border-radius:50%;background:rgba(20,33,50,.06);color:var(--muted);font-size:16px;cursor:pointer;line-height:1}
+.lvstrip__x:hover{background:rgba(20,33,50,.12)}
+@media(max-width:760px){.lvstrip__more{margin-left:0}}
+
+/* level recommendation v5 — 5C-style inline detail block (1-2 learners) */
+.lvcc.cc-detail{position:relative;margin-top:14px;background:rgba(255,255,255,.32);-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);border:none;border-top:2px solid color-mix(in srgb,var(--c) 42%,transparent);border-radius:16px;box-shadow:none;color:var(--ink)}
+.lvcc .cc-detail__c{color:var(--ci)}
+.lvcc .cc-detail__zh{color:var(--muted)}
+.lvcc .cc-detail__top{padding-right:36px}
+.lvcc .cc-learn__lv i{font-style:normal;font-weight:500;opacity:.82;margin-left:6px;font-family:var(--cjk)}
+.lvtag{font-family:var(--display);font-weight:700;font-size:12px;padding:5px 11px;border-radius:8px;background:color-mix(in srgb,var(--c) 15%,#fff);border:1px solid color-mix(in srgb,var(--c) 45%,#fff);color:var(--ink);align-self:center}
+.lvcc .cc-detail__top .lvtag--cefr{margin-left:auto}
+.lvcc__x{position:absolute;top:14px;right:14px;width:30px;height:30px;border:none;border-radius:50%;background:rgba(20,33,50,.06);color:var(--muted);font-size:18px;cursor:pointer;line-height:1;z-index:2}
+.lvcc__x:hover{background:rgba(20,33,50,.12)}
+
+/* level recommendation v6 - learner name input + youtube video button & modal */
+.lvname{font-family:var(--body);font-size:13px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 11px;width:132px;outline:none;transition:border-color .15s,box-shadow .15s}
+.lvname:focus{border-color:var(--blue-bright);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue-bright) 20%,transparent)}
+.lvfield--name span{white-space:nowrap}
+.lvactions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:20px}
+.lvactions .cc-learn{margin-top:0}
+.lvmore{margin-top:18px}
+.lvvideo{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:13px;padding:10px 16px;border-radius:12px;cursor:pointer;background:color-mix(in srgb,var(--c) 15%,#fff);color:var(--ci);border:1px solid color-mix(in srgb,var(--c) 38%,#fff);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .15s,background .15s}
+.lvvideo:hover{transform:translateY(-1px);background:color-mix(in srgb,var(--c) 24%,#fff)}
+.lvvideo svg{width:18px;height:18px;flex:none}
+.lvvideo--soon{cursor:not-allowed;color:var(--faint);background:rgba(20,33,50,.05);border-color:var(--line)}
+.lvvideo--soon:hover{transform:none;background:rgba(20,33,50,.05)}
+.video-bg{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(12,20,34,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.video-bg.open{display:flex}
+.video-modal{position:relative;width:100%;max-width:880px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:14px;box-shadow:0 40px 90px rgba(0,0,0,.5);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%)}
+.video-modal .close{position:absolute;top:-14px;right:-14px;width:38px;height:38px;border:none;border-radius:50%;background:#fff;color:var(--ink);font-size:20px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:2}
+.video-frame{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* level recommendation v7 - Level Resource Settings (light glass utility panel) */
+.lvres{margin-top:18px;border-radius:14px;background:rgba(255,255,255,.34);-webkit-backdrop-filter:blur(8px) saturate(130%);backdrop-filter:blur(8px) saturate(130%);border:1px solid rgba(255,255,255,.5);overflow:hidden}
+.lvres__head{display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;background:none;border:0;cursor:pointer;padding:12px 14px;font-family:var(--body)}
+.lvres__ic{flex:none;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(20,33,50,.06);color:var(--muted)}
+.lvres__ic svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.lvres__txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.lvres__title{font-family:var(--display);font-weight:700;font-size:13px;color:var(--ink)}
+.lvres__sub{font-size:11px;color:var(--faint)}
+.lvres__cur{font-size:11.5px;color:var(--muted);margin-top:3px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lvres__none{color:var(--faint)}
+.lvres__link{color:var(--blue);font-weight:600}
+.lvres__chev{flex:none;color:var(--faint);transition:transform .2s ease;margin-top:3px}
+.lvres__chev svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lvres.is-open .lvres__chev{transform:rotate(180deg)}
+.lvres__edit{display:none;flex-direction:column;gap:10px;padding:0 14px 14px}
+.lvres.is-open .lvres__edit{display:flex;animation:rise .25s ease}
+.lvres__field{display:flex;flex-direction:column;gap:5px;font-size:11.5px;font-weight:600;color:var(--muted)}
+.lvres__input{font-family:var(--body);font-size:13px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:9px 12px;outline:none;transition:border-color .15s,box-shadow .15s}
+.lvres__input:focus{border-color:var(--blue-bright);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue-bright) 18%,transparent)}
+.lvres__save{align-self:flex-start;font-family:var(--display);font-weight:700;font-size:12.5px;color:#fff;background:var(--blue);border:none;border-radius:10px;padding:9px 16px;cursor:pointer;transition:filter .15s}
+.lvres__save:hover{filter:brightness(1.07)}
+.lvres__save .zh{font-weight:500;opacity:.85;margin-left:4px}
+
+/* level recommendation v8 - advisor-only global Level Resource Settings panel */
+.lvadmin{display:none;margin-top:24px;border-radius:18px;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border:1px solid var(--line);box-shadow:0 10px 30px rgba(20,33,50,.08);padding:18px 20px}
+.lvadmin.is-on{display:block;animation:rise .3s ease}
+.lvadmin__head{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.lvadmin__ic{flex:none;width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--blue-tint);color:var(--blue)}
+.lvadmin__ic svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.lvadmin__title{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink)}
+.lvadmin__sub{font-size:11.5px;color:var(--faint);margin-top:2px}
+.lvadmin__rows{display:flex;flex-direction:column;gap:10px}
+.lvadmin__row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.lvadmin__lab{flex:none;width:172px;display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:13px;color:var(--ink)}
+.lvadmin__lab em{font-style:normal;font-weight:500;font-size:12px;color:var(--muted)}
+.lvadmin__dot{flex:none;width:10px;height:10px;border-radius:50%}
+.lvadmin__input{flex:1;min-width:200px;font-family:var(--body);font-size:12.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 11px;outline:none;transition:border-color .15s,box-shadow .15s}
+.lvadmin__input:focus{border-color:var(--blue-bright);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue-bright) 18%,transparent)}
 </style>
 </head>
 <body>
@@ -2109,18 +2240,25 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
           <h2 class="h2">Where the learner is — and where they're going</h2>
           <p class="lead">Set each learner's current and target level to map the recommended path across the five TOUCH levels. <span class="zh">设置每位学员的当前与目标 Level，自动显示推荐路线。</span></p>
         </div>
-        <div class="lvtool">
+        <div class="lvtool" id="lvTool">
           <div class="lvtool__row">
             <span class="lvtool__lab">Number of learners <span class="zh">学员人数</span></span>
             <div class="lvtool__count" id="lvCount">
               <button type="button" data-n="1" class="is-active">1</button>
               <button type="button" data-n="2">2</button>
               <button type="button" data-n="3">3</button>
+              <button type="button" data-n="4">4</button>
             </div>
           </div>
           <div class="lvtool__learners" id="lvLearners"></div>
+          <div class="lvtool__actions"><button type="button" class="lvtool__present" id="lvPresent">Present roadmap <span class="zh">展示路线</span> <span class="arr">→</span></button></div>
         </div>
+        <div class="lvsummary" id="lvSummary" hidden></div>
         <div class="lvmods" id="lvMods"></div>
+        <div class="lvadmin" data-advisor-only aria-label="Level Resource Settings">
+          <div class="lvadmin__head"><span class="lvadmin__ic"><svg viewBox="0 0 24 24"><path d="M4 7h8M16 7h4M4 12h4M12 12h8M4 17h6M14 17h6"/><circle cx="14" cy="7" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="12" cy="17" r="2"/></svg></span><div class="lvadmin__txt"><div class="lvadmin__title">Level Resource Settings</div><div class="lvadmin__sub">Advisor-only · manage Level intro video links (global) · 仅顾问可见，统一管理各 Level 视频链接</div></div></div>
+          <div class="lvadmin__rows" id="lvAdminRows"></div>
+        </div>
         <div class="adv-cue" data-cue><strong>Advisor cue:</strong> set the learner's current and target level — the highlighted levels are the recommended path; the faded ones stay on screen as the full level map for reference.</div>
       </section>
 
@@ -2169,6 +2307,13 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     <button class="close" id="modalClose" aria-label="Close">×</button>
     <h3 id="modalTitle"></h3>
     <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="video-bg" id="videoBg">
+  <div class="video-modal" role="dialog" aria-modal="true">
+    <button class="close" id="videoClose" aria-label="Close">×</button>
+    <div class="video-frame" id="videoFrame"></div>
   </div>
 </div>
 
@@ -2639,54 +2784,218 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   /* ---------- LEVEL RECOMMENDATION TOOL ---------- */
   function renderRec(){}
   var LVSHORT=["Pre-Beginner","Level 1","Level 2","Level 3","Level 4"];
-  var LVDATA=FIVEC.map(function(f){return {chip:f.chip,col:f.col,ctxt:f.txt,cefr:f.cefr,classes:f.classes,core:f.core,items:f.gain.slice(0,5)};});
   var lvCount=1;
-  var lvState=[{c:1,t:3},{c:0,t:2},{c:2,t:4}];
+  var lvState=[{c:1,t:3,name:""},{c:0,t:2,name:""},{c:2,t:4,name:""},{c:0,t:3,name:""}];
+  /* Extensible per-level advisor resources (room to add more than youtube later) */
+  var advisorLinks={p1:{youtube:"https://youtu.be/dW0WfzzcQJY"},l1:{youtube:"https://youtu.be/_Na5XJUTZYE"},l2:{youtube:"https://youtu.be/tMJCH5m2H9g"},l3:{youtube:"https://youtu.be/Ggoq5G9avJ8"},l4:{youtube:"Z8ucszi9q2s"}};
+  function lvKey(k){return ((LEVELS[k]&&LEVELS[k].id)||"").toLowerCase();}
+  function lvLink(k){var r=advisorLinks[lvKey(k)];return (r&&r.youtube)||"";}
+  var RESIC='<svg viewBox="0 0 24 24"><path d="M4 7h8M16 7h4M4 12h4M12 12h8M4 17h6M14 17h6"/><circle cx="14" cy="7" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="12" cy="17" r="2"/></svg>';
+  var CHEVIC='<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>';
+  function resourcePanel(k){
+    var link=lvLink(k);
+    var cur=link?('<span class="lvres__link" title="'+esc(link)+'">'+esc(link)+'</span>'):('<span class="lvres__none">Not set <span class="zh">未设置</span></span>');
+    return '<div class="lvres">'+
+      '<button type="button" class="lvres__head" data-res-toggle><span class="lvres__ic">'+RESIC+'</span>'+
+        '<span class="lvres__txt"><span class="lvres__title">Level Resource Settings</span>'+
+          '<span class="lvres__sub">Manage level resources for advisor presentation</span>'+
+          '<span class="lvres__cur">Current YouTube Link: '+cur+'</span></span>'+
+        '<span class="lvres__chev">'+CHEVIC+'</span></button>'+
+      '<div class="lvres__edit">'+
+        '<label class="lvres__field"><span>YouTube Link</span>'+
+          '<input type="url" class="lvres__input" data-res-input="'+k+'" placeholder="youtube.com/watch?v=… · youtu.be/… · shorts/…" value="'+esc(link).replace(/"/g,"&quot;")+'"></label>'+
+        '<button type="button" class="lvres__save" data-res-save="'+k+'">Save Link <span class="zh">保存</span></button>'+
+      '</div>'+
+    '</div>';
+  }
+  function renderAdminLinks(){
+    var box=$("#lvAdminRows"); if(!box)return; var h="";
+    for(var k=0;k<5;k++){ var L=LEVELS[k], key=lvKey(k), link=lvLink(k);
+      h+='<label class="lvadmin__row"><span class="lvadmin__lab"><i class="lvadmin__dot" style="background:'+L.c+'"></i>'+L.lvl+' <em>'+L.name+'</em></span>'+
+         '<input type="url" class="lvadmin__input" data-admin-link="'+key+'" placeholder="youtube.com/watch?v=… · youtu.be/… · shorts/…" value="'+esc(link).replace(/"/g,"&quot;")+'"></label>';
+    }
+    box.innerHTML=h;
+  }
+  function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function learnerName(i){var n=((lvState[i]&&lvState[i].name)||"").trim();return n?n:("Learner "+(i+1));}
+  var YTIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.4 9.1l4.4 2.9-4.4 2.9Z" fill="currentColor" stroke="none"/></svg>';
+  function videoBtn(k){
+    var c=FIVEC[k], url=lvLink(k), lab=LEVELS[k].lvl+" Video";
+    if(url){ return '<button type="button" class="lvvideo" data-lvl-video="'+k+'" style="--c:'+c.col+';--ci:'+c.ci+'">'+YTIC+'<span>'+lab+'</span></button>'; }
+    return '<button type="button" class="lvvideo lvvideo--soon" disabled>'+YTIC+'<span>Video coming soon <span class="zh">视频即将上线</span></span></button>';
+  }
+  function ytEmbed(url){
+    if(!url)return"";
+    var id="", m=String(url).match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/)([\w-]{11})/);
+    if(m)id=m[1]; else if(/^[\w-]{11}$/.test(url))id=url;
+    return id?("https://www.youtube.com/embed/"+id+"?autoplay=1&rel=0&modestbranding=1"):url;
+  }
+  function openVideo(k){
+    var url=lvLink(k); if(!url)return;
+    var fr=$("#videoFrame"); if(!fr)return;
+    fr.innerHTML='<iframe src="'+ytEmbed(url)+'" title="'+esc(LEVELS[k].lvl)+' video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    var vb=$("#videoBg"); if(vb)vb.classList.add("open"); document.body.style.overflow="hidden";
+  }
+  function closeVideo(){
+    var vb=$("#videoBg"); if(vb)vb.classList.remove("open");
+    var fr=$("#videoFrame"); if(fr)fr.innerHTML=""; document.body.style.overflow="";
+  }
   function lvOptions(sel){var o="";for(var i=0;i<5;i++){o+='<option value="'+i+'"'+(i===sel?" selected":"")+'>'+LVSHORT[i]+'</option>';}return o;}
   function renderLearners(){
     var box=$("#lvLearners"); if(!box)return; var h="";
     for(var i=0;i<lvCount;i++){var st=lvState[i];
       h+='<div class="lvset"><span class="lvset__name">Learner '+(i+1)+'</span>'+
+         '<label class="lvfield lvfield--name"><span>Name <span class="zh">姓名</span></span><input type="text" class="lvname" data-learner="'+i+'" placeholder="Learner '+(i+1)+'" value="'+esc(st.name).replace(/"/g,"&quot;")+'"></label>'+
          '<label class="lvfield"><span>Current</span><select class="lvsel" data-learner="'+i+'" data-kind="c">'+lvOptions(st.c)+'</select></label>'+
          '<span class="lvset__to">→</span>'+
          '<label class="lvfield"><span>Target</span><select class="lvsel" data-learner="'+i+'" data-kind="t">'+lvOptions(st.t)+'</select></label></div>';}
     box.innerHTML=h;
   }
+  function roadCols(lo,hi){
+    var cols="";
+    LEVELS.forEach(function(l,k){
+      var active=(k>=lo&&k<=hi);
+      cols+='<div class="lvl-col'+(active?"":" is-faded")+'" data-lvl="'+k+'" style="--c:'+l.c+';--ci:'+l.ci+';--txt:'+l.txt+';--h:'+l.h+'">'+
+        '<span class="lvl-col__skill">'+l.top+'</span>'+
+        '<span class="lvl-col__bar'+(l.dark?" dark":"")+'">'+
+          '<span class="lvl-col__name">'+l.lvl+'</span>'+
+          (l.online?'<span class="lvl-col__online">Online only</span>':'<span class="lvl-col__online" style="visibility:hidden">.</span>')+
+          '<span class="lvl-col__cefr">'+l.cefr+'</span>'+
+        '</span>'+
+        '<span class="lvl-col__title">'+l.name+'<i>'+l.nameZh+'</i></span></div>';
+    });
+    return cols;
+  }
+  function fitRoads(){
+    var base=900;
+    $$("#lvMods .lvroad__vp").forEach(function(vp){
+      var sc=vp.querySelector(".lvroad__sc"); if(!sc)return;
+      var natH=sc.offsetHeight, s=vp.clientWidth/base;
+      sc.style.transform="scale("+s+")";
+      vp.style.height=(natH*s)+"px";
+    });
+  }
   function renderMods(){
     var box=$("#lvMods"); if(!box)return; var html="";
     for(var i=0;i<lvCount;i++){
-      var st=lvState[i], lo=Math.min(st.c,st.t), hi=Math.max(st.c,st.t), p, k;
+      var st=lvState[i], lo=Math.min(st.c,st.t), hi=Math.max(st.c,st.t), p;
       var path="";
-      for(p=lo;p<=hi;p++){path+='<span class="lvpath__chip" style="--c:'+LVDATA[p].col+'">'+LVSHORT[p]+'</span>'+(p<hi?'<span class="lvpath__arr">→</span>':'');}
-      var cards="";
-      for(k=0;k<5;k++){
-        var L=LVDATA[k], active=(k>=lo&&k<=hi);
-        if(active){
-          var items="";
-          L.items.forEach(function(it){items+='<li><span class="lvdot"></span><span>'+it.en+' <i>'+it.zh+'</i></span></li>';});
-          cards+='<div class="lvcard is-active" style="--c:'+L.col+'">'+
-            '<div class="lvcard__head"><span class="lvcard__chip" style="background:'+L.col+';color:'+L.ctxt+'">'+L.chip+'</span><span class="lvcard__name">'+LVSHORT[k]+'</span></div>'+
-            '<div class="lvcard__cefr">'+L.cefr+' · '+L.classes+'</div>'+
-            '<ul class="lvcard__items">'+items+'</ul></div>';
-        }else{
-          cards+='<div class="lvcard is-faded" style="--c:'+L.col+'">'+
-            '<div class="lvcard__head"><span class="lvcard__chip" style="background:'+L.col+';color:'+L.ctxt+'">'+L.chip+'</span><span class="lvcard__name">'+LVSHORT[k]+'</span></div></div>';
-        }
-        if(k<4)cards+='<span class="lvconn'+(k>=lo&&k<hi?" on":"")+'">›</span>';
-      }
-      html+='<div class="lvmod"><div class="lvmod__head"><span class="lvmod__name">Learner '+(i+1)+'</span><span class="lvmod__path">'+path+'</span></div><div class="lvmap">'+cards+'</div></div>';
+      for(p=lo;p<=hi;p++){path+='<span class="lvpath__chip" style="--c:'+LEVELS[p].c+'">'+LVSHORT[p]+'</span>'+(p<hi?'<span class="lvpath__arr">→</span>':'');}
+      html+='<div class="lvroad" data-learner="'+i+'">'+
+        '<div class="lvroad__head"><span class="lvroad__name">'+esc(learnerName(i))+'</span><span class="lvroad__path">'+path+'</span></div>'+
+        '<div class="glass-stage lvstage">'+
+          '<span class="glow" style="background:var(--p1);left:1%;bottom:30%"></span>'+
+          '<span class="glow" style="background:var(--l1);left:22%;bottom:18%"></span>'+
+          '<span class="glow" style="background:var(--l2);left:43%;top:4%"></span>'+
+          '<span class="glow" style="background:var(--l3);left:64%;bottom:24%"></span>'+
+          '<span class="glow" style="background:var(--l4);right:1%;top:8%"></span>'+
+          '<div class="lvroad__vp"><div class="lvroad__sc"><div class="levelmap">'+roadCols(lo,hi)+'</div></div></div>'+
+          '<div class="lvroad__detail"></div>'+
+        '</div>'+
+      '</div>';
     }
+    box.className="lvmods"+(lvCount===1?" cols1":" cols2");
     box.innerHTML=html;
+    if(window.requestAnimationFrame)requestAnimationFrame(fitRoads); else setTimeout(fitRoads,30);
+  }
+  function buildSummary(){
+    var box=$("#lvSummary"); if(!box)return; var lines="";
+    for(var i=0;i<lvCount;i++){var st=lvState[i];
+      lines+='<span class="lvsum__line"><b>'+esc(learnerName(i))+'</b> '+LVSHORT[st.c]+' <span class="lvsum__arr">→</span> '+LVSHORT[st.t]+'</span>';}
+    box.innerHTML='<div class="lvsum__main"><span class="lvsum__count">'+lvCount+' learner'+(lvCount>1?"s":"")+' selected <span class="zh">已选 '+lvCount+' 位学员</span></span><div class="lvsum__lines">'+lines+'</div></div>'+
+      '<button type="button" class="lvsum__edit" id="lvEdit">Edit <span class="zh">编辑</span></button>';
+  }
+  function introInner(k){
+    var c=FIVEC[k];
+    var gainRows=c.gain.slice(0,5).map(function(x,j){var col=COLPAL[j%COLPAL.length];
+      return '<div class="cc-gain__row"><span class="gr-ic" style="color:'+col+';background:'+col+'1f">'+svg(x.ic)+'</span><span class="gr-en">'+x.en+'</span><span class="gr-zh">'+x.zh+'</span></div>';}).join("");
+    return '<div class="cc-modal">'+
+      '<div class="cc-modal__kicker"><span class="cc-modal__c">'+c.c+'</span> · '+c.skill+' <span class="cc-modal__formula">'+c.formula+'</span></div>'+
+      '<div class="cc-modal__meta"><span>'+svg("people")+c.cefr+'</span><span>'+svg("calendar")+c.classes+'</span></div>'+
+      '<div class="cc-intro"><span class="cc-intro__ic">'+svg("lightbulb")+'</span><div class="cc-intro__tx"><strong>'+c.core+'</strong> '+c.desc+'</div></div>'+
+      '<div class="cc-modal__sec"><h4><span class="sec-ic sec-ic--gain">'+svg("trophy")+'</span>5 key outcomes <span class="zh">5 个重点项目</span></h4><div class="cc-gain">'+gainRows+'</div></div>'+
+      '<div class="lvactions"><button class="cc-learn" data-lvl-full="'+k+'" style="--c:'+c.col+';--txt:'+c.txt+'"><span class="cc-learn__more">Learn more <span class="zh">查看完整内容</span> →</span></button>'+videoBtn(k)+'</div>'+
+    '</div>';
+  }
+  function openLevelIntro(k){
+    var c=FIVEC[k], modal=$("#modalBg .modal"); if(!modal)return;
+    modal.style.setProperty("--c",c.col); modal.style.setProperty("--ci",c.ci); modal.style.setProperty("--txt",c.txt);
+    $("#modalTitle").innerHTML=c.lv;
+    $("#modalBody").innerHTML=introInner(k);
+    openModal();
+  }
+  function inlineDetail(k){
+    var c=FIVEC[k], L=LEVELS[k];
+    return '<div class="cc-detail lvcc" style="--c:'+c.col+';--ci:'+c.ci+';--txt:'+c.txt+'">'+
+      '<button class="lvcc__x" data-lv-close aria-label="Close">×</button>'+
+      '<div class="cc-detail__top"><span class="cc-detail__c">'+c.c+'</span><span class="cc-detail__zh">'+c.zh+'</span><span class="lvtag lvtag--cefr">'+c.cefr+'</span></div>'+
+      '<p class="cc-summary__core">'+c.core+'</p>'+
+      '<p class="cc-summary__desc">'+c.desc+'</p>'+
+      '<div class="lvactions"><button class="cc-learn" data-lvl-full="'+k+'" style="--c:'+c.col+';--txt:'+c.txt+'"><span class="cc-learn__lv">'+L.lvl+' · '+L.name+' <i>'+L.nameZh+'</i></span><span class="cc-learn__more">Learn more <span class="zh">查看完整内容</span> →</span></button>'+videoBtn(k)+'</div>'+
+    '</div>';
+  }
+  function closeInline(road){ if(!road)return; var pa=road.querySelector(".lvroad__detail"); if(pa){pa.innerHTML="";pa.classList.remove("show");} road.querySelectorAll(".lvl-col").forEach(function(c){c.classList.remove("is-open");}); if(road.classList.contains("is-compact")){ road.classList.remove("is-compact"); if(window.requestAnimationFrame)requestAnimationFrame(fitRoads); else fitRoads(); } }
+  function toggleInline(road,k,card){
+    if(!road)return; var pa=road.querySelector(".lvroad__detail"); if(!pa)return;
+    if(card.classList.contains("is-open")){ closeInline(road); return; }
+    road.querySelectorAll(".lvl-col").forEach(function(c){c.classList.remove("is-open");});
+    card.classList.add("is-open");
+    var c=FIVEC[k], L=LEVELS[k];
+    pa.style.setProperty("--c",c.col); pa.style.setProperty("--ci",c.ci); pa.style.setProperty("--txt",c.txt);
+    pa.innerHTML=inlineDetail(k);
+    pa.classList.add("show");
+    if(lvCount===1){ road.classList.add("is-compact"); }
+    if(window.requestAnimationFrame){ requestAnimationFrame(fitRoads); } else { fitRoads(); }
+    // scroll the clicked learner module into view AFTER detail has expanded + layout settled (1-2 learners)
+    if(lvCount<=2){
+      setTimeout(function(){
+        if(road && road.scrollIntoView){
+          try{ road.scrollIntoView({behavior:"smooth",block:"center",inline:"nearest"}); }
+          catch(e){ road.scrollIntoView(); }
+        }
+      }, 120);
+    }
   }
   (function(){
-    var cnt=$("#lvCount"), learners=$("#lvLearners");
+    var cnt=$("#lvCount"), learners=$("#lvLearners"), present=$("#lvPresent"), tool=$("#lvTool"), sum=$("#lvSummary"), mods=$("#lvMods"), mbg=$("#modalBg");
+    if(mods){mods.addEventListener("click",function(e){
+      if(e.target.closest("[data-lv-close]")){ closeInline(e.target.closest(".lvroad")); return; }
+      var rtog=e.target.closest("[data-res-toggle]"); if(rtog){ var bx=rtog.closest(".lvres"); if(bx)bx.classList.toggle("is-open"); return; }
+      var rsave=e.target.closest("[data-res-save]"); if(rsave){ var kk=+rsave.getAttribute("data-res-save"); var inp=rsave.closest(".lvres").querySelector("[data-res-input]"); advisorLinks[lvKey(kk)].youtube=((inp&&inp.value)||"").trim(); var rd=rsave.closest(".lvroad"); var pa=rd&&rd.querySelector(".lvroad__detail"); if(pa){ pa.innerHTML=inlineDetail(kk); pa.classList.add("show"); } return; }
+      var vid=e.target.closest("[data-lvl-video]"); if(vid){ openVideo(+vid.getAttribute("data-lvl-video")); return; }
+      var more=e.target.closest("[data-lvl-full]"); if(more){ openCCModal(+more.getAttribute("data-lvl-full")); return; }
+      var card=e.target.closest(".lvl-col"); if(!card)return;
+      var k=+card.getAttribute("data-lvl"); if(isNaN(k))return;
+      if(lvCount<=2){ toggleInline(card.closest(".lvroad"),k,card); } else { openLevelIntro(k); }
+    });}
+    if(mbg){mbg.addEventListener("click",function(e){
+      var rtog=e.target.closest("[data-res-toggle]"); if(rtog){var bx=rtog.closest(".lvres"); if(bx)bx.classList.toggle("is-open"); return;}
+      var rsave=e.target.closest("[data-res-save]"); if(rsave){var kk=+rsave.getAttribute("data-res-save"); var inp=rsave.closest(".lvres").querySelector("[data-res-input]"); advisorLinks[lvKey(kk)].youtube=((inp&&inp.value)||"").trim(); $("#modalBody").innerHTML=introInner(kk); return;}
+      var v=e.target.closest("[data-lvl-video]"); if(v){openVideo(+v.getAttribute("data-lvl-video"));return;}
+      var b=e.target.closest("[data-lvl-full]"); if(b)openCCModal(+b.getAttribute("data-lvl-full"));});}
+    var vbg=$("#videoBg"), vClose=$("#videoClose");
+    if(vClose)vClose.addEventListener("click",closeVideo);
+    if(vbg)vbg.addEventListener("click",function(e){if(e.target===vbg)closeVideo();});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape" && vbg && vbg.classList.contains("open"))closeVideo();});
     if(cnt){cnt.addEventListener("click",function(e){var b=e.target.closest("button[data-n]"); if(!b)return;
       lvCount=parseInt(b.getAttribute("data-n"),10);
       $$("#lvCount button").forEach(function(x){x.classList.toggle("is-active",x===b);});
       renderLearners(); renderMods();});}
     if(learners){learners.addEventListener("change",function(e){var s=e.target.closest("select.lvsel"); if(!s)return;
       var li=parseInt(s.getAttribute("data-learner"),10), kind=s.getAttribute("data-kind");
-      lvState[li][kind]=parseInt(s.value,10); renderMods();});}
+      lvState[li][kind]=parseInt(s.value,10); renderMods();});
+      learners.addEventListener("input",function(e){var n=e.target.closest("input.lvname"); if(!n)return;
+        var li=parseInt(n.getAttribute("data-learner"),10); lvState[li].name=n.value;
+        var nm=$('#lvMods .lvroad[data-learner="'+li+'"] .lvroad__name'); if(nm)nm.textContent=learnerName(li);
+        if(sum && !sum.hidden) buildSummary();});}
+    if(present){present.addEventListener("click",function(){buildSummary(); if(tool)tool.hidden=true; if(sum)sum.hidden=false; renderMods(); if(typeof scrollToReveal==="function")scrollToReveal($("#lvMods"));});}
+    if(sum){sum.addEventListener("click",function(e){if(e.target.closest("#lvEdit")){if(tool)tool.hidden=false; sum.hidden=true;}});}
+    var _rt; window.addEventListener("resize",function(){clearTimeout(_rt);_rt=setTimeout(fitRoads,120);});
+    var adminRows=$("#lvAdminRows");
+    if(adminRows){
+      adminRows.addEventListener("input",function(e){var n=e.target.closest("input[data-admin-link]"); if(!n)return; var key=n.getAttribute("data-admin-link"); if(advisorLinks[key])advisorLinks[key].youtube=n.value.trim();});
+    }
+    renderAdminLinks();
     if($("#lvLearners")){renderLearners(); renderMods();}
   })();
 
@@ -3992,6 +4301,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
     var on=this.classList.toggle("on");
     this.setAttribute("aria-pressed",on);
     cues.forEach(function(c){c.style.display=on?"block":"none";});
+    $$("[data-advisor-only]").forEach(function(el){el.classList.toggle("is-on",on);});
   });
 
   /* ---------- DISPLAY MODE (Normal / Presentation) ---------- */
