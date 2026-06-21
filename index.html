@@ -634,6 +634,28 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .adv-modal__hint{font-size:11.5px;color:var(--muted);margin:2px 2px 16px}
 .adv-modal__btns{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .adv-modal__btns-r{display:flex;gap:10px}
+.adv-modal--stories{z-index:150}
+.adv-modal--stories .adv-modal__card{max-width:580px}
+.stedit{display:flex;flex-direction:column;gap:12px;margin:8px 0 14px}
+.stcard{border:1px solid var(--line);border-radius:14px;padding:13px 13px 14px;background:rgba(255,255,255,.55)}
+.stcard__h{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+.stcard__n{flex:none;width:22px;height:22px;border-radius:7px;background:color-mix(in srgb,var(--c) 16%,#fff);color:var(--c);font-family:var(--display);font-weight:800;font-size:12px;display:grid;place-items:center}
+.stcard__t{font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--ink)}
+.stgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.stf{display:flex;flex-direction:column;gap:4px;min-width:0}
+.stf--full{grid-column:1 / -1}
+.stf__l{font-family:var(--display);font-weight:600;font-size:11px;color:var(--muted)}
+.stf__i{width:100%;font-family:var(--body);font-size:12.5px;color:var(--ink);padding:8px 10px;border-radius:9px;background:rgba(255,255,255,.78);border:1px solid var(--line);outline:none;transition:border-color .15s,box-shadow .15s;resize:vertical}
+.stf__i:focus{border-color:var(--c);box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 16%,transparent)}
+.stf__sel{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:30px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:11px}
+.gallery-modal__foot{position:relative}
+.gallery-advnote{position:absolute;right:12px;top:50%;transform:translateY(-50%)}
+.st-linktree{display:inline-flex;align-items:center;gap:7px;margin:0 0 14px;font-family:var(--display);font-weight:700;font-size:12px;color:var(--ink);text-decoration:none;padding:8px 13px;border-radius:10px;background:rgba(255,255,255,.62);border:1px solid var(--line);-webkit-backdrop-filter:blur(8px) saturate(140%);backdrop-filter:blur(8px) saturate(140%);transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+.st-linktree:hover{transform:translateY(-1px);background:#fff;border-color:color-mix(in srgb,var(--c,#2A5BD7) 40%,var(--line));box-shadow:0 8px 18px -10px rgba(20,33,50,.3)}
+.st-linktree__ic{display:inline-flex;color:#FF0000}
+.st-linktree__ic svg{width:15px;height:15px}
+.st-linktree__ext{width:12px;height:12px;opacity:.45}
+.st-linktree__lic{width:14px;height:14px;color:var(--blue-bright)}
 .adv-btn{font-family:var(--display);font-weight:700;font-size:13px;padding:9px 16px;border-radius:12px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s,transform .15s,box-shadow .15s}
 .adv-btn:hover{transform:translateY(-1px)}
 .adv-btn--ghost{background:rgba(255,255,255,.5);border-color:var(--line);color:var(--muted)}
@@ -730,7 +752,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .gstory__lvl{display:inline-flex;align-items:center;font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:.01em;line-height:1.3;
   color:var(--gtx,#fff);background:var(--gc,var(--blue-bright));padding:3px 9px;border-radius:7px;
   box-shadow:0 5px 13px -5px color-mix(in srgb,var(--gc,var(--blue-bright)) 70%,transparent)}
-.gstory__skill{font-size:10px;font-weight:700;color:color-mix(in srgb,var(--gc,var(--muted)) 78%,var(--ink));letter-spacing:.01em}
+.gstory__skill{font-size:10px;font-weight:700;color:color-mix(in srgb,var(--gsk,var(--gc,var(--muted))) 78%,var(--ink));letter-spacing:.01em}
 .gstory__desc{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:9px}
 /* compact cards in expanded mode — keep just name + level badge */
 .gallery-stage.is-expanded .gstory__desc,.gallery-stage.is-expanded .gstory__role,.gallery-stage.is-expanded .gstory__skill{display:none}
@@ -866,6 +888,16 @@ a.tt-lv{cursor:pointer;text-decoration:none;transition:transform .16s cubic-bezi
 a.tt-lv:hover{transform:translateY(-2px) scale(1.06);box-shadow:0 8px 16px -6px rgba(20,33,50,.26);border-color:color-mix(in srgb,currentColor 50%,#fff)}
 a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 @media(max-width:560px){.tt-modal__card{padding:20px 15px}}
+.map-modal__card{max-width:640px}
+.map-modal__name{font-family:var(--display);font-weight:800;font-size:19px;color:var(--ink)}
+.map-modal__addr{display:block;font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4}
+.map-modal__frame{margin-top:4px;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 8px 22px -12px rgba(20,33,50,.25);aspect-ratio:16/10;background:rgba(20,33,50,.04)}
+.map-modal__iframe{width:100%;height:100%;border:0;display:block}
+.map-modal__foot{display:flex;justify-content:flex-end;margin-top:13px}
+.map-modal__open{display:inline-flex;align-items:center;gap:7px;font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--blue-bright);text-decoration:none;padding:9px 14px;border-radius:10px;background:rgba(255,255,255,.62);border:1px solid color-mix(in srgb,var(--blue-bright) 24%,var(--line));-webkit-backdrop-filter:blur(8px) saturate(140%);backdrop-filter:blur(8px) saturate(140%);transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+.map-modal__open:hover{transform:translateY(-1px);background:#fff;border-color:color-mix(in srgb,var(--blue-bright) 42%,#fff);box-shadow:0 8px 18px -10px rgba(20,33,50,.3)}
+.map-modal__open svg{width:14px;height:14px}
+@media(max-width:560px){.map-modal__frame{aspect-ratio:1/1}}
 .site-modal{position:fixed;inset:0;z-index:135;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
 .site-modal.is-open{opacity:1}
 .site-modal__bg{position:absolute;inset:0;background:rgba(10,18,40,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -2103,6 +2135,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 /* level recommendation v8 - advisor-only global Level Resource Settings panel */
 .lvadmin{display:none;margin-top:24px;border-radius:18px;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border:1px solid var(--line);box-shadow:0 10px 30px rgba(20,33,50,.08);padding:18px 20px}
 .lvadmin.is-on{display:block;animation:rise .3s ease}
+.lvadmin.in-modal{display:block;margin:0;padding:0;border:0;background:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;animation:none}
+.adv-modal--rp .adv-modal__card{max-width:560px}
+.adv-modal--rp .rp-adv-body{display:block}
 .lvadmin__head{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
 .lvadmin__ic{flex:none;width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--blue-tint);color:var(--blue)}
 .lvadmin__ic svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -2404,11 +2439,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         </div>
         <div class="lvsummary" id="lvSummary" hidden></div>
         <div class="lvmods" id="lvMods"></div>
-        <div class="lvadmin" data-advisor-only aria-label="Level Resource Settings">
+        <div class="lvadmin" aria-label="Level Resource Settings">
           <div class="lvadmin__head"><span class="lvadmin__ic"><svg viewBox="0 0 24 24"><path d="M4 7h8M16 7h4M4 12h4M12 12h8M4 17h6M14 17h6"/><circle cx="14" cy="7" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="12" cy="17" r="2"/></svg></span><div class="lvadmin__txt"><div class="lvadmin__title">Level Resource Settings</div><div class="lvadmin__sub">Advisor-only · manage Level intro video links (global) · 仅顾问可见，统一管理各 Level 视频链接</div></div></div>
+          <a class="st-linktree" href="https://linktr.ee/TouchEnglish_CN" target="_blank" rel="noopener noreferrer"><svg class="st-linktree__lic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><path d="M8 12h8"/></svg><span>Linktree</span><svg class="st-linktree__ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
           <div class="lvadmin__rows" id="lvAdminRows"></div>
         </div>
         <div class="adv-cue" data-cue><strong>Advisor cue:</strong> set the learner's current and target level — the highlighted levels are the recommended path; the faded ones stay on screen as the full level map for reference.</div>
+        <div class="adv-note-wrap" style="margin:12px 0 6px"><button type="button" class="adv-note" id="rpAdvBtn" aria-label="Advisor Note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button></div>
       </section>
 
       <!-- ===== 10. CLOSING / CTA ===== -->
@@ -3693,6 +3730,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             '</div>'+
           '</div>'+
         '</div>'+
+        '<div class="adv-note-wrap" style="margin:10px 0 8px"><button type="button" class="adv-note" data-advnote="2" aria-label="Advisor Note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button></div>'+
       '</div>';
     }
     // ===== First 24 Lessons — System page: 3 selectors + shared detail area =====
@@ -3940,6 +3978,41 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       return {c:"#14A2B8",t:"#fff"};
     }
     function levelSplit(lv){ var p=(lv||"").split("\u00b7"); return {main:(p[0]||"").trim(), skill:p.slice(1).join("\u00b7").trim()}; }
+    // ----- Student stories: advisor-editable data store (backend management) -----
+    var ST_KEY="te_stories_v1";
+    var LV_OPTS=["Pre-Beginner","Level 1","Level 2","Level 3","Level 4"];
+    var SK_OPTS=["Copy Skills","Construct Skills","Conveying Skills","Convincing Skills","Captivating Skills"];
+    var LV_COLORS={ "Pre-Beginner":{c:"#EBB12A",t:"#4A3700"}, "Level 1":{c:"#2E9E50",t:"#fff"}, "Level 2":{c:"#1F9FE6",t:"#fff"}, "Level 3":{c:"#E8472B",t:"#fff"}, "Level 4":{c:"#15335E",t:"#fff"} };
+    var SK_COLORS={ "Copy Skills":{c:"#EBB12A",t:"#4A3700"}, "Construct Skills":{c:"#2E9E50",t:"#fff"}, "Conveying Skills":{c:"#1F9FE6",t:"#fff"}, "Convincing Skills":{c:"#E8472B",t:"#fff"}, "Captivating Skills":{c:"#15335E",t:"#fff"} };
+    function levelColor(lvMain,combined){ if(LV_COLORS[lvMain])return LV_COLORS[lvMain]; return levelStyle(combined||lvMain||""); }
+    function skillColor(sk){ if(SK_COLORS[sk])return SK_COLORS[sk]; return levelStyle(sk||""); }
+    function ytId(link){
+      var s=(link||"").trim(); if(!s)return "";
+      var m=s.match(/[?&]v=([A-Za-z0-9_-]{6,})/)||s.match(/(?:youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{6,})/);
+      if(m)return m[1];
+      if(/^[A-Za-z0-9_-]{6,}$/.test(s))return s;
+      return s;
+    }
+    function storyDefaults(){
+      return STORIES.map(function(s){
+        var lp=levelSplit(s.level);
+        return {link:"https://www.youtube.com/watch?v="+s.youtubeId, level:lp.main, skills:lp.skill, name:s.name, job:s.role, background:s.cardSummary, story:s.fullStory, struggle:"", progress:""};
+      });
+    }
+    function storiesGet(){
+      var def=storyDefaults(), saved=null;
+      try{ saved=JSON.parse(localStorage.getItem(ST_KEY)); }catch(e){}
+      if(!Array.isArray(saved)) return def;
+      return def.map(function(d,i){ var o=saved[i]||{}; var r={}; ["link","level","skills","name","job","background","story","struggle","progress"].forEach(function(k){ r[k]=(o[k]!==undefined&&o[k]!==null)?o[k]:d[k]; }); return r; });
+    }
+    function storiesSave(a){ try{ localStorage.setItem(ST_KEY,JSON.stringify(a)); }catch(e){} }
+    function storiesReset(){ try{ localStorage.removeItem(ST_KEY); }catch(e){} }
+    function effStories(){
+      return storiesGet().map(function(d){
+        var lvl=(d.level||"")+((d.level&&d.skills)?(" \u00b7 "+d.skills):(d.skills||""));
+        return {name:d.name, role:d.job, level:lvl, levelMain:(d.level||""), skill:(d.skills||""), youtubeId:ytId(d.link), cardSummary:d.background, fullStory:d.story};
+      });
+    }
     window.openStories=function(){
       var isFile=(location.protocol==="file:");
       function watchURL(vid){ return "https://www.youtube.com/watch?v="+vid; }
@@ -3952,15 +4025,16 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       var ytBadge='<span class="gstory__yt"><svg viewBox="0 0 24 24"><path d="M8 6v12l10-6z"/></svg></span>';
       var old=document.getElementById("galleryModal"); if(old)old.remove();
       var m=document.createElement("div"); m.id="galleryModal"; m.className="gallery-modal";
-      var cards=STORIES.map(function(s,i){
-        var ls=levelStyle(s.level), lp=levelSplit(s.level);
-        var skill=lp.skill?'<span class="gstory__skill">'+lp.skill+'</span>':'';
-        return '<button type="button" class="gstory" data-gi="'+i+'" style="--gc:'+ls.c+';--gtx:'+ls.t+'">'+
+      var ST=effStories();
+      var cards=ST.map(function(s,i){
+        var lc=levelColor(s.levelMain,s.level), sc=skillColor(s.skill);
+        var skill=s.skill?'<span class="gstory__skill">'+s.skill+'</span>':'';
+        return '<button type="button" class="gstory" data-gi="'+i+'" style="--gc:'+lc.c+';--gtx:'+lc.t+';--gsk:'+sc.c+'">'+
           '<span class="gstory__thumb"><img src="https://img.youtube.com/vi/'+s.youtubeId+'/hqdefault.jpg" alt="" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'">'+ytBadge+'<span class="gstory__play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>'+
           '<span class="gstory__meta">'+
             '<span class="gstory__name">'+s.name+'</span>'+
             '<span class="gstory__role">'+s.role+'</span>'+
-            '<span class="gstory__lvlrow"><span class="gstory__lvl">'+lp.main+'</span>'+skill+'</span>'+
+            '<span class="gstory__lvlrow"><span class="gstory__lvl">'+s.levelMain+'</span>'+skill+'</span>'+
             '<span class="gstory__desc">'+s.cardSummary+'</span>'+
           '</span>'+
         '</button>';
@@ -3987,16 +4061,16 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
               '</div>'+
             '</div>'+
           '</div>'+
-          '<div class="gallery-modal__foot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z"/></svg><span>Real stories from real <b>TOUCH English</b> learners</span></div>'+
+          '<div class="gallery-modal__foot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z"/></svg><span>Real stories from real <b>TOUCH English</b> learners</span><button type="button" class="adv-note gallery-advnote" id="storiesAdvBtn" aria-label="Advisor Note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button></div>'+
         '</div>';
       document.body.appendChild(m);
       var stage=m.querySelector(".gallery-stage"), player=m.querySelector(".gallery-player"), frame=m.querySelector(".gallery-player__frame"), body=m.querySelector(".gallery-modal__body");
       function select(i){
         var first=!stage.classList.contains("is-expanded");
         stage.classList.add("is-expanded");
-        var st=STORIES[i], ls=levelStyle(st.level), lp=levelSplit(st.level);
-        player.style.setProperty("--gc",ls.c);
-        player.style.setProperty("--gtx",ls.t);
+        var st=ST[i], lc=levelColor(st.levelMain,st.level);
+        player.style.setProperty("--gc",lc.c);
+        player.style.setProperty("--gtx",lc.t);
         var vid=st.youtubeId;
         if(isFile){
           // file:// cannot host an embedded player (YouTube Error 153) — show a passive notice only, no auto-redirect.
@@ -4014,8 +4088,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         }
         player.querySelector(".gallery-player__name").textContent=st.name;
         var chip=player.querySelector(".gallery-player__chip");
-        chip.textContent=lp.main; chip.style.display=lp.main?"":"none";
-        player.querySelector(".gallery-player__role").textContent=lp.skill?(st.role+" \u00b7 "+lp.skill):st.role;
+        chip.textContent=st.levelMain; chip.style.display=st.levelMain?"":"none";
+        player.querySelector(".gallery-player__role").textContent=st.skill?(st.role+" \u00b7 "+st.skill):st.role;
         player.querySelector(".gallery-player__quote").textContent=st.fullStory;
         player.querySelector(".gallery-player__yt").setAttribute("href",watchURL(vid));
         player.querySelector(".gallery-player__hint").style.display=isFile?"flex":"none";
@@ -4023,6 +4097,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         if(first){ try{ body.scrollTo({top:0,behavior:"smooth"}); }catch(e){ body.scrollTop=0; } }
       }
       m.querySelectorAll(".gstory").forEach(function(c){ c.addEventListener("click",function(){ select(+c.getAttribute("data-gi")); }); });
+      var sab=m.querySelector("#storiesAdvBtn"); if(sab)sab.addEventListener("click",function(e){ e.preventDefault(); e.stopPropagation(); openStoriesAdvNote(); });
       var escH=function(e){ if(e.key==="Escape"){e.stopPropagation();e.preventDefault();close();} };
       function close(){ var fr=frame.querySelector("iframe"); if(fr)fr.src=""; document.removeEventListener("keydown",escH,true); m.remove(); }
       m.querySelector(".gallery-modal__bg").addEventListener("click",close);
@@ -4030,6 +4105,64 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       document.addEventListener("keydown",escH,true);
       void m.offsetWidth; m.classList.add("is-open");
     };
+    // ----- Student Stories Advisor Note (backend management) -----
+    function stField(label,key,val,multiline,full){
+      var v=(val==null?"":String(val)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+      return '<label class="stf'+((full||multiline)?' stf--full':'')+'"><span class="stf__l">'+label+'</span>'+
+        (multiline?'<textarea class="stf__i" data-k="'+key+'" rows="2">'+v+'</textarea>':'<input class="stf__i" data-k="'+key+'" type="text" value="'+v+'">')+
+      '</label>';
+    }
+    function stSelect(label,key,val,opts,allowBlank){
+      var c=(val==null?"":String(val)), o="";
+      if(allowBlank) o+='<option value=""'+(c===""?" selected":"")+'>\u2014</option>';
+      if(c && opts.indexOf(c)<0) o+='<option value="'+c.replace(/"/g,"&quot;")+'" selected>'+c.replace(/</g,"&lt;")+' (current)</option>';
+      o+=opts.map(function(op){return '<option value="'+op+'"'+(op===c?" selected":"")+'>'+op+'</option>';}).join("");
+      return '<label class="stf"><span class="stf__l">'+label+'</span><select class="stf__i stf__sel" data-k="'+key+'">'+o+'</select></label>';
+    }
+    function storyEditRow(idx,d){
+      var nm=((d.name||("Story "+(idx+1)))+"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+      return '<div class="stcard" data-si="'+idx+'">'+
+        '<div class="stcard__h"><span class="stcard__n">'+(idx+1)+'</span><span class="stcard__t">'+nm+'</span></div>'+
+        '<div class="stgrid">'+
+          stField("Name 姓名","name",d.name,false,false)+
+          stField("Job / profession 职业","job",d.job,false,false)+
+          stField("YouTube Link 视频链接","link",d.link,false,true)+
+          stSelect("Level 级别","level",d.level,LV_OPTS,false)+
+          stSelect("Skills 技能","skills",d.skills,SK_OPTS,true)+
+          stField("Short background 简短背景","background",d.background,true,true)+
+          stField("Simple learner story 学员故事","story",d.story,true,true)+
+          stField("Main struggle before 学习前的困难（仅后台）","struggle",d.struggle,true,true)+
+          stField("Progress after 学习后的进步（仅后台）","progress",d.progress,true,true)+
+        '</div>'+
+      '</div>';
+    }
+    function openStoriesAdvNote(){
+      var data=storiesGet();
+      var m=document.createElement("div"); m.className="adv-modal adv-modal--note adv-modal--stories"; m.id="storiesAdvModal";
+      m.style.setProperty("--c","#2A5BD7");
+      m.innerHTML='<div class="adv-modal__bg"></div>'+
+        '<div class="adv-modal__card" role="dialog" aria-modal="true" aria-label="Advisor Note">'+
+          '<button type="button" class="adv-modal__x" data-stx aria-label="Close">\u00d7</button>'+
+          '<div class="adv-modal__head"><span class="adv-modal__title">Advisor Note <span class="adv-modal__title-zh">学员故事管理</span></span><span class="adv-modal__sub">For advisor · 编辑后 Customer View 自动更新</span></div>'+
+          '<div class="advnotes">'+
+            '<p class="adv-modal__hint">管理每个学员故事：可编辑 YouTube 链接、级别、技能与学员信息。保存后画廊（Customer View）会自动更新；标「仅后台」的字段不会显示给客户。</p>'+
+            '<a class="st-linktree" href="https://linktr.ee/TouchEnglish_CN" target="_blank" rel="noopener noreferrer"><span class="st-linktree__ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.5 15.5v-7l6.5 3.5Z"/></svg></span><span>YouTube Linktree</span><svg class="st-linktree__ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>'+
+            '<div class="stedit" id="stedit">'+data.map(function(d,i){return storyEditRow(i,d);}).join("")+'</div>'+
+            '<div class="adv-modal__btns"><button type="button" class="adv-btn adv-btn--ghost" data-streset>Reset to Default</button>'+
+              '<span class="adv-modal__btns-r"><button type="button" class="adv-btn adv-btn--ghost" data-stcancel>Cancel</button><button type="button" class="adv-btn adv-btn--save" data-stsave>Save</button></span></div>'+
+          '</div>'+
+        '</div>';
+      document.body.appendChild(m); void m.offsetWidth; m.classList.add("is-open");
+      var escH; function close(){ if(escH)document.removeEventListener("keydown",escH,true); if(m){m.remove();m=null;} }
+      m.querySelector(".adv-modal__bg").addEventListener("click",close);
+      m.querySelector("[data-stx]").addEventListener("click",close);
+      m.querySelector("[data-stcancel]").addEventListener("click",close);
+      escH=function(e){ if(e.key==="Escape"){e.stopPropagation();e.preventDefault();close();} };
+      document.addEventListener("keydown",escH,true);
+      function collect(){ return [].slice.call(m.querySelectorAll(".stcard")).map(function(card){ var o={}; [].slice.call(card.querySelectorAll(".stf__i")).forEach(function(inp){ o[inp.getAttribute("data-k")]=(inp.value||"").trim(); }); return o; }); }
+      m.querySelector("[data-stsave]").addEventListener("click",function(){ storiesSave(collect()); close(); if(typeof window.openStories==="function") window.openStories(); });
+      m.querySelector("[data-streset]").addEventListener("click",function(){ storiesReset(); var ed=m.querySelector("#stedit"); var def=storyDefaults(); ed.innerHTML=def.map(function(d,i){return storyEditRow(i,d);}).join(""); });
+    }
     // ----- Step 6: subtle +/- roadmap scale control (saved locally) -----
     (function(){
       var stage=document.getElementById('sysStage'); if(!stage)return;
@@ -4179,7 +4312,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             '<div class="loc-pop__name"></div>'+
             '<div class="loc-pop__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span class="loc-pop__addrtext"></span></div>'+
             '<div class="loc-pop__btns">'+
-              '<a class="loc-pop__link" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></a>'+
+              '<a class="loc-pop__link" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></a>'+
               '<button type="button" class="loc-pop__tt" hidden><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg><span>Timetable</span></button>'+
             '</div>'+
           '</div>'+
@@ -4187,8 +4320,32 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         '<span class="loc-pop__arrow"></span>';
       document.body.appendChild(pop);
       var imgEl=pop.querySelector('.loc-pop__photo img'),phName=pop.querySelector('.loc-pop__phname'),aEl=pop.querySelector('.loc-pop__area'),nEl=pop.querySelector('.loc-pop__name'),addrEl=pop.querySelector('.loc-pop__addrtext'),lEl=pop.querySelector('.loc-pop__link'),ttBtn=pop.querySelector('.loc-pop__tt'),arrow=pop.querySelector('.loc-pop__arrow');
-      var ttBranch=null;
+      var ttBranch=null, curName="", curAddr="", curMap="";
       ttBtn.addEventListener('click',function(e){ e.stopPropagation(); e.preventDefault(); if(ttBranch) openTimetable(ttBranch); });
+      lEl.addEventListener('click',function(e){ e.stopPropagation(); e.preventDefault(); openMapModal(curName,curAddr,curMap); });
+      function openMapModal(name,addr,mapLink){
+        var m=document.createElement('div'); m.className='tt-modal map-modal'; m.id='mapModal';
+        var hasLink=mapLink && mapLink!=='#';
+        m.innerHTML='<div class="tt-modal__bg"></div>'+
+          '<div class="tt-modal__card map-modal__card" role="dialog" aria-modal="true" aria-label="Branch location">'+
+            '<button type="button" class="tt-modal__x" data-mapx aria-label="Close">\u00d7</button>'+
+            '<div class="tt-modal__head"><span class="tt-modal__title map-modal__name"></span><span class="tt-modal__sub map-modal__addr"></span></div>'+
+            '<div class="map-modal__frame"><iframe class="map-modal__iframe" title="Location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>'+
+            (hasLink?'<div class="map-modal__foot"><a class="map-modal__open" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><path d="M8 12h8"/></svg><span>Open in Google Maps</span></a></div>':'')+
+          '</div>';
+        document.body.appendChild(m);
+        m.querySelector('.map-modal__name').textContent=name||'Location';
+        m.querySelector('.map-modal__addr').textContent=addr||'';
+        var q=encodeURIComponent(addr||name||'');
+        m.querySelector('.map-modal__iframe').src='https://www.google.com/maps?q='+q+'&z=15&output=embed';
+        if(hasLink){ m.querySelector('.map-modal__open').setAttribute('href',mapLink); }
+        void m.offsetWidth; m.classList.add('is-open');
+        var escH; function close(){ if(escH)document.removeEventListener('keydown',escH,true); if(m){m.remove();m=null;} }
+        m.querySelector('.tt-modal__bg').addEventListener('click',close);
+        m.querySelector('[data-mapx]').addEventListener('click',close);
+        escH=function(e){ if(e.key==='Escape'){e.preventDefault();close();} };
+        document.addEventListener('keydown',escH,true);
+      }
       var hideT=null,current=null;
       function fill(c){
         var name=c.getAttribute('data-name')||'';
@@ -4200,6 +4357,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         nEl.textContent=name;
         addrEl.textContent=c.getAttribute('data-addr')||'';
         lEl.setAttribute('href',c.getAttribute('data-map')||'#');
+        curName=name; curAddr=c.getAttribute('data-addr')||''; curMap=c.getAttribute('data-map')||'';
         if(TIMETABLES[name]){ ttBtn.hidden=false; ttBranch=name; } else { ttBtn.hidden=true; ttBranch=null; }
       }
       function position(c){
@@ -4460,7 +4618,18 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           '<div class="zh">记忆点：不是学过而已。而是用得出来。</div></div></div>'+
       '</div>';
     }
-    var ADVNOTE={ 4:{title:"Advisor Note", zh:"顾问讲解备注", build:step5AdvBody, mount:step5AdvMount}, 6:{title:"Advisor Note", zh:"顾问讲解备注", build:next24AdvBody} };
+    function stage01AdvBody(){
+      return '<div class="advnotes">'+
+        '<p class="adv-modal__hint">STAGE 01 · Find Your Voice 的顾问备注与资源。下方 Linktree 可快速打开相关资源链接。</p>'+
+        '<a class="st-linktree" href="https://linktr.ee/TouchEnglish_CN" target="_blank" rel="noopener noreferrer"><svg class="st-linktree__lic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><path d="M8 12h8"/></svg><span>Linktree</span><svg class="st-linktree__ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>'+
+        '<div class="advnote__sec"><h4>Core Message <span class="zh">核心概念</span></h4>'+
+          '<p class="zh">这不只是音标课，而是「学习充电站」——由院长每月亲自带领。</p>'+
+          '<p class="zh">重点不只是发音，更是帮助学员建立更好的学习心态与方法。</p></div>'+
+        '<div class="advnote__sec"><h4>How advisor should explain <span class="zh">Advisor 要怎样讲</span></h4>'+
+          '<p class="zh">「舞台帮助你练习，音标帮助你找到自己的声音。」让客户明白这是持续的学习支持，而非一次性发音课。</p></div>'+
+      '</div>';
+    }
+    var ADVNOTE={ 2:{title:"Advisor Note", zh:"顾问讲解备注", build:stage01AdvBody}, 4:{title:"Advisor Note", zh:"顾问讲解备注", build:step5AdvBody, mount:step5AdvMount}, 6:{title:"Advisor Note", zh:"顾问讲解备注", build:next24AdvBody} };
     function openAdvNote(i){
       var d=ADVNOTE[i]; if(!d)return;
       var m=document.createElement("div"); m.className="adv-modal adv-modal--note"; m.id="advNoteModal";
@@ -4820,6 +4989,28 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     cues.forEach(function(c){c.style.display=on?"block":"none";});
     $$("[data-advisor-only]").forEach(function(el){el.classList.toggle("is-on",on);});
   });
+  // Recommended Path: standard bottom Advisor Note entry -> opens editing panel in a modal
+  function openRPAdvNote(){
+    var panel=document.querySelector(".lvadmin"); if(!panel||document.getElementById("rpAdvModal"))return;
+    var ph=document.createComment("lvadmin-home"); panel.parentNode.insertBefore(ph,panel);
+    var m=document.createElement("div"); m.className="adv-modal adv-modal--note adv-modal--rp"; m.id="rpAdvModal"; m.style.setProperty("--c","#2A5BD7");
+    m.innerHTML='<div class="adv-modal__bg"></div>'+
+      '<div class="adv-modal__card" role="dialog" aria-modal="true" aria-label="Advisor Note">'+
+        '<button type="button" class="adv-modal__x" data-rpx aria-label="Close">\u00d7</button>'+
+        '<div class="adv-modal__head"><span class="adv-modal__title">Advisor Note <span class="adv-modal__title-zh">推荐路线设置</span></span><span class="adv-modal__sub">For advisor · 仅供顾问参考</span></div>'+
+        '<div class="rp-adv-body"></div>'+
+      '</div>';
+    document.body.appendChild(m);
+    m.querySelector(".rp-adv-body").appendChild(panel); panel.classList.add("in-modal");
+    void m.offsetWidth; m.classList.add("is-open");
+    var escH;
+    function close(){ if(escH)document.removeEventListener("keydown",escH,true); panel.classList.remove("in-modal"); if(ph.parentNode){ ph.parentNode.insertBefore(panel,ph); ph.parentNode.removeChild(ph); } if(m){m.remove();m=null;} }
+    m.querySelector(".adv-modal__bg").addEventListener("click",close);
+    m.querySelector("[data-rpx]").addEventListener("click",close);
+    escH=function(e){ if(e.key==="Escape"){e.stopPropagation();e.preventDefault();close();} };
+    document.addEventListener("keydown",escH,true);
+  }
+  (function(){ var rb=document.getElementById("rpAdvBtn"); if(rb)rb.addEventListener("click",openRPAdvNote); })();
 
   /* ---------- DISPLAY MODE (Normal / Presentation) ---------- */
   (function(){
