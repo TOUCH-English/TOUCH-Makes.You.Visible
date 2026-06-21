@@ -824,6 +824,48 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .loc-pop__link svg{width:13px;height:13px;fill:#fff}
 .loc-pop__arrow{position:absolute;bottom:-6px;left:50%;width:12px;height:12px;transform:translateX(-50%) rotate(45deg);background:rgba(255,255,255,.9);border-right:1px solid rgba(255,255,255,.92);border-bottom:1px solid rgba(255,255,255,.92)}
 .loc-pop.is-below .loc-pop__arrow{bottom:auto;top:-6px;border-right:0;border-bottom:0;border-left:1px solid rgba(255,255,255,.92);border-top:1px solid rgba(255,255,255,.92)}
+.loc-pop__btns{display:flex;align-items:center;gap:8px;margin-top:11px;flex-wrap:wrap}
+.loc-pop__btns .loc-pop__link{margin-top:0}
+.loc-pop__tt{display:inline-flex;align-items:center;gap:5px;font-family:var(--display);font-weight:700;font-size:11px;color:var(--blue-bright);cursor:pointer;padding:7px 11px;border-radius:9px;background:rgba(255,255,255,.6);border:1px solid color-mix(in srgb,var(--blue-bright) 24%,var(--line));-webkit-backdrop-filter:blur(8px) saturate(140%);backdrop-filter:blur(8px) saturate(140%);transition:background .15s,border-color .15s,transform .15s}
+.loc-pop__tt:hover{background:color-mix(in srgb,var(--blue-bright) 10%,#fff);border-color:color-mix(in srgb,var(--blue-bright) 42%,#fff);transform:translateY(-1px)}
+.loc-pop__tt svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.loc-pop__tt[hidden]{display:none}
+/* Branch timetable modal */
+.tt-modal{position:fixed;inset:0;z-index:135;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
+.tt-modal.is-open{opacity:1}
+.tt-modal__bg{position:absolute;inset:0;background:rgba(14,36,86,.46);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.tt-modal__card{position:relative;width:100%;max-width:760px;max-height:88vh;overflow-y:auto;border-radius:22px;padding:24px 26px 24px;background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--blue);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);transform:scale(.97);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.tt-modal.is-open .tt-modal__card{transform:none}
+.tt-modal__x{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:9px;border:0;cursor:pointer;background:rgba(20,33,50,.06);color:var(--muted);font-size:18px;line-height:1;transition:.15s}
+.tt-modal__x:hover{background:rgba(20,33,50,.12);color:var(--ink)}
+.tt-modal__head{margin-bottom:14px;padding-right:40px}
+.tt-modal__title{font-family:var(--display);font-weight:800;font-size:19px;color:var(--ink)}
+.tt-modal__title-zh{font-weight:600;font-size:14px;color:var(--muted);margin-left:6px}
+.tt-modal__sub{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.tt-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.tt-leg{display:inline-flex;align-items:center;gap:7px;font-family:var(--display);font-weight:600;font-size:12px;color:var(--ink);cursor:pointer;background:transparent;border:1px solid transparent;border-radius:999px;padding:5px 12px 5px 6px;transition:transform .15s cubic-bezier(.2,.8,.2,1),box-shadow .15s ease,background .15s ease,border-color .15s ease,opacity .15s ease}
+.tt-leg:hover{transform:translateY(-1px);background:rgba(255,255,255,.6);border-color:rgba(20,33,50,.08);box-shadow:0 6px 14px -8px rgba(20,33,50,.2)}
+.tt-leg.is-active{background:rgba(255,255,255,.9);border-color:rgba(20,33,50,.16);box-shadow:0 6px 14px -8px rgba(20,33,50,.24)}
+.tt-leg.is-dim{opacity:.4}
+.tt-leg.is-dim:hover{opacity:.75}
+.tt-leg .tt-lv{width:22px;height:22px;font-size:12px}
+.tt-scroll{overflow-x:auto}
+.tt-grid{display:grid;grid-template-columns:64px repeat(6,1fr);gap:5px;min-width:580px}
+.tt-cell{border-radius:9px;min-height:42px;display:flex;align-items:center;justify-content:center;gap:5px}
+.tt-cell--head{font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.04em;color:var(--blue);background:rgba(20,33,50,.05);text-transform:uppercase;min-height:34px}
+.tt-time{font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--ink);background:rgba(20,33,50,.035);justify-content:flex-start;padding-left:9px}
+.tt-slot{background:rgba(255,255,255,.5);border:1px solid rgba(20,33,50,.06)}
+.tt-slot.is-empty{background:rgba(20,33,50,.012);border-color:transparent}
+.tt-lv{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;font-family:var(--display);font-weight:800;font-size:13px;border:1px solid transparent}
+.tt-lv--1{color:var(--l1);background:color-mix(in srgb,var(--l1) 15%,#fff);border-color:color-mix(in srgb,var(--l1) 28%,#fff)}
+.tt-lv--2{color:var(--l2);background:color-mix(in srgb,var(--l2) 15%,#fff);border-color:color-mix(in srgb,var(--l2) 28%,#fff)}
+.tt-lv--3{color:var(--l3);background:color-mix(in srgb,var(--l3) 15%,#fff);border-color:color-mix(in srgb,var(--l3) 28%,#fff)}
+.tt-lv--0{color:color-mix(in srgb,var(--p1) 78%,#6b4e00);background:color-mix(in srgb,var(--p1) 17%,#fff);border-color:color-mix(in srgb,var(--p1) 32%,#fff)}
+.tt-lv--4{color:var(--l4);background:color-mix(in srgb,var(--l4) 12%,#fff);border-color:color-mix(in srgb,var(--l4) 26%,#fff)}
+a.tt-lv{cursor:pointer;text-decoration:none;transition:transform .16s cubic-bezier(.2,.8,.2,1),box-shadow .16s ease,border-color .16s ease}
+a.tt-lv:hover{transform:translateY(-2px) scale(1.06);box-shadow:0 8px 16px -6px rgba(20,33,50,.26);border-color:color-mix(in srgb,currentColor 50%,#fff)}
+a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
+@media(max-width:560px){.tt-modal__card{padding:20px 15px}}
 .site-modal{position:fixed;inset:0;z-index:135;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
 .site-modal.is-open{opacity:1}
 .site-modal__bg{position:absolute;inset:0;background:rgba(10,18,40,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -2324,7 +2366,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
             <span class="loc" data-loc data-area="Johor" data-name="Bukit Indah" data-addr="6A, Jalan Indah 15/1, Taman Bukit Indah, 79100 Iskandar Puteri, Johor" data-img="assets/locations/bi.png" data-desc="Westside centre serving Bukit Indah &amp; Iskandar Puteri." data-map="https://maps.app.goo.gl/MVGCp1yj9zMym4Zo7"><b>Johor:</b> Bukit Indah</span>
             <span class="loc" data-loc data-area="Johor" data-name="Kulai" data-addr="205A, Jalan Kenanga 29/2, Indahpura, 81000 Kulai, Johor" data-img="assets/locations/kulai.png" data-desc="Northern Johor centre in Kulai town." data-map="https://maps.app.goo.gl/g6rKbcspsin6o1Nr7"><b>Johor:</b> Kulai</span>
             <span class="loc" data-loc data-area="Selangor" data-name="Setia Alam" data-addr="10-3-1, JALAN SETIA PRIMA P U13/P SETIA ALAM, SEKSYEN, U13, 40170 Shah Alam, Selangor" data-img="assets/locations/sp.png" data-desc="Klang Valley centre in Setia Alam." data-map="https://maps.app.goo.gl/BsvLzCFLFC91jNfa6"><b>Selangor:</b> Setia Alam</span>
-            <span class="loc" data-loc data-area="Online" data-name="Live class on Zoom" data-addr="Online \u00b7 Live via Zoom" data-img="assets/locations/online.png" data-desc="Join live, interactive lessons online via Zoom." data-map="#"><b>Online:</b> Live class on Zoom</span>
+            <span class="loc" data-loc data-area="Online" data-name="Live Class" data-addr="Online · Live Class" data-img="assets/locations/online.png" data-desc="Join live, interactive lessons online." data-map="#"><b>Online:</b> Live Class</span>
           </div>
         </div>
         <div class="adv-cue" data-cue><strong>Advisor cue:</strong> match the proof to their worry — MOE/awards for "is this legit?", HRDC for company-sponsored learners, workplace-focus for career-driven inquiries.</div>
@@ -4000,6 +4042,128 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
       ctl.addEventListener('click',function(e){ var b=e.target.closest('.sys-scale__b'); if(!b)return; e.preventDefault(); set(scale+(b.getAttribute('data-scale')==='up'?STEP:-STEP)); });
     })();
 
+    // ----- Branch timetables (data-driven; colours = TOUCH level tokens, not photo) -----
+    var TIMETABLES={
+      "Mount Austin":{
+        zh:"Mount Austin 班级时间表",
+        days:["TUE","WED","THU","FRI","SAT","SUN"],
+        times:["9:45 am","11:30 am","2:00 pm","3:45 pm","6:15 pm","8:00 pm"],
+        grid:[
+          [[],[],[],[1,3],[1],[2,3]],
+          [[],[],[],[2],[1],[2,3]],
+          [[2,3],[1,3],[2],[2],[2],[1]],
+          [[1],[2],[1,3],[2],[2,3],[]],
+          [[1],[2],[1],[],[],[]],
+          [[2],[1],[2],[],[],[]]
+        ]
+      },
+      "Setia Alam":{
+        zh:"Setia Alam 班级时间表",
+        days:["TUE","WED","THU","FRI","SAT","SUN"],
+        times:["9:45 am","11:30 am","2:00 pm","3:45 pm","6:15 pm","8:00 pm"],
+        grid:[
+          [[1],[],[],[],[1],[2]],
+          [[2],[],[],[],[2],[1]],
+          [[1],[2],[1],[1],[2],[1]],
+          [[2],[1],[2],[2],[1],[]],
+          [[],[2],[2],[1],[],[]],
+          [[],[1],[1],[2],[],[]]
+        ]
+      },
+      "Sutera Utama":{
+        zh:"Sutera Utama 班级时间表",
+        days:["TUE","WED","THU","FRI","SAT","SUN"],
+        times:["9:45 am","11:30 am","2:00 pm","3:45 pm","6:15 pm","8:00 pm"],
+        grid:[
+          [[1],[],[],[],[1],[2,3]],
+          [[2],[],[],[],[2],[2]],
+          [[2,3],[1,3],[2,3],[2],[2,3],[1]],
+          [[1],[2],[2],[2],[1,3],[]],
+          [[],[2],[1],[1],[],[]],
+          [[3],[2],[1],[2,3],[],[]]
+        ]
+      },
+      "Kulai":{
+        zh:"Kulai 班级时间表",
+        days:["TUE","WED","THU","FRI","SAT","SUN"],
+        times:["9:45 am","11:30 am","2:00 pm","3:45 pm","6:15 pm","8:00 pm"],
+        grid:[
+          [[],[],[],[],[1],[3]],
+          [[],[],[],[],[2],[2]],
+          [[2],[1],[2],[2],[2],[1]],
+          [[1],[2],[3],[3],[3],[]],
+          [[2],[1],[2],[1],[],[]],
+          [[1],[2],[1],[2],[],[]]
+        ]
+      },
+      "Bukit Indah":{
+        zh:"Bukit Indah 班级时间表",
+        days:["TUE","WED","THU","FRI","SAT","SUN"],
+        times:["9:45 am","11:30 am","2:00 pm","3:45 pm","6:15 pm","8:00 pm"],
+        grid:[
+          [[],[2],[2],[],[1],[2]],
+          [[],[1],[1],[],[2],[1]],
+          [[1],[2],[1],[1],[2],[1]],
+          [[2],[1],[2],[2],[1],[]],
+          [[2],[],[],[1],[],[]],
+          [[1],[],[],[2],[],[]]
+        ]
+      },
+      "Live Class":{
+        zh:"Online 班级时间表",
+        days:["TUE","WED","THU","FRI","SAT","SUN"],
+        times:["9:45 am","11:30 am","2:00 pm","3:45 pm","6:15 pm","8:00 pm"],
+        grid:[
+          [[2],[],[],[],[0,2,3],[1,2,3]],
+          [[2],[],[],[],[1,2,4],[0,2,3]],
+          [[1,2],[0,2,3],[1,2,4],[0,2,3],[1,2,3],[1,2,4]],
+          [[1,2,3],[1,2,4],[0,2,3],[1,2,4],[1,2,3],[]],
+          [[0,4],[1,2],[1,2,3],[0,2,4],[],[]],
+          [[1,3],[0,2,4],[0,2,3],[1,2,3],[],[]]
+        ]
+      }
+    };
+    function ttLevels(b){var set={};b.grid.forEach(function(row){row.forEach(function(cell){(cell||[]).forEach(function(n){set[n]=1;});});});return Object.keys(set).map(Number).sort(function(a,b){return a-b;});}
+    function renderTimetable(b){
+      function lv(n){return '<a class="tt-lv tt-lv--'+n+'" href="https://tec.touchenglish.edu.my/appointment/timetable#" target="_blank" rel="noopener noreferrer" aria-label="Open timetable system">'+n+'</a>';}
+      var h='<div class="tt-grid"><div class="tt-cell tt-cell--head">TIME</div>';
+      b.days.forEach(function(d){h+='<div class="tt-cell tt-cell--head">'+d+'</div>';});
+      b.times.forEach(function(t,ti){
+        h+='<div class="tt-cell tt-time">'+t+'</div>';
+        b.days.forEach(function(d,di){
+          var ls=(b.grid[ti]&&b.grid[ti][di])||[];
+          h+='<div class="tt-cell tt-slot'+(ls.length?'':' is-empty')+'">'+ls.map(lv).join('')+'</div>';
+        });
+      });
+      return h+'</div>';
+    }
+    function openTimetable(name){
+      var b=TIMETABLES[name]; if(!b)return;
+      var legend=ttLevels(b).map(function(n){return '<button type="button" class="tt-leg" data-filter="'+n+'"><span class="tt-lv tt-lv--'+n+'">'+n+'</span>Level '+n+'</button>';}).join('');
+      var m=document.createElement('div'); m.className='tt-modal'; m.id='ttModal';
+      m.innerHTML='<div class="tt-modal__bg"></div>'+
+        '<div class="tt-modal__card" role="dialog" aria-modal="true" aria-label="Class schedule">'+
+          '<button type="button" class="tt-modal__x" data-ttx aria-label="Close">\u00d7</button>'+
+          '<div class="tt-modal__head"><span class="tt-modal__title">'+name+' <span class="tt-modal__title-zh">\u65f6\u95f4\u8868</span></span><span class="tt-modal__sub">Class Schedule \u00b7 \u8bfe\u7a0b\u65f6\u95f4\u8868</span></div>'+
+          '<div class="tt-legend">'+legend+'</div>'+
+          '<div class="tt-scroll">'+renderTimetable(b)+'</div>'+
+        '</div>';
+      document.body.appendChild(m); void m.offsetWidth; m.classList.add('is-open');
+      (function(){
+        var grid=m.querySelector('.tt-grid'); var legBtns=[].slice.call(m.querySelectorAll('.tt-leg[data-filter]')); var activeFilter=null;
+        function applyFilter(){
+          var chips=grid.querySelectorAll('a.tt-lv');
+          [].forEach.call(chips,function(ch){ ch.style.display=(activeFilter===null||ch.classList.contains('tt-lv--'+activeFilter))?'':'none'; });
+          legBtns.forEach(function(btn){ var n=+btn.getAttribute('data-filter'); btn.classList.toggle('is-active',activeFilter!==null&&n===activeFilter); btn.classList.toggle('is-dim',activeFilter!==null&&n!==activeFilter); btn.setAttribute('aria-pressed',(activeFilter!==null&&n===activeFilter)?'true':'false'); });
+        }
+        legBtns.forEach(function(btn){ btn.addEventListener('click',function(){ var n=+btn.getAttribute('data-filter'); activeFilter=(activeFilter===n)?null:n; applyFilter(); }); });
+      })();
+      var escH; function close(){ if(escH)document.removeEventListener('keydown',escH,true); if(m){m.remove();m=null;} }
+      m.querySelector('.tt-modal__bg').addEventListener('click',close);
+      m.querySelector('[data-ttx]').addEventListener('click',close);
+      escH=function(e){ if(e.key==='Escape'){e.preventDefault();close();} };
+      document.addEventListener('keydown',escH,true);
+    }
     // ----- Location chips: Google-Maps-style hover/tap preview -----
     (function(){
       var chips=[].slice.call(document.querySelectorAll('.locations .loc[data-loc]'));
@@ -4014,12 +4178,17 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
             '<span class="loc-pop__area"></span>'+
             '<div class="loc-pop__name"></div>'+
             '<div class="loc-pop__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span class="loc-pop__addrtext"></span></div>'+
-            '<a class="loc-pop__link" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></a>'+
+            '<div class="loc-pop__btns">'+
+              '<a class="loc-pop__link" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></a>'+
+              '<button type="button" class="loc-pop__tt" hidden><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg><span>Timetable</span></button>'+
+            '</div>'+
           '</div>'+
         '</div>'+
         '<span class="loc-pop__arrow"></span>';
       document.body.appendChild(pop);
-      var imgEl=pop.querySelector('.loc-pop__photo img'),phName=pop.querySelector('.loc-pop__phname'),aEl=pop.querySelector('.loc-pop__area'),nEl=pop.querySelector('.loc-pop__name'),addrEl=pop.querySelector('.loc-pop__addrtext'),lEl=pop.querySelector('.loc-pop__link'),arrow=pop.querySelector('.loc-pop__arrow');
+      var imgEl=pop.querySelector('.loc-pop__photo img'),phName=pop.querySelector('.loc-pop__phname'),aEl=pop.querySelector('.loc-pop__area'),nEl=pop.querySelector('.loc-pop__name'),addrEl=pop.querySelector('.loc-pop__addrtext'),lEl=pop.querySelector('.loc-pop__link'),ttBtn=pop.querySelector('.loc-pop__tt'),arrow=pop.querySelector('.loc-pop__arrow');
+      var ttBranch=null;
+      ttBtn.addEventListener('click',function(e){ e.stopPropagation(); e.preventDefault(); if(ttBranch) openTimetable(ttBranch); });
       var hideT=null,current=null;
       function fill(c){
         var name=c.getAttribute('data-name')||'';
@@ -4031,6 +4200,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
         nEl.textContent=name;
         addrEl.textContent=c.getAttribute('data-addr')||'';
         lEl.setAttribute('href',c.getAttribute('data-map')||'#');
+        if(TIMETABLES[name]){ ttBtn.hidden=false; ttBranch=name; } else { ttBtn.hidden=true; ttBranch=null; }
       }
       function position(c){
         var pr=pop.getBoundingClientRect(), cr=c.getBoundingClientRect(), gap=11, w=pr.width, h=pr.height;
