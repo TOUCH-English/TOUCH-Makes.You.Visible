@@ -1291,6 +1291,18 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   box-shadow:0 9px 20px -8px color-mix(in srgb,var(--gc,var(--blue-bright)) 30%,transparent),0 0 20px -6px color-mix(in srgb,var(--gc,var(--blue-bright)) 34%,transparent),inset 0 1.5px 2px rgba(255,255,255,.95),inset 0 -4px 7px -4px color-mix(in srgb,var(--gc,var(--blue-bright)) 14%,transparent)}
 .team-av__name{font-size:10.5px;font-weight:600;color:var(--muted);line-height:1.2;max-width:74px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @keyframes teamPop{0%{opacity:0;transform:scale(.4)}60%{opacity:1;transform:scale(1.12)}100%{transform:scale(1)}}
+.team-box{cursor:pointer}
+.site-modal.teamzoom{z-index:136}
+.teamzoom__card{height:auto;max-height:88vh;max-width:760px}
+.teamzoom__head .zh{font-weight:600;font-size:12px;color:var(--muted)}
+.teamzoom__body{background:transparent;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:22px 26px 28px}
+.teamzoom__grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:26px 18px;margin:0 auto}
+.teamzoom .team-av{cursor:pointer;flex:0 0 auto}
+.teamzoom .team-av__ring{width:100%;height:auto;aspect-ratio:1/1;max-width:88px;margin:0 auto}
+.teamzoom .team-av__ph{font-size:26px}
+.teamzoom .team-av__name{font-size:12px;font-weight:600;color:var(--ink);opacity:.82;max-width:100%;margin-top:7px;white-space:normal;line-height:1.25}
+.teamzoom.is-open .team-av{animation:teamPop .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--zd,0s)}
+@media (max-width:560px){ .teamzoom__body{padding:18px 14px 24px} .teamzoom__grid{gap:20px 12px} .teamzoom .team-av__ring{max-width:66px} .teamzoom .team-av__ph{font-size:22px} }
 /* avatar profile preview — Instagram-story / Success-Story glass card */
 .profile-pop{position:fixed;inset:0;z-index:137;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
 .profile-pop.is-open{opacity:1}
@@ -3898,6 +3910,24 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         '</div>';
       document.body.appendChild(m);
       m.querySelectorAll(".team-av__ring img").forEach(function(im){ if(im.complete && im.naturalWidth>0){ im.parentNode.classList.add("has-photo"); } });
+      // Balanced avatar rows: fit all in one row if width allows, else split into even rows (e.g. 7 -> 4+3, never 6+1)
+      function balanceTeamGrids(){
+        if(!m||!m.parentNode) return;
+        m.querySelectorAll(".team-grid").forEach(function(grid){
+          var n=grid.querySelectorAll(".team-av").length; if(!n) return;
+          var w=grid.clientWidth; if(!w) return;
+          var cellMin=58, gap=10;
+          var maxCols=Math.max(1, Math.floor((w+gap)/(cellMin+gap)));
+          var cols;
+          if(n<=maxCols){ cols=n; }
+          else { var rows=Math.ceil(n/maxCols); cols=Math.ceil(n/rows);
+            var last=n-(rows-1)*cols;
+            if(last===1 && cols>2){ var c2=cols-1; if((n-(Math.ceil(n/c2)-1)*c2)!==1) cols=c2; } }
+          grid.style.gridTemplateColumns="repeat("+cols+",1fr)";
+        });
+      }
+      requestAnimationFrame(balanceTeamGrids);
+      window.addEventListener("resize",balanceTeamGrids);
       function closeProfile(){ var pr=document.getElementById("teamProfile"); if(pr){ pr.remove(); } }
       function openProfile(gi,mi){
         var g=TEAM[gi]; if(!g) return; var pn=g.members[mi]; if(!pn) return;
@@ -3943,8 +3973,61 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         av.addEventListener("click",function(){ openProfile(+av.getAttribute("data-gi"), +av.getAttribute("data-mi")); });
         av.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openProfile(+av.getAttribute("data-gi"), +av.getAttribute("data-mi")); } });
       });
-      var escH=function(e){ if(e.key==="Escape"){ e.stopPropagation();e.preventDefault(); if(document.getElementById("teamProfile")){ closeProfile(); } else { close(); } } };
-      function close(){ closeProfile(); document.removeEventListener("keydown",escH,true); m.remove(); }
+      // Click a team card (not an avatar) -> open a larger team popup (HRDC-style glass)
+      m.querySelectorAll(".team-box").forEach(function(box,gi){
+        box.setAttribute("role","button"); box.setAttribute("tabindex","0"); box.setAttribute("aria-label",(TEAM[gi]?TEAM[gi].group:"Team")+" \u2014 view team");
+        box.addEventListener("click",function(e){ if(e.target.closest(".team-av"))return; openTeamZoom(gi); });
+        box.addEventListener("keydown",function(e){ if((e.key==="Enter"||e.key===" ")&&!e.target.closest(".team-av")){ e.preventDefault(); openTeamZoom(gi); } });
+      });
+      function openTeamZoom(gi){
+        var g=TEAM[gi]; if(!g) return;
+        var old=document.getElementById("teamZoom"); if(old)old.remove();
+        var avs=g.members.map(function(p,mi){
+          return '<div class="team-av" data-gi="'+gi+'" data-mi="'+mi+'" role="button" tabindex="0" aria-label="'+p.n+' profile" style="--zd:'+(mi*0.04).toFixed(2)+'s">'+
+            '<span class="team-av__ring"><span class="team-av__ph">'+initial(p.n)+'</span><img alt="'+p.n+'" loading="lazy" src="'+p.img+'" onerror="this.classList.add(\'team-av--noimg\')" onload="this.parentNode.classList.add(\'has-photo\')"></span>'+
+            '<span class="team-av__name">'+p.n+'</span>'+
+          '</div>';
+        }).join("");
+        var z=document.createElement("div"); z.id="teamZoom"; z.className="site-modal teamzoom"; z.style.setProperty("--gc",g.c);
+        z.innerHTML='<div class="site-modal__bg"></div>'+
+          '<div class="site-modal__card teamzoom__card" role="dialog" aria-modal="true" aria-label="'+g.group+'">'+
+            '<div class="site-modal__head teamzoom__head"><span class="site-modal__title">'+g.group+(g.desc?' <span class="zh">'+g.desc+'</span>':'')+'</span>'+
+              '<button type="button" class="site-modal__x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'+
+            '<div class="site-modal__body teamzoom__body"><div class="team-grid teamzoom__grid">'+avs+'</div></div>'+
+          '</div>';
+        document.body.appendChild(z);
+        z.querySelectorAll(".team-av__ring img").forEach(function(im){ if(im.complete && im.naturalWidth>0){ im.parentNode.classList.add("has-photo"); } });
+        z.querySelectorAll(".team-av").forEach(function(av){
+          av.addEventListener("click",function(){ openProfile(+av.getAttribute("data-gi"), +av.getAttribute("data-mi")); });
+          av.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openProfile(+av.getAttribute("data-gi"), +av.getAttribute("data-mi")); } });
+        });
+        function balZoom(){
+          var grid=z.querySelector(".teamzoom__grid"); if(!grid)return;
+          var avs=grid.querySelectorAll(".team-av"); var n=avs.length; if(!n)return;
+          grid.style.maxWidth="none";
+          var availW=grid.clientWidth; if(!availW)return;
+          var small=window.matchMedia("(max-width:560px)").matches;
+          var gap=small?12:18, targetCell=small?76:104, maxCell=small?80:112;
+          var maxCols=Math.max(1,Math.floor((availW+gap)/(targetCell+gap)));
+          var cols;
+          if(n<=maxCols){ cols=n; }
+          else { var rows=Math.ceil(n/maxCols); cols=Math.ceil(n/rows); while(cols<n && (n-(Math.ceil(n/cols)-1)*cols)===1) cols++; }
+          var contMax=Math.min(availW, cols*maxCell+(cols-1)*gap);
+          var cell=Math.floor((contMax-(cols-1)*gap)/cols);
+          grid.style.maxWidth=contMax+"px";
+          avs.forEach(function(a){ a.style.flex="0 0 "+cell+"px"; a.style.maxWidth=cell+"px"; });
+        }
+        requestAnimationFrame(balZoom);
+        window.addEventListener("resize",balZoom);
+        var zEsc; function zclose(){ if(zEsc)document.removeEventListener("keydown",zEsc,true); window.removeEventListener("resize",balZoom); z.remove(); }
+        z.querySelector(".site-modal__bg").addEventListener("click",zclose);
+        z.querySelector(".site-modal__x").addEventListener("click",zclose);
+        zEsc=function(e){ if(e.key==="Escape"){ e.stopPropagation();e.preventDefault(); if(document.getElementById("teamProfile")){ closeProfile(); } else { zclose(); } } };
+        document.addEventListener("keydown",zEsc,true);
+        void z.offsetWidth; z.classList.add("is-open");
+      }
+      var escH=function(e){ if(e.key==="Escape"){ if(document.getElementById("teamZoom"))return; e.stopPropagation();e.preventDefault(); if(document.getElementById("teamProfile")){ closeProfile(); } else { close(); } } };
+      function close(){ closeProfile(); document.removeEventListener("keydown",escH,true); window.removeEventListener("resize",balanceTeamGrids); m.remove(); }
       m.querySelector(".team-modal__bg").addEventListener("click",close);
       m.querySelector(".team-modal__x").addEventListener("click",close);
       document.addEventListener("keydown",escH,true);
