@@ -650,6 +650,8 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .stf__sel{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:30px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:11px}
 .gallery-modal__foot{position:relative}
 .gallery-advnote{position:absolute;right:12px;top:50%;transform:translateY(-50%)}
+.s1yt-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px;flex-wrap:wrap}
+.s1yt-msg{font-family:var(--display);font-weight:600;font-size:11.5px;min-height:14px}
 .st-linktree{display:inline-flex;align-items:center;gap:7px;margin:0 0 14px;font-family:var(--display);font-weight:700;font-size:12px;color:var(--ink);text-decoration:none;padding:8px 13px;border-radius:10px;background:rgba(255,255,255,.62);border:1px solid var(--line);-webkit-backdrop-filter:blur(8px) saturate(140%);backdrop-filter:blur(8px) saturate(140%);transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
 .st-linktree:hover{transform:translateY(-1px);background:#fff;border-color:color-mix(in srgb,var(--c,#2A5BD7) 40%,var(--line));box-shadow:0 8px 18px -10px rgba(20,33,50,.3)}
 .st-linktree__ic{display:inline-flex;color:#FF0000}
@@ -1859,7 +1861,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   .fivec{grid-template-columns:repeat(2,1fr)}
   .cflow{grid-template-columns:1fr}
   /* Learning System journey map: taller panel, compact floating cards */
-  .sys-overview{min-height:calc(560px * var(--sys-scale,1));border-radius:22px}
+  .sys-overview{min-height:calc(740px * var(--sys-scale,1));border-radius:22px}
   .sys-node{width:calc(104px * var(--sys-scale,1));padding:calc(12px * var(--sys-scale,1)) calc(8px * var(--sys-scale,1)) calc(10px * var(--sys-scale,1));gap:calc(7px * var(--sys-scale,1))}
   .sys-node__dot{width:calc(50px * var(--sys-scale,1));height:calc(50px * var(--sys-scale,1));border-radius:16px}
   .sys-node__dot .ic svg{width:calc(28px * var(--sys-scale,1));height:calc(28px * var(--sys-scale,1))}
@@ -3402,7 +3404,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
     // ----- build the journey map: winding path + floating icon cards + summit flag -----
     var NODES_WIDE=[[7,76],[19,50],[32,70],[45,38],[57,64],[69,32],[81,58],[93,26]];
-    var NODES_TALL=[[30,7],[70,18],[31,31],[70,44],[30,57],[70,69],[31,82],[68,93]];
+    var NODES_TALL=[[32,8],[68,20],[32,32],[68,44],[32,56],[68,68],[32,80],[67,92]];
     var nodesHTML=SYS.map(function(s,i){
       return '<button class="sys-node" data-s="'+i+'" style="--c:'+s.col+'">'+
         '<span class="sys-node__dot"><span class="ic">'+sv(s.ic)+'</span><span class="n">'+(i+1)+'</span></span>'+
@@ -3759,13 +3761,16 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     function linksReset(){try{localStorage.removeItem(LINK_KEY);}catch(e){}}
     // ----- Stage 01 "Learning Recharge" YouTube popup -----
     var IPA_VIDEO="MVW8tgTO18I"; // youtube.com/live/MVW8tgTO18I -> embed
+    var S1_VKEY="te_stage01_video_v1";
+    function stage01VideoRaw(){ try{ return localStorage.getItem(S1_VKEY)||""; }catch(e){ return ""; } }
+    function stage01VideoId(){ var raw=stage01VideoRaw(); if(raw){ var id=ytId(raw); if(id) return id; } return IPA_VIDEO; }
     window.ipaPlay=function(){
       var old=document.getElementById("ytModal"); if(old)old.remove();
       var m=document.createElement("div"); m.id="ytModal"; m.className="yt-modal";
       m.innerHTML='<div class="yt-modal__bg"></div>'+
         '<div class="yt-modal__card" role="dialog" aria-modal="true" aria-label="Learning Recharge">'+
           '<button type="button" class="yt-modal__x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'+
-          '<div class="yt-modal__frame"><iframe src="https://www.youtube.com/embed/'+IPA_VIDEO+'?rel=0&autoplay=1" title="Learning Recharge" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'+
+          '<div class="yt-modal__frame"><iframe src="https://www.youtube.com/embed/'+stage01VideoId()+'?rel=0&autoplay=1" title="Learning Recharge" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'+
         '</div>';
       document.body.appendChild(m);
       var escH=function(e){ if(e.key==="Escape"){e.stopPropagation();e.preventDefault();close();} };
@@ -4621,9 +4626,15 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       '</div>';
     }
     function stage01AdvBody(){
+      var raw=stage01VideoRaw(), curv=raw||("https://youtu.be/"+IPA_VIDEO);
+      var S1V=curv.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
       return '<div class="advnotes">'+
         '<p class="adv-modal__hint">STAGE 01 · Find Your Voice 的顾问备注与资源。下方 Linktree 可快速打开相关资源链接。</p>'+
         '<a class="st-linktree" href="https://linktr.ee/TouchEnglish_CN" target="_blank" rel="noopener noreferrer"><svg class="st-linktree__lic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><path d="M8 12h8"/></svg><span>Linktree</span><svg class="st-linktree__ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>'+
+        '<div class="advnote__sec advnote__sec--edit"><h4>YouTube Link <span class="zh">视频链接</span></h4>'+
+          '<label class="stf stf--full"><span class="stf__l">完整 YouTube 网址或视频 ID（保存后客户端视频自动更新）</span><input class="stf__i" id="s1ytInput" type="text" value="'+S1V+'" placeholder="https://youtu.be/..."></label>'+
+          '<div class="s1yt-row"><span class="s1yt-msg" id="s1ytMsg"></span><span class="adv-modal__btns-r"><button type="button" class="adv-btn adv-btn--ghost" id="s1ytReset">Reset</button><button type="button" class="adv-btn adv-btn--save" id="s1ytSave">Save</button></span></div>'+
+        '</div>'+
         '<div class="advnote__sec"><h4>Core Message <span class="zh">核心概念</span></h4>'+
           '<p class="zh">这不只是音标课，而是「学习充电站」——由院长每月亲自带领。</p>'+
           '<p class="zh">重点不只是发音，更是帮助学员建立更好的学习心态与方法。</p></div>'+
@@ -4631,7 +4642,24 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           '<p class="zh">「舞台帮助你练习，音标帮助你找到自己的声音。」让客户明白这是持续的学习支持，而非一次性发音课。</p></div>'+
       '</div>';
     }
-    var ADVNOTE={ 2:{title:"Advisor Note", zh:"顾问讲解备注", build:stage01AdvBody}, 4:{title:"Advisor Note", zh:"顾问讲解备注", build:step5AdvBody, mount:step5AdvMount}, 6:{title:"Advisor Note", zh:"顾问讲解备注", build:next24AdvBody} };
+    function stage01AdvMount(m){
+      var input=m.querySelector("#s1ytInput"); if(!input)return;
+      var save=m.querySelector("#s1ytSave"), reset=m.querySelector("#s1ytReset"), msg=m.querySelector("#s1ytMsg");
+      function flash(t,ok){ if(!msg)return; msg.textContent=t; msg.style.color=ok?"#2E9E50":"#E0303B"; }
+      if(save)save.addEventListener("click",function(){
+        var v=(input.value||"").trim();
+        if(!v){ try{localStorage.removeItem(S1_VKEY);}catch(e){} flash("已清除，使用默认视频",true); return; }
+        var id=ytId(v);
+        if(!id){ flash("无法识别链接，请检查",false); return; }
+        try{ localStorage.setItem(S1_VKEY,v); }catch(e){}
+        flash("已保存 ✓ ("+id+")",true);
+      });
+      if(reset)reset.addEventListener("click",function(){
+        try{localStorage.removeItem(S1_VKEY);}catch(e){}
+        input.value="https://youtu.be/"+IPA_VIDEO; flash("已恢复默认",true);
+      });
+    }
+    var ADVNOTE={ 2:{title:"Advisor Note", zh:"顾问讲解备注", build:stage01AdvBody, mount:stage01AdvMount}, 4:{title:"Advisor Note", zh:"顾问讲解备注", build:step5AdvBody, mount:step5AdvMount}, 6:{title:"Advisor Note", zh:"顾问讲解备注", build:next24AdvBody} };
     function openAdvNote(i){
       var d=ADVNOTE[i]; if(!d)return;
       var m=document.createElement("div"); m.className="adv-modal adv-modal--note"; m.id="advNoteModal";
