@@ -1891,6 +1891,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-card.is-hero .sumtr-card__t{font-size:27px}
 .sumtr-card__t span{font-weight:700;font-size:.64em;color:var(--muted);margin-left:7px}
 .sumtr-card__sub{font-size:12px;font-weight:500;color:var(--muted);margin-top:5px;letter-spacing:.01em}
+.sumtr-card__tag{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:11px;font-weight:600;letter-spacing:.03em;color:var(--faint)}
+.sumtr-card__tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--cc);opacity:.55}
+.sumtr-card.is-hero .sumtr-card__tag{font-size:12.5px;margin-top:11px}
 .sumtr-card.is-hero .sumtr-card__sub{font-size:15px;margin-top:8px;color:var(--faint)}
 .sumtr-card.is-hero .sumtr-card__slot{animation:sumtrSlotIn .85s cubic-bezier(.2,.7,.2,1) both}
 .sumtr-card.is-hero .sumtr-card__main{animation:sumtrFade .6s ease .05s both}
@@ -1925,8 +1928,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 /* feature popup — module-centred floating card */
 .sumtr-pop{position:absolute;inset:0;z-index:40;display:none;align-items:center;justify-content:center;padding:24px}
 .sumtr-pop.is-open{display:flex}
-.sumtr-pop__bd{position:absolute;inset:0;background:rgba(20,33,50,.26);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);animation:sumtrFade .25s ease}
-.sumtr-pop__card{position:relative;z-index:1;max-width:360px;width:100%;border-radius:20px;padding:24px 22px 22px;text-align:left;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));border:1px solid rgba(255,255,255,.9);box-shadow:0 32px 72px -28px rgba(14,36,86,.55),inset 0 1px 0 rgba(255,255,255,.9);animation:sumtrPopIn .3s cubic-bezier(.2,.7,.2,1)}
+.sumtr-pop__bd{position:absolute;inset:0;background:radial-gradient(54% 58% at 50% 47%,rgba(248,250,255,.5) 0%,rgba(248,250,255,.18) 42%,rgba(248,250,255,0) 74%);-webkit-backdrop-filter:blur(7px) saturate(112%);backdrop-filter:blur(7px) saturate(112%);-webkit-mask:radial-gradient(62% 66% at 50% 47%,#000 0%,#000 36%,transparent 82%);mask:radial-gradient(62% 66% at 50% 47%,#000 0%,#000 36%,transparent 82%);animation:sumtrFade .3s ease}
+.sumtr-pop__card{position:relative;z-index:1;max-width:360px;width:100%;border-radius:22px;padding:24px 22px 22px;text-align:left;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.58));-webkit-backdrop-filter:blur(30px) saturate(180%);backdrop-filter:blur(30px) saturate(180%);border:1px solid rgba(255,255,255,.6);box-shadow:0 22px 54px -24px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.7);animation:sumtrPopIn .3s cubic-bezier(.2,.7,.2,1)}
 .sumtr-pop__ic{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--cc,var(--blue-bright)) 12%,#fff);box-shadow:inset 0 0 0 1px rgba(20,33,50,.05),0 6px 16px -8px color-mix(in srgb,var(--cc,var(--blue-bright)) 40%,transparent)}
 .sumtr-pop__ic svg{width:24px;height:24px;stroke:var(--cc,var(--blue-bright));fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .sumtr-pop__t{font-family:var(--display);font-weight:800;font-size:19px;color:var(--ink);margin-top:14px;line-height:1.2}
@@ -1957,6 +1960,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
 .sumtr-final{text-align:center;margin-top:32px;animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
 .sumtr-final__flow{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.16em;color:var(--blue-bright);text-transform:uppercase}
+.sumtr-final__map{font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--faint);margin-top:5px}
 .sumtr-final__h{font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,30px);color:var(--ink);margin-top:12px;line-height:1.15}
 .sumtr-final__p{font-size:15px;color:var(--muted);max-width:54ch;margin:14px auto 0;line-height:1.6}
 .sumtr-final__p .zh{display:block;color:var(--faint);margin-top:6px}
@@ -2630,46 +2634,50 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             <article class="sumtr-card sumtr-card--mirror" style="--cc:var(--blue-bright)">
               <div class="sumtr-card__main">
                 <div class="sumtr-card__slot" role="img" aria-label="Mirror visual (assets/journey/mirror.png)"></div>
-                <h3 class="sumtr-card__t">镜子 <span>Mirror</span></h3>
-                <div class="sumtr-card__sub">See Yourself First</div>
+                <h3 class="sumtr-card__t">Discover</h3>
+                <div class="sumtr-card__sub">Know Yourself First</div>
+                <div class="sumtr-card__tag">镜子 Mirror</div>
               </div>
               <div class="sumtr-card__feats">
-                <button type="button" class="sumtr-feat" data-title="Personality Analysis" data-zh="性格分析" data-desc="Understand how you learn best." data-deszh="了解你最适合的学习方式。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></span><span class="sumtr-feat__tx"><b>Personality</b><i>Analysis</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Goal Setting" data-zh="目标设定" data-desc="Get clear on what you want to achieve." data-deszh="明确你想达成的目标。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r=".7" fill="currentColor" stroke="none"/></svg></span><span class="sumtr-feat__tx"><b>Goal</b><i>Setting</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Class Review" data-zh="课堂复盘" data-desc="Reflect, improve and move forward." data-deszh="复盘、改进，持续前进。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="m9 13 2 2 4-4"/></svg></span><span class="sumtr-feat__tx"><b>Class</b><i>Review</i></span></button>
+                <button type="button" class="sumtr-feat" data-title="Personality Analysis" data-zh="性格分析" data-desc="A quick check of how you learn, before classes start — so your teacher teaches you the way that fits you best." data-deszh="开课前先做的性格与学习风格测评，让老师从第一天就按你的性格调整节奏，不是一刀切。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></span><span class="sumtr-feat__tx"><b>Personality</b><i>Analysis</i></span></button>
+                <button type="button" class="sumtr-feat" data-title="Goal Setting" data-zh="目标设定" data-desc="A one-on-one chat to set your English goal, so every class follows it and progress feels real." data-deszh="一对一设定你的英语目标，之后每堂课都对着目标走，进步看得见、不盲目。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r=".7" fill="currentColor" stroke="none"/></svg></span><span class="sumtr-feat__tx"><b>Goal</b><i>Setting</i></span></button>
+                <button type="button" class="sumtr-feat" data-title="Class Review" data-zh="课堂复盘" data-desc="A review after your first 24 classes — look back with your teacher, lock in your progress and set your next focus." data-deszh="完成前 24 节课后的系统复盘：和老师一起回顾、巩固成果，并确定下一阶段重点。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="m9 13 2 2 4-4"/></svg></span><span class="sumtr-feat__tx"><b>Class</b><i>Review</i></span></button>
               </div>
             </article>
 
             <article class="sumtr-card sumtr-card--stage" style="--cc:var(--red)">
               <div class="sumtr-card__main">
                 <div class="sumtr-card__slot" role="img" aria-label="Stage visual (assets/journey/stage.png)"></div>
-                <h3 class="sumtr-card__t">舞台 <span>Stage</span></h3>
+                <h3 class="sumtr-card__t">Practice</h3>
                 <div class="sumtr-card__sub">Start Speaking</div>
+                <div class="sumtr-card__tag">舞台 Stage</div>
               </div>
               <div class="sumtr-card__feats">
-                <button type="button" class="sumtr-feat" data-title="IPA Foundation" data-zh="国际音标" data-desc="Build a strong pronunciation base." data-deszh="打好发音基础。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M4 10v4M9 6v12M14 3v18M19 9v6"/></svg></span><span class="sumtr-feat__tx"><b>IPA</b><i>Foundation</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Live Classes" data-zh="正式课堂" data-desc="Learn with real teachers." data-deszh="跟真人老师学习。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 5.5a3 3 0 0 1 0 5.8"/><path d="M20.5 19a5.5 5.5 0 0 0-4-5.3"/></svg></span><span class="sumtr-feat__tx"><b>Live</b><i>Classes</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Practice &amp; Speak" data-zh="练习开口" data-desc="Apply and speak with confidence." data-deszh="实践并自信开口。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></span><span class="sumtr-feat__tx"><b>Practice</b><i>Speaking</i></span></button>
+                <button type="button" class="sumtr-feat" data-title="IPA Foundation" data-zh="国际音标" data-desc="A simple intro to English sounds (IPA), so you speak clearer and worry less about pronunciation." data-deszh="国际音标发音系统的基础教学，让你开口更清楚、更早消除发音恐惧。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M4 10v4M9 6v12M14 3v18M19 9v6"/></svg></span><span class="sumtr-feat__tx"><b>IPA</b><i>Foundation</i></span></button>
+                <button type="button" class="sumtr-feat" data-title="Live Classes" data-zh="正式课堂" data-desc="Small-group speaking classes where you speak in every lesson using the 5C method — building the habit of speaking, step by step." data-deszh="小班口语课，每堂课用 5C 方法开口练习，一步步建立开口习惯与肌肉记忆。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 5.5a3 3 0 0 1 0 5.8"/><path d="M20.5 19a5.5 5.5 0 0 0-4-5.3"/></svg></span><span class="sumtr-feat__tx"><b>Live</b><i>Classes</i></span></button>
+                <button type="button" class="sumtr-feat" data-title="Practice &amp; Speak" data-zh="练习开口" data-desc="More than just listening — you keep practising real speaking. Guided drills and real-use scenarios build the confidence to speak." data-deszh="不只是听课，而是持续开口练习：引导式练习加真实场景应用，建立敢开口的自信。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></span><span class="sumtr-feat__tx"><b>Practice</b><i>Speaking</i></span></button>
               </div>
             </article>
 
             <article class="sumtr-card sumtr-card--system" style="--cc:var(--blue)">
               <div class="sumtr-card__main">
                 <div class="sumtr-card__slot" role="img" aria-label="System visual (assets/journey/system.png)"></div>
-                <h3 class="sumtr-card__t">系统 <span>System</span></h3>
-                <div class="sumtr-card__sub">Grow with Structure</div>
+                <h3 class="sumtr-card__t">Grow</h3>
+                <div class="sumtr-card__sub">Improve with Structure</div>
+                <div class="sumtr-card__tag">系统 System</div>
               </div>
               <div class="sumtr-card__feats">
-                <button type="button" class="sumtr-feat" data-title="Learning System" data-zh="学习系统" data-desc="A clear path that guides your progress." data-deszh="清晰的路线指引你的进步。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v3M6 16v-2h12v2"/></svg></span><span class="sumtr-feat__tx"><b>Learning</b><i>System</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Review &amp; Feedback" data-zh="复盘反馈" data-desc="We track, support and improve together." data-deszh="一起追踪、支持、进步。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3 6 1.4 1.4L7 5"/><path d="M4 12h.01M4 18h.01"/></svg></span><span class="sumtr-feat__tx"><b>Review</b><i>&amp; Feedback</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Final Assessment" data-zh="结业评估" data-desc="Measure your growth and achievement." data-deszh="衡量你的成长与成果。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="m8.5 13-1.5 7 5-2.5 5 2.5-1.5-7"/></svg></span><span class="sumtr-feat__tx"><b>Final</b><i>Assessment</i></span></button>
+                <button type="button" class="sumtr-feat" data-title="Learning System" data-zh="学习系统" data-desc="An online system to learn between classes — check progress, review lessons and read feedback anytime, so you keep learning, never on your own." data-deszh="课堂之外的线上学习系统：随时看进度、复习教材、查看老师反馈，课后也能持续学、不盲目。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v3M6 16v-2h12v2"/></svg></span><span class="sumtr-feat__tx"><b>Learning</b><i>System</i></span></button>
+                <button type="button" class="sumtr-feat" data-title="Review &amp; Feedback" data-zh="复盘反馈" data-desc="Ongoing progress tracking and feedback — you always know how far you have come, what to strengthen and what to do next." data-deszh="持续的进度追踪与反馈：你始终清楚自己进步到哪、哪里要加强、下一步该做什么。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3 6 1.4 1.4L7 5"/><path d="M4 12h.01M4 18h.01"/></svg></span><span class="sumtr-feat__tx"><b>Review</b><i>&amp; Feedback</i></span></button>
+                <button type="button" class="sumtr-feat" data-title="Final Assessment" data-zh="结业评估" data-desc="A final review and speaking check — measure your growth and set your next goal or level." data-deszh="期末复盘与口语测评：衡量你的成长，并建议下一程度或下一目标。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="m8.5 13-1.5 7 5-2.5 5 2.5-1.5-7"/></svg></span><span class="sumtr-feat__tx"><b>Final</b><i>Assessment</i></span></button>
               </div>
             </article>
 
           </div>
 
           <div class="sumtr-final" id="sumtrFinal" hidden>
-            <div class="sumtr-final__flow">Mirror &rarr; Stage &rarr; System</div>
+            <div class="sumtr-final__flow">Discover &rarr; Practice &rarr; Grow</div>
+            <div class="sumtr-final__map">Mirror &rarr; Stage &rarr; System</div>
             <h3 class="sumtr-final__h">This is the complete TOUCH learning journey.</h3>
             <p class="sumtr-final__p">You are not just joining English classes &mdash; you are entering a complete learning system. <span class="zh">你买的不只是英文课，而是一整套完整的学习系统。</span></p>
           </div>
