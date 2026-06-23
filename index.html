@@ -1871,56 +1871,55 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sumtr:not([data-step="0"]) .sumtr-head{margin-bottom:22px}
 
 .sumtr-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;transition:gap .5s ease}
-.sumtr-card{position:relative;border-radius:var(--r-lg);padding:26px 22px 24px;background:linear-gradient(165deg,rgba(255,255,255,.74),rgba(255,255,255,.52));-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);border:1px solid rgba(255,255,255,.85);box-shadow:0 18px 44px -22px rgba(14,36,86,.42),inset 0 1px 0 rgba(255,255,255,.9);overflow:hidden;transition:opacity .55s cubic-bezier(.2,.7,.2,1),filter .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1),box-shadow .6s ease,padding .5s cubic-bezier(.2,.7,.2,1)}
-.sumtr-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--cc),color-mix(in srgb,var(--cc) 50%,#fff));opacity:.95}
-/* ===== Apple-style presentation scene: active metaphor = big centre hero + side buttons; others = faded side cards ===== */
+/* ===== Apple-style presentation scene: one big centre hero (frameless floating visual) + side glass buttons; others = faint side previews ===== */
 .sumtr-card--mirror{--slot:url('assets/journey/mirror.png')}
 .sumtr-card--stage{--slot:url('assets/journey/stage.png')}
 .sumtr-card--system{--slot:url('assets/journey/system.png')}
-.sumtr-cards{display:flex;align-items:center;justify-content:center;gap:26px;min-height:440px;flex-wrap:nowrap}
-.sumtr-card{flex:0 1 210px;display:flex;flex-direction:column;align-items:center;text-align:center;opacity:.5;transition:opacity .5s cubic-bezier(.2,.7,.2,1),flex-basis .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1)}
-.sumtr-card.is-side{opacity:.5}
-.sumtr-card.is-hero{flex:0 0 auto;opacity:1;flex-direction:row;align-items:center;gap:30px}
-.sumtr-card.is-summary{opacity:1;flex:0 1 232px}
+.sumtr-card::before{content:none}
+.sumtr-cards{display:flex;align-items:center;justify-content:center;gap:30px;min-height:470px;flex-wrap:nowrap}
+.sumtr-card{flex:0 1 200px;display:flex;flex-direction:column;align-items:center;text-align:center;background:none;border:0;box-shadow:none;padding:0;border-radius:0;overflow:visible;opacity:.34;filter:blur(1.5px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),filter .55s ease,flex-basis .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
+.sumtr-card.is-side{opacity:.3;filter:blur(2px)}
+.sumtr-card.is-hero{flex:0 0 auto;opacity:1;filter:none;flex-direction:row;align-items:center;gap:40px}
+.sumtr-card.is-summary{opacity:1;filter:none;flex:0 1 220px}
 .sumtr-card__main{display:flex;flex-direction:column;align-items:center;text-align:center}
-.sumtr-card__slot{width:180px;aspect-ratio:1/1;margin:0 auto 12px;border-radius:26px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.85);transition:width .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease;
-  background-image:var(--slot),linear-gradient(125deg,rgba(255,255,255,0) 42%,rgba(255,255,255,.55) 50%,rgba(255,255,255,0) 58%),radial-gradient(120% 95% at 36% 26%,rgba(255,255,255,.94),color-mix(in srgb,var(--cc) 16%,#fff));
-  background-size:cover,cover,cover;background-position:center;background-repeat:no-repeat;
-  box-shadow:0 20px 46px -22px rgba(14,36,86,.42),0 0 0 6px rgba(255,255,255,.5),inset 0 1px 0 rgba(255,255,255,.9),0 0 52px -14px color-mix(in srgb,var(--cc) 30%,transparent)}
-.sumtr-card.is-hero .sumtr-card__slot{width:300px;box-shadow:0 30px 60px -26px rgba(14,36,86,.5),0 0 0 7px rgba(255,255,255,.6),inset 0 1px 0 rgba(255,255,255,.95),0 0 72px -16px color-mix(in srgb,var(--cc) 42%,transparent)}
-.sumtr-card__t{font-family:var(--display);font-weight:800;font-size:18px;color:var(--ink);line-height:1.15;transition:font-size .5s ease}
-.sumtr-card.is-hero .sumtr-card__t{font-size:26px}
-.sumtr-card__t span{font-weight:700;font-size:.66em;color:var(--muted);margin-left:7px}
-.sumtr-card__sub{font-size:12.5px;font-weight:600;color:var(--cc);margin-top:5px;letter-spacing:.02em}
-.sumtr-card.is-hero .sumtr-card__sub{font-size:14.5px;margin-top:7px}
-.sumtr-card.is-hero .sumtr-card__slot{animation:sumtrSlotIn .8s cubic-bezier(.2,.7,.2,1) both}
+.sumtr-card__slot{width:148px;aspect-ratio:1/1;margin:0 auto 14px;position:relative;
+  background-image:var(--slot),radial-gradient(circle at 50% 46%,color-mix(in srgb,var(--cc) 22%,#fff) 0%,rgba(255,255,255,.5) 40%,rgba(255,255,255,0) 72%);
+  background-size:contain,118% 118%;background-position:center,center;background-repeat:no-repeat,no-repeat;
+  filter:drop-shadow(0 20px 30px color-mix(in srgb,var(--cc) 18%,transparent));transition:width .55s cubic-bezier(.2,.7,.2,1)}
+.sumtr-card.is-hero .sumtr-card__slot{width:330px;filter:drop-shadow(0 34px 50px color-mix(in srgb,var(--cc) 24%,transparent))}
+.sumtr-card__t{font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink);line-height:1.15;transition:font-size .5s ease}
+.sumtr-card.is-hero .sumtr-card__t{font-size:27px}
+.sumtr-card__t span{font-weight:700;font-size:.64em;color:var(--muted);margin-left:7px}
+.sumtr-card__sub{font-size:12px;font-weight:500;color:var(--muted);margin-top:5px;letter-spacing:.01em}
+.sumtr-card.is-hero .sumtr-card__sub{font-size:15px;margin-top:8px;color:var(--faint)}
+.sumtr-card.is-hero .sumtr-card__slot{animation:sumtrSlotIn .85s cubic-bezier(.2,.7,.2,1) both}
 .sumtr-card.is-hero .sumtr-card__main{animation:sumtrFade .6s ease .05s both}
-@keyframes sumtrSlotIn{from{opacity:0;filter:blur(10px);transform:translateY(14px) scale(.96)}to{opacity:1;filter:blur(0);transform:none}}
-/* side feature buttons (only on hero, to the RIGHT of the visual) */
-.sumtr-card__feats{display:none;flex-direction:column;gap:11px;width:208px}
+@keyframes sumtrSlotIn{from{opacity:0;filter:blur(12px);transform:translateY(16px) scale(.94)}to{opacity:1;filter:blur(0);transform:none}}
+/* floating glass buttons (to the RIGHT of the hero visual) */
+.sumtr-card__feats{display:none;flex-direction:column;gap:14px;width:224px}
 .sumtr-card.is-feats .sumtr-card__feats{display:flex}
-.sumtr-feat{display:flex;align-items:center;gap:11px;width:100%;text-align:left;padding:11px 14px;border-radius:15px;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);box-shadow:0 12px 26px -16px rgba(14,36,86,.4),inset 0 1px 0 rgba(255,255,255,.85);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;animation:sumtrFeatIn .5s cubic-bezier(.2,.7,.2,1) both}
-.sumtr-card.is-feats .sumtr-feat:nth-child(2){animation-delay:.09s}
-.sumtr-card.is-feats .sumtr-feat:nth-child(3){animation-delay:.18s}
-@keyframes sumtrFeatIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
-.sumtr-feat:hover{transform:translateY(-1px);box-shadow:0 16px 30px -14px rgba(14,36,86,.46);border-color:color-mix(in srgb,var(--cc) 40%,#fff)}
-.sumtr-feat__ic{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;background:linear-gradient(150deg,var(--cc),color-mix(in srgb,var(--cc) 62%,#000));box-shadow:0 8px 18px -8px color-mix(in srgb,var(--cc) 55%,transparent),inset 0 1px 0 rgba(255,255,255,.35)}
-.sumtr-feat__ic svg{width:21px;height:21px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.sumtr-feat__tx{display:flex;flex-direction:column;line-height:1.2}
-.sumtr-feat__tx b{font-family:var(--display);font-weight:700;font-size:14.5px;color:var(--ink)}
-.sumtr-feat__tx i{font-style:normal;font-size:12px;color:var(--muted)}
-/* step 8 — pricing transition: shrink scene to a small row */
-#sumtr.is-pricing .sumtr-cards{min-height:0;gap:16px}
-#sumtr.is-pricing .sumtr-card{opacity:1;flex:0 1 auto;flex-direction:column}
-#sumtr.is-pricing .sumtr-card__slot{width:64px;margin-bottom:6px}
+.sumtr-feat{display:flex;align-items:center;gap:13px;width:100%;text-align:left;padding:13px 17px;border-radius:19px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.75);box-shadow:0 12px 38px -16px rgba(20,33,50,.22),inset 0 1px 0 rgba(255,255,255,.8);-webkit-backdrop-filter:blur(24px) saturate(150%);backdrop-filter:blur(24px) saturate(150%);cursor:pointer;transition:transform .22s,box-shadow .22s,background .22s;animation:sumtrFeatIn .55s cubic-bezier(.2,.7,.2,1) both}
+.sumtr-card.is-feats .sumtr-feat:nth-child(2){animation-delay:.1s}
+.sumtr-card.is-feats .sumtr-feat:nth-child(3){animation-delay:.2s}
+@keyframes sumtrFeatIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.sumtr-feat:hover{background:rgba(255,255,255,.72);transform:translateY(-1px);box-shadow:0 18px 44px -16px rgba(20,33,50,.28)}
+.sumtr-feat__ic{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.6);box-shadow:inset 0 0 0 1px rgba(20,33,50,.05),0 5px 14px -8px rgba(20,33,50,.22)}
+.sumtr-feat__ic svg{width:21px;height:21px;stroke:#46566f;fill:none;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
+.sumtr-feat__tx{display:flex;flex-direction:column;line-height:1.25}
+.sumtr-feat__tx b{font-family:var(--display);font-weight:700;font-size:15px;color:#1d2735}
+.sumtr-feat__tx i{font-style:normal;font-size:12.5px;color:#6b778c}
+/* step 8 — pricing transition: shrink scene */
+#sumtr.is-pricing .sumtr-cards{min-height:0;gap:18px}
+#sumtr.is-pricing .sumtr-card{opacity:1;filter:none;flex:0 1 auto;flex-direction:column}
+#sumtr.is-pricing .sumtr-card__slot{width:62px;margin-bottom:6px}
 #sumtr.is-pricing .sumtr-card__t{font-size:14px}
 #sumtr.is-pricing .sumtr-card__sub,#sumtr.is-pricing .sumtr-card__feats{display:none}
 @media (max-width:900px){
-  .sumtr-cards{flex-direction:column;gap:20px;min-height:0}
+  .sumtr-cards{flex-direction:column;gap:24px;min-height:0}
   .sumtr-card{flex:0 1 auto!important;order:0!important}
   .sumtr-card.is-side{display:none}
-  .sumtr-card.is-hero{flex-direction:column;gap:16px}
-  .sumtr-card.is-hero .sumtr-card__slot{width:230px}
+  .sumtr-card.is-hero{flex-direction:column;gap:18px}
+  .sumtr-card.is-hero .sumtr-card__slot{width:240px}
   .sumtr-card__feats{width:100%;max-width:300px}
 }
 /* feature popup — module-centred floating card */
@@ -1928,8 +1927,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-pop.is-open{display:flex}
 .sumtr-pop__bd{position:absolute;inset:0;background:rgba(20,33,50,.26);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);animation:sumtrFade .25s ease}
 .sumtr-pop__card{position:relative;z-index:1;max-width:360px;width:100%;border-radius:20px;padding:24px 22px 22px;text-align:left;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.88));border:1px solid rgba(255,255,255,.9);box-shadow:0 32px 72px -28px rgba(14,36,86,.55),inset 0 1px 0 rgba(255,255,255,.9);animation:sumtrPopIn .3s cubic-bezier(.2,.7,.2,1)}
-.sumtr-pop__ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(150deg,var(--cc,var(--blue-bright)),color-mix(in srgb,var(--cc,var(--blue-bright)) 62%,#000));box-shadow:0 10px 22px -8px color-mix(in srgb,var(--cc,var(--blue-bright)) 55%,transparent)}
-.sumtr-pop__ic svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.sumtr-pop__ic{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--cc,var(--blue-bright)) 12%,#fff);box-shadow:inset 0 0 0 1px rgba(20,33,50,.05),0 6px 16px -8px color-mix(in srgb,var(--cc,var(--blue-bright)) 40%,transparent)}
+.sumtr-pop__ic svg{width:24px;height:24px;stroke:var(--cc,var(--blue-bright));fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .sumtr-pop__t{font-family:var(--display);font-weight:800;font-size:19px;color:var(--ink);margin-top:14px;line-height:1.2}
 .sumtr-pop__t .zh{font-weight:600;font-size:14px;color:var(--muted);margin-left:8px}
 .sumtr-pop__d{font-size:14px;color:var(--muted);line-height:1.6;margin-top:9px}
