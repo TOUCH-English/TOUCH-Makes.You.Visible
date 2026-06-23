@@ -1880,7 +1880,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-card__slot.is-json-loaded .sumtr-slot__scene{display:block}
 .sumtr-card__slot.is-json-loaded{background-image:none;filter:none}
 .sumtr-jp{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;gap:2px;min-width:128px;max-width:66%;padding:9px 12px;border-radius:14px;background:var(--jp-bg,rgba(255,255,255,.58));border:1px solid var(--jp-bd,rgba(255,255,255,.78));box-shadow:var(--jp-shadow,0 18px 44px -18px rgba(20,45,80,.3)),inset 0 1px 0 rgba(255,255,255,.7);-webkit-backdrop-filter:blur(var(--jp-blur,16px)) saturate(150%);backdrop-filter:blur(var(--jp-blur,16px)) saturate(150%);color:var(--jp-text,var(--ink));opacity:0;pointer-events:none}
-.sumtr-jp--mini{flex-direction:row;align-items:center;gap:9px;min-width:122px;padding:8px 12px}
+.sumtr-jp--mini{flex-direction:row;align-items:center;gap:10px;width:auto!important;min-width:0;max-width:none;white-space:nowrap;padding:9px 15px;border-radius:14px;background:rgba(255,255,255,.4);border-color:rgba(255,255,255,.6);box-shadow:0 12px 34px -18px rgba(20,45,80,.22)}
+.sumtr-jp--mini .sumtr-jp__s{display:none}
+.sumtr-jp--mini .sumtr-jp__t{white-space:nowrap;font-size:12.5px}
+.sumtr-jp--panel{background:rgba(255,255,255,.32);border-color:rgba(255,255,255,.46);box-shadow:0 16px 40px -22px rgba(20,45,80,.16);max-width:44%;padding:11px 13px}
+.sumtr-jp--panel .sumtr-jp__d{display:none}
+.sumtr-jp--panel .sumtr-jp__t--lg{font-size:15px}
+.sumtr-jp--panel .sumtr-jp__h{font-size:10.5px;margin-top:3px}
 .sumtr-jp__ic{flex:none;width:24px;height:24px;color:var(--jp-accent,var(--cc))}
 .sumtr-jp__ic svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .sumtr-jp__bd{display:flex;flex-direction:column;gap:1px;min-width:0}
@@ -1899,7 +1905,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-card::before{content:none}
 .sumtr-cards{display:flex;align-items:center;justify-content:center;gap:30px;min-height:470px;flex-wrap:nowrap}
 .sumtr-card{flex:0 1 200px;display:flex;flex-direction:column;align-items:center;text-align:center;background:none;border:0;box-shadow:none;padding:0;border-radius:0;overflow:visible;opacity:.34;filter:blur(1.5px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),filter .55s ease,flex-basis .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
-.sumtr-card.is-side{opacity:.3;filter:blur(2px)}
+.sumtr-card.is-side{opacity:.18;filter:blur(8px) saturate(.7);transform:scale(.85)}
 .sumtr-card.is-hero{flex:0 0 auto;opacity:1;filter:none;flex-direction:row;align-items:center;gap:40px}
 .sumtr-card.is-summary{opacity:1;filter:none;flex:0 1 220px}
 .sumtr-card__main{display:flex;flex-direction:column;align-items:center;text-align:center}
@@ -5630,8 +5636,9 @@ io.observe(er);})();
       var pos=el.position||{}, sz=el.size||{};
       node.style.left=((pos.x!=null?pos.x:0.5)*100)+'%';
       node.style.top=((pos.y!=null?pos.y:0.5)*100)+'%';
-      if(sz.width!=null) node.style.width=(sz.width*100)+'%';
-      if(sz.height!=null && (el.type==='personSilhouette'||el.type==='ambientGlow')) node.style.height=(sz.height*100)+'%';
+      var szMul=(el.type==='personSilhouette')?1.65:1;
+      if(sz.width!=null) node.style.width=(sz.width*100*szMul)+'%';
+      if(sz.height!=null && (el.type==='personSilhouette'||el.type==='ambientGlow')) node.style.height=(sz.height*100*szMul)+'%';
       if(pos.z!=null) node.style.zIndex=Math.round(pos.z*100);
       if(el.animation) node.setAttribute('data-anim',JSON.stringify(el.animation));
       scene.appendChild(node); made++;
