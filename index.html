@@ -465,6 +465,51 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .mhero__fn .zh{font-weight:500;color:var(--muted)}
 .mhero__sub{position:relative;font-size:14.5px;line-height:1.6;color:var(--ink);max-width:460px;margin:13px auto 0;font-weight:500}
 .mhero__sub .zh{color:var(--muted)}
+/* Mirror 01 — Discover visual concept (bg atmosphere + glass head + first layer) */
+.mhero--m1{background:linear-gradient(135deg,#EEF2FB,#E4EBF7)}
+.mhero--m1::before{display:none}
+.m1bg{background:linear-gradient(135deg,#EEF2FB,#E4EBF7)}
+.focus-hero__vis.m1bg{background:linear-gradient(135deg,#EEF2FB,#E4EBF7)}
+.m1blob{position:absolute;width:46%;aspect-ratio:1;border-radius:50%;filter:blur(46px);opacity:.4;z-index:0;pointer-events:none}
+.m1vis{position:relative;z-index:1;width:200px;height:130px;margin:0 auto 16px}
+.m1svg{width:100%;height:100%;display:block;overflow:visible}
+.m1arc,.m1core,.m1glowc{transform-box:view-box;transform-origin:120px 108px}
+.m1vis--down .m1arc,.m1vis--down .m1core,.m1vis--down .m1glowc{transform-origin:120px 52px}
+/* Learning System — Grow node network (compact, render-triggered) */
+.lsnet-link{fill:none;stroke:color-mix(in srgb,var(--c) 36%,#fff);stroke-width:2;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 2px color-mix(in srgb,var(--c) 38%,transparent)) drop-shadow(0 0 6px color-mix(in srgb,var(--c) 18%,transparent));animation:lsFade .8s ease var(--d,0s) both}
+@keyframes lsFade{from{opacity:0}to{opacity:.72}}
+.lsnet-flow{fill:none;stroke:color-mix(in srgb,var(--c) 18%,#fff);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:.18 .82;stroke-dashoffset:1;opacity:0;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--c) 46%,transparent));animation:lsFlowFade .7s ease var(--d,0s) both,lsFlowMove 3.6s linear var(--d,0s) infinite}
+@keyframes lsFlowFade{from{opacity:0}to{opacity:.5}}
+@keyframes lsFlowMove{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.lsnet-dot{fill:#fff;opacity:0;transform-box:view-box;filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 6px color-mix(in srgb,var(--c) 55%,transparent));animation:lsDotIn .42s cubic-bezier(.2,.8,.2,1) var(--d,0s) both}
+@keyframes lsDotIn{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
+.lsnet-glow{opacity:0;transform-box:view-box;transform-origin:120px 118px;animation:lsGlowFade .85s ease 1.5s both}
+@keyframes lsGlowFade{from{opacity:0}to{opacity:.82}}
+.lsnet-core{opacity:0;transform:scale(.45);transform-box:view-box;transform-origin:120px 118px;animation:lsCoreIn .7s cubic-bezier(.2,.7,.2,1) 1.45s both}
+@keyframes lsCoreIn{from{opacity:0;transform:scale(.45)}to{opacity:1;transform:scale(1)}}
+.lsnet-person{fill:#46566f}
+@media (prefers-reduced-motion:reduce){.lsnet-link,.lsnet-flow,.lsnet-dot,.lsnet-glow,.lsnet-core{animation:none;opacity:1;transform:none}.lsnet-glow{opacity:.82}.lsnet-link{opacity:.72}.lsnet-flow{opacity:.5}}
+/* Final Review + Exam — completion badge (full rings + glowing check) */
+.fbring,.fbcore,.fbglow{transform-box:view-box;transform-origin:120px 78px}
+.fbring{opacity:0;transform:scale(.6);animation:fbIn .7s cubic-bezier(.2,.7,.2,1) var(--d,0s) both}
+@keyframes fbIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.fbglow{opacity:0;animation:fbGlow .85s ease .2s both}
+@keyframes fbGlow{from{opacity:0}to{opacity:.82}}
+.fbcore{opacity:0;transform:scale(.5);animation:fbIn .7s cubic-bezier(.2,.7,.2,1) .15s both}
+.fbperson{fill:#46566f}
+.fbcheck-tick{fill:none;stroke:color-mix(in srgb,var(--c) 60%,#46566f);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.fbcheck{opacity:0;transform-box:view-box;transform-origin:150px 100px;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--c) 38%,transparent));animation:fbCheckIn .55s cubic-bezier(.2,.9,.3,1.35) 1.5s both}
+@keyframes fbCheckIn{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.fbring,.fbcore,.fbglow,.fbcheck{animation:none;opacity:1;transform:none}.fbglow{opacity:.82}}
+.m1core{opacity:0;transform:scale(.5);animation:m1in .7s cubic-bezier(.2,.7,.2,1) .12s both}
+.m1glowc{opacity:0;animation:m1glowfade .85s ease .18s both}
+.m1arc{opacity:0;transform:scale(.6);animation:m1in .75s cubic-bezier(.2,.7,.2,1) var(--ld,.62s) both}
+.m1arc--2{filter:blur(1.2px)}
+.m1arc--3{filter:blur(2.6px)}
+.m1person{fill:#46566f}
+@keyframes m1in{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
+@keyframes m1glowfade{from{opacity:0}to{opacity:.82}}
+@media (prefers-reduced-motion:reduce){.m1core,.m1glowc,.m1arc{animation:none;opacity:1;transform:none}.m1glowc{opacity:.82}}
 /* three-mirrors closing */
 .rev-close{text-align:center;border-radius:20px;padding:30px 28px;
   background:linear-gradient(160deg,color-mix(in srgb,var(--c) 15%,#fff),color-mix(in srgb,var(--c) 5%,#fff));border:1px solid color-mix(in srgb,var(--c) 20%,rgba(255,255,255,.8));box-shadow:inset 0 1px 0 rgba(255,255,255,.85)}
@@ -1690,6 +1735,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .glass-stage .glow{position:absolute;width:300px;height:300px;border-radius:50%;
   filter:blur(66px);opacity:.46;z-index:0;pointer-events:none}
 .glass-stage>*{position:relative;z-index:1}
+.glass-stage>.sys-scale{position:absolute;z-index:6}
 .glass{background:rgba(255,255,255,.46);
   -webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);
   border:1px solid rgba(255,255,255,.72);
@@ -1873,39 +1919,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;transition:gap .5s ease}
 /* ===== Apple-style presentation scene: one big centre hero (frameless floating visual) + side glass buttons; others = faint side previews ===== */
 .sumtr-card--mirror{--slot:none}
-.sumtr-card--stage{--slot:url('assets/journey/stage.png')}
-.sumtr-card--system{--slot:url('assets/journey/system.png')}
-/* JSON-driven visual slot (Mirror): scene container over the placeholder; shown only once a JSON scene is rendered */
-.sumtr-slot__scene{position:absolute;inset:0;display:none;border-radius:inherit;overflow:hidden}
-.sumtr-card__slot.is-json-loaded .sumtr-slot__scene{display:block}
-.sumtr-card__slot.is-json-loaded{background-image:none;filter:none}
-.sumtr-jp{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;gap:2px;min-width:128px;max-width:66%;padding:9px 12px;border-radius:14px;background:var(--jp-bg,rgba(255,255,255,.58));border:1px solid var(--jp-bd,rgba(255,255,255,.78));box-shadow:var(--jp-shadow,0 18px 44px -18px rgba(20,45,80,.3)),inset 0 1px 0 rgba(255,255,255,.7);-webkit-backdrop-filter:blur(var(--jp-blur,16px)) saturate(150%);backdrop-filter:blur(var(--jp-blur,22px)) saturate(160%);color:var(--jp-text,var(--ink));opacity:0;pointer-events:none}
-.sumtr-jp--mini{flex-direction:row;align-items:center;gap:9px;min-width:144px;max-width:58%;padding:7px 11px;border-radius:15px;background:var(--jp-bg,rgba(255,255,255,.46));border:1px solid var(--jp-bd,rgba(255,255,255,.62));box-shadow:0 22px 56px -22px rgba(20,45,80,.22),inset 0 1px 0 rgba(255,255,255,.65);pointer-events:auto;cursor:pointer;transition:background .2s,box-shadow .2s}
-.sumtr-jp--mini:hover{background:rgba(255,255,255,.74);transform:translate(-50%,-50%) scale(1.03);box-shadow:0 22px 52px -18px rgba(20,45,80,.34)}
-.sumtr-jp--mini .sumtr-jp__t{font-size:11.5px;line-height:1.15}
-.sumtr-jp--mini .sumtr-jp__s{display:block;font-size:9px;line-height:1.25}
-.sumtr-jp--panel{background:var(--jp-bg,rgba(255,255,255,.5));border:1px solid var(--jp-bd,rgba(255,255,255,.66));box-shadow:0 26px 64px -24px rgba(20,45,80,.24),inset 0 1px 0 rgba(255,255,255,.7);max-width:38%;padding:12px 14px;align-items:flex-start;text-align:left}
-.sumtr-jp--panel .sumtr-jp__t--lg{font-size:18px}
-.sumtr-jp--panel .sumtr-jp__tag{font-size:9px}
-.sumtr-jp--panel .sumtr-jp__h{font-size:11px;font-weight:600;margin-top:3px;color:var(--jp-muted,var(--muted))}
-.sumtr-jp--panel .sumtr-jp__d{display:none}
-.sumtr-jp--panel .sumtr-jp__t--lg{font-size:15px}
-.sumtr-jp--panel .sumtr-jp__h{font-size:10.5px;margin-top:3px}
-.sumtr-jp__ic{flex:none;width:24px;height:24px;color:var(--jp-accent,var(--cc))}
-.sumtr-jp__ic svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.sumtr-jp__bd{display:flex;flex-direction:column;gap:1px;min-width:0}
-.sumtr-jp__t{font-family:var(--display);font-weight:700;font-size:12px;line-height:1.15;color:var(--jp-text,var(--ink))}
-.sumtr-jp__t--lg{font-size:18px}
-.sumtr-jp__tag{font-size:9.5px;font-weight:700;letter-spacing:.08em;color:var(--jp-accent,var(--cc));text-transform:uppercase;margin-top:1px}
-.sumtr-jp__h{font-size:11.5px;font-weight:600;color:var(--jp-text,var(--ink));margin-top:4px}
-.sumtr-jp__s{font-size:9.5px;color:var(--jp-muted,var(--muted));line-height:1.25}
-.sumtr-jp__d{font-size:9.5px;color:var(--jp-muted,var(--muted));line-height:1.4;margin-top:4px}
-.sumtr-jp__ring{width:30px;height:30px;border-radius:50%;border:2px solid color-mix(in srgb,var(--jp-accent,var(--cc)) 55%,#fff);box-shadow:0 0 16px -2px color-mix(in srgb,var(--jp-accent,var(--cc)) 50%,transparent),inset 0 0 10px -3px color-mix(in srgb,var(--jp-accent,var(--cc)) 40%,transparent);margin-bottom:5px}
-.sumtr-jp-person{position:absolute;transform:translate(-50%,-50%);color:color-mix(in srgb,var(--cc) 50%,#8493ab);opacity:0;pointer-events:none}
-.sumtr-jp-glow{position:absolute;transform:translate(-50%,-50%);opacity:0;pointer-events:none}
-.sumtr-jp-person svg{width:100%;height:100%;fill:currentColor;opacity:var(--p-op,.9);filter:drop-shadow(0 12px 16px rgba(20,45,80,.18))}
-.sumtr-card.is-hero .sumtr-card__slot.is-json-loaded{width:560px}
-@media (max-width:900px){.sumtr-card.is-hero .sumtr-card__slot.is-json-loaded{width:300px}}
+.sumtr-card--stage{--slot:none}
+.sumtr-card--system{--slot:none}
 .sumtr-card::before{content:none}
 .sumtr-cards{display:flex;align-items:center;justify-content:center;gap:30px;min-height:470px;flex-wrap:nowrap}
 .sumtr-card{flex:0 1 200px;display:flex;flex-direction:column;align-items:center;text-align:center;background:none;border:0;box-shadow:none;padding:0;border-radius:0;overflow:visible;opacity:.34;filter:blur(1.5px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),filter .55s ease,flex-basis .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
@@ -1942,6 +1957,81 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-feat__tx{display:flex;flex-direction:row;align-items:baseline;gap:5px;white-space:nowrap;line-height:1.2}
 .sumtr-feat__tx b{font-family:var(--display);font-weight:700;font-size:14px;color:#1d2735}
 .sumtr-feat__tx i{font-style:normal;font-weight:500;font-size:14px;color:#5a6678}
+/* ===== Discover (Mirror) — Vision-Pro spatial scene · self-contained, no png/json ===== */
+.sumtr-card.has-dsc.is-hero .sumtr-card__feats{display:none}
+.sumtr-card.has-dsc.is-hero .sumtr-card__slot{width:min(560px,78vw);aspect-ratio:16/10;background:none;filter:none;animation:none}
+.dsc-scene{position:absolute;inset:0;border-radius:26px;overflow:hidden;opacity:0;transition:opacity .6s ease;
+  background:linear-gradient(135deg,#EEF2FB,#E4EBF7);
+  border:1px solid rgba(255,255,255,.62);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 30px 64px -30px rgba(20,45,80,.4)}
+.sumtr-card.has-dsc.is-hero .dsc-scene{opacity:1}
+/* ambient colour glows — copied feel from eco-stage (.glass-stage .glow) */
+.dsc-blob{position:absolute;width:52%;aspect-ratio:1;border-radius:50%;filter:blur(46px);opacity:.42;z-index:0;pointer-events:none}
+/* concentric half-rings (svg) rising from the learner */
+.dsc-ring{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible;z-index:1}
+.dsc-arc,.dsc-core,.dsc-glow{transform-box:view-box;transform-origin:460px 430px}
+.sumtr-card--stage .dsc-arc,.sumtr-card--stage .dsc-core,.sumtr-card--stage .dsc-glow{transform-origin:460px 44px}
+/* SVG reveal via keyframes (robust on Safari across the is-side blur layer; transitions were skipped there) */
+.dsc-arc{opacity:0;transform:scale(.55)}
+.sumtr-card.has-dsc.is-hero .dsc-arc{animation:dscArcIn .72s cubic-bezier(.2,.7,.2,1) var(--d,0s) both}
+.dsc-glow{opacity:0}
+.sumtr-card.has-dsc.is-hero .dsc-glow{animation:dscGlowIn .9s ease .25s both}
+.dsc-core{opacity:0;transform:scale(.4)}
+.sumtr-card.has-dsc.is-hero .dsc-core{animation:dscCoreIn .76s cubic-bezier(.2,.7,.2,1) .34s both}
+@keyframes dscArcIn{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
+@keyframes dscGlowIn{from{opacity:0}to{opacity:.85}}
+@keyframes dscCoreIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+/* Grow / System — node network converging on the learner */
+.sumtr-card--system .dsc-arc,.sumtr-card--system .dsc-core,.sumtr-card--system .dsc-glow{transform-origin:460px 360px}
+.sumtr-card--system.has-dsc.is-hero .dsc-core{animation-delay:1.45s}
+.sumtr-card--system.has-dsc.is-hero .dsc-glow{animation-delay:1.5s}
+/* soft glow path connections (premium / VisionOS feel) — glowing track + subtle flowing light */
+.dsc-link{fill:none;stroke:color-mix(in srgb,var(--cc) 34%,#ffffff);stroke-width:3;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--cc) 36%,transparent)) drop-shadow(0 0 9px color-mix(in srgb,var(--cc) 18%,transparent))}
+.dsc-link--spoke{stroke-width:2.3}
+.sumtr-card.has-dsc.is-hero .dsc-link{animation:dscGlowPathIn .85s ease var(--d,0s) both}
+@keyframes dscGlowPathIn{from{opacity:0}to{opacity:.7}}
+.dsc-flow{fill:none;stroke:color-mix(in srgb,var(--cc) 16%,#ffffff);stroke-width:3.4;stroke-linecap:round;stroke-dasharray:.16 .84;stroke-dashoffset:1;opacity:0;filter:drop-shadow(0 0 5px color-mix(in srgb,var(--cc) 46%,transparent))}
+.dsc-flow--spoke{stroke-width:2.7}
+.sumtr-card.has-dsc.is-hero .dsc-flow{animation:dscFlowIn .7s ease var(--d,0s) both,dscFlowMove 3.6s linear var(--d,0s) infinite}
+@keyframes dscFlowIn{from{opacity:0}to{opacity:.5}}
+@keyframes dscFlowMove{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.sumtr-card.has-dsc.is-hero .dsc-flow{animation:dscFlowIn .7s ease var(--d,0s) both}}
+.dsc-dot{fill:#fff;opacity:0;transform-box:view-box;filter:drop-shadow(0 0 3px rgba(255,255,255,.95)) drop-shadow(0 0 9px color-mix(in srgb,var(--cc) 55%,transparent))}
+.sumtr-card.has-dsc.is-hero .dsc-dot{animation:dscDotIn .42s cubic-bezier(.2,.8,.2,1) var(--d,0s) both}
+@keyframes dscDotIn{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
+.dsc-person{fill:#46566f}
+/* clickable feature nodes on the fan (keep .sumtr-feat -> existing popup) */
+.sumtr-card.has-dsc .dsc-node{position:absolute;left:var(--nx);top:var(--ny);transform:translate(-50%,-50%) scale(.85);z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:7px;width:max-content;max-width:40%;
+  background:none;border:0;border-radius:0;padding:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;
+  cursor:pointer;text-align:center;animation:none;opacity:0;transition:opacity .5s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+.sumtr-card.has-dsc.is-feats .dsc-node{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.sumtr-card.has-dsc.is-feats .dsc-node:nth-of-type(1){transition-delay:.06s}
+.sumtr-card.has-dsc.is-feats .dsc-node:nth-of-type(2){transition-delay:.16s}
+.sumtr-card.has-dsc.is-feats .dsc-node:nth-of-type(3){transition-delay:.26s}
+.sumtr-card.has-dsc .dsc-node:hover{background:none;transform:translate(-50%,-50%) scale(1)}
+.sumtr-card.has-dsc.is-feats .dsc-node:hover{transform:translate(-50%,-50%) scale(1.03)}
+.dsc-node .sumtr-feat__ic{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);-webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);
+  box-shadow:0 16px 34px -16px rgba(20,45,80,.4),inset 0 1px 0 rgba(255,255,255,.8);transition:transform .22s,box-shadow .22s,background .22s}
+.dsc-node:hover .sumtr-feat__ic{background:rgba(255,255,255,.82);box-shadow:0 20px 40px -16px rgba(20,33,50,.36)}
+.dsc-node .sumtr-feat__ic svg{width:24px;height:24px;stroke:color-mix(in srgb,var(--cc) 70%,#46566f);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dsc-node .sumtr-feat__ic svg [fill="currentColor"]{fill:color-mix(in srgb,var(--cc) 70%,#46566f);stroke:none}
+.dsc-node__tx{display:flex;flex-direction:column;gap:1px;line-height:1.15;opacity:0;transform:translateY(-3px);transition:opacity .4s ease .12s,transform .4s ease .12s}
+.sumtr-card.has-dsc.is-feats .dsc-node__tx{opacity:1;transform:none}
+.dsc-node__h{white-space:nowrap}
+.dsc-node__h b{font-family:var(--display);font-weight:700;font-size:13px;color:#1d2735}
+.dsc-node__h i{font-style:normal;font-weight:500;font-size:12.5px;color:#5a6678}
+.dsc-node__tx em{font-style:normal;font-size:10.5px;color:#8a95a6;letter-spacing:.02em}
+@media (max-width:900px){
+  .sumtr-card.has-dsc.is-hero .sumtr-card__slot{width:min(440px,88vw)}
+  .dsc-node .sumtr-feat__ic{width:40px;height:40px}
+  .dsc-node .sumtr-feat__ic svg{width:21px;height:21px}
+  .dsc-node__h b,.dsc-node__h i{font-size:12px}
+}
+@media (max-width:760px){
+  .dsc-node{max-width:46%}
+  .dsc-node__tx em{font-size:10px}
+}
 /* step 8 — pricing transition: shrink scene */
 #sumtr.is-pricing .sumtr-cards{min-height:0;gap:18px}
 #sumtr.is-pricing .sumtr-card{opacity:1;filter:none;flex:0 1 auto;flex-direction:column}
@@ -2019,8 +2109,6 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-back:hover{color:var(--blue);border-color:var(--blue-bright);background:#fff}
 .sumtr-back .zh{margin-left:2px}
 .stage.sumtr-clickable{cursor:pointer}
-.sumtr-card.is-journey.is-hero>.sumtr-card__main>.sumtr-card__t,.sumtr-card.is-journey.is-hero>.sumtr-card__main>.sumtr-card__sub,.sumtr-card.is-journey.is-hero>.sumtr-card__main>.sumtr-card__tag{display:none}
-.sumtr-card.is-journey .sumtr-card__feats{display:none!important}
 
 @media (max-width:760px){
   .sumtr-cards{grid-template-columns:1fr;gap:14px}
@@ -2495,6 +2583,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           <span class="glow" style="background:var(--l2);left:43%;top:4%"></span>
           <span class="glow" style="background:var(--l3);left:64%;bottom:24%"></span>
           <span class="glow" style="background:var(--l4);right:1%;top:8%"></span>
+          <div class="sys-scale" role="group" aria-label="Adjust roadmap size"><button class="sys-scale__b" type="button" data-scale="down" aria-label="Reduce roadmap size">&minus;</button><button class="sys-scale__b" type="button" data-scale="up" aria-label="Enlarge roadmap size">+</button></div>
           <div class="levelmap" id="roadmap"><!-- level columns injected --></div>
           <div id="rmDetail"></div>
         </div>
@@ -2664,45 +2753,94 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
           <div class="sumtr-cards">
 
-            <article class="sumtr-card sumtr-card--mirror" style="--cc:var(--blue-bright)">
+            <article class="sumtr-card sumtr-card--mirror has-dsc" style="--cc:var(--blue-bright)">
               <div class="sumtr-card__main">
-                <div class="sumtr-card__slot sumtr-visual-slot" data-journey-json="assets/journey/mirror.json" role="img" aria-label="Mirror visual"><div class="sumtr-slot__scene"></div></div>
+                <div class="sumtr-card__slot" role="group" aria-label="Discover — interactive learning cards">
+            <div class="dsc-scene">
+              <span class="dsc-blob" style="background:var(--p1);left:6%;top:46%"></span><span class="dsc-blob" style="background:var(--l3);left:14%;bottom:4%"></span><span class="dsc-blob" style="background:var(--l4);left:42%;bottom:-14%;opacity:.3"></span><span class="dsc-blob" style="background:var(--l2);right:6%;top:44%"></span><span class="dsc-blob" style="background:var(--l1);right:14%;bottom:4%"></span>
+              <svg class="dsc-ring" viewBox="0 0 920 470" role="img" aria-label="Concentric learning rings rising from the learner">
+                <defs>
+                  <radialGradient id="dscOrb" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient>
+                  <radialGradient id="dscGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient>
+                  <filter id="dscLift" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter>
+                </defs>
+                <path class="dsc-arc" style="--d:.06s" d="M110,430 A350,350 0 0 1 810,430 Z" fill="rgba(255,255,255,0.34)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift)"/>
+                <path class="dsc-arc" style="--d:.16s" d="M205,430 A255,255 0 0 1 715,430 Z" fill="rgba(255,255,255,0.40)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift)"/>
+                <path class="dsc-arc" style="--d:.26s" d="M300,430 A160,160 0 0 1 620,430 Z" fill="rgba(255,255,255,0.46)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift)"/>
+                <circle class="dsc-glow" cx="460" cy="426" r="126" fill="url(#dscGlow)"/>
+                <g class="dsc-core">
+                  <circle cx="460" cy="426" r="84" fill="url(#dscOrb)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#dscLift)"/>
+                  <g class="dsc-person" transform="translate(460,426)"><circle cx="0" cy="-16" r="18"/><path d="M-30 40 a30 30 0 0 1 60 0 z"/></g>
+                </g>
+              </svg>
+              <button type="button" class="sumtr-feat dsc-node" style="--nx:21%;--ny:60%" data-title="Personality Analysis" data-zh="性格分析" data-desc="A quick check of how you learn, before classes start — so your teacher teaches you the way that fits you best." data-deszh="开课前先做的性格与学习风格测评，让老师从第一天就按你的性格调整节奏，不是一刀切。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></span><span class="dsc-node__tx"><span class="dsc-node__h"><b>Personality</b> <i>Analysis</i></span><em>性格分析</em></span></button>
+              <button type="button" class="sumtr-feat dsc-node" style="--nx:50%;--ny:26%" data-title="Goal Setting" data-zh="目标设定" data-desc="A one-on-one chat to set your English goal, so every class follows it and progress feels real." data-deszh="一对一设定你的英语目标，之后每堂课都对着目标走，进步看得见、不盲目。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r=".7" fill="currentColor" stroke="none"/></svg></span><span class="dsc-node__tx"><span class="dsc-node__h"><b>Goal</b> <i>Setting</i></span><em>目标设定</em></span></button>
+              <button type="button" class="sumtr-feat dsc-node" style="--nx:79%;--ny:60%" data-title="Class Review" data-zh="课堂复盘" data-desc="A review after your first 24 classes — look back with your teacher, lock in your progress and set your next focus." data-deszh="完成前 24 节课后的系统复盘：和老师一起回顾、巩固成果，并确定下一阶段重点。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="m9 13 2 2 4-4"/></svg></span><span class="dsc-node__tx"><span class="dsc-node__h"><b>Class</b> <i>Review</i></span><em>课堂复盘</em></span></button>
+            </div>
+                </div>
                 <h3 class="sumtr-card__t">Discover</h3>
                 <div class="sumtr-card__sub">Know Yourself First</div>
                 <div class="sumtr-card__tag">镜子 Mirror</div>
               </div>
-              <div class="sumtr-card__feats">
-                <button type="button" class="sumtr-feat" data-title="Personality Analysis" data-zh="性格分析" data-desc="A quick check of how you learn, before classes start — so your teacher teaches you the way that fits you best." data-deszh="开课前先做的性格与学习风格测评，让老师从第一天就按你的性格调整节奏，不是一刀切。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></span><span class="sumtr-feat__tx"><b>Personality</b><i>Analysis</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Goal Setting" data-zh="目标设定" data-desc="A one-on-one chat to set your English goal, so every class follows it and progress feels real." data-deszh="一对一设定你的英语目标，之后每堂课都对着目标走，进步看得见、不盲目。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r=".7" fill="currentColor" stroke="none"/></svg></span><span class="sumtr-feat__tx"><b>Goal</b><i>Setting</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Class Review" data-zh="课堂复盘" data-desc="A review after your first 24 classes — look back with your teacher, lock in your progress and set your next focus." data-deszh="完成前 24 节课后的系统复盘：和老师一起回顾、巩固成果，并确定下一阶段重点。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="m9 13 2 2 4-4"/></svg></span><span class="sumtr-feat__tx"><b>Class</b><i>Review</i></span></button>
-              </div>
             </article>
 
-            <article class="sumtr-card sumtr-card--stage" style="--cc:var(--red)">
+            <article class="sumtr-card sumtr-card--stage has-dsc" style="--cc:var(--red)">
               <div class="sumtr-card__main">
-                <div class="sumtr-card__slot" role="img" aria-label="Stage visual (assets/journey/stage.png)"></div>
+                <div class="sumtr-card__slot" role="group" aria-label="Practice — interactive learning cards">
+            <div class="dsc-scene">
+              <span class="dsc-blob" style="background:var(--p1);left:6%;top:46%"></span><span class="dsc-blob" style="background:var(--l3);left:14%;bottom:4%"></span><span class="dsc-blob" style="background:var(--l4);left:42%;bottom:-14%;opacity:.3"></span><span class="dsc-blob" style="background:var(--l2);right:6%;top:44%"></span><span class="dsc-blob" style="background:var(--l1);right:14%;bottom:4%"></span>
+              <svg class="dsc-ring" viewBox="0 0 920 470" role="img" aria-label="Concentric stage rings spreading below the performer">
+                <defs><radialGradient id="dscOrb2" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient><radialGradient id="dscGlow2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient><filter id="dscLift2" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter></defs>
+                <path class="dsc-arc" style="--d:.06s" d="M110,44 A350,350 0 0 0 810,44 Z" fill="rgba(255,255,255,0.34)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift2)"/>
+                <path class="dsc-arc" style="--d:.16s" d="M205,44 A255,255 0 0 0 715,44 Z" fill="rgba(255,255,255,0.40)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift2)"/>
+                <path class="dsc-arc" style="--d:.26s" d="M300,44 A160,160 0 0 0 620,44 Z" fill="rgba(255,255,255,0.46)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift2)"/>
+                <circle class="dsc-glow" cx="460" cy="44" r="126" fill="url(#dscGlow2)"/>
+                <g class="dsc-core">
+                  <circle cx="460" cy="44" r="84" fill="url(#dscOrb2)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#dscLift2)"/>
+                  <g class="dsc-person" transform="translate(460,44)"><circle cx="0" cy="-16" r="18"/><path d="M-30 40 a30 30 0 0 1 60 0 z"/></g>
+                </g>
+              </svg>
+              <button type="button" class="sumtr-feat dsc-node" style="--nx:21%;--ny:40%" data-title="IPA Foundation" data-zh="国际音标" data-desc="A simple intro to English sounds (IPA), so you speak clearer and worry less about pronunciation." data-deszh="国际音标发音系统的基础教学，让你开口更清楚、更早消除发音恐惧。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M4 10v4M9 6v12M14 3v18M19 9v6"/></svg></span><span class="dsc-node__tx"><span class="dsc-node__h"><b>IPA</b> <i>Foundation</i></span><em>国际音标</em></span></button>
+              <button type="button" class="sumtr-feat dsc-node" style="--nx:50%;--ny:74%" data-title="Live Classes" data-zh="正式课堂" data-desc="Small-group speaking classes where you speak in every lesson using the 5C method — building the habit of speaking, step by step." data-deszh="小班口语课，每堂课用 5C 方法开口练习，一步步建立开口习惯与肌肉记忆。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 5.5a3 3 0 0 1 0 5.8"/><path d="M20.5 19a5.5 5.5 0 0 0-4-5.3"/></svg></span><span class="dsc-node__tx"><span class="dsc-node__h"><b>Live</b> <i>Classes</i></span><em>正式课堂</em></span></button>
+              <button type="button" class="sumtr-feat dsc-node" style="--nx:79%;--ny:40%" data-title="Practice &amp; Speak" data-zh="练习开口" data-desc="More than just listening — you keep practising real speaking. Guided drills and real-use scenarios build the confidence to speak." data-deszh="不只是听课，而是持续开口练习：引导式练习加真实场景应用，建立敢开口的自信。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></span><span class="dsc-node__tx"><span class="dsc-node__h"><b>Practice</b> <i>Speaking</i></span><em>练习开口</em></span></button>
+            </div>
+                </div>
                 <h3 class="sumtr-card__t">Practice</h3>
                 <div class="sumtr-card__sub">Start Speaking</div>
                 <div class="sumtr-card__tag">舞台 Stage</div>
               </div>
-              <div class="sumtr-card__feats">
-                <button type="button" class="sumtr-feat" data-title="IPA Foundation" data-zh="国际音标" data-desc="A simple intro to English sounds (IPA), so you speak clearer and worry less about pronunciation." data-deszh="国际音标发音系统的基础教学，让你开口更清楚、更早消除发音恐惧。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M4 10v4M9 6v12M14 3v18M19 9v6"/></svg></span><span class="sumtr-feat__tx"><b>IPA</b><i>Foundation</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Live Classes" data-zh="正式课堂" data-desc="Small-group speaking classes where you speak in every lesson using the 5C method — building the habit of speaking, step by step." data-deszh="小班口语课，每堂课用 5C 方法开口练习，一步步建立开口习惯与肌肉记忆。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 5.5a3 3 0 0 1 0 5.8"/><path d="M20.5 19a5.5 5.5 0 0 0-4-5.3"/></svg></span><span class="sumtr-feat__tx"><b>Live</b><i>Classes</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Practice &amp; Speak" data-zh="练习开口" data-desc="More than just listening — you keep practising real speaking. Guided drills and real-use scenarios build the confidence to speak." data-deszh="不只是听课，而是持续开口练习：引导式练习加真实场景应用，建立敢开口的自信。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg></span><span class="sumtr-feat__tx"><b>Practice</b><i>Speaking</i></span></button>
-              </div>
             </article>
 
-            <article class="sumtr-card sumtr-card--system" style="--cc:var(--blue)">
+            <article class="sumtr-card sumtr-card--system has-dsc" style="--cc:var(--blue)">
               <div class="sumtr-card__main">
-                <div class="sumtr-card__slot" role="img" aria-label="System visual (assets/journey/system.png)"></div>
+                <div class="sumtr-card__slot" role="group" aria-label="Grow — interactive learning system">
+              <div class="dsc-scene">
+              <span class="dsc-blob" style="background:var(--p1);left:6%;top:46%"></span><span class="dsc-blob" style="background:var(--l3);left:14%;bottom:4%"></span><span class="dsc-blob" style="background:var(--l4);left:42%;bottom:-14%;opacity:.3"></span><span class="dsc-blob" style="background:var(--l2);right:6%;top:44%"></span><span class="dsc-blob" style="background:var(--l1);right:14%;bottom:4%"></span>
+              <svg class="dsc-ring dsc-net" viewBox="0 0 920 470" role="img" aria-label="Learning system connecting toward the learner">
+                <defs><radialGradient id="dscOrb3" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient><radialGradient id="dscGlow3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient><filter id="dscLift3" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter></defs>
+                <path class="dsc-link" style="--d:.35s" d="M160,165 L160,142 Q160,120 182,120 L460,120"/>
+                <path class="dsc-flow" pathLength="1" style="--d:.9s" d="M160,165 L160,142 Q160,120 182,120 L460,120"/>
+                <path class="dsc-link" style="--d:.7s" d="M460,120 L738,120 Q760,120 760,142 L760,165"/>
+                <path class="dsc-flow" pathLength="1" style="--d:1.25s" d="M460,120 L738,120 Q760,120 760,142 L760,165"/>
+                <path class="dsc-link" style="--d:1.05s" d="M760,165 L760,338 Q760,360 738,360 L460,360"/>
+                <path class="dsc-flow" pathLength="1" style="--d:1.6s" d="M760,165 L760,338 Q760,360 738,360 L460,360"/>
+                <circle class="dsc-dot" cx="160" cy="165" r="6" style="--d:.15s;transform-origin:160px 165px"/>
+                <circle class="dsc-dot" cx="460" cy="120" r="6" style="--d:.5s;transform-origin:460px 120px"/>
+                <circle class="dsc-dot" cx="760" cy="165" r="6" style="--d:.85s;transform-origin:760px 165px"/>
+                <circle class="dsc-glow" cx="460" cy="360" r="120" fill="url(#dscGlow3)"/>
+                <g class="dsc-core">
+                  <circle cx="460" cy="360" r="62" fill="url(#dscOrb3)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#dscLift3)"/>
+                  <g class="dsc-person" transform="translate(460,360)"><circle cx="0" cy="-13" r="15"/><path d="M-25 33 a25 25 0 0 1 50 0 z"/></g>
+                </g>
+              </svg>
+              <button type="button" class="sumtr-feat dsc-node" style="--nx:17%;--ny:35%" data-title="Learning System" data-zh="学习系统" data-desc="An online system to learn between classes — check progress, review lessons and read feedback anytime, so you keep learning, never on your own." data-deszh="课堂之外的线上学习系统：随时看进度、复习教材、查看老师反馈，课后也能持续学、不盲目。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="5.5" cy="6" r="2"/><circle cx="18.5" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7.4 6.7 10.7 16.1"/><path d="M16.6 6.7 13.3 16.1"/><path d="M7.5 6h9"/></svg></span><span class="dsc-node__tx"><span class="dsc-node__h"><b>Learning</b> <i>System</i></span><em>学习系统</em></span></button>
+              <button type="button" class="sumtr-feat dsc-node" style="--nx:50%;--ny:26%" data-title="Review &amp; Feedback" data-zh="复盘反馈" data-desc="Ongoing progress tracking and feedback — you always know how far you have come, what to strengthen and what to do next." data-deszh="持续的进度追踪与反馈：你始终清楚自己进步到哪、哪里要加强、下一步该做什么。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M17.3 3.2v3.5h-3.5"/><circle cx="12" cy="12" r="2.3"/></svg></span><span class="dsc-node__tx"><span class="dsc-node__h"><b>Review</b> <i>&amp; Feedback</i></span><em>复盘反馈</em></span></button>
+              <button type="button" class="sumtr-feat dsc-node" style="--nx:83%;--ny:35%" data-title="Final Assessment" data-zh="结业评估" data-desc="A final review and speaking check — measure your growth and set your next goal or level." data-deszh="期末复盘与口语测评：衡量你的成长，并建议下一程度或下一目标。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m8.3 12.2 2.5 2.5 4.9-5.1"/></svg></span><span class="dsc-node__tx"><span class="dsc-node__h"><b>Final</b> <i>Assessment</i></span><em>结业评估</em></span></button>
+              </div>
+                </div>
                 <h3 class="sumtr-card__t">Grow</h3>
                 <div class="sumtr-card__sub">Improve with Structure</div>
                 <div class="sumtr-card__tag">系统 System</div>
-              </div>
-              <div class="sumtr-card__feats">
-                <button type="button" class="sumtr-feat" data-title="Learning System" data-zh="学习系统" data-desc="An online system to learn between classes — check progress, review lessons and read feedback anytime, so you keep learning, never on your own." data-deszh="课堂之外的线上学习系统：随时看进度、复习教材、查看老师反馈，课后也能持续学、不盲目。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v3M6 16v-2h12v2"/></svg></span><span class="sumtr-feat__tx"><b>Learning</b><i>System</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Review &amp; Feedback" data-zh="复盘反馈" data-desc="Ongoing progress tracking and feedback — you always know how far you have come, what to strengthen and what to do next." data-deszh="持续的进度追踪与反馈：你始终清楚自己进步到哪、哪里要加强、下一步该做什么。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><path d="m3 6 1.4 1.4L7 5"/><path d="M4 12h.01M4 18h.01"/></svg></span><span class="sumtr-feat__tx"><b>Review</b><i>&amp; Feedback</i></span></button>
-                <button type="button" class="sumtr-feat" data-title="Final Assessment" data-zh="结业评估" data-desc="A final review and speaking check — measure your growth and set your next goal or level." data-deszh="期末复盘与口语测评：衡量你的成长，并建议下一程度或下一目标。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="m8.5 13-1.5 7 5-2.5 5 2.5-1.5-7"/></svg></span><span class="sumtr-feat__tx"><b>Final</b><i>Assessment</i></span></button>
               </div>
             </article>
 
@@ -3751,24 +3889,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     function next24Page(){
       var s=SYS[6];
       return ''+
-      '<div class="focus-hero">'+
-        '<div class="focus-hero__main">'+
-          '<span class="focus-step">Step 7 of '+SYS.length+'</span>'+
-          '<h3 class="focus-title">Next 24 Classes</h3>'+
-          '<div class="focus-zh">继续上 24 堂课</div>'+
-          '<div class="focus-subtitle">Strengthen &amp; Stabilise <span class="zh">巩固与稳定</span></div>'+
-          '<p class="focus-concept">Move from learning to real communication. <span class="zh">从学习走向真实沟通。</span></p>'+
-          '<p class="focus-concept">This is where English becomes a real skill. <span class="zh">这是英文开始变成真正能力的阶段。</span></p>'+
-          '<div class="focus-chips">'+
-            '<span class="focus-chip"><span class="focus-chip__dot"></span>During the course · 课程中</span>'+
-            '<span class="focus-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.6"/></svg>Focus · Strengthen &amp; Stabilise</span>'+
-          '</div>'+
-        '</div>'+
-        '<div class="focus-hero__vis" aria-hidden="true">'+
-          '<span class="fv-shape fv-shape--1"></span><span class="fv-shape fv-shape--2"></span><span class="fv-shape fv-shape--3"></span>'+
-          '<span class="focus-bigicon">'+sv(s.ic)+'</span>'+
-        '</div>'+
-      '</div>'+
+      '<header class="mhero mhero--m1">'+
+        glassLayerVis(3,true)+
+        '<span class="mhero__label">Stage 03</span>'+
+        '<h2 class="mhero__title">Own The Stage<span class="zh">站稳舞台</span></h2>'+
+        '<div class="mhero__fn">Strengthen &amp; Stabilise <span class="zh">巩固与稳定</span></div>'+
+        '<p class="mhero__sub">This is where you speak with confidence, respond naturally, and truly own your communication. <span class="zh">这是你建立自信表达、自然回应，并真正掌控沟通的阶段。</span></p>'+
+      '</header>'+
       '<div class="focus-body">'+
         '<div class="focus-cols">'+
           '<div class="focus-main">'+
@@ -3802,9 +3929,100 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       '</div>';
     }
     // shared glass-mirror hero used by the three Mirror pages
+    function glassLayerVis(num,down){
+      var cy=down?52:108, sweep=down?'0':'1';
+      var LAYER=[{r:58,fa:'0.42',sa:'.55',d:'.62s',cls:''},{r:80,fa:'0.30',sa:'.40',d:'.95s',cls:' m1arc--2'},{r:102,fa:'0.18',sa:'.25',d:'1.28s',cls:' m1arc--3'}];
+      var arcs='';
+      for(var li=num-1; li>=0; li--){
+        var L=LAYER[li], x0=120-L.r, x1=120+L.r, filt=(li===0?' filter="url(#m1lift)"':'');
+        arcs+='<path class="m1arc'+L.cls+'" style="--ld:'+L.d+'" d="M'+x0+','+cy+' A'+L.r+','+L.r+' 0 0 '+sweep+' '+x1+','+cy+' Z" fill="rgba(255,255,255,'+L.fa+')" stroke="rgba(255,255,255,'+L.sa+')" stroke-width="1"'+filt+'/>';
+      }
+      return '<span class="m1blob" style="background:var(--p1);left:3%;top:36%"></span>'+
+        '<span class="m1blob" style="background:var(--l3);left:13%;bottom:0"></span>'+
+        '<span class="m1blob" style="background:var(--l4);left:42%;bottom:-26%;opacity:.28"></span>'+
+        '<span class="m1blob" style="background:var(--l2);right:3%;top:34%"></span>'+
+        '<span class="m1blob" style="background:var(--l1);right:13%;bottom:0"></span>'+
+        '<div class="m1vis'+(down?' m1vis--down':'')+'"><svg class="m1svg" viewBox="0 0 240 158" aria-hidden="true">'+
+          '<defs><radialGradient id=\"m1orb\" cx=\"36%\" cy=\"30%\" r=\"80%\"><stop offset=\"0%\" stop-color=\"#f9fcfe\"/><stop offset=\"48%\" stop-color=\"#eef4fa\"/><stop offset=\"100%\" stop-color=\"#e7eef6\"/></radialGradient><radialGradient id=\"m1glow\" cx=\"50%\" cy=\"50%\" r=\"50%\"><stop offset=\"0%\" stop-color=\"#ffffff\" stop-opacity=\"0.92\"/><stop offset=\"60%\" stop-color=\"#eef5fb\" stop-opacity=\"0.45\"/><stop offset=\"100%\" stop-color=\"#eef5fb\" stop-opacity=\"0\"/></radialGradient><filter id=\"m1lift\" x=\"-25%\" y=\"-25%\" width=\"150%\" height=\"150%\"><feDropShadow dx=\"0\" dy=\"3\" stdDeviation=\"8\" flood-color=\"#16243f\" flood-opacity=\"0.06\"/></filter></defs>'+
+          arcs+
+          '<circle class="m1glowc" cx="120" cy="'+cy+'" r="56" fill="url(#m1glow)"/>'+
+          '<g class="m1core"><circle cx="120" cy="'+cy+'" r="36" fill="url(#m1orb)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#m1lift)"/>'+
+          '<g class="m1person" transform="translate(120,'+cy+')"><circle cx="0" cy="-9" r="11"/><path d="M-18 24 a18 18 0 0 1 36 0 z"/></g></g>'+
+        '</svg></div>';
+    }
+    function glassNetVis(){
+      return '<span class="m1blob" style="background:var(--p1);left:3%;top:36%"></span>'+
+        '<span class="m1blob" style="background:var(--l3);left:13%;bottom:0"></span>'+
+        '<span class="m1blob" style="background:var(--l4);left:42%;bottom:-26%;opacity:.28"></span>'+
+        '<span class="m1blob" style="background:var(--l2);right:3%;top:34%"></span>'+
+        '<span class="m1blob" style="background:var(--l1);right:13%;bottom:0"></span>'+
+        '<div class="m1vis"><svg class="m1net" viewBox="0 0 240 158" aria-hidden="true">'+
+          '<defs>'+
+            '<radialGradient id="lsorb" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient>'+
+            '<radialGradient id="lsglow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient>'+
+            '<filter id="lslift" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#16243f" flood-opacity="0.06"/></filter>'+
+          '</defs>'+
+          '<path class="lsnet-link" style="--d:.35s" d="M46,52 L46,47 Q46,40 53,40 L120,40"/>'+
+          '<path class="lsnet-link" style="--d:.65s" d="M120,40 L187,40 Q194,40 194,47 L194,52"/>'+
+          '<path class="lsnet-link" style="--d:.95s" d="M194,52 L194,106 Q194,118 187,118 L120,118"/>'+
+          '<path class="lsnet-flow" pathLength="1" style="--d:.9s" d="M46,52 L46,47 Q46,40 53,40 L120,40"/>'+
+          '<path class="lsnet-flow" pathLength="1" style="--d:1.2s" d="M120,40 L187,40 Q194,40 194,47 L194,52"/>'+
+          '<path class="lsnet-flow" pathLength="1" style="--d:1.5s" d="M194,52 L194,106 Q194,118 187,118 L120,118"/>'+
+          '<circle class="lsnet-dot" cx="46" cy="52" r="4" style="--d:.15s;transform-origin:46px 52px"/>'+
+          '<circle class="lsnet-dot" cx="120" cy="40" r="4" style="--d:.45s;transform-origin:120px 40px"/>'+
+          '<circle class="lsnet-dot" cx="194" cy="52" r="4" style="--d:.75s;transform-origin:194px 52px"/>'+
+          '<circle class="lsnet-glow" cx="120" cy="118" r="38" fill="url(#lsglow)"/>'+
+          '<g class="lsnet-core"><circle cx="120" cy="118" r="22" fill="url(#lsorb)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#lslift)"/>'+
+          '<g class="lsnet-person" transform="translate(120,118)"><circle cx="0" cy="-7" r="9"/><path d="M-15 20 a15 15 0 0 1 30 0 z"/></g></g>'+
+        '</svg></div>';
+    }
+    function glassBadgeVis(){
+      return '<span class="m1blob" style="background:var(--p1);left:3%;top:36%"></span>'+
+        '<span class="m1blob" style="background:var(--l3);left:13%;bottom:0"></span>'+
+        '<span class="m1blob" style="background:var(--l4);left:42%;bottom:-26%;opacity:.28"></span>'+
+        '<span class="m1blob" style="background:var(--l2);right:3%;top:34%"></span>'+
+        '<span class="m1blob" style="background:var(--l1);right:13%;bottom:0"></span>'+
+        '<div class="m1vis"><svg class="m1svg" viewBox="0 0 240 158" aria-hidden="true">'+
+          '<defs>'+
+            '<radialGradient id="fborb" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient>'+
+            '<radialGradient id="fbglow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient>'+
+            '<filter id="fblift" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="2" stdDeviation="7" flood-color="#16243f" flood-opacity="0.06"/></filter>'+
+          '</defs>'+
+          '<circle class="fbring" style="--d:1.1s" cx="120" cy="78" r="70" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,.45)" stroke-width="1" filter="url(#fblift)"/>'+
+          '<circle class="fbring" style="--d:.8s" cx="120" cy="78" r="56" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,.5)" stroke-width="1" filter="url(#fblift)"/>'+
+          '<circle class="fbring" style="--d:.5s" cx="120" cy="78" r="42" fill="rgba(255,255,255,0.32)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#fblift)"/>'+
+          '<circle class="fbglow" cx="120" cy="78" r="44" fill="url(#fbglow)"/>'+
+          '<g class="fbcore"><circle cx="120" cy="78" r="28" fill="url(#fborb)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#fblift)"/>'+
+          '<g class="fbperson" transform="translate(120,78)"><circle cx="0" cy="-7" r="9"/><path d="M-15 20 a15 15 0 0 1 30 0 z"/></g></g>'+
+          '<g class="fbcheck" transform="translate(150,100)"><circle cx="0" cy="0" r="15" fill="rgba(255,255,255,.94)" stroke="rgba(255,255,255,1)" stroke-width="1" filter="url(#fblift)"/>'+
+          '<path class="fbcheck-tick" d="M-6 0.5 L-1.6 5 L6.5 -5"/></g>'+
+        '</svg></div>';
+    }
+    function finalPage(){
+      var s=SYS[7];
+      return '<header class="mhero mhero--m1">'+
+        glassBadgeVis()+
+        '<span class="mhero__label">Completion</span>'+
+        '<h2 class="mhero__title">Final Review + Exam<span class="zh">期末复盘 + 考试</span></h2>'+
+        '<div class="mhero__fn">Assessment &amp; Next Goal <span class="zh">评估 · 规划下一步</span></div>'+
+        '<p class="mhero__sub">Measure the growth, plan the next goal. <span class="zh">衡量成长，规划下一目标。</span></p>'+
+      '</header>'+
+      '<div class="focus-body">'+
+        '<div class="focus-cols">'+
+          '<div class="focus-main">'+
+            fblock("What this stage is","这是什么",s.what)+
+            fblock("What you do","你要做什么",s.does)+
+          '</div>'+
+          '<aside class="focus-gain">'+
+            '<div class="focus-gain__h"><span class="focus-gain__ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h7v7"/></svg></span>How it helps you progress <span class="zh">如何帮助你进步</span></div>'+
+            '<p class="focus-gain__txt">'+s.helps.en+' <span class="zh">'+s.helps.zh+'</span></p>'+
+          '</aside>'+
+        '</div>'+
+      '</div>';
+    }
     function mirrorHero(num,en,zh,fnEn,fnZh,subEn,subZh){
-      return '<header class="mhero">'+
-        '<div class="mframe"><span class="mframe__sheen"></span></div>'+
+      return '<header class="mhero mhero--m1">'+
+        glassLayerVis(num)+
         '<span class="mhero__label">Mirror 0'+num+'</span>'+
         '<h2 class="mhero__title">'+en+'<span class="zh">'+zh+'</span></h2>'+
         '<div class="mhero__fn">'+fnEn+' <span class="zh">'+fnZh+'</span></div>'+
@@ -3999,20 +4217,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         {ic:"bolt", t:{en:"Learning Mindset Recharge",zh:"学习思维充电"},   v:{en:"Improve how you sound — and how you learn.",zh:"不只改善发音，也优化学习方式与学习态度。"}}
       ].map(function(c){return '<div class="stage-card"><span class="stage-card__ic">'+sv(c.ic)+'</span><div class="stage-card__t">'+c.t.en+'<span class="zh">'+c.t.zh+'</span></div><div class="stage-card__v">'+c.v.en+'<span class="zh">'+c.v.zh+'</span></div></div>';}).join("");
       return '<div class="goal ipa">'+
-        '<header class="mhero">'+
-          '<div class="stage-emblem">'+
-            '<svg class="stage-scene" viewBox="0 0 100 100" aria-hidden="true">'+
-              '<defs><linearGradient id="stageBeam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>'+
-              '<polygon class="beam" points="46,12 54,12 76,74 24,74"/>'+
-              '<ellipse class="floor" cx="50" cy="80" rx="29" ry="6"/>'+
-              '<path class="floor floor--front" d="M21,80 a29,6 0 0 0 58,0 v7 a29,6 0 0 1 -58,0 Z"/>'+
-              '<circle class="perf" cx="50" cy="55" r="5"/>'+
-              '<path class="perf" d="M42,76 C42,65 45.5,61 50,61 C54.5,61 58,65 58,76 Z"/>'+
-              '<path class="valance" d="M0,0 H100 V11 C88,19 80,9 70,11 C60,13 56,6 50,7 C44,8 40,13 30,11 C20,9 12,19 0,11 Z"/>'+
-              '<path class="curtain" d="M0,0 L20,0 C18,17 16,32 20,46 C11,53 5,58 0,61 Z"/>'+
-              '<path class="curtain" d="M100,0 L80,0 C82,17 84,32 80,46 C89,53 95,58 100,61 Z"/>'+
-            '</svg>'+
-          '</div>'+
+        '<header class="mhero mhero--m1">'+
+          glassLayerVis(1,true)+
           '<span class="mhero__label">Stage 01</span>'+
           '<h2 class="mhero__title">Find Your Voice<span class="zh">找到你的声音</span></h2>'+
           '<div class="mhero__fn">Learning Recharge Station <span class="zh">学习充电站</span></div>'+
@@ -4555,6 +4761,18 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       ctl.addEventListener('click',function(e){ var b=e.target.closest('.sys-scale__b'); if(!b)return; e.preventDefault(); set(scale+(b.getAttribute('data-scale')==='up'?STEP:-STEP)); });
     })();
 
+    // ----- Step 3: subtle +/- roadmap scale control (saved locally; mirrors Step 6) -----
+    (function(){
+      var road=document.getElementById('roadmap'); if(!road)return;
+      var KEY='te_rm_scale', MIN=0.7, MAX=1.12, STEP=0.06;
+      function read(){ try{ var v=parseFloat(localStorage.getItem(KEY)); return (v>=MIN&&v<=MAX)?v:1; }catch(e){ return 1; } }
+      function apply(s){ road.style.zoom=s; }
+      var scale=read(); apply(scale);
+      var gs=road.closest('.glass-stage'); var ctl=gs&&gs.querySelector('.sys-scale'); if(!ctl)return;
+      function set(s){ scale=Math.max(MIN,Math.min(MAX,Math.round(s*100)/100)); apply(scale); try{ localStorage.setItem(KEY,scale); }catch(e){} }
+      ctl.addEventListener('click',function(e){ var b=e.target.closest('.sys-scale__b'); if(!b)return; e.preventDefault(); set(scale+(b.getAttribute('data-scale')==='up'?STEP:-STEP)); });
+    })();
+
     // ----- Branch timetables (data-driven; colours = TOUCH level tokens, not photo) -----
     var TIMETABLES={
       "Mount Austin":{
@@ -4779,33 +4997,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         '</div>';
       }).join("");
       return '<div class="goal lessons">'+
-        '<header class="mhero">'+
-          '<div class="stage-emblem">'+
-            '<svg class="stage-scene" viewBox="0 0 100 100" aria-hidden="true">'+
-              '<defs>'+
-                '<linearGradient id="stageBeam2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'+
-                '<radialGradient id="floorGlow2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>'+
-                '<radialGradient id="bgGlow2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>'+
-              '</defs>'+
-              '<ellipse class="bg-glow" cx="50" cy="33" rx="42" ry="40" fill="url(#bgGlow2)"/>'+
-              '<polygon class="beam-soft" points="42,9 58,9 88,77 12,77" fill="url(#stageBeam2)"/>'+
-              '<polygon class="beam" points="46,11 54,11 77,75 23,75" fill="url(#stageBeam2)"/>'+
-              '<ellipse class="floor-glow" cx="50" cy="79" rx="37" ry="12" fill="url(#floorGlow2)"/>'+
-              '<ellipse class="floor" cx="50" cy="80" rx="29" ry="6"/>'+
-              '<path class="floor floor--front" d="M21,80 a29,6 0 0 0 58,0 v7 a29,6 0 0 1 -58,0 Z"/>'+
-              '<path class="edge-hi" d="M23,79 a27,5 0 0 0 54,0"/>'+
-              '<circle class="perf" cx="50" cy="55" r="5"/>'+
-              '<path class="perf" d="M42,76 C42,65 45.5,61 50,61 C54.5,61 58,65 58,76 Z"/>'+
-              '<circle class="particle p1" cx="40" cy="41" r="1"/>'+
-              '<circle class="particle p2" cx="61" cy="35" r=".8"/>'+
-              '<circle class="particle p3" cx="45" cy="53" r=".7"/>'+
-              '<circle class="particle p4" cx="58" cy="59" r=".9"/>'+
-              '<circle class="particle p5" cx="52" cy="45" r=".6"/>'+
-              '<path class="valance" d="M0,0 H100 V11 C88,19 80,9 70,11 C60,13 56,6 50,7 C44,8 40,13 30,11 C20,9 12,19 0,11 Z"/>'+
-              '<path class="curtain" d="M0,0 L20,0 C18,17 16,32 20,46 C11,53 5,58 0,61 Z"/>'+
-              '<path class="curtain" d="M100,0 L80,0 C82,17 84,32 80,46 C89,53 95,58 100,61 Z"/>'+
-            '</svg>'+
-          '</div>'+
+        '<header class="mhero mhero--m1">'+
+          glassLayerVis(2,true)+
           '<span class="mhero__label">Stage 02</span>'+
           '<h2 class="mhero__title">Step Onto The Stage<span class="zh">走上舞台</span></h2>'+
           '<div class="mhero__fn">Classroom Experience <span class="zh">课堂体验</span></div>'+
@@ -4932,24 +5125,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     function learningSystemPage(){
       var s=SYS[4];
       return ''+
-      '<div class="focus-hero">'+
-        '<div class="focus-hero__main">'+
-          '<span class="focus-step">Step 5 of '+SYS.length+'</span>'+
-          '<h3 class="focus-title">Learning System</h3>'+
-          '<div class="focus-zh">学员学习系统</div>'+
-          '<div class="focus-subtitle">TOUCH System &amp; Digital Support <span class="zh">学员应用系统</span></div>'+
-          '<p class="focus-concept">Your learning continues beyond the classroom. <span class="zh">你的学习不只发生在课堂上。</span></p>'+
-          '<p class="focus-concept">TOUCH provides a complete support system for your learning journey. <span class="zh">TOUCH 提供完整的学习支持系统。</span></p>'+
-          '<div class="focus-chips">'+
-            '<span class="focus-chip"><span class="focus-chip__dot"></span>During the course · 课程中</span>'+
-            '<span class="focus-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.6"/></svg>Focus · Digital Support</span>'+
-          '</div>'+
-        '</div>'+
-        '<div class="focus-hero__vis" aria-hidden="true">'+
-          '<span class="fv-shape fv-shape--1"></span><span class="fv-shape fv-shape--2"></span><span class="fv-shape fv-shape--3"></span>'+
-          '<span class="focus-bigicon">'+sv(s.ic)+'</span>'+
-        '</div>'+
-      '</div>'+
+      '<header class="mhero mhero--m1">'+
+        glassNetVis()+
+        '<span class="mhero__label">The TOUCH System</span>'+
+        '<h2 class="mhero__title">Learning System<span class="zh">学员学习系统</span></h2>'+
+        '<div class="mhero__fn">TOUCH System &amp; Digital Support <span class="zh">学员应用系统</span></div>'+
+        '<p class="mhero__sub">Your learning continues beyond the classroom — TOUCH provides a complete support system. <span class="zh">你的学习不只发生在课堂上，TOUCH 提供完整的学习支持系统。</span></p>'+
+      '</header>'+
       '<div class="focus-body">'+
         '<div class="focus-cols">'+
           '<div class="focus-main">'+
@@ -5074,6 +5256,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         fbody.innerHTML=reviewPage();
       } else if(i===6){
         fbody.innerHTML=next24Page();
+      } else if(i===7){
+        fbody.innerHTML=finalPage();
       } else {
       fbody.innerHTML=
         '<div class="focus-hero">'+
@@ -5141,7 +5325,15 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     $("#tbTitle").innerHTML=STAGES[i].t+' <span class="zh">'+STAGES[i].zh+'</span>';
     $("#tbEyebrow").textContent="Step "+(i+1);
     $("#scNow").textContent=i+1;
-    window.scrollTo({top:0,behavior:"auto"});
+    var _st=stages[i], _er=_st&&_st.querySelector(".eco-ring");
+    if(_er){
+      requestAnimationFrame(function(){
+        try{ _er.scrollIntoView({block:"center",inline:"nearest"}); }catch(e){}
+        _er.classList.remove("is-on"); void _er.getBoundingClientRect(); _er.classList.add("is-on");
+      });
+    } else {
+      window.scrollTo({top:0,behavior:"auto"});
+    }
     var activeTab=tabbar.querySelector('.tab-item[data-jump="'+i+'"]');
     if(activeTab && activeTab.scrollIntoView){activeTab.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});}
     if(i===8 && $(".rec-btn.is-active")){renderRec($(".rec-btn.is-active").getAttribute("data-rec"));}
@@ -5538,170 +5730,10 @@ io.observe(er);})();
     }
     function closePop(){ pop.classList.remove('is-open'); }
     root.addEventListener('click',function(e){ var f=e.target.closest('.sumtr-feat'); if(f){ e.stopPropagation(); openPop(f); } });
-    root.addEventListener('click',function(e){ var jp=e.target.closest('.sumtr-jp--mini[data-feat]'); if(!jp) return; e.stopPropagation(); var t=jp.getAttribute('data-feat'); var bs=jp.closest('.sumtr-card').querySelectorAll('.sumtr-feat'); for(var i=0;i<bs.length;i++){ if(bs[i].getAttribute('data-title')===t){ openPop(bs[i]); return; } } });
     pop.querySelector('.sumtr-pop__bd').addEventListener('click',function(e){ e.stopPropagation(); closePop(); });
     pop.querySelector('.sumtr-pop__x').addEventListener('click',function(e){ e.stopPropagation(); closePop(); });
     pop.querySelector('.sumtr-pop__card').addEventListener('click',function(e){ e.stopPropagation(); });
   }
-
-  /* ===== JSON-driven journey visual loader (infrastructure only) =====
-     Loads an external animation-scene JSON (e.g. assets/journey/mirror.json) into a
-     visual slot. If the file is missing/unreachable, the existing light-glass
-     placeholder stays and we only console.warn (no user-facing error).
-     renderJourneyScene() is the extension point for the real Vision-Pro-style
-     panel/timeline renderer — intentionally left minimal until the JSON schema
-     is finalised, so no final animation is hardcoded here. */
-  function sumtrEsc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  var SUMTR_ICONS={
-    person:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>',
-    target:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r=".7" fill="currentColor" stroke="none"/></svg>',
-    review:'<svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="m9 13 2 2 4-4"/></svg>',
-    check:'<svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="m9 13 2 2 4-4"/></svg>',
-    star:'<svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.7 6.4.7-4.8 4.3 1.3 6.3L12 17l-5.5 3.3 1.3-6.3L3 9.4l6.4-.7Z"/></svg>',
-    chat:'<svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>',
-    sound:'<svg viewBox="0 0 24 24"><path d="M4 10v4M9 6v12M14 3v18M19 9v6"/></svg>'
-  };
-  function sumtrIcon(k){var v=String(k||'');if(v.indexOf('<svg')===0)return v;return SUMTR_ICONS[v.toLowerCase()]||'';}
-
-  function sumtrTransform(o,ds){
-    o=o||{}; ds=(ds!=null?ds:1);
-    var tx=(o.translateX!=null?o.translateX:0), ty=(o.translateY!=null?o.translateY:0), sc=(o.scale!=null?o.scale:1);
-    return 'translate(-50%,-50%) translate('+tx+'px,'+ty+'px) scale('+(sc*ds)+')';
-  }
-  function sumtrPlayScene(scene){
-    var easing=scene.getAttribute('data-easing')||'cubic-bezier(.22,1,.36,1)';
-    Array.prototype.forEach.call(scene.children,function(node,idx){
-      try{ node.getAnimations().forEach(function(a){a.cancel();}); }catch(e){}
-      var raw=node.getAttribute('data-anim');
-      var ds=parseFloat(node.getAttribute('data-ds')); if(isNaN(ds)) ds=1;
-      var doRaw=node.getAttribute('data-do'); var dop=(doRaw!=null&&doRaw!=='')?parseFloat(doRaw):null;
-      var dbl=parseFloat(node.getAttribute('data-db')); if(isNaN(dbl)) dbl=0;
-      var floaty=node.getAttribute('data-float')!=='0';
-      if(!raw){ node.style.opacity=(dop!=null?dop:1); return; }
-      var a; try{a=JSON.parse(raw);}catch(e){ node.style.opacity='1'; return; }
-      var f=a.from||{}, t=a.to||{};
-      var endOp=(dop!=null?dop:(t.opacity!=null?t.opacity:1));
-      var kf=[
-        {opacity:(f.opacity!=null?f.opacity:0),transform:sumtrTransform(f,ds),filter:'blur('+(f.blur!=null?f.blur:0)+'px)'},
-        {opacity:endOp,transform:sumtrTransform(t,ds),filter:'blur('+dbl+'px)'}
-      ];
-      try{
-        var ent=node.animate(kf,{duration:a.duration||600,delay:a.start||0,easing:easing,fill:'both'});
-        if(floaty && ent && ent.finished){
-          ent.finished.then(function(){
-            try{
-              var restT=sumtrTransform(t,ds);
-              var upT=sumtrTransform({translateX:0,translateY:-4,scale:1.012},ds);
-              node.animate([{transform:restT},{transform:upT}],{duration:3400+idx*420,easing:'ease-in-out',direction:'alternate',iterations:Infinity});
-            }catch(e){}
-          }).catch(function(){});
-        }
-      }catch(e){ node.style.opacity=endOp; node.style.transform=sumtrTransform(t,ds); }
-    });
-  }
-
-  function sumtrBuildEl(el){
-    var t=el.type||'', c=el.content||{}, v=el.visual||{}, node;
-    if(t==='ambientGlow'){
-      node=document.createElement('div'); node.className='sumtr-jp-glow';
-      var col=(v.color)||'rgba(110,160,230,0.22)';
-      node.style.background='radial-gradient(ellipse at center,'+col+' 0%,rgba(255,255,255,0) 70%)';
-    } else if(t==='personSilhouette'){
-      node=document.createElement('div'); node.className='sumtr-jp-person';
-      if(v.opacity!=null) node.style.setProperty('--p-op',v.opacity);
-      node.innerHTML='<svg viewBox="0 0 40 92" preserveAspectRatio="xMidYMax meet"><ellipse cx="20" cy="15" rx="11" ry="12.5"/><path d="M2.5 92c0-23 7.5-42 17.5-42S37.5 69 37.5 92Z"/></svg>';
-    } else {
-      var mini=(t==='miniPanel');
-      node=document.createElement('div'); node.className='sumtr-jp '+(mini?'sumtr-jp--mini':'sumtr-jp--panel'); if(mini) node.setAttribute('data-feat', c.title||'');
-      var html='';
-      if(mini){
-        var ic=sumtrIcon(c.icon); if(ic) html+='<span class="sumtr-jp__ic">'+ic+'</span>';
-        html+='<span class="sumtr-jp__bd">';
-        if(c.title) html+='<span class="sumtr-jp__t">'+sumtrEsc(c.title)+'</span>';
-        if(c.subtitle) html+='<span class="sumtr-jp__s">'+sumtrEsc(c.subtitle)+'</span>';
-        html+='</span>';
-      } else {
-        if(v&&v.type==='reflection-ring') html+='<span class="sumtr-jp__ring"></span>';
-        if(c.title) html+='<span class="sumtr-jp__t sumtr-jp__t--lg">'+sumtrEsc(c.title)+'</span>';
-        if(c.subtitle) html+='<span class="sumtr-jp__tag">'+sumtrEsc(c.subtitle)+'</span>';
-        if(c.headline) html+='<span class="sumtr-jp__h">'+sumtrEsc(c.headline)+'</span>';
-        if(c.body) html+='<span class="sumtr-jp__d">'+sumtrEsc(c.body)+'</span>';
-      }
-      node.innerHTML=html;
-    }
-    return node;
-  }
-
-  /* JSON-driven Vision-Pro renderer — matches the mirror.json "elements[]" schema:
-     elements:[{ id,type(personSilhouette|floatingPanel|miniPanel|ambientGlow),
-       position:{x,y,z fractions 0-1, centre-anchored}, size:{width,height fractions},
-       content:{title,subtitle,headline,body,icon,visual}, animation:{start,duration,from,to} }]
-     style:{ glass:{background,border,blur,shadow}, motion:{easing}, color:{accent,text,muted} }
-     Returns true if anything rendered; otherwise false -> placeholder kept. */
-  function renderJourneyScene(slot, data){
-    var scene=slot.querySelector('.sumtr-slot__scene');
-    if(!scene||!data||typeof data!=='object') return false;
-    var els=data.elements||data.panels||[];
-    if(!Array.isArray(els)||!els.length){ slot._journeyScene=data; return false; }
-    var st=data.style||{}, glass=st.glass||{}, col=st.color||{};
-    if(glass.background) scene.style.setProperty('--jp-bg',glass.background);
-    if(glass.border) scene.style.setProperty('--jp-bd',glass.border);
-    if(glass.blur!=null) scene.style.setProperty('--jp-blur',glass.blur+'px');
-    if(glass.shadow) scene.style.setProperty('--jp-shadow',glass.shadow);
-    if(col.text) scene.style.setProperty('--jp-text',col.text);
-    if(col.muted) scene.style.setProperty('--jp-muted',col.muted);
-    if(col.accent) scene.style.setProperty('--jp-accent',col.accent);
-    scene.setAttribute('data-easing',(st.motion&&st.motion.easing)||'cubic-bezier(.22,1,.36,1)');
-    scene.textContent='';
-    var made=0;
-    els.forEach(function(el){
-      if(!el||typeof el!=='object') return;
-      var node=sumtrBuildEl(el); if(!node) return;
-      var pos=el.position||{}, sz=el.size||{};
-      node.style.left=((pos.x!=null?pos.x:0.5)*100)+'%';
-      node.style.top=((pos.y!=null?pos.y:0.5)*100)+'%';
-      var wMul=(el.type==='personSilhouette')?1.55:1, hMul=(el.type==='personSilhouette')?2.0:1;
-      if(sz.width!=null) node.style.width=(sz.width*100*wMul)+'%';
-      if(sz.height!=null && (el.type==='personSilhouette'||el.type==='ambientGlow')) node.style.height=(sz.height*100*hMul)+'%';
-      var zz=(pos.z!=null?pos.z:0.12); node.style.zIndex=Math.round(zz*100);
-      if(el.type==='floatingPanel'||el.type==='miniPanel'){
-        var dt=Math.max(0,Math.min(1,(zz-0.05)/0.18));
-        node.setAttribute('data-ds',(0.82+dt*0.26).toFixed(3));
-        node.setAttribute('data-do',(0.58+dt*0.42).toFixed(3));
-        node.setAttribute('data-db',((1-dt)*3).toFixed(2));
-      } else if(el.type==='ambientGlow'){ node.setAttribute('data-float','0'); }
-      if(el.animation) node.setAttribute('data-anim',JSON.stringify(el.animation));
-      scene.appendChild(node); made++;
-    });
-    if(!made) return false;
-    slot._journeyScene=data;
-    var card=slot.closest('.sumtr-card'); if(card) card.classList.add('is-journey');
-    function play(){ sumtrPlayScene(scene); }
-    if(card){
-      try{ var mo=new MutationObserver(function(){ if(card.classList.contains('is-hero')) play(); }); mo.observe(card,{attributes:true,attributeFilter:['class']}); }catch(e){}
-      if(card.classList.contains('is-hero')) play();
-    } else { play(); }
-    return true;
-  }
-
-  function loadJourneyVisual(slot){
-    var url=slot.getAttribute('data-journey-json'); if(!url) return;
-    fetch(url,{cache:'no-cache'})
-      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-      .then(function(data){
-        slot.setAttribute('data-journey-state','loaded');
-        var rendered=false;
-        try{ rendered=renderJourneyScene(slot,data); }
-        catch(e){ console.warn('[journey] render failed for '+url+':',e); }
-        if(rendered) slot.classList.add('is-json-loaded');
-        else console.info('[journey] '+url+' loaded; awaiting timeline renderer (placeholder kept).');
-      })
-      .catch(function(e){
-        slot.setAttribute('data-journey-state','fallback');
-        console.warn('[journey] '+url+' not loaded — using placeholder.', e.message);
-      });
-  }
-  Array.prototype.forEach.call(root.querySelectorAll('.sumtr-visual-slot[data-journey-json]'), loadJourneyVisual);
 
   render();
 })();
