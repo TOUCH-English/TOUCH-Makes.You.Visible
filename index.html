@@ -1872,9 +1872,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
 .sumtr-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;transition:gap .5s ease}
 /* ===== Apple-style presentation scene: one big centre hero (frameless floating visual) + side glass buttons; others = faint side previews ===== */
-.sumtr-card--mirror{--slot:url('assets/journey/mirror.png')}
+.sumtr-card--mirror{--slot:none}
 .sumtr-card--stage{--slot:url('assets/journey/stage.png')}
 .sumtr-card--system{--slot:url('assets/journey/system.png')}
+/* JSON-driven visual slot (Mirror): scene container over the placeholder; shown only once a JSON scene is rendered */
+.sumtr-slot__scene{position:absolute;inset:0;display:none;border-radius:inherit;overflow:hidden}
+.sumtr-card__slot.is-json-loaded .sumtr-slot__scene{display:block}
+.sumtr-card__slot.is-json-loaded{background-image:none;filter:none}
 .sumtr-card::before{content:none}
 .sumtr-cards{display:flex;align-items:center;justify-content:center;gap:30px;min-height:470px;flex-wrap:nowrap}
 .sumtr-card{flex:0 1 200px;display:flex;flex-direction:column;align-items:center;text-align:center;background:none;border:0;box-shadow:none;padding:0;border-radius:0;overflow:visible;opacity:.34;filter:blur(1.5px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),filter .55s ease,flex-basis .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
@@ -2633,7 +2637,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
             <article class="sumtr-card sumtr-card--mirror" style="--cc:var(--blue-bright)">
               <div class="sumtr-card__main">
-                <div class="sumtr-card__slot" role="img" aria-label="Mirror visual (assets/journey/mirror.png)"></div>
+                <div class="sumtr-card__slot sumtr-visual-slot" data-journey-json="assets/journey/mirror.json" role="img" aria-label="Mirror visual"><div class="sumtr-slot__scene"></div></div>
                 <h3 class="sumtr-card__t">Discover</h3>
                 <div class="sumtr-card__sub">Know Yourself First</div>
                 <div class="sumtr-card__tag">镜子 Mirror</div>
@@ -5509,6 +5513,42 @@ io.observe(er);})();
     pop.querySelector('.sumtr-pop__x').addEventListener('click',function(e){ e.stopPropagation(); closePop(); });
     pop.querySelector('.sumtr-pop__card').addEventListener('click',function(e){ e.stopPropagation(); });
   }
+
+  /* ===== JSON-driven journey visual loader (infrastructure only) =====
+     Loads an external animation-scene JSON (e.g. assets/journey/mirror.json) into a
+     visual slot. If the file is missing/unreachable, the existing light-glass
+     placeholder stays and we only console.warn (no user-facing error).
+     renderJourneyScene() is the extension point for the real Vision-Pro-style
+     panel/timeline renderer — intentionally left minimal until the JSON schema
+     is finalised, so no final animation is hardcoded here. */
+  function renderJourneyScene(slot, data){
+    var scene=slot.querySelector('.sumtr-slot__scene');
+    if(!scene||!data) return false;
+    // Schema-agnostic stub: store the config for the future renderer and keep the
+    // current placeholder until the real timeline renderer is implemented.
+    slot._journeyScene=data;
+    // NOTE: do not reveal an empty scene — leave placeholder visible for now.
+    // (When the renderer is built, populate `scene` and add 'is-json-loaded'.)
+    return false;
+  }
+  function loadJourneyVisual(slot){
+    var url=slot.getAttribute('data-journey-json'); if(!url) return;
+    fetch(url,{cache:'no-cache'})
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(function(data){
+        slot.setAttribute('data-journey-state','loaded');
+        var rendered=false;
+        try{ rendered=renderJourneyScene(slot,data); }
+        catch(e){ console.warn('[journey] render failed for '+url+':',e); }
+        if(rendered) slot.classList.add('is-json-loaded');
+        else console.info('[journey] '+url+' loaded; awaiting timeline renderer (placeholder kept).');
+      })
+      .catch(function(e){
+        slot.setAttribute('data-journey-state','fallback');
+        console.warn('[journey] '+url+' not loaded — using placeholder.', e.message);
+      });
+  }
+  Array.prototype.forEach.call(root.querySelectorAll('.sumtr-visual-slot[data-journey-json]'), loadJourneyVisual);
 
   render();
 })();
