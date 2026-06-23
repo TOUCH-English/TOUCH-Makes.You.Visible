@@ -1879,15 +1879,23 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-slot__scene{position:absolute;inset:0;display:none;border-radius:inherit;overflow:hidden}
 .sumtr-card__slot.is-json-loaded .sumtr-slot__scene{display:block}
 .sumtr-card__slot.is-json-loaded{background-image:none;filter:none}
-.sumtr-jp{position:absolute;transform-origin:center;display:flex;flex-direction:column;gap:1px;max-width:52%;padding:7px 9px;border-radius:11px;background:rgba(255,255,255,.58);border:1px solid rgba(255,255,255,.82);box-shadow:0 10px 26px -14px rgba(20,33,50,.32),inset 0 1px 0 rgba(255,255,255,.7);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);opacity:0;pointer-events:none}
-.sumtr-jp__ic{width:18px;height:18px;color:var(--jp,var(--cc));margin-bottom:2px}
+.sumtr-jp{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;gap:2px;min-width:128px;max-width:66%;padding:9px 12px;border-radius:14px;background:var(--jp-bg,rgba(255,255,255,.58));border:1px solid var(--jp-bd,rgba(255,255,255,.78));box-shadow:var(--jp-shadow,0 18px 44px -18px rgba(20,45,80,.3)),inset 0 1px 0 rgba(255,255,255,.7);-webkit-backdrop-filter:blur(var(--jp-blur,16px)) saturate(150%);backdrop-filter:blur(var(--jp-blur,16px)) saturate(150%);color:var(--jp-text,var(--ink));opacity:0;pointer-events:none}
+.sumtr-jp--mini{flex-direction:row;align-items:center;gap:9px;min-width:122px;padding:8px 12px}
+.sumtr-jp__ic{flex:none;width:24px;height:24px;color:var(--jp-accent,var(--cc))}
 .sumtr-jp__ic svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.sumtr-jp__t{font-family:var(--display);font-weight:700;font-size:11px;line-height:1.15;color:var(--ink)}
-.sumtr-jp__s{font-size:9.5px;color:var(--muted);line-height:1.2}
-.sumtr-jp__d{font-size:9px;color:var(--faint);line-height:1.3;margin-top:1px}
-.sumtr-jp-person{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:var(--cc);background:radial-gradient(circle at 40% 35%,#fff,color-mix(in srgb,var(--cc) 16%,#fff));border:1px solid rgba(255,255,255,.85);box-shadow:0 12px 30px -12px color-mix(in srgb,var(--cc) 42%,transparent);opacity:0;overflow:hidden;pointer-events:none}
-.sumtr-jp-person__img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.sumtr-jp-person svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sumtr-jp__bd{display:flex;flex-direction:column;gap:1px;min-width:0}
+.sumtr-jp__t{font-family:var(--display);font-weight:700;font-size:12px;line-height:1.15;color:var(--jp-text,var(--ink))}
+.sumtr-jp__t--lg{font-size:18px}
+.sumtr-jp__tag{font-size:9.5px;font-weight:700;letter-spacing:.08em;color:var(--jp-accent,var(--cc));text-transform:uppercase;margin-top:1px}
+.sumtr-jp__h{font-size:11.5px;font-weight:600;color:var(--jp-text,var(--ink));margin-top:4px}
+.sumtr-jp__s{font-size:9.5px;color:var(--jp-muted,var(--muted));line-height:1.25}
+.sumtr-jp__d{font-size:9.5px;color:var(--jp-muted,var(--muted));line-height:1.4;margin-top:4px}
+.sumtr-jp__ring{width:30px;height:30px;border-radius:50%;border:2px solid color-mix(in srgb,var(--jp-accent,var(--cc)) 55%,#fff);box-shadow:0 0 16px -2px color-mix(in srgb,var(--jp-accent,var(--cc)) 50%,transparent),inset 0 0 10px -3px color-mix(in srgb,var(--jp-accent,var(--cc)) 40%,transparent);margin-bottom:5px}
+.sumtr-jp-person{position:absolute;transform:translate(-50%,-50%);color:color-mix(in srgb,var(--cc) 50%,#8493ab);opacity:0;pointer-events:none}
+.sumtr-jp-glow{position:absolute;transform:translate(-50%,-50%);opacity:0;pointer-events:none}
+.sumtr-jp-person svg{width:100%;height:100%;fill:currentColor;opacity:var(--p-op,.9);filter:drop-shadow(0 12px 16px rgba(20,45,80,.18))}
+.sumtr-card.is-hero .sumtr-card__slot.is-json-loaded{width:430px}
+@media (max-width:900px){.sumtr-card.is-hero .sumtr-card__slot.is-json-loaded{width:300px}}
 .sumtr-card::before{content:none}
 .sumtr-cards{display:flex;align-items:center;justify-content:center;gap:30px;min-height:470px;flex-wrap:nowrap}
 .sumtr-card{flex:0 1 200px;display:flex;flex-direction:column;align-items:center;text-align:center;background:none;border:0;box-shadow:none;padding:0;border-radius:0;overflow:visible;opacity:.34;filter:blur(1.5px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),filter .55s ease,flex-basis .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
@@ -5531,99 +5539,114 @@ io.observe(er);})();
      panel/timeline renderer — intentionally left minimal until the JSON schema
      is finalised, so no final animation is hardcoded here. */
   function sumtrEsc(t){return String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  function sumtrFrom(dir){
-    switch(String(dir||'').toLowerCase()){
-      case 'up':return 'translateY(-16px) scale(.94)';
-      case 'down':return 'translateY(16px) scale(.94)';
-      case 'left':return 'translateX(-18px) scale(.95)';
-      case 'right':return 'translateX(18px) scale(.95)';
-      case 'scale':case 'zoom':return 'scale(.8)';
-      default:return 'translateY(14px) scale(.94)';
-    }
-  }
   var SUMTR_ICONS={
     person:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>',
-    target:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg>',
+    target:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r=".7" fill="currentColor" stroke="none"/></svg>',
+    review:'<svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="m9 13 2 2 4-4"/></svg>',
     check:'<svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="m9 13 2 2 4-4"/></svg>',
     star:'<svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.7 6.4.7-4.8 4.3 1.3 6.3L12 17l-5.5 3.3 1.3-6.3L3 9.4l6.4-.7Z"/></svg>',
     chat:'<svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>',
     sound:'<svg viewBox="0 0 24 24"><path d="M4 10v4M9 6v12M14 3v18M19 9v6"/></svg>'
   };
   function sumtrIcon(k){var v=String(k||'');if(v.indexOf('<svg')===0)return v;return SUMTR_ICONS[v.toLowerCase()]||'';}
-  var SUMTR_POS=[['6%','12%'],['54%','9%'],['8%','60%'],['52%','58%'],['28%','34%'],['62%','34%']];
 
+  function sumtrTransform(o){
+    o=o||{};
+    var tx=(o.translateX!=null?o.translateX:0), ty=(o.translateY!=null?o.translateY:0), sc=(o.scale!=null?o.scale:1);
+    return 'translate(-50%,-50%) translate('+tx+'px,'+ty+'px) scale('+sc+')';
+  }
   function sumtrPlayScene(scene){
-    var els=[]; var person=scene.querySelector('.sumtr-jp-person'); if(person) els.push(person);
-    Array.prototype.push.apply(els, Array.prototype.slice.call(scene.querySelectorAll('.sumtr-jp')));
-    els.forEach(function(el){
-      var delay=parseInt(el.getAttribute('data-delay'),10)||0;
-      var from=el.getAttribute('data-from')||'translateY(14px) scale(.94)';
-      try{
-        el.animate([{opacity:0,filter:'blur(6px)',transform:from},{opacity:1,filter:'blur(0)',transform:'none'}],
-          {duration:680,delay:delay,easing:'cubic-bezier(.2,.7,.2,1)',fill:'both'});
-      }catch(e){ el.style.opacity='1'; }
+    var easing=scene.getAttribute('data-easing')||'cubic-bezier(.22,1,.36,1)';
+    Array.prototype.forEach.call(scene.children,function(node){
+      var raw=node.getAttribute('data-anim'); if(!raw){ node.style.opacity='1'; return; }
+      var a; try{a=JSON.parse(raw);}catch(e){ node.style.opacity='1'; return; }
+      var f=a.from||{}, t=a.to||{};
+      var kf=[
+        {opacity:(f.opacity!=null?f.opacity:0),transform:sumtrTransform(f),filter:'blur('+(f.blur!=null?f.blur:0)+'px)'},
+        {opacity:(t.opacity!=null?t.opacity:1),transform:sumtrTransform(t),filter:'blur('+(t.blur!=null?t.blur:0)+'px)'}
+      ];
+      try{ node.animate(kf,{duration:a.duration||600,delay:a.start||0,easing:easing,fill:'both'}); }
+      catch(e){ node.style.opacity=kf[1].opacity; node.style.transform=kf[1].transform; }
     });
   }
 
-  /* JSON-driven Vision-Pro floating-panels renderer.
-     Expected schema (all optional except a panels array):
-       { scene, duration, person:{label,sublabel,image,delay,x,y},
-         panels:[ {title,subtitle,text,icon,delay,x,y,from,accent}, ... ] }
-     Tolerant of key aliases (cards/items/sequence, name/label, sub, desc/description, at).
-     Returns true only if at least one panel/person was rendered; otherwise false -> placeholder kept. */
+  function sumtrBuildEl(el){
+    var t=el.type||'', c=el.content||{}, v=el.visual||{}, node;
+    if(t==='ambientGlow'){
+      node=document.createElement('div'); node.className='sumtr-jp-glow';
+      var col=(v.color)||'rgba(110,160,230,0.22)';
+      node.style.background='radial-gradient(ellipse at center,'+col+' 0%,rgba(255,255,255,0) 70%)';
+    } else if(t==='personSilhouette'){
+      node=document.createElement('div'); node.className='sumtr-jp-person';
+      if(v.opacity!=null) node.style.setProperty('--p-op',v.opacity);
+      node.innerHTML='<svg viewBox="0 0 40 92" preserveAspectRatio="xMidYMax meet"><ellipse cx="20" cy="15" rx="11" ry="12.5"/><path d="M2.5 92c0-23 7.5-42 17.5-42S37.5 69 37.5 92Z"/></svg>';
+    } else {
+      var mini=(t==='miniPanel');
+      node=document.createElement('div'); node.className='sumtr-jp '+(mini?'sumtr-jp--mini':'sumtr-jp--panel');
+      var html='';
+      if(mini){
+        var ic=sumtrIcon(c.icon); if(ic) html+='<span class="sumtr-jp__ic">'+ic+'</span>';
+        html+='<span class="sumtr-jp__bd">';
+        if(c.title) html+='<span class="sumtr-jp__t">'+sumtrEsc(c.title)+'</span>';
+        if(c.subtitle) html+='<span class="sumtr-jp__s">'+sumtrEsc(c.subtitle)+'</span>';
+        html+='</span>';
+      } else {
+        if(v&&v.type==='reflection-ring') html+='<span class="sumtr-jp__ring"></span>';
+        if(c.title) html+='<span class="sumtr-jp__t sumtr-jp__t--lg">'+sumtrEsc(c.title)+'</span>';
+        if(c.subtitle) html+='<span class="sumtr-jp__tag">'+sumtrEsc(c.subtitle)+'</span>';
+        if(c.headline) html+='<span class="sumtr-jp__h">'+sumtrEsc(c.headline)+'</span>';
+        if(c.body) html+='<span class="sumtr-jp__d">'+sumtrEsc(c.body)+'</span>';
+      }
+      node.innerHTML=html;
+    }
+    return node;
+  }
+
+  /* JSON-driven Vision-Pro renderer — matches the mirror.json "elements[]" schema:
+     elements:[{ id,type(personSilhouette|floatingPanel|miniPanel|ambientGlow),
+       position:{x,y,z fractions 0-1, centre-anchored}, size:{width,height fractions},
+       content:{title,subtitle,headline,body,icon,visual}, animation:{start,duration,from,to} }]
+     style:{ glass:{background,border,blur,shadow}, motion:{easing}, color:{accent,text,muted} }
+     Returns true if anything rendered; otherwise false -> placeholder kept. */
   function renderJourneyScene(slot, data){
     var scene=slot.querySelector('.sumtr-slot__scene');
     if(!scene||!data||typeof data!=='object') return false;
-    var panels=data.panels||data.cards||data.items||data.sequence;
-    var person=data.person||data.avatar;
-    if(!Array.isArray(panels)) panels=[];
-    if(!panels.length && !person){ slot._journeyScene=data; return false; }
+    var els=data.elements||data.panels||[];
+    if(!Array.isArray(els)||!els.length){ slot._journeyScene=data; return false; }
+    var st=data.style||{}, glass=st.glass||{}, col=st.color||{};
+    if(glass.background) scene.style.setProperty('--jp-bg',glass.background);
+    if(glass.border) scene.style.setProperty('--jp-bd',glass.border);
+    if(glass.blur!=null) scene.style.setProperty('--jp-blur',glass.blur+'px');
+    if(glass.shadow) scene.style.setProperty('--jp-shadow',glass.shadow);
+    if(col.text) scene.style.setProperty('--jp-text',col.text);
+    if(col.muted) scene.style.setProperty('--jp-muted',col.muted);
+    if(col.accent) scene.style.setProperty('--jp-accent',col.accent);
+    scene.setAttribute('data-easing',(st.motion&&st.motion.easing)||'cubic-bezier(.22,1,.36,1)');
     scene.textContent='';
     var made=0;
-    if(person && typeof person==='object'){
-      var pe=document.createElement('div'); pe.className='sumtr-jp-person';
-      pe.setAttribute('data-delay', person.delay!=null?person.delay:0);
-      pe.setAttribute('data-from', sumtrFrom(person.from||'scale'));
-      if(person.image){ var im=document.createElement('img'); im.className='sumtr-jp-person__img'; im.src=person.image; im.alt=person.label||''; pe.appendChild(im); }
-      else { pe.innerHTML=SUMTR_ICONS.person; }
-      if(person.x!=null) pe.style.left=(typeof person.x==='number'?person.x+'%':person.x);
-      if(person.y!=null) pe.style.top=(typeof person.y==='number'?person.y+'%':person.y);
-      scene.appendChild(pe); made++;
-    }
-    panels.forEach(function(p,i){
-      if(!p||typeof p!=='object') return;
-      var el=document.createElement('div'); el.className='sumtr-jp';
-      var delay=(p.delay!=null?p.delay:(p.at!=null?p.at:(person?500:200)+i*460));
-      el.setAttribute('data-delay', delay);
-      el.setAttribute('data-from', sumtrFrom(p.from));
-      if(p.x!=null) el.style.left=(typeof p.x==='number'?p.x+'%':p.x);
-      if(p.y!=null) el.style.top=(typeof p.y==='number'?p.y+'%':p.y);
-      if(p.x==null && p.y==null){ var pos=SUMTR_POS[i%SUMTR_POS.length]; el.style.left=pos[0]; el.style.top=pos[1]; }
-      if(p.accent) el.style.setProperty('--jp', p.accent);
-      var title=p.title||p.name||p.label||'';
-      var sub=p.subtitle||p.sub||'';
-      var text=p.text||p.desc||p.description||'';
-      var ic=sumtrIcon(p.icon);
-      var html='';
-      if(ic) html+='<span class="sumtr-jp__ic">'+ic+'</span>';
-      if(title) html+='<span class="sumtr-jp__t">'+sumtrEsc(title)+'</span>';
-      if(sub) html+='<span class="sumtr-jp__s">'+sumtrEsc(sub)+'</span>';
-      if(text) html+='<span class="sumtr-jp__d">'+sumtrEsc(text)+'</span>';
-      el.innerHTML=html;
-      scene.appendChild(el); made++;
+    els.forEach(function(el){
+      if(!el||typeof el!=='object') return;
+      var node=sumtrBuildEl(el); if(!node) return;
+      var pos=el.position||{}, sz=el.size||{};
+      node.style.left=((pos.x!=null?pos.x:0.5)*100)+'%';
+      node.style.top=((pos.y!=null?pos.y:0.5)*100)+'%';
+      if(sz.width!=null) node.style.width=(sz.width*100)+'%';
+      if(sz.height!=null && (el.type==='personSilhouette'||el.type==='ambientGlow')) node.style.height=(sz.height*100)+'%';
+      if(pos.z!=null) node.style.zIndex=Math.round(pos.z*100);
+      if(el.animation) node.setAttribute('data-anim',JSON.stringify(el.animation));
+      scene.appendChild(node); made++;
     });
     if(!made) return false;
     slot._journeyScene=data;
     var card=slot.closest('.sumtr-card');
+    function play(){ sumtrPlayScene(scene); }
     if(card){
-      try{
-        var mo=new MutationObserver(function(){ if(card.classList.contains('is-hero')) sumtrPlayScene(scene); });
-        mo.observe(card,{attributes:true,attributeFilter:['class']});
-      }catch(e){}
-      if(card.classList.contains('is-hero')) sumtrPlayScene(scene);
-    } else { sumtrPlayScene(scene); }
+      try{ var mo=new MutationObserver(function(){ if(card.classList.contains('is-hero')) play(); }); mo.observe(card,{attributes:true,attributeFilter:['class']}); }catch(e){}
+      if(card.classList.contains('is-hero')) play();
+    } else { play(); }
     return true;
   }
+
   function loadJourneyVisual(slot){
     var url=slot.getAttribute('data-journey-json'); if(!url) return;
     fetch(url,{cache:'no-cache'})
