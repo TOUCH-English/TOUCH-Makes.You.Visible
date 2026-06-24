@@ -2476,6 +2476,181 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sysFocus .rev-head__ic,#sysFocus .rev-badge__ic,#sysFocus .focus-gain__ic,#sysFocus .focus-bigicon,#sysFocus .stage-card__ic,#sysFocus .stage-advisor__ic,#sysFocus .goal-reflect__hic,#sysFocus .goal-focus__hic,#sysFocus .goal-future__hic{color:var(--c)!important;background:color-mix(in srgb,var(--c) 15%,#fff)!important;border:1px solid color-mix(in srgb,var(--c) 22%,#fff)!important;box-shadow:none!important}
 #sysFocus .epi-id__ic,#sysFocus .epi-cog__ic,#sysFocus .epi-sec__ic,#sysFocus .epi-note__ic{color:var(--epi-theme)!important;background:color-mix(in srgb,var(--epi-theme) 15%,#fff)!important;border:1px solid color-mix(in srgb,var(--epi-theme) 22%,#fff)!important;box-shadow:none!important}
 #sysFocus .rev-head__ic svg,#sysFocus .rev-badge__ic svg,#sysFocus .focus-gain__ic svg,#sysFocus .focus-bigicon svg,#sysFocus .stage-card__ic svg,#sysFocus .stage-advisor__ic svg,#sysFocus .goal-reflect__hic svg,#sysFocus .goal-focus__hic svg,#sysFocus .goal-future__hic svg,#sysFocus .epi-id__ic svg,#sysFocus .epi-cog__ic svg,#sysFocus .epi-sec__ic svg,#sysFocus .epi-note__ic svg{stroke:currentColor!important}
+/* ============ PRICING (Your Investment) — Block 1: data + cards + advisor editor ============ */
+.price-app{margin-top:6px}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.pcard{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:26px 22px 22px;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+.pcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.pcard.is-best{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue),var(--shadow-lg)}
+.pcard__ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);white-space:nowrap;
+  background:linear-gradient(135deg,var(--blue),var(--blue-deep));color:#fff;font-family:var(--display);font-weight:700;
+  font-size:11.5px;letter-spacing:.06em;padding:7px 16px;border-radius:999px;box-shadow:0 6px 16px rgba(14,36,86,.28)}
+.pcard__ribbon .zh{font-weight:500;opacity:.85;margin-left:4px}
+.pcard__top{display:flex;align-items:center;gap:16px}
+.pcard__ic{width:50px;height:50px;flex:0 0 auto;border-radius:14px;display:grid;place-items:center;background:var(--blue-tint)}
+.pcard__ic svg{width:26px;height:26px;fill:none;stroke:var(--blue);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.is-best .pcard__ic{background:var(--blue);}
+.is-best .pcard__ic svg{stroke:#fff}
+.pcard__lessons{display:flex;flex-direction:column;line-height:1}
+.pcard__lessons b{font-family:var(--display);font-weight:800;font-size:38px;color:var(--ink);letter-spacing:-.02em}
+.is-best .pcard__lessons b{color:var(--blue)}
+.pcard__lessons span{font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--faint);margin-top:3px}
+.pcard__name{margin-top:16px;font-family:var(--display);font-weight:700;font-size:17px;color:var(--ink)}
+.pcard__name i{font-style:normal;font-weight:500;color:var(--muted);font-size:14px}
+.pcard__price{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);margin-top:auto}
+.pcard__orig{font-size:14px;color:var(--faint);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:1.5px}
+.pcard__final{font-family:var(--display);font-weight:800;font-size:34px;color:var(--blue);letter-spacing:-.02em;line-height:1.05;margin-top:2px}
+.pcard__final em{font-style:normal;font-size:17px;font-weight:700;color:var(--muted);margin-right:2px}
+.pcard__final i{font-style:normal;font-size:12.5px;font-weight:600;color:var(--faint);letter-spacing:0}
+.pcard__save{display:inline-block;margin-top:10px;background:var(--red-tint);color:var(--red-deep);font-weight:700;
+  font-size:13px;padding:6px 12px;border-radius:999px}
+.pcard__save b{font-family:var(--display)}
+.pcard__note{margin-top:12px;font-size:12px;color:var(--muted)}
+.pcard__note b{color:var(--ok);font-family:var(--display)}
+.pcard__note .zh{color:var(--faint)}
+.pcard__note--na b{color:var(--muted)}
+.pcard__note--na{color:var(--faint)}
+/* extension row */
+.price-ext-wrap{margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.price-ext-head{font-family:var(--display);font-weight:700;font-size:15px;color:var(--muted);margin-bottom:16px;text-align:center}
+.price-ext-head .zh{color:var(--faint);font-weight:500}
+.price-ext{display:grid;grid-template-columns:repeat(2,minmax(0,360px));gap:18px;justify-content:center}
+.pcard.is-ext{padding:20px;background:var(--bg)}
+.pcard.is-ext .pcard__lessons b{font-size:30px}
+.pcard.is-ext .pcard__final{font-size:27px;color:var(--ink)}
+.pcard.is-ext .pcard__ic{background:#E7ECF4}
+.pcard.is-ext .pcard__ic svg{stroke:var(--muted)}
+/* advisor-only editor */
+.price-admin{display:none;margin:0 0 24px;border:1.5px dashed var(--blue-bright);border-radius:var(--r-lg);
+  background:#F6F9FF;padding:18px 20px;position:relative}
+.price-admin.is-on{display:block;animation:rise .3s ease}
+.price-admin__flag{display:inline-flex;align-items:center;gap:7px;background:var(--blue-bright);color:#fff;font-size:11px;
+  font-weight:700;letter-spacing:.04em;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+.pa-table{width:100%;border-collapse:collapse;font-size:13px}
+.pa-table th{text-align:left;font-size:11px;letter-spacing:.04em;color:var(--faint);font-weight:700;padding:0 10px 8px;text-transform:uppercase}
+.pa-table td{padding:6px 10px;border-top:1px solid var(--line)}
+.pa-name{font-weight:700;color:var(--ink);font-family:var(--display)}
+.pa-name span{display:block;font-family:var(--body);font-weight:500;font-size:11px;color:var(--faint)}
+.pa-table input[type=number]{width:96px;border:1px solid var(--line-strong);border-radius:8px;padding:7px 9px;font:inherit;font-size:13px;color:var(--ink);background:#fff}
+.pa-table input[type=number]:focus{outline:none;border-color:var(--blue-bright);box-shadow:0 0 0 3px rgba(42,91,215,.14)}
+.pa-table input:disabled{background:#EEF1F6;color:var(--faint)}
+.pa-na{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);margin-left:8px;cursor:pointer}
+.pa-final{font-family:var(--display);font-weight:800;color:var(--blue);white-space:nowrap}
+.pa-misc{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.pa-misc label{display:inline-flex;align-items:center;gap:7px}
+.pa-misc input{width:80px;border:1px solid var(--line-strong);border-radius:8px;padding:6px 8px;font:inherit;font-size:13px}
+.pa-reset{margin-left:auto;background:#fff;border:1px solid var(--line-strong);border-radius:9px;padding:8px 14px;font-weight:600;font-size:12.5px;color:var(--muted);cursor:pointer;transition:.2s}
+.pa-reset:hover{border-color:var(--red);color:var(--red)}
+@media (max-width:900px){
+  .price-grid{grid-template-columns:1fr;gap:30px;margin-top:18px}
+  .pcard.is-best{order:-1}
+  .price-ext{grid-template-columns:1fr}
+  .pa-table{display:block;overflow-x:auto;white-space:nowrap}
+}
+/* ====== PRICING v4 — Apple glassmorphism · equal-height tiers · hover-reveal recommendation ====== */
+.price-app{position:relative}
+.price-amb{position:absolute;inset:-40px -20px;z-index:0;pointer-events:none;overflow:hidden;border-radius:30px}
+.price-amb::before,.price-amb::after{content:"";position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
+.price-amb::before{width:420px;height:420px;left:6%;top:-60px;background:radial-gradient(circle,rgba(42,91,215,.22),transparent 70%)}
+.price-amb::after{width:460px;height:460px;right:4%;bottom:-120px;background:radial-gradient(circle,rgba(224,48,59,.12),transparent 70%)}
+.tier-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;margin-top:8px}
+/* glass card */
+.tcard{position:relative;display:flex;flex-direction:column;border-radius:24px;padding:22px 16px 18px;overflow:hidden;
+  background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(20px) saturate(1.3);backdrop-filter:blur(20px) saturate(1.3);
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:0 1px 1px rgba(255,255,255,.6) inset,0 10px 30px rgba(20,33,50,.07);
+  transition:transform .3s cubic-bezier(.22,.61,.36,1),box-shadow .3s ease,border-color .3s ease}
+/* hover = subtle, calm "this looks right for me" — no permanent badge */
+.tcard:not(.is-masked):hover{transform:translateY(-4px);border-color:rgba(42,91,215,.4);
+  box-shadow:0 1px 1px rgba(255,255,255,.7) inset,0 18px 44px rgba(20,33,50,.12),0 0 0 4px rgba(42,91,215,.06)}
+.tcard__head{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:4px 8px 0}
+.tcard__ic{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;
+  background:rgba(255,255,255,.7);box-shadow:0 2px 8px rgba(20,33,50,.06)}
+.tcard__ic svg{width:23px;height:23px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tcard__num{display:flex;align-items:baseline;gap:9px}
+.tcard__num b{font-family:var(--display);font-weight:800;font-size:38px;color:var(--ink);letter-spacing:-.02em;line-height:1}
+.tcard__num span{font-size:10.5px;letter-spacing:.16em;font-weight:700;color:var(--faint)}
+.tcard__tag{font-size:13px;color:var(--muted);line-height:1.4}
+.tcard__tag .zh{display:block;color:var(--faint);font-size:11.5px;margin-top:2px}
+.tcard__plus{margin:16px 8px 4px;font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--blue);text-transform:uppercase;
+  display:flex;align-items:center;gap:8px}
+.tcard__plus::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(42,91,215,.25),transparent)}
+.tcard__plus .zh{text-transform:none;font-weight:500;letter-spacing:0;color:var(--faint)}
+.tcard__body{flex:1;margin-top:12px;display:flex;flex-direction:column}
+.tfeats{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+/* Apple-glass feature button — small, refined */
+.tfeat{display:flex;align-items:center;gap:13px;width:100%;text-align:left;font:inherit;cursor:pointer;
+  background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.6);border-radius:15px;padding:11px 13px;
+  box-shadow:0 1px 2px rgba(20,33,50,.04);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.tfeat:hover{transform:translateY(-2px);background:rgba(255,255,255,.78);
+  box-shadow:0 6px 18px rgba(20,33,50,.09),0 0 0 3px rgba(42,91,215,.05)}
+.tfeat:active{transform:translateY(0)}
+.tfeat__ic{flex:0 0 auto;width:30px;height:30px;display:grid;place-items:center;color:var(--ink)}
+.tfeat__ic svg{width:25px;height:25px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tfeat__lab{flex:1;min-width:0}
+.tfeat__lab b{display:block;font-family:var(--display);font-weight:600;font-size:14px;color:var(--ink);line-height:1.2;letter-spacing:-.01em}
+.tfeat__lab .zh{display:block;font-weight:500;font-size:11px;color:var(--faint);margin-top:2px}
+/* frosted masked tier (Apple frost, no lock) */
+.tcard.is-masked{cursor:default}
+.tcard__frost{position:absolute;inset:0;z-index:2;display:grid;place-items:center;
+  background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(244,247,252,.55));
+  -webkit-backdrop-filter:blur(16px) saturate(1.1);backdrop-filter:blur(16px) saturate(1.1)}
+.tcard.is-next{cursor:pointer}
+.tcard.is-next .tcard__frost{background:linear-gradient(180deg,rgba(255,255,255,.42),rgba(244,247,252,.48));
+  -webkit-backdrop-filter:blur(13px);backdrop-filter:blur(13px)}
+.tcard.is-next:hover .tcard__frost{background:linear-gradient(180deg,rgba(255,255,255,.32),rgba(244,247,252,.4))}
+.tcard__hint{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.85);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.7);
+  border-radius:999px;padding:9px 17px;font-weight:600;font-size:12.5px;color:var(--blue);
+  box-shadow:0 4px 14px rgba(20,33,50,.1);transition:transform .2s ease}
+.tcard.is-next:hover .tcard__hint{transform:translateY(-1px)}
+.tcard__hint .zh{font-weight:500;color:var(--muted)}
+/* reserved Lottie strip (full width, below the three cards) */
+.price-lottie{position:relative;z-index:1;margin-top:26px;min-height:240px;border-radius:24px;
+  display:grid;place-items:center;border:1px dashed rgba(140,151,168,.35);
+  background:rgba(255,255,255,.32);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.price-lottie::after{content:"Animation area · 动画位 (reserved)";font-size:12px;letter-spacing:.04em;color:rgba(140,151,168,.7);font-weight:500}
+/* extension cards (192/240) */
+.price-ext{display:grid;grid-template-columns:repeat(2,minmax(0,360px));gap:18px;justify-content:center}
+.tcard.is-ext{padding:18px 16px;background:rgba(255,255,255,.5)}
+.tcard.is-ext .tcard__num b{font-size:30px}
+.tcard.is-ext .tcard__ic svg{stroke:var(--muted)}
+.tcard__extnote{font-size:12px;color:var(--faint);line-height:1.45;padding:0 8px;margin-top:12px}
+.tcard__extnote .zh{display:block;margin-top:3px}
+.price-ext-wrap{position:relative;z-index:1;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.price-ext-head{font-family:var(--display);font-weight:700;font-size:15px;color:var(--muted);margin-bottom:16px;text-align:center}
+.price-ext-head .zh{color:var(--faint);font-weight:500}
+.price-ext-toggle{position:relative;z-index:1;text-align:center;margin-top:22px}
+.ext-toggle-btn{background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:10px 22px;font:inherit;font-weight:600;font-size:13px;
+  color:var(--muted);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 2px 10px rgba(20,33,50,.05)}
+.ext-toggle-btn:hover{color:var(--blue);transform:translateY(-1px);box-shadow:0 6px 18px rgba(20,33,50,.08)}
+.ext-toggle-btn .zh{color:var(--faint);font-weight:500}
+.ext-chev{transition:transform .25s ease;font-size:15px;line-height:1}
+.ext-toggle-btn[aria-expanded="true"] .ext-chev{transform:rotate(180deg)}
+/* per-item popup (glass) */
+.tpop{position:fixed;inset:0;display:none;z-index:140;align-items:center;justify-content:center;padding:24px}
+.tpop.is-open{display:flex}
+.tpop__bd{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,rgba(20,33,50,.36),rgba(20,33,50,.55));
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.tpop__card{position:relative;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(24px) saturate(1.4);backdrop-filter:blur(24px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.6);border-radius:24px;max-width:420px;width:100%;padding:28px 26px 24px;
+  box-shadow:0 24px 60px rgba(14,36,86,.22);animation:rise .25s ease}
+.tpop__x{position:absolute;top:13px;right:15px;background:none;border:none;font-size:22px;line-height:1;color:var(--faint);cursor:pointer}
+.tpop__x:hover{color:var(--ink)}
+.tpop__ic{width:46px;height:46px;border-radius:14px;background:rgba(234,240,251,.8);display:grid;place-items:center;margin-bottom:14px}
+.tpop__ic svg{width:24px;height:24px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tpop__t{font-family:var(--display);font-weight:700;font-size:19px;color:var(--ink);line-height:1.2}
+.tpop__zh{font-size:13px;color:var(--faint);margin-top:3px}
+.tpop__d{font-size:14px;color:var(--muted);line-height:1.55;margin-top:14px}
+.tpop__d.zh{color:var(--faint);font-size:12.5px;margin-top:6px}
+@media (max-width:900px){
+  .tier-grid{grid-template-columns:1fr;gap:26px;margin-top:14px}
+  .price-ext{grid-template-columns:1fr}
+  .price-lottie{min-height:200px}
+}
 </style>
 </head>
 <body>
@@ -2893,22 +3068,41 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       </section>
 
       <!-- ===== 10. CLOSING / CTA ===== -->
-      <section class="stage" data-title="Next steps" data-zh="下一步" data-index="10">
-        <div class="closing">
-          <h2 class="closing__h">Start with the right level — not by guessing.</h2>
-          <p class="closing__zh zh">用对的 level 开始，而不是用猜的。</p>
-          <div class="closing__steps">
-            <div class="cstep"><span class="n">1</span> Book a free consultation</div>
-            <div class="cstep"><span class="n">2</span> Complete the placement test</div>
-            <div class="cstep"><span class="n">3</span> Let your advisor confirm your level</div>
+      <section class="stage" data-title="Your Investment" data-zh="你的投资" data-index="11">
+        <div class="section-intro">
+          <span class="eyebrow">Choose your learning path</span>
+          <h2 class="h2">Choose the right learning path for your goals</h2>
+          <p class="lead">Every package builds on the one before it — from a strong foundation, to more growth, to maximum confidence. Tap any item to see exactly what's inside. <span class="zh">每个配套都在前一个的基础上叠加。点任意项目看里面具体包含什么。</span></p>
+        </div>
+        <div class="price-app" id="priceApp">
+          <div class="price-amb" aria-hidden="true"></div>
+          <div class="price-admin" id="priceAdmin" data-advisor-only>
+            <span class="price-admin__flag">ADVISOR · EDIT PRICING <span class="zh">价格后台（仅顾问可见，价格用于后续揭示）</span></span>
+            <div id="priceAdminBody"></div>
           </div>
-          <div class="closing__cta">
-            <!-- Replace href with your booking link -->
-            <a class="btn btn--primary" href="#" id="ctaBook">Book free consultation <span class="arr">→</span></a>
-            <button class="btn btn--ghost" data-goto="4">Start placement test</button>
+          <div class="tier-grid" id="tierGrid"></div>
+          <div class="price-lottie" id="priceLottie" aria-hidden="true"></div>
+          <div class="price-ext-wrap" id="priceExtWrap" hidden>
+            <div class="price-ext-head">Want more levels? <span class="zh">想要更多 Level？</span></div>
+            <div class="price-ext" id="priceExt"></div>
+          </div>
+          <div class="price-ext-toggle">
+            <button type="button" class="ext-toggle-btn" id="extToggle" aria-expanded="false">Show more packages <span class="zh">显示更多配套</span> <span class="ext-chev" aria-hidden="true">⌄</span></button>
           </div>
         </div>
-        <p class="note" style="justify-content:center;margin-top:22px">TOUCH English Makes You Visible · <span class="zh">让你被看见。</span></p>
+        <p class="note" style="justify-content:center;margin-top:26px">TOUCH English Makes You Visible · <span class="zh">让你被看见。</span></p>
+        <!-- feature detail popup (isolated) -->
+        <div class="tpop" id="tpop" aria-hidden="true">
+          <div class="tpop__bd" id="tpopBd"></div>
+          <div class="tpop__card" role="dialog" aria-modal="true">
+            <button class="tpop__x" id="tpopX" aria-label="Close">×</button>
+            <span class="tpop__ic" id="tpopIc"></span>
+            <h4 class="tpop__t" id="tpopT"></h4>
+            <p class="tpop__zh zh" id="tpopZh"></p>
+            <p class="tpop__d" id="tpopD"></p>
+            <p class="tpop__d zh" id="tpopDzh"></p>
+          </div>
+        </div>
       </section>
 
     </main>
@@ -2972,7 +3166,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     {t:"Touch English Makes You Visible", zh:"让你被看见", short:"Visible"},
     {t:"Recommended path", zh:"推荐路线", short:"Path"},
     {t:"Learning journey", zh:"学习旅程", short:"Journey"},
-    {t:"Next steps", zh:"下一步", short:"Next"}
+    {t:"Your Investment", zh:"你的投资", short:"Investment"}
   ];
   /* compact inline icons (no external library) */
   var ICONS = [
@@ -2986,7 +3180,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     '<svg viewBox="0 0 24 24"><circle cx="12" cy="10.5" r="3"/><path d="M6.5 20a5.5 5.5 0 0 1 11 0"/><path d="M8 7.4a5 5 0 0 1 8 0"/><path d="M5.5 4.8a9 9 0 0 1 13 0"/></svg>',
     '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-5 2.2L8.3 16l5-2.2 2.2-5.3Z"/></svg>',
     '<svg viewBox="0 0 24 24"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg>',
-    '<svg viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4h12l-2.2 4L17 12H5"/></svg>'
+    '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.6 14.4 11 12l2 2 3.4-3.8"/><path d="M14 10.2h2.8V13"/></svg>'
   ];
 
   var LEVELS = [
@@ -5795,5 +5989,180 @@ io.observe(er);})();
 })();
 </script>
 
+<script>
+/* ===== PRICING (Your Investment) — Apple-glass tiers · equal height · hover-reveal recommendation · key: te_pricing_v1 ===== */
+(function(){
+  "use strict";
+  var grid=document.getElementById('tierGrid');
+  if(!grid) return;
+  var ext=document.getElementById('priceExt');
+  var extWrap=document.getElementById('priceExtWrap');
+  var extToggle=document.getElementById('extToggle');
+  var adminBody=document.getElementById('priceAdminBody');
+  var tpop=document.getElementById('tpop');
+  var KEY='te_pricing_v1';
+
+  var ICON={
+    seed:'<svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12C12 8 8.5 6 5 6c0 4 3.5 6 7 6Z"/><path d="M12 13c0-3 3-4.5 6-4.5C18 12 15 13 12 13Z"/></svg>',
+    diamond:'<svg viewBox="0 0 24 24"><path d="M6 3h12l3 5-9 13L3 8Z"/><path d="M3 8h18"/><path d="M9 3 7 8l5 13 5-13-2-5"/></svg>',
+    rocket:'<svg viewBox="0 0 24 24"><path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2"/><path d="M12 3c3 1 6 4 6 9 0 2-1 4-3 6H9C7 16 6 14 6 12c0-5 3-8 6-9Z"/><circle cx="12" cy="10" r="1.6"/></svg>',
+    up:'<svg viewBox="0 0 24 24"><path d="M4 17l5-5 3 3 7-7"/><path d="M16 8h4v4"/></svg>',
+    live:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 6.5a3 3 0 0 1 0 5"/><path d="M18 4a6 6 0 0 1 0 10"/></svg>',
+    book:'<svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5Z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20"/><path d="M9 8h7"/></svg>',
+    persona:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 9l2 2 3.5-3.5"/></svg>',
+    chat:'<svg viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-10.7 6.8L4 19.5l1.3-4.6A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>',
+    video:'<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3Z"/></svg>',
+    cert:'<svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.2"/><path d="m8.5 13-1.3 7 4.8-2.4 4.8 2.4-1.3-7"/></svg>',
+    ticket:'<svg viewBox="0 0 24 24"><path d="M3 9.5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 5 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-5Z"/><path d="M14 7.5v9"/></svg>',
+    ipa:'<svg viewBox="0 0 24 24"><path d="M3 12h2"/><path d="M7 8v8"/><path d="M10 5v14"/><path d="M13 9v6"/><path d="M16 7v10"/><path d="M19 11v2"/></svg>',
+    star:'<svg viewBox="0 0 24 24"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.9 6.6 19.5l1.2-6L3.3 9.3l6.1-.7Z"/></svg>',
+    level:'<svg viewBox="0 0 24 24"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-8"/><path d="M21 20H3"/></svg>',
+    refresh:'<svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.3"/><path d="M21 4v5h-5"/></svg>'
+  };
+
+  /* ---------- price data (retained for the later price-reveal block) + advisor editor ---------- */
+  var DEF=[
+    {id:'basic', name:'Basic',  sub:'Foundation · 1 Level', lessons:48,  orig:3300,  combo:0,    hrdc:903,  na:false},
+    {id:'comboA',name:'Combo A',sub:'2 Levels',             lessons:96,  orig:6600,  combo:900,  hrdc:1503, na:false},
+    {id:'comboB',name:'Combo B',sub:'3 Levels',             lessons:144, orig:9900,  combo:2100, hrdc:1903, na:false},
+    {id:'comboC',name:'Combo C',sub:'4 Levels',             lessons:192, orig:13200, combo:3930, hrdc:0,    na:true},
+    {id:'comboD',name:'Combo D',sub:'5 Levels',             lessons:240, orig:16500, combo:5230, hrdc:0,    na:true}
+  ];
+  var MISC_DEF={reg:150,sys:150};
+  var data, misc;
+  function clone(o){return JSON.parse(JSON.stringify(o));}
+  function isNum(v){return typeof v==='number'&&isFinite(v)&&v>=0;}
+  function clampInt(v){var n=Math.round(parseFloat(v)); return isFinite(n)&&n>=0?n:0;}
+  function load(){
+    try{
+      var s=JSON.parse(localStorage.getItem(KEY));
+      if(s&&Array.isArray(s.pkgs)&&s.pkgs.length===DEF.length){
+        data=DEF.map(function(d,i){var o=clone(d),v=s.pkgs[i]||{};
+          ['orig','combo','hrdc','lessons'].forEach(function(k){if(isNum(v[k]))o[k]=v[k];});
+          if(typeof v.na==='boolean')o.na=v.na; return o;});
+        misc=clone(MISC_DEF);
+        if(s.misc){if(isNum(s.misc.reg))misc.reg=s.misc.reg;if(isNum(s.misc.sys))misc.sys=s.misc.sys;}
+        return;
+      }
+    }catch(e){}
+    data=clone(DEF); misc=clone(MISC_DEF);
+  }
+  function save(){try{localStorage.setItem(KEY,JSON.stringify({pkgs:data.map(function(d){return {orig:d.orig,combo:d.combo,hrdc:d.hrdc,lessons:d.lessons,na:d.na};}),misc:misc}));}catch(e){}}
+  function fmt(n){return (n||0).toLocaleString('en-US');}
+  function finalOf(d){return Math.max(0,d.orig-d.combo-(d.na?0:d.hrdc));}
+  function renderAdmin(){
+    if(!adminBody) return;
+    var rows=data.map(function(d,i){
+      return '<tr data-i="'+i+'"><td class="pa-name">'+d.name+'<span>'+d.lessons+' lessons</span></td>'+
+        '<td><input type="number" min="0" step="1" data-f="orig" value="'+d.orig+'"></td>'+
+        '<td><input type="number" min="0" step="1" data-f="combo" value="'+d.combo+'"></td>'+
+        '<td><input type="number" min="0" step="1" data-f="hrdc" value="'+d.hrdc+'"'+(d.na?' disabled':'')+'>'+
+          '<label class="pa-na"><input type="checkbox" data-f="na"'+(d.na?' checked':'')+'> N.A.</label></td>'+
+        '<td class="pa-final">RM '+fmt(finalOf(d))+'</td></tr>';
+    }).join('');
+    adminBody.innerHTML='<table class="pa-table"><thead><tr><th>Package</th><th>Original (RM)</th><th>Combo discount</th><th>HRDC subsidy</th><th>Final</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+      '<div class="pa-misc">Misc fees <label>Registration <input type="number" min="0" data-misc="reg" value="'+misc.reg+'"></label>'+
+      '<label>System <input type="number" min="0" data-misc="sys" value="'+misc.sys+'"></label>'+
+      '<button type="button" class="pa-reset" id="priceReset">Reset to default</button></div>';
+  }
+  if(adminBody){
+    adminBody.addEventListener('input',function(e){
+      var t=e.target;
+      if(t.dataset&&t.dataset.misc){misc[t.dataset.misc]=clampInt(t.value);save();renderExt();return;}
+      var tr=t.closest&&t.closest('tr[data-i]'); if(!tr)return;
+      var i=+tr.getAttribute('data-i'),f=t.dataset.f;
+      if(f==='na'){data[i].na=t.checked;var hr=tr.querySelector('input[data-f="hrdc"]');if(hr)hr.disabled=t.checked;}
+      else if(f){data[i][f]=clampInt(t.value);}
+      var fc=tr.querySelector('.pa-final');if(fc)fc.textContent='RM '+fmt(finalOf(data[i]));
+      save();renderExt();
+    });
+    adminBody.addEventListener('click',function(e){
+      if(e.target&&e.target.id==='priceReset'){data=clone(DEF);misc=clone(MISC_DEF);save();renderAdmin();renderExt();}
+    });
+  }
+
+  /* ---------- tier content. card face = short label; popup = full title + detail ---------- */
+  var TIERS=[
+    {lessons:'48', ic:'seed', tag:{en:'Build a strong foundation in English.', zh:'打好坚实的英文基础。'}, plus:null, feats:[
+      {ic:'live', s:'Live Classes', sz:'互动课', t:'48 Live Teaching Classes', zh:'48 堂 LIVE 互动教学', d:'48 live, interactive lessons online or in person, led by a real teacher.', dz:'48 堂真人老师带领的线上／线下互动课程。'},
+      {ic:'book', s:'Materials & Practice', sz:'教材与练习', t:'Lesson Materials & Practices', zh:'课堂教材与练习', d:'Structured materials and exercises for every lesson so you can practise what you learn.', dz:'每堂课配套教材与练习，学完即可巩固。'},
+      {ic:'persona', s:'Personality Review', sz:'性格分析', t:'Personality Analysis Review', zh:'个人性格分析与讲解', d:'A personalised review of your learning style, with guidance on how to improve.', dz:'分析你的学习性格，并给出提升方向。'},
+      {ic:'chat', s:'Coaching & Feedback', sz:'辅导评估', t:'Coaching & Feedbacks', zh:'个人辅导与上课评估', d:'One-on-one coaching and honest feedback on your progress.', dz:'一对一辅导与诚实的进度评估。'},
+      {ic:'video', s:'Recap Videos', sz:'复习视频', t:'Tutorial & Recap Videos', zh:'课后重播复习视频', d:'Recorded recap videos to review anytime, anywhere after class.', dz:'课后随时随地重播复习的视频。'},
+      {ic:'cert', s:'Certificate', sz:'毕业证书', t:'Certificate of Completion', zh:'课程毕业证书', d:'An official certificate awarded when you complete the course.', dz:'完成课程后颁发的正式毕业证书。'}
+    ]},
+    {lessons:'96', best:true, ic:'diamond', tag:{en:'More value. More growth.', zh:'更多价值、更多成长。'}, plus:{en:'Everything in 48, PLUS', zh:'48 堂全部内容，再加'}, feats:[
+      {ic:'ticket', s:'8 Workshop Tickets', sz:'工作坊门票', t:'8 Extra Workshop Tickets', zh:'8 张额外工作坊门票', d:'8 tickets to practical, skill-building workshops beyond your regular classes.', dz:'8 张实战技能工作坊门票，课堂之外再加强。'},
+      {ic:'video', s:'20+ Extra Videos', sz:'额外视频', t:'20+ Extra Videos', zh:'20+ 额外课程视频', d:'Over 20 additional lesson videos for more practice and more confidence.', dz:'20+ 额外课程视频，练得更多、更有信心。'},
+      {ic:'ipa', s:'4 IPA Course Tickets', sz:'国际音标课', t:'4 IPA Course Tickets', zh:'4 张国际音标课门票', d:'4 tickets to the IPA pronunciation course to master clear, accurate pronunciation.', dz:'4 张 IPA 国际音标发音课门票，发音更标准。'},
+      {ic:'star', s:'More Support', sz:'更多支持', t:'More Content, More Support', zh:'更多内容、更多支持', d:'More content, more support, better results for most learners.', dz:'更多内容、更多支持、更好成效。'}
+    ]},
+    {lessons:'144+', ic:'rocket', tag:{en:'Maximum time. Maximum confidence.', zh:'最多时间、最大自信。'}, plus:{en:'Everything in 96, PLUS', zh:'96 堂全部内容，再加'}, feats:[
+      {ic:'up', s:'144+ Lessons', sz:'升级课程', t:'Upgrade to 144+ Lessons', zh:'升级到 144+ 堂课', d:'Even more lessons for deeper practice and full mastery of English.', dz:'更多课程，深入练习、全面掌握英文。'},
+      {ic:'level', s:'Next Level', sz:'进阶', t:'Take Your English to the Next Level', zh:'把英文带到下一个层次', d:'More time, more fluency, more opportunities in your work and life.', dz:'更多时间、更流利，工作与生活更多机会。'},
+      {ic:'refresh', s:'Top-up Anytime', sz:'随时加课', t:'Flexible Top-up Anytime', zh:'随时灵活加课', d:'Extend your learning with more lessons whenever you need them.', dz:'需要时可随时加课，灵活延伸学习。'}
+    ]}
+  ];
+  var revealed=1; /* 1 = 48 only · 2 = +96 · 3 = +144 */
+
+  function tierCard(t,i){
+    var masked=i>=revealed, next=(i===revealed);
+    var head='<div class="tcard__head"><span class="tcard__ic">'+(ICON[t.ic]||'')+'</span>'+
+      '<div class="tcard__num"><b>'+t.lessons+'</b><span>LESSONS</span></div>'+
+      '<p class="tcard__tag">'+t.tag.en+'<span class="zh">'+t.tag.zh+'</span></p></div>';
+    var plus=t.plus?'<div class="tcard__plus">'+t.plus.en+'<span class="zh">'+t.plus.zh+'</span></div>':'';
+    var feats=t.feats.map(function(f,k){
+      return '<li><button type="button" class="tfeat" data-i="'+i+'" data-k="'+k+'">'+
+        '<span class="tfeat__ic">'+(ICON[f.ic]||ICON.star)+'</span>'+
+        '<span class="tfeat__lab"><b>'+f.s+'</b><span class="zh">'+f.sz+'</span></span></button></li>';
+    }).join('');
+    var body='<div class="tcard__body">'+plus+'<ul class="tfeats">'+feats+'</ul></div>';
+    var frost=masked?'<div class="tcard__frost">'+(next?'<span class="tcard__hint">Tap to reveal <span class="zh">点击展开</span></span>':'')+'</div>':'';
+    return '<article class="tcard'+(masked?' is-masked':'')+(next?' is-next':'')+'" data-i="'+i+'">'+head+body+frost+'</article>';
+  }
+  function renderTiers(){ grid.innerHTML=TIERS.map(tierCard).join(''); }
+
+  function renderExt(){
+    if(!ext) return;
+    ext.innerHTML=data.slice(3).map(function(d){
+      return '<article class="tcard is-ext"><div class="tcard__head"><span class="tcard__ic">'+ICON.up+'</span>'+
+        '<div class="tcard__num"><b>'+d.lessons+'</b><span>LESSONS</span></div>'+
+        '<p class="tcard__tag">'+d.name+' · '+d.sub+'<span class="zh">更多 Level，深入掌握。</span></p></div>'+
+        '<div class="tcard__body"><p class="tcard__extnote">Beyond 144 lessons — combo discount only, no government subsidy. <span class="zh">144 堂以上仅配套折扣，无政府津贴。</span></p></div></article>';
+    }).join('');
+  }
+
+  /* ---------- per-item detail popup (full title + description) ---------- */
+  var pT=document.getElementById('tpopT'),pZh=document.getElementById('tpopZh'),pD=document.getElementById('tpopD'),pDz=document.getElementById('tpopDzh'),pIc=document.getElementById('tpopIc');
+  function openPop(i,k){
+    var f=TIERS[i].feats[k]; if(!f) return;
+    pT.textContent=f.t; pZh.textContent=f.zh; pD.textContent=f.d; pDz.textContent=f.dz;
+    pIc.innerHTML=ICON[f.ic]||ICON.star;
+    tpop.classList.add('is-open'); tpop.setAttribute('aria-hidden','false');
+  }
+  function closePop(){ tpop.classList.remove('is-open'); tpop.setAttribute('aria-hidden','true'); }
+  if(tpop){
+    document.getElementById('tpopX').addEventListener('click',closePop);
+    document.getElementById('tpopBd').addEventListener('click',closePop);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&tpop.classList.contains('is-open')) closePop(); });
+  }
+
+  /* ---------- interactions ---------- */
+  grid.addEventListener('click',function(e){
+    if(e.target.closest('.tcard.is-masked')){ revealed=Math.min(TIERS.length,revealed+1); renderTiers(); return; }
+    var feat=e.target.closest('.tfeat');
+    if(feat){ openPop(+feat.getAttribute('data-i'),+feat.getAttribute('data-k')); }
+  });
+  if(extToggle){
+    extToggle.addEventListener('click',function(){
+      var hidden=extWrap.hasAttribute('hidden');
+      if(hidden){ extWrap.removeAttribute('hidden'); extToggle.setAttribute('aria-expanded','true'); extToggle.firstChild.nodeValue='Hide extra packages '; }
+      else { extWrap.setAttribute('hidden',''); extToggle.setAttribute('aria-expanded','false'); extToggle.firstChild.nodeValue='Show more packages '; }
+    });
+  }
+
+  load(); renderTiers(); renderExt(); renderAdmin();
+})();
+</script>
 </body>
 </html>
