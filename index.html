@@ -6158,7 +6158,7 @@ io.observe(er);})();
     var growNow=(!masked && !grown[i]); if(growNow) grown[i]=true;
     var slabel=['48','96','144'][i]||t.lessons;
     var tree='<span class="tcard__tree'+(growNow?' is-grow':'')+'" aria-hidden="true">'+
-      '<img class="tcard__tree-img" alt="'+slabel+' sessions growth tree" loading="lazy" src="tree'+(i+1)+'.png" onerror="this.style.display=\'none\'"></span>';
+      '<img class="tcard__tree-img" alt="'+slabel+' sessions growth tree" loading="lazy" src="assets/journey/tree'+(i+1)+'.png" onerror="this.style.display=\'none\'"></span>';
     return '<article class="tcard'+(masked?' is-masked':'')+(next?' is-next':'')+'" data-i="'+i+'">'+head+body+tree+frost+'</article>';
   }
   function renderTiers(){ grid.innerHTML=TIERS.map(tierCard).join(''); }
