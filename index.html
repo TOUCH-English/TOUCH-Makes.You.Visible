@@ -483,9 +483,9 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .m1arc,.m1core,.m1glowc{transform-box:view-box;transform-origin:120px 108px}
 .m1vis--down .m1arc,.m1vis--down .m1core,.m1vis--down .m1glowc{transform-origin:120px 52px}
 /* Learning System — Grow node network (compact, render-triggered) */
-.lsnet-link{fill:none;stroke:color-mix(in srgb,var(--c) 36%,#fff);stroke-width:2;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 2px color-mix(in srgb,var(--c) 38%,transparent)) drop-shadow(0 0 6px color-mix(in srgb,var(--c) 18%,transparent));animation:lsFade .8s ease var(--d,0s) both}
+.lsnet-link{fill:none;stroke:color-mix(in srgb,var(--c) 36%,#fff);stroke-width:3;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 2px color-mix(in srgb,var(--c) 38%,transparent)) drop-shadow(0 0 6px color-mix(in srgb,var(--c) 18%,transparent));animation:lsFade .8s ease var(--d,0s) both}
 @keyframes lsFade{from{opacity:0}to{opacity:.72}}
-.lsnet-flow{fill:none;stroke:color-mix(in srgb,var(--c) 18%,#fff);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:.18 .82;stroke-dashoffset:1;opacity:0;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--c) 46%,transparent));animation:lsFlowFade .7s ease var(--d,0s) both,lsFlowMove 3.6s linear var(--d,0s) infinite}
+.lsnet-flow{fill:none;stroke:color-mix(in srgb,var(--c) 18%,#fff);stroke-width:3.6;stroke-linecap:round;stroke-dasharray:.18 .82;stroke-dashoffset:1;opacity:0;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--c) 46%,transparent));animation:lsFlowFade .7s ease var(--d,0s) both,lsFlowMove 3.6s linear var(--d,0s) infinite}
 @keyframes lsFlowFade{from{opacity:0}to{opacity:.5}}
 @keyframes lsFlowMove{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 .lsnet-dot{fill:#fff;opacity:0;transform-box:view-box;filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 6px color-mix(in srgb,var(--c) 55%,transparent));animation:lsDotIn .42s cubic-bezier(.2,.8,.2,1) var(--d,0s) both}
@@ -496,6 +496,13 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 @keyframes lsCoreIn{from{opacity:0;transform:scale(.45)}to{opacity:1;transform:scale(1)}}
 .lsnet-person{fill:#46566f}
 @media (prefers-reduced-motion:reduce){.lsnet-link,.lsnet-flow,.lsnet-dot,.lsnet-glow,.lsnet-core{animation:none;opacity:1;transform:none}.lsnet-glow{opacity:.82}.lsnet-link{opacity:.72}.lsnet-flow{opacity:.5}}
+ .m1net{width:100%;height:100%;display:block;overflow:visible}
+ .m1vis--net{width:320px;height:210px}
+ .lsnet-head-hi{animation:m1leadBreath 3s ease-in-out 1.8s infinite}
+ .lsnet-head-shine{transform-box:view-box;transform-origin:120px 118px;animation:lsHeadShine 4.4s ease-in-out infinite}
+ @keyframes lsHeadShine{0%{transform:translateX(-46px) rotate(16deg)}58%{transform:translateX(46px) rotate(16deg)}100%{transform:translateX(46px) rotate(16deg)}}
+ @media (prefers-reduced-motion:reduce){.lsnet-head-shine{display:none}.lsnet-head-hi{animation:none}}
+ 
 /* Final Review + Exam — completion badge (full rings + glowing check) */
 .fbring,.fbcore,.fbglow{transform-box:view-box;transform-origin:120px 78px}
 .fbring{opacity:0;transform:scale(.6);animation:fbIn .7s cubic-bezier(.2,.7,.2,1) var(--d,0s) both}
@@ -523,6 +530,11 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
  @keyframes m1leadBreath{0%,100%{opacity:1}50%{opacity:.78}}
  @keyframes m1leadShine{0%{transform:translateX(-215px) rotate(14deg)}70%{transform:translateX(215px) rotate(14deg)}100%{transform:translateX(215px) rotate(14deg)}}
  @media (prefers-reduced-motion:reduce){.m1arc.m1arc--glass{animation:m1in .75s cubic-bezier(.2,.7,.2,1) var(--ld,.62s) both}.m1lead-shine{display:none}}
+ /* STAGE 01 — person head (orb) glass: highlight breathing + shine sweep */
+ .m1head-hi{animation:m1leadBreath 3s ease-in-out 1.2s infinite}
+ .m1head-shine{transform-box:view-box;transform-origin:120px 52px;animation:m1headShine 4.4s ease-in-out infinite}
+ @keyframes m1headShine{0%{transform:translateX(-74px) rotate(16deg)}58%{transform:translateX(74px) rotate(16deg)}100%{transform:translateX(74px) rotate(16deg)}}
+ @media (prefers-reduced-motion:reduce){.m1head-hi{animation:none}.m1head-shine{display:none}}
 /* three-mirrors closing */
 .rev-close{text-align:center;border-radius:20px;padding:30px 28px;
   background:linear-gradient(160deg,color-mix(in srgb,var(--c) 15%,#fff),color-mix(in srgb,var(--c) 5%,#fff));border:1px solid color-mix(in srgb,var(--c) 20%,rgba(255,255,255,.8));box-shadow:inset 0 1px 0 rgba(255,255,255,.85)}
@@ -2039,12 +2051,12 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-card--system.has-dsc.is-hero .dsc-core{animation-delay:1.45s}
 .sumtr-card--system.has-dsc.is-hero .dsc-glow{animation-delay:1.5s}
 /* soft glow path connections (premium / VisionOS feel) — glowing track + subtle flowing light */
-.dsc-link{fill:none;stroke:color-mix(in srgb,var(--cc) 34%,#ffffff);stroke-width:3;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--cc) 36%,transparent)) drop-shadow(0 0 9px color-mix(in srgb,var(--cc) 18%,transparent))}
-.dsc-link--spoke{stroke-width:2.3}
+.dsc-link{fill:none;stroke:color-mix(in srgb,var(--cc) 34%,#ffffff);stroke-width:6;stroke-linecap:round;opacity:0;filter:drop-shadow(0 0 3px color-mix(in srgb,var(--cc) 36%,transparent)) drop-shadow(0 0 9px color-mix(in srgb,var(--cc) 18%,transparent))}
+.dsc-link--spoke{stroke-width:4.6}
 .sumtr-card.has-dsc.is-hero .dsc-link{animation:dscGlowPathIn .85s ease var(--d,0s) both}
 @keyframes dscGlowPathIn{from{opacity:0}to{opacity:.7}}
-.dsc-flow{fill:none;stroke:color-mix(in srgb,var(--cc) 16%,#ffffff);stroke-width:3.4;stroke-linecap:round;stroke-dasharray:.16 .84;stroke-dashoffset:1;opacity:0;filter:drop-shadow(0 0 5px color-mix(in srgb,var(--cc) 46%,transparent))}
-.dsc-flow--spoke{stroke-width:2.7}
+.dsc-flow{fill:none;stroke:color-mix(in srgb,var(--cc) 16%,#ffffff);stroke-width:6.5;stroke-linecap:round;stroke-dasharray:.16 .84;stroke-dashoffset:1;opacity:0;filter:drop-shadow(0 0 5px color-mix(in srgb,var(--cc) 46%,transparent))}
+.dsc-flow--spoke{stroke-width:5.2}
 .sumtr-card.has-dsc.is-hero .dsc-flow{animation:dscFlowIn .7s ease var(--d,0s) both,dscFlowMove 3.6s linear var(--d,0s) infinite}
 @keyframes dscFlowIn{from{opacity:0}to{opacity:.5}}
 @keyframes dscFlowMove{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
@@ -2053,6 +2065,16 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-card.has-dsc.is-hero .dsc-dot{animation:dscDotIn .42s cubic-bezier(.2,.8,.2,1) var(--d,0s) both}
 @keyframes dscDotIn{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
 .dsc-person{fill:#46566f}
+/* Journey Discover — Mirror-03 layered glass; Practice — Stage head glow */
+.sumtr-card--mirror.has-dsc.is-hero .dsc-arc--g{animation:dscArcIn .72s cubic-bezier(.2,.7,.2,1) var(--d,0s) both,dscBreath 3s ease-in-out var(--bd,1.6s) infinite}
+.dsc-shine{transform-box:view-box;transform-origin:460px 430px;animation:dscShine 4.8s ease-in-out var(--shd,0s) infinite}
+@keyframes dscBreath{0%,100%{opacity:1}50%{opacity:.74}}
+@keyframes dscShine{0%{transform:translateX(-900px) rotate(14deg)}70%{transform:translateX(900px) rotate(14deg)}100%{transform:translateX(900px) rotate(14deg)}}
+.dsc-head-hi{animation:dscBreath 3s ease-in-out 1.2s infinite}
+.dsc-head-shine{transform-box:view-box;transform-origin:460px 44px;animation:dscHeadShine 4.4s ease-in-out infinite}
+.sumtr-card--system .dsc-head-shine{transform-origin:460px 360px}
+@keyframes dscHeadShine{0%{transform:translateX(-170px) rotate(16deg)}58%{transform:translateX(170px) rotate(16deg)}100%{transform:translateX(170px) rotate(16deg)}}
+@media (prefers-reduced-motion:reduce){.dsc-shine,.dsc-head-shine{display:none}.dsc-head-hi{animation:none}}
 /* clickable feature nodes on the fan (keep .sumtr-feat -> existing popup) */
 .sumtr-card.has-dsc .dsc-node{position:absolute;left:var(--nx);top:var(--ny);transform:translate(-50%,-50%) scale(.85);z-index:3;
   display:flex;flex-direction:column;align-items:center;gap:7px;width:max-content;max-width:40%;
@@ -3145,11 +3167,11 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
                 <defs>
                   <radialGradient id="dscOrb" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient>
                   <radialGradient id="dscGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient>
-                  <filter id="dscLift" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter>
+                  <filter id="dscLift" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter><linearGradient id="dmHi" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".4" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="dmSh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".32" stop-color="#fff" stop-opacity=".3"/><stop offset=".46" stop-color="#fff" stop-opacity=".55"/><stop offset=".49" stop-color="#fff" stop-opacity="1"/><stop offset=".51" stop-color="#fff" stop-opacity="1"/><stop offset=".54" stop-color="#fff" stop-opacity=".55"/><stop offset=".68" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
                 </defs>
-                <path class="dsc-arc" style="--d:.06s" d="M110,430 A350,350 0 0 1 810,430 Z" fill="rgba(255,255,255,0.34)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift)"/>
-                <path class="dsc-arc" style="--d:.16s" d="M205,430 A255,255 0 0 1 715,430 Z" fill="rgba(255,255,255,0.40)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift)"/>
-                <path class="dsc-arc" style="--d:.26s" d="M300,430 A160,160 0 0 1 620,430 Z" fill="rgba(255,255,255,0.46)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift)"/>
+                <path class="dsc-arc dsc-arc--g" style="--d:.06s;--bd:2.4s" d="M110,430 A350,350 0 0 1 810,430 Z" fill="rgba(150,177,213,0.2)" stroke="rgba(198,217,242,.36)" stroke-width="1" filter="url(#dscLift)"/><clipPath id="dm0c"><path d="M110,430 A350,350 0 0 1 810,430 Z"/></clipPath><g clip-path="url(#dm0c)"><rect x="110" y="80" width="700" height="350" fill="url(#dmHi)"/><rect class="dsc-shine" style="--shd:1.1s" x="280" y="74" width="360" height="362" fill="url(#dmSh)"/></g>
+                <path class="dsc-arc dsc-arc--g" style="--d:.16s;--bd:1.95s" d="M205,430 A255,255 0 0 1 715,430 Z" fill="rgba(150,177,213,0.34)" stroke="rgba(198,217,242,.52)" stroke-width="1" filter="url(#dscLift)"/><clipPath id="dm1c"><path d="M205,430 A255,255 0 0 1 715,430 Z"/></clipPath><g clip-path="url(#dm1c)"><rect x="205" y="175" width="510" height="255" fill="url(#dmHi)"/><rect class="dsc-shine" style="--shd:.55s" x="295" y="169" width="330" height="267" fill="url(#dmSh)"/></g>
+                <path class="dsc-arc dsc-arc--g" style="--d:.26s;--bd:1.5s" d="M300,430 A160,160 0 0 1 620,430 Z" fill="rgba(150,177,213,0.5)" stroke="rgba(198,217,242,.72)" stroke-width="1" filter="url(#dscLift)"/><clipPath id="dm2c"><path d="M300,430 A160,160 0 0 1 620,430 Z"/></clipPath><g clip-path="url(#dm2c)"><rect x="300" y="270" width="320" height="160" fill="url(#dmHi)"/><rect class="dsc-shine" style="--shd:0s" x="315" y="264" width="290" height="172" fill="url(#dmSh)"/></g>
                 <circle class="dsc-glow" cx="460" cy="426" r="126" fill="url(#dscGlow)"/>
                 <g class="dsc-core">
                   <circle cx="460" cy="426" r="84" fill="url(#dscOrb)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#dscLift)"/>
@@ -3173,14 +3195,14 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             <div class="dsc-scene">
               <span class="dsc-blob" style="background:var(--p1);left:6%;top:46%"></span><span class="dsc-blob" style="background:var(--l3);left:14%;bottom:4%"></span><span class="dsc-blob" style="background:var(--l4);left:42%;bottom:-14%;opacity:.3"></span><span class="dsc-blob" style="background:var(--l2);right:6%;top:44%"></span><span class="dsc-blob" style="background:var(--l1);right:14%;bottom:4%"></span>
               <svg class="dsc-ring" viewBox="0 0 920 470" role="img" aria-label="Concentric stage rings spreading below the performer">
-                <defs><radialGradient id="dscOrb2" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient><radialGradient id="dscGlow2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient><filter id="dscLift2" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter></defs>
+                <defs><radialGradient id="dscOrb2" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient><radialGradient id="dscGlow2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient><filter id="dscLift2" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter><clipPath id="dpc"><circle cx="460" cy="44" r="84"/></clipPath><linearGradient id="dpHi" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".3" stop-color="#fff" stop-opacity=".12"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="dpSh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".42" stop-color="#fff" stop-opacity=".2"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset=".58" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
                 <path class="dsc-arc" style="--d:.06s" d="M110,44 A350,350 0 0 0 810,44 Z" fill="rgba(255,255,255,0.34)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift2)"/>
                 <path class="dsc-arc" style="--d:.16s" d="M205,44 A255,255 0 0 0 715,44 Z" fill="rgba(255,255,255,0.40)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift2)"/>
                 <path class="dsc-arc" style="--d:.26s" d="M300,44 A160,160 0 0 0 620,44 Z" fill="rgba(255,255,255,0.46)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift2)"/>
                 <circle class="dsc-glow" cx="460" cy="44" r="126" fill="url(#dscGlow2)"/>
                 <g class="dsc-core">
                   <circle cx="460" cy="44" r="84" fill="url(#dscOrb2)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#dscLift2)"/>
-                  <g class="dsc-person" transform="translate(460,44)"><circle cx="0" cy="-16" r="18"/><path d="M-30 40 a30 30 0 0 1 60 0 z"/></g>
+                  <g class="dsc-person" transform="translate(460,44)"><circle cx="0" cy="-16" r="18"/><path d="M-30 40 a30 30 0 0 1 60 0 z"/></g><g clip-path="url(#dpc)"><rect class="dsc-head-hi" x="376" y="-40" width="168" height="84" fill="url(#dpHi)"/><rect class="dsc-head-shine" x="376" y="-44" width="168" height="176" fill="url(#dpSh)"/></g>
                 </g>
               </svg>
               <button type="button" class="sumtr-feat dsc-node" style="--nx:21%;--ny:40%" data-title="IPA Foundation" data-zh="国际音标" data-desc="A simple intro to English sounds (IPA), so you speak clearer and worry less about pronunciation." data-deszh="国际音标发音系统的基础教学，让你开口更清楚、更早消除发音恐惧。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><path d="M4 10v4M9 6v12M14 3v18M19 9v6"/></svg></span><span class="dsc-node__tx"><span class="dsc-node__h"><b>IPA</b> <i>Foundation</i></span><em>国际音标</em></span></button>
@@ -3200,7 +3222,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
               <div class="dsc-scene">
               <span class="dsc-blob" style="background:var(--p1);left:6%;top:46%"></span><span class="dsc-blob" style="background:var(--l3);left:14%;bottom:4%"></span><span class="dsc-blob" style="background:var(--l4);left:42%;bottom:-14%;opacity:.3"></span><span class="dsc-blob" style="background:var(--l2);right:6%;top:44%"></span><span class="dsc-blob" style="background:var(--l1);right:14%;bottom:4%"></span>
               <svg class="dsc-ring dsc-net" viewBox="0 0 920 470" role="img" aria-label="Learning system connecting toward the learner">
-                <defs><radialGradient id="dscOrb3" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient><radialGradient id="dscGlow3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient><filter id="dscLift3" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter></defs>
+                <defs><radialGradient id="dscOrb3" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient><radialGradient id="dscGlow3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient><filter id="dscLift3" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter><clipPath id="dsHc"><circle cx="460" cy="360" r="62"/></clipPath><linearGradient id="dsHg" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".3" stop-color="#fff" stop-opacity=".12"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="dsHs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".42" stop-color="#fff" stop-opacity=".2"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset=".58" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
                 <path class="dsc-link" style="--d:.35s" d="M160,165 L160,142 Q160,120 182,120 L460,120"/>
                 <path class="dsc-flow" pathLength="1" style="--d:.9s" d="M160,165 L160,142 Q160,120 182,120 L460,120"/>
                 <path class="dsc-link" style="--d:.7s" d="M460,120 L738,120 Q760,120 760,142 L760,165"/>
@@ -3213,7 +3235,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
                 <circle class="dsc-glow" cx="460" cy="360" r="120" fill="url(#dscGlow3)"/>
                 <g class="dsc-core">
                   <circle cx="460" cy="360" r="62" fill="url(#dscOrb3)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#dscLift3)"/>
-                  <g class="dsc-person" transform="translate(460,360)"><circle cx="0" cy="-13" r="15"/><path d="M-25 33 a25 25 0 0 1 50 0 z"/></g>
+                  <g class="dsc-person" transform="translate(460,360)"><circle cx="0" cy="-13" r="15"/><path d="M-25 33 a25 25 0 0 1 50 0 z"/></g><g clip-path="url(#dsHc)"><rect class="dsc-head-hi" x="398" y="298" width="124" height="62" fill="url(#dsHg)"/><rect class="dsc-head-shine" x="398" y="294" width="124" height="132" fill="url(#dsHs)"/></g>
                 </g>
               </svg>
               <button type="button" class="sumtr-feat dsc-node" style="--nx:17%;--ny:35%" data-title="Learning System" data-zh="学习系统" data-desc="An online system to learn between classes — check progress, review lessons and read feedback anytime, so you keep learning, never on your own." data-deszh="课堂之外的线上学习系统：随时看进度、复习教材、查看老师反馈，课后也能持续学、不盲目。"><span class="sumtr-feat__ic"><svg viewBox="0 0 24 24"><circle cx="5.5" cy="6" r="2"/><circle cx="18.5" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7.4 6.7 10.7 16.1"/><path d="M16.6 6.7 13.3 16.1"/><path d="M7.5 6h9"/></svg></span><span class="dsc-node__tx"><span class="dsc-node__h"><b>Learning</b> <i>System</i></span><em>学习系统</em></span></button>
@@ -4313,7 +4335,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       var s=SYS[6];
       return ''+
       '<header class="mhero mhero--m1">'+
-        glassLayerVis(3,true)+
+        glassLayerVis(3,true,true)+
         '<span class="mhero__label">Stage 03</span>'+
         '<h2 class="mhero__title">Own The Stage<span class="zh">站稳舞台</span></h2>'+
         '<div class="mhero__fn">Strengthen &amp; Stabilise <span class="zh">巩固与稳定</span></div>'+
@@ -4352,7 +4374,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       '</div>';
     }
     // shared glass-mirror hero used by the three Mirror pages
-    function glassLayerVis(num,down){
+    function glassLayerVis(num,down,headfx){
       var cy=down?52:108, sweep=down?'0':'1';
       var LAYER=[{r:58,fa:'0.42',sa:'.55',d:'.62s',cls:''},{r:80,fa:'0.30',sa:'.40',d:'.95s',cls:' m1arc--2'},{r:102,fa:'0.18',sa:'.25',d:'1.28s',cls:' m1arc--3'}];
       var TINT=[{f:'0.5',s:'0.72',shd:'0s',bd:'1.5s'},{f:'0.34',s:'0.52',shd:'.55s',bd:'1.95s'},{f:'0.2',s:'0.36',shd:'1.1s',bd:'2.4s'}];
@@ -4369,7 +4391,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
               '<linearGradient id="'+u+'s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".32" stop-color="#fff" stop-opacity=".3"/><stop offset=".46" stop-color="#fff" stop-opacity=".55"/><stop offset=".49" stop-color="#fff" stop-opacity="1"/><stop offset=".51" stop-color="#fff" stop-opacity="1"/><stop offset=".54" stop-color="#fff" stop-opacity=".55"/><stop offset=".68" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'+
               '</defs>'+
               '<g clip-path="url(#'+u+'c)">'+
-                '<rect x="'+x0+'" y="'+(cy-L.r)+'" width="'+(2*L.r)+'" height="'+(2*L.r)+'" fill="url(#'+u+'h)"/>'+
+                '<rect x="'+x0+'" y="'+(down?cy:(cy-L.r))+'" width="'+(2*L.r)+'" height="'+L.r+'" fill="url(#'+u+'h)"/>'+
                 '<rect class="m1lead-shine" style="--shd:'+T.shd+'" x="'+x0+'" y="'+(cy-L.r-4)+'" width="104" height="'+(2*L.r+8)+'" fill="url(#'+u+'s)"/>'+
               '</g>';
         } else {
@@ -4387,6 +4409,15 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           '<circle class="m1glowc" cx="120" cy="'+cy+'" r="56" fill="url(#m1glow)"/>'+
           '<g class="m1core"><circle cx="120" cy="'+cy+'" r="36" fill="url(#m1orb)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#m1lift)"/>'+
           '<g class="m1person" transform="translate(120,'+cy+')"><circle cx="0" cy="-9" r="11"/><path d="M-18 24 a18 18 0 0 1 36 0 z"/></g></g>'+
+          (headfx?('<defs>'+
+            '<clipPath id="'+uid+'Hc"><circle cx="120" cy="'+cy+'" r="36"/></clipPath>'+
+            '<linearGradient id="'+uid+'Hg" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".3" stop-color="#fff" stop-opacity=".12"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient>'+
+            '<linearGradient id="'+uid+'Hs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".42" stop-color="#fff" stop-opacity=".2"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset=".58" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'+
+            '</defs>'+
+            '<g clip-path="url(#'+uid+'Hc)">'+
+              '<rect class="m1head-hi" x="84" y="'+(cy-36)+'" width="72" height="72" fill="url(#'+uid+'Hg)"/>'+
+              '<rect class="m1head-shine" x="84" y="'+(cy-40)+'" width="72" height="80" fill="url(#'+uid+'Hs)"/>'+
+            '</g>'):'')+
         '</svg></div>';
     }
     function glassNetVis(){
@@ -4395,11 +4426,11 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         '<span class="m1blob" style="background:var(--l4);left:42%;bottom:-26%;opacity:.28"></span>'+
         '<span class="m1blob" style="background:var(--l2);right:3%;top:34%"></span>'+
         '<span class="m1blob" style="background:var(--l1);right:13%;bottom:0"></span>'+
-        '<div class="m1vis"><svg class="m1net" viewBox="0 0 240 158" aria-hidden="true">'+
+        '<div class="m1vis m1vis--net"><svg class="m1net" viewBox="0 0 240 158" aria-hidden="true">'+
           '<defs>'+
             '<radialGradient id="lsorb" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient>'+
             '<radialGradient id="lsglow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient>'+
-            '<filter id="lslift" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#16243f" flood-opacity="0.06"/></filter>'+
+            '<filter id="lslift" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#16243f" flood-opacity="0.06"/></filter><clipPath id="lsHc"><circle cx="120" cy="118" r="22"/></clipPath><linearGradient id="lsHg" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".3" stop-color="#fff" stop-opacity=".12"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="lsHs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".42" stop-color="#fff" stop-opacity=".2"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset=".58" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'+
           '</defs>'+
           '<path class="lsnet-link" style="--d:.35s" d="M46,52 L46,47 Q46,40 53,40 L120,40"/>'+
           '<path class="lsnet-link" style="--d:.65s" d="M120,40 L187,40 Q194,40 194,47 L194,52"/>'+
@@ -4412,7 +4443,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           '<circle class="lsnet-dot" cx="194" cy="52" r="4" style="--d:.75s;transform-origin:194px 52px"/>'+
           '<circle class="lsnet-glow" cx="120" cy="118" r="38" fill="url(#lsglow)"/>'+
           '<g class="lsnet-core"><circle cx="120" cy="118" r="22" fill="url(#lsorb)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#lslift)"/>'+
-          '<g class="lsnet-person" transform="translate(120,118)"><circle cx="0" cy="-7" r="9"/><path d="M-15 20 a15 15 0 0 1 30 0 z"/></g></g>'+
+          '<g class="lsnet-person" transform="translate(120,118)"><circle cx="0" cy="-4.6" r="5.3"/><path d="M-8.9 11.7 a8.9 8.9 0 0 1 17.8 0 z"/></g><g clip-path="url(#lsHc)"><rect class="lsnet-head-hi" x="98" y="96" width="44" height="22" fill="url(#lsHg)"/><rect class="lsnet-head-shine" x="98" y="94" width="44" height="48" fill="url(#lsHs)"/></g></g>'+
         '</svg></div>';
     }
     function glassBadgeVis(){
@@ -4662,7 +4693,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         return '<div class="stage-card">'+icHtml+'<div class="stage-card__t">'+c.t.en+'<span class="zh">'+c.t.zh+'</span></div><div class="stage-card__v">'+c.v.en+'<span class="zh">'+c.v.zh+'</span></div></div>';}).join("");
       return '<div class="goal ipa">'+
         '<header class="mhero mhero--m1">'+
-          glassLayerVis(1,true)+
+          glassLayerVis(1,true,true)+
           '<span class="mhero__label">Stage 01</span>'+
           '<h2 class="mhero__title">Find Your Voice<span class="zh">找到你的声音</span></h2>'+
           '<div class="mhero__fn">Learning Recharge Station <span class="zh">学习充电站</span></div>'+
@@ -5474,7 +5505,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       }).join("");
       return '<div class="goal lessons">'+
         '<header class="mhero mhero--m1">'+
-          glassLayerVis(2,true)+
+          glassLayerVis(2,true,true)+
           '<span class="mhero__label">Stage 02</span>'+
           '<h2 class="mhero__title">Step Onto The Stage<span class="zh">走上舞台</span></h2>'+
           '<div class="mhero__fn">Classroom Experience <span class="zh">课堂体验</span></div>'+
