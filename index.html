@@ -548,6 +548,47 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .stage-card__t .zh{display:block;font-weight:600;font-size:12px;color:var(--muted);margin-top:3px}
 .stage-card__v{font-size:13px;line-height:1.55;color:var(--ink);margin-top:11px}
 .stage-card__v .zh{display:block;color:var(--muted);margin-top:3px}
+ /* Stage 01 — IPA mic icon as candy 3D CTA (soft theme color, scoped) */
+ .ipa-cta3d{position:relative;width:54px;height:54px;margin:0 auto 16px;display:grid;place-items:center;border:0;padding:0;cursor:pointer;border-radius:16px;overflow:hidden;-webkit-tap-highlight-color:transparent;color:var(--c,#7C5CFF);
+   background:linear-gradient(160deg,color-mix(in srgb,var(--c,#7C5CFF) 20%,#fff),color-mix(in srgb,var(--c,#7C5CFF) 38%,#fff) 55%,color-mix(in srgb,var(--c,#7C5CFF) 50%,#fff));
+   box-shadow:0 6px 0 color-mix(in srgb,var(--c,#7C5CFF) 58%,#fff),0 14px 22px -8px color-mix(in srgb,var(--c,#7C5CFF) 42%,transparent),inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 6px color-mix(in srgb,var(--c,#7C5CFF) 22%,transparent);
+   transition:transform .14s cubic-bezier(.34,1.56,.64,1),box-shadow .14s ease;
+   animation:ipaBreath 2.8s ease-in-out infinite}
+ .ipa-cta3d svg{width:26px;height:26px;stroke:var(--c,#7C5CFF);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:3;filter:drop-shadow(0 1px 0 rgba(255,255,255,.6))}
+ .ipa-cta3d::before{content:"";position:absolute;left:7%;right:7%;top:5%;height:44%;z-index:1;pointer-events:none;
+   border-radius:13px 13px 60% 60%/13px 13px 34% 34%;background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,0))}
+ .ipa-cta3d::after{content:"";position:absolute;top:-60%;left:-130%;width:55%;height:220%;transform:rotate(20deg);z-index:2;pointer-events:none;
+   background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.7),rgba(255,255,255,0));animation:ipaShine 3s ease-in-out infinite}
+ .ipa-cta3d:hover{transform:translateY(-2px);filter:brightness(1.04);box-shadow:0 8px 0 color-mix(in srgb,var(--c,#7C5CFF) 58%,#fff),0 18px 28px -8px color-mix(in srgb,var(--c,#7C5CFF) 50%,transparent),inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 6px color-mix(in srgb,var(--c,#7C5CFF) 22%,transparent)}
+ .ipa-cta3d:active{transform:translateY(4px) scaleY(.92);box-shadow:0 1px 0 color-mix(in srgb,var(--c,#7C5CFF) 58%,#fff),0 4px 9px -6px color-mix(in srgb,var(--c,#7C5CFF) 42%,transparent),inset 0 2px 3px rgba(255,255,255,.6),inset 0 -2px 5px color-mix(in srgb,var(--c,#7C5CFF) 26%,transparent)}
+.ipa-cta3d:focus-visible{outline:3px solid #1F9FE6;outline-offset:3px}
+@keyframes ipaBreath{0%,100%{filter:brightness(1)}50%{filter:brightness(1.09)}}
+@keyframes ipaShine{0%{left:-130%}20%{left:150%}100%{left:150%}}
+@media (prefers-reduced-motion:reduce){.ipa-cta3d{animation:none}.ipa-cta3d::after{display:none}}
+/* Learning Mindset Recharge — content popup (5C glass + top photo) */
+.rcpop{position:fixed;inset:0;display:none;z-index:160;align-items:center;justify-content:center;padding:22px}
+.rcpop.is-open{display:flex}
+.rcpop__bd{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,rgba(20,33,50,.42),rgba(20,33,50,.62));-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.rcpop__card{position:relative;width:100%;max-width:560px;max-height:90vh;overflow:auto;border-radius:24px;
+  background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  border:1px solid rgba(255,255,255,.7);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);animation:rise .3s ease}
+.rcpop__x{position:absolute;top:13px;right:13px;z-index:3;width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;background:rgba(255,255,255,.88);color:var(--muted);font-size:20px;line-height:1;box-shadow:0 4px 12px -4px rgba(20,33,50,.32);transition:.18s}
+.rcpop__x:hover{color:var(--ink);transform:scale(1.06)}
+.rcpop__hero{position:relative;width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#1b1d24,#2b2e38);overflow:hidden;border-radius:24px 24px 0 0}
+.rcpop__hero img{width:100%;height:100%;object-fit:cover;display:block}
+.rcpop__hero-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;text-align:center;padding:20px;color:rgba(255,255,255,.9)}
+.rcpop__hero-fallback b{font-family:var(--display);font-weight:800;font-size:17px}
+.rcpop__hero-fallback span{font-size:11.5px;opacity:.7}
+.rcpop__body{padding:22px 26px 26px}
+.rcpop__eyebrow{display:inline-block;font-family:var(--display);font-weight:800;font-size:13px;color:var(--c,#7C5CFF);letter-spacing:.01em}
+.rcpop__title{font-family:var(--display);font-weight:800;font-size:23px;color:var(--ink);margin:9px 0 3px;line-height:1.2}
+.rcpop__sub{font-size:12.5px;color:var(--muted);margin:0 0 6px}
+.rcpop__p{font-size:14.5px;line-height:1.7;color:var(--ink);margin:13px 0 0}
+.rcpop__hl{color:var(--c,#7C5CFF);font-weight:700}
+.rcpop__q{display:flex;flex-direction:column;gap:7px;margin:14px 0 0;padding:14px 16px;border-radius:14px;
+  background:color-mix(in srgb,var(--c,#7C5CFF) 7%,#fff);border:1px solid color-mix(in srgb,var(--c,#7C5CFF) 16%,#fff)}
+.rcpop__q span{font-size:14.5px;color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion:reduce){.rcpop__card{animation:none}}
 .stage-advisor{display:flex;gap:14px;align-items:flex-start;border-radius:20px;padding:22px 24px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
   border:1px solid color-mix(in srgb,var(--c) 14%,rgba(255,255,255,.85));box-shadow:0 16px 42px -24px color-mix(in srgb,var(--c) 50%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}
 .stage-advisor__ic{flex:none;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(150deg,var(--c),color-mix(in srgb,var(--c) 64%,#000));box-shadow:0 9px 20px -6px color-mix(in srgb,var(--c) 55%,transparent)}
@@ -4584,7 +4625,12 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         {ic:"mic",  t:{en:"IPA Pronunciation System",zh:"院长亲录音标系统"}, v:{en:"Speak clearer, right from the basics.",zh:"从基础打稳发音，让开口更清楚。"}},
         {ic:"clock",t:{en:"Monthly Online Class",zh:"每月线上教学"},       v:{en:"Learn directly from Mr. Fong every month.",zh:"每个月由院长亲自带领学习。"}},
         {ic:"bolt", t:{en:"Learning Mindset Recharge",zh:"学习思维充电"},   v:{en:"Improve how you sound — and how you learn.",zh:"不只改善发音，也优化学习方式与学习态度。"}}
-      ].map(function(c){return '<div class="stage-card"><span class="stage-card__ic">'+sv(c.ic)+'</span><div class="stage-card__t">'+c.t.en+'<span class="zh">'+c.t.zh+'</span></div><div class="stage-card__v">'+c.v.en+'<span class="zh">'+c.v.zh+'</span></div></div>';}).join("");
+      ].map(function(c){var icHtml;
+        if(c.ic==="mic"){ icHtml='<button type="button" class="ipa-cta3d" onclick="event.stopPropagation(); if(window.openIPA)openIPA();" aria-label="Open IPA Pronunciation System · 院长亲录音标系统">'+sv(c.ic)+'</button>'; }
+        else if(c.ic==="clock"){ icHtml='<button type="button" class="ipa-cta3d" onclick="event.stopPropagation(); if(window.ipaPlay)ipaPlay();" aria-label="Open Monthly Online Class · 每月线上教学">'+sv(c.ic)+'</button>'; }
+        else if(c.ic==="bolt"){ icHtml='<button type="button" class="ipa-cta3d" onclick="event.stopPropagation(); if(window.openRecharge)openRecharge();" aria-label="Open Learning Mindset Recharge · 学习思维充电">'+sv(c.ic)+'</button>'; }
+        else { icHtml='<span class="stage-card__ic">'+sv(c.ic)+'</span>'; }
+        return '<div class="stage-card">'+icHtml+'<div class="stage-card__t">'+c.t.en+'<span class="zh">'+c.t.zh+'</span></div><div class="stage-card__v">'+c.v.en+'<span class="zh">'+c.v.zh+'</span></div></div>';}).join("");
       return '<div class="goal ipa">'+
         '<header class="mhero mhero--m1">'+
           glassLayerVis(1,true)+
@@ -4601,8 +4647,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             '<p>Students learn pronunciation, but more importantly, they learn how to approach English learning with a better mindset. <span class="zh">学生在这里学习发音，更重要的是学习如何用更好的心态和方法面对英语学习。</span></p></div>'+
           '</div>'+
           '<div class="goal-quote"><span class="goal-quote__ic">'+wave+'</span>Stage helps you practise. IPA helps you find your voice. <span class="zh">舞台帮助你练习。音标帮助你找到自己的声音。</span></div>'+
-          '<div class="goal-cta-wrap"><!-- Replace with TOUCH Learning Recharge Link -->'+
-            '<a class="goal-cta" href="#" onclick="ipaPlay();return false;"><span>Learning Recharge</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>'+
+
           '<div class="dean-sign"><!-- Dean photo: upload to assets/characters/enzo.png -->'+
             '<span class="dean-sign__eyebrow">From the Dean · 院长亲自带领</span>'+
             '<div class="dean-card">'+
@@ -4690,6 +4735,39 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     window.openPWE=function(){ window.openSitePopup("https://touchenglish.edu.my/en/proven#pweApplication",'PWE - Industry Visit <span class="zh">· Proven</span>',"Open Official Page"); };
     window.openHRDC=function(){ window.openSitePopup("https://www.touchenglish.edu.my/en/course#hrdc",'HRDC claimable <span class="zh">· Corporate Training</span>',"Open Official Page"); };
     window.openResults=function(){ window.openSitePopup("https://touchenglish.edu.my/en/proven#cert",'IELTS &amp; Cambridge Results <span class="zh">· Proven Results</span>',"View Results"); };
+    window.openIPA=function(){ window.openSitePopup("https://touchenglish.github.io/TOUCH-IPA/",'IPA Pronunciation System <span class="zh">· 院长亲录音标系统</span>',"Open IPA System"); };
+    function closeRC(){ var p=document.getElementById("rcPop"); if(p){ p.classList.remove("is-open"); p.setAttribute("aria-hidden","true"); } }
+    window.openRecharge=function(){
+      var pop=document.getElementById("rcPop");
+      if(!pop){
+        pop=document.createElement("div"); pop.id="rcPop"; pop.className="rcpop"; pop.setAttribute("aria-hidden","true");
+        pop.innerHTML=[
+          '<div class="rcpop__bd" data-rcclose></div>',
+          '<div class="rcpop__card" role="dialog" aria-modal="true" style="--c:#7C5CFF">',
+            '<button class="rcpop__x" type="button" data-rcclose aria-label="Close">\u00d7</button>',
+            '<div class="rcpop__hero">',
+              '<img src="assets/characters/ipa.png" alt="学习充电站 · 院长 Mr. Fong">',
+              '<div class="rcpop__hero-fallback" style="display:none"><b>院长 Mr. Fong 现场教学</b><span>海报图片待上传 · assets/characters/ipa.png</span></div>',
+            '</div>',
+            '<div class="rcpop__body">',
+              '<span class="rcpop__eyebrow">📢 2026 年第六场学习充电站</span>',
+              '<h3 class="rcpop__title">如何从音标建立信心</h3>',
+              '<p class="rcpop__sub">院长 Mr. Fong 现场教学 · 26.6.26 星期五 8PM</p>',
+              '<p class="rcpop__p">很多人不敢讲英文，不是不会说。而是每讲一句，脑里都在想：</p>',
+              '<div class="rcpop__q"><span>👉 「我这样念对吗？」</span><span>👉 「会不会很奇怪？」</span><span>👉 「他们会不会笑？」</span></div>',
+              '<p class="rcpop__p">问题不是词汇，不是文法，而是——<span class="rcpop__hl">发音不确定</span>。当你连自己的声音都不相信，你怎么敢开口？</p>',
+              '<p class="rcpop__p">这一次，我们带你回到最基础，重新理解「音标」，让你知道自己到底在念什么。</p>',
+            '</div>',
+          '</div>'
+        ].join("");
+        document.body.appendChild(pop);
+        pop.addEventListener("click",function(e){ if(e.target.closest("[data-rcclose]")) closeRC(); });
+        var img=pop.querySelector(".rcpop__hero img");
+        if(img){ img.onerror=function(){ img.style.display="none"; var fb=pop.querySelector(".rcpop__hero-fallback"); if(fb) fb.style.display="flex"; }; }
+        document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeRC(); });
+      }
+      pop.classList.add("is-open"); pop.setAttribute("aria-hidden","false");
+    };
     // ----- "Teaching experience" card -> TOUCH Team intro modal -----
     var TEAM=[
       {group:"Teacher Team", c:"#0EA5C4", role:"English Educator", url:"#", desc:"The educators behind our teaching experience and classroom delivery.", members:[
