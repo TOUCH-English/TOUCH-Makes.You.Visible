@@ -298,14 +298,21 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,background .22s ease,border-color .22s ease}
 .sys-node::after{display:none}
 .sys-node:hover{transform:translate(-50%,-50%) translateY(-5px) scale(1.03);box-shadow:0 22px 40px -16px rgba(20,33,50,.34),inset 0 1px 0 rgba(255,255,255,.95);background:linear-gradient(155deg,rgba(255,255,255,.46),rgba(255,255,255,.22))}
-.sys-node__dot{position:relative;z-index:1;width:calc(58px * var(--sys-scale,1));height:calc(58px * var(--sys-scale,1));border-radius:18px;display:grid;place-items:center;color:var(--c);
+.sys-node__dot{position:relative;z-index:1;width:calc(58px * var(--sys-scale,1));height:calc(58px * var(--sys-scale,1));border-radius:18px;display:grid;place-items:center;color:var(--c);overflow:hidden;
   background:linear-gradient(150deg,color-mix(in srgb,var(--c) 26%,rgba(255,255,255,.5)),color-mix(in srgb,var(--c) 10%,rgba(255,255,255,.35)));
   border:1px solid color-mix(in srgb,var(--c) 30%,rgba(255,255,255,.7));
   box-shadow:0 10px 22px -8px color-mix(in srgb,var(--c) 55%,transparent),inset 0 1px 0 rgba(255,255,255,.7);
-  transition:transform .22s ease,box-shadow .22s ease,background .22s ease,color .22s ease}
-.sys-node__dot .ic{display:grid;place-items:center}
+  transition:transform .16s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease,background .22s ease,color .22s ease;animation:sysDotBreath 2.8s ease-in-out infinite}
+.sys-node__dot .ic{display:grid;place-items:center;position:relative;z-index:3}
 .sys-node__dot .ic svg{width:calc(32px * var(--sys-scale,1));height:calc(32px * var(--sys-scale,1));stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .sys-node__dot .n{display:none}
+/* candy effects on roadmap node icons (color unchanged) */
+.sys-node__dot::before{content:"";position:absolute;left:8%;right:8%;top:6%;height:42%;z-index:1;pointer-events:none;border-radius:14px 14px 60% 60%/14px 14px 32% 32%;background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,0))}
+.sys-node__dot::after{content:"";position:absolute;top:-60%;left:-130%;width:55%;height:220%;transform:rotate(20deg);z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.7),rgba(255,255,255,0));animation:sysDotShine 3s ease-in-out infinite}
+.sys-node:active .sys-node__dot{transform:translateY(3px) scaleY(.94)}
+@keyframes sysDotBreath{0%,100%{filter:brightness(1)}50%{filter:brightness(1.06)}}
+@keyframes sysDotShine{0%{left:-130%}22%{left:150%}100%{left:150%}}
+@media (prefers-reduced-motion:reduce){.sys-node__dot{animation:none}.sys-node__dot::after{display:none}}
 .sys-node__t{font-family:var(--display);font-weight:700;font-size:calc(11.5px * var(--sys-scale,1));color:var(--ink);line-height:1.2;max-width:calc(104px * var(--sys-scale,1));opacity:.92}
 .sys-node__t .zh{display:block;font-weight:500;font-size:calc(10px * var(--sys-scale,1));color:var(--muted);margin-top:2px}
 /* current step glows on the map */
@@ -510,6 +517,12 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 @keyframes m1in{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
 @keyframes m1glowfade{from{opacity:0}to{opacity:.82}}
 @media (prefers-reduced-motion:reduce){.m1core,.m1glowc,.m1arc{animation:none;opacity:1;transform:none}.m1glowc{opacity:.82}}
+ /* Mirror 01 "See Yourself" — first layer: glass highlight + shine sweep + breathing */
+ .m1arc.m1arc--glass{animation:m1in .75s cubic-bezier(.2,.7,.2,1) var(--ld,.62s) both,m1leadBreath 3s ease-in-out var(--bd,1.5s) infinite}
+ .m1lead-shine{transform-box:view-box;transform-origin:120px 80px;animation:m1leadShine 4.8s ease-in-out var(--shd,0s) infinite}
+ @keyframes m1leadBreath{0%,100%{opacity:1}50%{opacity:.78}}
+ @keyframes m1leadShine{0%{transform:translateX(-215px) rotate(14deg)}70%{transform:translateX(215px) rotate(14deg)}100%{transform:translateX(215px) rotate(14deg)}}
+ @media (prefers-reduced-motion:reduce){.m1arc.m1arc--glass{animation:m1in .75s cubic-bezier(.2,.7,.2,1) var(--ld,.62s) both}.m1lead-shine{display:none}}
 /* three-mirrors closing */
 .rev-close{text-align:center;border-radius:20px;padding:30px 28px;
   background:linear-gradient(160deg,color-mix(in srgb,var(--c) 15%,#fff),color-mix(in srgb,var(--c) 5%,#fff));border:1px solid color-mix(in srgb,var(--c) 20%,rgba(255,255,255,.8));box-shadow:inset 0 1px 0 rgba(255,255,255,.85)}
@@ -4342,10 +4355,26 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     function glassLayerVis(num,down){
       var cy=down?52:108, sweep=down?'0':'1';
       var LAYER=[{r:58,fa:'0.42',sa:'.55',d:'.62s',cls:''},{r:80,fa:'0.30',sa:'.40',d:'.95s',cls:' m1arc--2'},{r:102,fa:'0.18',sa:'.25',d:'1.28s',cls:' m1arc--3'}];
-      var arcs='';
+      var TINT=[{f:'0.5',s:'0.72',shd:'0s',bd:'1.5s'},{f:'0.34',s:'0.52',shd:'.55s',bd:'1.95s'},{f:'0.2',s:'0.36',shd:'1.1s',bd:'2.4s'}];
+      var arcs='', enh=!down, uid='gl'+(glassLayerVis._n=(glassLayerVis._n||0)+1);
       for(var li=num-1; li>=0; li--){
         var L=LAYER[li], x0=120-L.r, x1=120+L.r, filt=(li===0?' filter="url(#m1lift)"':'');
-        arcs+='<path class="m1arc'+L.cls+'" style="--ld:'+L.d+'" d="M'+x0+','+cy+' A'+L.r+','+L.r+' 0 0 '+sweep+' '+x1+','+cy+' Z" fill="rgba(255,255,255,'+L.fa+')" stroke="rgba(255,255,255,'+L.sa+')" stroke-width="1"'+filt+'/>';
+        var fd='M'+x0+','+cy+' A'+L.r+','+L.r+' 0 0 '+sweep+' '+x1+','+cy+' Z';
+        if(enh){
+          var T=TINT[li], u=uid+li;
+          arcs+='<path class="m1arc'+L.cls+' m1arc--glass" style="--ld:'+L.d+';--bd:'+T.bd+'" d="'+fd+'" fill="rgba(150,177,213,'+T.f+')" stroke="rgba(198,217,242,'+T.s+')" stroke-width="1"'+filt+'/>'+
+            '<defs>'+
+              '<clipPath id="'+u+'c"><path d="'+fd+'"/></clipPath>'+
+              '<linearGradient id="'+u+'h" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".4" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'+
+              '<linearGradient id="'+u+'s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".32" stop-color="#fff" stop-opacity=".3"/><stop offset=".46" stop-color="#fff" stop-opacity=".55"/><stop offset=".49" stop-color="#fff" stop-opacity="1"/><stop offset=".51" stop-color="#fff" stop-opacity="1"/><stop offset=".54" stop-color="#fff" stop-opacity=".55"/><stop offset=".68" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'+
+              '</defs>'+
+              '<g clip-path="url(#'+u+'c)">'+
+                '<rect x="'+x0+'" y="'+(cy-L.r)+'" width="'+(2*L.r)+'" height="'+(2*L.r)+'" fill="url(#'+u+'h)"/>'+
+                '<rect class="m1lead-shine" style="--shd:'+T.shd+'" x="'+x0+'" y="'+(cy-L.r-4)+'" width="104" height="'+(2*L.r+8)+'" fill="url(#'+u+'s)"/>'+
+              '</g>';
+        } else {
+          arcs+='<path class="m1arc'+L.cls+'" style="--ld:'+L.d+'" d="'+fd+'" fill="rgba(255,255,255,'+L.fa+')" stroke="rgba(255,255,255,'+L.sa+')" stroke-width="1"'+filt+'/>';
+        }
       }
       return '<span class="m1blob" style="background:var(--p1);left:3%;top:36%"></span>'+
         '<span class="m1blob" style="background:var(--l3);left:13%;bottom:0"></span>'+
