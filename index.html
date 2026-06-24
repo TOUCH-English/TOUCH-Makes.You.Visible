@@ -2338,14 +2338,15 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .lvroad__vp{overflow:hidden;transition:height .35s ease}
 .lvroad__sc{width:900px;transform-origin:top left;will-change:transform;transition:transform .35s ease}
 .lvroad.is-compact{max-width:560px;margin-left:auto;margin-right:auto}
-.lvstage .lvzoom{position:absolute;top:13px;right:13px;z-index:4;display:inline-flex;align-items:center;gap:1px;padding:3px;border-radius:999px;
-  background:rgba(255,255,255,.32);-webkit-backdrop-filter:blur(13px) saturate(160%);backdrop-filter:blur(13px) saturate(160%);
-  border:1px solid rgba(255,255,255,.5);box-shadow:0 4px 14px rgba(20,33,50,.08);opacity:.58;transition:opacity .25s ease}
+.lvstage .lvzoom{position:absolute;top:14px;right:14px;z-index:4;display:inline-flex;align-items:center;gap:0;padding:0;border-radius:11px;overflow:hidden;
+  background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
+  border:1px solid rgba(255,255,255,.6);box-shadow:0 4px 14px -6px rgba(20,33,50,.16);opacity:.5;transition:opacity .2s ease}
 .lvstage .lvzoom:hover{opacity:1}
-.lvzoom__b{width:25px;height:25px;border:none;background:transparent;border-radius:999px;cursor:pointer;font-family:var(--display);font-weight:600;font-size:16px;line-height:1;color:var(--ink);display:flex;align-items:center;justify-content:center;transition:background .15s ease;padding:0}
-.lvzoom__b:hover{background:rgba(31,159,230,.16)}
-.lvzoom__b:disabled{opacity:.3;cursor:default;background:transparent}
-.lvzoom__v{font-family:var(--display);font-weight:600;font-size:11px;color:var(--muted);min-width:36px;text-align:center;user-select:none;letter-spacing:.01em}
+.lvzoom__b{width:30px;height:27px;display:grid;place-items:center;border:0;background:transparent;border-radius:0;cursor:pointer;font-family:var(--display);font-weight:600;font-size:15px;line-height:1;color:var(--muted);transition:background .15s,color .15s;padding:0;-webkit-user-select:none;user-select:none}
+.lvzoom__b:hover{background:rgba(255,255,255,.55);color:var(--ink)}
+.lvzoom__b:disabled{opacity:.35;cursor:default;background:transparent}
+.lvzoom__b+.lvzoom__b{border-left:1px solid rgba(255,255,255,.55)}
+.lvzoom__v{display:none}
 .lvroad.is-compact .lvzoom{display:none}
 .lvroad__head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
 .lvroad__name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink)}
@@ -3063,6 +3064,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         </div>
         <div class="adv-cue" data-cue><strong>Advisor cue:</strong> set the learner's current and target level — the highlighted levels are the recommended path; the faded ones stay on screen as the full level map for reference.</div>
         <div class="adv-note-wrap" style="margin:12px 0 6px"><button type="button" class="adv-note" id="rpAdvBtn" aria-label="Advisor Note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button></div>
+        <div class="adv-note-wrap" style="margin:2px 0 6px"><button type="button" class="adv-note" id="rpReset" aria-label="Reset this page"><svg viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-2.6-6.3"/><path d="M21 4v5h-5"/></svg><span>Reset <span class="zh">重置本页</span></span></button></div>
       </section>
 
       <!-- ===== 9b. SUMMARY TRANSITION — Mirror · Stage · System (before pricing) ===== -->
@@ -3202,6 +3204,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           </div>
 
         </div>
+        <div class="adv-note-wrap" style="margin:6px 0 4px"><button type="button" class="adv-note" id="sumtrReset" aria-label="Reset this page"><svg viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-2.6-6.3"/><path d="M21 4v5h-5"/></svg><span>Reset <span class="zh">重置本页</span></span></button></div>
       </section>
 
       <!-- ===== 10. CLOSING / CTA ===== -->
@@ -3237,6 +3240,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           </div>
         </div>
         <p class="note" style="justify-content:center;margin-top:26px">TOUCH English Makes You Visible · <span class="zh">让你被看见。</span></p>
+        <div class="adv-note-wrap" style="margin:4px 0 2px"><button type="button" class="adv-note" id="invReset" aria-label="Reset this page"><svg viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-2.6-6.3"/><path d="M21 4v5h-5"/></svg><span>Reset <span class="zh">重置本页</span></span></button></div>
         <!-- feature detail popup (isolated) -->
         <div class="tpop" id="tpop" aria-hidden="true">
           <div class="tpop__bd" id="tpopBd"></div>
@@ -3856,7 +3860,6 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   function zoomCtlHTML(){
     return '<div class="lvzoom" data-zoom-ctl>'+
       '<button type="button" class="lvzoom__b" data-zoom="out" aria-label="Zoom out">\u2212</button>'+
-      '<span class="lvzoom__v" data-zoom-val>100%</span>'+
       '<button type="button" class="lvzoom__b" data-zoom="in" aria-label="Zoom in">+</button>'+
     '</div>';
   }
@@ -4010,6 +4013,15 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     }
     renderAdminLinks();
     if($("#lvLearners")){renderLearners(); renderMods();}
+    function lvResetPage(){
+      lvCount=1;
+      lvState=[{c:1,t:3,name:""},{c:0,t:2,name:""},{c:2,t:4,name:""},{c:0,t:3,name:""}];
+      $$("#lvCount button").forEach(function(x){ x.classList.toggle("is-active", x.getAttribute("data-n")==="1"); });
+      if(tool) tool.hidden=false; if(sum) sum.hidden=true;
+      renderLearners(); renderMods();
+      try{ window.scrollTo({top:0,behavior:"smooth"}); }catch(e){}
+    }
+    var _rpr=document.getElementById("rpReset"); if(_rpr) _rpr.addEventListener("click",function(e){ e.stopPropagation(); lvResetPage(); });
   })();
 
   /* ---------- LEARNING SYSTEM (consultation journey) ---------- */
@@ -6131,6 +6143,8 @@ io.observe(er);})();
     pop.querySelector('.sumtr-pop__card').addEventListener('click',function(e){ e.stopPropagation(); });
   }
 
+  function resetSumtr(){ if(pop) pop.classList.remove('is-open'); lv=[0,0,0]; focus=-1; phase='reveal'; hist=[]; render(); softScroll(root); }
+  var _sr=document.getElementById('sumtrReset'); if(_sr) _sr.addEventListener('click',function(e){ e.stopPropagation(); resetSumtr(); });
   render();
 })();
 </script>
@@ -6379,7 +6393,7 @@ io.observe(er);})();
   var hpop=document.getElementById('hrdcPop'), hstage=document.getElementById('hrdcStage'), hopen=document.getElementById('hrdcOpen'), hbeat=0, advEdit=false;
   function storyView(){
     return '<div class="hpop__view">'+
-      '<div style="text-align:center"><button type="button" class="pr-hrdc__badge pr-hrdc__badge--btn" onclick="event.stopPropagation(); if(window.openHRDC)openHRDC();" aria-label="Open HRDC claimable details"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4 3 7 7 8 4-1 7-4 7-8V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg> HRDC <i>Bursary · 助学金</i> <svg class="pr-hrdc__chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button><div class="pr-hrdc__cap">Tap the badge for HRDC details <span class="zh">点徽章看 HRDC 说明</span></div></div>'+
+      '<div style="text-align:center"><button type="button" class="pr-hrdc__badge pr-hrdc__badge--btn" onclick="event.stopPropagation(); if(window.openHRDC)openHRDC();" aria-label="Open HRDC claimable details"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4 3 7 7 8 4-1 7-4 7-8V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg> HRDC <i>Bursary · 助学金</i> <svg class="pr-hrdc__chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>'+
       '<p class="hpop__story">We have trained many HRDC-sponsored learners, so we receive government HRDC funding. Instead of keeping it as profit, TOUCH turned it into a bursary — to subsidise individual learners like you.</p>'+
       '<p class="hpop__story zh">我们培训了许多 HRDC 企业学员，因此获得政府的 HRDC 资金。公司没有把它变成利润，而是设立成助学金，用来津贴像你这样的个人学员。</p>'+
       '<div class="hpop__hint"><img class="hpop__hintlogo" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"></div>'+
@@ -6472,6 +6486,20 @@ io.observe(er);})();
   if(hx) hx.addEventListener('click',closeHrdc);
   if(hbd) hbd.addEventListener('click',closeHrdc);
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&hpop&&hpop.classList.contains('is-open')) closeHrdc(); });
+
+  function resetPage(){
+    revealed=1; priceShown=[false,false,false]; slideIdx=-1;
+    subsidyOn=false; subsidyDone=false;
+    renderTiers();
+    if(extWrap){ extWrap.setAttribute('hidden',''); }
+    if(extToggle){ extToggle.setAttribute('aria-expanded','false'); if(extToggle.firstChild) extToggle.firstChild.nodeValue='Show more packages '; }
+    renderExt();
+    if(typeof hpop!=='undefined' && hpop){ hpop.classList.remove('is-open'); hpop.setAttribute('aria-hidden','true'); }
+    advEdit=false; hbeat=0;
+    try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){}
+  }
+  var invResetBtn=document.getElementById('invReset');
+  if(invResetBtn) invResetBtn.addEventListener('click',resetPage);
 
   load(); renderTiers(); renderExt(); renderAdmin();
 })();
