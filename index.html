@@ -2615,9 +2615,11 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .tcard__hint .zh{font-weight:500;color:var(--muted)}
 /* extension cards (192/240) */
 .price-ext{display:grid;grid-template-columns:repeat(2,minmax(0,360px));gap:18px;justify-content:center}
-.tcard.is-ext{padding:18px 16px;background:rgba(255,255,255,.5)}
+.tcard.is-ext{padding:20px 16px;background:rgba(255,255,255,.74);
+  -webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--blue);border-radius:var(--r-lg);
+  box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7)}
 .tcard.is-ext .tcard__num b{font-size:30px}
-.tcard.is-ext .tcard__ic svg{stroke:var(--muted)}
 .tcard__extnote{font-size:12px;color:var(--faint);line-height:1.45;padding:0 8px;margin-top:12px}
 .tcard__extnote .zh{display:block;margin-top:3px}
 .price-ext-wrap{position:relative;z-index:1;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
@@ -2658,7 +2660,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .tier-grid .tcard:nth-child(2) .tfeat__lab .zh,
 .tier-grid .tcard:nth-child(3) .tfeat__lab .zh{font-size:12px}
 /* ===== Card-inline price (combo -> after-subsidy) ===== */
-.tcard__price{margin-top:14px;padding-top:14px;border-top:1px dashed rgba(20,33,50,.12);text-align:center;position:relative;z-index:1}
+.tcard__price{margin-top:14px;padding-top:14px;border-top:1px dashed rgba(20,33,50,.12);text-align:center;position:relative;z-index:1;display:none}
+.tcard__price.is-revealed{display:block}
+.tcard__price.is-sliding{animation:priceRise .5s cubic-bezier(.22,.61,.36,1) both}
 .tcard__price-orig{display:inline-block;font-size:13px;color:var(--faint);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px}
 .tcard__price-now{display:flex;align-items:baseline;justify-content:center;gap:5px;margin-top:3px}
 .tcard__price-now .rm{font-family:var(--display);font-weight:700;font-size:15px;color:var(--blue)}
@@ -2694,6 +2698,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .reveal-open-btn:hover{transform:translateY(-2px);box-shadow:0 18px 36px -10px rgba(14,36,86,.7),inset 0 1px 0 rgba(255,255,255,.18)}
 .reveal-open-btn .zh{font-weight:500;opacity:.82}
 .reveal-open-btn svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.reveal-open-btn--logo{background:rgba(255,255,255,.92);border:1px solid var(--line);padding:9px 18px;gap:0;
+  box-shadow:0 10px 24px -12px rgba(14,36,86,.45),inset 0 1px 0 rgba(255,255,255,.75)}
+.reveal-open-btn--logo:hover{box-shadow:0 16px 32px -12px rgba(14,36,86,.5),inset 0 1px 0 rgba(255,255,255,.75)}
+.reveal-open-logo{height:30px;width:auto;max-width:160px;object-fit:contain;display:block}
 /* ===== HRDC popup ===== */
 .hpop{position:fixed;inset:0;display:none;z-index:145;align-items:center;justify-content:center;padding:24px}
 .hpop.is-open{display:flex}
@@ -2720,6 +2728,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .hpop__story.zh{color:var(--muted);font-size:13.5px;margin-top:10px}
 .hpop__hint{text-align:center;font-size:13px;color:var(--blue-bright);font-weight:600;margin-top:22px}
 .hpop__hint .zh{color:var(--muted);font-weight:500}
+.hpop__hintlogo{height:38px;width:auto;max-width:200px;object-fit:contain;display:inline-block;cursor:pointer;transition:transform .18s ease}
+.hpop__hint:hover .hpop__hintlogo{transform:translateY(-2px)}
 .hpop__title{text-align:center;font-family:var(--display);font-weight:800;font-size:20px;color:var(--ink);margin:0 0 4px}
 .hpop__title .zh{color:var(--muted);font-weight:600;font-size:15px;margin-left:6px}
 .hpop__sub{font-family:var(--body);font-weight:500;font-size:12.5px;color:var(--faint)}
@@ -2743,6 +2753,18 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .ht-final b{font-family:var(--display);font-weight:800;color:var(--blue);font-size:16px}
 .ht-save{background:color-mix(in srgb,#E6A81E 16%,#fff)!important;font-family:var(--display);font-weight:800;color:#8a6300}
 .hpop__fine{font-size:11px;color:var(--faint);margin-top:14px;line-height:1.5;text-align:center}
+/* HRDC popup — advisor edit mode */
+.adv-note.is-on{opacity:1;color:var(--blue);font-weight:700}
+.hpop__table input{width:76px;font:inherit;font-family:var(--display);font-weight:700;font-size:13px;text-align:center;border:1px solid var(--blue-bright);border-radius:8px;padding:5px 6px;background:#fff;color:var(--ink)}
+.hpop__table input:focus{outline:2px solid var(--blue);outline-offset:1px}
+.hpop__table input:disabled{opacity:.4;border-color:var(--line)}
+.hpop__table .ht-na{display:block;font-size:10px;color:var(--faint);font-weight:500;margin-top:5px;cursor:pointer}
+.hpop__table .ht-na input{width:auto;margin-right:4px;vertical-align:middle}
+.hpop__editmisc{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px;font-size:12px;font-weight:700;color:var(--muted)}
+.hpop__editmisc label{display:inline-flex;align-items:center;gap:6px;font-weight:500}
+.hpop__editmisc input{width:66px;font:inherit;font-size:12px;text-align:center;border:1px solid var(--blue-bright);border-radius:7px;padding:4px 6px}
+.hpop__edithint{text-align:center;font-size:11.5px;color:var(--blue-bright);margin-top:8px}
+.hpop__edithint .zh{color:var(--muted)}
 @keyframes priceRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.hpop__view{animation:none}}
 @media (max-width:600px){.hpop__stage{padding:26px 16px 20px}}
@@ -3204,7 +3226,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             <button type="button" class="ext-toggle-btn" id="extToggle" aria-expanded="false">Show more packages <span class="zh">显示更多配套</span> <span class="ext-chev" aria-hidden="true">⌄</span></button>
           </div>
           <div class="price-reveal-cta">
-            <button type="button" class="reveal-open-btn" id="hrdcOpen">See your subsidised price <span class="zh">查看津贴后价格</span> <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
+            <button type="button" class="reveal-open-btn reveal-open-btn--logo" id="hrdcOpen" aria-label="See your subsidised price 查看津贴后价格"><img class="reveal-open-logo" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display='none'"></button>
           </div>
           <div class="hpop" id="hrdcPop" aria-hidden="true">
             <div class="hpop__bd" id="hrdcBd"></div>
@@ -6176,6 +6198,7 @@ io.observe(er);})();
   function finalOf(d){return Math.max(0,d.orig-d.combo-(d.na?0:d.hrdc));}
   /* ---------- card-inline price (combo -> after-subsidy) + reveal sync ---------- */
   var subsidyOn=false, subsidyDone=false;
+  var priceShown=[false,false,false], slideIdx=-1;
   function comboOf(d){return Math.max(0,d.orig-d.combo);}
   function miscFee(){return misc?(misc.reg+misc.sys):300;}
   function count(el,from,to,prefix){
@@ -6203,7 +6226,9 @@ io.observe(er);})();
     for(var i=0;i<3;i++){
       var card=grid.querySelector('.tcard[data-i="'+i+'"]'); if(!card) continue;
       card.classList.add('is-subsidy');
+      priceShown[i]=true;
       var block=card.querySelector('.tcard__price'); if(!block) continue;
+      block.classList.add('is-revealed');
       var from=comboOf(data[i]), to=finalOf(data[i]);
       block.innerHTML=priceInner(i);
       var nEl=block.querySelector('.tcard__price-now .n');
@@ -6295,7 +6320,9 @@ io.observe(er);})();
     var frost=masked?'<div class="tcard__frost">'+(next?'<span class="tcard__hint">Tap to reveal <span class="zh">点击展开</span></span>':'')+'</div>':'';
     var subCls=subsidyOn?' is-subsidy':'';
     var corner=(i===1||i===2) ? '<button type="button" class="tcard__hrdc-corner" data-i="'+i+'" title="Back to HRDC claim price · 回到 claim 价" aria-label="Back to HRDC claim price"><img class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.3"/><path d="M21 4v5h-5"/></svg></button>' : '';
-    return '<article class="tcard'+(masked?' is-masked':'')+(next?' is-next':'')+subCls+'" data-i="'+i+'">'+head+body+priceBlock(i)+corner+frost+'</article>';
+    var pcls = priceShown[i] ? (' is-revealed'+(i===slideIdx?' is-sliding':'')) : '';
+    var priceEl = '<div class="tcard__price'+pcls+'" data-pi="'+i+'">'+priceInner(i)+'</div>';
+    return '<article class="tcard'+(masked?' is-masked':'')+(next?' is-next':'')+subCls+'" data-i="'+i+'">'+head+body+priceEl+corner+frost+'</article>';
   }
   function renderTiers(){ grid.innerHTML=TIERS.map(tierCard).join(''); }
 
@@ -6305,7 +6332,11 @@ io.observe(er);})();
       return '<article class="tcard is-ext"><div class="tcard__head"><span class="tcard__ic">'+ICON.up+'</span>'+
         '<div class="tcard__num"><b>'+d.lessons+'</b><span>LESSONS</span></div>'+
         '<p class="tcard__tag">'+d.name+' · '+d.sub+'<span class="zh">更多 Level，深入掌握。</span></p></div>'+
-        '<div class="tcard__body"><p class="tcard__extnote">Beyond 144 lessons — combo discount only, no government subsidy. <span class="zh">144 堂以上仅配套折扣，无政府津贴。</span></p></div></article>';
+        '<div class="tcard__body"><p class="tcard__extnote">Beyond 144 lessons — combo discount only, no government subsidy. <span class="zh">144 堂以上仅配套折扣，无政府津贴。</span></p></div>'+
+        '<div class="tcard__price is-revealed"><span class="tcard__price-orig">RM '+fmt(d.orig)+'</span>'+
+        '<div class="tcard__price-now"><span class="rm">RM</span><span class="n">'+fmt(comboOf(d))+'</span>'+
+        '<span class="tcard__hrdc-inline"><img class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span></div>'+
+        '<span class="tcard__price-note">+ RM'+fmt(miscFee())+' <span class="zh">报名＋系统费</span></span></div></article>';
     }).join('');
   }
 
@@ -6327,9 +6358,14 @@ io.observe(er);})();
   /* ---------- interactions ---------- */
   grid.addEventListener('click',function(e){
     if(e.target.closest('.tcard__hrdc-corner')){ revertToCombo(); return; }
-    if(e.target.closest('.tcard.is-masked')){ revealed=Math.min(TIERS.length,revealed+1); renderTiers(); return; }
+    if(e.target.closest('.tcard.is-masked')){
+      if(revealed<TIERS.length){ var ni=revealed; priceShown[ni]=true; revealed++; slideIdx=ni; }
+      renderTiers(); slideIdx=-1; return;
+    }
     var feat=e.target.closest('.tfeat');
-    if(feat){ openPop(+feat.getAttribute('data-i'),+feat.getAttribute('data-k')); }
+    if(feat){ openPop(+feat.getAttribute('data-i'),+feat.getAttribute('data-k')); return; }
+    var card=e.target.closest('.tcard');
+    if(card){ var ci=+card.getAttribute('data-i'); if(ci>=0&&ci<3&&!priceShown[ci]){ priceShown[ci]=true; slideIdx=ci; renderTiers(); slideIdx=-1; } }
   });
   if(extToggle){
     extToggle.addEventListener('click',function(){
@@ -6340,30 +6376,44 @@ io.observe(er);})();
   }
 
   /* ---------- HRDC bursary popup (story -> 5-package table -> reveal subsidy) ---------- */
-  var hpop=document.getElementById('hrdcPop'), hstage=document.getElementById('hrdcStage'), hopen=document.getElementById('hrdcOpen'), hbeat=0;
+  var hpop=document.getElementById('hrdcPop'), hstage=document.getElementById('hrdcStage'), hopen=document.getElementById('hrdcOpen'), hbeat=0, advEdit=false;
   function storyView(){
     return '<div class="hpop__view">'+
       '<div style="text-align:center"><button type="button" class="pr-hrdc__badge pr-hrdc__badge--btn" onclick="event.stopPropagation(); if(window.openHRDC)openHRDC();" aria-label="Open HRDC claimable details"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4 3 7 7 8 4-1 7-4 7-8V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg> HRDC <i>Bursary · 助学金</i> <svg class="pr-hrdc__chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button><div class="pr-hrdc__cap">Tap the badge for HRDC details <span class="zh">点徽章看 HRDC 说明</span></div></div>'+
       '<p class="hpop__story">We have trained many HRDC-sponsored learners, so we receive government HRDC funding. Instead of keeping it as profit, TOUCH turned it into a bursary — to subsidise individual learners like you.</p>'+
       '<p class="hpop__story zh">我们培训了许多 HRDC 企业学员，因此获得政府的 HRDC 资金。公司没有把它变成利润，而是设立成助学金，用来津贴像你这样的个人学员。</p>'+
-      '<div class="hpop__hint">Tap to reveal all subsidised prices <span class="zh">点一下，一次展示全部津贴后价格</span> ›</div>'+
+      '<div class="hpop__hint"><img class="hpop__hintlogo" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"></div>'+
     '</div>';
   }
-  function tableRow(d){
-    var sub=finalOf(d);
+  function feeI(){return '<i class="mfee">+RM'+fmt(miscFee())+'*</i>';}
+  function tableRow(d,i){
+    var sub=finalOf(d), sv=d.orig-sub;
+    if(advEdit){
+      var naChk='<label class="ht-na"><input type="checkbox" data-f="na"'+(d.na?' checked':'')+'> N.A.</label>';
+      return '<tr data-i="'+i+'">'+
+        '<td class="ht-pkg"><b>'+d.name+'</b><span>'+d.sub+'</span></td>'+
+        '<td class="ht-cls">'+d.lessons+'</td>'+
+        '<td class="ht-orig"><input type="number" min="0" step="50" data-f="orig" value="'+d.orig+'">'+feeI()+'</td>'+
+        '<td class="ht-combo"><input type="number" min="0" step="50" data-f="combo" value="'+d.combo+'"></td>'+
+        '<td class="ht-hrdc"><input type="number" min="0" step="50" data-f="hrdc" value="'+d.hrdc+'"'+(d.na?' disabled':'')+'>'+naChk+'</td>'+
+        '<td class="ht-final"><b><span data-out="final">RM '+fmt(sub)+'</span></b>'+feeI()+'</td>'+
+        '<td class="ht-save"><span data-out="save">RM '+fmt(sv)+'</span></td>'+
+      '</tr>';
+    }
     var comboCell = d.combo>0 ? '−RM '+fmt(d.combo) : '–';
     var hrdcCell = d.na ? '<span class="na">N.A.</span>' : '−RM '+fmt(d.hrdc);
     return '<tr>'+
       '<td class="ht-pkg"><b>'+d.name+'</b><span>'+d.sub+'</span></td>'+
       '<td class="ht-cls">'+d.lessons+'</td>'+
-      '<td class="ht-orig"><s>RM '+fmt(d.orig)+'</s><i>+RM'+fmt(miscFee())+'*</i></td>'+
+      '<td class="ht-orig"><s>RM '+fmt(d.orig)+'</s>'+feeI()+'</td>'+
       '<td class="ht-combo">'+comboCell+'</td>'+
       '<td class="ht-hrdc">'+hrdcCell+'</td>'+
-      '<td class="ht-final"><b><span class="hn" data-from="'+d.orig+'" data-to="'+sub+'">RM '+fmt(d.orig)+'</span></b><i>+RM'+fmt(miscFee())+'*</i></td>'+
-      '<td class="ht-save">RM '+fmt(d.orig-sub)+'</td>'+
+      '<td class="ht-final"><b><span class="hn" data-from="'+d.orig+'" data-to="'+sub+'">RM '+fmt(d.orig)+'</span></b>'+feeI()+'</td>'+
+      '<td class="ht-save">RM '+fmt(sv)+'</td>'+
     '</tr>';
   }
   function tableView(){
+    var miscEd = advEdit ? '<div class="hpop__editmisc">Misc fees<label>Reg <input type="number" min="0" data-misc="reg" value="'+misc.reg+'"></label><label>System <input type="number" min="0" data-misc="sys" value="'+misc.sys+'"></label></div><p class="hpop__edithint">Editing live — auto-saves &amp; updates the cards. <span class="zh">实时编辑，自动保存并同步到卡片。</span></p>' : '';
     return '<div class="hpop__view">'+
       '<h4 class="hpop__title">Course fee packages <span class="zh">课程配套价格</span><br><span class="hpop__sub">Combo course + HRDC bursary · 配套课程＋HRDC 助学金</span></h4>'+
       '<div class="hpop__tablewrap"><table class="hpop__table"><thead><tr>'+
@@ -6372,8 +6422,18 @@ io.observe(er);})();
         '<th>HRDC claim<span class="zh">政府津贴</span></th><th>After subsidy<span class="zh">津贴后</span></th>'+
         '<th>You save<span class="zh">省</span></th>'+
       '</tr></thead><tbody>'+data.map(tableRow).join('')+'</tbody></table></div>'+
-      '<p class="hpop__fine">+ RM'+fmt(miscFee())+'* one-time registration &amp; system · 外籍学员另加 6% SST · 促销不与 HRDC 个人申领叠加</p>'+
+      miscEd+
+      '<p class="hpop__fine">+ RM<span class="mfee2">'+fmt(miscFee())+'</span>* one-time registration &amp; system · 外籍学员另加 6% SST · 促销不与 HRDC 个人申领叠加</p>'+
+      '<div class="adv-note-wrap" style="margin:14px 0 2px"><button type="button" class="adv-note'+(advEdit?' is-on':'')+'" data-hrdcedit aria-pressed="'+(advEdit?'true':'false')+'" aria-label="Advisor Note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button></div>'+
     '</div>';
+  }
+  function refreshCards(){
+    for(var i=0;i<3;i++){ var c=grid.querySelector('.tcard[data-i="'+i+'"]'); if(!c) continue; var bl=c.querySelector('.tcard__price'); if(bl) bl.innerHTML=priceInner(i); }
+    renderExt();
+  }
+  function updateMiscTexts(){
+    Array.prototype.forEach.call(hstage.querySelectorAll('.mfee'),function(el){ el.textContent='+RM'+fmt(miscFee())+'*'; });
+    var m2=hstage.querySelector('.mfee2'); if(m2) m2.textContent=fmt(miscFee());
   }
   function animateTable(){
     var cells=hstage.querySelectorAll('.hn');
@@ -6382,12 +6442,32 @@ io.observe(er);})();
       setTimeout(function(){ count(el,from,to,'RM '); }, idx*110);
     });
   }
-  function renderHrdc(){ hstage.innerHTML = (hbeat===0?storyView():tableView()); if(hbeat===1){ revealSubsidyPrices(); animateTable(); } }
-  function openHrdc(){ hbeat=0; renderHrdc(); hpop.classList.add('is-open'); hpop.setAttribute('aria-hidden','false'); }
+  function renderTable(){ hstage.innerHTML=tableView(); }
+  function renderHrdc(){ if(hbeat===0){ hstage.innerHTML=storyView(); } else { renderTable(); revealSubsidyPrices(); if(!advEdit) animateTable(); } }
+  function openHrdc(){ hbeat=0; advEdit=false; renderHrdc(); hpop.classList.add('is-open'); hpop.setAttribute('aria-hidden','false'); }
   function advanceHrdc(){ if(hbeat<1){ hbeat++; renderHrdc(); } }
   function closeHrdc(){ hpop.classList.remove('is-open'); hpop.setAttribute('aria-hidden','true'); }
   if(hopen) hopen.addEventListener('click',openHrdc);
   if(hstage){ hstage.addEventListener('click',advanceHrdc); hstage.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); advanceHrdc(); } }); }
+  if(hstage){
+    hstage.addEventListener('click',function(e){
+      var tg=e.target.closest&&e.target.closest('[data-hrdcedit]');
+      if(tg){ e.stopPropagation(); advEdit=!advEdit; renderTable(); }
+    });
+    hstage.addEventListener('input',function(e){
+      if(!advEdit) return;
+      var t=e.target;
+      if(t.dataset&&t.dataset.misc){ misc[t.dataset.misc]=clampInt(t.value); save(); updateMiscTexts(); refreshCards(); return; }
+      var tr=t.closest&&t.closest('tr[data-i]'); if(!tr) return;
+      var i=+tr.getAttribute('data-i'), f=t.dataset.f;
+      if(f==='na'){ data[i].na=t.checked; var hr=tr.querySelector('input[data-f="hrdc"]'); if(hr) hr.disabled=t.checked; }
+      else if(f){ data[i][f]=clampInt(t.value); }
+      var sub=finalOf(data[i]);
+      var fo=tr.querySelector('[data-out="final"]'); if(fo) fo.textContent='RM '+fmt(sub);
+      var so=tr.querySelector('[data-out="save"]'); if(so) so.textContent='RM '+fmt(data[i].orig-sub);
+      save(); refreshCards();
+    });
+  }
   var hx=document.getElementById('hrdcX'), hbd=document.getElementById('hrdcBd');
   if(hx) hx.addEventListener('click',closeHrdc);
   if(hbd) hbd.addEventListener('click',closeHrdc);
