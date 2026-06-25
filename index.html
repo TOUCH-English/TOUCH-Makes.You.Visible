@@ -159,24 +159,31 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .vis-row .meta{margin-left:auto;font-size:12px;color:rgba(255,255,255,.6)}
 .vis-row.dim{opacity:.45}.vis-row.lit{opacity:1}
 /* ===== Opening — branding hero ===== */
-.brandhero{min-height:calc(100vh - 150px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
+.brandhero{position:relative;min-height:calc(100vh - 150px);display:flex;align-items:center;justify-content:center;padding:clamp(14px,2.4vh,24px) clamp(14px,2vw,28px)}
+.brandhero__panel{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;max-width:none;min-height:calc(100vh - 196px);padding:clamp(44px,7vh,96px) clamp(28px,5vw,72px);border-radius:clamp(30px,3.2vw,44px);overflow:hidden;
+  background:radial-gradient(58% 46% at 18% 16%,rgba(31,159,230,.13),transparent 62%),radial-gradient(54% 44% at 86% 18%,rgba(224,48,59,.09),transparent 62%),radial-gradient(72% 52% at 50% 102%,rgba(21,53,123,.09),transparent 70%),rgba(255,255,255,.40);
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 34px 80px -34px rgba(20,33,50,.34),0 10px 28px -14px rgba(20,33,50,.18),inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 1px rgba(255,255,255,.18);
+  animation:bhPanel 1s cubic-bezier(.2,.7,.2,1) both}
+@keyframes bhPanel{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.brandhero__panel{background:rgba(255,255,255,.86)}}
 .brandhero__logobtn{background:none;border:0;padding:0;margin:0 0 34px;cursor:pointer;display:inline-block;line-height:0;-webkit-tap-highlight-color:transparent;outline:none;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both;transition:transform .22s cubic-bezier(.34,1.45,.5,1)}
 .brandhero__logobtn:hover{transform:translateY(-6px) scale(1.04)}
 .brandhero__logobtn:active{transform:translateY(4px) scale(.95);transition:transform .1s ease}
 .brandhero__logobtn:focus,.brandhero__logobtn:focus-visible{outline:none}
 .brandhero__logobtn .logo-disc{transition:box-shadow .22s ease}
-.brandhero__logobtn:hover .logo-disc{box-shadow:0 22px 42px -8px rgba(20,33,50,.3),0 5px 12px rgba(20,33,50,.14),inset 0 2px 3px rgba(255,255,255,.85)}
-.brandhero__logobtn:active .logo-disc{box-shadow:0 6px 14px -6px rgba(20,33,50,.24),inset 0 2px 3px rgba(255,255,255,.7),inset 0 -8px 16px rgba(20,33,50,.14)}
+.brandhero__logobtn:hover .logo-disc{box-shadow:0 22px 42px -8px rgba(20,33,50,.26),0 5px 12px rgba(20,33,50,.12),inset 0 1px 0 rgba(255,255,255,.9)}
+.brandhero__logobtn:active .logo-disc{box-shadow:0 5px 12px -6px rgba(20,33,50,.2),inset 0 1px 0 rgba(255,255,255,.9)}
 /* circular logo button frame (holds a square photo, clips to circle, 3D button feel) */
 .logo-disc{position:relative;display:block;border-radius:50%;overflow:hidden;flex:none;
-  background:radial-gradient(120% 120% at 50% 30%,#f4f6fa 0%,#e7eaf1 55%,#d6dae4 100%);
-  box-shadow:0 12px 26px -8px rgba(20,33,50,.26),0 3px 8px rgba(20,33,50,.12),inset 0 2px 3px rgba(255,255,255,.8)}
+  background:#fff;
+  box-shadow:0 12px 26px -8px rgba(20,33,50,.22),0 3px 8px rgba(20,33,50,.1),inset 0 1px 0 rgba(255,255,255,.9)}
 .logo-disc>img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
 .logo-disc::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
-  box-shadow:inset 0 3px 7px rgba(255,255,255,.55),inset 0 -12px 22px rgba(20,33,50,.13),inset 0 0 0 1px rgba(255,255,255,.35)}
+  box-shadow:inset 0 2px 5px rgba(255,255,255,.6),inset 0 0 0 1px rgba(255,255,255,.5)}
 .logo-disc--hero{width:clamp(190px,21vw,280px);height:clamp(190px,21vw,280px)}
-.logo-disc--mark{width:46px;height:46px;box-shadow:0 4px 10px -3px rgba(20,33,50,.22),0 1px 3px rgba(20,33,50,.1),inset 0 1px 2px rgba(255,255,255,.85)}
-.logo-disc--mark::after{box-shadow:inset 0 1px 3px rgba(255,255,255,.6),inset 0 -5px 9px rgba(20,33,50,.13),inset 0 0 0 1px rgba(255,255,255,.4)}
+.logo-disc--mark{width:46px;height:46px;box-shadow:0 4px 10px -3px rgba(20,33,50,.2),0 1px 3px rgba(20,33,50,.08),inset 0 1px 0 rgba(255,255,255,.9)}
+.logo-disc--mark::after{box-shadow:inset 0 1px 2px rgba(255,255,255,.7),inset 0 0 0 1px rgba(255,255,255,.5)}
 .brandhero__hint{display:inline-block;margin-top:30px;font-size:13px;color:var(--faint);letter-spacing:.02em;animation:bhUp .9s ease both 1.5s}
 .brandhero__hint .zh{color:var(--faint)}
 .brandhero__logo{height:clamp(190px,21vw,280px);width:auto;max-width:none;object-fit:contain;display:block}
@@ -195,7 +202,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 @keyframes bhUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes bhUnderline{to{transform:scaleX(1)}}
 @keyframes bhShimmer{0%{background-position:120% 0}55%{background-position:-20% 0}100%{background-position:-20% 0}}
-@media (prefers-reduced-motion:reduce){.brandhero__logobtn,.brandhero__logo,.brandhero__logo-fallback,.brandhero__lead,.brandhero__big,.brandhero__vis,.brandhero__tag,.brandhero__hint,.brandhero__cta{animation:none}.brandhero__vis::after{animation:none;transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.brandhero__panel,.brandhero__logobtn,.brandhero__logo,.brandhero__logo-fallback,.brandhero__lead,.brandhero__big,.brandhero__vis,.brandhero__tag,.brandhero__hint,.brandhero__cta{animation:none}.brandhero__vis::after{animation:none;transform:scaleX(1)}}
 
 /* ---------- Generic card grids ---------- */
 .grid{display:grid;gap:16px}
@@ -1462,7 +1469,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   background:radial-gradient(20% 22% at 42% 41%, color-mix(in srgb,#7CC4FF 30%,transparent), transparent 70%),radial-gradient(19% 21% at 60% 40%, color-mix(in srgb,#F4C969 22%,transparent), transparent 72%),radial-gradient(20% 22% at 61% 60%, color-mix(in srgb,#F2A6B3 24%,transparent), transparent 72%),radial-gradient(20% 22% at 40% 60%, color-mix(in srgb,#5FD0C8 26%,transparent), transparent 72%),radial-gradient(34% 42% at 50% 50%, color-mix(in srgb,var(--gc,var(--blue-bright)) 12%,transparent), transparent 72%),rgba(28,46,82,.3)}
 .profile-pop__card{position:relative;isolation:isolate;width:362px;max-width:90vw;max-height:88vh;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;border-radius:24px;padding:30px 24px 22px;
   background:linear-gradient(168deg, rgba(255,255,255,.93), color-mix(in srgb,var(--blue-bright) 5%, rgba(247,250,255,.74)));
-  -webkit-backdrop-filter:blur(28px) saturate(165%);backdrop-filter:blur(28px) saturate(165%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);
   border:1px solid rgba(255,255,255,.9);box-shadow:0 34px 80px -32px rgba(14,36,86,.42),inset 0 1px 0 rgba(255,255,255,.96);
   transform:scale(.95) translateY(10px);opacity:.4;transition:transform .3s cubic-bezier(.2,.85,.25,1),opacity .3s}
 .profile-pop.is-open .profile-pop__card{transform:none;opacity:1}
@@ -2963,11 +2970,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       <!-- ===== 1. OPENING ===== -->
       <section class="stage is-active" data-title="Opening" data-zh="开场" data-index="0">
         <div class="brandhero">
+          <div class="brandhero__panel">
           <button class="brandhero__logobtn" data-goto="4" aria-label="Begin · Placement test">
             <span class="logo-disc logo-disc--hero"><img src="assets/logo/touch.png" alt="TOUCH English" onerror="this.style.display='none'"></span>
           </button>
           <h1 class="brandhero__vision"><span class="brandhero__lead">TOUCH English</span><span class="brandhero__big">makes you <span class="brandhero__vis">visible</span></span></h1>
           <p class="brandhero__tag zh">看得见的进步，说得出的自信。</p>
+          </div>
         </div>
       </section>
 
