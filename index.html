@@ -160,8 +160,14 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .vis-row.dim{opacity:.45}.vis-row.lit{opacity:1}
 /* ===== Opening — branding hero ===== */
 .brandhero{min-height:calc(100vh - 150px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
-.brandhero__logo{height:74px;width:auto;max-width:300px;object-fit:contain;margin-bottom:40px;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both}
-.brandhero__logo-fallback{font-family:var(--display);font-weight:800;font-size:32px;letter-spacing:-.02em;color:var(--blue);margin-bottom:40px;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both}
+.brandhero__logobtn{background:none;border:0;padding:0;margin:0 0 42px;cursor:pointer;display:inline-block;line-height:0;-webkit-tap-highlight-color:transparent;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both;transition:transform .25s ease,filter .25s ease}
+.brandhero__logobtn:hover{transform:translateY(-3px) scale(1.03);filter:drop-shadow(0 14px 30px rgba(21,53,123,.25))}
+.brandhero__logobtn:active{transform:scale(.98)}
+.brandhero__logobtn:focus-visible{outline:3px solid var(--blue-bright);outline-offset:6px;border-radius:14px}
+.brandhero__hint{display:inline-block;margin-top:30px;font-size:13px;color:var(--faint);letter-spacing:.02em;animation:bhUp .9s ease both 1.5s}
+.brandhero__hint .zh{color:var(--faint)}
+.brandhero__logo{height:120px;width:auto;max-width:500px;object-fit:contain;display:block}
+.brandhero__logo-fallback{font-family:var(--display);font-weight:800;font-size:54px;letter-spacing:-.02em;color:var(--blue)}
 .brandhero__vision{margin:0;font-family:var(--display);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink)}
 .brandhero__lead{display:block;font-size:clamp(20px,2.9vw,32px);font-weight:700;color:var(--muted);animation:bhUp .9s ease both .55s}
 .brandhero__big{display:block;font-size:clamp(42px,8.4vw,90px);margin-top:.08em;animation:bhUp .9s ease both .78s}
@@ -176,7 +182,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 @keyframes bhUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes bhUnderline{to{transform:scaleX(1)}}
 @keyframes bhShimmer{0%{background-position:120% 0}55%{background-position:-20% 0}100%{background-position:-20% 0}}
-@media (prefers-reduced-motion:reduce){.brandhero__logo,.brandhero__logo-fallback,.brandhero__lead,.brandhero__big,.brandhero__vis,.brandhero__tag,.brandhero__cta{animation:none}.brandhero__vis::after{animation:none;transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.brandhero__logobtn,.brandhero__logo,.brandhero__logo-fallback,.brandhero__lead,.brandhero__big,.brandhero__vis,.brandhero__tag,.brandhero__hint,.brandhero__cta{animation:none}.brandhero__vis::after{animation:none;transform:scaleX(1)}}
 
 /* ---------- Generic card grids ---------- */
 .grid{display:grid;gap:16px}
@@ -2944,11 +2950,12 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       <!-- ===== 1. OPENING ===== -->
       <section class="stage is-active" data-title="Opening" data-zh="开场" data-index="0">
         <div class="brandhero">
-          <img class="brandhero__logo" src="assets/logo/touch.png" alt="TOUCH English" onerror="this.style.display='none';var f=this.nextElementSibling;if(f)f.style.display='block'">
-          <div class="brandhero__logo-fallback" style="display:none">TOUCH English</div>
-          <h1 class="brandhero__vision"><span class="brandhero__lead">TOUCH English,</span><span class="brandhero__big">make you <span class="brandhero__vis">visible</span></span></h1>
+          <button class="brandhero__logobtn" data-goto="4" aria-label="Begin · Placement test">
+            <img class="brandhero__logo" src="assets/logo/touch.png" alt="TOUCH English" onerror="this.style.display='none';var f=this.nextElementSibling;if(f)f.style.display='block'">
+            <div class="brandhero__logo-fallback" style="display:none">TOUCH English</div>
+          </button>
+          <h1 class="brandhero__vision"><span class="brandhero__lead">TOUCH English</span><span class="brandhero__big">makes you <span class="brandhero__vis">visible</span></span></h1>
           <p class="brandhero__tag zh">看得见的进步，说得出的自信。</p>
-          <div class="brandhero__cta"><button class="btn btn--primary" data-goto="1">Begin the consultation <span class="arr">→</span></button></div>
         </div>
       </section>
 
