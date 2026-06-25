@@ -160,8 +160,11 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .vis-row.dim{opacity:.45}.vis-row.lit{opacity:1}
 /* ===== Opening — branding hero ===== */
 .brandhero{position:relative;min-height:calc(100vh - 150px);display:flex;align-items:center;justify-content:center;padding:clamp(14px,2.4vh,24px) clamp(14px,2vw,28px)}
+.brandhero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(30% 36% at 27% 33%,rgba(31,159,230,.13),transparent 68%),radial-gradient(28% 34% at 75% 30%,rgba(224,48,59,.09),transparent 68%),radial-gradient(40% 34% at 52% 90%,rgba(21,53,123,.08),transparent 70%);
+  filter:blur(36px)}
 .brandhero__panel{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;max-width:none;min-height:calc(100vh - 196px);padding:clamp(44px,7vh,96px) clamp(28px,5vw,72px);border-radius:clamp(30px,3.2vw,44px);overflow:hidden;
-  background:radial-gradient(58% 46% at 18% 16%,rgba(31,159,230,.13),transparent 62%),radial-gradient(54% 44% at 86% 18%,rgba(224,48,59,.09),transparent 62%),radial-gradient(72% 52% at 50% 102%,rgba(21,53,123,.09),transparent 70%),rgba(255,255,255,.40);
+  background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.72);
   box-shadow:0 34px 80px -34px rgba(20,33,50,.34),0 10px 28px -14px rgba(20,33,50,.18),inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 1px rgba(255,255,255,.18);
   animation:bhPanel 1s cubic-bezier(.2,.7,.2,1) both}
@@ -1469,7 +1472,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   background:radial-gradient(20% 22% at 42% 41%, color-mix(in srgb,#7CC4FF 30%,transparent), transparent 70%),radial-gradient(19% 21% at 60% 40%, color-mix(in srgb,#F4C969 22%,transparent), transparent 72%),radial-gradient(20% 22% at 61% 60%, color-mix(in srgb,#F2A6B3 24%,transparent), transparent 72%),radial-gradient(20% 22% at 40% 60%, color-mix(in srgb,#5FD0C8 26%,transparent), transparent 72%),radial-gradient(34% 42% at 50% 50%, color-mix(in srgb,var(--gc,var(--blue-bright)) 12%,transparent), transparent 72%),rgba(28,46,82,.3)}
 .profile-pop__card{position:relative;isolation:isolate;width:362px;max-width:90vw;max-height:88vh;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;border-radius:24px;padding:30px 24px 22px;
   background:linear-gradient(168deg, rgba(255,255,255,.93), color-mix(in srgb,var(--blue-bright) 5%, rgba(247,250,255,.74)));
-  -webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(9px) saturate(130%);backdrop-filter:blur(9px) saturate(130%);
   border:1px solid rgba(255,255,255,.9);box-shadow:0 34px 80px -32px rgba(14,36,86,.42),inset 0 1px 0 rgba(255,255,255,.96);
   transform:scale(.95) translateY(10px);opacity:.4;transition:transform .3s cubic-bezier(.2,.85,.25,1),opacity .3s}
 .profile-pop.is-open .profile-pop__card{transform:none;opacity:1}
@@ -2893,6 +2896,75 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 @keyframes priceRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.hpop__view{animation:none}}
 @media (max-width:600px){.hpop__stage{padding:26px 16px 20px}}
+/* ===== 0% interest-free installment — entry pill + Apple-style glass popup ===== */
+.inst-cta{margin-top:16px;animation:priceRise .5s cubic-bezier(.22,.61,.36,1) both}
+.inst-cta[hidden]{display:none}
+.inst-open-btn{display:inline-flex;align-items:center;gap:11px;font:inherit;cursor:pointer;
+  background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(16px) saturate(160%);backdrop-filter:blur(16px) saturate(160%);
+  border:1px solid rgba(255,255,255,.82);border-radius:999px;padding:8px 20px 8px 8px;
+  box-shadow:0 12px 30px -14px rgba(14,36,86,.45),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .2s ease,box-shadow .2s ease}
+.inst-open-btn:hover{transform:translateY(-2px);box-shadow:0 18px 38px -14px rgba(14,36,86,.55),inset 0 1px 0 rgba(255,255,255,.95)}
+.inst-open-btn__pct{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue-bright),var(--blue));color:#fff;font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:-.02em;
+  box-shadow:0 6px 14px -5px rgba(14,36,86,.6),inset 0 1px 0 rgba(255,255,255,.3)}
+.inst-open-btn__lab{font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--ink);text-align:left;line-height:1.18}
+.inst-open-btn__lab .zh{display:block;font-weight:500;font-size:11px;color:var(--muted)}
+.inst-open-btn svg{width:16px;height:16px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.6}
+.ipop{position:fixed;inset:0;display:none;z-index:146;align-items:center;justify-content:center;padding:24px}
+.ipop.is-open{display:flex}
+.ipop__bd{position:absolute;inset:0;background:radial-gradient(circle at 50% 36%,rgba(20,33,50,.32),rgba(20,33,50,.54));-webkit-backdrop-filter:blur(7px) saturate(120%);backdrop-filter:blur(7px) saturate(120%)}
+.ipop__card{position:relative;width:100%;max-width:560px;max-height:88vh;overflow:auto;
+  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(34px) saturate(180%);backdrop-filter:blur(34px) saturate(180%);
+  border:1px solid rgba(255,255,255,.75);border-radius:28px;
+  box-shadow:0 44px 96px -34px rgba(14,36,86,.6),inset 0 1px 0 rgba(255,255,255,.85);animation:priceRise .42s cubic-bezier(.22,.61,.36,1) both}
+.ipop__x{position:absolute;top:15px;right:16px;width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(255,255,255,.62);color:var(--muted);font-size:20px;line-height:1;z-index:3;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 4px 12px -5px rgba(20,33,50,.3);transition:.16s}
+.ipop__x:hover{background:rgba(255,255,255,.9);color:var(--ink)}
+.ipop__body{padding:30px 26px 26px}
+.ipop__head{text-align:center;margin-bottom:18px}
+.ipop__badge{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--blue-bright),var(--blue));color:#fff;font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.04em;padding:6px 14px;border-radius:999px;box-shadow:0 8px 18px -8px rgba(14,36,86,.55)}
+.ipop__title{font-family:var(--display);font-weight:800;font-size:20px;color:var(--ink);margin:12px 0 5px;letter-spacing:-.01em}
+.ipop__title .zh{font-weight:600;font-size:13px;color:var(--muted);margin-left:7px}
+.ipop__sub{font-size:12.5px;color:var(--muted);line-height:1.55;max-width:42ch;margin:0 auto}
+.ipop__sub .zh{color:var(--faint)}
+.ipop__seg{display:flex;gap:6px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);border-radius:14px;padding:5px;margin:0 auto 9px;max-width:330px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.ipop__seg button{flex:1;border:0;cursor:pointer;font:inherit;font-family:var(--display);font-weight:800;font-size:15px;color:var(--muted);background:transparent;border-radius:10px;padding:8px 4px 7px;transition:.16s}
+.ipop__seg button .s{display:block;font-size:8.5px;font-weight:700;color:var(--faint);letter-spacing:.06em;margin-top:1px}
+.ipop__seg button.is-on{background:#fff;color:var(--blue);box-shadow:0 6px 14px -7px rgba(14,36,86,.4)}
+.ipop__seg button.is-on .s{color:var(--blue-bright)}
+.ipop__principal{text-align:center;font-size:12px;color:var(--muted);margin:0 0 16px;line-height:1.5}
+.ipop__principal b{font-family:var(--display);color:var(--ink);font-size:14px}
+.ipop__principal i{font-style:normal;color:var(--faint);font-size:10.5px}
+.ipop__banks{display:flex;flex-direction:column;gap:8px}
+.ibank{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.44);border:1px solid rgba(255,255,255,.64);border-radius:15px;padding:9px 12px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.ibank__logo{flex:none;height:26px;width:auto;max-width:92px;object-fit:contain;display:block}
+.ibank__logo.is-off{display:none}
+.ibank__name{display:none;font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--ink);white-space:nowrap}
+.ibank__logo.is-off + .ibank__name{display:inline-block}
+.ibank__terms{display:flex;gap:5px;margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
+.iterm{border:1px solid var(--line-strong);background:rgba(255,255,255,.72);color:var(--muted);cursor:pointer;font:inherit;font-family:var(--display);font-weight:700;font-size:12px;border-radius:9px;padding:5px 8px;transition:.14s}
+.iterm small{font-weight:500;font-size:9px;opacity:.66;margin-left:1px}
+.iterm:hover{border-color:var(--blue-bright);color:var(--blue)}
+.iterm.is-on{background:linear-gradient(135deg,var(--blue-bright),var(--blue));border-color:transparent;color:#fff;box-shadow:0 6px 14px -6px rgba(14,36,86,.5)}
+.ipop__calc{margin-top:18px;text-align:center}
+.ipop__calcbtn{display:inline-flex;align-items:center;gap:8px;font:inherit;cursor:pointer;font-family:var(--display);font-weight:700;font-size:14px;color:#fff;
+  background:linear-gradient(135deg,var(--blue-bright),var(--blue));border:0;border-radius:999px;padding:12px 26px;box-shadow:0 14px 30px -12px rgba(14,36,86,.6);transition:transform .18s ease,box-shadow .18s ease,opacity .18s ease}
+.ipop__calcbtn .zh{font-weight:500;opacity:.85}
+.ipop__calcbtn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 20px 40px -14px rgba(14,36,86,.7)}
+.ipop__calcbtn:disabled{opacity:.38;cursor:not-allowed}
+.ipop__result{margin-top:18px;border-radius:20px;padding:20px 18px;text-align:center;
+  background:rgba(255,255,255,.56);border:1px solid rgba(255,255,255,.78);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9);animation:priceRise .4s cubic-bezier(.22,.61,.36,1) both}
+.ipop__result-amt{font-family:var(--display);font-weight:800;letter-spacing:-.02em;color:var(--blue);line-height:1}
+.ipop__result-amt .rm{font-size:17px;vertical-align:7px;margin-right:3px}
+.ipop__result-amt .n{font-size:42px}
+.ipop__result-amt .per{font-size:14px;color:var(--muted);font-weight:600;margin-left:4px}
+.ipop__result-meta{margin-top:8px;font-size:12.5px;color:var(--muted)}
+.ipop__result-meta b{color:var(--ink)}
+.ipop__fine{margin-top:15px;font-size:10.5px;color:var(--faint);line-height:1.5;text-align:center}
+.ipop__fine .zh{color:var(--faint)}
+@media (max-width:600px){.ipop__body{padding:26px 16px 20px}.ipop__result-amt .n{font-size:38px}.ibank{flex-wrap:wrap}.ibank__terms{margin-left:0;width:100%;justify-content:flex-start;margin-top:2px}}
 /* per-item popup (glass) */
 .tpop{position:fixed;inset:0;display:none;z-index:140;align-items:center;justify-content:center;padding:24px}
 .tpop.is-open{display:flex}
@@ -3341,12 +3413,26 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           </div>
           <div class="price-reveal-cta">
             <button type="button" class="reveal-open-btn reveal-open-btn--logo" id="hrdcOpen" aria-label="See your subsidised price 查看津贴后价格"><img class="reveal-open-logo" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display='none'"></button>
+            <div class="inst-cta" id="instCta" hidden>
+              <button type="button" class="inst-open-btn" id="instOpen" aria-label="0% interest-free installment plans 0% 免息分期">
+                <span class="inst-open-btn__pct">0%</span>
+                <span class="inst-open-btn__lab">Interest-free installment<span class="zh">免息分期付款</span></span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+              </button>
+            </div>
           </div>
           <div class="hpop" id="hrdcPop" aria-hidden="true">
             <div class="hpop__bd" id="hrdcBd"></div>
             <div class="hpop__card" role="dialog" aria-modal="true">
               <button class="hpop__x" id="hrdcX" aria-label="Close">×</button>
               <div class="hpop__stage" id="hrdcStage" role="button" tabindex="0" aria-label="HRDC bursary, tap to continue"></div>
+            </div>
+          </div>
+          <div class="ipop" id="instPop" aria-hidden="true">
+            <div class="ipop__bd" id="instBd"></div>
+            <div class="ipop__card" role="dialog" aria-modal="true">
+              <button class="ipop__x" id="instX" aria-label="Close">×</button>
+              <div class="ipop__body" id="instBody"></div>
             </div>
           </div>
         </div>
@@ -6428,6 +6514,7 @@ io.observe(er);})();
       var nEl=block.querySelector('.tcard__price-now .n');
       if(nEl) count(nEl,from,to,'');
     }
+    showInstCta();
   }
   function revertToCombo(){
     if(!subsidyOn) return;
@@ -6441,6 +6528,7 @@ io.observe(er);})();
       var nEl=block.querySelector('.tcard__price-now .n');
       if(nEl) count(nEl,from,to,'');
     }
+    hideInstCta();
   }
   function renderAdmin(){
     if(!adminBody) return;
@@ -6670,6 +6758,7 @@ io.observe(er);})();
   function resetPage(){
     revealed=1; priceShown=[false,false,false]; slideIdx=-1;
     subsidyOn=false; subsidyDone=false;
+    hideInstCta(); closeInst();
     renderTiers();
     if(extWrap){ extWrap.setAttribute('hidden',''); }
     if(extToggle){ extToggle.setAttribute('aria-expanded','false'); if(extToggle.firstChild) extToggle.firstChild.nodeValue='Show more packages '; }
@@ -6680,6 +6769,96 @@ io.observe(er);})();
   }
   var invResetBtn=document.getElementById('invReset');
   if(invResetBtn) invResetBtn.addEventListener('click',resetPage);
+
+  /* ---------- 0% interest-free installment (Apple-style glass) — shown after subsidy reveal ---------- */
+  var INST_BANKS=[
+    {id:'maybank',name:'Maybank',terms:[6,12,24,36]},
+    {id:'uob',name:'UOB',terms:[6,12,24,36]},
+    {id:'pbb',name:'Public Bank',terms:[6,12,24,36]},
+    {id:'hlb',name:'Hong Leong Bank',terms:[6,12,24,36]},
+    {id:'am',name:'AmBank',terms:[6,12,24,36]},
+    {id:'rhb',name:'RHB Bank',terms:[6,12,24,36]},
+    {id:'ocbc',name:'OCBC',terms:[6,12,24,36]},
+    {id:'affin',name:'Affin Bank',terms:[6,12,24,36]},
+    {id:'hsbc',name:'HSBC',terms:[6,12]},
+    {id:'scb',name:'Standard Chartered',terms:[6,12]}
+  ];
+  var INST_PKG=[0,1,2];
+  var instCta=document.getElementById('instCta');
+  var instPop=document.getElementById('instPop');
+  var instBody=document.getElementById('instBody');
+  var instOpenBtn=document.getElementById('instOpen');
+  var instSelPkg=0, instSelBank=null, instSelTerm=null, instRevealed=false;
+  function showInstCta(){ if(instCta) instCta.removeAttribute('hidden'); }
+  function hideInstCta(){ if(instCta) instCta.setAttribute('hidden',''); }
+  function instPrincipal(){ return finalOf(data[instSelPkg]) + miscFee(); }
+  function instSegHTML(){
+    return INST_PKG.map(function(i){
+      return '<button type="button" data-pkg="'+i+'" class="'+(i===instSelPkg?'is-on':'')+'">'+data[i].lessons+'<span class="s">LESSONS</span></button>';
+    }).join('');
+  }
+  function instPrincipalHTML(){
+    var d=data[instSelPkg], sub=finalOf(d), pr=instPrincipal();
+    return 'Installment base <b>RM '+fmt(pr)+'</b> · <i>after-subsidy RM '+fmt(sub)+' + RM'+fmt(miscFee())+' 报名＋系统费</i>';
+  }
+  function instBanksHTML(){
+    return INST_BANKS.map(function(b,bi){
+      var chips=b.terms.map(function(t){
+        return '<button type="button" class="iterm'+((instSelBank===bi&&instSelTerm===t)?' is-on':'')+'" data-bi="'+bi+'" data-t="'+t+'">'+t+'<small>月</small></button>';
+      }).join('');
+      return '<div class="ibank"><img class="ibank__logo" src="assets/logo/'+b.id+'.png" alt="'+b.name+'" onerror="this.classList.add(\'is-off\')"><b class="ibank__name">'+b.name+'</b><div class="ibank__terms">'+chips+'</div></div>';
+    }).join('');
+  }
+  function instResultHTML(){
+    if(!instRevealed||instSelBank===null||instSelTerm===null) return '';
+    var b=INST_BANKS[instSelBank], pr=instPrincipal(), m=Math.round(pr/instSelTerm);
+    return '<div class="ipop__result"><div class="ipop__result-amt"><span class="rm">RM</span><span class="n" data-instn>'+fmt(m)+'</span><span class="per">/月 mo</span></div>'+
+      '<div class="ipop__result-meta"><b>'+instSelTerm+' 期</b> · 0% interest-free 免息 · <b>'+b.name+'</b></div>'+
+      '<div class="ipop__result-meta">Base 本金 RM '+fmt(pr)+' <span style="color:var(--faint)">（含报名＋系统 RM'+fmt(miscFee())+'）</span></div></div>';
+  }
+  function renderInst(){
+    if(!instBody) return;
+    instBody.innerHTML=
+      '<div class="ipop__head"><span class="ipop__badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M3 12h18"/><circle cx="7.5" cy="7.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/><path d="M18 6 6 18"/></svg> 0% INSTALLMENT</span>'+
+      '<h3 class="ipop__title">Interest-free installment<span class="zh">免息分期付款</span></h3>'+
+      '<p class="ipop__sub">Pick a package, choose a bank &amp; tenure, then view your monthly. <span class="zh">选配套、选银行与期数，再看每月供款。</span></p></div>'+
+      '<div class="ipop__seg" data-inst-seg>'+instSegHTML()+'</div>'+
+      '<p class="ipop__principal" data-inst-principal>'+instPrincipalHTML()+'</p>'+
+      '<div class="ipop__banks">'+instBanksHTML()+'</div>'+
+      '<div class="ipop__calc"><button type="button" class="ipop__calcbtn" data-inst-calc'+((instSelBank===null||instSelTerm===null)?' disabled':'')+'>View monthly payment <span class="zh">查看每月供款</span></button></div>'+
+      '<div data-inst-resultwrap>'+instResultHTML()+'</div>'+
+      '<p class="ipop__fine">Monthly amount &amp; available tenure are indicative — subject to each bank\'s approval. <span class="zh">每月供款与可分期期数为参考值，实际以各银行批核为准。</span></p>';
+  }
+  function instUpdatePrincipal(){ var el=instBody&&instBody.querySelector('[data-inst-principal]'); if(el) el.innerHTML=instPrincipalHTML(); }
+  function instUpdateResult(anim){
+    var wrap=instBody&&instBody.querySelector('[data-inst-resultwrap]'); if(!wrap) return;
+    wrap.innerHTML=instResultHTML();
+    if(anim){ var nEl=wrap.querySelector('[data-instn]'); if(nEl){ var m=Math.round(instPrincipal()/instSelTerm); count(nEl,Math.round(m*0.45),m,''); } }
+  }
+  function instSyncCalc(){ var b=instBody&&instBody.querySelector('[data-inst-calc]'); if(b) b.disabled=(instSelBank===null||instSelTerm===null); }
+  function openInst(){ instSelPkg=0; instSelBank=null; instSelTerm=null; instRevealed=false; renderInst(); if(instPop){ instPop.classList.add('is-open'); instPop.setAttribute('aria-hidden','false'); } }
+  function closeInst(){ if(instPop){ instPop.classList.remove('is-open'); instPop.setAttribute('aria-hidden','true'); } }
+  if(instOpenBtn) instOpenBtn.addEventListener('click',openInst);
+  (function(){
+    var ix=document.getElementById('instX'), ibd=document.getElementById('instBd');
+    if(ix) ix.addEventListener('click',closeInst);
+    if(ibd) ibd.addEventListener('click',closeInst);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&instPop&&instPop.classList.contains('is-open')) closeInst(); });
+    if(instBody){
+      instBody.addEventListener('click',function(e){
+        var seg=e.target.closest&&e.target.closest('[data-pkg]');
+        if(seg){ instSelPkg=+seg.getAttribute('data-pkg');
+          Array.prototype.forEach.call(instBody.querySelectorAll('[data-inst-seg] button'),function(btn){ btn.classList.toggle('is-on', +btn.getAttribute('data-pkg')===instSelPkg); });
+          instUpdatePrincipal(); if(instRevealed) instUpdateResult(false); return; }
+        var chip=e.target.closest&&e.target.closest('.iterm');
+        if(chip){ instSelBank=+chip.getAttribute('data-bi'); instSelTerm=+chip.getAttribute('data-t');
+          Array.prototype.forEach.call(instBody.querySelectorAll('.iterm'),function(c){ c.classList.toggle('is-on', (+c.getAttribute('data-bi')===instSelBank)&&(+c.getAttribute('data-t')===instSelTerm)); });
+          instSyncCalc(); if(instRevealed) instUpdateResult(false); return; }
+        var calc=e.target.closest&&e.target.closest('[data-inst-calc]');
+        if(calc){ if(instSelBank===null||instSelTerm===null) return; instRevealed=true; instUpdateResult(true); return; }
+      });
+    }
+  })();
 
   load(); renderTiers(); renderExt(); renderAdmin();
 })();
