@@ -158,6 +158,25 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .vis-row .nm{font-weight:600;font-size:14.5px}
 .vis-row .meta{margin-left:auto;font-size:12px;color:rgba(255,255,255,.6)}
 .vis-row.dim{opacity:.45}.vis-row.lit{opacity:1}
+/* ===== Opening — branding hero ===== */
+.brandhero{min-height:calc(100vh - 150px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
+.brandhero__logo{height:74px;width:auto;max-width:300px;object-fit:contain;margin-bottom:40px;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both}
+.brandhero__logo-fallback{font-family:var(--display);font-weight:800;font-size:32px;letter-spacing:-.02em;color:var(--blue);margin-bottom:40px;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both}
+.brandhero__vision{margin:0;font-family:var(--display);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink)}
+.brandhero__lead{display:block;font-size:clamp(20px,2.9vw,32px);font-weight:700;color:var(--muted);animation:bhUp .9s ease both .55s}
+.brandhero__big{display:block;font-size:clamp(42px,8.4vw,90px);margin-top:.08em;animation:bhUp .9s ease both .78s}
+.brandhero__vis{position:relative;display:inline-block;color:var(--blue);
+  background:linear-gradient(100deg,var(--blue) 0,var(--blue) 42%,#8ccbff 50%,var(--blue) 58%,var(--blue) 100%);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:focusIn 1.2s ease both 1.05s,bhShimmer 3.4s ease-in-out 2.4s infinite}
+.brandhero__vis::after{content:"";position:absolute;left:0;right:0;bottom:.05em;height:.12em;background:var(--red);opacity:.26;border-radius:4px;z-index:-1;transform:scaleX(0);transform-origin:left;animation:bhUnderline .75s cubic-bezier(.2,.7,.2,1) both 1.75s}
+.brandhero__tag{margin-top:30px;font-size:15px;color:var(--faint);animation:bhUp .9s ease both 1.5s}
+.brandhero__cta{margin-top:34px;animation:bhUp .9s ease both 1.8s}
+@keyframes bhLogo{from{opacity:0;transform:translateY(-12px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes bhUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes bhUnderline{to{transform:scaleX(1)}}
+@keyframes bhShimmer{0%{background-position:120% 0}55%{background-position:-20% 0}100%{background-position:-20% 0}}
+@media (prefers-reduced-motion:reduce){.brandhero__logo,.brandhero__logo-fallback,.brandhero__lead,.brandhero__big,.brandhero__vis,.brandhero__tag,.brandhero__cta{animation:none}.brandhero__vis::after{animation:none;transform:scaleX(1)}}
 
 /* ---------- Generic card grids ---------- */
 .grid{display:grid;gap:16px}
@@ -682,6 +701,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .lcell__ic{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(150deg,var(--c),color-mix(in srgb,var(--ci) 80%,#000));box-shadow:0 9px 20px -6px color-mix(in srgb,var(--c) 55%,transparent),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .18s}
 .lcell__ic svg{width:23px;height:23px;stroke:#fff;fill:none;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
 .lcell.is-active .lcell__ic{transform:scale(1.06)}
+.lcell .ipa-cta3d.lcell-cta{margin:0}
 .lcell__t{font-family:var(--display);font-weight:800;font-size:14.5px;color:var(--ink);line-height:1.2}
 .lcell__t .zh{display:block;font-weight:600;font-size:12px;color:var(--muted);margin-top:2px}
 .lcell-wrap{display:flex;flex-direction:column;gap:9px}
@@ -2923,27 +2943,12 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
       <!-- ===== 1. OPENING ===== -->
       <section class="stage is-active" data-title="Opening" data-zh="开场" data-index="0">
-        <div class="hero">
-          <div class="hero__copy">
-            <span class="hero__pill"><span class="dot"></span> TOUCH English Makes You Visible</span>
-            <h1 class="hero__title">English is not only for exams. It helps you become <span class="vis reveal-vis">visible</span> at work and in daily life.</h1>
-            <p class="hero__zh zh">英文不只是考试，而是让你在工作和生活中<strong>被看见</strong>。</p>
-            <p class="hero__tag zh">看得见的进步，说得出的自信。</p>
-            <div class="hero__cta">
-              <button class="btn btn--primary" data-goto="1">Begin the consultation <span class="arr">→</span></button>
-              <button class="btn btn--ghost" data-goto="4">See the placement test</button>
-            </div>
-          </div>
-          <div class="hero__visual">
-            <div class="visible-card">
-              <h4>The visibility path</h4>
-              <div class="vis-row dim"><span class="lv">P1</span><span class="nm">Dare to speak</span><span class="meta">Pre-A1</span></div>
-              <div class="vis-row dim"><span class="lv">L1</span><span class="nm">Build sentences</span><span class="meta">A1–A2</span></div>
-              <div class="vis-row lit"><span class="lv">L2</span><span class="nm">Convey ideas</span><span class="meta">A2–B1</span></div>
-              <div class="vis-row lit"><span class="lv">L3</span><span class="nm">Convince others</span><span class="meta">B1–B2</span></div>
-              <div class="vis-row lit"><span class="lv lv4">L4</span><span class="nm">Captivate the room</span><span class="meta">B2–C1</span></div>
-            </div>
-          </div>
+        <div class="brandhero">
+          <img class="brandhero__logo" src="assets/logo/touch.png" alt="TOUCH English" onerror="this.style.display='none';var f=this.nextElementSibling;if(f)f.style.display='block'">
+          <div class="brandhero__logo-fallback" style="display:none">TOUCH English</div>
+          <h1 class="brandhero__vision"><span class="brandhero__lead">TOUCH English,</span><span class="brandhero__big">make you <span class="brandhero__vis">visible</span></span></h1>
+          <p class="brandhero__tag zh">看得见的进步，说得出的自信。</p>
+          <div class="brandhero__cta"><button class="btn btn--primary" data-goto="1">Begin the consultation <span class="arr">→</span></button></div>
         </div>
       </section>
 
@@ -5497,11 +5502,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       var L=linksGet(), LKEYS=["before","during","after"];
       var cells=LFLOW.map(function(f,i){
         return '<div class="lcell-wrap" style="--c:'+f.c+';--ci:'+f.ci+'">'+
-          '<button class="lcell'+(i===0?' is-active':'')+'" data-lc="'+i+'">'+
-            '<span class="lcell__ic">'+CFICONS[i]+'</span>'+
+          '<div class="lcell'+(i===0?' is-active':'')+'" data-lc="'+i+'" role="button" tabindex="0">'+
+            '<button type="button" class="ipa-cta3d lcell-cta" data-iclink="'+LKEYS[i]+'" aria-label="'+f.t+'">'+CFICONS[i]+'</button>'+
             '<span class="lcell__t">'+f.t+'<span class="zh">'+f.zh+'</span></span>'+
-          '</button>'+
-          '<a class="mini-glass-btn" data-link="'+LKEYS[i]+'" href="'+L[LKEYS[i]]+'" target="_blank" rel="noopener noreferrer"><span>'+f.btn+'</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a>'+
+          '</div>'+
         '</div>';
       }).join("");
       return '<div class="goal lessons">'+
@@ -5534,8 +5538,16 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         '</div>';
       }
       cells.addEventListener("click",function(e){
+        var ic=e.target.closest("[data-iclink]");
+        if(ic){ var LL=linksGet(), uu=LL[ic.getAttribute("data-iclink")]; if(uu) window.open(uu,"_blank","noopener"); return; }
         var n=e.target.closest(".lcell"); if(!n)return;
         render(+n.getAttribute("data-lc"));
+      });
+      cells.addEventListener("keydown",function(e){
+        if(e.key!=="Enter"&&e.key!==" ")return;
+        if(e.target.closest("[data-iclink]"))return;
+        var n=e.target.closest(".lcell"); if(!n)return;
+        e.preventDefault(); render(+n.getAttribute("data-lc"));
       });
       render(0); // default selection
       // ----- Advisor Link Settings (backdrop entry via Advisor Note) -----
