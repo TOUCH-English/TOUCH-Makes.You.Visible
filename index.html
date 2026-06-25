@@ -160,13 +160,13 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .vis-row.dim{opacity:.45}.vis-row.lit{opacity:1}
 /* ===== Opening — branding hero ===== */
 .brandhero{min-height:calc(100vh - 150px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
-.brandhero__logobtn{background:none;border:0;padding:0;margin:0 0 42px;cursor:pointer;display:inline-block;line-height:0;-webkit-tap-highlight-color:transparent;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both;transition:transform .25s ease,filter .25s ease}
+.brandhero__logobtn{background:none;border:0;padding:0;margin:0 0 34px;cursor:pointer;display:inline-block;line-height:0;-webkit-tap-highlight-color:transparent;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both;transition:transform .25s ease,filter .25s ease}
 .brandhero__logobtn:hover{transform:translateY(-3px) scale(1.03);filter:drop-shadow(0 14px 30px rgba(21,53,123,.25))}
 .brandhero__logobtn:active{transform:scale(.98)}
 .brandhero__logobtn:focus-visible{outline:3px solid var(--blue-bright);outline-offset:6px;border-radius:14px}
 .brandhero__hint{display:inline-block;margin-top:30px;font-size:13px;color:var(--faint);letter-spacing:.02em;animation:bhUp .9s ease both 1.5s}
 .brandhero__hint .zh{color:var(--faint)}
-.brandhero__logo{height:120px;width:auto;max-width:500px;object-fit:contain;display:block}
+.brandhero__logo{height:clamp(160px,16vw,210px);width:auto;max-width:none;object-fit:contain;display:block}
 .brandhero__logo-fallback{font-family:var(--display);font-weight:800;font-size:54px;letter-spacing:-.02em;color:var(--blue)}
 .brandhero__vision{margin:0;font-family:var(--display);font-weight:800;letter-spacing:-.025em;line-height:1.05;color:var(--ink)}
 .brandhero__lead{display:block;font-size:clamp(20px,2.9vw,32px);font-weight:700;color:var(--muted);animation:bhUp .9s ease both .55s}
