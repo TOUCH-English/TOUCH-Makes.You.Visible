@@ -160,10 +160,23 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .vis-row.dim{opacity:.45}.vis-row.lit{opacity:1}
 /* ===== Opening — branding hero ===== */
 .brandhero{min-height:calc(100vh - 150px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
-.brandhero__logobtn{background:none;border:0;padding:0;margin:0 0 34px;cursor:pointer;display:inline-block;line-height:0;-webkit-tap-highlight-color:transparent;outline:none;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both;transition:transform .22s cubic-bezier(.34,1.45,.5,1),filter .22s ease}
-.brandhero__logobtn:hover{transform:translateY(-6px) scale(1.04);filter:drop-shadow(0 20px 34px rgba(21,53,123,.22))}
-.brandhero__logobtn:active{transform:translateY(4px) scale(.95);filter:drop-shadow(0 5px 12px rgba(21,53,123,.18));transition:transform .09s ease,filter .09s ease}
+.brandhero__logobtn{background:none;border:0;padding:0;margin:0 0 34px;cursor:pointer;display:inline-block;line-height:0;-webkit-tap-highlight-color:transparent;outline:none;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both;transition:transform .22s cubic-bezier(.34,1.45,.5,1)}
+.brandhero__logobtn:hover{transform:translateY(-6px) scale(1.04)}
+.brandhero__logobtn:active{transform:translateY(4px) scale(.95);transition:transform .1s ease}
 .brandhero__logobtn:focus,.brandhero__logobtn:focus-visible{outline:none}
+.brandhero__logobtn .logo-disc{transition:box-shadow .22s ease}
+.brandhero__logobtn:hover .logo-disc{box-shadow:0 22px 42px -8px rgba(20,33,50,.3),0 5px 12px rgba(20,33,50,.14),inset 0 2px 3px rgba(255,255,255,.85)}
+.brandhero__logobtn:active .logo-disc{box-shadow:0 6px 14px -6px rgba(20,33,50,.24),inset 0 2px 3px rgba(255,255,255,.7),inset 0 -8px 16px rgba(20,33,50,.14)}
+/* circular logo button frame (holds a square photo, clips to circle, 3D button feel) */
+.logo-disc{position:relative;display:block;border-radius:50%;overflow:hidden;flex:none;
+  background:radial-gradient(120% 120% at 50% 30%,#f4f6fa 0%,#e7eaf1 55%,#d6dae4 100%);
+  box-shadow:0 12px 26px -8px rgba(20,33,50,.26),0 3px 8px rgba(20,33,50,.12),inset 0 2px 3px rgba(255,255,255,.8)}
+.logo-disc>img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+.logo-disc::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  box-shadow:inset 0 3px 7px rgba(255,255,255,.55),inset 0 -12px 22px rgba(20,33,50,.13),inset 0 0 0 1px rgba(255,255,255,.35)}
+.logo-disc--hero{width:clamp(190px,21vw,280px);height:clamp(190px,21vw,280px)}
+.logo-disc--mark{width:46px;height:46px;box-shadow:0 4px 10px -3px rgba(20,33,50,.22),0 1px 3px rgba(20,33,50,.1),inset 0 1px 2px rgba(255,255,255,.85)}
+.logo-disc--mark::after{box-shadow:inset 0 1px 3px rgba(255,255,255,.6),inset 0 -5px 9px rgba(20,33,50,.13),inset 0 0 0 1px rgba(255,255,255,.4)}
 .brandhero__hint{display:inline-block;margin-top:30px;font-size:13px;color:var(--faint);letter-spacing:.02em;animation:bhUp .9s ease both 1.5s}
 .brandhero__hint .zh{color:var(--faint)}
 .brandhero__logo{height:clamp(190px,21vw,280px);width:auto;max-width:none;object-fit:contain;display:block}
@@ -2904,7 +2917,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       <div class="topbar__inner">
         <div class="tb-brand">
           <!-- Replace .brand__mark with: <img src="assets/logo.png" class="brand__mark" alt="TOUCH English"> -->
-          <img class="brand__mark brand__mark--logo" src="assets/logo/touch.png" alt="TOUCH English" onerror="this.outerHTML='<div class=&quot;brand__mark&quot;>T</div>'">
+          <span class="logo-disc logo-disc--mark"><img src="assets/logo/touch.png" alt="TOUCH English" onerror="this.style.display='none'"></span>
           <div class="tb-brand__name">TOUCH English<span>makes you visible</span></div>
         </div>
         <div class="tb-divider"></div>
@@ -2951,8 +2964,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       <section class="stage is-active" data-title="Opening" data-zh="开场" data-index="0">
         <div class="brandhero">
           <button class="brandhero__logobtn" data-goto="4" aria-label="Begin · Placement test">
-            <img class="brandhero__logo" src="assets/logo/touch.png" alt="TOUCH English" onerror="this.style.display='none';var f=this.nextElementSibling;if(f)f.style.display='block'">
-            <div class="brandhero__logo-fallback" style="display:none">TOUCH English</div>
+            <span class="logo-disc logo-disc--hero"><img src="assets/logo/touch.png" alt="TOUCH English" onerror="this.style.display='none'"></span>
           </button>
           <h1 class="brandhero__vision"><span class="brandhero__lead">TOUCH English</span><span class="brandhero__big">makes you <span class="brandhero__vis">visible</span></span></h1>
           <p class="brandhero__tag zh">看得见的进步，说得出的自信。</p>
