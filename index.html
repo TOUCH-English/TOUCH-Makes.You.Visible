@@ -6,6 +6,17 @@
 <title>TOUCH English · Advisory Console</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Warm up connections to external video & web links (handshake only, no download) -->
+<link rel="preconnect" href="https://www.youtube-nocookie.com">
+<link rel="preconnect" href="https://img.youtube.com">
+<link rel="preconnect" href="https://touchenglish.edu.my">
+<link rel="preconnect" href="https://tec.touchenglish.edu.my">
+<link rel="dns-prefetch" href="https://www.youtube-nocookie.com">
+<link rel="dns-prefetch" href="https://img.youtube.com">
+<link rel="dns-prefetch" href="https://www.youtube.com">
+<link rel="dns-prefetch" href="https://youtu.be">
+<link rel="dns-prefetch" href="https://touchenglish.edu.my">
+<link rel="dns-prefetch" href="https://tec.touchenglish.edu.my">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
@@ -4933,10 +4944,11 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       document.addEventListener('keydown',esc);
       requestAnimationFrame(function(){ m.classList.add('is-open'); });
     }
-    var CR_VID_KEY="te_classreview_videos_v1";
+    var CR_VID_KEY="te_classreview_videos_v2";
     function crVidDefaults(){ return [
       {id:'jEuyv9G1L1o', name:'Wei Liong', sub:'SG Working Adult · 32岁 · Level 1→2', quote:'「把英文当成科目学习，注定学不好。」在新加坡工作的 Wei Liong，之前上过英文课但效果不大。TOUCH 的教学不走传统应试路线、专注于沟通，他最终从 Level 1 升到 Level 2，现在能在工作中帮同事沟通。'},
-      {id:'5W-0DDtsfZ0', name:'Hie Hing & Yulie Lim', sub:'Level 2 · 课后真实好评', quote:'Hie Hing（商人，42岁，诗巫）在课堂上学到 Negotiation 与 Speech Analysis，帮助了他工作上的 presentation；Yulie Lim（商界女性，50岁，霹雳）很喜欢老师充满鼓励性的教学，让她每一次都很期待上课。'}
+      {id:'5W-0DDtsfZ0', name:'Hie Hing & Yulie Lim', sub:'Level 2 · 课后真实好评', quote:'Hie Hing（商人，42岁，诗巫）在课堂上学到 Negotiation 与 Speech Analysis，帮助了他工作上的 presentation；Yulie Lim（商界女性，50岁，霹雳）很喜欢老师充满鼓励性的教学，让她每一次都很期待上课。'},
+      {id:'PbBluvHNyG0', name:'Johnson Tan', sub:'SG Working Adult · 36岁 · Level 2', quote:'在新加坡从事会计（Accountant）工作的他，因为英文提升，成功进入大企业。曾经不太敢用英语与人交流，加入 TOUCH 后仅 20 堂课，就掌握了基本句子结构，能自信地与同事、朋友用英语简单交流，还收获了大家的赞赏。工作效率也大大提升——向老板汇报时能用英语清楚表达；由于老板不懂华语，他还主动担任翻译，让对方更容易理解。这段经历让 Johnson 真切感受到：英语并不难学，只要方法正确、有人引导，就能突破瓶颈、重拾自信。'}
     ]; }
     function crVidGet(){ try{ var v=JSON.parse(localStorage.getItem(CR_VID_KEY)); if(Array.isArray(v)&&v.length) return v; }catch(e){} return crVidDefaults(); }
     function crVidSave(a){ try{ localStorage.setItem(CR_VID_KEY, JSON.stringify(a)); }catch(e){} }
@@ -5078,8 +5090,6 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             '</div>'+
             '<p class="rev-close__line">When you can see yourself, see your future, and see your growth — learning finds its direction. <span class="zh">当你能看见自己、看见未来、看见成长，学习就有了方向。</span></p>'+
           '</div>'+
-          '<div class="goal-cta-wrap"><!-- Replace with TOUCH EPI System Link -->'+
-            '<a class="goal-cta" href="'+REVIEW_LINK+'"><span>Growth Summary</span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>'+
         '</div>'+
       '</div>';
     }
@@ -5145,7 +5155,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     var LINK_DEFAULTS={before:"https://tec.touchenglish.edu.my/appointment/187258",during:"https://tec.touchenglish.edu.my/appointment/187258",after:"https://tec.touchenglish.edu.my/appointment/187258",book:"https://tec.touchenglish.edu.my/appointment/timetable#"};
     var LINK_KEY="te_advisor_links_v1";
     function linksSaved(){try{return JSON.parse(localStorage.getItem(LINK_KEY))||{};}catch(e){return {};}}
-    function linksGet(){var s=linksSaved(),o={};["before","during","after","book"].forEach(function(k){var v=s[k];o[k]=(v&&(""+v).trim())?(""+v).trim():LINK_DEFAULTS[k];});return o;}
+    function linksGet(){var s=linksSaved(),o={};["before","during","after"].forEach(function(k){var v=s[k];o[k]=(v&&(""+v).trim())?(""+v).trim():LINK_DEFAULTS[k];});return o;}
     function linksSave(o){try{localStorage.setItem(LINK_KEY,JSON.stringify(o));}catch(e){}}
     function linksReset(){try{localStorage.removeItem(LINK_KEY);}catch(e){}}
     // ----- Stage 01 "Learning Recharge" YouTube popup -----
@@ -5918,8 +5928,6 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         '<div class="goal-body">'+
           '<div class="lcells">'+cells+'</div>'+
           '<div class="ldetail" id="lDetail"></div>'+
-          '<div class="goal-cta-wrap">'+
-            '<a class="goal-cta" data-link="book" href="'+L.book+'" target="_blank" rel="noopener noreferrer"><span>Book Classroom Experience <span class="zh">预约课堂体验</span></span><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></div>'+
           '<div class="adv-note-wrap"><button type="button" class="adv-note" id="advNote" aria-label="Advisor link settings"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button></div>'+
         '</div>'+
       '</div>';
@@ -5968,21 +5976,20 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
               '<label class="adv-field"><span>Before Class Link</span><input type="url" data-k="before" placeholder="'+LINK_DEFAULTS.before+'"></label>'+
               '<label class="adv-field"><span>During Class Link</span><input type="url" data-k="during" placeholder="'+LINK_DEFAULTS.during+'"></label>'+
               '<label class="adv-field"><span>After Class Link</span><input type="url" data-k="after" placeholder="'+LINK_DEFAULTS.after+'"></label>'+
-              '<label class="adv-field"><span>Book Classroom Experience Link</span><input type="url" data-k="book" placeholder="'+LINK_DEFAULTS.book+'"></label>'+
               '<p class="adv-modal__hint">留空即使用默认链接。Leave blank to keep the default.</p>'+
               '<div class="adv-modal__btns"><button type="button" class="adv-btn adv-btn--ghost" data-act="reset">Reset to Default</button>'+
                 '<span class="adv-modal__btns-r"><button type="button" class="adv-btn adv-btn--ghost" data-act="cancel">Cancel</button><button type="button" class="adv-btn adv-btn--save" data-act="save">Save</button></span></div>'+
             '</div>';
           document.body.appendChild(modal);
-          ["before","during","after","book"].forEach(function(k){var inp=modal.querySelector('[data-k="'+k+'"]'); if(inp)inp.value=(s[k]||"");});
+          ["before","during","after"].forEach(function(k){var inp=modal.querySelector('[data-k="'+k+'"]'); if(inp)inp.value=(s[k]||"");});
           void modal.offsetWidth; modal.classList.add("is-open");
           modal.querySelector(".adv-modal__bg").addEventListener("click",closeModal);
           modal.querySelectorAll("[data-act]").forEach(function(btn){
             btn.addEventListener("click",function(){
               var act=btn.getAttribute("data-act");
               if(act==="cancel"){closeModal();return;}
-              if(act==="reset"){linksReset();["before","during","after","book"].forEach(function(k){var inp=modal.querySelector('[data-k="'+k+'"]');if(inp)inp.value="";});applyLinks();return;}
-              if(act==="save"){var o={};["before","during","after","book"].forEach(function(k){o[k]=(modal.querySelector('[data-k="'+k+'"]').value||"").trim();});linksSave(o);applyLinks();closeModal();}
+              if(act==="reset"){linksReset();["before","during","after"].forEach(function(k){var inp=modal.querySelector('[data-k="'+k+'"]');if(inp)inp.value="";});applyLinks();return;}
+              if(act==="save"){var o={};["before","during","after"].forEach(function(k){o[k]=(modal.querySelector('[data-k="'+k+'"]').value||"").trim();});linksSave(o);applyLinks();closeModal();}
             });
           });
           escH=function(e){if(e.key==="Escape"){e.stopPropagation();e.preventDefault();closeModal();}};
