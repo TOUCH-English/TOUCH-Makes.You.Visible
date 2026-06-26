@@ -7421,7 +7421,7 @@ io.observe(er);})();
       var chips=b.terms.map(function(t){
         return '<button type="button" class="iterm'+((instSelBank===bi&&instSelTerm===t)?' is-on':'')+'" data-bi="'+bi+'" data-t="'+t+'">'+t+'<small>月</small></button>';
       }).join('');
-      return '<div class="ibank"><img class="ibank__logo" style="--lscale:'+(b.s||1.3)+'" src="assets/logo/'+b.id+'.png" alt="'+b.name+'" onerror="this.classList.add(\'is-off\')"><b class="ibank__name">'+b.name+'</b><div class="ibank__terms">'+chips+'</div></div>';
+      return '<div class="ibank"><img class="ibank__logo" style="--lscale:'+((b.s||1.3)*1.7).toFixed(3)+'" src="assets/logo/'+b.id+'.png" alt="'+b.name+'" onerror="this.classList.add(\'is-off\')"><b class="ibank__name">'+b.name+'</b><div class="ibank__terms">'+chips+'</div></div>';
     }).join('');
   }
   function instResultHTML(){
