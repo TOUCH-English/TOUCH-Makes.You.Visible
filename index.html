@@ -17,6 +17,10 @@
 <link rel="dns-prefetch" href="https://youtu.be">
 <link rel="dns-prefetch" href="https://touchenglish.edu.my">
 <link rel="dns-prefetch" href="https://tec.touchenglish.edu.my">
+<link rel="preconnect" href="https://maps.app.goo.gl">
+<link rel="preconnect" href="https://www.google.com">
+<link rel="dns-prefetch" href="https://maps.app.goo.gl">
+<link rel="dns-prefetch" href="https://www.google.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
@@ -2132,8 +2136,16 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .pain__ic svg{width:22px;height:22px}
 .pain.is-sel .pain__ic{background:var(--red);color:#fff}
 /* why-touch card icon */
-.why-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--blue-tint);color:var(--blue);margin-bottom:13px}
-.why-ic svg{width:23px;height:23px}
+.why-ic{position:relative;overflow:hidden;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(220,232,248,.34));color:var(--blue);margin-bottom:13px;border:1px solid rgba(255,255,255,.72);box-shadow:inset 0 1px 1.5px rgba(255,255,255,.9),inset 0 -2px 3px rgba(150,172,205,.2),0 5px 14px -5px rgba(21,53,123,.2);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.why-ic svg{width:23px;height:23px;position:relative;z-index:1}
+.why-ic::after{content:"";position:absolute;top:-60%;left:-90%;width:60%;height:220%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.78),transparent);transform:rotate(9deg);z-index:2;pointer-events:none;animation:whyShine 5s ease-in-out infinite}
+@keyframes whyShine{0%{left:-90%}14%{left:175%}100%{left:175%}}
+.why-grid .why:nth-child(2) .why-ic::after{animation-delay:.5s}
+.why-grid .why:nth-child(3) .why-ic::after{animation-delay:1s}
+.why-grid .why:nth-child(4) .why-ic::after{animation-delay:1.5s}
+.why-grid .why:nth-child(5) .why-ic::after{animation-delay:2s}
+.why-grid .why:nth-child(6) .why-ic::after{animation-delay:2.5s}
+@media (prefers-reduced-motion:reduce){.why-ic::after{animation:none;display:none}}
 .locations h4 .loc-pin{display:inline-flex;vertical-align:-3px;margin-right:6px;color:var(--blue)}
 .locations h4 .loc-pin svg{width:16px;height:16px}
 
@@ -3486,7 +3498,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             <div class="sumtr-final__flow">Discover &rarr; Practice &rarr; Grow</div>
             <div class="sumtr-final__map">Mirror &rarr; Stage &rarr; System</div>
             <h3 class="sumtr-final__h">This is the complete TOUCH learning journey.</h3>
-            <p class="sumtr-final__p">You are not just joining English classes &mdash; you are entering a complete learning system. <span class="zh">你买的不只是英文课，而是一整套完整的学习系统。</span></p>
+            <p class="sumtr-final__p">You are not just joining English classes &mdash; you are entering a complete learning system.</p>
           </div>
 
           <div class="sumtr-price" id="sumtrPrice" hidden>
