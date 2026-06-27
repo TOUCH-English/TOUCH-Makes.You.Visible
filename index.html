@@ -1991,7 +1991,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .asset .tag{background:rgba(255,255,255,.85);padding:3px 9px;border-radius:6px;font-family:var(--body)}
 
 /* ---------- Modal (glassmorphism + fade) ---------- */
-.modal-bg{position:fixed;inset:0;background:rgba(14,36,86,.46);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:50;
+.modal-bg{position:fixed;inset:0;background:rgba(14,36,86,.46);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);z-index:140;
   display:flex;align-items:center;justify-content:center;padding:20px;
   opacity:0;visibility:hidden;transition:opacity .26s ease, visibility .26s ease}
 .modal-bg.open{opacity:1;visibility:visible}
@@ -2823,7 +2823,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
    ============================================================ */
 /* ---- Shell: copy .modal-bg / .modal ---- */
 #sysFocus.focus-bg{background:linear-gradient(135deg,rgba(234,241,255,.46),rgba(220,231,255,.46),rgba(191,211,255,.46));-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
-#sysFocus .focus-card{background:radial-gradient(162% 120% at -6% -8%,rgba(86,132,255,.12),rgba(86,132,255,.05) 42%,transparent 72%),radial-gradient(150% 116% at 106% 110%,rgba(76,203,255,.09),rgba(76,203,255,.04) 44%,transparent 70%),rgba(255,255,255,.74);-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--c,var(--blue));box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);border-radius:var(--r-lg)}
+#sysFocus .focus-card{background:radial-gradient(162% 120% at -6% -8%,rgba(86,132,255,.12),rgba(86,132,255,.05) 42%,transparent 72%),radial-gradient(150% 116% at 106% 110%,rgba(76,203,255,.09),rgba(76,203,255,.04) 44%,transparent 70%),rgba(255,255,255,.74);-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--blue);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);border-radius:var(--r-lg)}
 #sysFocus .focus-x{top:18px;right:18px;width:34px;height:34px;border-radius:10px;background:rgba(20,33,50,.06);border:none;color:var(--muted);box-shadow:none}
 #sysFocus .focus-x:hover{background:rgba(20,33,50,.12);color:var(--ink);transform:none}
 /* ---- Heroes: sit on the glass shell (no big colour block) ---- */
@@ -2837,35 +2837,111 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sysFocus .focus-gain,#sysFocus .focus-hero__vis{background:rgba(255,255,255,.5)!important;border:1px solid rgba(255,255,255,.7)!important;box-shadow:0 12px 34px -20px rgba(20,33,50,.16),inset 0 1px 0 rgba(255,255,255,.8)!important}
 /* ---- Solid theme icon tiles -> 5C soft-tint round badges (theme colour kept) ---- */
 #sysFocus .rev-head__ic,#sysFocus .rev-badge__ic,#sysFocus .focus-gain__ic,#sysFocus .focus-bigicon,#sysFocus .stage-card__ic,#sysFocus .stage-advisor__ic,#sysFocus .goal-reflect__hic,#sysFocus .goal-focus__hic,#sysFocus .goal-future__hic{color:var(--c)!important;background:color-mix(in srgb,var(--c) 15%,#fff)!important;border:1px solid color-mix(in srgb,var(--c) 22%,#fff)!important;box-shadow:none!important}
+/* ===== Mirror 1/2/3 — apply Stage 1 Fluent 3D-glass icon language to badges (visual only; per-badge colour; overrides the flat rule above) ===== */
+#sysFocus .epi .epi-id__ic,#sysFocus .epi .epi-cog__ic,#sysFocus .epi .epi-sec__ic,#sysFocus .epi .epi-note__ic,#sysFocus .goal--m2 .goal-reflect__hic,#sysFocus .goal--m2 .goal-focus__hic,#sysFocus .goal--m2 .goal-future__hic,#sysFocus .goal--m2 .focus-gain__ic,#sysFocus .review .rev-head__ic,#sysFocus .review .rev-snaprow__ic,#sysFocus .review .rev-grow__ic{position:relative;overflow:hidden;color:#fff!important;border:1px solid rgba(255,255,255,.72)!important}
+#sysFocus .epi .epi-id__ic::before,#sysFocus .epi .epi-cog__ic::before,#sysFocus .epi .epi-sec__ic::before,#sysFocus .epi .epi-note__ic::before,#sysFocus .goal--m2 .goal-reflect__hic::before,#sysFocus .goal--m2 .goal-focus__hic::before,#sysFocus .goal--m2 .goal-future__hic::before,#sysFocus .goal--m2 .focus-gain__ic::before,#sysFocus .review .rev-head__ic::before,#sysFocus .review .rev-snaprow__ic::before,#sysFocus .review .rev-grow__ic::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.12) 42%,transparent 60%);pointer-events:none;z-index:1}
+#sysFocus .epi .epi-id__ic svg,#sysFocus .epi .epi-cog__ic svg,#sysFocus .epi .epi-sec__ic svg,#sysFocus .epi .epi-note__ic svg,#sysFocus .goal--m2 .goal-reflect__hic svg,#sysFocus .goal--m2 .goal-focus__hic svg,#sysFocus .goal--m2 .goal-future__hic svg,#sysFocus .goal--m2 .focus-gain__ic svg,#sysFocus .review .rev-head__ic svg,#sysFocus .review .rev-snaprow__ic svg,#sysFocus .review .rev-grow__ic svg{stroke:#fff!important;position:relative;z-index:2;filter:drop-shadow(0 1px 1px rgba(12,30,60,.3))}
+#sysFocus .epi .epi-id__ic,#sysFocus .epi .epi-cog__ic,#sysFocus .epi .epi-sec__ic,#sysFocus .epi .epi-note__ic{background:linear-gradient(157deg,color-mix(in srgb,var(--epi-theme) 32%,#fff),color-mix(in srgb,var(--epi-theme) 54%,#fff) 32%,var(--epi-theme) 84%,color-mix(in srgb,var(--epi-theme) 78%,#0a1a2a))!important;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.9),inset 0 -5px 9px -5px color-mix(in srgb,var(--epi-theme) 56%,transparent),0 8px 13px -6px color-mix(in srgb,var(--epi-theme) 44%,transparent),0 12px 17px -10px rgba(18,34,64,.34)!important}
+#sysFocus .goal--m2 .goal-reflect__hic,#sysFocus .goal--m2 .goal-focus__hic,#sysFocus .goal--m2 .goal-future__hic,#sysFocus .goal--m2 .focus-gain__ic,#sysFocus .review .rev-head__ic,#sysFocus .review .rev-snaprow__ic,#sysFocus .review .rev-grow__ic{background:linear-gradient(157deg,color-mix(in srgb,var(--c) 32%,#fff),color-mix(in srgb,var(--c) 54%,#fff) 32%,var(--c) 84%,color-mix(in srgb,var(--c) 78%,#0a1a2a))!important;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.9),inset 0 -5px 9px -5px color-mix(in srgb,var(--c) 56%,transparent),0 8px 13px -6px color-mix(in srgb,var(--c) 44%,transparent),0 12px 17px -10px rgba(18,34,64,.34)!important}
+/* extend glass to small grid chips: Mirror 1 note items + Mirror 2 focus chips */
+#sysFocus .epi .epi-note__i,#sysFocus .goal--m2 .goal-chip__ic{position:relative;overflow:hidden;color:#fff!important;border:1px solid rgba(255,255,255,.72)!important}
+#sysFocus .epi .epi-note__i::before,#sysFocus .goal--m2 .goal-chip__ic::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.1) 42%,transparent 60%);pointer-events:none;z-index:1}
+#sysFocus .epi .epi-note__i svg,#sysFocus .goal--m2 .goal-chip__ic svg{stroke:#fff!important;position:relative;z-index:2;filter:drop-shadow(0 1px 1px rgba(12,30,60,.28))}
+#sysFocus .epi .epi-note__i{background:linear-gradient(157deg,color-mix(in srgb,var(--epi-theme) 32%,#fff),color-mix(in srgb,var(--epi-theme) 54%,#fff) 32%,var(--epi-theme) 84%,color-mix(in srgb,var(--epi-theme) 78%,#0a1a2a))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.88),inset 0 -4px 8px -5px color-mix(in srgb,var(--epi-theme) 56%,transparent),0 6px 11px -6px color-mix(in srgb,var(--epi-theme) 42%,transparent),0 10px 14px -10px rgba(18,34,64,.32)!important}
+#sysFocus .goal--m2 .goal-chip__ic{background:linear-gradient(157deg,color-mix(in srgb,var(--c) 32%,#fff),color-mix(in srgb,var(--c) 54%,#fff) 32%,var(--c) 84%,color-mix(in srgb,var(--c) 80%,#0a1a2a))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.88),inset 0 -4px 8px -5px color-mix(in srgb,var(--c) 56%,transparent),0 6px 11px -6px color-mix(in srgb,var(--c) 42%,transparent),0 10px 14px -10px rgba(18,34,64,.32)!important}
+/* ===== Mirror 1/2/3 — curated multi-accent icon colours (Stage-1 feel; each icon a beautiful colour, not locked to theme; glass recipe recolours via the variable) ===== */
+/* Mirror 1 (.epi) */
+#sysFocus .epi .epi-cog__ic{--epi-theme:#29A3E0}
+#sysFocus .epi .epi-id__ic{--epi-theme:#6A6BE8}
+#sysFocus .epi .epi-note__ic{--epi-theme:#E8629B}
+#sysFocus .epi .epi-secs .epi-sec:nth-child(4n+1) .epi-sec__ic{--epi-theme:#18B6A4}
+#sysFocus .epi .epi-secs .epi-sec:nth-child(4n+2) .epi-sec__ic{--epi-theme:#4F7BE6}
+#sysFocus .epi .epi-secs .epi-sec:nth-child(4n+3) .epi-sec__ic{--epi-theme:#8B66EE}
+#sysFocus .epi .epi-secs .epi-sec:nth-child(4n+4) .epi-sec__ic{--epi-theme:#E6A23C}
+#sysFocus .epi .epi-note__grid .epi-note__item:nth-child(1) .epi-note__i{--epi-theme:#29A3E0}
+#sysFocus .epi .epi-note__grid .epi-note__item:nth-child(2) .epi-note__i{--epi-theme:#F2683B}
+#sysFocus .epi .epi-note__grid .epi-note__item:nth-child(3) .epi-note__i{--epi-theme:#E6A23C}
+#sysFocus .epi .epi-note__grid .epi-note__item:nth-child(4) .epi-note__i{--epi-theme:#18B6A4}
+/* Mirror 2 (.goal--m2) */
+#sysFocus .goal--m2 .goal-reflect__hic{--c:#4F7BE6}
+#sysFocus .goal--m2 .goal-focus__hic{--c:#29A3E0}
+#sysFocus .goal--m2 .goal-future__hic{--c:#8B66EE}
+#sysFocus .goal--m2 .goal-focus__grid .goal-chip:nth-child(1) .goal-chip__ic{--c:#F2683B}
+#sysFocus .goal--m2 .goal-focus__grid .goal-chip:nth-child(2) .goal-chip__ic{--c:#4F7BE6}
+#sysFocus .goal--m2 .goal-focus__grid .goal-chip:nth-child(3) .goal-chip__ic{--c:#29A3E0}
+#sysFocus .goal--m2 .goal-focus__grid .goal-chip:nth-child(4) .goal-chip__ic{--c:#18B6A4}
+/* Mirror 3 (.review) */
+#sysFocus .review .rev-snap > .rev-head .rev-head__ic{--c:#29A3E0}
+#sysFocus .review .rev-snap .rev-snaprow:nth-of-type(1) .rev-snaprow__ic{--c:#F2683B}
+#sysFocus .review .rev-snap .rev-snaprow:nth-of-type(2) .rev-snaprow__ic{--c:#4F7BE6}
+#sysFocus .review .rev-snap .rev-snaprow:nth-of-type(3) .rev-snaprow__ic{--c:#8B66EE}
+#sysFocus .review .rev-grow > .rev-head .rev-head__ic{--c:#18B6A4}
+#sysFocus .review .rev-grow__grid .rev-grow__card:nth-child(1) .rev-grow__ic{--c:#29A3E0}
+#sysFocus .review .rev-grow__grid .rev-grow__card:nth-child(2) .rev-grow__ic{--c:#4F7BE6}
+#sysFocus .review .rev-grow__grid .rev-grow__card:nth-child(3) .rev-grow__ic{--c:#18B6A4}
+#sysFocus .review .rev-grow__grid .rev-grow__card:nth-child(4) .rev-grow__ic{--c:#E6A23C}
+/* ===== Mirror series — unify hero coloured glow to Mirror 1's pure rainbow (drop the extra centre/warm blooms on Mirror 2 & 3 so all three match Mirror 1) ===== */
+#sysFocus .goal--m2 .mhero::before,#sysFocus .goal--m2 .mhero::after,#sysFocus .goal--m2::before,#sysFocus .review .mhero::before,#sysFocus .review .mhero::after,#sysFocus .review .mhero__sub::after{display:none!important}
 #sysFocus .epi-id__ic,#sysFocus .epi-cog__ic,#sysFocus .epi-sec__ic,#sysFocus .epi-note__ic{color:var(--epi-theme)!important;background:color-mix(in srgb,var(--epi-theme) 15%,#fff)!important;border:1px solid color-mix(in srgb,var(--epi-theme) 22%,#fff)!important;box-shadow:none!important}
 #sysFocus .rev-head__ic svg,#sysFocus .rev-badge__ic svg,#sysFocus .focus-gain__ic svg,#sysFocus .focus-bigicon svg,#sysFocus .stage-card__ic svg,#sysFocus .stage-advisor__ic svg,#sysFocus .goal-reflect__hic svg,#sysFocus .goal-focus__hic svg,#sysFocus .goal-future__hic svg,#sysFocus .epi-id__ic svg,#sysFocus .epi-cog__ic svg,#sysFocus .epi-sec__ic svg,#sysFocus .epi-note__ic svg{stroke:currentColor!important}
-/* ===== STAGE 01 · Find Your Voice — emotional voice-discovery upgrade (visual only · scoped #sysFocus .ipa · layout/spacing/structure/content/interaction frozen) ===== */
-/* Part 1 — Hero as a voice-discovery portal: warm-left (confidence) + cyan-right (expression) + soft white bloom behind avatar (voice awakening) */
-#sysFocus .ipa .mhero--m1 .m1blob{opacity:.35!important;filter:blur(54px)}
-#sysFocus .ipa .mhero--m1 .m1blob:nth-child(1){background:#F4BA86!important}
-#sysFocus .ipa .mhero--m1 .m1blob:nth-child(2){background:#EFAA78!important}
-#sysFocus .ipa .mhero--m1 .m1blob:nth-child(3){background:#E4ECFA!important;opacity:.18!important}
-#sysFocus .ipa .mhero--m1 .m1blob:nth-child(4){background:#5FC8E9!important}
-#sysFocus .ipa .mhero--m1 .m1blob:nth-child(5){background:#83D8ED!important}
-#sysFocus .ipa .mhero--m1{position:relative}
-#sysFocus .ipa .mhero--m1::after{content:"";position:absolute;z-index:0;left:50%;top:27%;width:430px;height:350px;max-width:94%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(255,255,255,.94),rgba(255,255,255,.52) 36%,rgba(228,238,255,.16) 62%,transparent 80%);filter:blur(14px);animation:ipaVoiceBloom 8s ease-in-out infinite}
-@keyframes ipaVoiceBloom{0%,100%{opacity:.84}50%{opacity:1}}
-/* Part 2 — Three core pillars: deeper glass (+15%), more float (+10%), inner lighting, stronger icon presence */
-#sysFocus .ipa .stage-card{background:rgba(255,255,255,.62)!important;-webkit-backdrop-filter:blur(20px) saturate(165%)!important;backdrop-filter:blur(20px) saturate(165%)!important;border:1px solid color-mix(in srgb,var(--c) 17%,rgba(255,255,255,.85))!important;box-shadow:0 28px 50px -26px color-mix(in srgb,var(--c) 52%,transparent),0 7px 18px -12px rgba(20,33,50,.16),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 30px rgba(255,255,255,.42)!important}
-#sysFocus .ipa .stage-card .ipa-cta3d{box-shadow:0 6px 0 color-mix(in srgb,var(--c) 26%,#fff),0 16px 28px -8px color-mix(in srgb,var(--c) 34%,transparent),0 0 26px color-mix(in srgb,var(--c) 18%,transparent),inset 0 2px 3px rgba(255,255,255,.78),inset 0 -3px 6px color-mix(in srgb,var(--c) 12%,transparent)}
-#sysFocus .ipa .stage-card__t{text-shadow:0 1px 1px rgba(255,255,255,.7),0 2px 10px rgba(20,33,50,.05)}
-/* Part 3 — Insight panel: deeper soft glass, refined icon halo, more powerful lead line */
-#sysFocus .ipa .stage-advisor{background:rgba(255,255,255,.6)!important;-webkit-backdrop-filter:blur(22px) saturate(160%)!important;backdrop-filter:blur(22px) saturate(160%)!important;border:1px solid color-mix(in srgb,var(--c) 16%,rgba(255,255,255,.85))!important;box-shadow:0 30px 58px -26px color-mix(in srgb,var(--c) 52%,transparent),0 7px 20px -12px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 38px rgba(255,255,255,.4)!important}
-#sysFocus .ipa .stage-advisor__ic{box-shadow:inset 0 1px 0 rgba(255,255,255,.82),0 6px 14px -8px color-mix(in srgb,var(--c) 40%,transparent),0 0 16px color-mix(in srgb,var(--c) 16%,transparent)!important}
-#sysFocus .ipa .stage-advisor__lead{font-weight:800;letter-spacing:-.01em;color:var(--ink);text-shadow:0 1px 1px rgba(255,255,255,.6)}
-/* Part 4 — Emotional closing: quote (premium/elegant) + Dean (mentor presence/warmth/trust) */
-#sysFocus .ipa .goal-quote{position:relative;background:linear-gradient(150deg,color-mix(in srgb,var(--c) 12%,rgba(255,255,255,.7)),color-mix(in srgb,var(--c) 4%,rgba(255,255,255,.55)))!important;border:1px solid color-mix(in srgb,var(--c) 18%,rgba(255,255,255,.82))!important;-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);box-shadow:0 26px 52px -28px color-mix(in srgb,var(--c) 46%,transparent),inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 40px rgba(255,255,255,.34);text-shadow:0 1px 1px rgba(255,255,255,.55)}
-#sysFocus .ipa .goal-quote::after{content:"";position:absolute;z-index:-1;left:50%;top:-12px;width:82%;height:122%;transform:translateX(-50%);pointer-events:none;border-radius:30px;background:radial-gradient(58% 60% at 50% 28%,color-mix(in srgb,var(--c) 13%,transparent),transparent 72%);filter:blur(17px)}
-#sysFocus .ipa .goal-quote__ic{opacity:1;filter:drop-shadow(0 0 9px color-mix(in srgb,var(--c) 30%,transparent))}
-#sysFocus .ipa .dean-card{background:rgba(255,255,255,.66)!important;box-shadow:0 28px 56px -24px color-mix(in srgb,var(--c) 50%,transparent),0 0 30px -8px color-mix(in srgb,var(--c) 26%,transparent),inset 0 1px 0 rgba(255,255,255,.95)!important}
-#sysFocus .ipa .dean-card .dean-ava{box-shadow:0 8px 18px -6px color-mix(in srgb,var(--c) 52%,transparent),0 0 0 4px rgba(255,255,255,.6),0 0 20px color-mix(in srgb,var(--c) 22%,transparent),0 0 32px -4px rgba(244,206,140,.2)!important}
-#sysFocus .ipa .dean-card__name{font-weight:800;text-shadow:0 1px 1px rgba(255,255,255,.5)}
-@media (prefers-reduced-motion:reduce){#sysFocus .ipa .mhero--m1::after{animation:none}}
+/* ===== STAGE 01 · Find Your Voice — FULL VISUAL LANGUAGE UPGRADE · Microsoft Fluent 3D-glass + Apple clean (visual only · scoped #sysFocus .ipa · layout/spacing/structure/content/narrative/hierarchy/interaction FROZEN) ===== */
+/* de-purpled accent + clean edge + airier shell */
+#sysFocus .ipa{--c:#1F9FE6}
+#sysFocus .focus-card:has(.ipa){border-top-color:var(--blue)!important;background:radial-gradient(150% 120% at 50% -12%,rgba(255,255,255,.55),transparent 58%),rgba(255,255,255,.84)!important}
+
+/* ---------- Part 3 · HERO — object-first: quiet the glow background, float the orb as a real object ---------- */
+
+/* ---------- Part 1 · ICON SYSTEM (highest priority) — flat icons -> Fluent 3D glass objects (multi-accent, glossy, grounded) ---------- */
+#sysFocus .ipa .stage-card .ipa-cta3d{border:1px solid rgba(255,255,255,.78);border-radius:17px;background:linear-gradient(157deg,color-mix(in srgb,var(--o1,#86E5FF) 92%,#fff),var(--o1,#86E5FF) 32%,var(--o2,#2E96E8) 82%,color-mix(in srgb,var(--o2,#2E96E8) 78%,#0a2a4a));box-shadow:inset 0 1.5px 0 rgba(255,255,255,.95),inset 0 -7px 12px -7px color-mix(in srgb,var(--o2,#2E96E8) 70%,transparent),inset 0 0 0 1px rgba(255,255,255,.35),0 13px 18px -9px color-mix(in srgb,var(--o2,#2E96E8) 50%,transparent),0 20px 26px -14px rgba(18,34,64,.42);animation:none}
+#sysFocus .ipa .stage-card .ipa-cta3d svg{stroke:#fff;filter:drop-shadow(0 1.5px 1.5px rgba(12,30,60,.32))}
+#sysFocus .ipa .stage-card .ipa-cta3d::before{left:7%;right:7%;top:4%;height:54%;border-radius:14px 14px 72% 72%/14px 14px 54% 54%;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.34) 52%,rgba(255,255,255,0))}
+#sysFocus .ipa .stage-card .ipa-cta3d::after{top:-10%;left:auto;right:13%;width:26%;height:128%;transform:rotate(20deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));animation:none;opacity:.7}
+#sysFocus .ipa .stage-cards .stage-card:nth-child(1) .ipa-cta3d{--o1:#9CEBFF;--o2:#2B9BEA}   /* voice — ice cyan -> sky blue */
+#sysFocus .ipa .stage-cards .stage-card:nth-child(2) .ipa-cta3d{--o1:#FFD3AE;--o2:#4F97E6}   /* calendar — peach -> blue */
+#sysFocus .ipa .stage-cards .stage-card:nth-child(3) .ipa-cta3d{--o1:#FFD98A;--o2:#F2683B}   /* energy — gold -> coral */
+
+/* ---------- Part 2 + 4 · SURFACES — UI cards -> product cards: thicker white, bevel, inner light, neutral shadow, less glow, softer corners ---------- */
+#sysFocus .ipa .stage-card{background:rgba(255,255,255,.76)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important;backdrop-filter:blur(22px) saturate(145%)!important;border:1px solid rgba(255,255,255,.92)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(255,255,255,.45),0 20px 38px -24px rgba(18,34,64,.3),0 6px 14px -10px color-mix(in srgb,#2E96E8 32%,transparent)!important}
+#sysFocus .ipa .stage-card__t{text-shadow:0 1px 0 rgba(255,255,255,.7)}
+
+#sysFocus .ipa .stage-advisor{background:rgba(255,255,255,.76)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important;backdrop-filter:blur(22px) saturate(145%)!important;border:1px solid rgba(255,255,255,.9)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 20px 40px -24px rgba(18,34,64,.28),0 6px 14px -10px color-mix(in srgb,#2E96E8 28%,transparent)!important}
+#sysFocus .ipa .stage-advisor__ic{background:linear-gradient(157deg,#9CEBFF,#2B9BEA 78%,#1E7BC8)!important;border:1px solid rgba(255,255,255,.72)!important;color:#fff!important;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.9),0 8px 14px -7px color-mix(in srgb,#2B9BEA 52%,transparent),0 12px 18px -12px rgba(18,34,64,.4)!important}
+#sysFocus .ipa .stage-advisor__ic svg{stroke:#fff!important;filter:drop-shadow(0 1px 1px rgba(12,30,60,.3))}
+#sysFocus .ipa .stage-advisor__lead{font-weight:800;letter-spacing:-.01em;color:var(--ink)}
+
+#sysFocus .ipa .goal-quote{position:relative;background:rgba(255,255,255,.62)!important;border:1px solid rgba(255,255,255,.85)!important;-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 18px 38px -26px rgba(18,34,64,.26)!important;text-shadow:none}
+#sysFocus .ipa .goal-quote::after{display:none}
+#sysFocus .ipa .goal-quote__ic{opacity:1;filter:drop-shadow(0 2px 3px rgba(18,34,64,.18))}
+
+#sysFocus .ipa .dean-card{background:rgba(255,255,255,.78)!important;border:1px solid rgba(255,255,255,.92)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 20px 42px -24px rgba(18,34,64,.3),0 6px 14px -10px color-mix(in srgb,#2E96E8 26%,transparent)!important}
+#sysFocus .ipa .dean-card .dean-ava{background:linear-gradient(157deg,#BFEFFF,#5BC2EE 60%,#2B9BEA)!important;border:2px solid rgba(255,255,255,.95)!important;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.8),0 8px 16px -6px color-mix(in srgb,#2B9BEA 46%,transparent),0 12px 20px -12px rgba(18,34,64,.4)!important}
+#sysFocus .ipa .dean-card__name{font-weight:800}
+
+/* ===== STAGE 02 · Step Onto The Stage — same clean-white Fluent 3D-glass language as Stage 01 (visual only · scoped #sysFocus .lessons · layout/spacing/structure/content/narrative/hierarchy/interaction FROZEN) ===== */
+#sysFocus .lessons{--c:#2A5BD7}
+#sysFocus .focus-card:has(.lessons){background:radial-gradient(150% 120% at 50% -12%,rgba(255,255,255,.55),transparent 58%),rgba(255,255,255,.84)!important}
+/* HERO — object-first: quiet glow background, float the orb */
+/* ICONS — flat -> Fluent 3D glass objects, multi-accent per cell colour (blue / red / green) */
+#sysFocus .lessons .lcell .ipa-cta3d{border:1px solid rgba(255,255,255,.82);border-radius:16px;background:radial-gradient(118% 76% at 50% 5%,rgba(255,255,255,.66),transparent 52%),linear-gradient(158deg,color-mix(in srgb,var(--c) 17%,#fff),color-mix(in srgb,var(--c) 44%,#fff) 33%,var(--c) 80%,color-mix(in srgb,var(--c) 68%,#0b1a2e));box-shadow:inset 0 2px 1.5px rgba(255,255,255,.97),inset 0 -10px 15px -8px color-mix(in srgb,var(--c) 76%,#0a1a2a),inset 0 0 0 1px rgba(255,255,255,.42),0 6px 10px -5px color-mix(in srgb,var(--c) 44%,transparent),0 16px 26px -12px color-mix(in srgb,var(--c) 32%,transparent),0 26px 36px -18px rgba(18,34,64,.34);animation:none}
+#sysFocus .lessons .lcell .ipa-cta3d svg{stroke:#fff;filter:drop-shadow(0 1.5px 1.5px rgba(12,30,60,.32))}
+#sysFocus .lessons .lcell .ipa-cta3d::before{left:7%;right:7%;top:4%;height:52%;border-radius:13px 13px 72% 72%/13px 13px 54% 54%;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,255,255,.38) 50%,rgba(255,255,255,0))}
+#sysFocus .lessons .lcell .ipa-cta3d::after{top:-10%;left:auto;right:13%;width:26%;height:128%;transform:rotate(20deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));animation:none;opacity:.7}
+/* Stage 02 phase icons — premium Fluent-3D soft palette (icon only; detail/active untouched) */
+#sysFocus .lessons .lcells .lcell-wrap:nth-child(1) .ipa-cta3d{--c:#4C84E6}
+#sysFocus .lessons .lcells .lcell-wrap:nth-child(2) .ipa-cta3d{--c:#F2705A}
+#sysFocus .lessons .lcells .lcell-wrap:nth-child(3) .ipa-cta3d{--c:#2FBF92}
+/* CELLS + DETAIL — UI cards -> clean white product surfaces */
+#sysFocus .lessons .lcell{background:rgba(255,255,255,.74)!important;-webkit-backdrop-filter:blur(20px) saturate(145%)!important;backdrop-filter:blur(20px) saturate(145%)!important;border:1px solid rgba(255,255,255,.9)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(255,255,255,.45),0 20px 38px -24px rgba(18,34,64,.3)!important}
+#sysFocus .lessons .lcell.is-active{background:rgba(255,255,255,.86)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,1),0 0 0 1px color-mix(in srgb,var(--c) 28%,#fff),0 24px 46px -22px color-mix(in srgb,var(--c) 38%,transparent),0 8px 18px -12px rgba(18,34,64,.28)!important}
+#sysFocus .lessons .lcell__t{text-shadow:0 1px 0 rgba(255,255,255,.7)}
+#sysFocus .lessons .ldetail__in{background:rgba(255,255,255,.76)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important;backdrop-filter:blur(22px) saturate(145%)!important;border:1px solid rgba(255,255,255,.9)!important;border-left:5px solid var(--c)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 20px 40px -24px rgba(18,34,64,.28),0 6px 14px -10px color-mix(in srgb,var(--c) 26%,transparent)!important}
+#sysFocus .lessons .ldetail__item{background:rgba(255,255,255,.7)!important;border:1px solid rgba(255,255,255,.85)!important;border-radius:14px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 18px -14px rgba(18,34,64,.2)!important}
+/* ----- During Class · embedded 5C cards (reuses original .fivec/.cc framework + colours + frosted feel; tap a card -> popup of what that level teaches) ----- */
+#sysFocus .lessons .lc5{margin-top:22px;padding-top:18px;border-top:1px solid rgba(20,33,50,.08)}
+#sysFocus .lessons .lc5__eyebrow{display:block;font-family:var(--display);font-weight:800;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ci);margin-bottom:6px}
+#sysFocus .lessons .lc5__hint{font-size:12.5px;color:var(--muted);font-weight:500;margin:0 0 14px}
+#sysFocus .lessons .lc5__hint .zh{color:var(--faint)}
+#sysFocus .lessons .lc5 .fivec{margin-top:0}
 /* ===== MIRROR 01 · See Yourself — premium AI-system component polish (visual only · scoped to #sysFocus) ===== */
 /* 1) Cognitive card — floating glass system panel: deeper depth + stronger ambient glow + brighter sci-fi corner accents */
 #sysFocus .epi-cog{position:relative;box-shadow:0 32px 66px -26px rgba(22,42,96,.34),0 12px 26px -16px rgba(22,42,96,.18),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(255,255,255,.68),0 0 66px rgba(90,140,255,.2)}
@@ -3052,6 +3128,11 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   background:color-mix(in srgb,var(--fc,var(--blue)) 15%,#fff);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--fc,var(--blue)) 22%,transparent)}
 .tfeat__ic svg{width:21px;height:21px;stroke:var(--fc,var(--blue));fill:none;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
 @supports not (background:color-mix(in srgb,red,#fff)){.tfeat__ic{background:rgba(42,91,215,.12)}}
+/* tfeat icons -> 3D glossy glass orbs (per-feature colour, white glyph) — same product-icon language as the stages */
+.tfeat__ic{position:relative;overflow:hidden;color:#fff;background:linear-gradient(157deg,color-mix(in srgb,var(--fc,var(--blue)) 30%,#fff),color-mix(in srgb,var(--fc,var(--blue)) 54%,#fff) 32%,var(--fc,var(--blue)) 84%,color-mix(in srgb,var(--fc,var(--blue)) 80%,#0a1a2a));border:1px solid rgba(255,255,255,.72);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.92),inset 0 -5px 9px -5px color-mix(in srgb,var(--fc,var(--blue)) 62%,transparent),inset 0 0 0 1px rgba(255,255,255,.3),0 7px 12px -6px color-mix(in srgb,var(--fc,var(--blue)) 46%,transparent),0 12px 16px -10px rgba(18,34,64,.34)}
+.tfeat__ic::before{content:"";position:absolute;left:12%;right:12%;top:7%;height:46%;border-radius:50% 50% 60% 60%/60% 60% 40% 40%;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.2) 60%,transparent);pointer-events:none;z-index:1}
+.tfeat__ic::after{content:"";position:absolute;top:-22%;right:6%;width:30%;height:144%;transform:rotate(20deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0));pointer-events:none;z-index:1}
+.tfeat__ic svg{stroke:#fff;position:relative;z-index:2;filter:drop-shadow(0 1px 1.5px rgba(12,30,60,.34))}
 .tfeat__lab{flex:1;min-width:0}
 .tfeat__lab b{display:block;font-family:var(--display);font-weight:600;font-size:14px;color:var(--ink);line-height:1.2;letter-spacing:-.01em}
 .tfeat__lab .zh{display:block;font-weight:500;font-size:11px;color:var(--faint);margin-top:2px}
@@ -6144,6 +6225,19 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     }
     function mountLessons(){
       var cells=fbody.querySelector(".lcells"), det=fbody.querySelector("#lDetail"); if(!cells||!det)return;
+      function lc5HTML(){
+        if(typeof FIVEC==="undefined"||typeof CICONS==="undefined")return "";
+        var cards=FIVEC.map(function(c,k){
+          return '<button type="button" class="cc" data-cc5="'+k+'" data-step="'+(k+1)+'" style="--c:'+c.col+';--ci:'+c.ci+';--txt:'+c.txt+'">'+
+            '<span class="cc__ic">'+CICONS[k]+'</span><div class="c-en">'+c.c+'</div><div class="c-zh">'+c.zh+'</div><div class="c-mini">'+c.mini+'</div><span class="cc__chip">'+c.chip+'</span>'+
+          '</button>';
+        }).join("");
+        return '<div class="lc5">'+
+          '<div class="lc5__head"><span class="lc5__eyebrow">The 5C you train in class \u00b7 \u8bfe\u5802\u91cc\u7ec3\u7684 5C</span>'+
+          '<p class="lc5__hint">Tap a card to see what this level teaches. <span class="zh">\u70b9\u4e00\u5f20\u5361\uff0c\u770b\u8fd9\u4e2a level \u6559\u4ec0\u4e48\u3002</span></p></div>'+
+          '<div class="fivec lc5__grid">'+cards+'</div>'+
+        '</div>';
+      }
       function render(i){
         var f=LFLOW[i];
         cells.querySelectorAll(".lcell").forEach(function(n,j){n.classList.toggle("is-active",j===i);});
@@ -6152,6 +6246,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           '<div class="ldetail__head"><span class="ldetail__ph">'+f.t+' <span class="zh">'+f.zh+'</span></span>'+
           '<p class="ldetail__purpose">'+f.purpose.en+' <span class="zh">'+f.purpose.zh+'</span></p></div>'+
           '<div class="ldetail__grid">'+list+'</div>'+
+          (i===1?lc5HTML():'')+
         '</div>';
       }
       cells.addEventListener("click",function(e){
@@ -6165,6 +6260,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         if(e.target.closest("[data-iclink]"))return;
         var n=e.target.closest(".lcell"); if(!n)return;
         e.preventDefault(); render(+n.getAttribute("data-lc"));
+      });
+      det.addEventListener("click",function(e){
+        var card=e.target.closest("[data-cc5]"); if(!card)return;
+        if(typeof openCCModal==="function") openCCModal(+card.getAttribute("data-cc5"));
       });
       render(0); // default selection
       // ----- Advisor Link Settings (backdrop entry via Advisor Note) -----
