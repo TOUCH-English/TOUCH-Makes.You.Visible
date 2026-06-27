@@ -604,7 +604,27 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .fbglow{opacity:0;animation:fbGlow .85s ease .2s both}
 @keyframes fbGlow{from{opacity:0}to{opacity:.82}}
 .fbcore{opacity:0;transform:scale(.5);animation:fbIn .7s cubic-bezier(.2,.7,.2,1) .15s both}
-.fbperson{fill:#46566f}
+/* Final · achievement medal seal (replaces avatar) */
+.fbseal{transform-box:view-box;transform-origin:120px 78px}
+.fbseal-disc{fill:rgba(255,255,255,.5);stroke:color-mix(in srgb,var(--c) 82%,#6e5212);stroke-width:2.2}
+.fbseal-tick{stroke:color-mix(in srgb,var(--c) 82%,#6e5212);stroke-width:2.7}
+.fbseal-rib{stroke:color-mix(in srgb,var(--c) 72%,#6e5212);stroke-width:2.2}
+/* Part 3 — premium completion palette: replace strong red accent with soft gold (scoped to Final) */
+#sysFocus .focus-card:has(.fbring){--c:#D2A23C!important}
+/* Part 2 — What You Have Achieved (reward panel; gold/coral/cyan per-item accents) */
+#sysFocus .focus-card:has(.fbring) .fbach{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:5px;padding-left:19px}
+#sysFocus .focus-card:has(.fbring) .fbach__item{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:13px;background:linear-gradient(160deg,color-mix(in srgb,var(--ac) 9%,rgba(255,255,255,.74)),rgba(255,255,255,.5));border:1px solid color-mix(in srgb,var(--ac) 17%,rgba(255,255,255,.8));box-shadow:0 10px 20px -16px color-mix(in srgb,var(--ac) 52%,transparent),inset 0 1px 0 rgba(255,255,255,.82)}
+#sysFocus .focus-card:has(.fbring) .fbach__ic{flex:none;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(120% 82% at 50% 6%,rgba(255,255,255,.9),transparent 56%),linear-gradient(158deg,#fff,color-mix(in srgb,var(--ac) 15%,#fff) 58%,color-mix(in srgb,var(--ac) 30%,#fff));border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.96),inset 0 -4px 7px -5px color-mix(in srgb,var(--ac) 32%,transparent),0 4px 8px -5px color-mix(in srgb,var(--ac) 26%,transparent)}
+#sysFocus .focus-card:has(.fbring) .fbach__ic::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0) 46%);pointer-events:none;z-index:1}
+#sysFocus .focus-card:has(.fbring) .fbach__ic svg{width:17px;height:17px;stroke:color-mix(in srgb,var(--ac) 80%,#26354c);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:2}
+#sysFocus .focus-card:has(.fbring) .fbach__tx b{display:block;font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--ink);line-height:1.28}
+#sysFocus .focus-card:has(.fbring) .fbach__tx .zh{display:block;font-weight:500;font-size:11px;color:var(--muted);margin-top:2px}
+@media(max-width:600px){#sysFocus .focus-card:has(.fbring) .fbach{grid-template-columns:1fr}}
+/* Part 4 — completion milestone pulse (single elegant ring radiating from the seal) */
+#sysFocus .focus-card:has(.fbring) .m1vis .m1svg{position:relative;z-index:1}
+#sysFocus .focus-card:has(.fbring) .m1vis::after{content:"";position:absolute;left:50%;top:49%;width:58px;height:58px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--c) 50%,transparent);pointer-events:none;z-index:0;animation:fbMile 4.8s ease-out infinite}
+@keyframes fbMile{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}15%{opacity:.6}100%{opacity:0;transform:translate(-50%,-50%) scale(2.7)}}
+@media(prefers-reduced-motion:reduce){#sysFocus .focus-card:has(.fbring) .m1vis::after{animation:none;opacity:0}}
 .fbcheck-tick{fill:none;stroke:color-mix(in srgb,var(--c) 60%,#46566f);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .fbcheck{opacity:0;transform-box:view-box;transform-origin:150px 100px;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--c) 38%,transparent));animation:fbCheckIn .55s cubic-bezier(.2,.9,.3,1.35) 1.5s both}
 @keyframes fbCheckIn{0%{opacity:0;transform:scale(.3)}60%{opacity:1;transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
@@ -5066,7 +5086,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           '<circle class="fbring" style="--d:.5s" cx="120" cy="78" r="42" fill="rgba(255,255,255,0.32)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#fblift)"/>'+
           '<circle class="fbglow" cx="120" cy="78" r="44" fill="url(#fbglow)"/>'+
           '<g class="fbcore"><circle cx="120" cy="78" r="28" fill="url(#fborb)" stroke="rgba(255,255,255,.92)" stroke-width="1.5" filter="url(#fblift)"/>'+
-          '<g class="fbperson" transform="translate(120,78)"><circle cx="0" cy="-7" r="9"/><path d="M-15 20 a15 15 0 0 1 30 0 z"/></g></g>'+
+          '<g class="fbseal" transform="translate(120,79)" fill="none" stroke-linecap="round" stroke-linejoin="round"><path class="fbseal-rib" d="M-5.5 3 L-9 16 L-4.6 12.2 L-1.4 16.4"/><path class="fbseal-rib" d="M5.5 3 L9 16 L4.6 12.2 L1.4 16.4"/><circle class="fbseal-disc" cx="0" cy="-3.5" r="12"/><path class="fbseal-tick" d="M-5 -3.5 L-1.6 0.2 L5 -7"/></g></g>'+
           '<g class="fbcheck" transform="translate(150,100)"><circle cx="0" cy="0" r="15" fill="rgba(255,255,255,.94)" stroke="rgba(255,255,255,1)" stroke-width="1" filter="url(#fblift)"/>'+
           '<path class="fbcheck-tick" d="M-6 0.5 L-1.6 5 L6.5 -5"/></g>'+
         '</svg></div>';
@@ -5085,6 +5105,15 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           '<div class="focus-main">'+
             fblock("What this stage is","这是什么",s.what)+
             fblock("What you do","你要做什么",s.does)+
+            '<div class="focus-block fbach-block">'+
+              '<div class="focus-block__lab"><span class="focus-block__mk"></span>What You Have Achieved <span class="zh">\u4f60\u5df2\u7ecf\u8fbe\u6210\u7684</span></div>'+
+              '<div class="fbach">'+
+                '<div class="fbach__item" style="--ac:#D2A23C"><span class="fbach__ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3.6"/><path d="M8.2 12.2l2.6 2.6L16 9.4"/></svg></span><div class="fbach__tx"><b>Completed 48 lessons</b><span class="zh">\u5b8c\u6210 48 \u5802\u8bfe</span></div></div>'+
+                '<div class="fbach__item" style="--ac:#E8835A"><span class="fbach__ic"><svg viewBox="0 0 24 24"><path d="M12 3.4l1.9 5.2 5.2 1.9-5.2 1.9L12 17.6l-1.9-5.2L4.9 10.5l5.2-1.9Z"/></svg></span><div class="fbach__tx"><b>Improved speaking confidence</b><span class="zh">\u53e3\u8bed\u66f4\u6709\u4fe1\u5fc3</span></div></div>'+
+                '<div class="fbach__item" style="--ac:#2FAEC4"><span class="fbach__ic"><svg viewBox="0 0 24 24"><path d="M20 11.4a7.5 7.5 0 0 1-10.9 6.7L4 19.4l1.3-4.5A7.5 7.5 0 1 1 20 11.4Z"/></svg></span><div class="fbach__tx"><b>Communicate more naturally</b><span class="zh">\u8868\u8fbe\u66f4\u81ea\u7136</span></div></div>'+
+                '<div class="fbach__item" style="--ac:#CF9A36"><span class="fbach__ic"><svg viewBox="0 0 24 24"><path d="M12 19.5V7"/><path d="M6 12.5 12 6.5l6 6"/></svg></span><div class="fbach__tx"><b>Ready for next level</b><span class="zh">\u8fc8\u5411\u4e0b\u4e00\u7a0b\u5ea6</span></div></div>'+
+              '</div>'+
+            '</div>'+
           '</div>'+
           '<aside class="focus-gain">'+
             '<div class="focus-gain__h"><span class="focus-gain__ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h7v7"/></svg></span>How it helps you progress <span class="zh">如何帮助你进步</span></div>'+
