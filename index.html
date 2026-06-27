@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>TOUCH English · Advisory Console</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1364,6 +1366,97 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   padding:8px 16px;border-radius:999px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:.8;transition:opacity .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
 .goal-cta:hover{opacity:1;background:color-mix(in srgb,var(--c) 14%,#fff);border-color:color-mix(in srgb,var(--c) 42%,#fff);box-shadow:0 8px 18px -8px color-mix(in srgb,var(--c) 48%,transparent);transform:translateY(-1px)}
 .goal-cta svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
+/* ===== Mirror 2 · light future-projection refinement (visual only · scoped #sysFocus .goal--m2) ===== */
+/* 1) hero projection status strip */
+#sysFocus .goal--m2 .goal-pstrip{position:relative;z-index:3;width:max-content;max-width:calc(100% - 48px);margin:-10px auto 2px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:9px;padding:7px 17px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.82),color-mix(in srgb,var(--c) 6%,rgba(255,255,255,.5))),radial-gradient(130% 200% at 50% -55%,rgba(255,255,255,.55),transparent 60%);border:1px solid color-mix(in srgb,var(--c) 15%,rgba(255,255,255,.82));box-shadow:inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 13px rgba(255,255,255,.4),0 12px 30px -14px color-mix(in srgb,var(--c) 38%,transparent),0 0 34px rgba(90,140,255,.14);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);font-family:var(--display)}
+#sysFocus .goal--m2 .goal-pstrip__dot{flex:none;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 38% 34%,#cdf6ff,#4CCBFF 70%);box-shadow:0 0 0 3px rgba(76,203,255,.13),0 0 11px rgba(76,203,255,.95);animation:gpDot 2.8s ease-in-out infinite}
+@keyframes gpDot{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.28)}}
+#sysFocus .goal--m2 .goal-pstrip__t{font-weight:800;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--c)}
+#sysFocus .goal--m2 .goal-pstrip__t .zh{letter-spacing:0;text-transform:none;font-weight:600;font-size:10px;color:var(--muted);margin-left:4px}
+#sysFocus .goal--m2 .goal-pstrip__sep{width:1px;height:11px;background:color-mix(in srgb,var(--c) 26%,transparent)}
+#sysFocus .goal--m2 .goal-pstrip__s{font-weight:600;font-size:10.5px;color:var(--ink)}
+#sysFocus .goal--m2 .goal-pstrip__s .zh{font-weight:500;font-size:10px;color:var(--muted);margin-left:4px}
+/* 2) Today (calmer) / Future (brighter, cyan glow, floating) hierarchy */
+#sysFocus .goal--m2 .goal-rcard--now{background:rgba(252,253,255,.5);border:1px solid rgba(20,33,50,.07);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+#sysFocus .goal--m2 .goal-rcard--future{position:relative;background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 18%,#fff),color-mix(in srgb,var(--c) 6%,#fff));border:1px solid color-mix(in srgb,#4CCBFF 46%,rgba(255,255,255,.72));box-shadow:0 30px 54px -22px color-mix(in srgb,var(--c) 54%,transparent),0 0 48px rgba(76,203,255,.24),inset 0 1px 0 rgba(255,255,255,.97),inset 0 0 0 1px rgba(180,240,255,.5),inset 0 0 26px rgba(180,240,255,.18)}
+#sysFocus .goal--m2 .goal-rcard--future::before{content:"";position:absolute;inset:-26px -18px -30px -18px;z-index:-1;pointer-events:none;border-radius:30px;background:radial-gradient(88% 82% at 66% 40%,rgba(76,203,255,.26),rgba(76,203,255,.09) 46%,transparent 73%);filter:blur(9px)}
+#sysFocus .goal--m2 .goal-rcard--future .goal-rcard__k{color:#1f7fd6}
+/* 3) icon upgrade — glass + soft halo + thinner stroke (future brighter, today softer) */
+#sysFocus .goal--m2 .goal-reflect__hic,#sysFocus .goal--m2 .goal-focus__hic{box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 6px 16px -8px color-mix(in srgb,var(--c) 38%,transparent),0 0 16px color-mix(in srgb,var(--c) 14%,transparent)!important}
+#sysFocus .goal--m2 .goal-future__hic{background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 20%,#fff),color-mix(in srgb,var(--c) 8%,#fff))!important;border:1px solid color-mix(in srgb,#4CCBFF 34%,#fff)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 6px 16px -8px rgba(76,203,255,.42),0 0 22px rgba(76,203,255,.22)!important}
+#sysFocus .goal--m2 .goal-future__hic svg{stroke:#1f9fd0!important}
+#sysFocus .goal--m2 .goal-reflect__hic svg,#sysFocus .goal--m2 .goal-focus__hic svg,#sysFocus .goal--m2 .goal-future__hic svg{stroke-width:1.45}
+#sysFocus .goal--m2 .goal-chip__ic{box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 0 14px color-mix(in srgb,var(--c) 14%,transparent)}
+#sysFocus .goal--m2 .goal-chip__ic svg{stroke-width:1.7}
+#sysFocus .goal--m2 .goal-rchk{background:linear-gradient(150deg,#5BD7FF,var(--c));box-shadow:0 4px 12px -3px rgba(76,203,255,.5),0 0 12px rgba(76,203,255,.3)}
+#sysFocus .goal--m2 .goal-rchk svg{stroke-width:2.4}
+#sysFocus .goal--m2 .goal-quote__ic{filter:drop-shadow(0 0 9px color-mix(in srgb,var(--c) 30%,transparent))}
+#sysFocus .goal--m2 .goal-quote__ic svg{stroke-width:1.4}
+#sysFocus .goal--m2 .goal-fnode__dot{box-shadow:0 0 11px rgba(76,203,255,.55),0 0 0 4px color-mix(in srgb,var(--c) 12%,transparent)}
+#sysFocus .goal--m2 .goal-fnode:last-child .goal-fnode__dot{background:radial-gradient(circle at 38% 34%,#dffbff,#4CCBFF 72%);border-color:transparent;box-shadow:0 0 16px rgba(76,203,255,1),0 0 5px rgba(170,246,255,1),0 0 0 5px color-mix(in srgb,#4CCBFF 16%,transparent);animation:gpDot 3s ease-in-out infinite}
+/* 4) subtle projection flow on Today -> Future connector */
+#sysFocus .goal--m2 .goal-reflect__arrow{position:relative;opacity:1;color:#3aa9e6;overflow:visible}
+#sysFocus .goal--m2 .goal-reflect__arrow svg{filter:drop-shadow(0 0 11px rgba(76,203,255,1))}
+#sysFocus .goal--m2 .goal-reflect__arrow::before{content:"";position:absolute;left:-14px;right:-14px;top:50%;height:2.5px;transform:translateY(-50%);border-radius:3px;background:linear-gradient(90deg,transparent,rgba(76,203,255,.64) 50%,transparent);box-shadow:0 0 11px rgba(76,203,255,.45);pointer-events:none}
+#sysFocus .goal--m2 .goal-reflect__arrow::after{content:"";position:absolute;top:50%;left:-14px;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 38% 34%,#dffbff,#7AF0FF 72%);box-shadow:0 0 14px rgba(120,240,255,1),0 0 5px rgba(170,246,255,1);transform:translateY(-50%);animation:gpFlow 2.4s ease-in-out infinite;pointer-events:none}
+@keyframes gpFlow{0%{left:-12px;opacity:0}12%{opacity:1}84%{opacity:1}100%{left:calc(100% + 4px);opacity:0}}
+#sysFocus .goal--m2{position:relative}
+#sysFocus .goal--m2::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(80% 40% at 0% 0%,rgba(86,132,255,.11),rgba(86,132,255,.045) 40%,transparent 72%),radial-gradient(70% 46% at 104% 40%,rgba(76,203,255,.1),rgba(76,203,255,.04) 42%,transparent 72%),radial-gradient(85% 44% at 100% 100%,rgba(150,196,255,.09),rgba(150,196,255,.035) 45%,transparent 74%)}
+/* hero projection portal — gentle soft white/blue/cyan center bloom (no color amplification) */
+#sysFocus .goal--m2 .mhero::before{display:block;content:"";position:absolute;z-index:0;left:50%;top:32%;width:560px;height:410px;max-width:116%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(255,255,255,.44),rgba(150,200,255,.15) 42%,rgba(76,203,255,.08) 64%,transparent 81%);filter:blur(28px);opacity:.9}
+#sysFocus .goal--m2 .mhero::after{content:"";position:absolute;z-index:0;left:50%;bottom:-100px;width:600px;height:320px;max-width:122%;transform:translateX(-50%);border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(76,203,255,.09),rgba(86,132,255,.045) 50%,transparent 79%);filter:blur(32px)}
+/* continuity — soft light flowing forward down the future-journey line */
+#sysFocus .goal--m2 .goal-future__line::before{width:2.5px;background:linear-gradient(180deg,#6FE0FF,#4CCBFF 40%,color-mix(in srgb,var(--c) 28%,transparent));box-shadow:0 0 11px rgba(76,203,255,.42)}
+#sysFocus .goal--m2 .goal-future__line::after{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2.5px;border-radius:2px;pointer-events:none;background:linear-gradient(180deg,rgba(150,246,255,0) 36%,rgba(150,246,255,1) 50%,rgba(150,246,255,0) 64%);background-size:100% 300%;background-repeat:no-repeat;filter:drop-shadow(0 0 8px rgba(76,203,255,.95));animation:gpLineFlow 3.2s linear infinite}
+@keyframes gpLineFlow{0%{background-position:0 -60%}100%{background-position:0 160%}}
+@media (prefers-reduced-motion:reduce){#sysFocus .goal--m2 .goal-pstrip__dot,#sysFocus .goal--m2 .goal-reflect__arrow::after,#sysFocus .goal--m2 .goal-future__line::after,#sysFocus .goal--m2 .goal-fnode:last-child .goal-fnode__dot{animation:none}#sysFocus .goal--m2 .goal-reflect__arrow::after,#sysFocus .goal--m2 .goal-future__line::after{opacity:0}}
+/* ===== Mirror 3 · See Your Growth — clean premium emotional atmosphere (scoped #sysFocus .review) ===== */
+/* cleaner cyan-teal (less green) base */
+#sysFocus .review{--c:#189EC4}
+/* 1) hero — softer warm/cyan bloom (lighter) */
+#sysFocus .review .mhero::before{display:block;content:"";position:absolute;z-index:0;left:50%;top:33%;width:660px;height:480px;max-width:122%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(255,250,243,.4),rgba(244,212,162,.12) 32%,rgba(232,216,188,.07) 50%,rgba(150,210,238,.045) 70%,transparent 84%);filter:blur(44px);opacity:.8}
+#sysFocus .review .mhero::after{content:"";position:absolute;z-index:0;left:50%;bottom:-110px;width:620px;height:330px;max-width:124%;transform:translateX(-50%);border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(244,214,166,.06),rgba(118,203,255,.03) 54%,transparent 80%);filter:blur(38px)}
+#sysFocus .review .mhero__sub::after{content:"";position:absolute;z-index:0;left:50%;top:-150px;width:700px;height:520px;max-width:128%;transform:translateX(-50%);border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(255,248,236,.11),transparent 72%);filter:blur(34px)}
+/* 2) core panel — clean glass, subtle lift, refined headers */
+#sysFocus .review .rev-snap{-webkit-backdrop-filter:blur(24px) saturate(148%);backdrop-filter:blur(24px) saturate(148%);box-shadow:0 32px 58px -26px color-mix(in srgb,var(--c) 36%,transparent),0 0 26px rgba(120,200,235,.06),inset 0 1px 0 rgba(255,255,255,.97),inset 0 0 0 1px rgba(255,255,255,.4)}
+#sysFocus .review .rev-snap > .rev-head .rev-head__ic{box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 6px 14px -8px color-mix(in srgb,var(--c) 28%,transparent),0 0 11px rgba(76,203,255,.11)!important}
+#sysFocus .review .rev-snap > .rev-head h3{text-shadow:0 1px 1px rgba(255,255,255,.8),0 2px 12px rgba(20,33,50,.07)}
+#sysFocus .review .rev-head__ic{box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 5px 12px -8px color-mix(in srgb,var(--c) 24%,transparent),0 0 8px rgba(76,203,255,.08)!important}
+/* 3) Before -> Now — Now hopeful (lighter glow) */
+#sysFocus .review .rev-ba__cell--now{background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 15%,#fff),color-mix(in srgb,var(--c) 3%,#fff));border-color:color-mix(in srgb,#4CCBFF 34%,#fff);box-shadow:0 12px 24px -16px color-mix(in srgb,var(--c) 38%,transparent),0 0 15px rgba(76,203,255,.11),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(170,238,255,.32);animation:gpNowAlive 4.5s ease-in-out infinite}
+@keyframes gpNowAlive{0%,100%{box-shadow:0 12px 24px -16px color-mix(in srgb,var(--c) 38%,transparent),0 0 13px rgba(76,203,255,.09),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(170,238,255,.32)}50%{box-shadow:0 12px 24px -16px color-mix(in srgb,var(--c) 38%,transparent),0 0 19px rgba(76,203,255,.15),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(170,238,255,.4)}}
+#sysFocus .review .rev-ba__arrow{position:relative;opacity:1;color:#1fa8c8;overflow:visible}
+#sysFocus .review .rev-ba__arrow svg{filter:drop-shadow(0 0 6px rgba(76,203,255,.65))}
+#sysFocus .review .rev-ba__arrow::before{content:"";position:absolute;left:-10px;right:-10px;top:50%;height:2px;transform:translateY(-50%);border-radius:2px;pointer-events:none;background:linear-gradient(90deg,transparent 8%,rgba(118,231,255,.55) 50%,transparent 92%);background-size:230% 100%;background-repeat:no-repeat;box-shadow:0 0 6px rgba(76,203,255,.26);animation:gpRevFlow 2.8s linear infinite}
+@keyframes gpRevFlow{0%{background-position:160% 0}100%{background-position:-60% 0}}
+/* 4) growth reward — soft warm gold (lower saturation, lighter) */
+#sysFocus .review .rev-high{position:relative}
+#sysFocus .review .rev-high::before{content:"";position:absolute;z-index:-1;left:50%;top:-8px;width:103%;height:112%;transform:translateX(-50%);pointer-events:none;border-radius:28px;background:radial-gradient(64% 54% at 50% 24%,rgba(244,214,166,.06),rgba(244,214,166,.025) 46%,transparent 74%);filter:blur(14px)}
+#sysFocus .review .rev-high .rev-head__ic{color:#B0813C!important;background:linear-gradient(150deg,color-mix(in srgb,#E6C088 26%,#fff),color-mix(in srgb,#E6C088 10%,#fff))!important;border:1px solid color-mix(in srgb,#E6C088 30%,#fff)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.88),0 5px 13px -8px rgba(200,165,105,.28),0 0 11px rgba(240,214,160,.15)!important}
+#sysFocus .review .rev-badge{background:linear-gradient(150deg,color-mix(in srgb,#E6C088 12%,#fff),color-mix(in srgb,var(--c) 3%,#fff));border:1px solid color-mix(in srgb,#E6C088 24%,#fff);box-shadow:0 14px 30px -20px rgba(200,165,105,.3),0 0 15px rgba(240,214,160,.08),inset 0 1px 0 rgba(255,255,255,.93)}
+#sysFocus .review .rev-badge__ic{color:#fff!important;background:linear-gradient(150deg,#EFD3A2,#D4AA64)!important;border:1px solid rgba(255,255,255,.6)!important;box-shadow:0 7px 16px -6px rgba(190,155,90,.36),0 0 0 3px rgba(240,214,160,.09),0 0 12px rgba(242,216,164,.26),inset 0 1px 0 rgba(255,255,255,.6)!important;animation:gpMilestone 4.6s ease-in-out infinite}
+@keyframes gpMilestone{0%,100%{box-shadow:0 7px 16px -6px rgba(190,155,90,.36),0 0 0 3px rgba(240,214,160,.08),0 0 11px rgba(242,216,164,.22),inset 0 1px 0 rgba(255,255,255,.6)}50%{box-shadow:0 7px 16px -6px rgba(190,155,90,.36),0 0 0 3px rgba(240,214,160,.13),0 0 17px rgba(242,216,164,.34),inset 0 1px 0 rgba(255,255,255,.6)}}
+#sysFocus .review .rev-badge__ic svg{stroke:#fff!important}
+@media (prefers-reduced-motion:reduce){#sysFocus .review .rev-ba__arrow::before,#sysFocus .review .rev-ba__cell--now,#sysFocus .review .rev-badge__ic{animation:none}#sysFocus .review .rev-ba__arrow::before{opacity:.6}}
+/* ===== lower section — clean ===== */
+#sysFocus .review .rev-grow{position:relative}
+#sysFocus .review .rev-grow::before{content:"";position:absolute;z-index:-1;left:50%;top:-6px;width:103%;height:110%;transform:translateX(-50%);pointer-events:none;border-radius:26px;background:radial-gradient(66% 52% at 50% 24%,rgba(76,203,255,.05),rgba(76,203,255,.02) 48%,transparent 74%);filter:blur(15px)}
+#sysFocus .review .rev-grow > .rev-head h3{text-shadow:0 1px 1px rgba(255,255,255,.7),0 2px 11px rgba(20,33,50,.05)}
+#sysFocus .review .rev-grow__card{-webkit-backdrop-filter:blur(13px) saturate(138%);backdrop-filter:blur(13px) saturate(138%);background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 6%,rgba(255,255,255,.72)),rgba(255,255,255,.62));border:1px solid color-mix(in srgb,#4CCBFF 20%,var(--line));box-shadow:0 12px 24px -20px color-mix(in srgb,var(--c) 28%,transparent),0 0 10px rgba(76,203,255,.05),inset 0 1px 0 rgba(255,255,255,.85)}
+#sysFocus .review .rev-grow__ic{box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 0 8px rgba(76,203,255,.1)}
+#sysFocus .review .rev-obs{position:relative}
+#sysFocus .review .rev-obs::before{content:"";position:absolute;z-index:-1;left:50%;top:-6px;width:103%;height:110%;transform:translateX(-50%);pointer-events:none;border-radius:26px;background:radial-gradient(66% 52% at 50% 24%,rgba(244,214,166,.04),transparent 72%);filter:blur(15px)}
+#sysFocus .review .rev-obs > .rev-head h3{text-shadow:0 1px 1px rgba(255,255,255,.7),0 2px 11px rgba(20,33,50,.05)}
+#sysFocus .review .rev-obs__list li{-webkit-backdrop-filter:blur(13px) saturate(138%);backdrop-filter:blur(13px) saturate(138%);background:linear-gradient(150deg,rgba(255,255,255,.66),color-mix(in srgb,var(--c) 2%,rgba(255,255,255,.52)));border:1px solid color-mix(in srgb,var(--c) 12%,var(--line));box-shadow:0 14px 28px -22px color-mix(in srgb,var(--c) 26%,transparent),inset 0 1px 0 rgba(255,255,255,.85)}
+#sysFocus .review .rev-obs__q{box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 0 8px rgba(76,203,255,.1)}
+#sysFocus .review .goal-focus{position:relative;-webkit-backdrop-filter:blur(20px) saturate(146%);backdrop-filter:blur(20px) saturate(146%);background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 6%,rgba(255,255,255,.62)),rgba(255,255,255,.52));border:1px solid color-mix(in srgb,#4CCBFF 20%,rgba(255,255,255,.82));box-shadow:0 24px 46px -26px color-mix(in srgb,var(--c) 34%,transparent),0 0 22px rgba(76,203,255,.07),inset 0 1px 0 rgba(255,255,255,.96);animation:gpNextHope 5.5s ease-in-out infinite}
+@keyframes gpNextHope{0%,100%{box-shadow:0 24px 46px -26px color-mix(in srgb,var(--c) 34%,transparent),0 0 20px rgba(76,203,255,.06),inset 0 1px 0 rgba(255,255,255,.96)}50%{box-shadow:0 24px 46px -26px color-mix(in srgb,var(--c) 34%,transparent),0 0 30px rgba(76,203,255,.12),inset 0 1px 0 rgba(255,255,255,.96)}}
+#sysFocus .review .goal-focus::before{content:"";position:absolute;z-index:-1;left:50%;bottom:-14px;width:84%;height:56%;transform:translateX(-50%);pointer-events:none;border-radius:30px;background:radial-gradient(80% 100% at 50% 100%,rgba(76,203,255,.07),transparent 72%);filter:blur(15px)}
+#sysFocus .review .goal-focus__head h3{text-shadow:0 1px 1px rgba(255,255,255,.7),0 2px 12px rgba(20,33,50,.07)}
+#sysFocus .review .goal-focus__hic{box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 5px 12px -8px color-mix(in srgb,#4CCBFF 26%,transparent),0 0 11px rgba(76,203,255,.13)!important}
+#sysFocus .review .goal-focus .goal-chip{background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 6%,rgba(255,255,255,.66)),rgba(255,255,255,.6));border:1px solid color-mix(in srgb,#4CCBFF 20%,var(--line));box-shadow:0 0 9px rgba(76,203,255,.045)}
+#sysFocus .review .goal-focus .goal-chip__ic{box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 0 8px rgba(76,203,255,.09)}
+@media (prefers-reduced-motion:reduce){#sysFocus .review .goal-focus{animation:none}}
 /* ===== Class Review — Growth Reflection (Mirror 3.0) ===== */
 .rev-intro{text-align:center;font-size:14.5px;line-height:1.6;color:var(--muted);max-width:480px;margin:-4px auto 2px}
 .rev-intro .zh{display:block}
@@ -1762,14 +1855,14 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
 /* ---------- Movable nav dock (glass tab bar) ---------- */
 .bottom-dock{position:fixed;z-index:40;display:flex;align-items:center;
-  background:rgba(255,255,255,.74);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);
+  background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.68));-webkit-backdrop-filter:blur(26px) saturate(170%);backdrop-filter:blur(26px) saturate(170%);
   border:1px solid rgba(255,255,255,.6);box-shadow:0 8px 34px rgba(20,33,50,.12);
   transition:box-shadow .2s ease, transform .15s ease}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
   .bottom-dock{background:rgba(255,255,255,.97)}
 }
 /* mode: bottom (full-width bar) */
-.dock--bottom{left:50%;right:auto;bottom:20px;transform:translateX(-50%);width:auto;max-width:calc(100% - 36px);flex-direction:row;border-radius:999px;border:1px solid rgba(255,255,255,.6);box-shadow:0 14px 40px rgba(20,33,50,.18),inset 0 1px 0 rgba(255,255,255,.6)}
+.dock--bottom{left:50%;right:auto;bottom:20px;transform:translateX(-50%);width:auto;max-width:calc(100% - 36px);flex-direction:row;border-radius:999px;border:1px solid rgba(255,255,255,.6);box-shadow:0 18px 48px -14px rgba(20,33,50,.24),0 4px 14px -6px rgba(20,33,50,.12),inset 0 1px 0 rgba(255,255,255,.85),inset 0 0 0 1px rgba(255,255,255,.28),0 0 44px rgba(90,140,255,.08)}
 /* mode: left / right (vertical edge bar) */
 .dock--left{left:0;top:50%;transform:translateY(-50%);flex-direction:column;border-radius:0 20px 20px 0;border-left:0}
 .dock--right{right:0;top:50%;transform:translateY(-50%);flex-direction:column;border-radius:20px 0 0 20px;border-right:0}
@@ -1794,9 +1887,12 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .dock--bottom .tabbar{flex:0 1 auto;flex-direction:row;justify-content:center;padding:7px 9px;overflow-x:auto}
 .dock--left .tabbar,.dock--right .tabbar,.dock--floating .tabbar{flex-direction:column;padding:4px 8px 10px;max-height:min(74vh,560px);overflow-y:auto}
 .tab-item{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:6px 11px;border-radius:13px;color:var(--faint);min-width:56px;transition:background .15s,color .15s;position:relative}
-.tab-item:hover{color:var(--blue);background:rgba(42,91,215,.08)}
-.tab-item.is-active{color:var(--red);background:var(--red-tint)}
+  padding:6px 11px;border-radius:13px;color:var(--faint);min-width:56px;transition:background .15s,color .15s,transform .16s ease,box-shadow .16s ease;position:relative}
+.tab-item:hover{color:var(--blue);background:rgba(42,91,215,.08);transform:translateY(-1px);box-shadow:0 5px 14px -7px rgba(42,91,215,.32)}
+.tab-item.is-active{color:var(--red);background:var(--red-tint);box-shadow:0 5px 16px -7px color-mix(in srgb,var(--red) 44%,transparent),0 0 16px color-mix(in srgb,var(--red) 15%,transparent),inset 0 1px 0 rgba(255,255,255,.55)}
+.tab-item.is-active .tab-item__ic{animation:dockActivePulse 3.2s ease-in-out infinite}
+@keyframes dockActivePulse{0%,100%{filter:drop-shadow(0 0 2px rgba(224,48,59,.3))}50%{filter:drop-shadow(0 0 7px rgba(224,48,59,.6))}}
+@media (prefers-reduced-motion:reduce){.tab-item.is-active .tab-item__ic{animation:none}}
 .tab-item__ic{width:23px;height:23px;position:relative}
 .tab-item__ic svg{width:23px;height:23px;display:block;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .tab-item__lbl{font-size:9.5px;font-weight:600;white-space:nowrap;line-height:1;letter-spacing:.01em}
@@ -2726,13 +2822,16 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
    KEEPS: step theme colour (--c / --epi-theme) + Before/During/After.
    ============================================================ */
 /* ---- Shell: copy .modal-bg / .modal ---- */
-#sysFocus.focus-bg{background:rgba(14,36,86,.46);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
-#sysFocus .focus-card{background:rgba(255,255,255,.74);-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--c,var(--blue));box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);border-radius:var(--r-lg)}
+#sysFocus.focus-bg{background:linear-gradient(135deg,rgba(234,241,255,.46),rgba(220,231,255,.46),rgba(191,211,255,.46));-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+#sysFocus .focus-card{background:radial-gradient(162% 120% at -6% -8%,rgba(86,132,255,.12),rgba(86,132,255,.05) 42%,transparent 72%),radial-gradient(150% 116% at 106% 110%,rgba(76,203,255,.09),rgba(76,203,255,.04) 44%,transparent 70%),rgba(255,255,255,.74);-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--c,var(--blue));box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);border-radius:var(--r-lg)}
 #sysFocus .focus-x{top:18px;right:18px;width:34px;height:34px;border-radius:10px;background:rgba(20,33,50,.06);border:none;color:var(--muted);box-shadow:none}
 #sysFocus .focus-x:hover{background:rgba(20,33,50,.12);color:var(--ink);transform:none}
 /* ---- Heroes: sit on the glass shell (no big colour block) ---- */
 #sysFocus .mhero,#sysFocus .goal-hero{background:transparent}
 #sysFocus .mhero::before,#sysFocus .goal-hero::before{display:none}
+/* MIRROR 01 top accent — match Your Investment deep navy (scoped to epi page only) */
+#sysFocus .focus-card:has(.epi){border-top-color:var(--blue)!important}
+
 #sysFocus .focus-hero{background:transparent;border-bottom:1px solid var(--line)}
 /* ---- Theme-tinted panels -> soft white glass (5C) ---- */
 #sysFocus .focus-gain,#sysFocus .focus-hero__vis{background:rgba(255,255,255,.5)!important;border:1px solid rgba(255,255,255,.7)!important;box-shadow:0 12px 34px -20px rgba(20,33,50,.16),inset 0 1px 0 rgba(255,255,255,.8)!important}
@@ -2740,6 +2839,100 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sysFocus .rev-head__ic,#sysFocus .rev-badge__ic,#sysFocus .focus-gain__ic,#sysFocus .focus-bigicon,#sysFocus .stage-card__ic,#sysFocus .stage-advisor__ic,#sysFocus .goal-reflect__hic,#sysFocus .goal-focus__hic,#sysFocus .goal-future__hic{color:var(--c)!important;background:color-mix(in srgb,var(--c) 15%,#fff)!important;border:1px solid color-mix(in srgb,var(--c) 22%,#fff)!important;box-shadow:none!important}
 #sysFocus .epi-id__ic,#sysFocus .epi-cog__ic,#sysFocus .epi-sec__ic,#sysFocus .epi-note__ic{color:var(--epi-theme)!important;background:color-mix(in srgb,var(--epi-theme) 15%,#fff)!important;border:1px solid color-mix(in srgb,var(--epi-theme) 22%,#fff)!important;box-shadow:none!important}
 #sysFocus .rev-head__ic svg,#sysFocus .rev-badge__ic svg,#sysFocus .focus-gain__ic svg,#sysFocus .focus-bigicon svg,#sysFocus .stage-card__ic svg,#sysFocus .stage-advisor__ic svg,#sysFocus .goal-reflect__hic svg,#sysFocus .goal-focus__hic svg,#sysFocus .goal-future__hic svg,#sysFocus .epi-id__ic svg,#sysFocus .epi-cog__ic svg,#sysFocus .epi-sec__ic svg,#sysFocus .epi-note__ic svg{stroke:currentColor!important}
+/* ===== STAGE 01 · Find Your Voice — emotional voice-discovery upgrade (visual only · scoped #sysFocus .ipa · layout/spacing/structure/content/interaction frozen) ===== */
+/* Part 1 — Hero as a voice-discovery portal: warm-left (confidence) + cyan-right (expression) + soft white bloom behind avatar (voice awakening) */
+#sysFocus .ipa .mhero--m1 .m1blob{opacity:.35!important;filter:blur(54px)}
+#sysFocus .ipa .mhero--m1 .m1blob:nth-child(1){background:#F4BA86!important}
+#sysFocus .ipa .mhero--m1 .m1blob:nth-child(2){background:#EFAA78!important}
+#sysFocus .ipa .mhero--m1 .m1blob:nth-child(3){background:#E4ECFA!important;opacity:.18!important}
+#sysFocus .ipa .mhero--m1 .m1blob:nth-child(4){background:#5FC8E9!important}
+#sysFocus .ipa .mhero--m1 .m1blob:nth-child(5){background:#83D8ED!important}
+#sysFocus .ipa .mhero--m1{position:relative}
+#sysFocus .ipa .mhero--m1::after{content:"";position:absolute;z-index:0;left:50%;top:27%;width:430px;height:350px;max-width:94%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(255,255,255,.94),rgba(255,255,255,.52) 36%,rgba(228,238,255,.16) 62%,transparent 80%);filter:blur(14px);animation:ipaVoiceBloom 8s ease-in-out infinite}
+@keyframes ipaVoiceBloom{0%,100%{opacity:.84}50%{opacity:1}}
+/* Part 2 — Three core pillars: deeper glass (+15%), more float (+10%), inner lighting, stronger icon presence */
+#sysFocus .ipa .stage-card{background:rgba(255,255,255,.62)!important;-webkit-backdrop-filter:blur(20px) saturate(165%)!important;backdrop-filter:blur(20px) saturate(165%)!important;border:1px solid color-mix(in srgb,var(--c) 17%,rgba(255,255,255,.85))!important;box-shadow:0 28px 50px -26px color-mix(in srgb,var(--c) 52%,transparent),0 7px 18px -12px rgba(20,33,50,.16),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 30px rgba(255,255,255,.42)!important}
+#sysFocus .ipa .stage-card .ipa-cta3d{box-shadow:0 6px 0 color-mix(in srgb,var(--c) 26%,#fff),0 16px 28px -8px color-mix(in srgb,var(--c) 34%,transparent),0 0 26px color-mix(in srgb,var(--c) 18%,transparent),inset 0 2px 3px rgba(255,255,255,.78),inset 0 -3px 6px color-mix(in srgb,var(--c) 12%,transparent)}
+#sysFocus .ipa .stage-card__t{text-shadow:0 1px 1px rgba(255,255,255,.7),0 2px 10px rgba(20,33,50,.05)}
+/* Part 3 — Insight panel: deeper soft glass, refined icon halo, more powerful lead line */
+#sysFocus .ipa .stage-advisor{background:rgba(255,255,255,.6)!important;-webkit-backdrop-filter:blur(22px) saturate(160%)!important;backdrop-filter:blur(22px) saturate(160%)!important;border:1px solid color-mix(in srgb,var(--c) 16%,rgba(255,255,255,.85))!important;box-shadow:0 30px 58px -26px color-mix(in srgb,var(--c) 52%,transparent),0 7px 20px -12px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 38px rgba(255,255,255,.4)!important}
+#sysFocus .ipa .stage-advisor__ic{box-shadow:inset 0 1px 0 rgba(255,255,255,.82),0 6px 14px -8px color-mix(in srgb,var(--c) 40%,transparent),0 0 16px color-mix(in srgb,var(--c) 16%,transparent)!important}
+#sysFocus .ipa .stage-advisor__lead{font-weight:800;letter-spacing:-.01em;color:var(--ink);text-shadow:0 1px 1px rgba(255,255,255,.6)}
+/* Part 4 — Emotional closing: quote (premium/elegant) + Dean (mentor presence/warmth/trust) */
+#sysFocus .ipa .goal-quote{position:relative;background:linear-gradient(150deg,color-mix(in srgb,var(--c) 12%,rgba(255,255,255,.7)),color-mix(in srgb,var(--c) 4%,rgba(255,255,255,.55)))!important;border:1px solid color-mix(in srgb,var(--c) 18%,rgba(255,255,255,.82))!important;-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);box-shadow:0 26px 52px -28px color-mix(in srgb,var(--c) 46%,transparent),inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 40px rgba(255,255,255,.34);text-shadow:0 1px 1px rgba(255,255,255,.55)}
+#sysFocus .ipa .goal-quote::after{content:"";position:absolute;z-index:-1;left:50%;top:-12px;width:82%;height:122%;transform:translateX(-50%);pointer-events:none;border-radius:30px;background:radial-gradient(58% 60% at 50% 28%,color-mix(in srgb,var(--c) 13%,transparent),transparent 72%);filter:blur(17px)}
+#sysFocus .ipa .goal-quote__ic{opacity:1;filter:drop-shadow(0 0 9px color-mix(in srgb,var(--c) 30%,transparent))}
+#sysFocus .ipa .dean-card{background:rgba(255,255,255,.66)!important;box-shadow:0 28px 56px -24px color-mix(in srgb,var(--c) 50%,transparent),0 0 30px -8px color-mix(in srgb,var(--c) 26%,transparent),inset 0 1px 0 rgba(255,255,255,.95)!important}
+#sysFocus .ipa .dean-card .dean-ava{box-shadow:0 8px 18px -6px color-mix(in srgb,var(--c) 52%,transparent),0 0 0 4px rgba(255,255,255,.6),0 0 20px color-mix(in srgb,var(--c) 22%,transparent),0 0 32px -4px rgba(244,206,140,.2)!important}
+#sysFocus .ipa .dean-card__name{font-weight:800;text-shadow:0 1px 1px rgba(255,255,255,.5)}
+@media (prefers-reduced-motion:reduce){#sysFocus .ipa .mhero--m1::after{animation:none}}
+/* ===== MIRROR 01 · See Yourself — premium AI-system component polish (visual only · scoped to #sysFocus) ===== */
+/* 1) Cognitive card — floating glass system panel: deeper depth + stronger ambient glow + brighter sci-fi corner accents */
+#sysFocus .epi-cog{position:relative;box-shadow:0 32px 66px -26px rgba(22,42,96,.34),0 12px 26px -16px rgba(22,42,96,.18),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(255,255,255,.68),0 0 66px rgba(90,140,255,.2)}
+#sysFocus .epi-cog::before{content:"";position:absolute;top:13px;left:13px;width:17px;height:17px;border-top:1.7px solid color-mix(in srgb,var(--epi-theme) 88%,transparent);border-left:1.7px solid color-mix(in srgb,var(--epi-theme) 88%,transparent);border-top-left-radius:6px;opacity:.95;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--epi-theme) 52%,transparent));pointer-events:none}
+/* (bottom-right cyan dot removed — read as decorative artifact) */
+/* tiny system accent lines around the focal radar (subtle HUD ticks, not gaming) */
+#sysFocus .epi-cog__viz{position:relative}
+#sysFocus .epi-cog__viz::before{content:"";position:absolute;top:6px;right:6px;width:14px;height:14px;border-top:1.5px solid color-mix(in srgb,var(--epi-theme) 56%,transparent);border-right:1.5px solid color-mix(in srgb,var(--epi-theme) 56%,transparent);border-top-right-radius:5px;opacity:.62;filter:drop-shadow(0 0 4px color-mix(in srgb,var(--epi-theme) 30%,transparent));pointer-events:none}
+#sysFocus .epi-cog__viz::after{content:"";position:absolute;bottom:6px;left:6px;width:14px;height:14px;border-bottom:1.5px solid color-mix(in srgb,var(--epi-theme) 56%,transparent);border-left:1.5px solid color-mix(in srgb,var(--epi-theme) 56%,transparent);border-bottom-left-radius:5px;opacity:.62;filter:drop-shadow(0 0 4px color-mix(in srgb,var(--epi-theme) 30%,transparent));pointer-events:none}
+/* 5) Section title — system-UI eyebrow feel (uppercase + tracking; CJK reset) */
+#sysFocus .epi-cog__head h3{text-transform:uppercase;letter-spacing:.08em;font-size:15px}
+#sysFocus .epi-cog__head h3 .zh{text-transform:none;letter-spacing:0}
+/* 2) Radar — AI cognitive scanner: brighter energy-field halo + glowing boundary ring + ambient bloom + luminous fill + breathing (+8% size) */
+#sysFocus .epi-radar{transform:scale(1.08);transform-origin:50% 51%;overflow:visible;filter:drop-shadow(0 0 24px rgba(90,140,255,.15))}
+#sysFocus .epi-radar .rhalo{fill:url(#epiRadarHalo);animation:epiHaloBreath 3.6s ease-in-out infinite}
+@keyframes epiHaloBreath{0%,100%{opacity:.62}50%{opacity:1}}
+#sysFocus .epi-radar .rring{stroke:color-mix(in srgb,var(--epi-theme) 26%,transparent);stroke-width:1;filter:drop-shadow(0 0 11px color-mix(in srgb,var(--epi-theme) 34%,transparent));opacity:.5;animation:epiHaloBreath 3.6s ease-in-out infinite}
+#sysFocus .epi-radar .rg--out{stroke:color-mix(in srgb,var(--epi-theme) 34%,rgba(20,33,50,.1));stroke-width:1.2;filter:drop-shadow(0 0 8px color-mix(in srgb,var(--epi-theme) 28%,transparent))}
+#sysFocus .epi-radar .rp{fill:url(#epiRadarGrad);stroke-width:2.5;filter:drop-shadow(0 0 16px color-mix(in srgb,var(--epi-theme) 66%,transparent)) drop-shadow(0 0 24px rgba(74,103,255,.32));animation:epiRadarBreath 3.2s ease-in-out infinite}
+@keyframes epiRadarBreath{0%,100%{opacity:.8}50%{opacity:1}}
+/* 3) Progress bar — AI metrics indicator: glass channel track + luminous energy fill + amplified glow + live light sweep */
+#sysFocus .epi-bar__track{background:repeating-linear-gradient(90deg,rgba(20,33,50,.055) 0,rgba(20,33,50,.055) 1px,transparent 1px,transparent 11%),rgba(20,33,50,.05);box-shadow:inset 0 1px 2px rgba(20,33,50,.09),inset 0 0 0 1px rgba(255,255,255,.45)}
+#sysFocus .epi-bar__fill{position:relative;overflow:hidden;background:linear-gradient(90deg,var(--epi-theme),#3FD0FF 56%,#8AF4FF);box-shadow:0 0 24px rgba(76,203,255,.52),0 0 8px rgba(76,203,255,.62),inset 0 1px 0 rgba(255,255,255,.58)}
+#sysFocus .epi-bar__fill::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.62) 50%,transparent 70%);transform:translateX(-130%);animation:epiBarSheen 3.2s ease-in-out infinite}
+@keyframes epiBarSheen{0%{transform:translateX(-130%)}55%{transform:translateX(130%)}100%{transform:translateX(130%)}}
+/* 4) Metric — floating glass badge */
+#sysFocus .epi-bar__top b{display:inline-flex;align-items:center;padding:1px 8px;border-radius:7px;background:color-mix(in srgb,var(--epi-theme) 11%,rgba(255,255,255,.62));border:1px solid color-mix(in srgb,var(--epi-theme) 28%,rgba(255,255,255,.5));box-shadow:0 0 14px color-mix(in srgb,var(--epi-theme) 26%,transparent),inset 0 1px 0 rgba(255,255,255,.72);font-variant-numeric:tabular-nums;line-height:1.5}
+/* ===== The Organizer — premium AI learning identity card (visual only · scoped) ===== */
+/* 1) card ambient glow — soft floating glass panel (kept softer than Cognitive Analysis) */
+#sysFocus .epi-id{box-shadow:0 22px 50px -22px rgba(22,42,96,.18),0 16px 44px -20px rgba(20,33,50,.13),inset 0 1px 0 rgba(255,255,255,.88),0 0 40px rgba(90,140,255,.1)}
+/* 2) icon halo — soft blue identity signal glow */
+#sysFocus .epi-id .epi-id__ic{box-shadow:0 0 20px color-mix(in srgb,var(--epi-theme) 30%,transparent),0 6px 16px -8px color-mix(in srgb,var(--epi-theme) 40%,transparent)!important}
+/* 3) title hierarchy — crisper, lifted rendering (no font/position change) */
+#sysFocus .epi-id__name{text-shadow:0 1px 1px rgba(255,255,255,.6),0 2px 10px rgba(20,33,50,.05)}
+/* 4) right-top watermark — refined identity fingerprint that dissolves into the corner */
+#sysFocus .epi-id__brain{opacity:.1;-webkit-mask-image:radial-gradient(125% 125% at 100% 0%,#000 28%,transparent 72%);mask-image:radial-gradient(125% 125% at 100% 0%,#000 28%,transparent 72%)}
+#sysFocus .epi-id__brain svg{stroke-width:1}
+/* 5) trait chips — glass identity chips (size/position unchanged) */
+#sysFocus .epi-id__traits span{background:linear-gradient(180deg,rgba(255,255,255,.82),color-mix(in srgb,var(--epi-theme) 8%,rgba(255,255,255,.55)));border:1px solid color-mix(in srgb,var(--epi-theme) 32%,rgba(255,255,255,.7));box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 4px 12px -8px color-mix(in srgb,var(--epi-theme) 42%,transparent),0 0 12px color-mix(in srgb,var(--epi-theme) 12%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+/* radar micro-detail — center energy core + outer scan ticks + glowing data nodes */
+#sysFocus .epi-radar .rcore{fill:#fff;filter:drop-shadow(0 0 7px color-mix(in srgb,var(--epi-theme) 92%,#fff));opacity:.95}
+#sysFocus .epi-radar .rtick{fill:color-mix(in srgb,var(--epi-theme) 52%,transparent);opacity:.62}
+#sysFocus .epi-radar .rdot{fill:#fff;stroke:var(--epi-theme);stroke-width:1.5;filter:drop-shadow(0 0 5px color-mix(in srgb,var(--epi-theme) 78%,transparent));animation:epiNodeGlow 3.2s ease-in-out infinite}
+@keyframes epiNodeGlow{0%,100%{opacity:.82}50%{opacity:1}}
+/* brain icon — AI "live" status indicator dot */
+#sysFocus .epi-cog__ic{position:relative}
+#sysFocus .epi-cog__ic::after{content:"";position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:#2EE6C6;border:1.6px solid rgba(255,255,255,.92);box-shadow:0 0 9px rgba(46,230,198,.7);transform-origin:center;animation:epiLive 3s ease-in-out infinite}
+@keyframes epiLive{0%,100%{opacity:.65;transform:scale(1);box-shadow:0 0 6px rgba(46,230,198,.5)}50%{opacity:1;transform:scale(1.08);box-shadow:0 0 13px rgba(46,230,198,.95)}}
+/* TOUCH EPI Report — premium AI action gateway (glass depth + soft blue glow + ultra-subtle idle sweep) · scoped */
+#sysFocus .epi-cta{position:relative;overflow:hidden;opacity:.95;background:linear-gradient(180deg,color-mix(in srgb,var(--epi-theme) 10%,rgba(255,255,255,.72)),color-mix(in srgb,var(--epi-theme) 5%,rgba(255,255,255,.5)));border:1px solid color-mix(in srgb,var(--epi-theme) 30%,rgba(255,255,255,.7));-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 0 0 1px rgba(255,255,255,.4),0 6px 16px -10px color-mix(in srgb,var(--epi-theme) 42%,transparent),0 0 20px color-mix(in srgb,var(--epi-theme) 14%,transparent)}
+#sysFocus .epi-cta::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.42) 50%,transparent 62%);transform:translateX(-140%);animation:epiCtaSweep 4.6s ease-in-out infinite;pointer-events:none}
+@keyframes epiCtaSweep{0%{transform:translateX(-140%)}45%{transform:translateX(140%)}100%{transform:translateX(140%)}}
+#sysFocus .epi-cta>span,#sysFocus .epi-cta>svg{position:relative;z-index:1}
+#sysFocus .epi-cta:hover{opacity:1;transform:translateY(-2px);background:linear-gradient(180deg,color-mix(in srgb,var(--epi-theme) 16%,rgba(255,255,255,.8)),color-mix(in srgb,var(--epi-theme) 9%,rgba(255,255,255,.6)));border-color:color-mix(in srgb,var(--epi-theme) 48%,rgba(255,255,255,.7));box-shadow:inset 0 1px 0 rgba(255,255,255,.92),inset 0 0 0 1px rgba(255,255,255,.45),0 12px 26px -12px color-mix(in srgb,var(--epi-theme) 52%,transparent),0 0 30px color-mix(in srgb,var(--epi-theme) 22%,transparent)}
+#sysFocus .epi-cta:active{transform:translateY(-1px)}
+/* ===== MIRROR mini dock — premium AI module navigator (visual only · scoped) ===== */
+/* 1) glass depth — floating glass panel with shadow separation + deeper blur */
+#sysFocus .focus-mini{-webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);box-shadow:0 22px 52px -18px rgba(124,92,255,.44),0 6px 18px -10px rgba(20,33,50,.16),inset 0 1px 0 rgba(255,255,255,.98),inset 0 0 0 1px rgba(255,255,255,.4)}
+/* 3) internal lighting — soft inner reflection on idle tiles */
+#sysFocus .focus-mini__tile{box-shadow:inset 0 1px 0 rgba(255,255,255,.92),inset 0 -7px 11px -9px color-mix(in srgb,var(--c) 24%,transparent)}
+/* 4) hover response — refined lift + soft module glow */
+#sysFocus .focus-mini__item:hover .focus-mini__tile{transform:translateY(-3px);box-shadow:0 9px 20px -8px color-mix(in srgb,var(--c) 42%,transparent),inset 0 1px 0 rgba(255,255,255,.95),inset 0 -7px 11px -9px color-mix(in srgb,var(--c) 26%,transparent)}
+/* 2) active module focus — stronger glow + slightly more focus + soft breathing */
+#sysFocus .focus-mini__item.is-active{transform:translateY(-4px) scale(1.13)}
+#sysFocus .focus-mini__item.is-active .focus-mini__tile{box-shadow:0 11px 26px -6px color-mix(in srgb,var(--c) 54%,transparent),0 0 22px color-mix(in srgb,var(--c) 30%,transparent),inset 0 1px 0 rgba(255,255,255,.7);animation:miniActiveBreath 3.4s ease-in-out infinite}
+@keyframes miniActiveBreath{0%,100%{box-shadow:0 11px 26px -6px color-mix(in srgb,var(--c) 50%,transparent),0 0 16px color-mix(in srgb,var(--c) 22%,transparent),inset 0 1px 0 rgba(255,255,255,.7)}50%{box-shadow:0 13px 30px -6px color-mix(in srgb,var(--c) 58%,transparent),0 0 28px color-mix(in srgb,var(--c) 36%,transparent),inset 0 1px 0 rgba(255,255,255,.7)}}
+@media (prefers-reduced-motion:reduce){#sysFocus .epi-radar .rp,#sysFocus .epi-radar .rhalo,#sysFocus .epi-radar .rring,#sysFocus .epi-radar .rdot,#sysFocus .epi-cog__ic::after,#sysFocus .epi-cta::before,#sysFocus .focus-mini__item.is-active .focus-mini__tile{animation:none}#sysFocus .epi-bar__fill::after{animation:none;opacity:0}}
 /* ============ PRICING (Your Investment) — Block 1: data + cards + advisor editor ============ */
 .price-app{margin-top:6px}
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
@@ -4552,7 +4745,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         what:{en:"An online system to help you learn between classes.", zh:"课堂之外支持学习的线上系统。"},
         does:{en:"Check progress, review lessons, and read feedback anytime.", zh:"随时看进度、复习教材、查看老师反馈。"},
         helps:{en:"You keep learning after class — never on your own.", zh:"课后也能持续学习，不盲目练。"}},
-      {t:"Class Review", zh:"课堂复盘", ic:"clipboard", col:"#14A2B8", short:"Review",
+      {t:"Class Review", zh:"课堂复盘", ic:"clipboard", col:"#189EC4", short:"Review",
         concept:"Consolidate, then sharpen your focus. 先巩固，再聚焦下一步。", phase:"During the course · 课程中", focus:"Consolidation",
         what:{en:"A review after your first 24 classes.", zh:"完成前 24 节课后的系统复盘。"},
         does:{en:"Look back with your teacher and find what to improve.", zh:"和老师一起回顾收获、找出强项与待加强处。"},
@@ -4568,13 +4761,14 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         does:{en:"Look back at your journey and test your speaking.", zh:"回顾整段旅程，并进行口语测评。"},
         helps:{en:"You see your growth and set your next goal.", zh:"确认成长，并建议下一程度或下一目标。"}}
     ];
+    var SYS_MAPCOL=["#2E9E50","#2A5BD7","#7C5CFF","#E6A81E","#1F9FE6","#14A2B8","#3B6FE0","#E0303B"]; // journey map / mini-dock identity colors (kept colorful; focus pages stay unified blue/cyan)
     var cur=0;
 
     // ----- build the journey map: winding path + floating icon cards + summit flag -----
     var NODES_WIDE=[[7,76],[19,50],[32,70],[45,38],[57,64],[69,32],[81,58],[93,26]];
     var NODES_TALL=[[32,8],[68,20],[32,32],[68,44],[32,56],[68,68],[32,80],[67,92]];
     var nodesHTML=SYS.map(function(s,i){
-      return '<button class="sys-node" data-s="'+i+'" style="--c:'+s.col+'">'+
+      return '<button class="sys-node" data-s="'+i+'" style="--c:'+(SYS_MAPCOL[i]||s.col)+'">'+
         '<span class="sys-node__dot"><span class="ic">'+sv(s.ic)+'</span><span class="n">'+(i+1)+'</span></span>'+
         '<span class="sys-node__t">'+s.t+'<span class="zh">'+s.zh+'</span></span>'+
       '</button>';
@@ -4846,12 +5040,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     function radarPt(i,rad){var a=-Math.PI/2+i*2*Math.PI/5;return [100+rad*Math.cos(a),102+rad*Math.sin(a)];}
     function radarPoly(vals){return vals.map(function(v,i){var p=radarPt(i,70*Math.max(8,Math.min(100,v))/100);return p[0].toFixed(1)+","+p[1].toFixed(1);}).join(" ");}
     function buildRadar(){
-      var rings=[0.35,0.7,1].map(function(lv){var p=[];for(var i=0;i<5;i++){var q=radarPt(i,70*lv);p.push(q[0].toFixed(1)+","+q[1].toFixed(1));}return '<polygon class="rg" points="'+p.join(" ")+'"/>';}).join("");
+      var rings=[0.35,0.7,1].map(function(lv){var p=[];for(var i=0;i<5;i++){var q=radarPt(i,70*lv);p.push(q[0].toFixed(1)+","+q[1].toFixed(1));}return '<polygon class="rg'+(lv===1?' rg--out':'')+'" points="'+p.join(" ")+'"/>';}).join("");
       var axes="",labels="";
       for(var i=0;i<5;i++){var e=radarPt(i,70);axes+='<line class="ra" x1="100" y1="102" x2="'+e[0].toFixed(1)+'" y2="'+e[1].toFixed(1)+'"/>';
         var l=radarPt(i,86),ax=Math.abs(l[0]-100)<6?"middle":(l[0]<100?"end":"start"),dy=l[1]<92?-2:(l[1]>112?9:3);
         labels+='<text class="rl" x="'+l[0].toFixed(1)+'" y="'+(l[1]+dy).toFixed(1)+'" text-anchor="'+ax+'">'+RADAR_DIMS[i].en+'</text>';}
-      return '<svg class="epi-radar" viewBox="0 0 200 200">'+rings+axes+labels+'<polygon class="rp" id="epiRadar" points=""/></svg>';
+      var ticks="";for(var i=0;i<5;i++){var tp=radarPt(i,70);ticks+='<circle class="rtick" cx="'+tp[0].toFixed(1)+'" cy="'+tp[1].toFixed(1)+'" r="1.5"/>';}
+      return '<svg class="epi-radar" viewBox="0 0 200 200"><defs><linearGradient id="epiRadarGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--epi-theme)" stop-opacity="0.52"/><stop offset="1" stop-color="var(--epi-theme)" stop-opacity="0.07"/></linearGradient><radialGradient id="epiRadarHalo" cx="50%" cy="51%" r="72%"><stop offset="0" stop-color="var(--epi-theme)" stop-opacity="0.32"/><stop offset="0.35" stop-color="var(--epi-theme)" stop-opacity="0.15"/><stop offset="0.7" stop-color="var(--epi-theme)" stop-opacity="0.05"/><stop offset="1" stop-color="var(--epi-theme)" stop-opacity="0"/></radialGradient></defs><circle class="rhalo" cx="100" cy="102" r="90"/><circle class="rring" cx="100" cy="102" r="74" fill="none"/>'+rings+axes+ticks+labels+'<polygon class="rp" id="epiRadar" points=""/><g id="epiDots"></g><circle class="rcore" cx="100" cy="102" r="2.3"/></svg>';
     }
     function barsHTML(vals){return vals.map(function(v,i){return '<div class="epi-bar"><div class="epi-bar__top"><span>'+RADAR_DIMS[i].en+' <span class="zh">'+RADAR_DIMS[i].zh+'</span></span><b>'+v+'</b></div><div class="epi-bar__track"><span class="epi-bar__fill" style="width:'+v+'%"></span></div></div>';}).join("");}
     // select a Learning Family -> retheme the WHOLE page + update identity + active dot
@@ -4864,6 +5059,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       fbody.querySelector("#epiIdTraits").innerHTML=f.identity.split(/\.\s*/).filter(Boolean).map(function(w){return '<span>'+w+'</span>';}).join("");
       var rv=RADAR[f.id]||[60,60,60,60,60];
       var poly=fbody.querySelector("#epiRadar"); if(poly)poly.setAttribute("points",radarPoly(rv));
+      var dots=fbody.querySelector("#epiDots"); if(dots)dots.innerHTML=rv.map(function(v,i){var p=radarPt(i,70*Math.max(8,Math.min(100,v))/100);return '<circle class="rdot" cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="2.4"/>';}).join("");
       var bars=fbody.querySelector("#epiBars"); if(bars)bars.innerHTML=barsHTML(rv);
       $$(".epi-dot",fbody).forEach(function(d,di){d.classList.toggle("is-active",di===fi);});
       var cta=fbody.querySelector("#epiCta"); if(cta&&f.url)cta.setAttribute("href",f.url);
@@ -5013,8 +5209,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       var visionList=GOAL.vision.map(function(v){return '<li><span class="goal-rchk">'+sv("check")+'</span><span>'+v.en+'<span class="zh">'+v.zh+'</span></span></li>';}).join("");
       var focusList=GOAL.focus.map(function(f){return '<div class="goal-chip"><span class="goal-chip__ic">'+sv(f.ic)+'</span><span class="goal-chip__t">'+f.en+'<span class="zh">'+f.zh+'</span></span></div>';}).join("");
       var future=GOAL.future.map(function(f){return '<div class="goal-fnode"><span class="goal-fnode__dot"></span><div class="goal-fnode__card"><div class="goal-fnode__when">'+f.when.en+' <span class="zh">'+f.when.zh+'</span></div><div class="goal-fnode__can">'+f.can.en+' <span class="zh">'+f.can.zh+'</span></div></div></div>';}).join("");
-      return '<div class="goal">'+
+      return '<div class="goal goal--m2">'+
         mirrorHero(2,"See Your Future Self","看见未来的自己","Future Learning Blueprint","未来学习蓝图","See the kind of English speaker you want to be.","看见你未来想成为怎样的英语使用者。")+
+        '<div class="goal-pstrip"><span class="goal-pstrip__dot"></span><span class="goal-pstrip__t">Projection Active <span class="zh">投射已启动</span></span><span class="goal-pstrip__sep"></span><span class="goal-pstrip__s">Future Learning Blueprint Loaded <span class="zh">未来学习蓝图已载入</span></span></div>'+
         '<div class="goal-body">'+
           // Today -> Future self reflection (no levels / scores)
           '<div class="goal-reflect">'+
@@ -6239,7 +6436,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
     // build the bottom mini roadmap (its own crisp glass element)
     fmini.innerHTML=SYS.map(function(s,i){
-      return '<button class="focus-mini__item" data-s="'+i+'" style="--c:'+s.col+'"><span class="focus-mini__tile">'+sv(s.ic)+'</span><span class="focus-mini__lbl">'+s.short+'</span></button>';
+      return '<button class="focus-mini__item" data-s="'+i+'" style="--c:'+(SYS_MAPCOL[i]||s.col)+'"><span class="focus-mini__tile">'+sv(s.ic)+'</span><span class="focus-mini__lbl">'+s.short+'</span></button>';
     }).join("");
 
     // open / switch — never navigate away, never scroll the page
