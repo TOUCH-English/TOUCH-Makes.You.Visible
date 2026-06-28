@@ -909,16 +909,32 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .s5link:hover .s5link__arw{transform:translateX(2px)}
 .s5link__name{flex:1 1 auto;min-width:0}
 /* Quick Access · premium white-based soft-glass module icons (one consistent design language) */
-.s5link__ic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(120% 82% at 50% 6%,rgba(255,255,255,.95),transparent 56%),linear-gradient(158deg,#fff,color-mix(in srgb,var(--mic) 13%,#fff) 58%,color-mix(in srgb,var(--mic) 26%,#fff));border:1px solid rgba(255,255,255,.92);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.96),inset 0 -5px 8px -5px color-mix(in srgb,var(--mic) 28%,transparent),0 5px 9px -5px color-mix(in srgb,var(--mic) 24%,transparent),0 9px 14px -9px rgba(18,34,64,.2);transition:transform .16s ease,box-shadow .16s ease}
+.s5link__ic{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(128% 78% at 50% -10%,rgba(255,255,255,.99),rgba(255,255,255,0) 56%),radial-gradient(120% 116% at 50% 118%,color-mix(in srgb,var(--mic) 30%,#fff),transparent 60%),linear-gradient(158deg,#fff 4%,color-mix(in srgb,var(--mic) 8%,#fff) 46%,color-mix(in srgb,var(--mic) 22%,#fff));border:1px solid rgba(255,255,255,.96);box-shadow:inset 0 1.8px 1px rgba(255,255,255,1),inset 0 -7px 10px -7px color-mix(in srgb,var(--mic) 42%,transparent),inset 0 0 0 1px rgba(255,255,255,.5),0 2px 4px -2px color-mix(in srgb,var(--mic) 22%,transparent),0 8px 14px -7px color-mix(in srgb,var(--mic) 30%,transparent),0 17px 26px -13px rgba(18,34,64,.28);transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s ease}
 .s5link__ic::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,0) 46%);pointer-events:none;z-index:1}
-.s5link__ic svg{width:18px;height:18px;stroke:color-mix(in srgb,var(--mic) 80%,#26354c);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:2;opacity:1;transition:none}
-.s5link:hover .s5link__ic{transform:translateY(-1px);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.97),inset 0 -5px 8px -5px color-mix(in srgb,var(--mic) 34%,transparent),0 7px 12px -5px color-mix(in srgb,var(--mic) 32%,transparent),0 12px 18px -10px rgba(18,34,64,.24)}
+.s5link__ic svg{width:18px;height:18px;stroke:color-mix(in srgb,var(--mic) 82%,#24344e);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:2;opacity:1;transition:none;filter:drop-shadow(0 1px 1px rgba(20,40,70,.14))}
+.s5link:hover .s5link__ic{transform:translateY(-2px) scale(1.03);box-shadow:inset 0 1.8px 1px rgba(255,255,255,1),inset 0 -7px 10px -7px color-mix(in srgb,var(--mic) 46%,transparent),inset 0 0 0 1px rgba(255,255,255,.55),0 4px 7px -3px color-mix(in srgb,var(--mic) 30%,transparent),0 12px 18px -7px color-mix(in srgb,var(--mic) 42%,transparent),0 22px 30px -14px rgba(18,34,64,.3)}
 /* ===== Learning System · connected-ecosystem flow (subtle static routing + gentle pulse; scoped to this page via :has(.s5links)) ===== */
 #sysFocus .focus-card:has(.s5links) .focus-main{position:relative}
 #sysFocus .focus-card:has(.s5links) .focus-block{position:relative;z-index:1}
 #sysFocus .focus-card:has(.s5links) .focus-main::before{content:"";position:absolute;left:4px;top:5px;bottom:11px;width:2px;border-radius:2px;z-index:0;pointer-events:none;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 6%,transparent),color-mix(in srgb,var(--c) 34%,transparent) 16%,color-mix(in srgb,var(--c) 13%,transparent) 50%,color-mix(in srgb,var(--c) 30%,transparent) 84%,color-mix(in srgb,var(--c) 5%,transparent));background-size:100% 230%;animation:lsSpineFlow 6.5s ease-in-out infinite;opacity:.62}
 @keyframes lsSpineFlow{0%{background-position:0 0}50%{background-position:0 100%}100%{background-position:0 0}}
 @media (prefers-reduced-motion:reduce){#sysFocus .focus-card:has(.s5links) .focus-main::before{animation:none}}
+/* connected-ecosystem routing beneath the Quick Access modules (static, directional, premium) */
+#sysFocus .focus-card:has(.s5links) .s5links{position:relative}
+#sysFocus .focus-card:has(.s5links) .s5link{position:relative;z-index:1}
+#sysFocus .focus-card:has(.s5links) .s5flow{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.92}
+#sysFocus .focus-card:has(.s5links) .s5flow line{stroke:url(#s5fg);stroke-width:1.5;vector-effect:non-scaling-stroke;stroke-linecap:round}
+#sysFocus .focus-card:has(.s5links) .s5flow .s5flow-h{stroke:color-mix(in srgb,var(--c) 24%,transparent)}
+#sysFocus .focus-card:has(.s5links) .s5flow .s5flow-node{stroke:color-mix(in srgb,var(--c) 52%,transparent);stroke-width:5;stroke-linecap:round;animation:s5node 3.8s ease-in-out infinite}
+#sysFocus .focus-card:has(.s5links) .s5flow .s5flow-node:nth-of-type(6){animation-delay:.9s}
+#sysFocus .focus-card:has(.s5links) .s5flow .s5flow-node:nth-of-type(7){animation-delay:.45s}
+#sysFocus .focus-card:has(.s5links) .s5flow .s5flow-node:nth-of-type(8){animation-delay:1.3s}
+#sysFocus .focus-card:has(.s5links) .s5flow .s5flow-pulse{stroke:color-mix(in srgb,var(--c) 58%,transparent);stroke-width:2.6;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:.7}
+@keyframes s5node{0%,100%{stroke-opacity:.5}50%{stroke-opacity:1}}
+@media(prefers-reduced-motion:reduce){#sysFocus .focus-card:has(.s5links) .s5flow .s5flow-node{animation:none}#sysFocus .focus-card:has(.s5links) .s5flow .s5flow-pulse{display:none}}
+#sysFocus .focus-card:has(.s5links) .s5flow .g0{stop-color:var(--c);stop-opacity:.1}
+#sysFocus .focus-card:has(.s5links) .s5flow .g1{stop-color:var(--c);stop-opacity:.58}
+#sysFocus .focus-card:has(.s5links) .s5flow .g2{stop-color:var(--c);stop-opacity:.1}
 /* focus-gain icon — match the white-based glass language (scoped to this page) */
 #sysFocus .focus-card:has(.s5links) .focus-gain__ic{position:relative;overflow:hidden;color:color-mix(in srgb,var(--c) 80%,#26354c)!important;background:radial-gradient(120% 82% at 50% 6%,rgba(255,255,255,.93),transparent 56%),linear-gradient(158deg,#fff,color-mix(in srgb,var(--c) 13%,#fff) 58%,color-mix(in srgb,var(--c) 26%,#fff))!important;border:1px solid rgba(255,255,255,.9)!important;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.96),inset 0 -5px 8px -5px color-mix(in srgb,var(--c) 28%,transparent),0 5px 9px -5px color-mix(in srgb,var(--c) 24%,transparent),0 9px 14px -9px rgba(18,34,64,.2)!important}
 #sysFocus .focus-card:has(.s5links) .focus-gain__ic::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,0) 46%);pointer-events:none;z-index:1}
@@ -938,7 +954,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .s5add{display:inline-flex;align-items:center;gap:7px;font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--c);background:color-mix(in srgb,var(--c) 9%,#fff);border:1px dashed color-mix(in srgb,var(--c) 35%,#fff);border-radius:11px;padding:9px 14px;cursor:pointer;transition:.15s}
 .s5add:hover{background:color-mix(in srgb,var(--c) 15%,#fff)}
 .s5add svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-@media(max-width:600px){.s5links{grid-template-columns:1fr}}
+@media(max-width:600px){.s5links{grid-template-columns:1fr}#sysFocus .focus-card:has(.s5links) .s5flow .s5flow-h,#sysFocus .focus-card:has(.s5links) .s5flow .s5flow-node,#sysFocus .focus-card:has(.s5links) .s5flow .s5flow-pulse,#sysFocus .focus-card:has(.s5links) .s5flow line:nth-of-type(2){display:none}}
 .adv-field{display:block;margin-bottom:13px}
 .adv-field span{display:block;font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--ink);margin-bottom:6px}
 .adv-field input{width:100%;font-family:var(--body);font-size:13px;color:var(--ink);padding:10px 13px;border-radius:12px;
@@ -1662,13 +1678,59 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .team-modal__x{position:absolute;top:13px;right:13px;z-index:4;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.72);cursor:pointer;display:grid;place-items:center;color:var(--muted);transition:transform .15s,background .15s,color .15s}
 .team-modal__x:hover{transform:scale(1.06);background:rgba(255,255,255,.94);color:var(--ink)}
 .team-modal__x svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.team-modal__intro{flex:0 0 264px;padding:30px 26px;display:flex;flex-direction:column;justify-content:center;
-  background:linear-gradient(170deg, color-mix(in srgb,var(--blue-bright) 12%,#fff), color-mix(in srgb,var(--blue) 7%,#fff));border-right:1px solid var(--line)}
+.team-modal__intro{position:relative;z-index:0;overflow:hidden;flex:0 0 264px;padding:30px 26px;display:flex;flex-direction:column;justify-content:center;
+  background:linear-gradient(170deg,#fbfcfe,#f5f7fb);border-right:1px solid var(--line)}
+/* hero focus glow — lifts the TOUCH Team title area (subtle depth) */
+.team-modal__intro::before{content:"";position:absolute;left:-4%;top:20%;width:84%;height:40%;z-index:-1;pointer-events:none;background:radial-gradient(52% 44% at 30% 42%, rgba(255,255,255,.72), transparent 72%),radial-gradient(62% 52% at 28% 44%, color-mix(in srgb,#4F9BCF 9%,transparent), transparent 74%);opacity:.9}
 .team-modal__eyebrow{font-family:var(--display);font-weight:800;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--blue-bright)}
 .team-modal__eyebrow .zh{letter-spacing:.02em}
-.team-modal__title{font-family:var(--display);font-weight:800;font-size:26px;color:var(--ink);letter-spacing:-.02em;margin:7px 0 0}
+.team-modal__title{font-family:var(--display);font-weight:800;font-size:26px;color:var(--ink);letter-spacing:-.022em;margin:7px 0 0;text-shadow:0 1px 0 rgba(255,255,255,.7),0 2px 10px rgba(20,42,84,.05)}
 .team-modal__lead{font-size:13px;color:var(--muted);line-height:1.6;margin:11px 0 0}
 .team-modal__lead b{color:var(--ink);font-weight:700}
+.team-modal__support{font-size:12px;color:var(--ink);line-height:1.62;margin:10px 0 0;font-weight:600}
+.team-modal__support .zh{color:var(--muted);font-weight:400}
+.team-modal__stats{display:flex;gap:8px;margin-top:18px}
+.team-modal__stat{flex:1;min-width:0;text-align:center;padding:10px 4px;border-radius:13px;background:linear-gradient(165deg,rgba(255,255,255,.82),color-mix(in srgb,var(--sc,var(--blue-bright)) 7%,rgba(255,255,255,.5)));border:1px solid color-mix(in srgb,var(--sc,var(--blue-bright)) 18%,rgba(255,255,255,.8));box-shadow:0 8px 18px -14px color-mix(in srgb,var(--sc,var(--blue-bright)) 50%,transparent)}
+.team-modal__stat b{display:block;font-family:var(--display);font-weight:800;font-size:19px;line-height:1;color:color-mix(in srgb,var(--sc,var(--blue-bright)) 70%,#1a2a44)}
+.team-modal__stat span{display:block;font-size:8px;font-weight:700;letter-spacing:.01em;text-transform:uppercase;color:var(--muted);margin-top:4px;white-space:nowrap}
+.team-modal__net{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.3;pointer-events:none}
+.team-modal__net line{stroke:color-mix(in srgb,#4F9BCF 23%,transparent);stroke-width:1}
+.team-modal__net circle{fill:color-mix(in srgb,#4F9BCF 46%,transparent);filter:drop-shadow(0 0 2.6px color-mix(in srgb,#4F9BCF 42%,transparent))}
+.team-modal__net .tmnet-core{fill:color-mix(in srgb,#4F9BCF 66%,transparent)}
+.team-modal__net .tmnet-nodes circle{animation:tmnetPulse 5.6s ease-in-out infinite}
+.team-modal__net .tmnet-nodes circle:nth-child(2){animation-delay:.5s}
+.team-modal__net .tmnet-nodes circle:nth-child(3){animation-delay:1s}
+.team-modal__net .tmnet-nodes circle:nth-child(4){animation-delay:1.5s}
+.team-modal__net .tmnet-nodes circle:nth-child(5){animation-delay:2s}
+.team-modal__net .tmnet-core{animation:tmnetCore 5.6s ease-in-out infinite}
+@keyframes tmnetPulse{0%,100%{opacity:.5}50%{opacity:.92}}
+@keyframes tmnetCore{0%,100%{opacity:.72;r:5}50%{opacity:.96;r:5.6}}
+.team-modal__net .tmnet-ripple{fill:none;stroke:color-mix(in srgb,#4F9BCF 36%,transparent);stroke-width:1;opacity:0;animation:tmnetRipple 6.2s ease-out infinite}
+@keyframes tmnetRipple{0%{r:6;opacity:.5}70%{opacity:.12}100%{r:62;opacity:0}}
+@media(prefers-reduced-motion:reduce){.team-modal__net .tmnet-nodes circle,.team-modal__net .tmnet-core,.team-modal__net .tmnet-ripple{animation:none;opacity:0}.team-modal__net .tmnet-nodes circle{opacity:.5}.team-modal__net .tmnet-core{opacity:.7}}
+@media(prefers-reduced-motion:reduce){.team-box::after{animation:none;opacity:.5}.team-grid::before{animation:none;opacity:.06}}
+.team-hovercard{position:fixed;z-index:60;min-width:172px;max-width:236px;padding:12px 14px;border-radius:14px;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .16s ease,transform .16s ease;background:linear-gradient(168deg,rgba(255,255,255,.97),rgba(255,255,255,.9));-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);border:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 24%,rgba(255,255,255,.9));box-shadow:0 22px 46px -20px rgba(14,36,86,.52),inset 0 1px 0 rgba(255,255,255,.96)}
+.team-hovercard.is-shown{opacity:1;transform:translateY(0)}
+.team-hovercard::after{content:"";position:absolute;left:50%;bottom:-6px;width:11px;height:11px;transform:translateX(-50%) rotate(45deg);background:rgba(255,255,255,.95);border-right:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 24%,rgba(255,255,255,.9));border-bottom:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 24%,rgba(255,255,255,.9))}
+.team-hovercard.below::after{top:-6px;bottom:auto;border-right:0;border-bottom:0;border-left:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 24%,rgba(255,255,255,.9));border-top:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 24%,rgba(255,255,255,.9))}
+.team-hovercard__nm{font-family:var(--display);font-weight:800;font-size:14px;color:var(--ink);line-height:1.2}
+.team-hovercard__role{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.35}
+
+
+
+.team-hovercard__spec{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--ink);margin-top:11px;font-weight:600;line-height:1.3}
+.team-hovercard__spec svg{width:14px;height:14px;flex:none;stroke:var(--gc,var(--blue-bright));fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.team-hovercard{min-width:208px;max-width:248px}
+.team-hovercard__top{display:flex;align-items:center;gap:11px}
+.team-hovercard__av{position:relative;flex:none;width:42px;height:42px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:radial-gradient(82% 82% at 32% 24%,rgba(255,255,255,.97),color-mix(in srgb,var(--gc,var(--blue-bright)) 8%,rgba(241,244,249,.6)));border:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 14%,rgba(255,255,255,.9))}
+.team-hovercard__avph{font-family:var(--display);font-weight:800;font-size:16px;color:var(--blue);opacity:.7}
+.team-hovercard__av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%}
+.team-hovercard__av.has-photo .team-hovercard__avph{display:none}
+.team-hovercard__hd{min-width:0}
+.team-hovercard__arch{font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:color-mix(in srgb,var(--gc,var(--blue-bright)) 62%,#5a6677);margin-top:10px}
+.team-hovercard__div{height:1px;background:linear-gradient(90deg,var(--line),transparent);margin:10px 0 9px}
+.team-hovercard__tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.team-hovercard__tags span{font-size:10px;font-weight:600;color:#54607a;padding:3px 8px;border-radius:999px;background:rgba(247,249,252,.9);border:1px solid var(--line);white-space:nowrap}
 .team-modal__exp{position:relative;isolation:isolate;display:flex;align-items:center;gap:14px;margin-top:24px;padding:16px 18px;border-radius:18px;
   background:linear-gradient(165deg, rgba(255,255,255,.86), color-mix(in srgb,var(--blue-bright) 6%, rgba(255,255,255,.56)));
   -webkit-backdrop-filter:blur(18px) saturate(155%);backdrop-filter:blur(18px) saturate(155%);
@@ -1677,11 +1739,11 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   transition:transform .26s cubic-bezier(.2,.8,.2,1),box-shadow .26s,border-color .26s}
 .team-modal__exp::before{content:"";position:absolute;inset:-30% -20%;z-index:-1;border-radius:36px;pointer-events:none;
   background:radial-gradient(58% 70% at 26% 30%, color-mix(in srgb,var(--blue-bright) 32%,transparent), transparent 70%),radial-gradient(54% 64% at 88% 84%, color-mix(in srgb,#7CC4FF 36%,transparent), transparent 72%);
-  filter:blur(20px);opacity:.5;transition:opacity .3s}
+  filter:blur(20px);opacity:.28;transition:opacity .3s}
 .team-modal__exp::after{content:"";position:absolute;inset:0;border-radius:18px;padding:1px;pointer-events:none;z-index:1;
   background:linear-gradient(150deg, color-mix(in srgb,var(--blue-bright) 50%,transparent), transparent 44%, transparent 62%, color-mix(in srgb,#7CC4FF 44%,transparent));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
-  opacity:.6;transition:opacity .26s}
+  opacity:.4;transition:opacity .26s}
 .team-modal__exp:hover{transform:translateY(-2px);
   box-shadow:0 24px 50px -24px rgba(14,36,86,.4),0 0 44px -6px color-mix(in srgb,var(--blue-bright) 32%,transparent),inset 0 1px 0 rgba(255,255,255,.98);
   border-color:color-mix(in srgb,var(--blue-bright) 22%,rgba(255,255,255,.85))}
@@ -1696,9 +1758,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .team-group__name{font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:.04em;color:var(--ink)}
 /* clean white glass team boxes — colour appears only as a soft hover glow */
 .team-box{position:relative;border-radius:20px;padding:15px 17px 17px;
-  background:linear-gradient(165deg, rgba(255,255,255,.74), color-mix(in srgb,var(--blue-bright) 5%, rgba(247,250,255,.52)));
-  -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
-  border:1px solid rgba(255,255,255,.74);box-shadow:0 14px 34px -26px rgba(14,36,86,.3),inset 0 1px 0 rgba(255,255,255,.9);
+  background:linear-gradient(165deg, rgba(255,255,255,.85), color-mix(in srgb,var(--gc,var(--blue-bright)) 4%, rgba(250,251,253,.55)));
+  -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+  border:1px solid rgba(255,255,255,.82);box-shadow:0 18px 40px -30px rgba(14,36,86,.22),0 4px 12px -10px rgba(14,36,86,.1),inset 0 1px 0 rgba(255,255,255,.92);
   transition:transform .26s cubic-bezier(.2,.8,.2,1),box-shadow .26s,border-color .26s,background .26s}
 .team-box::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1px;pointer-events:none;z-index:2;
   background:linear-gradient(150deg, color-mix(in srgb,var(--gc,var(--blue-bright)) 55%,transparent), transparent 45%, transparent 60%, color-mix(in srgb,var(--gc,var(--blue-bright)) 28%,transparent));
@@ -1710,30 +1772,48 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   border-color:color-mix(in srgb,var(--gc,var(--blue-bright)) 18%,rgba(255,255,255,.74))}
 .team-box:hover::before{opacity:.55}
 .team-box+.team-box{margin-top:16px}
-.team-box__head{margin-bottom:13px;padding-right:42px}
-.team-box__name{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.03em;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
-.team-box__name::before{content:"";width:7px;height:7px;border-radius:50%;background:#c4d2e8;box-shadow:0 0 0 3px rgba(196,210,232,.22);transition:background .26s,box-shadow .26s}
+/* connected-ecosystem · subtle route linking team sections */
+.team-box::after{content:"";position:absolute;left:36px;bottom:-16px;width:12px;height:16px;transform:translateX(-50%);z-index:0;pointer-events:none;background-image:linear-gradient(180deg,color-mix(in srgb,#4F9BCF 0%,transparent),color-mix(in srgb,#4F9BCF 28%,transparent) 26%,color-mix(in srgb,#4F9BCF 28%,transparent) 74%,color-mix(in srgb,#4F9BCF 0%,transparent)),radial-gradient(circle at 50% 50%,color-mix(in srgb,#4F9BCF 58%,transparent) 0 1.7px,transparent 2.6px);background-size:1.6px 100%,100% 100%;background-position:center,center;background-repeat:no-repeat,no-repeat;opacity:.6;animation:teamEcoNode 3.6s ease-in-out infinite;transition:filter .42s ease}
+.team-box:last-child::after{display:none}
+@keyframes teamEcoNode{0%,100%{opacity:.42}50%{opacity:.82}}
+.team-box__head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-right:42px}
+.team-box__ic{flex:none;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(157deg, color-mix(in srgb,var(--o1,#9CEBFF) 92%,#fff), var(--o1,#9CEBFF) 30%, var(--o2,#2B9BEA) 80%, color-mix(in srgb,var(--o2,#2B9BEA) 80%,#0a2a4a));border:1px solid rgba(255,255,255,.7);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.92),inset 0 -7px 11px -7px color-mix(in srgb,var(--o2,#2B9BEA) 60%,transparent),inset 0 0 0 1px rgba(255,255,255,.3),0 8px 14px -7px color-mix(in srgb,var(--o2,#2B9BEA) 50%,transparent),0 15px 22px -12px rgba(18,34,64,.34);transition:box-shadow .32s ease,transform .3s ease}
+.team-box__ic::before{content:"";position:absolute;left:7%;right:7%;top:5%;height:52%;border-radius:11px 11px 64% 64%/11px 11px 46% 46%;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.32) 54%,rgba(255,255,255,0));pointer-events:none;z-index:1}
+.team-box__ic svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:2;filter:drop-shadow(0 1.5px 1.5px rgba(12,30,60,.32))}
+.team-box__htx{flex:1;min-width:0}
+.team-box__name{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.03em;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+.team-box__name::before{display:none}
 .team-box:hover .team-box__name::before{background:var(--gc,var(--blue-bright));box-shadow:0 0 0 3px color-mix(in srgb,var(--gc,var(--blue-bright)) 20%,transparent)}
 .team-box__desc{font-size:11px;color:var(--muted);line-height:1.5;margin:5px 0 0}
 .team-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px 10px}
+.team-grid{position:relative}
+.team-grid::before{content:"";position:absolute;inset:-4px -2px 0;z-index:0;pointer-events:none;opacity:.07;background-color:var(--gc,#4F9BCF);-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20160%20100%27%3E%3Cg%20stroke%3D%27%23000%27%20stroke-width%3D%270.4%27%20fill%3D%27none%27%3E%3Cline%20x1%3D%2718%27%20y1%3D%2726%27%20x2%3D%2760%27%20y2%3D%2716%27%2F%3E%3Cline%20x1%3D%2760%27%20y1%3D%2716%27%20x2%3D%27104%27%20y2%3D%2723%27%2F%3E%3Cline%20x1%3D%27104%27%20y1%3D%2723%27%20x2%3D%27144%27%20y2%3D%2734%27%2F%3E%3Cline%20x1%3D%2718%27%20y1%3D%2726%27%20x2%3D%2744%27%20y2%3D%2764%27%2F%3E%3Cline%20x1%3D%2744%27%20y1%3D%2764%27%20x2%3D%2790%27%20y2%3D%2772%27%2F%3E%3Cline%20x1%3D%2790%27%20y1%3D%2772%27%20x2%3D%27136%27%20y2%3D%2766%27%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%27%23000%27%3E%3Ccircle%20cx%3D%2718%27%20cy%3D%2726%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%2716%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%27104%27%20cy%3D%2723%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%27144%27%20cy%3D%2734%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%2744%27%20cy%3D%2764%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%2790%27%20cy%3D%2772%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%27136%27%20cy%3D%2766%27%20r%3D%271.3%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center / 132% auto no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20160%20100%27%3E%3Cg%20stroke%3D%27%23000%27%20stroke-width%3D%270.4%27%20fill%3D%27none%27%3E%3Cline%20x1%3D%2718%27%20y1%3D%2726%27%20x2%3D%2760%27%20y2%3D%2716%27%2F%3E%3Cline%20x1%3D%2760%27%20y1%3D%2716%27%20x2%3D%27104%27%20y2%3D%2723%27%2F%3E%3Cline%20x1%3D%27104%27%20y1%3D%2723%27%20x2%3D%27144%27%20y2%3D%2734%27%2F%3E%3Cline%20x1%3D%2718%27%20y1%3D%2726%27%20x2%3D%2744%27%20y2%3D%2764%27%2F%3E%3Cline%20x1%3D%2744%27%20y1%3D%2764%27%20x2%3D%2790%27%20y2%3D%2772%27%2F%3E%3Cline%20x1%3D%2790%27%20y1%3D%2772%27%20x2%3D%27136%27%20y2%3D%2766%27%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%27%23000%27%3E%3Ccircle%20cx%3D%2718%27%20cy%3D%2726%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%2716%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%27104%27%20cy%3D%2723%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%27144%27%20cy%3D%2734%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%2744%27%20cy%3D%2764%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%2790%27%20cy%3D%2772%27%20r%3D%271.3%27%2F%3E%3Ccircle%20cx%3D%27136%27%20cy%3D%2766%27%20r%3D%271.3%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center / 132% auto no-repeat;filter:blur(.4px);animation:teamEcoBg 7.2s ease-in-out infinite;transition:opacity .42s ease,filter .42s ease}
+/* hover a team -> its network gently lights up */
+.team-grid::after{content:"";position:absolute;inset:-12px -8px 0;z-index:0;pointer-events:none;border-radius:20px;opacity:0;transition:opacity .5s ease;background:radial-gradient(58% 70% at 50% 46%, color-mix(in srgb,var(--gc,#4F9BCF) 30%,transparent), transparent 70%)}
+.team-box:hover .team-grid::after{opacity:1}
+.team-box:hover .team-grid::before{animation:none;opacity:.19;filter:blur(.5px) saturate(1.55)}
+.team-box:hover::after{filter:brightness(1.35) saturate(1.3)}
+.team-box:hover .team-box__ic{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.94),inset 0 -7px 11px -7px color-mix(in srgb,var(--o2,#2B9BEA) 60%,transparent),0 8px 16px -6px color-mix(in srgb,var(--o2,#2B9BEA) 48%,transparent),0 0 0 3px color-mix(in srgb,var(--o2,#2B9BEA) 18%,transparent),0 0 22px 3px color-mix(in srgb,var(--o2,#2B9BEA) 40%,transparent);transform:translateY(-1px) scale(1.06)}
+.team-grid > *{position:relative;z-index:1}
+@keyframes teamEcoBg{0%,100%{opacity:.04}50%{opacity:.07}}
 .team-av{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;cursor:pointer}
 .team-av:focus-visible{outline:none}
 .team-av:focus-visible .team-av__ring{box-shadow:0 0 0 3px color-mix(in srgb,var(--gc,var(--blue-bright)) 35%,transparent),0 8px 18px -8px rgba(14,36,86,.3)}
 .team-modal.is-open .team-av{animation:teamPop .52s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
-.team-av__ring{position:relative;width:62px;height:62px;border-radius:50%;overflow:hidden;display:grid;place-items:center;
-  background:radial-gradient(82% 82% at 32% 24%, rgba(255,255,255,.94), color-mix(in srgb,var(--blue-bright) 9%, rgba(255,255,255,.4)) 64%, color-mix(in srgb,var(--blue-bright) 15%, rgba(231,239,251,.3)));
+.team-av__ring{position:relative;width:67px;height:67px;border-radius:50%;overflow:hidden;display:grid;place-items:center;
+  background:radial-gradient(82% 82% at 32% 24%, rgba(255,255,255,.97), color-mix(in srgb,var(--blue-bright) 4%, rgba(255,255,255,.6)) 64%, color-mix(in srgb,var(--blue-bright) 7%, rgba(237,242,248,.4)));
   -webkit-backdrop-filter:blur(6px) saturate(140%);backdrop-filter:blur(6px) saturate(140%);
-  border:1px solid color-mix(in srgb,var(--blue-bright) 12%, rgba(255,255,255,.9));
-  box-shadow:0 4px 12px -7px rgba(14,36,86,.22),0 0 14px -9px color-mix(in srgb,var(--blue-bright) 24%,transparent),inset 0 1.5px 2px rgba(255,255,255,.92),inset 0 -4px 7px -4px color-mix(in srgb,var(--blue-bright) 12%,transparent);
+  border:1px solid color-mix(in srgb,var(--blue-bright) 6%, rgba(255,255,255,.92));
+  box-shadow:0 5px 13px -8px rgba(14,36,86,.16),inset 0 1.5px 2px rgba(255,255,255,.95),inset 0 -4px 7px -5px color-mix(in srgb,var(--blue-bright) 7%,transparent);
   transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,border-color .22s}
-.team-av__ph{font-family:var(--display);font-weight:800;font-size:20px;color:var(--blue);opacity:.8}
+.team-av__ph{font-family:var(--display);font-weight:800;font-size:22px;color:var(--blue);opacity:.72}
 .team-av__ring img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;z-index:1}
 .team-av__ring img.team-av--noimg{display:none}
 .team-av__ring.has-photo .team-av__ph{display:none}
 .team-av:hover .team-av__ring{transform:scale(1.09) translateY(-2px);
   border-color:color-mix(in srgb,var(--gc,var(--blue-bright)) 30%,rgba(255,255,255,.9));
   box-shadow:0 9px 20px -8px color-mix(in srgb,var(--gc,var(--blue-bright)) 30%,transparent),0 0 20px -6px color-mix(in srgb,var(--gc,var(--blue-bright)) 34%,transparent),inset 0 1.5px 2px rgba(255,255,255,.95),inset 0 -4px 7px -4px color-mix(in srgb,var(--gc,var(--blue-bright)) 14%,transparent)}
-.team-av__name{font-size:10.5px;font-weight:600;color:var(--muted);line-height:1.2;max-width:74px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.team-av__name{font-size:11.5px;font-weight:600;color:var(--muted);line-height:1.2;max-width:96px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @keyframes teamPop{0%{opacity:0;transform:scale(.4)}60%{opacity:1;transform:scale(1.12)}100%{transform:scale(1)}}
 .team-box{cursor:pointer}
 .site-modal.teamzoom{z-index:136}
@@ -5613,13 +5693,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     };
     // ----- "Teaching experience" card -> TOUCH Team intro modal -----
     var TEAM=[
-      {group:"Teacher Team", c:"#0EA5C4", role:"English Educator", url:"#", desc:"The educators behind our teaching experience and classroom delivery.", members:[
+      {group:"Teaching Team", c:"#5E8AA6", o1:"#9CEBFF", o2:"#2B9BEA", role:"English Educator", url:"#", desc:"A growing team of dedicated educators.", members:[
         {n:"Rajan",img:"assets/team/rajan.png",url:"https://tec.touchenglish.edu.my/user/9037",role:"Senior Teacher · IELTS Trainer",joined:"2014",spec:"IELTS Preparation",mbti:"ESTJ",mtype:"Organizer",edu:"LLB (Hons) & English Teaching — University of Wolverhampton, UK",style:"Traditional, trusted fundamentals — reading for sentence structure, speaking for confidence, grammar for writing, and vocabulary for word choice.",passion:"Teaching; Lecturing",hobbies:"Reading & news; watching sports (esp. Premier League)",rating:"4.92",about:"Teaches with sincere dedication to students' educational needs, aiming to enrich young minds and help them grasp the fine intricacies of English.",quote:"To educate is an act of love, not a problem.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."},{t:"IELTS Coaching",d:"Deliver targeted IELTS preparation classes, focusing on exam strategies and high-score techniques."}]},
         {n:"Simran",img:"assets/team/simran.png",url:"https://tec.touchenglish.edu.my/user/14004",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"INFP",mtype:"Inspirer",rating:"4.97",edu:"B.ED Teaching English as a Second Language (TESL) — University of Selangor (UNISEL)",style:"Humour and interactive activities for a fun, engaging and collaborative classroom.",passion:"Teaching; cooking different cuisines; learning about car models",hobbies:"Cooking; music; modifying small car parts",about:"A lifelong dreamer of becoming a teacher who connects with students through laughter and conversation, believing humour enriches learning.",quote:"Life is not a problem to be solved but a reality to be experienced.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
         {n:"Mai",img:"assets/team/mai.png",url:"https://tec.touchenglish.edu.my/user/15407",role:"Teacher",joined:"2024",spec:"Adult English Communication",mbti:"ENFP",mtype:"Inspirer",rating:"4.94",about:"Passionate about helping adult learners build confidence through practical communication and immersive learning experiences.",quote:"Believe you can and you're already halfway there.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
         {n:"Darshni",img:"assets/team/darshni.png",url:"https://tec.touchenglish.edu.my/user/12774",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ENFJ",mtype:"Inspirer",edu:"Bachelor of Arts in TESL — Quest International University, Ipoh",style:"Dynamic methods that foster critical thinking and meaningful discussion in a supportive, inclusive classroom.",passion:"Teaching and sharing knowledge; building social skills and character",hobbies:"Painting; Research; Outdoor activities",rating:"4.96",about:"An enthusiastic, passionate teacher from Ipoh, highly effective with students of all backgrounds in reaching their learning goals.",quote:"Thoughts become things.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
         {n:"Yaamini",img:"assets/team/yaamini.png",url:"https://tec.touchenglish.edu.my/user/14083",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ISFJ",mtype:"Organizer",edu:"Bachelor's in Teaching English as a Second Language (Hons) — City University of Malaysia",style:"Rooted in Vygotsky's Cognitive Development theory — clear grammar explanation before practice to build confidence and understanding.",passion:"Helping students become proficient, confident English speakers",hobbies:"Netflix (psychological thrillers & documentaries); relaxing",rating:"4.89",about:"A dedicated, easy-going teacher known for a positive nature and strong, friendly teacher-student relationships.",quote:"Own your throne, queen, and rule your realm with unapologetic power.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
-        {n:"Yoha",img:"assets/team/yoha.png",url:"https://tec.touchenglish.edu.my/user/18504",role:"Teacher",joined:"2025",spec:"Adult English Communication",mbti:"INFJ",mtype:"Inspirer",rating:"4.92",about:"Passionate about helping adult learners build confidence through practical communication and immersive learning experiences.",quote:"What you think, you become.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
+        {n:"Yoha",img:"assets/team/yoha.png",url:"https://tec.touchenglish.edu.my/user/18504",role:"Teacher",joined:"2025",spec:"Adult English Communication",mbti:"INFJ",mtype:"Inspirer",rating:"4.92",edu:"BA in English Literature — Universiti Putra Malaysia (UPM)",exp:"3 years 8 months",colour:"Off-white",about:"I create a warm, engaging learning environment where students feel comfortable, confident and encouraged to express themselves — believing every mistake is a chance to learn and grow.",quote:"The trouble is, you think you have time.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
         {n:"Nita",img:"assets/team/nita.png",url:"https://tec.touchenglish.edu.my/user/7005",role:"Head of Curriculum",joined:"2017",spec:"Curriculum Design",mbti:"INFJ",mtype:"Inspirer",edu:"Masters in English Linguistics — University of Malaya (UM)",style:"Inquiry approach that builds strong rapport between teacher and learners.",passion:"Ancient civilizations & architecture",hobbies:"Postcrossing",rating:"4.95",about:"Over 7 years guiding mixed-ability learners and exam prep (IELTS, MUET) plus Business English company training; loves supporting learners to impact their wider community.",quote:"Let us not pray to be sheltered from dangers, but to be fearless in facing them. — Rabindranath Tagore",skills:[{t:"Curriculum Architecture",d:"Design and update tiered lesson materials using proprietary formulas and templates."},{t:"Pedagogical Alignment",d:"Ensure all content drives the PWE vision through effective pedagogical approaches."},{t:"Quality Audit",d:"Maintain the reliability of assessment tests and monitor teaching quality through recorded observations."},{t:"Cross-Functional",d:"Actively assist other departments during peak periods, events, or when specialized expertise is required."}]},
         {n:"Valar",img:"assets/team/valar.png",url:"https://tec.touchenglish.edu.my/user/7327",role:"Head of Student Affairs",joined:"2018",spec:"Student Affairs",mbti:"INFP",mtype:"Inspirer",edu:"Bachelor of English (TESOL) Hons. — UNITAR International University",style:"Conventional methods with a sprinkle of modern technology; student-centred with a jovial environment.",passion:"Writing; Dancing",hobbies:"People-watching over a good coffee",rating:"4.95",about:"Full of burning passion for both teaching and cooking; loves to talk yet a self-described introvert who treats every student as if their opinion matters most.",quote:"The best brains of the nation can be found on the last benches of the classroom. — A.P.J. Abdul Kalam",skills:[{t:"Performance Monitoring",d:"Oversee student performance via assessments, star ratings, and upgradation."},{t:"Crisis Support",d:"Provide guidance and crisis intervention to resolve student and teacher related challenges."},{t:"Student\u2013Teacher Liaison",d:"Address concerns from both remote students and advisors regarding teacher-student dynamics."},{t:"Cross-Functional",d:"Actively assist other departments during peak periods, events, or when specialized expertise is required."}]},
         {n:"Tiera",img:"assets/team/tiera.png",url:"https://tec.touchenglish.edu.my/user/7006",role:"Head of Professional Development",joined:"2018",spec:"Teacher Training",mbti:"INFP",mtype:"Inspirer",edu:"Masters in Education (Management & Administration) - TESL — Universiti Teknologi Malaysia (UTM)",style:"A facilitator who develops critical thinking; a great listener who uses humour — students say it feels like a therapy session.",passion:"Teaching; understanding people",hobbies:"Reading; Vlogging",rating:"4.96",about:"Enthusiastic, dynamic trainer with strong communication, management and team-building skills, designing varied programs and her own methods so learners truly absorb the material.",quote:"Wheresoever you go, go with all your heart. If you always give, you will always get.",skills:[{t:"Training Programs",d:"Design and implement high-impact training programs and workshops for the teaching team."},{t:"Needs Analysis",d:"Identify areas for improvement based on TEC goals, teacher feedback, and global educational trends."},{t:"PLC & Recognition",d:"Promote best-practice sharing (PLC) and celebrate teacher milestones to drive morale and excellence."},{t:"Cross-Functional",d:"Actively assist other departments during peak periods, events, or when specialized expertise is required."}]},
@@ -5627,7 +5707,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         {n:"Kuna",img:"assets/team/kuna.png",url:"https://tec.touchenglish.edu.my/user/11410",role:"Senior Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ENFJ",mtype:"Inspirer",edu:"Master of Science (Chemical Engineering) — Universiti Teknologi MARA (UiTM)",style:"Compliment first, then challenge; Self-Determination Theory, rubrics, constructive feedback, roleplay and VARK (Visual / Auditory / Read-Write / Kinaesthetic) methods.",passion:"Skincare, wellness, classical music & books, the sound of waves",hobbies:"Meditation; reading; piano; learning languages",rating:"4.94",about:"Always learning and being her own student; believes kindness is free and focuses on helping every student think outside the box.",quote:"Being highly intellectual and well-mannered is really seductive and attractive.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
         {n:"Mima",img:"assets/team/mima.png",url:"https://tec.touchenglish.edu.my/user/13279",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ENFP",mtype:"Inspirer",rating:"4.95",edu:"Diploma — Politeknik Mukah",style:"Demonstrator (pictures, music, activities, role play) and open discussion across varied topics.",passion:"Singing — her first love and the secret of her energy",hobbies:"Singing & reading",about:"Reliable, conscientious and caring — open-minded, patient, prompt, and always approachable, encouraging and supportive.",quote:"The dream begins with a teacher who believes in you, who leads you to the next plateau, sometimes poking you with a sharp stick called 'truth.' — Dan Rather",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]}
       ]},
-      {group:"Advisor Team", c:"#2A5BD7", role:"Education Advisor", url:"#", desc:"Your first point of contact, guiding your learning plan.", members:[
+      {group:"Advisor Team", c:"#5F77A8", o1:"#FFD3AE", o2:"#4F97E6", role:"Education Advisor", url:"#", desc:"A learner-focused support team guiding every journey.", members:[
         {n:"Fabien",img:"assets/team/fabien.png",role:"Education Advisor",joined:"2022",spec:"Learning Advisory",mbti:"ESTJ",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Have the courage to face problems, not escape them.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
         {n:"Alen",img:"assets/team/alen.png",role:"Education Advisor",joined:"2023",spec:"Learning Advisory",mbti:"ESTJ",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"I just want it easy peasy.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
         {n:"Xin Ying",img:"assets/team/xinying.png",role:"Education Advisor",joined:"2021",spec:"Learning Advisory",mbti:"ESFJ",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Some things happen so you can become someone new.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
@@ -5637,7 +5717,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         {n:"Si Jie",img:"assets/team/sijie.png",role:"Education Advisor",joined:"2019",spec:"Learning Advisory",mbti:"ESFP",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Be a free and gentle person.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
         {n:"Elaine",img:"assets/team/elaine.png",role:"Education Advisor",joined:"2015",spec:"Learning Advisory",mbti:"ENTJ",mtype:"Strategist",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Happiness gives me the motivation to grow, work hard and enjoy life.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]}
       ]},
-      {group:"Management Team", c:"#E0303B", role:"Management", url:"#", desc:"Leading the centres and maintaining quality standards.", members:[
+      {group:"Management Team", c:"#7C8398", o1:"#FFD98A", o2:"#F2683B", role:"Management", url:"#", desc:"The leadership team behind TOUCH English.", members:[
         {n:"Elise",img:"assets/team/elise.png",role:"Branding & Marketing Manager",joined:"2010",spec:"Brand & Media",mbti:"ENFP",mtype:"Inspirer",about:"Shapes the TOUCH brand through creative media and storytelling, producing educational content and showcasing real student talent.",quote:"When you understand human nature, everything becomes clearer.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Content Production",d:"Direct the end-to-end process for video shooting, editing, and educational content."},{t:"Brand Storytelling",d:"Use creative media to enhance the student learning experience and brand storytelling."},{t:"Talent Scouting",d:"Identify and showcase student talent, highlighting their progress and unique skills through media."}]},
         {n:"Wesley",img:"assets/team/wesley.png",role:"Sales & Marketing Manager",joined:"2014",spec:"Sales & Growth",mbti:"ESTJ",mtype:"Organizer",about:"Drives TOUCH's market presence and growth, leading the sales team to turn interest into enrolments through strategic campaigns.",quote:"Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Brand Presence",d:"Drive the organization's public image and market presence through strategic campaigns."},{t:"Enrolment Conversion",d:"Lead the sales team to turn prospective interest into active student enrollments."},{t:"Market Growth",d:"Analyze market trends to identify new opportunities for student recruitment."}]},
         {n:"Enzo",img:"assets/team/enzo.png",role:"Chief Executive Officer",joined:"2010",spec:"Strategy & Vision",mbti:"ENFJ",mtype:"Inspirer",about:"Leads TOUCH English with a clear long-term vision, aligning every department to the mission while driving sustainable growth and partnerships.",quote:"Life may feel hard or challenging, but once you know it's the right thing to do, moving forward wholeheartedly is where growth begins.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Vision Setting",d:"Set the long-term strategic direction and ensure all departments align with the mission."},{t:"Performance Oversight",d:"Monitor daily operations and high-level performance to ensure organizational health."},{t:"Growth & Partnerships",d:"Lead large-scale initiatives for sustainable growth and institutional partnerships."}]},
@@ -5649,6 +5729,11 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     ];
     window.openTeam=function(){
       function initial(n){ return (n||"?").trim().charAt(0).toUpperCase(); }
+      function teamIcon(gn){ var n=(gn||"").toLowerCase();
+        if(n.indexOf("teach")>-1) return '<svg viewBox="0 0 24 24"><path d="M3 9.2 12 5l9 4.2-9 4.2z"/><path d="M6.6 11v3.5c0 1.3 2.5 2.4 5.4 2.4s5.4-1.1 5.4-2.4V11"/><path d="M21 9.2v4.4"/></svg>';
+        if(n.indexOf("advisor")>-1) return '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M15.6 8.4l-2.1 5.1-5.1 2.1 2.1-5.1z"/></svg>';
+        if(n.indexOf("management")>-1) return '<svg viewBox="0 0 24 24"><rect x="3.5" y="8.5" width="7" height="11" rx="1.2"/><rect x="13.5" y="4.5" width="7" height="15" rx="1.2"/><path d="M3 19.5h18"/><path d="M6 11.5h2M6 14.5h2M16 7.5h2M16 10.5h2M16 13.5h2"/></svg>';
+        return '<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/></svg>'; }
       var old=document.getElementById("teamModal"); if(old)old.remove();
       var m=document.createElement("div"); m.id="teamModal"; m.className="team-modal";
       var di=0;
@@ -5662,19 +5747,20 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             '</span>'+
           '</div>';
         }).join("");
-        return '<div class="team-box" style="--gc:'+g.c+'">'+
-          '<div class="team-box__head"><span class="team-box__name">'+g.group+'</span><p class="team-box__desc">'+g.desc+'</p></div>'+
+        return '<div class="team-box" style="--gc:'+g.c+';--o1:'+g.o1+';--o2:'+g.o2+'">'+
+          '<div class="team-box__head"><span class="team-box__ic">'+teamIcon(g.group)+'</span><div class="team-box__htx"><span class="team-box__name">'+g.group+'</span><p class="team-box__desc">'+g.desc+'</p></div></div>'+
           '<div class="team-grid'+(g.group==="Advisor Team"?' team-grid--advisor':'')+'">'+avs+'</div>'+
         '</div>';
       }).join("");
       m.innerHTML='<div class="team-modal__bg"></div>'+
         '<div class="team-modal__card" role="dialog" aria-modal="true" aria-label="TOUCH Team">'+
           '<button type="button" class="team-modal__x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'+
-          '<div class="team-modal__intro">'+
+          '<div class="team-modal__intro">'+'<svg class="team-modal__net" viewBox="0 0 264 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'+'<g class="tmnet-lines"><line x1="132" y1="322" x2="54" y2="96"/><line x1="132" y1="322" x2="214" y2="128"/><line x1="132" y1="322" x2="38" y2="470"/><line x1="132" y1="322" x2="222" y2="506"/><line x1="132" y1="322" x2="126" y2="604"/><line x1="54" y1="96" x2="214" y2="128"/><line x1="38" y1="470" x2="126" y2="604"/><line x1="222" y1="506" x2="126" y2="604"/></g>'+'<g class="tmnet-nodes"><circle cx="54" cy="96" r="3"/><circle cx="214" cy="128" r="3"/><circle cx="38" cy="470" r="3"/><circle cx="222" cy="506" r="3"/><circle cx="126" cy="604" r="3"/><circle class="tmnet-core" cx="132" cy="322" r="5"/></g>'+'</svg>'+
             '<span class="team-modal__eyebrow">Our people <span class="zh">我们的团队</span></span>'+
             '<h3 class="team-modal__title">TOUCH Team</h3>'+
-            '<p class="team-modal__lead">The people behind your English learning journey.</p>'+
+            '<p class="team-modal__lead">Behind every learner is a dedicated, multidisciplinary team. <span class="zh">\u6bcf\u4f4d\u5b66\u5458\u80cc\u540e\uff0c\u90fd\u6709\u4e00\u652f\u4e13\u4e1a\u7684\u8de8\u804c\u80fd\u56e2\u961f\u3002</span></p>'+'<p class="team-modal__support">Teaching, guidance and leadership — working as one to support your growth. <span class="zh">\u6559\u5b66 \u00b7 \u5f15\u5bfc \u00b7 \u7ba1\u7406\uff0c\u534f\u540c\u652f\u6301\u4f60\u7684\u6bcf\u4e00\u6b65\u6210\u957f\u3002</span></p>'+
             '<div class="team-modal__exp"><span class="team-modal__expnum">16</span><span class="team-modal__exptxt">Years of Adult English<br>Teaching Experience</span></div>'+
+            
           '</div>'+
           '<div class="team-modal__groups">'+groups+'</div>'+
         '</div>';
@@ -5686,7 +5772,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         m.querySelectorAll(".team-grid").forEach(function(grid){
           var n=grid.querySelectorAll(".team-av").length; if(!n) return;
           var w=grid.clientWidth; if(!w) return;
-          var cellMin=58, gap=10;
+          var cellMin=74, gap=10;
           var maxCols=Math.max(1, Math.floor((w+gap)/(cellMin+gap)));
           var cols;
           if(n<=maxCols){ cols=n; }
@@ -5709,6 +5795,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         var mbti=pn.mbti||""; var mtype=pn.mtype||"";
         var quote=pn.quote||"";
         var edu=pn.edu||"", style=pn.style||"", passion=pn.passion||"", hobbies=pn.hobbies||"", rating=pn.rating||"";
+        var exp=pn.exp||"", colour=pn.colour||"";
         var skills=pn.skills||[];
         var url=pn.url||g.url||"#";
         var skillsHtml=skills.map(function(sk){ return '<span class="profile-pop__skill" tabindex="0">'+sk.t+'<span class="profile-pop__tip"><strong>'+sk.t+'</strong>'+sk.d+'</span></span>'; }).join('');
@@ -5732,6 +5819,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
               '<div class="profile-pop__row"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l3 1.8"/></svg><span class="profile-pop__row-l">At TOUCH Since</span><span class="profile-pop__row-v">'+joined+'</span></div>'+
               '<div class="profile-pop__row"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.9L19 9.4l-4.6 2L12 16l-2.4-4.6L5 9.4l5.1-1.5z"/></svg><span class="profile-pop__row-l">Specialization</span><span class="profile-pop__row-v">'+spec+'</span></div>'+
               (edu?'<div class="profile-pop__row"><svg viewBox="0 0 24 24"><path d="M2.5 8.5 12 4.5l9.5 4-9.5 4z"/><path d="M6 10.6V15c0 1.3 2.7 2.4 6 2.4s6-1.1 6-2.4v-4.4"/></svg><span class="profile-pop__row-l">Education</span><span class="profile-pop__row-v">'+edu+'</span></div>':'')+
+              (exp?'<div class="profile-pop__row"><svg viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2.2"/><path d="M8.5 7.5V6A1.6 1.6 0 0 1 10 4.4h4A1.6 1.6 0 0 1 15.5 6v1.5"/><path d="M3.5 12h17"/></svg><span class="profile-pop__row-l">Teaching Experience</span><span class="profile-pop__row-v">'+exp+'</span></div>':'')+
+              (colour?'<div class="profile-pop__row"><svg viewBox="0 0 24 24"><path d="M12 3.6c3 3.9 5 6.1 5 8.9a5 5 0 0 1-10 0c0-2.8 2-5 5-8.9z"/></svg><span class="profile-pop__row-l">Favourite Colour</span><span class="profile-pop__row-v">'+colour+'</span></div>':'')+
               (passion?'<div class="profile-pop__row"><svg viewBox="0 0 24 24"><path d="M12 20s-6.8-4.4-9-8.6A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 9 5.3C18.8 15.6 12 20 12 20z"/></svg><span class="profile-pop__row-l">Passion</span><span class="profile-pop__row-v">'+passion+'</span></div>':'')+
               (hobbies?'<div class="profile-pop__row"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.9 5.2 1.6-4.9 1.8L12 16.5l-1.6-4.9-5.2-1.6 4.9-1.8z"/></svg><span class="profile-pop__row-l">Hobbies</span><span class="profile-pop__row-v">'+hobbies+'</span></div>':'')+
             '</div>'+
@@ -5748,6 +5837,20 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         av.addEventListener("click",function(){ openProfile(+av.getAttribute("data-gi"), +av.getAttribute("data-mi")); });
         av.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); openProfile(+av.getAttribute("data-gi"), +av.getAttribute("data-mi")); } });
       });
+      // Part 5: hover mini profile card (desktop hover only)
+      var hov=null;
+      function ensureHov(){ if(hov&&hov.parentNode)return hov; hov=document.createElement("div"); hov.className="team-hovercard"; m.appendChild(hov); return hov; }
+      function showHov(av){ var gi=+av.getAttribute("data-gi"),mi=+av.getAttribute("data-mi"); var g=TEAM[gi]; if(!g)return; var pn=g.members[mi]; if(!pn)return;
+        var h=ensureHov(); h.style.setProperty("--gc",g.c);
+        h.innerHTML='<div class="team-hovercard__top">'+'<span class="team-hovercard__av"><span class="team-hovercard__avph">'+initial(pn.n)+'</span><img alt="" src="'+pn.img+'" onerror="this.remove()" onload="this.parentNode.classList.add(\'has-photo\')"></span>'+'<div class="team-hovercard__hd"><div class="team-hovercard__nm">'+pn.n+'</div><div class="team-hovercard__role">'+(pn.role||g.role||"")+'</div></div>'+'</div>'+((pn.mbti||pn.mtype)?'<div class="team-hovercard__arch">'+(pn.mbti||"")+((pn.mbti&&pn.mtype)?' \u00b7 ':"")+(pn.mtype||"")+'</div>':"")+((pn.spec||(pn.skills&&pn.skills.length))?'<div class="team-hovercard__div"></div>':"")+(pn.spec?'<div class="team-hovercard__spec"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.9L19 9.4l-4.6 2L12 16l-2.4-4.6L5 9.4l5.1-1.5z"/></svg>'+pn.spec+'</div>':"")+((pn.skills&&pn.skills.length)?'<div class="team-hovercard__tags">'+pn.skills.slice(0,3).map(function(sk){return '<span>'+sk.t+'</span>';}).join("")+'</div>':"");
+        h.classList.add("is-shown"); var r=av.getBoundingClientRect(); var hw=h.offsetWidth,hh=h.offsetHeight;
+        var left=Math.max(10,Math.min(r.left+r.width/2-hw/2, window.innerWidth-hw-10));
+        var top=r.top-hh-12; if(top<12){ top=r.bottom+12; h.classList.add("below"); } else { h.classList.remove("below"); }
+        h.style.left=left+"px"; h.style.top=top+"px"; }
+      function hideHov(){ if(hov) hov.classList.remove("is-shown"); }
+      if(window.matchMedia && window.matchMedia("(hover:hover)").matches){
+        m.querySelectorAll(".team-av").forEach(function(av){ av.addEventListener("mouseenter",function(){ showHov(av); }); av.addEventListener("mouseleave",hideHov); });
+      }
       // Click a team card (not an avatar) -> open a larger team popup (HRDC-style glass)
       m.querySelectorAll(".team-box").forEach(function(box,gi){
         box.setAttribute("role","button"); box.setAttribute("tabindex","0"); box.setAttribute("aria-label",(TEAM[gi]?TEAM[gi].group:"Team")+" \u2014 view team");
@@ -6407,18 +6510,18 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     };
     function s5icon(name){
       var n=(""+name).toLowerCase();
-      if(n.indexOf("profile")>-1) return {ic:S5_ICONS.profile,c:"#5887E8"};
-      if(n.indexOf("book")>-1||n.indexOf("appointment")>-1||n.indexOf("schedul")>-1) return {ic:S5_ICONS.calendar,c:"#6E7BF0"};
-      if(n.indexOf("feedback")>-1||n.indexOf("teacher")>-1||n.indexOf("message")>-1) return {ic:S5_ICONS.message,c:"#2FAEC4"};
-      if(n.indexOf("review")>-1||n.indexOf("replay")>-1) return {ic:S5_ICONS.replay,c:"#4C9FE6"};
-      if(n.indexOf("after")>-1||n.indexOf("growth")>-1) return {ic:S5_ICONS.growth,c:"#33BB97"};
-      if(n.indexOf("learning")>-1||n.indexOf("e-learn")>-1||n.indexOf("practice")>-1) return {ic:S5_ICONS.monitor,c:"#6788D2"};
-      return {ic:S5_ICONS.grid,c:"#7488AE"};
+      if(n.indexOf("profile")>-1) return {ic:S5_ICONS.profile,c:"#5E80C2"};
+      if(n.indexOf("book")>-1||n.indexOf("appointment")>-1||n.indexOf("schedul")>-1) return {ic:S5_ICONS.calendar,c:"#6E78C0"};
+      if(n.indexOf("feedback")>-1||n.indexOf("teacher")>-1||n.indexOf("message")>-1) return {ic:S5_ICONS.message,c:"#4E97AC"};
+      if(n.indexOf("review")>-1||n.indexOf("replay")>-1) return {ic:S5_ICONS.replay,c:"#5690C4"};
+      if(n.indexOf("after")>-1||n.indexOf("growth")>-1) return {ic:S5_ICONS.growth,c:"#52A589"};
+      if(n.indexOf("learning")>-1||n.indexOf("e-learn")>-1||n.indexOf("practice")>-1) return {ic:S5_ICONS.monitor,c:"#6881BC"};
+      return {ic:S5_ICONS.grid,c:"#76849E"};
     }
     function s5ButtonsHTML(){
       var arr=s5Get();
       if(!arr.length)return '<p class="s5empty">No functions yet. <span class="zh">尚未设置功能。</span></p>';
-      return '<div class="s5links">'+arr.map(function(it){
+      return '<div class="s5links">'+'<svg class="s5flow" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="s5fg" x1="0" y1="0" x2="0" y2="1"><stop class="g0" offset="0"/><stop class="g1" offset=".5"/><stop class="g2" offset="1"/></linearGradient></defs><line class="s5flow-v" x1="10" y1="14" x2="10" y2="86"/><line class="s5flow-v" x1="57" y1="14" x2="57" y2="86"/><line class="s5flow-h" x1="10" y1="33.5" x2="57" y2="33.5"/><line class="s5flow-h" x1="10" y1="66.5" x2="57" y2="66.5"/><line class="s5flow-node" x1="10" y1="33.5" x2="10" y2="33.5"/><line class="s5flow-node" x1="57" y1="33.5" x2="57" y2="33.5"/><line class="s5flow-node" x1="10" y1="66.5" x2="10" y2="66.5"/><line class="s5flow-node" x1="57" y1="66.5" x2="57" y2="66.5"/><line class="s5flow-pulse" x1="10" y1="33.5" x2="20" y2="33.5"><animate attributeName="x1" values="10;47;10" keyTimes="0;.5;1" dur="6.8s" repeatCount="indefinite"/><animate attributeName="x2" values="20;57;20" keyTimes="0;.5;1" dur="6.8s" repeatCount="indefinite"/></line><line class="s5flow-pulse" x1="57" y1="66.5" x2="47" y2="66.5"><animate attributeName="x1" values="57;20;57" keyTimes="0;.5;1" dur="6.8s" repeatCount="indefinite"/><animate attributeName="x2" values="47;10;47" keyTimes="0;.5;1" dur="6.8s" repeatCount="indefinite"/></line></svg>'+arr.map(function(it){
         var nm=s5esc(it.name||"Untitled"), lk=(it.link||"").trim(), has=lk&&lk!=="#";
         var mi=s5icon(it.name);
         return '<a class="s5link'+(has?'':' is-empty')+'"'+(has?' href="'+s5esc(lk)+'" target="_blank" rel="noopener noreferrer"':'')+'>'+
