@@ -178,8 +178,12 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 /* ===== Opening — branding hero ===== */
 .brandhero{position:relative;min-height:calc(100vh - 150px);display:flex;align-items:center;justify-content:center;padding:clamp(14px,2.4vh,24px) clamp(14px,2vw,28px)}
 .brandhero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(30% 36% at 27% 33%,rgba(31,159,230,.13),transparent 68%),radial-gradient(28% 34% at 75% 30%,rgba(224,48,59,.09),transparent 68%),radial-gradient(40% 34% at 52% 90%,rgba(21,53,123,.08),transparent 70%);
-  filter:blur(36px)}
+  background:radial-gradient(54% 60% at 20% 22%,rgba(31,120,210,.16),transparent 70%),radial-gradient(46% 52% at 86% 20%,rgba(224,72,80,.10),transparent 72%),radial-gradient(80% 56% at 50% 116%,rgba(21,53,123,.11),transparent 72%);
+  filter:blur(50px);animation:bhBreath 13s ease-in-out infinite}
+.brandhero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(38% 34% at 50% 40%,rgba(255,255,255,.46),transparent 66%),radial-gradient(130% 112% at 50% 48%,transparent 66%,rgba(16,28,54,.04) 100%)}
+@keyframes bhBreath{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+@keyframes bhBloom{0%,100%{opacity:.92}50%{opacity:1}}
 .brandhero__panel{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;width:100%;max-width:none;min-height:calc(100vh - 196px);padding:clamp(44px,7vh,96px) clamp(28px,5vw,72px);border-radius:clamp(30px,3.2vw,44px);overflow:hidden;
   background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.72);
@@ -187,12 +191,15 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
   animation:bhPanel 1s cubic-bezier(.2,.7,.2,1) both}
 @keyframes bhPanel{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.brandhero__panel{background:rgba(255,255,255,.86)}}
-.brandhero__logobtn{background:none;border:0;padding:0;margin:0 0 34px;cursor:pointer;display:inline-block;line-height:0;-webkit-tap-highlight-color:transparent;outline:none;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both;transition:transform .22s cubic-bezier(.34,1.45,.5,1)}
+.brandhero__logobtn{background:none;border:0;padding:0;margin:0 0 34px;cursor:pointer;position:relative;display:inline-block;line-height:0;-webkit-tap-highlight-color:transparent;outline:none;animation:bhLogo 1s cubic-bezier(.2,.7,.2,1) both;transition:transform .22s cubic-bezier(.34,1.45,.5,1)}
 .brandhero__logobtn:hover{transform:translateY(-6px) scale(1.04)}
 .brandhero__logobtn:active{transform:translateY(4px) scale(.95);transition:transform .1s ease}
+.brandhero__logobtn::before{content:"";position:absolute;left:50%;top:50%;width:150%;height:150%;transform:translate(-50%,-50%);z-index:-1;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(120,170,235,.22),rgba(120,170,235,.07) 46%,transparent 68%);filter:blur(28px);opacity:.6}
+.brandhero__logobtn:hover::before{opacity:.95}
+@keyframes bhAura{0%,100%{opacity:.58;transform:translate(-50%,-50%) scale(1)}50%{opacity:.85;transform:translate(-50%,-50%) scale(1.05)}}
 .brandhero__logobtn:focus,.brandhero__logobtn:focus-visible{outline:none}
 .brandhero__logobtn .logo-disc{transition:box-shadow .22s ease}
-.brandhero__logobtn:hover .logo-disc{box-shadow:0 22px 42px -8px rgba(20,33,50,.26),0 5px 12px rgba(20,33,50,.12),inset 0 1px 0 rgba(255,255,255,.9)}
+.brandhero__logobtn:hover .logo-disc{box-shadow:0 44px 76px -22px rgba(20,33,50,.34),0 18px 36px -14px rgba(20,33,50,.2),inset 0 2px 4px rgba(255,255,255,.95),inset 0 -14px 30px -16px rgba(31,90,180,.2)}
 .brandhero__logobtn:active .logo-disc{box-shadow:0 5px 12px -6px rgba(20,33,50,.2),inset 0 1px 0 rgba(255,255,255,.9)}
 /* circular logo button frame (holds a square photo, clips to circle, 3D button feel) */
 .logo-disc{position:relative;display:block;border-radius:50%;overflow:hidden;flex:none;
@@ -201,7 +208,9 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .logo-disc>img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
 .logo-disc::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
   box-shadow:inset 0 2px 5px rgba(255,255,255,.6),inset 0 0 0 1px rgba(255,255,255,.5)}
-.logo-disc--hero{width:clamp(190px,21vw,280px);height:clamp(190px,21vw,280px)}
+.logo-disc--hero{width:clamp(192px,21.5vw,288px);height:clamp(192px,21.5vw,288px);box-shadow:0 40px 78px -26px rgba(20,33,50,.32),0 16px 36px -16px rgba(20,33,50,.18),0 4px 10px rgba(20,33,50,.08),inset 0 2px 4px rgba(255,255,255,.95),inset 0 -16px 34px -18px rgba(31,90,180,.18)}
+@keyframes bhFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.logo-disc--hero::after{background:radial-gradient(72% 58% at 30% 20%,rgba(255,255,255,.55),rgba(255,255,255,.08) 50%,transparent 64%);box-shadow:inset 0 2px 6px rgba(255,255,255,.8),inset 0 0 0 1px rgba(255,255,255,.6),inset 0 0 26px -6px rgba(120,170,235,.3)}
 .logo-disc--mark{width:46px;height:46px;box-shadow:0 4px 10px -3px rgba(20,33,50,.2),0 1px 3px rgba(20,33,50,.08),inset 0 1px 0 rgba(255,255,255,.9)}
 .logo-disc--mark::after{box-shadow:inset 0 1px 2px rgba(255,255,255,.7),inset 0 0 0 1px rgba(255,255,255,.5)}
 .brandhero__hint{display:inline-block;margin-top:30px;font-size:13px;color:var(--faint);letter-spacing:.02em;animation:bhUp .9s ease both 1.5s}
@@ -212,17 +221,20 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .brandhero__lead{display:block;font-size:clamp(20px,2.9vw,32px);font-weight:700;color:var(--muted);animation:bhUp .9s ease both .55s}
 .brandhero__big{display:block;font-size:clamp(42px,8.4vw,90px);margin-top:.08em;animation:bhUp .9s ease both .78s}
 .brandhero__vis{position:relative;display:inline-block;color:var(--blue);
-  background:linear-gradient(100deg,var(--blue) 0,var(--blue) 42%,#8ccbff 50%,var(--blue) 58%,var(--blue) 100%);background-size:220% 100%;
+  background:linear-gradient(100deg,var(--blue) 0,var(--blue) 40%,#bfe0ff 47%,#eef7ff 50%,#bfe0ff 53%,var(--blue) 60%,var(--blue) 100%);background-size:260% 100%;
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  animation:focusIn 1.2s ease both 1.05s,bhShimmer 3.4s ease-in-out 2.4s infinite}
+  text-shadow:0 2px 24px rgba(31,120,210,.3);
+  animation:focusIn 1.2s ease both 1.05s,bhScan 7s ease-in-out 2.4s infinite}
+@keyframes bhScan{0%{background-position:160% 0}46%{background-position:-60% 0}100%{background-position:-60% 0}}
 .brandhero__vis::after{content:"";position:absolute;left:0;right:0;bottom:.05em;height:.12em;background:var(--red);opacity:.26;border-radius:4px;z-index:-1;transform:scaleX(0);transform-origin:left;animation:bhUnderline .75s cubic-bezier(.2,.7,.2,1) both 1.75s}
 .brandhero__tag{margin-top:30px;font-size:15px;color:var(--faint);animation:bhUp .9s ease both 1.5s}
+.brandhero__hook{margin:16px 0 0;font-family:var(--display);font-weight:600;font-size:clamp(10.5px,1.15vw,12.5px);letter-spacing:.3em;text-transform:uppercase;color:var(--faint);opacity:.85;animation:bhUp .9s ease both 2.1s}
 .brandhero__cta{margin-top:34px;animation:bhUp .9s ease both 1.8s}
 @keyframes bhLogo{from{opacity:0;transform:translateY(-12px) scale(.92)}to{opacity:1;transform:none}}
 @keyframes bhUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes bhUnderline{to{transform:scaleX(1)}}
 @keyframes bhShimmer{0%{background-position:120% 0}55%{background-position:-20% 0}100%{background-position:-20% 0}}
-@media (prefers-reduced-motion:reduce){.brandhero__panel,.brandhero__logobtn,.brandhero__logo,.brandhero__logo-fallback,.brandhero__lead,.brandhero__big,.brandhero__vis,.brandhero__tag,.brandhero__hint,.brandhero__cta{animation:none}.brandhero__vis::after{animation:none;transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.brandhero__panel,.brandhero__logobtn,.brandhero__logo,.brandhero__logo-fallback,.brandhero__lead,.brandhero__big,.brandhero__vis,.brandhero__tag,.brandhero__hint,.brandhero__cta,.brandhero__hook,.brandhero__logobtn::before,.logo-disc--hero,.brandhero::before,.brandhero::after{animation:none}.brandhero__vis::after{animation:none;transform:scaleX(1)}}
 
 /* ---------- Generic card grids ---------- */
 .grid{display:grid;gap:16px}
@@ -3647,6 +3659,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           </button>
           <h1 class="brandhero__vision"><span class="brandhero__lead">TOUCH English</span><span class="brandhero__big">makes you <span class="brandhero__vis">visible</span></span></h1>
           <p class="brandhero__tag zh">看得见的进步，说得出的自信。</p>
+          <p class="brandhero__hook">Seen &middot; Heard &middot; Understood</p>
           </div>
         </div>
       </section>
