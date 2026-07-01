@@ -744,6 +744,8 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .rcpop__q{display:flex;flex-direction:column;gap:7px;margin:14px 0 0;padding:14px 16px;border-radius:14px;
   background:color-mix(in srgb,var(--c,#7C5CFF) 7%,#fff);border:1px solid color-mix(in srgb,var(--c,#7C5CFF) 16%,#fff)}
 .rcpop__q span{font-size:14.5px;color:var(--ink);font-weight:600}
+.rcpop__p.zh{color:var(--faint);font-weight:500;font-size:12.5px;line-height:1.6;margin-top:5px}
+.rcpop__q span .zh{display:block;color:var(--faint);font-weight:500;font-size:11.5px;line-height:1.5;margin-top:2px}
 @media (prefers-reduced-motion:reduce){.rcpop__card{animation:none}}
 .rcpop__btn{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font:inherit;cursor:pointer;font-family:var(--display);font-weight:700;font-size:14px;color:#fff;background:linear-gradient(135deg,color-mix(in srgb,var(--c,#1F9FE6) 88%,#0b3a52),var(--c,#1F9FE6));border:0;border-radius:999px;padding:12px 22px;box-shadow:0 12px 26px -10px color-mix(in srgb,var(--c,#1F9FE6) 55%,transparent);transition:transform .18s ease,box-shadow .18s ease}
 .rcpop__btn:hover{transform:translateY(-2px);box-shadow:0 18px 34px -12px color-mix(in srgb,var(--c,#1F9FE6) 60%,transparent)}
@@ -2172,6 +2174,21 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .lm-sep{height:1px;background:var(--line);margin:11px 2px 4px}
 .lm-edit{display:flex;align-items:center;gap:9px;width:100%;padding:9px 8px;border-radius:10px;font-size:12.5px;font-weight:600;color:var(--ink);transition:.14s}
 .lm-edit:hover{background:rgba(42,91,215,.07)}
+.tab-item.is-hidden{display:none}
+.lm-pages{max-height:214px;overflow-y:auto;margin:2px 0 0;padding-right:2px;scrollbar-width:thin}
+.lm-pages::-webkit-scrollbar{width:5px}.lm-pages::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:4px}
+.lm-page{display:flex;align-items:center;gap:9px;width:100%;padding:6px 7px;border-radius:9px;text-align:left;color:var(--ink);transition:.14s}
+.lm-page:hover{background:rgba(42,91,215,.06)}
+.lm-page__ic{width:20px;height:20px;flex:none;display:grid;place-items:center;color:var(--blue)}
+.lm-page__ic svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.lm-page__tx{flex:1;min-width:0;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lm-page__tx .zh{font-weight:500;color:var(--faint);font-size:10.5px;margin-left:3px}
+.lm-page__sw{flex:none;width:32px;height:18px;border-radius:999px;background:var(--blue);position:relative;transition:.18s}
+.lm-page__sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:.18s}
+.lm-page[aria-checked="false"]{color:var(--faint)}
+.lm-page[aria-checked="false"] .lm-page__ic{color:var(--faint);opacity:.7}
+.lm-page[aria-checked="false"] .lm-page__sw{background:var(--line-strong)}
+.lm-page[aria-checked="false"] .lm-page__sw::after{left:16px}
 .lm-edit__box{flex:none;width:19px;height:19px;border-radius:6px;border:1.7px solid var(--line-strong);display:grid;place-items:center;transition:.14s}
 .lm-edit__box svg{width:12px;height:12px;opacity:0;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;transition:opacity .14s}
 .lm-edit.is-on .lm-edit__box{background:var(--blue);border-color:var(--blue)}
@@ -3645,6 +3662,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         </button>
         <button class="lm-reset lm-reset--ghost" id="navResetOrder">Reset order <span class="zh">恢复默认顺序</span></button>
         <div class="lm-hint">Drag the ⠿ handle to move the bar. Turn on Edit to drag tabs into a new order.</div>
+        <div class="lm-sep"></div>
+        <div class="layout-menu__h">Show / hide pages <span class="zh">显示 / 隐藏页面</span></div>
+        <div class="lm-pages" id="lmPages"></div>
+        <button class="lm-reset lm-reset--ghost" id="lmShowAll">Show all pages <span class="zh">全部显示</span></button>
       </div>
     </header>
 
@@ -4308,6 +4329,34 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     if(et)et.addEventListener("click",function(e){e.stopPropagation();setEditing(!editing);});
     var ro=$("#navResetOrder");
     if(ro)ro.addEventListener("click",function(e){e.stopPropagation();applyOrder(DEFAULT);saveOrder();});
+
+    /* ---- Show / hide pages (advisor can hide unused stages from the dock) ---- */
+    var HKEY="te_tabhidden_v1";
+    var hidden=new Set();
+    function loadHidden(){try{var s=JSON.parse(localStorage.getItem(HKEY));if(Array.isArray(s))s.forEach(function(i){if(i>=0&&i<STAGES.length)hidden.add(i);});}catch(e){}}
+    function saveHidden(){try{localStorage.setItem(HKEY,JSON.stringify(Array.from(hidden)));}catch(e){}}
+    function visibleCount(){return STAGES.length-hidden.size;}
+    function applyHidden(){
+      $$(".tab-item",tb).forEach(function(t){var i=+t.getAttribute("data-jump");t.classList.toggle("is-hidden",hidden.has(i));});
+      var pg=$("#lmPages"); if(pg)$$(".lm-page",pg).forEach(function(r){var i=+r.getAttribute("data-idx");r.setAttribute("aria-checked",hidden.has(i)?"false":"true");});
+    }
+    function toggleHidden(i){
+      if(hidden.has(i)){hidden.delete(i);} else { if(visibleCount()<=1)return; hidden.add(i); }
+      saveHidden(); applyHidden();
+    }
+    function buildPages(){
+      var pg=$("#lmPages"); if(!pg)return; pg.innerHTML="";
+      STAGES.forEach(function(s,i){
+        var r=document.createElement("button");
+        r.className="lm-page"; r.setAttribute("data-idx",i); r.setAttribute("role","menuitemcheckbox"); r.setAttribute("aria-checked","true"); r.setAttribute("title","Show / hide "+s.t);
+        r.innerHTML='<span class="lm-page__ic">'+ICONS[i]+'</span><span class="lm-page__tx">'+s.short+' <span class="zh">'+s.zh+'</span></span><span class="lm-page__sw" aria-hidden="true"></span>';
+        r.addEventListener("click",function(e){e.stopPropagation();toggleHidden(i);});
+        pg.appendChild(r);
+      });
+    }
+    buildPages(); loadHidden(); applyHidden();
+    var sa=$("#lmShowAll");
+    if(sa)sa.addEventListener("click",function(e){e.stopPropagation();hidden.clear();saveHidden();applyHidden();});
 
     // HTML5 drag-and-drop reorder (desktop, edit mode)
     var dragEl=null, pid=null, moved=false;
@@ -7557,9 +7606,11 @@ io.observe(er);})();
             '<span class="rcpop__eyebrow">🎟️ Course Bonus · 课程礼遇</span>',
             '<h3 class="rcpop__title">4 IPA Course Tickets</h3>',
             '<p class="rcpop__sub">4 张国际音标课门票</p>',
-            '<p class="rcpop__p">报名附赠 4 张 IPA 国际音标发音课门票。这是给你的额外发音练习机会——从最基础的音标开始，把每个英文音念准、念清楚。</p>',
-            '<div class="rcpop__q"><span>👉 把每个英文音念准、念清楚</span><span>👉 课堂之外，额外加强发音练习</span><span>👉 一步步消除开口时的不确定</span></div>',
-            '<p class="rcpop__p">发音稳了，你才会相信自己的声音，也才更敢开口。</p>',
+            '<p class="rcpop__p">Your enrolment includes 4 tickets to the IPA pronunciation course — extra practice to master every English sound, right from the basics, so each one comes out clear and accurate.</p>',
+            '<p class="rcpop__p zh">报名附赠 4 张 IPA 国际音标发音课门票。这是给你的额外发音练习机会——从最基础的音标开始，把每个英文音念准、念清楚。</p>',
+            '<div class="rcpop__q"><span>👉 Pronounce every English sound clearly and accurately<span class="zh">把每个英文音念准、念清楚</span></span><span>👉 Extra pronunciation practice beyond your regular classes<span class="zh">课堂之外，额外加强发音练习</span></span><span>👉 Remove the uncertainty when you speak, step by step<span class="zh">一步步消除开口时的不确定</span></span></div>',
+            '<p class="rcpop__p">When your pronunciation is solid, you start to trust your own voice — and you speak up more.</p>',
+            '<p class="rcpop__p zh">发音稳了，你才会相信自己的声音，也才更敢开口。</p>',
           '</div>',
         '</div>'
       ].join('');
@@ -7588,9 +7639,10 @@ io.observe(er);})();
             '<span class="rcpop__eyebrow">🎟️ Course Bonus · 课程礼遇</span>',
             '<h3 class="rcpop__title">8 Extra Workshop Tickets</h3>',
             '<p class="rcpop__sub">8 张额外工作坊门票 · 实战职场英文沟通</p>',
-            '<p class="rcpop__p">报名附赠 8 张工作坊门票。在常规课程之外，这些实战工作坊带你把英文真正用在职场情境里——开口练、当场用。</p>',
-            '<p class="rcpop__p" style="margin-top:13px;font-weight:700;color:var(--ink)">部分主题抢先看：</p>',
-            '<div class="rcpop__q"><span>👉 专业自我介绍 · 有结构的演讲</span><span>👉 处理投诉 · 冷静应对情绪化客户</span><span>👉 有说服力的推荐 · 自信处理异议</span><span>👉 跨团队协调 · 为职业发展建立人脉</span></div>',
+            '<p class="rcpop__p">Your enrolment includes 8 workshop tickets. Beyond your regular classes, these hands-on workshops put your English to work in real professional situations — practise out loud and use it on the spot.</p>',
+            '<p class="rcpop__p zh">报名附赠 8 张工作坊门票。在常规课程之外，这些实战工作坊带你把英文真正用在职场情境里——开口练、当场用。</p>',
+            '<p class="rcpop__p" style="margin-top:13px;font-weight:700;color:var(--ink)">A preview of some topics<span class="zh"> 部分主题抢先看</span>：</p>',
+            '<div class="rcpop__q"><span>👉 Professional self-introduction &amp; structured presenting<span class="zh">专业自我介绍 · 有结构的演讲</span></span><span>👉 Handling complaints &amp; staying calm with upset customers<span class="zh">处理投诉 · 冷静应对情绪化客户</span></span><span>👉 Persuasive recommendations &amp; confident objection handling<span class="zh">有说服力的推荐 · 自信处理异议</span></span><span>👉 Cross-team coordination &amp; networking for career growth<span class="zh">跨团队协调 · 为职业发展建立人脉</span></span></div>',
             '<div style="text-align:center"><button type="button" class="tk-iconbtn" data-wsfull style="--c:#E6A81E" title="查看完整课程内容" aria-label="查看完整课程内容 · View full syllabus"><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 9.5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 5 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-5Z"/><path d="M14 7.5v9"/></svg></span></button></div>',
           '</div>',
         '</div>'
@@ -7661,10 +7713,11 @@ io.observe(er);})();
           '<div class="rcpop__body">',
             '<span class="rcpop__eyebrow">\ud83d\udcf9 Course Bonus \u00b7 \u8bfe\u7a0b\u793c\u9047</span>',
             '<h3 class="rcpop__title">20+ Extra Videos</h3>',
-            '<p class="rcpop__sub">20+ \u989d\u5916\u8bfe\u7a0b\u89c6\u9891 \u00b7 \u8bfe\u5802\u4e4b\u5916\u968f\u65f6\u590d\u4e60</p>',
-            '<p class="rcpop__p">\u62a5\u540d\u9644\u8d60 20+ \u652f\u989d\u5916\u8bfe\u7a0b\u89c6\u9891\u3002\u8bfe\u5802\u4e4b\u5916\uff0c\u968f\u65f6\u56de\u770b\u3001\u8865\u5f3a\u3001\u53cd\u590d\u7ec3\uff0c\u628a\u5b66\u8fc7\u7684\u5185\u5bb9\u771f\u6b63\u5de9\u56fa\u4e0b\u6765\u3002</p>',
-            '<p class="rcpop__p" style="margin-top:13px;font-weight:700;color:var(--ink)">\u90e8\u5206\u5185\u5bb9\u62a2\u5148\u770b\uff1a</p>',
-            '<div class="rcpop__q"><span>\ud83d\udc49 Grammar \u6587\u6cd5\u6559\u5b66\u89c6\u9891</span><span>\ud83d\udc49 \u771f\u5b9e\u60c5\u5883\u7684\u4e3b\u9898\u77ed\u7247</span><span>\ud83d\udc49 \u968f\u65f6\u56de\u770b\uff0c\u6309\u81ea\u5df1\u8282\u594f\u7ec3\u4e60</span></div>',
+            '<p class="rcpop__sub">20+ 额外课程视频 · 课堂之外随时复习</p>',
+            '<p class="rcpop__p">Your enrolment includes 20+ extra lesson videos. Outside class you can rewatch, reinforce and practise them repeatedly, so what you have learned really sticks.</p>',
+            '<p class="rcpop__p zh">报名附赠 20+ 支额外课程视频。课堂之外，随时回看、补强、反复练，把学过的内容真正巩固下来。</p>',
+            '<p class="rcpop__p" style="margin-top:13px;font-weight:700;color:var(--ink)">A preview of some content<span class="zh"> 部分内容抢先看</span>：</p>',
+            '<div class="rcpop__q"><span>👉 Grammar teaching videos<span class="zh">Grammar 文法教学视频</span></span><span>👉 Themed clips set in real-life situations<span class="zh">真实情境的主题短片</span></span><span>👉 Rewatch anytime and practise at your own pace<span class="zh">随时回看，按自己节奏练习</span></span></div>',
             '<div style="text-align:center"><button type="button" class="tk-iconbtn" data-vidlist style="--c:#E0303B" title="观看视频清单" aria-label="观看视频清单 · Watch list"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.4 9.1l4.4 2.9-4.4 2.9Z" fill="currentColor" stroke="none"/></svg></span></button></div>',
           '</div>',
         '</div>'
