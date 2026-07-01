@@ -275,6 +275,15 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .rm-detail__tags{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
 .tag{font-size:12px;font-weight:600;padding:5px 11px;border-radius:20px;background:var(--blue-tint);color:var(--blue)}
 .tag.red{background:var(--red-tint);color:var(--red-deep)}
+.fx{position:relative;display:inline-flex;cursor:help;outline:none;vertical-align:middle}
+.fx-tip{position:absolute;top:calc(100% + 10px);left:50%;z-index:60;width:296px;max-width:84vw;text-align:left;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2);border:1px solid rgba(255,255,255,.82);box-shadow:0 22px 46px -18px rgba(20,33,50,.42),0 2px 6px rgba(20,33,50,.08),inset 0 1px 0 rgba(255,255,255,.85);opacity:0;visibility:hidden;transform:translate(-50%,-4px);transition:opacity .16s ease,transform .16s ease,visibility .16s;pointer-events:none}
+.fx:hover .fx-tip,.fx:focus-visible .fx-tip,.fx:focus-within .fx-tip{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.fx-tip__t{display:block;font-family:var(--display);font-weight:800;font-size:12.5px;color:var(--ink);letter-spacing:.01em}
+.fx-tip__s{display:block;font-size:10.5px;color:var(--muted);margin:3px 0 10px;line-height:1.45}
+.fx-tip__row{display:flex;gap:9px;align-items:flex-start;font-size:11.5px;line-height:1.4;margin-top:6px}
+.fx-tip__row i{flex:none;width:19px;height:19px;border-radius:6px;display:inline-grid;place-items:center;font-family:var(--display);font-weight:800;font-size:10px;font-style:normal;color:#fff;background:linear-gradient(157deg,color-mix(in srgb,var(--fxc,var(--blue-bright)) 45%,#fff),var(--fxc,var(--blue-bright)) 62%,color-mix(in srgb,var(--fxc,var(--blue-bright)) 80%,#0a1a2a));box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 3px 7px -3px rgba(21,53,123,.5)}
+.fx-tip__row b{color:var(--ink);font-weight:700}
+.fx-tip__row em{color:var(--muted);font-style:normal}
 .rm-detail__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .rmd{background:var(--bg);border-radius:var(--r-sm);padding:16px 18px}
 .rmd .lab{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:6px}
@@ -3528,7 +3537,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 /* ===== 0% interest-free installment — entry pill + Apple-style glass popup ===== */
 .inst-cta{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;animation:priceRise .5s cubic-bezier(.22,.61,.36,1) both}
 .inst-open-btn__pct.inst-open-btn__pct--pay svg{width:23px;height:23px;stroke:#fff;fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;opacity:1}
-.inst-open-btn__pct--hrdc{background:#fff;color:var(--blue);font-size:8.5px;font-weight:800;letter-spacing:-.02em;overflow:hidden;border:1px solid var(--line)}
+.inst-open-btn__pct.inst-open-btn__pct--hrdc{background:#fff;color:var(--blue);font-size:8.5px;font-weight:800;letter-spacing:-.02em;overflow:hidden;border:1px solid var(--line)}
 .inst-open-btn__pct--hrdc img{width:100%;height:100%;object-fit:contain;padding:5px}
 #hrdcClaimPop .ipop__card{max-width:720px}
 .hrdc-steps{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;margin-top:8px;text-align:left}
@@ -4285,6 +4294,17 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
      gain:[{ic:"screen",en:"Present with impact",zh:"有影响力地演示"},{ic:"scale",en:"Negotiate with diplomacy",zh:"外交式谈判"},{ic:"shield",en:"Defend answers clearly",zh:"清楚答辩"},{ic:"people",en:"Lead discussions",zh:"主导讨论"},{ic:"mic",en:"Speak more spontaneously",zh:"更即兴地表达"},{ic:"sparkle",en:"Adapt tone to audience",zh:"因人调整语气"}]}
   ];
 
+  var FORMULA={
+    OREO:{n:"O.R.E.O",lvl:"Level 2 \u00b7 Elementary",c:"#1276B5",how:"Structure a clear, supported opinion.",steps:[["O","Opinion","a clear personal stance"],["R","Reason","the main reason that supports it"],["E","Example","a concrete example or evidence"],["O","Opinion restated","a stronger concluding restatement"]]},
+    SPEAR:{n:"S.P.E.A.R",lvl:"Level 3 \u00b7 Intermediate",c:"#C2351C",how:"Build a full persuasive argument, step by step.",steps:[["S","State","present your position clearly"],["P","Point","give your main supporting idea"],["E","Explain","elaborate with details or data"],["A","Argue","address the opposite side"],["R","Restate","end with a confident conclusion"]]},
+    TARGET:{n:"T.A.R.G.E.T",lvl:"Level 4 \u00b7 Upper-Intermediate",c:"#15335E",how:"Balanced, evidence-based argument (C1).",steps:[["T","Thesis","a clear, nuanced central argument"],["A","Advantage","the main benefit supporting it"],["R","Risk","a limitation or downside"],["G","Guardrail","how to manage that risk"],["E","Evidence","research or data"],["T","Tie-back","conclusion linking back to the thesis"]]}
+  };
+  function fxKey(f){ if(!f) return null; var s=(''+f).toUpperCase().replace(/[^A-Z]/g,''); if(s.indexOf('OREO')>=0) return 'OREO'; if(s.indexOf('SPEAR')>=0) return 'SPEAR'; if(s.indexOf('TAGERT')>=0||s.indexOf('TARGET')>=0) return 'TARGET'; return null; }
+  function fxChip(cls,formula){ var k=fxKey(formula); if(!k) return '<span class="'+cls+'">'+formula+'</span>'; var d=FORMULA[k];
+    var rows=d.steps.map(function(st){ return '<span class="fx-tip__row"><i>'+st[0]+'</i><span><b>'+st[1]+'</b> \u2014 <em>'+st[2]+'</em></span></span>'; }).join('');
+    return '<span class="fx" tabindex="0" style="--fxc:'+d.c+'" aria-label="'+d.n+' formula \u2014 how it is taught"><span class="'+cls+'">'+formula+'</span>'+
+      '<span class="fx-tip" role="tooltip"><b class="fx-tip__t">'+d.n+' \u00b7 Formula</b><span class="fx-tip__s">'+d.lvl+' \u00b7 '+d.how+'</span>'+rows+'</span></span>'; }
+
   var ADVISOR = {
     work:{title:"Work needs · 工作需要",
       focus:"They need English that works in meetings, emails-to-speech, and with clients. Tie progress to job performance and opportunities, not grammar scores.",
@@ -4512,7 +4532,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       '<div class="rm-detail" style="--c:'+l.c+';--ci:'+l.ci+';--txt:'+l.txt+'"><div class="rm-detail__head">'+
         '<span class="rm-detail__lvl">'+l.lvl+'</span>'+
         '<span class="rm-detail__nm">'+l.name+' <span class="zh" style="color:var(--muted);font-weight:500;font-size:16px">'+l.nameZh+'</span></span>'+
-        '<div class="rm-detail__tags"><span class="tag">'+l.cefrFull+'</span><span class="tag">'+l.classes+'</span><span class="tag red">'+l.formula+'</span></div>'+
+        '<div class="rm-detail__tags"><span class="tag">'+l.cefrFull+'</span><span class="tag">'+l.classes+'</span>'+fxChip('tag red',l.formula)+'</div>'+
       '</div><div class="rm-detail__grid">'+
         '<div class="rmd"><div class="lab">Who it\'s for <span class="zh">适合谁</span></div><div class="val">'+l.who+'</div></div>'+
         '<div class="rmd"><div class="lab">What you learn <span class="zh">学什么</span></div><div class="val">'+l.learn+'</div></div>'+
@@ -4645,7 +4665,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       '</svg></div>';
     $("#modalBody").innerHTML=
       '<div class="cc-modal">'+
-        '<div class="cc-modal__kicker"><span class="cc-modal__c">'+c.c+'</span> · '+c.skill+' <span class="cc-modal__formula">'+c.formula+'</span></div>'+
+        '<div class="cc-modal__kicker"><span class="cc-modal__c">'+c.c+'</span> · '+c.skill+' '+fxChip('cc-modal__formula',c.formula)+'</div>'+
         '<div class="cc-modal__meta"><span>'+svg("people")+c.cefr+'</span><span>'+svg("calendar")+c.classes+'</span></div>'+
         '<div class="cc-intro"><span class="cc-intro__ic">'+svg("lightbulb")+'</span><div class="cc-intro__tx"><strong>'+lead+'</strong> '+rest+'</div></div>'+
         '<div class="cc-modal__sec"><h4><span class="sec-ic sec-ic--learn">'+svg("gradcap")+'</span>What students learn in class <span class="zh">课堂学什么</span></h4><ul class="cc-learn-list">'+learnLis+'</ul></div>'+
@@ -4839,7 +4859,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     var gainRows=c.gain.slice(0,5).map(function(x,j){var col=COLPAL[j%COLPAL.length];
       return '<div class="cc-gain__row"><span class="gr-ic" style="color:'+col+';background:'+col+'1f">'+svg(x.ic)+'</span><span class="gr-en">'+x.en+'</span><span class="gr-zh">'+x.zh+'</span></div>';}).join("");
     return '<div class="cc-modal">'+
-      '<div class="cc-modal__kicker"><span class="cc-modal__c">'+c.c+'</span> · '+c.skill+' <span class="cc-modal__formula">'+c.formula+'</span></div>'+
+      '<div class="cc-modal__kicker"><span class="cc-modal__c">'+c.c+'</span> · '+c.skill+' '+fxChip('cc-modal__formula',c.formula)+'</div>'+
       '<div class="cc-modal__meta"><span>'+svg("people")+c.cefr+'</span><span>'+svg("calendar")+c.classes+'</span></div>'+
       '<div class="cc-intro"><span class="cc-intro__ic">'+svg("lightbulb")+'</span><div class="cc-intro__tx"><strong>'+c.core+'</strong> '+c.desc+'</div></div>'+
       '<div class="cc-modal__sec"><h4><span class="sec-ic sec-ic--gain">'+svg("trophy")+'</span>5 key outcomes <span class="zh">5 个重点项目</span></h4><div class="cc-gain">'+gainRows+'</div></div>'+
