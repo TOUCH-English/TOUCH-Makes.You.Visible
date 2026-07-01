@@ -3521,6 +3521,11 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .ht-final b{font-family:var(--display);font-weight:800;color:var(--blue);font-size:16px}
 .ht-save{background:color-mix(in srgb,#E6A81E 16%,#fff)!important;font-family:var(--display);font-weight:800;color:#8a6300}
 .hpop__fine{font-size:11px;color:var(--faint);margin-top:14px;line-height:1.5;text-align:center}
+.sst-row{text-align:center;margin-top:8px}
+.sst-toggle{display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;background:rgba(42,91,215,.05);border:1px solid var(--line);font-family:var(--body);font-size:12px;color:var(--muted);cursor:pointer;-webkit-user-select:none;user-select:none;transition:.14s}
+.sst-toggle input{accent-color:var(--blue-bright);width:15px;height:15px;cursor:pointer}
+.sst-toggle i{font-style:normal;color:var(--faint)}
+.sst-toggle:hover{background:rgba(42,91,215,.09);color:var(--ink);border-color:var(--line-strong)}
 /* HRDC popup — advisor edit mode */
 .adv-note.is-on{opacity:1;color:var(--blue);font-weight:700}
 .hpop__table input{width:76px;font:inherit;font-family:var(--display);font-weight:700;font-size:13px;text-align:center;border:1px solid var(--blue-bright);border-radius:8px;padding:5px 6px;background:#fff;color:var(--ink)}
@@ -7504,11 +7509,11 @@ io.observe(er);})();
 
   /* ---------- price data (retained for the later price-reveal block) + advisor editor ---------- */
   var DEF=[
-    {id:'basic', name:'Basic',  sub:'Foundation · 1 Level', lessons:48,  orig:3300,  combo:0,    hrdc:903,  na:false},
-    {id:'comboA',name:'Combo A',sub:'2 Levels',             lessons:96,  orig:6600,  combo:900,  hrdc:1503, na:false},
-    {id:'comboB',name:'Combo B',sub:'3 Levels',             lessons:144, orig:9900,  combo:2100, hrdc:1903, na:false},
-    {id:'comboC',name:'Combo C',sub:'4 Levels',             lessons:192, orig:13200, combo:3930, hrdc:0,    na:true},
-    {id:'comboD',name:'Combo D',sub:'5 Levels',             lessons:240, orig:16500, combo:5230, hrdc:0,    na:true}
+    {id:'basic', name:'Essential',  sub:'Foundation · 1 Level', lessons:48,  orig:3300,  combo:0,    hrdc:903,  na:false},
+    {id:'comboA',name:'Standard',sub:'2 Levels',             lessons:96,  orig:6600,  combo:900,  hrdc:1503, na:false},
+    {id:'comboB',name:'Best Value',sub:'3 Levels',             lessons:144, orig:9900,  combo:2100, hrdc:1903, na:false},
+    {id:'comboC',name:'Extra Sessions 1',sub:'4 Levels',             lessons:192, orig:13200, combo:3930, hrdc:0,    na:true},
+    {id:'comboD',name:'Extra Sessions 2',sub:'5 Levels',             lessons:240, orig:16500, combo:5230, hrdc:0,    na:true}
   ];
   var MISC_DEF={reg:150,sys:150};
   var data, misc;
@@ -7524,14 +7529,16 @@ io.observe(er);})();
           if(typeof v.na==='boolean')o.na=v.na; return o;});
         misc=clone(MISC_DEF);
         if(s.misc){if(isNum(s.misc.reg))misc.reg=s.misc.reg;if(isNum(s.misc.sys))misc.sys=s.misc.sys;}
+        sstOn=!!s.sst;
         return;
       }
     }catch(e){}
-    data=clone(DEF); misc=clone(MISC_DEF);
+    data=clone(DEF); misc=clone(MISC_DEF); sstOn=false;
   }
-  function save(){try{localStorage.setItem(KEY,JSON.stringify({pkgs:data.map(function(d){return {orig:d.orig,combo:d.combo,hrdc:d.hrdc,lessons:d.lessons,na:d.na};}),misc:misc}));}catch(e){}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify({pkgs:data.map(function(d){return {orig:d.orig,combo:d.combo,hrdc:d.hrdc,lessons:d.lessons,na:d.na};}),misc:misc,sst:sstOn}));}catch(e){}}
   function fmt(n){return (n||0).toLocaleString('en-US');}
   function finalOf(d){return Math.max(0,d.orig-d.combo-(d.na?0:d.hrdc));}
+  var SST_RATE=0.06, sstOn=false; function taxed(n){ return sstOn?Math.round(n*(1+SST_RATE)):n; }
   /* ---------- card-inline price (combo -> after-subsidy) + reveal sync ---------- */
   var subsidyOn=false, subsidyDone=false;
   var priceShown=[false,false,false], slideIdx=-1;
@@ -7548,12 +7555,12 @@ io.observe(er);})();
   function priceInner(i){
     var d=data[i], combo=comboOf(d), sub=finalOf(d), now=subsidyOn?sub:combo;
     var struck = subsidyOn ? (d.orig>sub) : (d.combo>0);
-    var orig = struck ? '<span class="tcard__price-orig">RM '+fmt(d.orig)+'</span>' : '';
+    var orig = struck ? '<span class="tcard__price-orig">RM '+fmt(taxed(d.orig))+'</span>' : '';
     var tag = subsidyOn ? '<span class="tcard__price-tag">After subsidy<span class="zh">津贴后</span></span>' : '';
-    var save = (subsidyOn && d.orig-sub>0) ? '<span class="tcard__price-save">Save RM '+fmt(d.orig-sub)+'<span class="zh">省</span></span>' : '';
+    var save = (subsidyOn && d.orig-sub>0) ? '<span class="tcard__price-save">Save RM '+fmt(taxed(d.orig-sub))+'<span class="zh">省</span></span>' : '';
     var hrdc=(!subsidyOn && (i===1||i===2)) ? '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span>' : '';
-    return orig+'<div class="tcard__price-now"><span class="rm">RM</span><span class="n">'+fmt(now)+'</span>'+hrdc+'</div>'+tag+save+
-      '<span class="tcard__price-note">+ RM'+fmt(miscFee())+' <span class="zh">报名＋系统费</span></span>';
+    return orig+'<div class="tcard__price-now"><span class="rm">RM</span><span class="n">'+fmt(taxed(now))+'</span>'+hrdc+'</div>'+tag+save+
+      '<span class="tcard__price-note">+ RM'+fmt(taxed(miscFee()))+' <span class="zh">报名＋系统费</span>'+(sstOn?' · <b style=\"color:var(--blue-bright)\">incl. 6% SST</b>':'')+'</span>';
   }
   function priceBlock(i){ return '<div class="tcard__price" data-pi="'+i+'">'+priceInner(i)+'</div>'; }
   function revealSubsidyPrices(){
@@ -7568,7 +7575,7 @@ io.observe(er);})();
       var from=comboOf(data[i]), to=finalOf(data[i]);
       block.innerHTML=priceInner(i);
       var nEl=block.querySelector('.tcard__price-now .n');
-      if(nEl) count(nEl,from,to,'');
+      if(nEl) count(nEl,taxed(from),taxed(to),'');
     }
     showInstCta();
   }
@@ -7582,7 +7589,7 @@ io.observe(er);})();
       var from=finalOf(data[i]), to=comboOf(data[i]);
       block.innerHTML=priceInner(i);
       var nEl=block.querySelector('.tcard__price-now .n');
-      if(nEl) count(nEl,from,to,'');
+      if(nEl) count(nEl,taxed(from),taxed(to),'');
     }
     hideInstCta();
   }
@@ -7594,7 +7601,7 @@ io.observe(er);})();
         '<td><input type="number" min="0" step="1" data-f="combo" value="'+d.combo+'"></td>'+
         '<td><input type="number" min="0" step="1" data-f="hrdc" value="'+d.hrdc+'"'+(d.na?' disabled':'')+'>'+
           '<label class="pa-na"><input type="checkbox" data-f="na"'+(d.na?' checked':'')+'> N.A.</label></td>'+
-        '<td class="pa-final">RM '+fmt(finalOf(d))+'</td></tr>';
+        '<td class="pa-final">RM '+fmt(taxed(finalOf(d)))+'</td></tr>';
     }).join('');
     adminBody.innerHTML='<table class="pa-table"><thead><tr><th>Package</th><th>Original (RM)</th><th>Combo discount</th><th>HRDC subsidy</th><th>Final</th></tr></thead><tbody>'+rows+'</tbody></table>'+
       '<div class="pa-misc">Misc fees <label>Registration <input type="number" min="0" data-misc="reg" value="'+misc.reg+'"></label>'+
@@ -7609,7 +7616,7 @@ io.observe(er);})();
       var i=+tr.getAttribute('data-i'),f=t.dataset.f;
       if(f==='na'){data[i].na=t.checked;var hr=tr.querySelector('input[data-f="hrdc"]');if(hr)hr.disabled=t.checked;}
       else if(f){data[i][f]=clampInt(t.value);}
-      var fc=tr.querySelector('.pa-final');if(fc)fc.textContent='RM '+fmt(finalOf(data[i]));
+      var fc=tr.querySelector('.pa-final');if(fc)fc.textContent='RM '+fmt(taxed(finalOf(data[i])));
       save();renderExt();
     });
     adminBody.addEventListener('click',function(e){
@@ -7671,10 +7678,10 @@ io.observe(er);})();
         '<div class="tcard__num"><b>'+d.lessons+'</b><span>LESSONS</span></div>'+
         '<p class="tcard__tag">'+d.name+' · '+d.sub+'<span class="zh">更多 Level，深入掌握。</span></p></div>'+
         '<div class="tcard__body"><p class="tcard__extnote">Beyond 144 lessons — combo discount only, no government subsidy. <span class="zh">144 堂以上仅配套折扣，无政府津贴。</span></p></div>'+
-        '<div class="tcard__price is-revealed"><span class="tcard__price-orig">RM '+fmt(d.orig)+'</span>'+
-        '<div class="tcard__price-now"><span class="rm">RM</span><span class="n">'+fmt(comboOf(d))+'</span>'+
+        '<div class="tcard__price is-revealed"><span class="tcard__price-orig">RM '+fmt(taxed(d.orig))+'</span>'+
+        '<div class="tcard__price-now"><span class="rm">RM</span><span class="n">'+fmt(taxed(comboOf(d)))+'</span>'+
         '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span></div>'+
-        '<span class="tcard__price-note">+ RM'+fmt(miscFee())+' <span class="zh">报名＋系统费</span></span></div></article>';
+        '<span class="tcard__price-note">+ RM'+fmt(taxed(miscFee()))+' <span class="zh">报名＋系统费</span>'+(sstOn?' · +6% SST':'')+'</span></div></article>';
     }).join('');
   }
 
@@ -8049,7 +8056,7 @@ io.observe(er);})();
       '<div class="hpop__hint"><img loading="lazy" decoding="async" class="hpop__hintlogo" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"></div>'+
     '</div>';
   }
-  function feeI(){return '<i class="mfee">+RM'+fmt(miscFee())+'*</i>';}
+  function feeI(){return '<i class="mfee">+RM'+fmt(taxed(miscFee()))+'*</i>';}
   function tableRow(d,i){
     var sub=finalOf(d), sv=d.orig-sub;
     if(advEdit){
@@ -8060,20 +8067,20 @@ io.observe(er);})();
         '<td class="ht-orig"><input type="number" min="0" step="50" data-f="orig" value="'+d.orig+'">'+feeI()+'</td>'+
         '<td class="ht-combo"><input type="number" min="0" step="50" data-f="combo" value="'+d.combo+'"></td>'+
         '<td class="ht-hrdc"><input type="number" min="0" step="50" data-f="hrdc" value="'+d.hrdc+'"'+(d.na?' disabled':'')+'>'+naChk+'</td>'+
-        '<td class="ht-final"><b><span data-out="final">RM '+fmt(sub)+'</span></b>'+feeI()+'</td>'+
-        '<td class="ht-save"><span data-out="save">RM '+fmt(sv)+'</span></td>'+
+        '<td class="ht-final"><b><span data-out="final">RM '+fmt(taxed(sub))+'</span></b>'+feeI()+'</td>'+
+        '<td class="ht-save"><span data-out="save">RM '+fmt(taxed(sv))+'</span></td>'+
       '</tr>';
     }
-    var comboCell = d.combo>0 ? '−RM '+fmt(d.combo) : '–';
-    var hrdcCell = d.na ? '<span class="na">N.A.</span>' : '−RM '+fmt(d.hrdc);
+    var comboCell = d.combo>0 ? '−RM '+fmt(taxed(d.combo)) : '–';
+    var hrdcCell = d.na ? '<span class="na">N.A.</span>' : '−RM '+fmt(taxed(d.hrdc));
     return '<tr>'+
       '<td class="ht-pkg"><b>'+d.name+'</b><span>'+d.sub+'</span></td>'+
       '<td class="ht-cls">'+d.lessons+'</td>'+
-      '<td class="ht-orig"><s>RM '+fmt(d.orig)+'</s>'+feeI()+'</td>'+
+      '<td class="ht-orig"><s>RM '+fmt(taxed(d.orig))+'</s>'+feeI()+'</td>'+
       '<td class="ht-combo">'+comboCell+'</td>'+
       '<td class="ht-hrdc">'+hrdcCell+'</td>'+
-      '<td class="ht-final"><b><span class="hn" data-from="'+d.orig+'" data-to="'+sub+'">RM '+fmt(d.orig)+'</span></b>'+feeI()+'</td>'+
-      '<td class="ht-save">RM '+fmt(sv)+'</td>'+
+      '<td class="ht-final"><b><span class="hn" data-from="'+taxed(d.orig)+'" data-to="'+taxed(sub)+'">RM '+fmt(taxed(d.orig))+'</span></b>'+feeI()+'</td>'+
+      '<td class="ht-save">RM '+fmt(taxed(sv))+'</td>'+
     '</tr>';
   }
   function tableView(){
@@ -8087,7 +8094,8 @@ io.observe(er);})();
         '<th>You save<span class="zh">省</span></th>'+
       '</tr></thead><tbody>'+data.map(tableRow).join('')+'</tbody></table></div>'+
       miscEd+
-      '<p class="hpop__fine">+ RM<span class="mfee2">'+fmt(miscFee())+'</span>* one-time registration &amp; system · 外籍学员另加 6% SST · 促销不与 HRDC 个人申领叠加</p>'+
+      '<p class="hpop__fine">+ RM<span class="mfee2">'+fmt(taxed(miscFee()))+'</span>* one-time registration &amp; system · 外籍学员另加 6% SST · 促销不与 HRDC 个人申领叠加</p>'+
+      '<div class="sst-row"><label class="sst-toggle"><input type="checkbox" data-sst'+(sstOn?' checked':'')+'> SST 6% <i>· foreign learner 外籍 +6%</i></label></div>'+
       '<div class="adv-note-wrap" style="margin:14px 0 2px"><button type="button" class="adv-note'+(advEdit?' is-on':'')+'" data-hrdcedit aria-pressed="'+(advEdit?'true':'false')+'" aria-label="Advisor Note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button></div>'+
     '</div>';
   }
@@ -8096,8 +8104,8 @@ io.observe(er);})();
     renderExt();
   }
   function updateMiscTexts(){
-    Array.prototype.forEach.call(hstage.querySelectorAll('.mfee'),function(el){ el.textContent='+RM'+fmt(miscFee())+'*'; });
-    var m2=hstage.querySelector('.mfee2'); if(m2) m2.textContent=fmt(miscFee());
+    Array.prototype.forEach.call(hstage.querySelectorAll('.mfee'),function(el){ el.textContent='+RM'+fmt(taxed(miscFee()))+'*'; });
+    var m2=hstage.querySelector('.mfee2'); if(m2) m2.textContent=fmt(taxed(miscFee()));
   }
   function animateTable(){
     var cells=hstage.querySelectorAll('.hn');
@@ -8119,16 +8127,17 @@ io.observe(er);})();
       if(tg){ e.stopPropagation(); advEdit=!advEdit; renderTable(); }
     });
     hstage.addEventListener('input',function(e){
-      if(!advEdit) return;
       var t=e.target;
+      if(t.dataset&&t.dataset.sst!==undefined){ sstOn=t.checked; save(); refreshCards(); renderExt(); renderTable(); animateTable(); return; }
+      if(!advEdit) return;
       if(t.dataset&&t.dataset.misc){ misc[t.dataset.misc]=clampInt(t.value); save(); updateMiscTexts(); refreshCards(); return; }
       var tr=t.closest&&t.closest('tr[data-i]'); if(!tr) return;
       var i=+tr.getAttribute('data-i'), f=t.dataset.f;
       if(f==='na'){ data[i].na=t.checked; var hr=tr.querySelector('input[data-f="hrdc"]'); if(hr) hr.disabled=t.checked; }
       else if(f){ data[i][f]=clampInt(t.value); }
       var sub=finalOf(data[i]);
-      var fo=tr.querySelector('[data-out="final"]'); if(fo) fo.textContent='RM '+fmt(sub);
-      var so=tr.querySelector('[data-out="save"]'); if(so) so.textContent='RM '+fmt(data[i].orig-sub);
+      var fo=tr.querySelector('[data-out="final"]'); if(fo) fo.textContent='RM '+fmt(taxed(sub));
+      var so=tr.querySelector('[data-out="save"]'); if(so) so.textContent='RM '+fmt(taxed(data[i].orig-sub));
       save(); refreshCards();
     });
   }
@@ -8173,7 +8182,7 @@ io.observe(er);})();
   var instSelPkg=0, instSelBank=null, instSelTerm=null, instRevealed=false;
   function showInstCta(){ if(instCta) instCta.removeAttribute('hidden'); }
   function hideInstCta(){ if(instCta) instCta.setAttribute('hidden',''); }
-  function instPrincipal(){ return finalOf(data[instSelPkg]) + miscFee(); }
+  function instPrincipal(){ return taxed(finalOf(data[instSelPkg]) + miscFee()); }
   function instSegHTML(){
     return INST_PKG.map(function(i){
       return '<button type="button" data-pkg="'+i+'" class="'+(i===instSelPkg?'is-on':'')+'">'+data[i].lessons+'<span class="s">LESSONS</span></button>';
@@ -8181,7 +8190,7 @@ io.observe(er);})();
   }
   function instPrincipalHTML(){
     var d=data[instSelPkg], sub=finalOf(d), pr=instPrincipal();
-    return 'Installment base <b>RM '+fmt(pr)+'</b> · <i>after-subsidy RM '+fmt(sub)+' + RM'+fmt(miscFee())+' 报名＋系统费</i>';
+    return 'Installment base <b>RM '+fmt(pr)+'</b> · <i>after-subsidy RM '+fmt(taxed(sub))+' + RM'+fmt(taxed(miscFee()))+' 报名＋系统费'+(sstOn?' · +6% SST':'')+'</i>';
   }
   function instBanksHTML(){
     return INST_BANKS.map(function(b,bi){
@@ -8196,7 +8205,7 @@ io.observe(er);})();
     var b=INST_BANKS[instSelBank], pr=instPrincipal(), m=Math.round(pr/instSelTerm);
     return '<div class="ipop__result"><div class="ipop__result-amt"><span class="rm">RM</span><span class="n" data-instn>'+fmt(m)+'</span><span class="per">/月 mo</span></div>'+
       '<div class="ipop__result-meta"><b>'+instSelTerm+' 期</b> · 0% interest-free 免息 · <b>'+b.name+'</b></div>'+
-      '<div class="ipop__result-meta">Base 本金 RM '+fmt(pr)+' <span style="color:var(--faint)">（含报名＋系统 RM'+fmt(miscFee())+'）</span></div></div>';
+      '<div class="ipop__result-meta">Base 本金 RM '+fmt(pr)+' <span style="color:var(--faint)">（含报名＋系统 RM'+fmt(taxed(miscFee()))+(sstOn?' · +6% SST':'')+'）</span></div></div>';
   }
   function renderInst(){
     if(!instBody) return;
