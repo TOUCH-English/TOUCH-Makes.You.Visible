@@ -3527,7 +3527,17 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 @media (max-width:600px){.hpop__stage{padding:26px 16px 20px}}
 /* ===== 0% interest-free installment — entry pill + Apple-style glass popup ===== */
 .inst-cta{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;animation:priceRise .5s cubic-bezier(.22,.61,.36,1) both}
-.inst-open-btn__pct--pay svg{width:21px;height:21px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:1}
+.inst-open-btn__pct.inst-open-btn__pct--pay svg{width:23px;height:23px;stroke:#fff;fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;opacity:1}
+.inst-open-btn__pct--hrdc{background:#fff;color:var(--blue);font-size:8.5px;font-weight:800;letter-spacing:-.02em;overflow:hidden;border:1px solid var(--line)}
+.inst-open-btn__pct--hrdc img{width:100%;height:100%;object-fit:contain;padding:5px}
+#hrdcClaimPop .ipop__card{max-width:720px}
+.hrdc-steps{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;margin-top:8px;text-align:left}
+.hrdc-step{display:flex;gap:12px;align-items:flex-start}
+.hrdc-step__n{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:14px;color:#fff;background:linear-gradient(157deg,color-mix(in srgb,var(--blue-bright) 42%,#fff),var(--blue-bright) 58%,var(--blue));box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),0 6px 12px -6px rgba(21,53,123,.5)}
+.hrdc-step__b{min-width:0}
+.hrdc-step__t{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);line-height:1.25}
+.hrdc-step__d{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:3px}
+@media(max-width:600px){.hrdc-steps{grid-template-columns:1fr}}
 .inst-cta[hidden]{display:none}
 .inst-open-btn{display:inline-flex;align-items:center;gap:11px;font:inherit;cursor:pointer;
   background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(16px) saturate(160%);backdrop-filter:blur(16px) saturate(160%);
@@ -4075,8 +4085,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
               </button>
               <button type="button" class="inst-open-btn inst-open-btn--pay" id="payOpen" aria-label="Payment · bank transfer details 银行转账付款">
-                <span class="inst-open-btn__pct inst-open-btn__pct--pay"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M3 10.5h18"/><path d="M7 15h3"/></svg></span>
+                <span class="inst-open-btn__pct inst-open-btn__pct--pay"><svg viewBox="0 0 24 24"><path d="M4 9.5 12 5l8 4.5"/><path d="M6 10.5v7M12 10.5v7M18 10.5v7"/><path d="M4 18h16"/></svg></span>
                 <span class="inst-open-btn__lab">Payment<span class="zh">银行转账付款</span></span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+              </button>
+              <button type="button" class="inst-open-btn inst-open-btn--hrdc" id="hrdcClaimOpen" aria-label="HRDC claim procedures HRDC 报销流程">
+                <span class="inst-open-btn__pct inst-open-btn__pct--hrdc"><img decoding="async" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display='none';this.parentNode.textContent='HRDC'"></span>
+                <span class="inst-open-btn__lab">HRDC Claim<span class="zh">HRDC 报销流程</span></span>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
               </button>
             </div>
@@ -4100,6 +4115,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             <div class="ipop__card" role="dialog" aria-modal="true">
               <button class="ipop__x" id="payX" aria-label="Close">×</button>
               <div class="ipop__body" id="payBody"></div>
+            </div>
+          </div>
+          <div class="ipop" id="hrdcClaimPop" aria-hidden="true">
+            <div class="ipop__bd" id="hrdcClaimBd"></div>
+            <div class="ipop__card" role="dialog" aria-modal="true">
+              <button class="ipop__x" id="hrdcClaimX" aria-label="Close">×</button>
+              <div class="ipop__body" id="hrdcClaimBody"></div>
             </div>
           </div>
         </div>
@@ -8219,11 +8241,37 @@ io.observe(er);})();
           Array.prototype.forEach.call(payBody.querySelectorAll('[data-pay-seg] button'),function(b){ b.classList.toggle('is-on',+b.getAttribute('data-pay')===paySel); });
           var wrap=payBody.querySelector('[data-pay-content]'); if(wrap) wrap.innerHTML=payContentHTML(); return; }
         var cp=e.target.closest&&e.target.closest('.pay-copy');
-        if(cp){ var dd=PAY[paySel]; var val='Company \u516c\u53f8: '+dd.company+'\nBank \u94f6\u884c: '+dd.bank+'\nAccount No. \u8d26\u53f7: '+dd.acct; var done=function(){ cp.classList.add('is-done'); var old=cp.innerHTML; cp.innerHTML='<svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg>Copied 已复制'; setTimeout(function(){ cp.classList.remove('is-done'); cp.innerHTML=old; },1600); };
+        if(cp){ var dd=PAY[paySel]; var val='Company: '+dd.company+'\nBank: '+dd.bank+'\nAccount No.: '+dd.acct; var done=function(){ cp.classList.add('is-done'); var old=cp.innerHTML; cp.innerHTML='<svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg>Copied 已复制'; setTimeout(function(){ cp.classList.remove('is-done'); cp.innerHTML=old; },1600); };
           try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(val).then(done,function(){done();}); } else { var ta=document.createElement('textarea'); ta.value=val; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(_){}; document.body.removeChild(ta); done(); } }catch(_){ done(); }
           return; }
       });
     }
+  })();
+
+  (function(){
+    var HRDC=[
+      {t:'Receive a Quotation for HRDC', d:"Trainee's Company will receive a quotation."},
+      {t:'Grant Application', d:'TC submits the documents in the HRDCorp system for the course (3–7 working days for approval). After submitting, please send us the Grant ID.'},
+      {t:'Grant Approval', d:'TC notifies Touch English of the approval status after 3–7 days (Approved or Disapproved). If disapproved, it may be revised and re-submitted.'},
+      {t:'Start E-Learning Practice', d:'TC to start e-learning practice within 16 days, with a minimum completion of 85% — 48 topics.'},
+      {t:'Claim Submission', d:'Once the trainee finishes all online practices, we proceed with the claim (claim takes 3–9 working days).'},
+      {t:'Receive Payment & Start Classes', d:'Processing the claim results in the refundable deposit being received, and the trainee starting sessions of general English classes.'}
+    ];
+    var pop=document.getElementById('hrdcClaimPop'), body=document.getElementById('hrdcClaimBody');
+    var openBtn=document.getElementById('hrdcClaimOpen'), x=document.getElementById('hrdcClaimX'), bd=document.getElementById('hrdcClaimBd');
+    function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+    function render(){ if(!body) return;
+      body.innerHTML='<div class="ipop__head"><span class="ipop__badge">HRDC</span>'+
+        '<h3 class="ipop__title">HRDC Claim Procedures<span class="zh">HRDC 报销流程</span></h3>'+
+        '<p class="ipop__sub">The steps to claim your HRDC training grant. <span class="zh">申请 HRDC 培训补助的流程。</span></p></div>'+
+        '<div class="hrdc-steps">'+HRDC.map(function(st,i){return '<div class="hrdc-step"><span class="hrdc-step__n">'+(i+1)+'</span><div class="hrdc-step__b"><div class="hrdc-step__t">'+esc(st.t)+'</div><div class="hrdc-step__d">'+esc(st.d)+'</div></div></div>';}).join('')+'</div>';
+    }
+    function open(){ render(); if(pop){ pop.classList.add('is-open'); pop.setAttribute('aria-hidden','false'); } }
+    function close(){ if(pop){ pop.classList.remove('is-open'); pop.setAttribute('aria-hidden','true'); } }
+    if(openBtn) openBtn.addEventListener('click',open);
+    if(x) x.addEventListener('click',close);
+    if(bd) bd.addEventListener('click',close);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&pop&&pop.classList.contains('is-open')) close(); });
   })();
 
   load(); renderTiers(); renderExt(); renderAdmin();
