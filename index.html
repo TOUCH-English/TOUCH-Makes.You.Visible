@@ -8193,7 +8193,7 @@ io.observe(er);})();
           '<div class="pay-info">'+
             '<div class="pay-row"><div class="pay-row__k">Company 公司</div><div class="pay-row__v">'+esc(d.company)+'</div></div>'+
             '<div class="pay-row"><div class="pay-row__k">Bank 银行</div><div class="pay-row__v">'+esc(d.bank)+'</div></div>'+
-            '<div class="pay-row"><div class="pay-row__k">Account No. 账号</div><div class="pay-row__v">'+esc(d.acct)+'<button type="button" class="pay-copy" data-copy="'+esc(d.acct)+'" aria-label="Copy account number 复制账号"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>Copy 复制</button></div></div>'+
+            '<div class="pay-row"><div class="pay-row__k">Account No. 账号</div><div class="pay-row__v">'+esc(d.acct)+'<button type="button" class="pay-copy" aria-label="Copy company, bank and account number 复制公司、银行与账号"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>Copy all 复制全部</button></div></div>'+
           '</div>'+
         '</div>';
     }
@@ -8219,7 +8219,7 @@ io.observe(er);})();
           Array.prototype.forEach.call(payBody.querySelectorAll('[data-pay-seg] button'),function(b){ b.classList.toggle('is-on',+b.getAttribute('data-pay')===paySel); });
           var wrap=payBody.querySelector('[data-pay-content]'); if(wrap) wrap.innerHTML=payContentHTML(); return; }
         var cp=e.target.closest&&e.target.closest('.pay-copy');
-        if(cp){ var val=cp.getAttribute('data-copy')||''; var done=function(){ cp.classList.add('is-done'); var old=cp.innerHTML; cp.innerHTML='<svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg>Copied 已复制'; setTimeout(function(){ cp.classList.remove('is-done'); cp.innerHTML=old; },1600); };
+        if(cp){ var dd=PAY[paySel]; var val='Company \u516c\u53f8: '+dd.company+'\nBank \u94f6\u884c: '+dd.bank+'\nAccount No. \u8d26\u53f7: '+dd.acct; var done=function(){ cp.classList.add('is-done'); var old=cp.innerHTML; cp.innerHTML='<svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg>Copied 已复制'; setTimeout(function(){ cp.classList.remove('is-done'); cp.innerHTML=old; },1600); };
           try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(val).then(done,function(){done();}); } else { var ta=document.createElement('textarea'); ta.value=val; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(_){}; document.body.removeChild(ta); done(); } }catch(_){ done(); }
           return; }
       });
