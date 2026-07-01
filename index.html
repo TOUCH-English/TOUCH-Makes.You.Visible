@@ -2307,7 +2307,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
 /* ---- ascending staircase ---- */
 .levelmap{display:flex;align-items:flex-end;gap:14px;padding-top:36px}
-.lvl-col{flex:1;min-width:0;display:flex;flex-direction:column;text-align:center;background:none}
+.lvl-col{flex:1 1 0;min-width:64px;display:flex;flex-direction:column;text-align:center;background:none}
 .lvl-col__skill{font-family:var(--display);font-weight:700;font-size:12.5px;line-height:1.2;
   color:var(--ink);margin-bottom:10px;text-shadow:0 1px 0 rgba(255,255,255,.6)}
 .lvl-col__bar{height:calc(var(--h) * 1px);border-radius:18px;color:var(--txt,#fff);position:relative;cursor:pointer;
@@ -2545,7 +2545,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .dsc-glow{opacity:0}
 .sumtr-card.has-dsc.is-hero .dsc-glow{animation:dscGlowIn .9s ease .25s both}
 .dsc-core{opacity:0;transform:scale(.4)}
-.sumtr-card.has-dsc.is-hero .dsc-core{animation:dscCoreIn .76s cubic-bezier(.2,.7,.2,1) .34s both}
+.sumtr-card.has-dsc.is-hero .dsc-core{opacity:1;transform:none;animation:dscCoreIn .76s cubic-bezier(.2,.7,.2,1) .34s both}
 @keyframes dscArcIn{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
 @keyframes dscGlowIn{from{opacity:0}to{opacity:.85}}
 @keyframes dscCoreIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
@@ -2564,6 +2564,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 @keyframes dscFlowIn{from{opacity:0}to{opacity:.5}}
 @keyframes dscFlowMove{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){.sumtr-card.has-dsc.is-hero .dsc-flow{animation:dscFlowIn .7s ease var(--d,0s) both}}
+@media (prefers-reduced-motion:reduce){.sumtr-card.has-dsc.is-hero .dsc-core,.sumtr-card.has-dsc.is-hero .dsc-glow{opacity:1!important;transform:none!important;animation:none!important}.dsc-person{opacity:1!important}}
 .dsc-dot{fill:#fff;opacity:0;transform-box:view-box;filter:drop-shadow(0 0 3px rgba(255,255,255,.95)) drop-shadow(0 0 9px color-mix(in srgb,var(--cc) 55%,transparent))}
 .sumtr-card.has-dsc.is-hero .dsc-dot{animation:dscDotIn .42s cubic-bezier(.2,.8,.2,1) var(--d,0s) both}
 @keyframes dscDotIn{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
@@ -2847,6 +2848,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .eco-disc,.eco-core,.eco-core-glow{transform-box:view-box;transform-origin:460px 460px}
 .eco-ring.is-on .eco-disc{animation-name:ecoRing;animation-duration:.85s;animation-timing-function:cubic-bezier(.25,.7,.25,1);animation-fill-mode:both}
 .eco-ring.is-on .eco-lab,.eco-ring.is-on .eco-node-ic{animation-name:ecoFade;animation-duration:.7s;animation-timing-function:ease;animation-fill-mode:both}
+.eco-ring.is-on .eco-lab,.eco-ring.is-on .eco-node-ic,.eco-ring.is-on .eco-core{opacity:1}
 .eco-ring.is-on .eco-core{animation-name:ecoCore;animation-duration:.95s;animation-timing-function:cubic-bezier(.2,.7,.2,1);animation-fill-mode:both;animation-delay:.1s}
 .eco-ring.is-on .eco-core-glow{animation-name:ecoGlow;animation-duration:1.7s;animation-timing-function:ease;animation-fill-mode:both;animation-delay:.05s}
 @keyframes ecoRing{0%{opacity:0;transform:scale(.97)}100%{opacity:1;transform:scale(1)}}
@@ -3598,9 +3600,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .ipop__fine .zh{color:var(--faint)}
 @media (max-width:600px){.ipop__body{padding:26px 16px 20px}.ipop__result-amt .n{font-size:38px}.ibank{flex-wrap:wrap}.ibank__terms{margin-left:0;margin-top:2px}}
 /* payment popup content (reuses .ipop skin) */
-.pay-grid{display:flex;gap:16px;align-items:stretch;margin-top:4px}
-.pay-qr{flex:0 0 196px;border-radius:18px;padding:14px;background:#fff;border:1px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 12px 28px -16px rgba(20,33,50,.32);display:grid;place-items:center}
-.pay-qr img{width:100%;aspect-ratio:1;object-fit:contain;display:block;border-radius:10px}
+#paymentPop .ipop__card{max-width:680px}
+.pay-grid{display:flex;gap:18px;align-items:stretch;margin-top:4px}
+.pay-qr{flex:0 0 320px;border-radius:18px;padding:12px;background:#fff;border:1px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 12px 28px -16px rgba(20,33,50,.32);display:grid;place-items:center}
+.pay-qr img{width:100%;height:auto;object-fit:contain;display:block;border-radius:10px}
 .pay-qr__fb{display:none;flex-direction:column;align-items:center;gap:7px;text-align:center;color:var(--faint);font-size:11px;padding:24px 10px}
 .pay-qr__fb svg{width:34px;height:34px;stroke:var(--line-strong);fill:none;stroke-width:1.6}
 .pay-qr__fb b{font-family:var(--display);color:var(--muted);font-size:12px}
@@ -3611,7 +3614,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .pay-copy svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .pay-copy:hover{background:var(--blue-tint);border-color:var(--blue-bright)}
 .pay-copy.is-done{background:color-mix(in srgb,var(--ok) 14%,#fff);color:#127a52;border-color:color-mix(in srgb,var(--ok) 30%,#fff)}
-@media (max-width:600px){.pay-grid{flex-direction:column}.pay-qr{flex:none;width:100%;max-width:220px;margin:0 auto}}
+@media (max-width:600px){.pay-grid{flex-direction:column}.pay-qr{flex:none;width:100%;max-width:340px;margin:0 auto}}
 /* per-item popup (glass) */
 .tpop{position:fixed;inset:0;display:none;z-index:140;align-items:center;justify-content:center;padding:24px}
 .tpop.is-open{display:flex}
