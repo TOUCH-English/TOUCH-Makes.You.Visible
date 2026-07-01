@@ -8030,13 +8030,13 @@ io.observe(er);})();
   grid.addEventListener('click',function(e){
     if(e.target.closest('.tcard__hrdc-corner')){ revertToCombo(); return; }
     if(e.target.closest('.tcard.is-masked')){
-      if(revealed<TIERS.length){ var ni=revealed; priceShown[ni]=true; revealed++; slideIdx=ni; }
+      if(revealed<TIERS.length){ var ni=revealed; for(var j=0;j<=ni;j++) priceShown[j]=true; revealed++; slideIdx=ni; }
       renderTiers(); slideIdx=-1; return;
     }
     var feat=e.target.closest('.tfeat');
     if(feat){ openPop(+feat.getAttribute('data-i'),+feat.getAttribute('data-k')); return; }
     var card=e.target.closest('.tcard');
-    if(card){ var ci=+card.getAttribute('data-i'); if(ci>=0&&ci<3&&!priceShown[ci]){ priceShown[ci]=true; slideIdx=ci; renderTiers(); slideIdx=-1; } }
+    if(card){ var ci=+card.getAttribute('data-i'); if(ci>=0&&ci<3&&!priceShown[ci]){ for(var j=0;j<=ci;j++) priceShown[j]=true; slideIdx=ci; renderTiers(); slideIdx=-1; } }
   });
   if(extToggle){
     extToggle.addEventListener('click',function(){
