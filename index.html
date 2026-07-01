@@ -277,7 +277,9 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .tag.red{background:var(--red-tint);color:var(--red-deep)}
 .fx{position:relative;display:inline-flex;cursor:help;outline:none;vertical-align:middle}
 .fx-tip{position:absolute;top:calc(100% + 10px);left:50%;z-index:60;width:296px;max-width:84vw;text-align:left;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2);border:1px solid rgba(255,255,255,.82);box-shadow:0 22px 46px -18px rgba(20,33,50,.42),0 2px 6px rgba(20,33,50,.08),inset 0 1px 0 rgba(255,255,255,.85);opacity:0;visibility:hidden;transform:translate(-50%,-4px);transition:opacity .16s ease,transform .16s ease,visibility .16s;pointer-events:none}
-.fx:hover .fx-tip,.fx:focus-visible .fx-tip,.fx:focus-within .fx-tip{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.fx .fx-tip{display:none}
+#fxTip{position:fixed;z-index:3000;left:-9999px;top:0;width:296px;max-width:92vw;text-align:left;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2);border:1px solid rgba(255,255,255,.82);box-shadow:0 22px 46px -18px rgba(20,33,50,.42),0 2px 6px rgba(20,33,50,.08),inset 0 1px 0 rgba(255,255,255,.85);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s ease,transform .15s ease,visibility .15s;pointer-events:none}
+#fxTip.is-on{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
 .fx-tip__t{display:block;font-family:var(--display);font-weight:800;font-size:12.5px;color:var(--ink);letter-spacing:.01em}
 .fx-tip__s{display:block;font-size:10.5px;color:var(--muted);margin:3px 0 10px;line-height:1.45}
 .fx-tip__row{display:flex;gap:9px;align-items:flex-start;font-size:11.5px;line-height:1.4;margin-top:6px}
@@ -4250,9 +4252,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
      who:"Wants to persuade in meetings &amp; with clients. 想在会议、客户面前更有说服力。", learn:"Reason and persuade with logic. 用 S.P.E.A.R 有逻辑地说服。",
      solve:"Sounding unsure or unconvincing. 解决「讲了没人信」。", after:"Convince with clear reasons and logic. 会说服、有理有据。"},
     {id:"L4", lvl:"Level 4", name:"Upper-Intermediate", nameZh:"高级", top:"Captivating Skills", skill:"Captivating skill",
-     cefr:"B2–C1", cefrFull:"CEFR B2–C1", classes:"48 classes", formula:"Formula T.A.G.E.R.T", online:true,
+     cefr:"B2–C1", cefrFull:"CEFR B2–C1", classes:"48 classes", formula:"Formula T.A.R.G.E.T", online:true,
      c:"var(--l4)", ci:"#15335E", txt:"#fff", dark:false, h:332,
-     who:"Presenters, leaders, client-facing pros. 需要演说、影响力的人。", learn:"Speak with impact and presence. 用 T.A.G.E.R.T 表达更有影响力。",
+     who:"Presenters, leaders, client-facing pros. 需要演说、影响力的人。", learn:"Speak with impact and presence. 用 T.A.R.G.E.T 表达更有影响力。",
      solve:"Flat, forgettable delivery. 解决「讲了没人记得」。", after:"Captivate and influence the room. 有吸引力、有影响力。"}
   ];
 
@@ -4285,11 +4287,11 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
      body:"Level 3 focuses on clear, convincing communication. Using the S.P.E.A.R formula, learners present key messages, justify their views, defend answers and respond to objections with logic. Level 3 专注「说服」：用 S.P.E.A.R 公式陈述重点、说明立场、为答案辩护、有逻辑地回应异议。",
      learn:[{ic:"screen",en:"Presentations &amp; key message delivery",zh:"重点陈述"},{ic:"scale",en:"Negotiation &amp; persuasion formulas",zh:"谈判·说服公式"},{ic:"shield",en:"From simple reply to stronger defence",zh:"更有力的回应"},{ic:"people",en:"Debate, questions &amp; defence",zh:"辩论与答辩"},{ic:"mic",en:"Impromptu, clarifying &amp; public speaking",zh:"即兴与公众表达"},{ic:"question",en:"Presentation Q&amp;A / professional conversation",zh:"演示问答"}],
      gain:[{ic:"screen",en:"Present ideas clearly",zh:"清楚陈述想法"},{ic:"scale",en:"Negotiate more confidently",zh:"更有信心地谈判"},{ic:"shield",en:"Defend answers with reasons",zh:"有理由地答辩"},{ic:"question",en:"Handle debate &amp; questions",zh:"应对辩论与提问"},{ic:"mic",en:"Speak more spontaneously",zh:"更即兴地表达"},{ic:"flag",en:"Ready for Level 4 professional communication",zh:"为 Level 4 做准备"}]},
-    {c:"Captivate", zh:"影响", mini:"Speak with impact", skill:"Captivating skill", formula:"Formula T.A.G.E.R.T", lv:"Level 4 · Upper-Intermediate", chip:"L4",
+    {c:"Captivate", zh:"影响", mini:"Speak with impact", skill:"Captivating skill", formula:"Formula T.A.R.G.E.T", lv:"Level 4 · Upper-Intermediate", chip:"L4",
      col:"var(--l4)", ci:"#15335E", txt:"#fff", cefr:"CEFR B2–C1", classes:"48 classes",
      core:"Speak with impact. 有影响力地表达。",
      desc:"Lead meetings, present persuasively and adapt your tone to any professional audience. 主导会议、有说服力地演说，并因人调整语气。",
-     body:"Level 4 is advanced expression. Using the T.A.G.E.R.T formula, learners structure executive presentations, negotiate diplomatically, lead discussions and adapt tone to captivate any audience. Level 4 是「高级表达」：用 T.A.G.E.R.T 公式组织高管级演示、外交式谈判、主导讨论，并调整语气吸引听众。",
+     body:"Level 4 is advanced expression. Using the T.A.R.G.E.T formula, learners structure executive presentations, negotiate diplomatically, lead discussions and adapt tone to captivate any audience. Level 4 是「高级表达」：用 T.A.R.G.E.T 公式组织高管级演示、外交式谈判、主导讨论，并调整语气吸引听众。",
      learn:[{ic:"screen",en:"Executive presentation &amp; message structuring",zh:"高管级演示"},{ic:"scale",en:"Strategic negotiation &amp; diplomatic language",zh:"策略谈判"},{ic:"shield",en:"High-level discussion, debate &amp; defending",zh:"高阶讨论与答辩"},{ic:"people",en:"Executive meeting communication",zh:"会议沟通主导"},{ic:"mic",en:"Public speaking, impromptu &amp; Q&amp;A",zh:"公众演说与即兴"},{ic:"sparkle",en:"Advanced expression &amp; audience awareness",zh:"精炼表达与听众意识"}],
      gain:[{ic:"screen",en:"Present with impact",zh:"有影响力地演示"},{ic:"scale",en:"Negotiate with diplomacy",zh:"外交式谈判"},{ic:"shield",en:"Defend answers clearly",zh:"清楚答辩"},{ic:"people",en:"Lead discussions",zh:"主导讨论"},{ic:"mic",en:"Speak more spontaneously",zh:"更即兴地表达"},{ic:"sparkle",en:"Adapt tone to audience",zh:"因人调整语气"}]}
   ];
@@ -4304,6 +4306,29 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     var rows=d.steps.map(function(st){ return '<span class="fx-tip__row"><i>'+st[0]+'</i><span><b>'+st[1]+'</b> \u2014 <em>'+st[2]+'</em></span></span>'; }).join('');
     return '<span class="fx" tabindex="0" style="--fxc:'+d.c+'" aria-label="'+d.n+' formula \u2014 how it is taught"><span class="'+cls+'">'+formula+'</span>'+
       '<span class="fx-tip" role="tooltip"><b class="fx-tip__t">'+d.n+' \u00b7 Formula</b><span class="fx-tip__s">'+d.lvl+' \u00b7 '+d.how+'</span>'+rows+'</span></span>'; }
+
+  (function(){
+    var tip=null, curFx=null, pinned=false, hideT=null;
+    function ensure(){ if(tip) return tip; tip=document.createElement('div'); tip.id='fxTip'; tip.setAttribute('role','tooltip'); document.body.appendChild(tip);
+      tip.addEventListener('mouseenter',function(){ clearTimeout(hideT); });
+      tip.addEventListener('mouseleave',function(){ if(!pinned) sched(); });
+      return tip; }
+    function sched(){ clearTimeout(hideT); hideT=setTimeout(hide,120); }
+    function pos(fx){ var t=ensure(); var r=fx.getBoundingClientRect(); var tw=t.offsetWidth, th=t.offsetHeight, vw=window.innerWidth, vh=window.innerHeight;
+      var l=r.left+r.width/2-tw/2; l=Math.max(8,Math.min(l,vw-tw-8));
+      var tp=r.bottom+10; if(tp+th>vh-8){ tp=r.top-th-10; } if(tp<8) tp=8;
+      t.style.left=l+'px'; t.style.top=tp+'px'; }
+    function show(fx){ clearTimeout(hideT); var t=ensure(); var src=fx.querySelector('.fx-tip'); if(!src) return;
+      t.innerHTML=src.innerHTML; t.style.setProperty('--fxc', fx.style.getPropertyValue('--fxc')||'#2A5BD7');
+      curFx=fx; t.style.left='-9999px'; t.style.top='0px'; t.classList.add('is-on'); pos(fx); }
+    function hide(){ clearTimeout(hideT); if(tip) tip.classList.remove('is-on'); curFx=null; pinned=false; }
+    document.addEventListener('mouseover',function(e){ var fx=e.target.closest&&e.target.closest('.fx'); if(fx&&!pinned) show(fx); });
+    document.addEventListener('mouseout',function(e){ var fx=e.target.closest&&e.target.closest('.fx'); if(fx&&!pinned){ var to=e.relatedTarget; if(!to||!(to.closest&&(to.closest('.fx')===fx||to.closest('#fxTip')))) sched(); } });
+    document.addEventListener('click',function(e){ var fx=e.target.closest&&e.target.closest('.fx'); if(fx){ e.preventDefault(); e.stopPropagation(); if(pinned&&curFx===fx){ hide(); } else { pinned=true; show(fx); } return; } if(e.target.closest&&e.target.closest('#fxTip')) return; if(curFx) hide(); }, true);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&curFx) hide(); });
+    window.addEventListener('scroll',function(){ if(curFx) hide(); }, true);
+    window.addEventListener('resize',function(){ if(curFx) hide(); });
+  })();
 
   var ADVISOR = {
     work:{title:"Work needs · 工作需要",
