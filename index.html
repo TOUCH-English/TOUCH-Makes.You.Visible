@@ -3524,7 +3524,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 @media (prefers-reduced-motion:reduce){.hpop__view{animation:none}}
 @media (max-width:600px){.hpop__stage{padding:26px 16px 20px}}
 /* ===== 0% interest-free installment — entry pill + Apple-style glass popup ===== */
-.inst-cta{margin-top:16px;animation:priceRise .5s cubic-bezier(.22,.61,.36,1) both}
+.inst-cta{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;animation:priceRise .5s cubic-bezier(.22,.61,.36,1) both}
+.inst-open-btn__pct--pay svg{width:21px;height:21px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:1}
 .inst-cta[hidden]{display:none}
 .inst-open-btn{display:inline-flex;align-items:center;gap:11px;font:inherit;cursor:pointer;
   background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(16px) saturate(160%);backdrop-filter:blur(16px) saturate(160%);
@@ -3551,6 +3552,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .ipop__body{padding:30px 26px 26px}
 .ipop__head{text-align:center;margin-bottom:18px}
 .ipop__badge{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--blue-bright),var(--blue));color:#fff;font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.04em;padding:6px 14px;border-radius:999px;box-shadow:0 8px 18px -8px rgba(14,36,86,.55)}
+.ipop__badge--link{cursor:pointer;text-decoration:none;transition:transform .16s ease,box-shadow .16s ease,filter .16s ease}
+.ipop__badge--link:hover{transform:translateY(-1px);filter:brightness(1.07);box-shadow:0 12px 24px -8px rgba(14,36,86,.6)}
+.ipop__badge--link:active{transform:translateY(0)}
 .ipop__title{font-family:var(--display);font-weight:800;font-size:20px;color:var(--ink);margin:12px 0 5px;letter-spacing:-.01em}
 .ipop__title .zh{font-weight:600;font-size:13px;color:var(--muted);margin-left:7px}
 .ipop__sub{font-size:12.5px;color:var(--muted);line-height:1.55;max-width:42ch;margin:0 auto}
@@ -3593,6 +3597,21 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .ipop__fine{margin-top:15px;font-size:10.5px;color:var(--faint);line-height:1.5;text-align:center}
 .ipop__fine .zh{color:var(--faint)}
 @media (max-width:600px){.ipop__body{padding:26px 16px 20px}.ipop__result-amt .n{font-size:38px}.ibank{flex-wrap:wrap}.ibank__terms{margin-left:0;margin-top:2px}}
+/* payment popup content (reuses .ipop skin) */
+.pay-grid{display:flex;gap:16px;align-items:stretch;margin-top:4px}
+.pay-qr{flex:0 0 196px;border-radius:18px;padding:14px;background:#fff;border:1px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 12px 28px -16px rgba(20,33,50,.32);display:grid;place-items:center}
+.pay-qr img{width:100%;aspect-ratio:1;object-fit:contain;display:block;border-radius:10px}
+.pay-qr__fb{display:none;flex-direction:column;align-items:center;gap:7px;text-align:center;color:var(--faint);font-size:11px;padding:24px 10px}
+.pay-qr__fb svg{width:34px;height:34px;stroke:var(--line-strong);fill:none;stroke-width:1.6}
+.pay-qr__fb b{font-family:var(--display);color:var(--muted);font-size:12px}
+.pay-info{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:15px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.72);border-radius:18px;padding:20px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.pay-row__k{font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.pay-row__v{font-family:var(--display);font-weight:700;font-size:15.5px;color:var(--ink);margin-top:3px;line-height:1.3;word-break:break-word;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pay-copy{flex:none;display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line-strong);background:rgba(255,255,255,.7);color:var(--blue);cursor:pointer;font:inherit;font-family:var(--display);font-weight:700;font-size:10.5px;padding:3px 9px;border-radius:999px;transition:.14s}
+.pay-copy svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pay-copy:hover{background:var(--blue-tint);border-color:var(--blue-bright)}
+.pay-copy.is-done{background:color-mix(in srgb,var(--ok) 14%,#fff);color:#127a52;border-color:color-mix(in srgb,var(--ok) 30%,#fff)}
+@media (max-width:600px){.pay-grid{flex-direction:column}.pay-qr{flex:none;width:100%;max-width:220px;margin:0 auto}}
 /* per-item popup (glass) */
 .tpop{position:fixed;inset:0;display:none;z-index:140;align-items:center;justify-content:center;padding:24px}
 .tpop.is-open{display:flex}
@@ -4052,6 +4071,11 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
                 <span class="inst-open-btn__lab">Interest-free installment<span class="zh">免息分期付款</span></span>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
               </button>
+              <button type="button" class="inst-open-btn inst-open-btn--pay" id="payOpen" aria-label="Payment · bank transfer details 银行转账付款">
+                <span class="inst-open-btn__pct inst-open-btn__pct--pay"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M3 10.5h18"/><path d="M7 15h3"/></svg></span>
+                <span class="inst-open-btn__lab">Payment<span class="zh">银行转账付款</span></span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+              </button>
             </div>
           </div>
           <div class="hpop" id="hrdcPop" aria-hidden="true">
@@ -4066,6 +4090,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             <div class="ipop__card" role="dialog" aria-modal="true">
               <button class="ipop__x" id="instX" aria-label="Close">×</button>
               <div class="ipop__body" id="instBody"></div>
+            </div>
+          </div>
+          <div class="ipop" id="paymentPop" aria-hidden="true">
+            <div class="ipop__bd" id="payBd"></div>
+            <div class="ipop__card" role="dialog" aria-modal="true">
+              <button class="ipop__x" id="payX" aria-label="Close">×</button>
+              <div class="ipop__body" id="payBody"></div>
             </div>
           </div>
         </div>
@@ -8100,7 +8131,7 @@ io.observe(er);})();
   function renderInst(){
     if(!instBody) return;
     instBody.innerHTML=
-      '<div class="ipop__head"><span class="ipop__badge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M3 12h18"/><circle cx="7.5" cy="7.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/><path d="M18 6 6 18"/></svg> 0% INSTALLMENT</span>'+
+      '<div class="ipop__head"><a class="ipop__badge ipop__badge--link" href="https://tec.touchenglish.edu.my/link-cab/index/Payment%20Link" target="_blank" rel="noopener noreferrer">0% INSTALLMENT <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>'+
       '<h3 class="ipop__title">Interest-free installment<span class="zh">免息分期付款</span></h3>'+
       '<p class="ipop__sub">Pick a package, choose a bank &amp; tenure, then view your monthly. <span class="zh">选配套、选银行与期数，再看每月供款。</span></p></div>'+
       '<div class="ipop__seg" data-inst-seg>'+instSegHTML()+'</div>'+
@@ -8137,6 +8168,57 @@ io.observe(er);})();
           instSyncCalc(); if(instRevealed) instUpdateResult(false); return; }
         var calc=e.target.closest&&e.target.closest('[data-inst-calc]');
         if(calc){ if(instSelBank===null||instSelTerm===null) return; instRevealed=true; instUpdateResult(true); return; }
+      });
+    }
+  })();
+
+  /* ---------- Payment (bank transfer) — QR + bank details, TOUCH / TOUCH SP selector; same .ipop glass skin ---------- */
+  (function(){
+    var PAY=[
+      {tab:'TOUCH',    s:'Public Bank', company:'Touch Learning & Edu Advisory Sdn Bhd', bank:'Public Bank', acct:'3171405201',  qr:'assets/payment/touch-qr.jpg'},
+      {tab:'TOUCH SP', s:'OCBC Bank',   company:'Touch English Sdn Bhd',                  bank:'OCBC Bank',   acct:'710-135206-6', qr:'assets/payment/touch-sp-qr.jpg'}
+    ];
+    var paySel=0;
+    var payPop=document.getElementById('paymentPop'), payBody=document.getElementById('payBody');
+    var payOpenBtn=document.getElementById('payOpen'), payX=document.getElementById('payX'), payBd=document.getElementById('payBd');
+    function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+    function payContentHTML(){
+      var d=PAY[paySel];
+      return '<div class="pay-grid">'+
+          '<div class="pay-qr"><img decoding="async" src="'+esc(d.qr)+'" alt="'+esc(d.tab)+' payment QR" onerror="this.style.display=\'none\';var f=this.nextElementSibling;if(f)f.style.display=\'flex\'">'+
+            '<div class="pay-qr__fb"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3M20 14v.01M14 20v.01M20 20v.01M17 17v.01M20 17h.01"/></svg><b>QR 待上传</b><span>'+esc(d.qr)+'</span></div></div>'+
+          '<div class="pay-info">'+
+            '<div class="pay-row"><div class="pay-row__k">Company 公司</div><div class="pay-row__v">'+esc(d.company)+'</div></div>'+
+            '<div class="pay-row"><div class="pay-row__k">Bank 银行</div><div class="pay-row__v">'+esc(d.bank)+'</div></div>'+
+            '<div class="pay-row"><div class="pay-row__k">Account No. 账号</div><div class="pay-row__v">'+esc(d.acct)+'<button type="button" class="pay-copy" data-copy="'+esc(d.acct)+'" aria-label="Copy account number 复制账号"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>Copy 复制</button></div></div>'+
+          '</div>'+
+        '</div>';
+    }
+    function renderPay(){
+      if(!payBody) return;
+      payBody.innerHTML=
+        '<div class="ipop__head"><span class="ipop__badge">PAYMENT</span>'+
+        '<h3 class="ipop__title">Payment<span class="zh">银行转账付款</span></h3>'+
+        '<p class="ipop__sub">Choose an account, then scan the QR or transfer to the bank details. <span class="zh">选择账户，扫码或转账到以下银行资料。</span></p></div>'+
+        '<div class="ipop__seg" data-pay-seg>'+PAY.map(function(d,i){return '<button type="button" data-pay="'+i+'" class="'+(i===paySel?'is-on':'')+'">'+esc(d.tab)+'<span class="s">'+esc(d.s)+'</span></button>';}).join('')+'</div>'+
+        '<div data-pay-content>'+payContentHTML()+'</div>';
+    }
+    function openPay(){ paySel=0; renderPay(); if(payPop){ payPop.classList.add('is-open'); payPop.setAttribute('aria-hidden','false'); } }
+    function closePay(){ if(payPop){ payPop.classList.remove('is-open'); payPop.setAttribute('aria-hidden','true'); } }
+    if(payOpenBtn) payOpenBtn.addEventListener('click',openPay);
+    if(payX) payX.addEventListener('click',closePay);
+    if(payBd) payBd.addEventListener('click',closePay);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&payPop&&payPop.classList.contains('is-open')) closePay(); });
+    if(payBody){
+      payBody.addEventListener('click',function(e){
+        var seg=e.target.closest&&e.target.closest('[data-pay]');
+        if(seg){ paySel=+seg.getAttribute('data-pay');
+          Array.prototype.forEach.call(payBody.querySelectorAll('[data-pay-seg] button'),function(b){ b.classList.toggle('is-on',+b.getAttribute('data-pay')===paySel); });
+          var wrap=payBody.querySelector('[data-pay-content]'); if(wrap) wrap.innerHTML=payContentHTML(); return; }
+        var cp=e.target.closest&&e.target.closest('.pay-copy');
+        if(cp){ var val=cp.getAttribute('data-copy')||''; var done=function(){ cp.classList.add('is-done'); var old=cp.innerHTML; cp.innerHTML='<svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg>Copied 已复制'; setTimeout(function(){ cp.classList.remove('is-done'); cp.innerHTML=old; },1600); };
+          try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(val).then(done,function(){done();}); } else { var ta=document.createElement('textarea'); ta.value=val; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(_){}; document.body.removeChild(ta); done(); } }catch(_){ done(); }
+          return; }
       });
     }
   })();
