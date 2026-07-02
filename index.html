@@ -8784,7 +8784,7 @@ io.observe(er);})();
 /* ===== Student Report Generator 学员报告生成器 ===== */
 (function(){
   var LV=[
-    {code:"Level 0",cefr:"Pre-A1",en:"Copying Skill",zh:"模仿能力",
+    {code:"Level P1",cefr:"Pre-A1",en:"Copying Skill",zh:"模仿能力",
      start:"你的英语属于入门阶段，建议从模仿与基础发音入手：通过模仿语音与简单句子建立语感，学习问候、请求、道谢等日常与职场常见表达，在真实场合能听懂并重复关键句型，逐步建立开口的信心。",
      goal:"通过模仿学习发音、语调和节奏，培养语感；学会用简单句表达基本需求，如问候、自我介绍和日常请求。",
      route:"模仿表达阶段 —— 通过模仿与重复简单句子，建立语音语调基础，培养语言清晰度（Clarity），为表达打好听说基础。",
@@ -8965,8 +8965,8 @@ io.observe(er);})();
     var customStg=false; (function(){for(var i=ST.cur;i<=Math.max(ST.cur,ST.tgt);i++) if(stgOf(i)!==48){customStg=true;break;}})();
     var nlv=Math.max(0,ST.tgt-ST.cur)+1;
     var route=[]; for(var i=ST.cur;i<=Math.max(ST.cur,ST.tgt);i++){ route.push(i); }
+    var SAME=(route.length===1);
     var journey=route.map(function(i){return JW[i];});
-    if(journey.length<2){journey=[JW[ST.cur],JW[Math.min(4,ST.cur+1)]];}
     var jline=journey.join(" \u2192 ");
     var N=0;
     function secH(t){N++;return '<h4 class="rs-sec__h"><i class="rs-num">'+(N<10?'0':'')+N+'</i>'+t+'</h4>';}
@@ -8982,9 +8982,20 @@ io.observe(er);})();
     }
     // 01 growth hero
     sheet.classList.toggle('rs-compact',rows.length>3);
-    var html='<div class="rs-sec rs-keep">'+secH(pk('\u4f60\u7684\u73b0\u51b5\u4e0e\u76ee\u6807 Current \u2192 Target','Where You Are \u2192 Where You\u2019re Going'))+
-      '<div class="rs-grow">'+gcard(cur,ST.cur,false)+'<div class="rs-grow__mid"><span class="rs-grow__ar">\u2192</span></div>'+gcard(tgt,ST.tgt,true)+'</div>'+
-      '<div class="rs-jline">'+pk('\u4f60\u7684\u6210\u957f\u8def\u7ebf Your journey','Your journey')+': <b>'+jline+'</b></div></div>';
+    var html;
+    if(SAME){
+      html='<div class="rs-sec rs-keep">'+secH(pk('\u4f60\u7684\u5b66\u4e60\u7ea7\u522b Your Level','Your Level'))+
+        '<div class="rs-grow"><div class="rs-gcard rs-gcard--tgt"><small>'+pk('\u672c\u671f\u5b66\u4e60\u7ea7\u522b Your Level','Your Level')+'</small>'+
+        '<div class="rs-gcard__lv"><b>'+cur.code+'</b><em>'+cur.cefr+'</em></div>'+
+        '<div class="rs-gcard__sk">'+(EN?cur.en:(cur.en+' \u00b7 '+cur.zh))+'</div>'+
+        '<i class="rs-ican">\u201c'+(EN?ICAN[ST.cur][1]:ICAN[ST.cur][0])+'\u201d</i>'+
+        '<i class="rs-mean">'+(EN?MEAN[ST.cur][1]:MEAN[ST.cur][0])+'</i></div></div>'+
+        '<div class="rs-jline">'+pk('\u672c\u671f\u4e13\u6ce8 Focus','Focus')+': <b>'+JW[ST.cur]+'</b></div></div>';
+    }else{
+      html='<div class="rs-sec rs-keep">'+secH(pk('\u4f60\u7684\u73b0\u51b5\u4e0e\u76ee\u6807 Current \u2192 Target','Where You Are \u2192 Where You\u2019re Going'))+
+        '<div class="rs-grow">'+gcard(cur,ST.cur,false)+'<div class="rs-grow__mid"><span class="rs-grow__ar">\u2192</span></div>'+gcard(tgt,ST.tgt,true)+'</div>'+
+        '<div class="rs-jline">'+pk('\u4f60\u7684\u6210\u957f\u8def\u7ebf Your journey','Your journey')+': <b>'+jline+'</b></div></div>';
+    }
     // 02 summary + focus pills
     if(rows.length){
       var pills=tagIdx.map(function(i){var tg=TAGS[ST.cur][i];return '<span class="rs-pill">'+(EN?tg[1]:(tg[0]+' '+tg[1]))+'</span>';}).join('');
@@ -9011,7 +9022,7 @@ io.observe(er);})();
       html+='<div class="rs-sec rs-keep">'+secH(pk('\u63a8\u8350\u5b66\u4e60\u76ee\u6807 Learning Target','Learning Target'))+
         '<p style="margin:0;font-size:12.5px"><b style="font-family:var(--display)">'+tgt.code+' ('+tgt.cefr+') \u00b7 '+tgt.en+'</b><br>'+esc(pk(tgt.goal,tgtE.goal))+'</p></div>';
       // 06 journey map + step cards
-      var map='<div class="rs-map">'+route.map(function(i,k){return '<span class="rs-map__pt"><span class="rs-map__n">L'+i+'</span><em>'+JW[i]+'</em></span>'+(k<route.length-1?'<span class="rs-map__l"></span>':'');}).join('')+'</div>';
+      var map='<div class="rs-map">'+route.map(function(i,k){return '<span class="rs-map__pt"><span class="rs-map__n">'+(i===0?'P1':'L'+i)+'</span><em>'+JW[i]+'</em></span>'+(k<route.length-1?'<span class="rs-map__l"></span>':'');}).join('')+'</div>';
       html+='<div class="rs-sec">'+secH(pk('\u5b66\u4e60\u8def\u7ebf Learning Route','Learning Route'))+map+
         '<div class="rs-steps">'+route.map(function(i,k){var l=LV[i];return '<div class="rs-step"><small>Step '+(k+1)+'</small><b>'+l.code+' \u00b7 '+(EN?l.en:(l.en+' '+l.zh))+'</b><span>'+esc(EN?LVE[i].route:l.route)+'</span><br><em class="rs-step__c5">'+CC[i]+'</em></div>';}).join('')+'</div></div>';
       // 07 outcome highlight
@@ -9021,7 +9032,7 @@ io.observe(er);})();
     // plan premium block (both modes)
     var stageRows='<div class="rs-planx__cards">'+route.map(function(i){var l=LV[i];return '<div class="rs-planx__card"><small>'+l.code+'</small><b>'+l.en+'</b>'+(EN?'':'<i>'+l.zh+'</i>')+'<span>'+stgOf(i)+' '+pk('\u5802\u8bfe','Lessons')+'</span></div>';}).join('')+'</div>';
     html+='<div class="rs-sec rs-keep">'+secH(pk('\u5efa\u8bae\u5b66\u4e60\u89c4\u5212 Recommended Learning Plan','Recommended Learning Plan'))+
-      '<div class="rs-planx"><div class="rs-planx__lv">'+cur.code+' \u2192 '+tgt.code+'</div>'+
+      '<div class="rs-planx"><div class="rs-planx__lv">'+(SAME?cur.code:(cur.code+' \u2192 '+tgt.code))+'</div>'+
       '<div class="rs-planx__big"><b>'+lessons+'</b><span>'+pk('\u5802\u8bfe Lessons','Lessons')+'</span></div>'+
       '<div class="rs-planx__stages">'+(customStg?pk(nlv+' \u4e2a\u5b66\u4e60\u9636\u6bb5 \u00b7 \u7531 Advisor \u6309\u4f60\u7684\u60c5\u51b5\u4e2a\u6027\u5316\u89c4\u5212',nlv+' learning stage'+(nlv>1?'s':'')+' \u00b7 personalised by your Advisor'):pk(nlv+' \u4e2a\u5b66\u4e60\u9636\u6bb5 \u00d7 \u6bcf\u4e2a Level 48 \u5802',nlv+' learning stage'+(nlv>1?'s':'')+' \u00d7 48 lessons per level'))+'</div>'+
       stageRows+
@@ -9044,7 +9055,7 @@ io.observe(er);})();
       '\u4e0e Advisor \u786e\u8ba4\u5b66\u4e60\u76ee\u6807',
       '\u5b8c\u6210 EPI\u2122 \u6027\u683c\u5206\u6790',
       '\u5b89\u6392\u9002\u5408\u7684 Level \u4e0e\u4e0a\u8bfe\u65f6\u95f4',
-      '\u5f00\u59cb\u4f60\u7684 '+jline+' \u5b66\u4e60\u8def\u7ebf'
+      (SAME?('\u5b8c\u6210 '+cur.code+' \u00b7 '+JW[ST.cur]+' \u7684\u5b66\u4e60\u76ee\u6807'):('\u5f00\u59cb\u4f60\u7684 '+jline+' \u5b66\u4e60\u8def\u7ebf'))
     ];
     html+='<div class="rs-sec rs-keep">'+secH(pk('\u4e0b\u4e00\u6b65\u5efa\u8bae Your Next Step','Your Next Step'))+
       '<ul class="rs-next">'+nsteps.map(function(t,i){return '<li><i>'+(i+1)+'</i><span>'+t+'</span></li>';}).join('')+'</ul>'+
