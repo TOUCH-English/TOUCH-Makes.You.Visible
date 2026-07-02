@@ -3572,13 +3572,14 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rb-reset{font-size:11.5px;color:var(--faint);background:none;border:0;cursor:pointer;padding:6px 2px;font-family:inherit}
 .rb-reset:hover{color:var(--red)}
 /* ---- report sheet ---- */
-.rsheet{background:#fff;border-radius:18px;box-shadow:0 30px 70px -34px rgba(20,33,50,.4),0 2px 8px rgba(20,33,50,.06);padding:46px 52px 40px;color:var(--ink);font-size:13.5px;line-height:1.65}
-.rs-head{display:flex;align-items:center;gap:16px;border-bottom:3px solid var(--blue);padding-bottom:18px;margin-bottom:22px}
+.rsheet{background:linear-gradient(175deg,#fbfdff 0%,#fff 22%);border-radius:18px;box-shadow:0 30px 70px -34px rgba(20,33,50,.4),0 2px 8px rgba(20,33,50,.06);padding:46px 52px 40px;color:var(--ink);font-size:13.5px;line-height:1.65;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.rs-head{display:flex;align-items:center;gap:18px;border-bottom:3px solid var(--blue);padding-bottom:20px;margin-bottom:22px}
+.rs-head__eyebrow{display:block;font-size:10px;font-weight:800;letter-spacing:.22em;color:var(--red);text-transform:uppercase;margin-bottom:4px}
 .rs-logo{flex:none;display:grid;place-items:center}
 .rs-logo img{height:74px;max-width:150px;width:auto;object-fit:contain;display:block}
 .rs-logo b{font-family:var(--display);font-weight:800;color:var(--blue);font-size:15px}
-.rs-head__tx b{display:block;font-family:var(--display);font-weight:800;font-size:20px;color:var(--blue);letter-spacing:-.01em}
-.rs-head__tx span{font-size:11.5px;color:var(--faint);letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.rs-head__tx b{display:block;font-family:var(--display);font-weight:800;font-size:23px;color:var(--ink);letter-spacing:-.015em;line-height:1.15}
+.rs-head__tx span{display:block;font-size:11px;color:var(--faint);letter-spacing:.13em;text-transform:uppercase;font-weight:700;margin-top:5px}
 .rs-title{font-family:var(--display);font-weight:800;font-size:16px;color:var(--ink);margin:0 0 12px}
 .rs-info{width:100%;border-collapse:collapse;margin-bottom:18px}
 .rs-info td{border:1px solid var(--line);padding:8px 12px;font-size:13px}
@@ -3642,7 +3643,60 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rs-adv b{font-family:var(--display);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#B98A16;display:block;margin-bottom:3px}
 .rs-quote{text-align:center;margin:26px auto 0;font-size:12.5px;color:var(--ink);font-style:italic;max-width:480px;line-height:1.6}
 .rs-quote .zh{display:block;font-style:normal;font-size:11px;color:var(--faint);margin-top:4px}
-@media print{.rs-pb{break-before:page}}
+/* growth visual */
+.rs-grow{display:flex;align-items:stretch;gap:0;margin-top:2px}
+.rs-gcard{flex:1;border:1px solid var(--line);border-radius:16px;padding:16px 19px;background:#fff;break-inside:avoid;min-width:0}
+.rs-gcard--tgt{border-color:rgba(42,91,215,.42);background:linear-gradient(150deg,#f2f7ff,#fff 72%);box-shadow:0 0 0 4px rgba(42,91,215,.05)}
+.rs-gcard small{display:block;font-family:var(--display);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.rs-gcard--tgt small{color:var(--blue-bright)}
+.rs-gcard__lv{display:flex;align-items:baseline;gap:9px;margin-top:6px}
+.rs-gcard__lv b{font-family:var(--display);font-weight:800;font-size:22px;color:var(--ink);letter-spacing:-.01em}
+.rs-gcard__lv em{font-style:normal;font-size:10.5px;font-weight:700;color:var(--blue);background:var(--blue-tint);border-radius:7px;padding:3px 8px}
+.rs-gcard__sk{font-size:12px;color:var(--muted);margin-top:3px;font-weight:600}
+.rs-grow__mid{flex:0 0 74px;position:relative;display:grid;place-items:center}
+.rs-grow__mid::before{content:"";position:absolute;left:-10px;right:-10px;top:50%;height:2.5px;transform:translateY(-50%);background:linear-gradient(90deg,rgba(42,91,215,.12),rgba(42,91,215,.5));border-radius:2px}
+.rs-grow__ar{position:relative;width:34px;height:34px;border-radius:50%;background:#fff;border:1.5px solid rgba(42,91,215,.4);display:grid;place-items:center;color:var(--blue-bright);font-weight:800;font-size:16px;box-shadow:0 5px 14px -5px rgba(42,91,215,.45)}
+@media(max-width:640px){.rs-grow{flex-direction:column}.rs-grow__mid{flex:none;height:46px;width:100%}.rs-grow__mid::before{left:50%;top:-6px;bottom:-6px;right:auto;width:2.5px;height:auto;transform:translateX(-50%);background:linear-gradient(180deg,rgba(42,91,215,.12),rgba(42,91,215,.5))}}
+.rs-jline{text-align:center;margin-top:14px;font-size:11.5px;color:var(--faint);font-family:var(--display);font-weight:700;letter-spacing:.04em}
+.rs-jline b{color:var(--blue-bright)}
+/* focus pills */
+.rs-pills{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 12px}
+.rs-pill{border:1px solid rgba(42,91,215,.24);background:var(--blue-tint);color:var(--blue);border-radius:999px;padding:6px 14px;font-family:var(--display);font-size:11.5px;font-weight:700}
+/* journey map */
+.rs-map{display:flex;align-items:center;margin:4px 2px 14px}
+.rs-map__n{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:11.5px;color:#fff;background:linear-gradient(155deg,var(--blue-bright),var(--blue));box-shadow:0 5px 12px -5px rgba(21,53,123,.55),inset 0 1px 0 rgba(255,255,255,.3)}
+.rs-map__l{flex:1;height:2.5px;margin:0 8px;border-radius:2px;background:linear-gradient(90deg,rgba(42,91,215,.45),rgba(42,91,215,.18))}
+.rs-step{position:relative;border-top:3px solid var(--blue-bright)}
+.rs-step__c5{display:inline-block;font-style:normal;font-family:var(--display);font-size:9.5px;font-weight:800;letter-spacing:.08em;color:var(--blue);background:var(--blue-tint);border-radius:6px;padding:2px 7px;margin-top:8px}
+/* outcome highlight */
+.rs-outcome{display:flex;gap:13px;align-items:flex-start;border:1px solid rgba(42,91,215,.3);border-radius:15px;padding:15px 18px;background:linear-gradient(140deg,#f2f7ff,#fff 75%);break-inside:avoid}
+.rs-outcome__ic{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(150deg,#35b581,var(--ok));box-shadow:0 5px 12px -5px rgba(30,158,106,.6)}
+.rs-outcome__ic svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.rs-outcome p{margin:0;font-size:12.5px;line-height:1.65}
+/* premium plan block */
+.rs-planx{border:1px solid rgba(42,91,215,.26);border-radius:18px;padding:24px 26px 20px;background:linear-gradient(160deg,#f3f8ff,#fff 52%,#f8fbff);box-shadow:0 14px 34px -24px rgba(21,53,123,.35),inset 0 1px 0 rgba(255,255,255,.9);break-inside:avoid}
+.rs-planx__lv{font-family:var(--display);font-weight:800;font-size:16px;color:var(--blue);letter-spacing:.01em}
+.rs-planx__big{display:flex;align-items:baseline;gap:10px;margin:8px 0 2px}
+.rs-planx__big b{font-family:var(--display);font-weight:800;font-size:46px;color:var(--ink);letter-spacing:-.02em;line-height:1}
+.rs-planx__big span{font-family:var(--display);font-weight:700;font-size:14px;color:var(--muted)}
+.rs-planx__stages{font-size:12px;color:var(--muted);margin-bottom:14px}
+.rs-planx__row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 2px;border-top:1px dashed rgba(20,33,50,.14);font-size:12.5px}
+.rs-planx__row b{font-family:var(--display);color:var(--ink)}
+.rs-planx__row span{color:var(--faint);font-family:var(--display);font-weight:700;font-size:12px;white-space:nowrap}
+/* closing banner */
+.rs-close{margin-top:30px;border-radius:18px;padding:32px 30px 26px;text-align:center;color:#fff;position:relative;overflow:hidden;break-inside:avoid;background:linear-gradient(150deg,#101f42,var(--blue) 58%,#1c3d80)}
+.rs-close::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 90% at 12% 0%,rgba(86,132,255,.28),transparent 60%),radial-gradient(55% 80% at 92% 100%,rgba(76,203,255,.16),transparent 60%);pointer-events:none}
+.rs-close__b{position:relative;font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.01em}
+.rs-close__m{position:relative;display:block;font-size:10.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.66);margin-top:5px}
+.rs-close__q{position:relative;font-style:italic;font-size:12.5px;color:rgba(255,255,255,.88);max-width:430px;margin:16px auto 0;line-height:1.65}
+.rs-close__qz{position:relative;display:block;font-style:normal;font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
+.rs-close__site{position:relative;display:block;font-size:10.5px;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-top:18px}
+/* pagination: modular, keep blocks whole, no forced pages */
+@media print{
+  .rs-sec__h{break-after:avoid}
+  .rs-chal,.rs-step,.rs-extra,.rs-sum__it,.rs-grow,.rs-gcard,.rs-planx,.rs-outcome,.rs-close,.rs-info,.rs-greet,.rs-adv,.rs-map,.rs-pills{break-inside:avoid}
+  .rsheet{background:#fff}
+}
 @media print{
   body>*:not(#reportOv){display:none!important}
   #reportOv{position:static!important;display:block!important;background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:0!important;overflow:visible!important}
@@ -8762,6 +8816,14 @@ io.observe(er);})();
     ["你能在会议、讨论中有逻辑地表达并影响他人。","You can speak logically and persuasively in meetings and discussions."],
     ["你能用地道、有魅力的英语在任何场合自如表达。","You can express yourself naturally and compellingly in any setting."]];
   var JW=["Copy","Construct","Convey","Convince","Captivate"];
+  var CC=["C1 · Copy","C2 · Construct","C3 · Convey","C4 · Convince","C5 · Captivate"];
+  var TAGS=[
+    [["基础句型","Core Patterns"],["开口信心","Speaking Confidence"],["理解力建立","Comprehension"],["词汇记忆","Vocabulary Memory"]],
+    [["句子构建","Sentence Building"],["表达细节","Adding Detail"],["流畅衔接","Fluent Linking"],["实用语法","Practical Grammar"]],
+    [["得体表达","Polite Expression"],["思路衔接","Connected Ideas"],["话题延伸","Extending Topics"],["职场信心","Workplace Confidence"]],
+    [["说服力表达","Persuasive Speaking"],["正式场合英语","Formal English"],["应对复杂问题","Handling Complexity"],["细腻表达","Nuanced Expression"]],
+    [["感染力表达","Captivating Delivery"],["跨领域应对","Cross-domain Agility"],["风格切换","Register Switching"],["节奏与逻辑","Pace & Logic"]]
+  ];
   var KEY="te_report_v1";
   var ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",lang:"zh",depth:"detail"};
   function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&typeof s==="object"){if(s.lang)ST.lang=s.lang;if(s.depth)ST.depth=s.depth;}}catch(e){}}
@@ -8800,10 +8862,11 @@ io.observe(er);})();
     var cur=LV[ST.cur],tgt=LV[ST.tgt],curE=LVE[ST.cur],tgtE=LVE[ST.tgt];
     var name=ST.name.trim()||"\u2014\u2014";
     var painSrc=EN?curE.pains:cur.pains;
-    var rows=[];
-    painSrc.forEach(function(pn,i){ if(ST.checks[i]) rows.push(pn); });
+    var rows=[],tagIdx=[];
+    painSrc.forEach(function(pn,i){ if(ST.checks[i]){rows.push(pn);tagIdx.push(i);} });
     if(ST.ca.trim()) rows.push([ST.ca,ST.cs||"\u2014",ST.ch||"\u2014"]);
     var lessons=Math.min(240,Math.max(48,(Math.max(0,ST.tgt-ST.cur)+1)*48));
+    var nlv=Math.max(0,ST.tgt-ST.cur)+1;
     var route=[]; for(var i=ST.cur;i<=Math.max(ST.cur,ST.tgt);i++){ route.push(i); }
     var journey=route.map(function(i){return JW[i];});
     if(journey.length<2){journey=[JW[ST.cur],JW[Math.min(4,ST.cur+1)]];}
@@ -8813,70 +8876,72 @@ io.observe(er);})();
     var greet=EN
       ? esc(name)+', hello!<br>Thank you for joining our English sharing session and completing your assessment. This report will help you see clearly where your English is today, your main challenges, and the learning route that suits you next.'
       : esc(name)+' \u4f60\u597d\uff0c<br>\u611f\u8c22\u4f60\u53c2\u52a0\u82f1\u8bed\u5206\u4eab\u4f1a\u548c\u5b8c\u6210\u4e86\u4f60\u7684\u6d4b\u8bd5\uff01\u8fd9\u4efd\u62a5\u544a\u4f1a\u5e2e\u52a9\u4f60\u770b\u6e05\u695a\u76ee\u524d\u7684\u82f1\u8bed\u8d77\u70b9\u3001\u4e3b\u8981\u5361\u70b9\uff0c\u4ee5\u53ca\u63a5\u4e0b\u6765\u9002\u5408\u4f60\u7684\u5b66\u4e60\u8def\u7ebf\u3002';
-    var lvLine=function(l){return EN? l.en : (l.en+' \u00b7 '+l.zh);};
-    function chip(l,i,isTgt){
-      return '<div class="rs-lv'+(isTgt?' rs-lv--tgt':'')+'"><small>'+(isTgt?pk('Target \u76ee\u6807','Target'):pk('Current \u73b0\u51b5','Current'))+'</small>'+
-        '<b>'+l.code+' ('+l.cefr+')</b><i>'+lvLine(l)+'</i>'+
+    function gcard(l,i,isTgt){
+      return '<div class="rs-gcard'+(isTgt?' rs-gcard--tgt':'')+'"><small>'+(isTgt?pk('Target \u76ee\u6807','Target'):pk('Current \u73b0\u51b5','Current'))+'</small>'+
+        '<div class="rs-gcard__lv"><b>'+l.code+'</b><em>'+l.cefr+'</em></div>'+
+        '<div class="rs-gcard__sk">'+(EN?l.en:(l.en+' \u00b7 '+l.zh))+'</div>'+
         '<i class="rs-ican">\u201c'+(EN?ICAN[i][1]:ICAN[i][0])+'\u201d</i>'+
         '<i class="rs-mean">'+(EN?MEAN[i][1]:MEAN[i][0])+'</i></div>';
     }
-    // 01 current -> target
+    // 01 growth hero
     var html='<div class="rs-sec">'+secH(pk('\u4f60\u7684\u73b0\u51b5\u4e0e\u76ee\u6807 Current \u2192 Target','Where You Are \u2192 Where You\u2019re Going'))+
-      '<div class="rs-lvchips">'+chip(cur,ST.cur,false)+'<span class="rs-arrow">\u2192</span>'+chip(tgt,ST.tgt,true)+'</div>'+
-      '<div class="rs-journey">'+pk('\u4f60\u7684\u6210\u957f\u8def\u7ebf Your journey','Your journey')+': <b>'+jline+'</b></div></div>';
-    // 02 summary bullets
+      '<div class="rs-grow">'+gcard(cur,ST.cur,false)+'<div class="rs-grow__mid"><span class="rs-grow__ar">\u2192</span></div>'+gcard(tgt,ST.tgt,true)+'</div>'+
+      '<div class="rs-jline">'+pk('\u4f60\u7684\u6210\u957f\u8def\u7ebf Your journey','Your journey')+': <b>'+jline+'</b></div></div>';
+    // 02 summary + focus pills
     if(rows.length){
+      var pills=tagIdx.map(function(i){var tg=TAGS[ST.cur][i];return '<span class="rs-pill">'+(EN?tg[1]:(tg[0]+' '+tg[1]))+'</span>';}).join('');
       html+='<div class="rs-sec">'+secH(pk('\u4f60\u7684\u82f1\u8bed\u73b0\u51b5\u6458\u8981 Your English Summary','Your English Summary'))+
+        (pills?'<div class="rs-pills">'+pills+'</div>':'')+
         '<div class="rs-sum">'+rows.slice(0,3).map(function(r,i){return '<div class="rs-sum__it"><i>'+(i+1)+'</i><span>'+esc(r[0])+'</span></div>';}).join('')+'</div></div>';
     }
-    // 03 challenges cards
+    // 03 challenges
     if(rows.length){
       html+='<div class="rs-sec">'+secH(pk('\u4e3b\u8981\u5361\u70b9\u4e0e\u6211\u4eec\u7684\u5e2e\u52a9 Main Challenges &amp; Support','Main Challenges &amp; How We Help'))+
         rows.map(function(r,i){
           var c='<div class="rs-chal"><span class="rs-chal__tag">'+pk('\u5361\u70b9','Challenge')+' 0'+(i+1)+'</span>'+
             '<div class="rs-chal__a">'+esc(r[0])+'</div>';
-          if(!SIMPLE) c+='<div class="rs-chal__k">'+pk('\u5efa\u8bae\u8bad\u7ec3\u65b9\u5f0f','Suggested training')+'</div><div class="rs-chal__v">'+esc(r[1])+'</div>';
-          c+='<div class="rs-chal__k">'+pk('\u8bfe\u5802\u5982\u4f55\u5e2e\u52a9\u4f60','How class helps you')+'</div><div class="rs-chal__v">'+esc(r[2])+'</div></div>';
+          if(!SIMPLE) c+='<div class="rs-chal__k">'+pk('\u5efa\u8bae\u8bad\u7ec3\u65b9\u5f0f','Training focus')+'</div><div class="rs-chal__v">'+esc(r[1])+'</div>';
+          c+='<div class="rs-chal__k">'+pk('\u8bfe\u5802\u5982\u4f55\u5e2e\u52a9\u4f60','How TEC supports you')+'</div><div class="rs-chal__v">'+esc(r[2])+'</div></div>';
           return c;
         }).join('')+'</div>';
     }
-    if(SIMPLE){
-      // simple merged plan
-      html+='<div class="rs-sec">'+secH(pk('\u5b66\u4e60\u8ba1\u5212 Learning Plan','Your Learning Plan'))+
-        '<p style="margin:0;font-size:12.5px">'+pk('\u5efa\u8bae\u4ece '+cur.code+'\uff08'+cur.en+' \u00b7 '+cur.zh+'\uff09\u5f00\u59cb\uff0c\u76ee\u6807\u8fbe\u5230 '+tgt.code+'\uff08'+tgt.en+' \u00b7 '+tgt.zh+'\uff09\u3002'+tgt.goal,
-        'We recommend starting from '+cur.code+' ('+cur.en+') with the goal of reaching '+tgt.code+' ('+tgt.en+'). '+tgtE.goal)+'</p></div>';
-    }else{
-      // 04 starting point (page 2)
-      html+='<div class="rs-sec rs-pb">'+secH(pk('\u5b66\u4e60\u8d77\u70b9\u63a8\u8350 Recommended Starting Point','Recommended Starting Point'))+
+    if(!SIMPLE){
+      // 04 starting point
+      html+='<div class="rs-sec">'+secH(pk('\u5b66\u4e60\u8d77\u70b9\u63a8\u8350 Recommended Starting Point','Recommended Starting Point'))+
         '<p style="margin:0;font-size:12.5px">'+esc(pk(cur.start,curE.start))+'</p></div>';
       // 05 target
       html+='<div class="rs-sec">'+secH(pk('\u63a8\u8350\u5b66\u4e60\u76ee\u6807 Learning Target','Learning Target'))+
         '<p style="margin:0;font-size:12.5px"><b style="font-family:var(--display)">'+tgt.code+' ('+tgt.cefr+') \u00b7 '+tgt.en+'</b><br>'+esc(pk(tgt.goal,tgtE.goal))+'</p></div>';
-      // 06 route step cards
-      html+='<div class="rs-sec">'+secH(pk('\u5b66\u4e60\u8def\u7ebf Learning Route','Learning Route'))+
-        '<div class="rs-steps">'+route.map(function(i,k){var l=LV[i];return '<div class="rs-step"><small>Step '+(k+1)+'</small><b>'+l.code+' \u00b7 '+lvLine(l)+'</b><span>'+esc(EN?LVE[i].route:l.route)+'</span></div>';}).join('')+'</div></div>';
-      // 07 outcome
+      // 06 journey map + step cards
+      var map='<div class="rs-map">'+route.map(function(i,k){return '<span class="rs-map__n">L'+i+'</span>'+(k<route.length-1?'<span class="rs-map__l"></span>':'');}).join('')+'</div>';
+      html+='<div class="rs-sec">'+secH(pk('\u5b66\u4e60\u8def\u7ebf Learning Route','Learning Route'))+map+
+        '<div class="rs-steps">'+route.map(function(i,k){var l=LV[i];return '<div class="rs-step"><small>Step '+(k+1)+'</small><b>'+l.code+' \u00b7 '+(EN?l.en:(l.en+' '+l.zh))+'</b><span>'+esc(EN?LVE[i].route:l.route)+'</span><br><em class="rs-step__c5">'+CC[i]+'</em></div>';}).join('')+'</div></div>';
+      // 07 outcome highlight
       html+='<div class="rs-sec">'+secH(pk('\u5b8c\u6210\u76ee\u6807 Expected Outcome','Expected Outcome'))+
-        '<p style="margin:0;font-size:12.5px">'+esc(pk(tgt.done,tgtE.done))+'</p></div>';
+        '<div class="rs-outcome"><span class="rs-outcome__ic"><svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg></span><p>'+esc(pk(tgt.done,tgtE.done))+'</p></div></div>';
     }
-    // learning plan (soft)
+    // plan premium block (both modes)
+    var stageRows=route.map(function(i){var l=LV[i];return '<div class="rs-planx__row"><b>'+l.code+' \u00b7 '+(EN?l.en:(l.en+' '+l.zh))+'</b><span>48 '+pk('\u5802\u8bfe','lessons')+'</span></div>';}).join('');
     html+='<div class="rs-sec">'+secH(pk('\u5efa\u8bae\u5b66\u4e60\u89c4\u5212 Recommended Learning Plan','Recommended Learning Plan'))+
-      '<span class="rs-plan"><b>'+cur.code+' \u2192 '+tgt.code+'</b><span>'+pk('\u9884\u4f30\u5b66\u4e60\u89c4\u5212\uff1a'+lessons+' \u5802\u8bfe \u00b7 \u6bcf\u4e2a Level \u5305\u542b 48 \u5802','Estimated learning plan: '+lessons+' lessons \u00b7 each level includes 48 lessons')+'</span></span>'+
-      '<p class="rs-plan-soft">'+pk('\u8fd9\u9879\u5efa\u8bae\u662f\u6839\u636e\u4f60\u76ee\u524d\u7684\u6d4b\u8bd5\u7ed3\u679c\u3001\u76ee\u6807\u6c34\u5e73\u548c\u5b66\u4e60\u8d77\u70b9\u5236\u5b9a\u3002\u6b63\u5f0f\u4e0a\u8bfe\u540e\uff0c\u8001\u5e08\u4f1a\u6839\u636e\u4f60\u7684\u8bfe\u5802\u8868\u73b0\u8c03\u6574\u5b66\u4e60\u8282\u594f\u3002','This recommendation is based on your assessment result, target level and starting point. Once classes begin, your teacher will adjust the pace based on your classroom performance.')+'</p></div>';
+      '<div class="rs-planx"><div class="rs-planx__lv">'+cur.code+' \u2192 '+tgt.code+'</div>'+
+      '<div class="rs-planx__big"><b>'+lessons+'</b><span>'+pk('\u5802\u8bfe Lessons','Lessons')+'</span></div>'+
+      '<div class="rs-planx__stages">'+pk(nlv+' \u4e2a\u5b66\u4e60\u9636\u6bb5 \u00d7 \u6bcf\u4e2a Level 48 \u5802',nlv+' learning stage'+(nlv>1?'s':'')+' \u00d7 48 lessons per level')+'</div>'+
+      stageRows+
+      '<p class="rs-plan-soft">'+pk('\u8fd9\u9879\u5efa\u8bae\u662f\u6839\u636e\u4f60\u76ee\u524d\u7684\u6d4b\u8bd5\u7ed3\u679c\u3001\u76ee\u6807\u6c34\u5e73\u548c\u5b66\u4e60\u8d77\u70b9\u5236\u5b9a\u3002\u6b63\u5f0f\u4e0a\u8bfe\u540e\uff0c\u8001\u5e08\u4f1a\u6839\u636e\u4f60\u7684\u8bfe\u5802\u8868\u73b0\u8c03\u6574\u5b66\u4e60\u8282\u594f\u3002','This recommendation is based on your assessment result, target level and starting point. Once classes begin, your teacher will adjust the pace based on your classroom performance.')+'</p></div></div>';
     // extras
     if(SIMPLE){
       html+='<div class="rs-sec">'+secH(pk('\u9644\u52a0\u670d\u52a1 What Else You Get','What Else You Get'))+
         '<p style="margin:0;font-size:12px;color:var(--muted)">'+pk('EPI\u2122 \u6027\u683c\u5206\u6790 \u00b7 Goal Setting \u76ee\u6807\u8bbe\u5b9a \u00b7 Class Reviews & Feedback \u8bfe\u5802\u53cd\u9988 \u00b7 Upgradation Test \u5347\u7ea7\u6d4b\u8bd5','EPI\u2122 Personality Analysis \u00b7 Goal Setting \u00b7 Class Reviews & Feedback \u00b7 Upgradation Test')+'</p></div>';
     }else{
-      html+='<div class="rs-sec rs-pb">'+secH(pk('\u9644\u52a0\u670d\u52a1 What Else You Get','What Else You Get'))+
+      html+='<div class="rs-sec">'+secH(pk('\u9644\u52a0\u670d\u52a1 What Else You Get','What Else You Get'))+
         '<div class="rs-extras">'+(EN?EXTE:EXTRAS).map(function(x){return '<div class="rs-extra"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>';}).join('')+'</div></div>';
     }
     // next step
     var nsteps=EN?[
-      'Confirm your learning goals with your Advisor',
+      'Confirm your learning route with your Advisor',
       'Complete your EPI\u2122 personality analysis',
-      'Arrange your level and class schedule',
-      'Start your '+jline+' learning route'
+      'Start from the recommended level',
+      'Review your progress every 24 lessons'
     ]:[
       '\u4e0e Advisor \u786e\u8ba4\u5b66\u4e60\u76ee\u6807',
       '\u5b8c\u6210 EPI\u2122 \u6027\u683c\u5206\u6790',
@@ -8886,14 +8951,16 @@ io.observe(er);})();
     html+='<div class="rs-sec">'+secH(pk('\u4e0b\u4e00\u6b65\u5efa\u8bae Your Next Step','Your Next Step'))+
       '<ul class="rs-next">'+nsteps.map(function(t,i){return '<li><i>'+(i+1)+'</i><span>'+t+'</span></li>';}).join('')+'</ul>'+
       (ST.an.trim()?'<div class="rs-adv"><b>Advisor Notes \u987e\u95ee\u5efa\u8bae</b>'+esc(ST.an)+'</div>':'')+'</div>';
-    // note + quote + footer
+    // note + closing banner
     html+='<p class="rs-note">'+pk('\u7279\u522b\u8bf4\u660e\uff1a\u5728\u6b63\u5f0f\u4e0a\u8bfe\u7684\u8fc7\u7a0b\u4e2d\uff0c\u6839\u636e\u8001\u5e08\u7684\u5efa\u8bae\uff0c\u5b66\u4e60\u7ea7\u522b\u4e5f\u4f1a\u6839\u636e\u4f60\u7684\u8bfe\u5802\u8868\u73b0\u4fdd\u7559\u8c03\u6574\uff0c\u4ee5\u786e\u4fdd\u4f60\u5728\u9002\u5408\u81ea\u5df1\u7684\u5b66\u4e60\u8282\u594f\u548c\u7a0b\u5ea6\u4e2d\u4e0d\u65ad\u8fdb\u6b65\u3002\u5b66\u4e60\u7ed3\u679c\u4e5f\u4f1a\u56e0\u4e00\u4e9b\u56e0\u7d20\u800c\u6709\u6240\u4e0d\u540c\u3002','Special note: during the course, your learning level may be adjusted based on teacher recommendations and your classroom performance, so you always progress at the pace and level that suit you. Individual results may vary.')+'</p>'+
-      '<p class="rs-quote">Learning English does not require talent. It requires the right method, practice, and environment.<span class="zh">\u5b66\u4e60\u82f1\u8bed\u65e0\u9700\u5929\u8d4b\uff0c\u9700\u8981\u7684\u662f\u9002\u5408\u4f60\u7684\u65b9\u6cd5\u3001\u7ec3\u4e60\u548c\u73af\u5883\u3002</span></p>'+
-      '<div class="rs-foot"><span>TOUCH English \u00b7 Makes You Visible</span><span>touchenglish.edu.my</span></div>';
-    // head + info + greeting prefix
+      '<div class="rs-close"><b class="rs-close__b">TOUCH English</b><span class="rs-close__m">Makes You Visible</span>'+
+      '<p class="rs-close__q">Learning English does not require talent. It requires the right method, practice and environment.'+
+      '<span class="rs-close__qz">\u5b66\u4e60\u82f1\u8bed\u65e0\u9700\u5929\u8d4b\uff0c\u9700\u8981\u7684\u662f\u9002\u5408\u4f60\u7684\u65b9\u6cd5\u3001\u7ec3\u4e60\u548c\u73af\u5883\u3002</span></p>'+
+      '<span class="rs-close__site">touchenglish.edu.my</span></div>';
+    // head + info + greeting
     sheet.innerHTML=
       '<div class="rs-head"><span class="rs-logo"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH" onerror="this.outerHTML=\'<b>TE</b>\'"></span>'+
-      '<div class="rs-head__tx"><b>TOUCH English</b><span>'+pk('English Assessment Report \u00b7 \u82f1\u8bed\u6d4b\u8bd5\u62a5\u544a','English Assessment Report')+'</span></div></div>'+
+      '<div class="rs-head__tx"><span class="rs-head__eyebrow">TOUCH English</span><b>Personal English Growth Report</b><span>'+pk('English Assessment Report \u00b7 \u82f1\u8bed\u6d4b\u8bd5\u62a5\u544a','English Assessment Report')+'</span></div></div>'+
       '<table class="rs-info"><tr><td>'+pk('\u5b66\u5458\u59d3\u540d','Student Name')+'</td><td>'+esc(name)+'</td></tr>'+
       '<tr><td>'+pk('\u6d4b\u8bd5\u65e5\u671f','Test Date')+'</td><td>'+esc(prettyDate(ST.date||todayISO()))+'</td></tr>'+
       '<tr><td>'+pk('\u82f1\u8bed\u6d4b\u8bd5\u5206\u6570','Test Score')+'</td><td>'+esc(ST.score.trim()? ST.score+" / 60":"\u2014 / 60")+'</td></tr></table>'+
