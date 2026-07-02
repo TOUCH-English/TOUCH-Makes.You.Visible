@@ -3709,6 +3709,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   .rsheet{background:#fff}
 }
 @media print{
+  html,body{height:auto!important;min-height:0!important;overflow:visible!important}
   body>*:not(#reportOv){display:none!important}
   #reportOv{position:static!important;display:block!important;background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:0!important;overflow:visible!important}
   #reportOv .rov-top,#reportOv .rb-side{display:none!important}
@@ -8983,7 +8984,51 @@ io.observe(er);})();
   var btn=document.getElementById("reportBtn");
   if(btn)btn.addEventListener("click",open);
   var x=document.getElementById("rovClose"); if(x)x.addEventListener("click",close);
-  var pr=document.getElementById("rovPrint"); if(pr)pr.addEventListener("click",function(){window.print();});
+  function collectReportCSS(){
+    var out=[];
+    for(var i=0;i<document.styleSheets.length;i++){
+      var rules; try{rules=document.styleSheets[i].cssRules;}catch(e){continue;}
+      if(!rules) continue;
+      for(var j=0;j<rules.length;j++){
+        var r=rules[j], t=r.cssText||"";
+        if(r.type===1 && /\.rs-|\.rsheet/.test(r.selectorText||"")) out.push(t);
+      }
+    }
+    return out.join("\n");
+  }
+  function rootVars(){
+    var names=["--display","--body","--ink","--muted","--faint","--line","--line-strong","--blue","--blue-bright","--blue-deep","--blue-tint","--red","--ok","--bg","--r-lg","--shadow-lg"];
+    var cs=getComputedStyle(document.documentElement), out=[];
+    names.forEach(function(nm){var v=cs.getPropertyValue(nm); if(v) out.push(nm+":"+v.trim()+";");});
+    return ":root{"+out.join("")+"}";
+  }
+  function printReport(){
+    var w=null;
+    try{ w=window.open("","_blank"); }catch(e){}
+    if(!w){ window.print(); return; }
+    var clone=sheet.cloneNode(true);
+    Array.prototype.forEach.call(clone.querySelectorAll("img"),function(im){
+      try{ im.src=new URL(im.getAttribute("src"),location.href).href; }catch(e){}
+      im.removeAttribute("onerror");
+    });
+    var css=rootVars()+"\n"+
+      "html,body{margin:0;padding:0;background:#fff}\n"+
+      "body{font-family:var(--body,system-ui);color:var(--ink,#142132);line-height:1.65;-webkit-print-color-adjust:exact;print-color-adjust:exact}\n"+
+      collectReportCSS()+"\n"+
+      ".rsheet{box-shadow:none;border-radius:0;background:#fff;padding:14mm 14mm 16mm}\n"+
+      "@page{size:A4;margin:0}\n"+
+      "@media print{.rs-sec__h{break-after:avoid}.rs-chal,.rs-step,.rs-extra,.rs-sum__it,.rs-grow,.rs-gcard,.rs-planx,.rs-outcome,.rs-close,.rs-info,.rs-greet,.rs-adv,.rs-map,.rs-pills{break-inside:avoid}}";
+    var fonts='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">';
+    w.document.open();
+    w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>TOUCH English \u00b7 Personal English Growth Report</title>'+fonts+'<style>'+css+'</style></head><body>'+clone.outerHTML+'</body></html>');
+    w.document.close();
+    var done=false;
+    function go(){ if(done) return; done=true; try{ w.focus(); w.print(); }catch(e){} }
+    w.onload=function(){ setTimeout(go,250); };
+    setTimeout(go,1200);
+    w.onafterprint=function(){ try{w.close();}catch(e){} };
+  }
+  var pr=document.getElementById("rovPrint"); if(pr)pr.addEventListener("click",printReport);
   var dp=document.getElementById("rovDepth");
   if(dp)dp.addEventListener("click",function(e){var b=e.target.closest("button[data-rdepth]");if(!b)return;ST.depth=b.getAttribute("data-rdepth");save();Array.prototype.forEach.call(dp.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x===b);});renderSheet();});
   var md=document.getElementById("rovMode");
