@@ -3526,6 +3526,60 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sst-toggle input{accent-color:var(--blue-bright);width:15px;height:15px;cursor:pointer}
 .sst-toggle i{font-style:normal;color:var(--faint)}
 .sst-toggle:hover{background:rgba(42,91,215,.09);color:var(--ink);border-color:var(--line-strong)}
+/* ---- price view switch (Course | IELTS) ---- */
+.pv-switch{display:flex;justify-content:flex-end;margin:-2px 2px 10px}
+.pv-switch__box{opacity:.72;transition:opacity .18s}
+.pv-switch:hover .pv-switch__box{opacity:1}
+.pv-switch__box{display:inline-flex;align-items:center;gap:3px;padding:3px;border-radius:999px;background:rgba(255,255,255,.55);border:1px solid var(--line);box-shadow:0 1px 2px rgba(20,33,50,.04)}
+.pv-switch__opt{display:inline-flex;align-items:center;justify-content:center;width:50px;height:28px;border-radius:999px;cursor:pointer;border:0;background:transparent;opacity:.45;filter:saturate(.6);transition:.18s;padding:0}
+.pv-switch__opt img{max-width:40px;max-height:22px;object-fit:contain;display:block}
+.pv-switch__opt .pv-fb{font-family:var(--display);font-weight:800;font-size:10px;color:var(--blue);letter-spacing:.02em}
+.pv-switch__opt.is-on{background:#fff;opacity:1;filter:none;box-shadow:0 2px 8px -2px rgba(20,33,50,.18),inset 0 0 0 1px var(--line)}
+.pv-switch__opt:hover{opacity:.85}
+.pv-view[hidden]{display:none!important}
+/* ---- IELTS pricing (same tcard framework as course packages) ---- */
+.ielts-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch;margin-top:8px}
+.ielts-grid .tcard,.ielts-more-wrap .tcard{background:rgba(255,255,255,.74);
+  -webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--tc,var(--blue));border-radius:var(--r-lg);
+  box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7)}
+.ielts-grid .tcard:hover,.ielts-more-wrap .tcard:hover{border-color:rgba(42,91,215,.4);border-top-color:var(--tc,var(--blue));
+  box-shadow:var(--shadow-lg),0 22px 50px rgba(14,36,86,.20),inset 0 1px 0 rgba(255,255,255,.75)}
+.ielts-grid .tfeat,.ielts-more-wrap .tfeat{cursor:default}
+.ielts-sec__h{font-family:var(--display);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin:14px 0 8px;padding:0 2px}
+.ielts-grid .tcard__body .ielts-sec__h:first-child,.ielts-more-wrap .tcard__body .ielts-sec__h:first-child{margin-top:0}
+.ielts-outs{display:flex;flex-direction:column;gap:2px;padding:0 2px}
+.ielts-out{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--muted);line-height:1.45;padding:3px 0}
+.ielts-out svg{flex:none;width:14px;height:14px;stroke:var(--ok);stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round;margin-top:2.5px}
+.ielts-fine{font-size:11px;color:var(--faint);margin-top:16px;line-height:1.5;text-align:center}
+.ielts-intro{text-align:center;font-size:12.5px;color:var(--muted);margin:0 0 12px;line-height:1.6}
+.ielts-intro .zh{color:var(--faint);font-size:11.5px}
+.ielts-logo-row{display:flex;justify-content:center;margin:0 0 18px}
+.ielts-logo-btn{display:inline-flex;align-items:center;gap:14px;padding:10px 22px 10px 16px;border-radius:16px;cursor:pointer;font:inherit;text-align:left;
+  background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.75);
+  box-shadow:0 10px 26px -16px rgba(20,33,50,.25),inset 0 1px 0 rgba(255,255,255,.8);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.ielts-logo-btn:hover{transform:translateY(-2px);border-color:rgba(42,91,215,.35);box-shadow:0 16px 34px -16px rgba(20,33,50,.32),0 0 0 4px rgba(42,91,215,.05),inset 0 1px 0 rgba(255,255,255,.85)}
+.ielts-logo-btn img{height:34px;max-width:86px;object-fit:contain;display:block}
+.ielts-logo-fb{font-family:var(--display);font-weight:800;font-size:17px;color:var(--red)}
+.ielts-logo-btn__tx b{font-family:var(--display);font-size:13.5px;color:var(--ink);display:block}
+.ielts-logo-btn__tx small{font-size:11px;color:var(--faint);display:block;margin-top:2px}
+.ielts-covers-h{text-align:center;margin:26px 0 12px}
+.ielts-covers-h b{font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink)}
+.ielts-covers-h .zh{color:var(--faint);font-size:12px;margin-left:6px}
+.ielts-covers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:880px;margin:0 auto}
+.ielts-cover{display:flex;flex-direction:column;align-items:center;gap:9px;padding:16px 10px 14px;border-radius:17px;cursor:pointer;text-align:center;font:inherit;
+  background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.65);
+  box-shadow:0 1px 2px rgba(20,33,50,.05);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.ielts-cover:hover{transform:translateY(-3px);background:rgba(255,255,255,.8);box-shadow:0 10px 24px rgba(20,33,50,.1),0 0 0 3px rgba(42,91,215,.05)}
+.ielts-cover b{font-family:var(--display);font-size:13px;color:var(--ink)}
+.ielts-cover small{font-size:10.5px;color:var(--faint);line-height:1.4}
+@media(max-width:760px){.ielts-covers{grid-template-columns:repeat(2,1fr)}}
+.ielts-more{display:flex;justify-content:center;margin-top:16px}
+.ielts-more[hidden]{display:none}
+.ielts-more-wrap[hidden]{display:none}
+.ielts-more-wrap{margin-top:18px}
+.ielts-more-wrap .tcard{max-width:520px;margin:0 auto}
+@media(max-width:900px){.ielts-grid{grid-template-columns:1fr}.ielts-grid .tcard{max-width:520px;margin:0 auto;width:100%}}
 /* HRDC popup — advisor edit mode */
 .adv-note.is-on{opacity:1;color:var(--blue);font-weight:700}
 .hpop__table input{width:76px;font:inherit;font-family:var(--display);font-weight:700;font-size:13px;text-align:center;border:1px solid var(--blue-bright);border-radius:8px;padding:5px 6px;background:#fff;color:var(--ink)}
@@ -4080,6 +4134,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         </div>
         <div class="price-app" id="priceApp">
           <div class="price-amb" aria-hidden="true"></div>
+          <div class="pv-switch" aria-label="Pricing view 切换价格视图">
+            <div class="pv-switch__box" role="tablist">
+              <button type="button" class="pv-switch__opt is-on" id="pvTabCourse" role="tab" aria-selected="true" title="Course packages 课程配套"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH" onerror="this.outerHTML='<span class=\'pv-fb\'>TOUCH</span>'"></button>
+              <button type="button" class="pv-switch__opt" id="pvTabIelts" role="tab" aria-selected="false" title="IELTS pricing IELTS 价格"><img decoding="async" src="assets/logo/ielts.png" alt="IELTS" onerror="this.outerHTML='<span class=\'pv-fb\'>IELTS</span>'"></button>
+            </div>
+          </div>
+          <div class="pv-view" id="pvCourse">
           <div class="price-admin" id="priceAdmin" data-advisor-only>
             <span class="price-admin__flag">ADVISOR · EDIT PRICING <span class="zh">价格后台（仅顾问可见，价格用于后续揭示）</span></span>
             <div id="priceAdminBody"></div>
@@ -4112,6 +4173,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
               </button>
             </div>
           </div>
+          </div>
+          <div class="pv-view" id="pvIelts" hidden></div>
           <div class="hpop" id="hrdcPop" aria-hidden="true">
             <div class="hpop__bd" id="hrdcBd"></div>
             <div class="hpop__card" role="dialog" aria-modal="true">
@@ -4138,6 +4201,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             <div class="ipop__card" role="dialog" aria-modal="true">
               <button class="ipop__x" id="hrdcClaimX" aria-label="Close">×</button>
               <div class="ipop__body" id="hrdcClaimBody"></div>
+            </div>
+          </div>
+          <div class="ipop" id="ieltsSkillPop" aria-hidden="true">
+            <div class="ipop__bd" id="ieltsSkillBd"></div>
+            <div class="ipop__card" role="dialog" aria-modal="true">
+              <button class="ipop__x" id="ieltsSkillX" aria-label="Close">×</button>
+              <div class="ipop__body" id="ieltsSkillBody"></div>
             </div>
           </div>
         </div>
@@ -7490,6 +7560,8 @@ io.observe(er);})();
   var KEY='te_pricing_v1';
 
   var ICON={
+    ear:'<svg viewBox="0 0 24 24"><path d="M6 10a6 6 0 1 1 12 0c0 3-2 3.5-3 5.5-.8 1.6-.8 3.5-3 3.5a3 3 0 0 1-3-3"/><path d="M9.5 10a2.5 2.5 0 0 1 5 0c0 1.5-1 2-1.6 3"/></svg>',
+    pen:'<svg viewBox="0 0 24 24"><path d="m14 5 5 5L8 21H3v-5L14 5Z"/><path d="m12 7 5 5"/></svg>',
     seed:'<svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12C12 8 8.5 6 5 6c0 4 3.5 6 7 6Z"/><path d="M12 13c0-3 3-4.5 6-4.5C18 12 15 13 12 13Z"/></svg>',
     diamond:'<svg viewBox="0 0 24 24"><path d="M6 3h12l3 5-9 13L3 8Z"/><path d="M3 8h18"/><path d="M9 3 7 8l5 13 5-13-2-5"/></svg>',
     rocket:'<svg viewBox="0 0 24 24"><path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2"/><path d="M12 3c3 1 6 4 6 9 0 2-1 4-3 6H9C7 16 6 14 6 12c0-5 3-8 6-9Z"/><circle cx="12" cy="10" r="1.6"/></svg>',
@@ -8128,7 +8200,7 @@ io.observe(er);})();
     });
     hstage.addEventListener('input',function(e){
       var t=e.target;
-      if(t.dataset&&t.dataset.sst!==undefined){ sstOn=t.checked; save(); refreshCards(); renderExt(); renderTable(); animateTable(); return; }
+      if(t.dataset&&t.dataset.sst!==undefined){ sstOn=t.checked; save(); refreshCards(); renderExt(); renderTable(); animateTable(); if(window.__renderIelts){var iv=document.getElementById('pvIelts'); if(iv&&!iv.hidden) window.__renderIelts();} return; }
       if(!advEdit) return;
       if(t.dataset&&t.dataset.misc){ misc[t.dataset.misc]=clampInt(t.value); save(); updateMiscTexts(); refreshCards(); return; }
       var tr=t.closest&&t.closest('tr[data-i]'); if(!tr) return;
@@ -8326,6 +8398,89 @@ io.observe(er);})();
     if(x) x.addEventListener('click',close);
     if(bd) bd.addEventListener('click',close);
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&pop&&pop.classList.contains('is-open')) close(); });
+  })();
+
+  /* ---------- IELTS pricing view (single prices, no promo/HRDC) ---------- */
+  (function(){
+    var IELTS=[
+      {hours:'12',name:'IELTS Focus',price:1580,
+       feats:[['live','Live IELTS Coaching'],['persona','IELTS Assessment'],['chat','Speaking Practice'],['book','Writing Feedback'],['refresh','Practice Materials']],
+       outs:['Understand the IELTS format','Build core exam strategies','Identify your weak areas','Improve exam confidence']},
+      {hours:'24',name:'IELTS Intensive',plus:'EVERYTHING IN 12, PLUS',price:2980,
+       feats:[['book','Full Writing Reviews'],['persona','Speaking Mock Tests'],['level','Personal Study Plan'],['up','Band Score Analysis'],['refresh','Extra Practice Papers']],
+       outs:['Sharpen answers with full reviews','Perform under exam conditions','Follow a personalised plan','Track your band progress']},
+      {hours:'12+',name:'IELTS + English \u00b7 12h + 20 sessions',plus:'EVERYTHING IN IELTS 12, PLUS',price:2980,
+       feats:[['live','20 Practical English Classes'],['chat','Speaking Confidence Training'],['persona','Daily Conversation Practice'],['star','Workplace Communication'],['book','Vocabulary Expansion']],
+       outs:['Exam skills + real-life fluency','Speak with more confidence','Use English at work daily','Grow an active vocabulary']}
+    ];
+    var IELTS36={hours:'36',name:'IELTS Mastery',plus:'EVERYTHING IN 24, PLUS',price:4380,
+       feats:[['cert','Full IELTS Mock Test'],['chat','Weekly Speaking Practice'],['book','Advanced Writing Coaching'],['star','Exam Strategies'],['refresh','Final Readiness Review'],['up','Band Prediction']],
+       outs:['Complete exam simulation','Peak-ready speaking & writing','A clear final strategy','Know your predicted band']};
+    function ic(k){ return '<span class="tfeat__ic" style="--fc:'+(FIC_COL[k]||'#2A5BD7')+'">'+(ICON[k]||ICON.star)+'</span>'; }
+    var CIC={'12':'book','24':'up','12+':'chat','36':'cert'};
+    function card(d){
+      var feats=d.feats.map(function(f){return '<li><div class="tfeat"><span class="tfeat__ic" style="--fc:'+(FIC_COL[f[0]]||'#2A5BD7')+'">'+(ICON[f[0]]||ICON.star)+'</span><span class="tfeat__lab"><b>'+f[1]+'</b></span></div></li>';}).join('');
+      var outs=d.outs.map(function(t){return '<div class="ielts-out"><svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg><span>'+t+'</span></div>';}).join('');
+      var head='<div class="tcard__head"><span class="tcard__ic">'+(ICON[CIC[d.hours]]||ICON.book)+'</span>'+
+        '<div class="tcard__num"><b>'+d.hours+'</b><span>HOURS</span></div>'+
+        '<p class="tcard__tag">'+d.name+'</p></div>';
+      var plus=d.plus?'<div class="tcard__plus">'+d.plus+'</div>':'';
+      var body='<div class="tcard__body">'+plus+
+        '<div class="ielts-sec__h">Features \u8bfe\u7a0b\u5185\u5bb9</div><ul class="tfeats">'+feats+'</ul>'+
+        '<div class="ielts-sec__h">Outcomes \u5b66\u4e60\u6210\u679c</div><div class="ielts-outs">'+outs+'</div></div>';
+      var price='<div class="tcard__price is-revealed"><div class="tcard__price-now"><span class="rm">RM</span><span class="n">'+fmt(taxed(d.price))+'</span></div>'+
+        '<span class="tcard__price-note">+ RM'+fmt(taxed(miscFee()))+' <span class="zh">\u62a5\u540d\uff0b\u7cfb\u7edf\u8d39</span>'+(sstOn?' \u00b7 <b style=\"color:var(--blue-bright)\">incl. 6% SST</b>':'')+'</span></div>';
+      return '<article class="tcard">'+head+body+price+'</article>';
+    }
+    var SKILLS=[
+      {k:'ear',c:'#7C5CFF',t:'Listening Skills',zh:'\u542c\u529b',pts:['Understanding different English accents','Identifying keywords and important details','Note-taking techniques','Time-management strategies','Practice with real IELTS listening tasks']},
+      {k:'book',c:'#14A2B8',t:'Reading Skills',zh:'\u9605\u8bfb',pts:['Skimming and scanning techniques','Locating answers quickly and accurately','Handling different question types','Improving reading speed and comprehension']},
+      {k:'pen',c:'#2A5BD7',t:'Writing Skills',zh:'\u5199\u4f5c',pts:['Task 1: graphs, charts, reports and letters','Task 2: essay writing and idea development','Essay structure and organisation','Grammar, vocabulary, coherence and cohesion','Feedback and corrections from instructors']},
+      {k:'chat',c:'#2E9E50',t:'Speaking Skills',zh:'\u53e3\u8bed',pts:['Building confidence to speak naturally','Extending answers with examples','Handling all three parts of the speaking test','Improving fluency, pronunciation and vocabulary','Mock speaking interviews with feedback']}
+    ];
+    var iView=document.getElementById('pvIelts'), cView=document.getElementById('pvCourse');
+    var tC=document.getElementById('pvTabCourse'), tI=document.getElementById('pvTabIelts');
+    var ieltsMoreShown=false;
+    function renderIelts(){
+      if(!iView) return;
+      var intro='<p class="ielts-intro">1-to-1 personalised coaching \u00b7 3-hour sessions \u00b7 latest IELTS exam format \u00b7 online or in-centre (Sutera)<br><span class="zh">\u4e00\u5bf9\u4e00\u4e13\u5c5e\u6307\u5bfc \u00b7 \u6bcf\u8282 3 \u5c0f\u65f6 \u00b7 \u6700\u65b0\u8003\u8bd5\u683c\u5f0f \u00b7 \u7ebf\u4e0a\u6216 Sutera \u4e2d\u5fc3\u4e0a\u8bfe</span></p>';
+      var free='<div class="ielts-logo-row"><button type="button" class="ielts-logo-btn" data-ielts-results aria-label="IELTS & Cambridge Results \u00b7 Proven Results">'+
+        '<img decoding="async" src="assets/logo/ielts.png" alt="IELTS" onerror="this.outerHTML=\'<b class=\\\'ielts-logo-fb\\\'>IELTS</b>\'">'+
+        '<span class="ielts-logo-btn__tx"><b>IELTS &amp; Cambridge Results</b><small>Proven Results \u00b7 \u771f\u5b9e\u6210\u7ee9 \u00b7 Tap to view \u70b9\u51fb\u67e5\u770b</small></span></button></div>';
+      var covers='<div class="ielts-covers-h"><b>What the course covers</b><span class="zh">\u8bfe\u7a0b\u6db5\u76d6</span></div>'+
+        '<div class="ielts-covers">'+SKILLS.map(function(sk,i){return '<button type="button" class="ielts-cover" data-skill="'+i+'"><span class="tfeat__ic" style="--fc:'+sk.c+';width:44px;height:44px">'+(ICON[sk.k]||ICON.star)+'</span><b>'+sk.t+'</b><small>'+sk.zh+' \u00b7 Tap for details \u70b9\u51fb\u770b\u8be6\u60c5</small></button>';}).join('')+'</div>';
+      iView.innerHTML=intro+free+'<div class="ielts-grid">'+IELTS.map(card).join('')+'</div>'+
+        '<div class="ielts-more"'+(ieltsMoreShown?' hidden':'')+'><button type="button" class="ext-toggle-btn" id="ieltsMore">Show more IELTS pricing <span class="zh">\u663e\u793a\u66f4\u591a IELTS \u4ef7\u683c</span> <span class="ext-chev" aria-hidden="true">\u2304</span></button></div>'+
+        '<div class="ielts-more-wrap"'+(ieltsMoreShown?'':' hidden')+'>'+card(IELTS36)+'</div>'+covers+
+        '<p class="ielts-fine">* RM300 one-time registration & system fee applies to all IELTS packages \u00b7 \u6bcf\u4e2a IELTS \u914d\u5957\u5747\u9700\u4e00\u6b21\u6027\u62a5\u540d\uff0b\u7cfb\u7edf\u8d39 RM300'+(sstOn?' \u00b7 incl. 6% SST':'')+'</p>';
+    }
+    window.__renderIelts=renderIelts;
+    function setView(which){
+      var isI=which==='ielts';
+      if(cView) cView.hidden=isI;
+      if(iView){ iView.hidden=!isI; if(isI) renderIelts(); }
+      if(tC){ tC.classList.toggle('is-on',!isI); tC.setAttribute('aria-selected',String(!isI)); }
+      if(tI){ tI.classList.toggle('is-on',isI); tI.setAttribute('aria-selected',String(isI)); }
+    }
+    if(tC) tC.addEventListener('click',function(){ setView('course'); });
+    if(tI) tI.addEventListener('click',function(){ setView('ielts'); });
+    var skPop=document.getElementById('ieltsSkillPop'), skBody=document.getElementById('ieltsSkillBody');
+    function openSkill(i){ var sk=SKILLS[i]; if(!sk||!skBody) return;
+      skBody.innerHTML='<div class="ipop__head"><span class="ipop__badge">IELTS</span>'+
+        '<h3 class="ipop__title">'+sk.t+'<span class="zh">'+sk.zh+'</span></h3>'+
+        '<p class="ipop__sub">What you will practise and master. <span class="zh">\u4f60\u5c06\u7ec3\u4e60\u4e0e\u638c\u63e1\u7684\u5185\u5bb9\u3002</span></p></div>'+
+        '<div class="ielts-outs" style="max-width:440px;margin:0 auto">'+sk.pts.map(function(t){return '<div class="ielts-out" style="font-size:13.5px"><svg viewBox=\"0 0 24 24\"><path d=\"m5 12 5 5L19 7\"/></svg><span>'+t+'</span></div>';}).join('')+'</div>';
+      skPop.classList.add('is-open'); skPop.setAttribute('aria-hidden','false'); }
+    function closeSkill(){ if(skPop){ skPop.classList.remove('is-open'); skPop.setAttribute('aria-hidden','true'); } }
+    var skX=document.getElementById('ieltsSkillX'), skBd=document.getElementById('ieltsSkillBd');
+    if(skX) skX.addEventListener('click',closeSkill);
+    if(skBd) skBd.addEventListener('click',closeSkill);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&skPop&&skPop.classList.contains('is-open')) closeSkill(); });
+    if(iView) iView.addEventListener('click',function(e){
+      var m=e.target.closest&&e.target.closest('#ieltsMore'); if(m){ ieltsMoreShown=true; renderIelts(); return; }
+      var cv=e.target.closest&&e.target.closest('.ielts-cover'); if(cv){ openSkill(+cv.getAttribute('data-skill')); return; }
+      var rs=e.target.closest&&e.target.closest('[data-ielts-results]'); if(rs&&window.openResults){ openResults(); }
+    });
   })();
 
   load(); renderTiers(); renderExt(); renderAdmin();
