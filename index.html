@@ -3540,6 +3540,19 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rov-lang{display:inline-flex;gap:3px;padding:3px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--line)}
 .rov-lang button{font-family:var(--display);font-weight:700;font-size:12px;padding:6px 14px;border-radius:999px;border:0;background:transparent;color:var(--faint);cursor:pointer;transition:.15s}
 .rov-lang button.is-on{background:#fff;color:var(--blue);box-shadow:0 2px 8px -2px rgba(20,33,50,.18),inset 0 0 0 1px var(--line)}
+.rov-mode{display:none}
+@media(max-width:980px){
+  .rov-mode{display:inline-flex}
+  .rov-top{flex-direction:column;align-items:stretch;gap:10px}
+  .rov-actions{flex-wrap:wrap;justify-content:flex-start;gap:8px}
+  .rov-actions button{white-space:nowrap}
+  .rov-lang button{padding:6px 11px;font-size:11.5px}
+  .rov-btn{padding:8px 13px;font-size:12px}
+  .report-ov.mode-preview .rb-side{display:none}
+  .report-ov.mode-edit .rsheet{display:none}
+  .rb-side{position:static}
+  .rsheet{padding:26px 20px 30px}
+}
 .report-panel{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
 @media(max-width:980px){.report-panel{grid-template-columns:1fr}}
 .rb-side{position:sticky;top:10px;border-radius:20px;padding:18px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.8);box-shadow:0 20px 44px -26px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.85)}
@@ -3599,7 +3612,37 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rs-extra b{font-family:var(--display);font-size:12.5px;color:var(--blue);display:block;margin-bottom:2px}
 .rs-extra span{font-size:11.5px;color:var(--muted);line-height:1.5}
 .rs-note{margin-top:22px;font-size:11px;color:var(--faint);border-top:1px dashed var(--line-strong);padding-top:12px;line-height:1.6}
-.rs-foot{margin-top:16px;display:flex;justify-content:space-between;align-items:center;font-size:10.5px;color:var(--faint)}
+.rs-foot{margin-top:14px;display:flex;justify-content:space-between;align-items:center;font-size:10.5px;color:var(--faint)}
+.rs-num{display:inline-grid;place-items:center;min-width:26px;height:18px;padding:0 6px;border-radius:6px;background:var(--blue-tint);color:var(--blue);font-style:normal;font-size:10.5px;letter-spacing:.05em;margin-right:2px}
+.rs-ican{display:block;font-size:11.5px;color:var(--ink);margin-top:6px;font-style:italic;line-height:1.45}
+.rs-mean{display:block;font-size:11px;color:var(--faint);margin-top:3px;line-height:1.45;font-style:normal}
+.rs-journey{margin-top:10px;font-size:11.5px;color:var(--faint);font-family:var(--display);font-weight:700;letter-spacing:.04em}
+.rs-journey b{color:var(--blue-bright)}
+.rs-sum{display:grid;gap:8px}
+.rs-sum__it{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:10px 13px;background:#fbfcfe;font-size:12.5px;line-height:1.5}
+.rs-sum__it i{flex:none;width:22px;height:22px;border-radius:7px;background:linear-gradient(150deg,var(--blue-bright),var(--blue));color:#fff;display:grid;place-items:center;font-style:normal;font-family:var(--display);font-weight:800;font-size:11px}
+.rs-chal{border:1px solid var(--line);border-radius:14px;padding:13px 16px;background:#fbfcfe;margin-bottom:10px;break-inside:avoid}
+.rs-chal__tag{font-family:var(--display);font-size:10px;font-weight:800;letter-spacing:.12em;color:var(--blue-bright);text-transform:uppercase}
+.rs-chal__a{font-weight:700;font-size:13px;margin:3px 0 2px;color:var(--ink);line-height:1.5}
+.rs-chal__k{font-family:var(--display);font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--blue);margin-top:9px}
+.rs-chal__v{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.6}
+.rs-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.rs-step{border:1px solid var(--line);border-radius:13px;padding:12px 14px;background:#fbfcfe;break-inside:avoid}
+.rs-step small{font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:.12em;color:var(--blue-bright);text-transform:uppercase}
+.rs-step b{display:block;font-family:var(--display);font-size:13px;margin:4px 0;color:var(--ink)}
+.rs-step span{font-size:11.5px;color:var(--muted);line-height:1.55}
+.rs-plan{border:1.5px solid var(--blue-bright);border-radius:14px;padding:13px 18px;background:var(--blue-tint);display:inline-block}
+.rs-plan b{font-family:var(--display);font-size:16px;color:var(--blue)}
+.rs-plan span{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.rs-plan-soft{font-size:11.5px;color:var(--faint);margin-top:9px;line-height:1.6;max-width:560px}
+.rs-next{margin:2px 0 0;padding:0;list-style:none}
+.rs-next li{display:flex;gap:10px;align-items:flex-start;padding:5px 0;font-size:12.5px;line-height:1.5}
+.rs-next li i{flex:none;width:22px;height:22px;border-radius:7px;background:var(--blue-tint);color:var(--blue);display:grid;place-items:center;font-style:normal;font-family:var(--display);font-weight:800;font-size:11px}
+.rs-adv{border-left:4px solid #E6A81E;background:#fffdf4;border-radius:0 10px 10px 0;padding:11px 15px;margin-top:14px;font-size:12.5px;line-height:1.6}
+.rs-adv b{font-family:var(--display);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#B98A16;display:block;margin-bottom:3px}
+.rs-quote{text-align:center;margin:26px auto 0;font-size:12.5px;color:var(--ink);font-style:italic;max-width:480px;line-height:1.6}
+.rs-quote .zh{display:block;font-style:normal;font-size:11px;color:var(--faint);margin-top:4px}
+@media print{.rs-pb{break-before:page}}
 @media print{
   body>*:not(#reportOv){display:none!important}
   #reportOv{position:static!important;display:block!important;background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:0!important;overflow:visible!important}
@@ -8580,6 +8623,8 @@ io.observe(er);})();
   <div class="rov-top">
     <h2>Student Report <span class="zh">学员英语测试报告</span><small style="display:block;font-family:var(--body);font-weight:500;font-size:11px;color:var(--faint);margin-top:3px">点击 Save as PDF 后，在对话框中选择「存储为 PDF / Save as PDF」即可导出。</small></h2>
     <div class="rov-actions">
+      <div class="rov-lang" id="rovDepth"><button type="button" data-rdepth="detail" class="is-on">Detailed 详细</button><button type="button" data-rdepth="simple">Simple 简洁</button></div>
+      <div class="rov-lang rov-mode" id="rovMode"><button type="button" data-rmode="edit" class="is-on">Edit 编辑</button><button type="button" data-rmode="preview">Preview 预览</button></div>
       <div class="rov-lang" id="rovLang"><button type="button" data-rlang="zh" class="is-on">中文</button><button type="button" data-rlang="en">English</button></div>
       <button type="button" class="rov-btn" id="rovClose">Close 关闭</button>
       <button type="button" class="rov-btn rov-btn--pri" id="rovPrint"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px;margin-right:6px"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>Save as PDF 保存 PDF</button>
@@ -8706,10 +8751,21 @@ io.observe(er);})();
     ["Upgradation Test 升级测试","通过综合测试评估学习进展，确保你具备进入下一级别的基础，让学习保持挑战性与新鲜感。"]
   ];
   var PKG={48:"Essential",96:"Standard",144:"Best Value",192:"Extra Sessions 1",240:"Extra Sessions 2"};
+  var ICAN=[["我能模仿简单的单词和句子。","I can copy simple words and sentences."],
+    ["我能用完整句子表达日常需求。","I can build complete sentences for daily needs."],
+    ["我能在日常与职场中清楚表达想法。","I can explain my ideas clearly in daily and workplace situations."],
+    ["我能自信地表达立场并说服他人。","I can present and defend my views with confidence."],
+    ["我能用自然有感染力的英语吸引听众。","I can captivate an audience with natural, powerful English."]];
+  var MEAN=[["你可能认识一些单词，但还不太能自然组成句子。","You may know some words, but can’t yet form sentences naturally."],
+    ["你能应付简单对话，但句子还比较单一。","You can handle simple conversations, but your sentences are still basic."],
+    ["你可以在工作和日常中比较清楚地表达想法、原因和需求。","You can express ideas, reasons and needs quite clearly at work and in daily life."],
+    ["你能在会议、讨论中有逻辑地表达并影响他人。","You can speak logically and persuasively in meetings and discussions."],
+    ["你能用地道、有魅力的英语在任何场合自如表达。","You can express yourself naturally and compellingly in any setting."]];
+  var JW=["Copy","Construct","Convey","Convince","Captivate"];
   var KEY="te_report_v1";
-  var ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",lang:"zh"};
-  function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&typeof s==="object"&&s.lang)ST.lang=s.lang;}catch(e){}}
-  function save(){try{localStorage.setItem(KEY,JSON.stringify({lang:ST.lang}));}catch(e){}}
+  var ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",lang:"zh",depth:"detail"};
+  function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&typeof s==="object"){if(s.lang)ST.lang=s.lang;if(s.depth)ST.depth=s.depth;}}catch(e){}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify({lang:ST.lang,depth:ST.depth}));}catch(e){}}
   function esc(t){return String(t==null?"":t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
   function todayISO(){var d=new Date(),m=d.getMonth()+1,dd=d.getDate();return d.getFullYear()+"-"+(m<10?"0":"")+m+"-"+(dd<10?"0":"")+dd;}
   function prettyDate(iso){var p=(iso||"").split("-");if(p.length!==3)return iso||"";var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];return (+p[2])+" "+(M[+p[1]-1]||"")+" "+p[0];}
@@ -8733,10 +8789,13 @@ io.observe(er);})();
       '<label class="rb-field"><span>个人分析</span><textarea data-f="ca" placeholder="学员的具体卡点\u2026">'+esc(ST.ca)+'</textarea></label>'+
       '<label class="rb-field"><span>个性化建议</span><textarea data-f="cs">'+esc(ST.cs)+'</textarea></label>'+
       '<label class="rb-field"><span>TEC 如何帮助你</span><textarea data-f="ch">'+esc(ST.ch)+'</textarea></label>'+
+      '<div class="rb-h">Advisor Notes 顾问建议<small style="font-weight:500;text-transform:none;letter-spacing:0"> · 可留空</small></div>'+
+      '<label class="rb-field"><textarea data-f="an" placeholder="例：建议先从句型模仿与信心建立开始…">'+esc(ST.an)+'</textarea></label>'+
       '<button type="button" class="rb-reset" id="rbReset">\u21ba 清空重来 Reset</button>';
   }
   function renderSheet(){
     var EN=(ST.lang==="en");
+    var SIMPLE=(ST.depth==="simple");
     function pk(zh,en){return EN?en:zh;}
     var cur=LV[ST.cur],tgt=LV[ST.tgt],curE=LVE[ST.cur],tgtE=LVE[ST.tgt];
     var name=ST.name.trim()||"\u2014\u2014";
@@ -8744,45 +8803,114 @@ io.observe(er);})();
     var rows=[];
     painSrc.forEach(function(pn,i){ if(ST.checks[i]) rows.push(pn); });
     if(ST.ca.trim()) rows.push([ST.ca,ST.cs||"\u2014",ST.ch||"\u2014"]);
-    var lessons=Math.min(240,Math.max(48,(Math.max(1,ST.tgt-ST.cur))*48));
+    var lessons=Math.min(240,Math.max(48,(Math.max(0,ST.tgt-ST.cur)+1)*48));
     var route=[]; for(var i=ST.cur;i<=Math.max(ST.cur,ST.tgt);i++){ route.push(i); }
+    var journey=route.map(function(i){return JW[i];});
+    if(journey.length<2){journey=[JW[ST.cur],JW[Math.min(4,ST.cur+1)]];}
+    var jline=journey.join(" \u2192 ");
+    var N=0;
+    function secH(t){N++;return '<h4 class="rs-sec__h"><i class="rs-num">'+(N<10?'0':'')+N+'</i>'+t+'</h4>';}
     var greet=EN
-      ? esc(name)+', hello!<br>Thank you for joining our English sharing session and completing your assessment \u2014 we can feel how serious and committed you are about improving your English. This is your personal English assessment report; we hope it gives you clear guidance and direction for your learning journey.'
-      : esc(name)+' \u4f60\u597d\uff0c<br>\u611f\u8c22\u4f60\u53c2\u52a0\u82f1\u8bed\u5206\u4eab\u4f1a\u548c\u5b8c\u6210\u4e86\u4f60\u7684\u6d4b\u8bd5\uff01\u6211\u4eec\u611f\u53d7\u5230\u4f60\u5bf9\u5b66\u82f1\u8bed\u7684\u8fd9\u4efd\u8ba4\u771f\u548c\u7528\u5fc3\u3002\u8fd9\u662f\u5c5e\u4e8e\u4f60\u7684\u82f1\u8bed\u6d4b\u8bd5\u62a5\u544a\uff0c\u5e0c\u671b\u53ef\u4ee5\u4e3a\u4f60\u63d0\u4f9b\u82f1\u8bed\u5b66\u4e60\u7684\u53c2\u8003\u548c\u5efa\u8bae\u3002';
+      ? esc(name)+', hello!<br>Thank you for joining our English sharing session and completing your assessment. This report will help you see clearly where your English is today, your main challenges, and the learning route that suits you next.'
+      : esc(name)+' \u4f60\u597d\uff0c<br>\u611f\u8c22\u4f60\u53c2\u52a0\u82f1\u8bed\u5206\u4eab\u4f1a\u548c\u5b8c\u6210\u4e86\u4f60\u7684\u6d4b\u8bd5\uff01\u8fd9\u4efd\u62a5\u544a\u4f1a\u5e2e\u52a9\u4f60\u770b\u6e05\u695a\u76ee\u524d\u7684\u82f1\u8bed\u8d77\u70b9\u3001\u4e3b\u8981\u5361\u70b9\uff0c\u4ee5\u53ca\u63a5\u4e0b\u6765\u9002\u5408\u4f60\u7684\u5b66\u4e60\u8def\u7ebf\u3002';
     var lvLine=function(l){return EN? l.en : (l.en+' \u00b7 '+l.zh);};
+    function chip(l,i,isTgt){
+      return '<div class="rs-lv'+(isTgt?' rs-lv--tgt':'')+'"><small>'+(isTgt?pk('Target \u76ee\u6807','Target'):pk('Current \u73b0\u51b5','Current'))+'</small>'+
+        '<b>'+l.code+' ('+l.cefr+')</b><i>'+lvLine(l)+'</i>'+
+        '<i class="rs-ican">\u201c'+(EN?ICAN[i][1]:ICAN[i][0])+'\u201d</i>'+
+        '<i class="rs-mean">'+(EN?MEAN[i][1]:MEAN[i][0])+'</i></div>';
+    }
+    // 01 current -> target
+    var html='<div class="rs-sec">'+secH(pk('\u4f60\u7684\u73b0\u51b5\u4e0e\u76ee\u6807 Current \u2192 Target','Where You Are \u2192 Where You\u2019re Going'))+
+      '<div class="rs-lvchips">'+chip(cur,ST.cur,false)+'<span class="rs-arrow">\u2192</span>'+chip(tgt,ST.tgt,true)+'</div>'+
+      '<div class="rs-journey">'+pk('\u4f60\u7684\u6210\u957f\u8def\u7ebf Your journey','Your journey')+': <b>'+jline+'</b></div></div>';
+    // 02 summary bullets
+    if(rows.length){
+      html+='<div class="rs-sec">'+secH(pk('\u4f60\u7684\u82f1\u8bed\u73b0\u51b5\u6458\u8981 Your English Summary','Your English Summary'))+
+        '<div class="rs-sum">'+rows.slice(0,3).map(function(r,i){return '<div class="rs-sum__it"><i>'+(i+1)+'</i><span>'+esc(r[0])+'</span></div>';}).join('')+'</div></div>';
+    }
+    // 03 challenges cards
+    if(rows.length){
+      html+='<div class="rs-sec">'+secH(pk('\u4e3b\u8981\u5361\u70b9\u4e0e\u6211\u4eec\u7684\u5e2e\u52a9 Main Challenges &amp; Support','Main Challenges &amp; How We Help'))+
+        rows.map(function(r,i){
+          var c='<div class="rs-chal"><span class="rs-chal__tag">'+pk('\u5361\u70b9','Challenge')+' 0'+(i+1)+'</span>'+
+            '<div class="rs-chal__a">'+esc(r[0])+'</div>';
+          if(!SIMPLE) c+='<div class="rs-chal__k">'+pk('\u5efa\u8bae\u8bad\u7ec3\u65b9\u5f0f','Suggested training')+'</div><div class="rs-chal__v">'+esc(r[1])+'</div>';
+          c+='<div class="rs-chal__k">'+pk('\u8bfe\u5802\u5982\u4f55\u5e2e\u52a9\u4f60','How class helps you')+'</div><div class="rs-chal__v">'+esc(r[2])+'</div></div>';
+          return c;
+        }).join('')+'</div>';
+    }
+    if(SIMPLE){
+      // simple merged plan
+      html+='<div class="rs-sec">'+secH(pk('\u5b66\u4e60\u8ba1\u5212 Learning Plan','Your Learning Plan'))+
+        '<p style="margin:0;font-size:12.5px">'+pk('\u5efa\u8bae\u4ece '+cur.code+'\uff08'+cur.en+' \u00b7 '+cur.zh+'\uff09\u5f00\u59cb\uff0c\u76ee\u6807\u8fbe\u5230 '+tgt.code+'\uff08'+tgt.en+' \u00b7 '+tgt.zh+'\uff09\u3002'+tgt.goal,
+        'We recommend starting from '+cur.code+' ('+cur.en+') with the goal of reaching '+tgt.code+' ('+tgt.en+'). '+tgtE.goal)+'</p></div>';
+    }else{
+      // 04 starting point (page 2)
+      html+='<div class="rs-sec rs-pb">'+secH(pk('\u5b66\u4e60\u8d77\u70b9\u63a8\u8350 Recommended Starting Point','Recommended Starting Point'))+
+        '<p style="margin:0;font-size:12.5px">'+esc(pk(cur.start,curE.start))+'</p></div>';
+      // 05 target
+      html+='<div class="rs-sec">'+secH(pk('\u63a8\u8350\u5b66\u4e60\u76ee\u6807 Learning Target','Learning Target'))+
+        '<p style="margin:0;font-size:12.5px"><b style="font-family:var(--display)">'+tgt.code+' ('+tgt.cefr+') \u00b7 '+tgt.en+'</b><br>'+esc(pk(tgt.goal,tgtE.goal))+'</p></div>';
+      // 06 route step cards
+      html+='<div class="rs-sec">'+secH(pk('\u5b66\u4e60\u8def\u7ebf Learning Route','Learning Route'))+
+        '<div class="rs-steps">'+route.map(function(i,k){var l=LV[i];return '<div class="rs-step"><small>Step '+(k+1)+'</small><b>'+l.code+' \u00b7 '+lvLine(l)+'</b><span>'+esc(EN?LVE[i].route:l.route)+'</span></div>';}).join('')+'</div></div>';
+      // 07 outcome
+      html+='<div class="rs-sec">'+secH(pk('\u5b8c\u6210\u76ee\u6807 Expected Outcome','Expected Outcome'))+
+        '<p style="margin:0;font-size:12.5px">'+esc(pk(tgt.done,tgtE.done))+'</p></div>';
+    }
+    // learning plan (soft)
+    html+='<div class="rs-sec">'+secH(pk('\u5efa\u8bae\u5b66\u4e60\u89c4\u5212 Recommended Learning Plan','Recommended Learning Plan'))+
+      '<span class="rs-plan"><b>'+cur.code+' \u2192 '+tgt.code+'</b><span>'+pk('\u9884\u4f30\u5b66\u4e60\u89c4\u5212\uff1a'+lessons+' \u5802\u8bfe \u00b7 \u6bcf\u4e2a Level \u5305\u542b 48 \u5802','Estimated learning plan: '+lessons+' lessons \u00b7 each level includes 48 lessons')+'</span></span>'+
+      '<p class="rs-plan-soft">'+pk('\u8fd9\u9879\u5efa\u8bae\u662f\u6839\u636e\u4f60\u76ee\u524d\u7684\u6d4b\u8bd5\u7ed3\u679c\u3001\u76ee\u6807\u6c34\u5e73\u548c\u5b66\u4e60\u8d77\u70b9\u5236\u5b9a\u3002\u6b63\u5f0f\u4e0a\u8bfe\u540e\uff0c\u8001\u5e08\u4f1a\u6839\u636e\u4f60\u7684\u8bfe\u5802\u8868\u73b0\u8c03\u6574\u5b66\u4e60\u8282\u594f\u3002','This recommendation is based on your assessment result, target level and starting point. Once classes begin, your teacher will adjust the pace based on your classroom performance.')+'</p></div>';
+    // extras
+    if(SIMPLE){
+      html+='<div class="rs-sec">'+secH(pk('\u9644\u52a0\u670d\u52a1 What Else You Get','What Else You Get'))+
+        '<p style="margin:0;font-size:12px;color:var(--muted)">'+pk('EPI\u2122 \u6027\u683c\u5206\u6790 \u00b7 Goal Setting \u76ee\u6807\u8bbe\u5b9a \u00b7 Class Reviews & Feedback \u8bfe\u5802\u53cd\u9988 \u00b7 Upgradation Test \u5347\u7ea7\u6d4b\u8bd5','EPI\u2122 Personality Analysis \u00b7 Goal Setting \u00b7 Class Reviews & Feedback \u00b7 Upgradation Test')+'</p></div>';
+    }else{
+      html+='<div class="rs-sec rs-pb">'+secH(pk('\u9644\u52a0\u670d\u52a1 What Else You Get','What Else You Get'))+
+        '<div class="rs-extras">'+(EN?EXTE:EXTRAS).map(function(x){return '<div class="rs-extra"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>';}).join('')+'</div></div>';
+    }
+    // next step
+    var nsteps=EN?[
+      'Confirm your learning goals with your Advisor',
+      'Complete your EPI\u2122 personality analysis',
+      'Arrange your level and class schedule',
+      'Start your '+jline+' learning route'
+    ]:[
+      '\u4e0e Advisor \u786e\u8ba4\u5b66\u4e60\u76ee\u6807',
+      '\u5b8c\u6210 EPI\u2122 \u6027\u683c\u5206\u6790',
+      '\u5b89\u6392\u9002\u5408\u7684 Level \u4e0e\u4e0a\u8bfe\u65f6\u95f4',
+      '\u5f00\u59cb\u4f60\u7684 '+jline+' \u5b66\u4e60\u8def\u7ebf'
+    ];
+    html+='<div class="rs-sec">'+secH(pk('\u4e0b\u4e00\u6b65\u5efa\u8bae Your Next Step','Your Next Step'))+
+      '<ul class="rs-next">'+nsteps.map(function(t,i){return '<li><i>'+(i+1)+'</i><span>'+t+'</span></li>';}).join('')+'</ul>'+
+      (ST.an.trim()?'<div class="rs-adv"><b>Advisor Notes \u987e\u95ee\u5efa\u8bae</b>'+esc(ST.an)+'</div>':'')+'</div>';
+    // note + quote + footer
+    html+='<p class="rs-note">'+pk('\u7279\u522b\u8bf4\u660e\uff1a\u5728\u6b63\u5f0f\u4e0a\u8bfe\u7684\u8fc7\u7a0b\u4e2d\uff0c\u6839\u636e\u8001\u5e08\u7684\u5efa\u8bae\uff0c\u5b66\u4e60\u7ea7\u522b\u4e5f\u4f1a\u6839\u636e\u4f60\u7684\u8bfe\u5802\u8868\u73b0\u4fdd\u7559\u8c03\u6574\uff0c\u4ee5\u786e\u4fdd\u4f60\u5728\u9002\u5408\u81ea\u5df1\u7684\u5b66\u4e60\u8282\u594f\u548c\u7a0b\u5ea6\u4e2d\u4e0d\u65ad\u8fdb\u6b65\u3002\u5b66\u4e60\u7ed3\u679c\u4e5f\u4f1a\u56e0\u4e00\u4e9b\u56e0\u7d20\u800c\u6709\u6240\u4e0d\u540c\u3002','Special note: during the course, your learning level may be adjusted based on teacher recommendations and your classroom performance, so you always progress at the pace and level that suit you. Individual results may vary.')+'</p>'+
+      '<p class="rs-quote">Learning English does not require talent. It requires the right method, practice, and environment.<span class="zh">\u5b66\u4e60\u82f1\u8bed\u65e0\u9700\u5929\u8d4b\uff0c\u9700\u8981\u7684\u662f\u9002\u5408\u4f60\u7684\u65b9\u6cd5\u3001\u7ec3\u4e60\u548c\u73af\u5883\u3002</span></p>'+
+      '<div class="rs-foot"><span>TOUCH English \u00b7 Makes You Visible</span><span>touchenglish.edu.my</span></div>';
+    // head + info + greeting prefix
     sheet.innerHTML=
       '<div class="rs-head"><span class="rs-logo"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH" onerror="this.outerHTML=\'<b>TE</b>\'"></span>'+
       '<div class="rs-head__tx"><b>TOUCH English</b><span>'+pk('English Assessment Report \u00b7 \u82f1\u8bed\u6d4b\u8bd5\u62a5\u544a','English Assessment Report')+'</span></div></div>'+
       '<table class="rs-info"><tr><td>'+pk('\u5b66\u5458\u59d3\u540d','Student Name')+'</td><td>'+esc(name)+'</td></tr>'+
       '<tr><td>'+pk('\u6d4b\u8bd5\u65e5\u671f','Test Date')+'</td><td>'+esc(prettyDate(ST.date||todayISO()))+'</td></tr>'+
       '<tr><td>'+pk('\u82f1\u8bed\u6d4b\u8bd5\u5206\u6570','Test Score')+'</td><td>'+esc(ST.score.trim()? ST.score+" / 60":"\u2014 / 60")+'</td></tr></table>'+
-      '<div class="rs-greet">'+greet+'</div>'+
-      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u4f60\u7684\u73b0\u51b5\u4e0e\u76ee\u6807 Current \u2192 Target','Where You Are \u2192 Where You\u2019re Going')+'</h4>'+
-      '<div class="rs-lvchips"><div class="rs-lv"><small>'+pk('Current \u73b0\u51b5','Current')+'</small><b>'+cur.code+' ('+cur.cefr+')</b><i>'+lvLine(cur)+'</i></div>'+
-      '<span class="rs-arrow">\u2192</span>'+
-      '<div class="rs-lv rs-lv--tgt"><small>'+pk('Target \u76ee\u6807','Target')+'</small><b>'+tgt.code+' ('+tgt.cefr+')</b><i>'+lvLine(tgt)+'</i></div></div></div>'+
-      (rows.length?'<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u76ee\u524d\u7684\u5361\u70b9\u4e0e\u6211\u4eec\u7684\u5e2e\u52a9 Analysis &amp; Support','Analysis &amp; How We Help')+'</h4>'+
-      '<table class="rs-table"><tr><th style="width:26%">'+pk('\u4e2a\u4eba\u5206\u6790','Personal Analysis')+'</th><th>'+pk('\u4e2a\u6027\u5316\u5efa\u8bae','Personalised Advice')+'</th><th>'+pk('TEC \u5982\u4f55\u5e2e\u52a9\u4f60','How TEC Helps You')+'</th></tr>'+
-      rows.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td>'+esc(r[2])+'</td></tr>';}).join("")+'</table></div>':"")+
-      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u5b66\u4e60\u8d77\u70b9\u63a8\u8350 Recommended Starting Point','Recommended Starting Point')+'</h4><p style="margin:0;font-size:12.5px">'+esc(pk(cur.start,curE.start))+'</p></div>'+
-      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u63a8\u8350\u5b66\u4e60\u76ee\u6807 Learning Target','Learning Target')+'</h4><p style="margin:0;font-size:12.5px"><b style="font-family:var(--display)">'+tgt.code+' ('+tgt.cefr+') \u00b7 '+tgt.en+'</b><br>'+esc(pk(tgt.goal,tgtE.goal))+'</p></div>'+
-      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u5b66\u4e60\u8def\u7ebf Learning Route','Learning Route')+'</h4><ul class="rs-route">'+
-      route.map(function(i){var l=LV[i];return '<li><b>'+l.code+' ('+l.cefr+') \u00b7 '+lvLine(l)+'</b><br>'+esc(EN?LVE[i].route:l.route)+'</li>';}).join("")+'</ul></div>'+
-      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u5b8c\u6210\u76ee\u6807 Outcome','Outcome')+'</h4><p style="margin:0;font-size:12.5px">'+esc(pk(tgt.done,tgtE.done))+'</p></div>'+
-      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u5efa\u8bae\u8bfe\u7a0b Recommended Course','Recommended Course')+'</h4>'+
-      '<span class="rs-course"><b>'+lessons+pk(' \u5802\u8bfe',' lessons')+'</b><span>'+(PKG[lessons]||"")+pk(' \u00b7 \u6bcf\u4e2a Level 48 \u5802',' \u00b7 48 lessons per level')+'</span></span></div>'+
-      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u9644\u52a0\u670d\u52a1 What Else You Get','What Else You Get')+'</h4><div class="rs-extras">'+
-      (EN?EXTE:EXTRAS).map(function(x){return '<div class="rs-extra"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>';}).join("")+'</div></div>'+
-      '<p class="rs-note">'+pk('\u7279\u522b\u8bf4\u660e\uff1a\u5728\u6b63\u5f0f\u4e0a\u8bfe\u7684\u8fc7\u7a0b\u4e2d\uff0c\u6839\u636e\u8001\u5e08\u7684\u5efa\u8bae\uff0c\u5b66\u4e60\u7ea7\u522b\u4e5f\u4f1a\u6839\u636e\u4f60\u7684\u8bfe\u5802\u8868\u73b0\u4fdd\u7559\u8c03\u6574\uff0c\u4ee5\u786e\u4fdd\u4f60\u5728\u9002\u5408\u81ea\u5df1\u7684\u5b66\u4e60\u8282\u594f\u548c\u7a0b\u5ea6\u4e2d\u4e0d\u65ad\u8fdb\u6b65\u3002\u5b66\u4e60\u7ed3\u679c\u4e5f\u4f1a\u56e0\u4e00\u4e9b\u56e0\u7d20\u800c\u6709\u6240\u4e0d\u540c\u3002','Special note: during the course, your learning level may be adjusted based on teacher recommendations and your classroom performance, so you always progress at the pace and level that suit you. Individual results may vary.')+'</p>'+
-      '<div class="rs-foot"><span>TOUCH English \u00b7 makes you visible</span><span>tec.touchenglish.edu.my</span></div>';
+      '<div class="rs-greet">'+greet+'</div>'+html;
   }
   function renderAll(){renderForm();renderSheet();}
-  function open(){load();ST.name="";ST.date=todayISO();ST.score="";ST.cur=0;ST.tgt=2;ST.checks=[true,true,false,false];ST.ca="";ST.cs="";ST.ch="";renderAll();var lg2=document.getElementById("rovLang");if(lg2)Array.prototype.forEach.call(lg2.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x.getAttribute("data-rlang")===(ST.lang||"zh"));});ov.classList.add("is-open");ov.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";}
+  function open(){load();ST.name="";ST.date=todayISO();ST.score="";ST.cur=0;ST.tgt=2;ST.checks=[true,true,false,false];ST.ca="";ST.cs="";ST.ch="";ST.an="";renderAll();setMode("edit");var dp2=document.getElementById("rovDepth");if(dp2)Array.prototype.forEach.call(dp2.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x.getAttribute("data-rdepth")===(ST.depth||"detail"));});var lg2=document.getElementById("rovLang");if(lg2)Array.prototype.forEach.call(lg2.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x.getAttribute("data-rlang")===(ST.lang||"zh"));});ov.classList.add("is-open");ov.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";}
   function close(){ov.classList.remove("is-open");ov.setAttribute("aria-hidden","true");document.body.style.overflow="";}
   var btn=document.getElementById("reportBtn");
   if(btn)btn.addEventListener("click",open);
   var x=document.getElementById("rovClose"); if(x)x.addEventListener("click",close);
   var pr=document.getElementById("rovPrint"); if(pr)pr.addEventListener("click",function(){window.print();});
+  var dp=document.getElementById("rovDepth");
+  if(dp)dp.addEventListener("click",function(e){var b=e.target.closest("button[data-rdepth]");if(!b)return;ST.depth=b.getAttribute("data-rdepth");save();Array.prototype.forEach.call(dp.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x===b);});renderSheet();});
+  var md=document.getElementById("rovMode");
+  function setMode(m){ ov.classList.toggle("mode-preview",m==="preview"); ov.classList.toggle("mode-edit",m==="edit"); if(md)Array.prototype.forEach.call(md.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x.getAttribute("data-rmode")===m);}); if(m==="preview") ov.scrollTop=0; }
+  if(md)md.addEventListener("click",function(e){var b=e.target.closest("button[data-rmode]");if(b)setMode(b.getAttribute("data-rmode"));});
   var lg=document.getElementById("rovLang");
   if(lg)lg.addEventListener("click",function(e){var b=e.target.closest("button[data-rlang]");if(!b)return;ST.lang=b.getAttribute("data-rlang");save();Array.prototype.forEach.call(lg.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x===b);});renderSheet();});
   document.addEventListener("keydown",function(e){if(e.key==="Escape"&&ov.classList.contains("is-open"))close();});
@@ -8795,7 +8923,7 @@ io.observe(er);})();
     }
     if(t.dataset&&t.dataset.chk!==undefined){ST.checks[+t.dataset.chk]=t.checked; t.closest(".rb-pain").classList.toggle("is-on",t.checked); save(); renderSheet();}
   });
-  side.addEventListener("click",function(e){ if(e.target&&e.target.id==="rbReset"){ ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",lang:ST.lang||"zh"}; save(); renderAll(); } });
+  side.addEventListener("click",function(e){ if(e.target&&e.target.id==="rbReset"){ ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",lang:ST.lang||"zh",depth:ST.depth||"detail"}; save(); renderAll(); } });
 })();
 </script>
 </body>
