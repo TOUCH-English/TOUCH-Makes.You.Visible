@@ -3549,13 +3549,20 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rov-btn:hover{background:#fff;border-color:var(--blue-bright);color:var(--blue-bright)}
 .rov-btn--pri{background:var(--blue-bright);border-color:var(--blue-bright);color:#fff;box-shadow:0 8px 18px -9px rgba(42,91,215,.6)}
 .rov-btn--pri:hover{background:var(--blue-deep);color:#fff}
+.rov-x{position:fixed;top:16px;right:18px;z-index:20;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--line-strong);background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);color:var(--muted);cursor:pointer;box-shadow:0 12px 28px -14px rgba(20,33,50,.42),inset 0 1px 0 rgba(255,255,255,.9);transition:background .16s,color .16s,border-color .16s,transform .16s}
+.rov-x:hover{background:#fff;color:var(--red);border-color:rgba(224,48,59,.5);transform:scale(1.06)}
+.rov-x:active{transform:scale(.96)}
+.rov-x svg{width:18px;height:18px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round}
 .rov-lang{display:inline-flex;gap:3px;padding:3px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--line)}
 .rov-lang button{font-family:var(--display);font-weight:700;font-size:12px;padding:6px 14px;border-radius:999px;border:0;background:transparent;color:var(--faint);cursor:pointer;transition:.15s}
 .rov-lang button.is-on{background:#fff;color:var(--blue);box-shadow:0 2px 8px -2px rgba(20,33,50,.18),inset 0 0 0 1px var(--line)}
 .rov-mode{display:none}
+@media(max-width:1320px){.rov-top{padding-right:58px}}
 @media(max-width:980px){
   .rov-mode{display:inline-flex}
-  .rov-top{flex-direction:column;align-items:stretch;gap:10px}
+  .rov-top{flex-direction:column;align-items:stretch;gap:10px;padding-right:0}
+  .rov-top h2{padding-right:46px}
+  .rov-x{top:13px;right:13px;width:38px;height:38px}
   .rov-actions{flex-wrap:wrap;justify-content:flex-start;gap:8px}
   .rov-actions button{white-space:nowrap}
   .rov-lang button{padding:6px 11px;font-size:11.5px}
@@ -3746,7 +3753,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   html,body{height:auto!important;min-height:0!important;overflow:visible!important}
   body>*:not(#reportOv){display:none!important}
   #reportOv{position:static!important;display:block!important;background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:0!important;overflow:visible!important}
-  #reportOv .rov-top,#reportOv .rb-side{display:none!important}
+  #reportOv .rov-top,#reportOv .rb-side,#reportOv .rov-x{display:none!important}
   .report-panel{display:block!important;max-width:none!important}
   .rsheet{box-shadow:none!important;border-radius:0!important;padding:14mm 14mm 16mm!important}
   .rs-sec,.rs-table tr,.rs-extra{break-inside:avoid}
@@ -8764,13 +8771,13 @@ io.observe(er);})();
 </script>
 
 <div class="report-ov" id="reportOv" aria-hidden="true">
+  <button type="button" class="rov-x" id="rovClose" aria-label="Close 关闭" title="Close 关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 18 18M18 6 6 18"/></svg></button>
   <div class="rov-top">
     <h2>Student Report <span class="zh">学员英语测试报告</span><small style="display:block;font-family:var(--body);font-weight:500;font-size:11px;color:var(--faint);margin-top:3px">点击 Save as PDF 后，在对话框中选择「存储为 PDF / Save as PDF」即可导出。</small></h2>
     <div class="rov-actions">
       <div class="rov-lang" id="rovDepth"><button type="button" data-rdepth="detail" class="is-on">Detailed 详细</button><button type="button" data-rdepth="simple">Simple 简洁</button></div>
       <div class="rov-lang rov-mode" id="rovMode"><button type="button" data-rmode="edit" class="is-on">Edit 编辑</button><button type="button" data-rmode="preview">Preview 预览</button></div>
       <div class="rov-lang" id="rovLang"><button type="button" data-rlang="zh" class="is-on">中文</button><button type="button" data-rlang="en">English</button></div>
-      <button type="button" class="rov-btn" id="rovClose">Close 关闭</button>
       <button type="button" class="rov-btn rov-btn--pri" id="rovPrint"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px;margin-right:6px"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>Save as PDF 保存 PDF</button>
     </div>
   </div>
