@@ -3532,8 +3532,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .pv-switch:hover .pv-switch__box{opacity:1}
 .pv-switch__box{display:inline-flex;align-items:center;gap:3px;padding:3px;border-radius:999px;background:rgba(255,255,255,.55);border:1px solid var(--line);box-shadow:0 1px 2px rgba(20,33,50,.04)}
 .pv-switch__opt{display:inline-flex;align-items:center;justify-content:center;width:50px;height:28px;border-radius:999px;cursor:pointer;border:0;background:transparent;opacity:.45;filter:saturate(.6);transition:.18s;padding:0}
-.pv-switch__opt img{max-width:40px;max-height:22px;object-fit:contain;display:block}
+.pv-switch__opt img{max-width:46px;max-height:26px;object-fit:contain;display:block}
 .pv-switch__opt .pv-fb{font-family:var(--display);font-weight:800;font-size:10px;color:var(--blue);letter-spacing:.02em}
+.pv-switch__opt .pv-fb--ielts{color:var(--red);font-size:11px}
 .pv-switch__opt.is-on{background:#fff;opacity:1;filter:none;box-shadow:0 2px 8px -2px rgba(20,33,50,.18),inset 0 0 0 1px var(--line)}
 .pv-switch__opt:hover{opacity:.85}
 .pv-view[hidden]{display:none!important}
@@ -4137,7 +4138,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           <div class="pv-switch" aria-label="Pricing view 切换价格视图">
             <div class="pv-switch__box" role="tablist">
               <button type="button" class="pv-switch__opt is-on" id="pvTabCourse" role="tab" aria-selected="true" title="Course packages 课程配套"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH" onerror="this.outerHTML='<span class=\'pv-fb\'>TOUCH</span>'"></button>
-              <button type="button" class="pv-switch__opt" id="pvTabIelts" role="tab" aria-selected="false" title="IELTS pricing IELTS 价格"><img decoding="async" src="assets/logo/ielts.png" alt="IELTS" onerror="this.outerHTML='<span class=\'pv-fb\'>IELTS</span>'"></button>
+              <button type="button" class="pv-switch__opt" id="pvTabIelts" role="tab" aria-selected="false" title="IELTS pricing IELTS 价格"><span class="pv-fb pv-fb--ielts">IELTS</span></button>
             </div>
           </div>
           <div class="pv-view" id="pvCourse">
@@ -7601,13 +7602,12 @@ io.observe(er);})();
           if(typeof v.na==='boolean')o.na=v.na; return o;});
         misc=clone(MISC_DEF);
         if(s.misc){if(isNum(s.misc.reg))misc.reg=s.misc.reg;if(isNum(s.misc.sys))misc.sys=s.misc.sys;}
-        sstOn=!!s.sst;
         return;
       }
     }catch(e){}
     data=clone(DEF); misc=clone(MISC_DEF); sstOn=false;
   }
-  function save(){try{localStorage.setItem(KEY,JSON.stringify({pkgs:data.map(function(d){return {orig:d.orig,combo:d.combo,hrdc:d.hrdc,lessons:d.lessons,na:d.na};}),misc:misc,sst:sstOn}));}catch(e){}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify({pkgs:data.map(function(d){return {orig:d.orig,combo:d.combo,hrdc:d.hrdc,lessons:d.lessons,na:d.na};}),misc:misc}));}catch(e){}}
   function fmt(n){return (n||0).toLocaleString('en-US');}
   function finalOf(d){return Math.max(0,d.orig-d.combo-(d.na?0:d.hrdc));}
   var SST_RATE=0.06, sstOn=false; function taxed(n){ return sstOn?Math.round(n*(1+SST_RATE)):n; }
@@ -8445,14 +8445,15 @@ io.observe(er);})();
       if(!iView) return;
       var intro='<p class="ielts-intro">1-to-1 personalised coaching \u00b7 3-hour sessions \u00b7 latest IELTS exam format \u00b7 online or in-centre (Sutera)<br><span class="zh">\u4e00\u5bf9\u4e00\u4e13\u5c5e\u6307\u5bfc \u00b7 \u6bcf\u8282 3 \u5c0f\u65f6 \u00b7 \u6700\u65b0\u8003\u8bd5\u683c\u5f0f \u00b7 \u7ebf\u4e0a\u6216 Sutera \u4e2d\u5fc3\u4e0a\u8bfe</span></p>';
       var free='<div class="ielts-logo-row"><button type="button" class="ielts-logo-btn" data-ielts-results aria-label="IELTS & Cambridge Results \u00b7 Proven Results">'+
-        '<img decoding="async" src="assets/logo/ielts.png" alt="IELTS" onerror="this.outerHTML=\'<b class=\\\'ielts-logo-fb\\\'>IELTS</b>\'">'+
+        '<b class="ielts-logo-fb">IELTS</b>'+
         '<span class="ielts-logo-btn__tx"><b>IELTS &amp; Cambridge Results</b><small>Proven Results \u00b7 \u771f\u5b9e\u6210\u7ee9 \u00b7 Tap to view \u70b9\u51fb\u67e5\u770b</small></span></button></div>';
       var covers='<div class="ielts-covers-h"><b>What the course covers</b><span class="zh">\u8bfe\u7a0b\u6db5\u76d6</span></div>'+
         '<div class="ielts-covers">'+SKILLS.map(function(sk,i){return '<button type="button" class="ielts-cover" data-skill="'+i+'"><span class="tfeat__ic" style="--fc:'+sk.c+';width:44px;height:44px">'+(ICON[sk.k]||ICON.star)+'</span><b>'+sk.t+'</b><small>'+sk.zh+' \u00b7 Tap for details \u70b9\u51fb\u770b\u8be6\u60c5</small></button>';}).join('')+'</div>';
       iView.innerHTML=intro+free+'<div class="ielts-grid">'+IELTS.map(card).join('')+'</div>'+
         '<div class="ielts-more"'+(ieltsMoreShown?' hidden':'')+'><button type="button" class="ext-toggle-btn" id="ieltsMore">Show more IELTS pricing <span class="zh">\u663e\u793a\u66f4\u591a IELTS \u4ef7\u683c</span> <span class="ext-chev" aria-hidden="true">\u2304</span></button></div>'+
         '<div class="ielts-more-wrap"'+(ieltsMoreShown?'':' hidden')+'>'+card(IELTS36)+'</div>'+covers+
-        '<p class="ielts-fine">* RM300 one-time registration & system fee applies to all IELTS packages \u00b7 \u6bcf\u4e2a IELTS \u914d\u5957\u5747\u9700\u4e00\u6b21\u6027\u62a5\u540d\uff0b\u7cfb\u7edf\u8d39 RM300'+(sstOn?' \u00b7 incl. 6% SST':'')+'</p>';
+        '<p class="ielts-fine">* RM300 one-time registration & system fee applies to all IELTS packages \u00b7 \u6bcf\u4e2a IELTS \u914d\u5957\u5747\u9700\u4e00\u6b21\u6027\u62a5\u540d\uff0b\u7cfb\u7edf\u8d39 RM300'+(sstOn?' \u00b7 incl. 6% SST':'')+'</p>'+
+        '<div class="sst-row"><label class="sst-toggle"><input type="checkbox" data-sst'+(sstOn?' checked':'')+'> SST 6% <i>\u00b7 foreign learner \u5916\u7c4d +6%</i></label></div>';
     }
     window.__renderIelts=renderIelts;
     function setView(which){
@@ -8464,6 +8465,7 @@ io.observe(er);})();
     }
     if(tC) tC.addEventListener('click',function(){ setView('course'); });
     if(tI) tI.addEventListener('click',function(){ setView('ielts'); });
+    if(iView) iView.addEventListener('input',function(e){ var t=e.target; if(t&&t.dataset&&t.dataset.sst!==undefined){ sstOn=t.checked; save(); refreshCards(); renderExt(); renderTable(); animateTable(); renderIelts(); } });
     var skPop=document.getElementById('ieltsSkillPop'), skBody=document.getElementById('ieltsSkillBody');
     function openSkill(i){ var sk=SKILLS[i]; if(!sk||!skBody) return;
       skBody.innerHTML='<div class="ipop__head"><span class="ipop__badge">IELTS</span>'+
