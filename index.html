@@ -9030,15 +9030,41 @@ io.observe(er);})();
       "@page{size:A4;margin:0}\n"+
       ".rs-close::before,.rs-close::after{display:none!important;content:none!important}\n"+
       "@media print{.rs-sec__h{break-after:avoid}.rs-chal,.rs-step,.rs-extra,.rs-sum__it,.rs-grow,.rs-gcard,.rs-planx,.rs-outcome,.rs-close,.rs-info,.rs-greet,.rs-adv,.rs-map,.rs-pills{break-inside:avoid}}";
+    css+="\nbody{width:210mm;margin:0 auto}\n@media print{body{width:auto;margin:0}}";
     var fonts='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">';
+    var pjs='(function(){\n'+
+      'function pageH(){var d=document.createElement("div");d.style.cssText="height:297mm;position:absolute;visibility:hidden;left:-9999px";document.body.appendChild(d);var h=d.offsetHeight;d.parentNode.removeChild(d);return h;}\n'+
+      'function paginate(){\n'+
+      '  var H=pageH(); if(!H||H<400) return;\n'+
+      '  var all=[].slice.call(document.querySelectorAll(".rs-keep,.rs-chal,.rs-adv,.rs-note,.rs-close,.rs-head,.rs-info,.rs-greet"));\n'+
+      '  var els=all.filter(function(el){var k=el.closest(".rs-keep"); return !(k&&k!==el);});\n'+
+      '  els.sort(function(a,b){return (a.getBoundingClientRect().top)-(b.getBoundingClientRect().top);});\n'+
+      '  window.__pg=[];\n'+
+      '  els.forEach(function(el){\n'+
+      '    var r=el.getBoundingClientRect(), top=r.top+(window.scrollY||window.pageYOffset||0), h=r.height;\n'+
+      '    if(h<=0||h>H*0.92){window.__pg&&window.__pg.push([el.className,Math.round(top),Math.round(h),"skip"]);return;}\n'+
+      '    var page=Math.floor((top+1)/H), endPage=Math.floor((top+h-1)/H);\n'+
+      '    if(endPage>page){\n'+
+      '      var push=(page+1)*H-top+3;\n'+
+      '      var sp=document.createElement("div");\n'+
+      '      sp.style.cssText="height:"+push+"px;padding:0;margin:0;border:0";\n'+
+      '      el.parentNode.insertBefore(sp,el);\n'+
+      '      window.__pg.push([el.className,Math.round(top),Math.round(h),Math.round(push)]);\n'+
+      '    }\n'+
+      '  });\n'+
+      '}\n'+
+      'var went=false;\n'+
+      'function go(){ if(went) return; went=true; try{paginate();}catch(e){} setTimeout(function(){ try{paginate();}catch(e){} try{window.focus();window.print();}catch(e){} },260); }\n'+
+      'function imgsReady(){ var ps=[].slice.call(document.images).map(function(im){ return im.complete?Promise.resolve():new Promise(function(res){ im.onload=im.onerror=res; }); }); return Promise.all(ps); }\n'+
+      'function start(){ var f=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve(); Promise.all([f,imgsReady()]).then(function(){ setTimeout(go,120); }); setTimeout(go,3000); }\n'+
+      'var fired=false; function once(){ if(fired) return; fired=true; start(); }\n'+
+      'window.print=(function(orig){ var used=false; return function(){ if(used) return; used=true; orig.call(window); }; })(window.print);\n'+
+      'if(document.readyState==="complete") once(); else window.addEventListener("load",once);\n'+
+      'window.onafterprint=function(){ try{window.close();}catch(e){} };\n'+
+      '})();';
     w.document.open();
-    w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>TOUCH English \u00b7 Personal English Growth Report</title>'+fonts+'<style>'+css+'</style></head><body>'+clone.outerHTML+'</body></html>');
+    w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>TOUCH English \u00b7 Personal English Growth Report</title>'+fonts+'<style>'+css+'</style></head><body>'+clone.outerHTML+'<scr'+'ipt>'+pjs+'</scr'+'ipt></body></html>');
     w.document.close();
-    var done=false;
-    function go(){ if(done) return; done=true; try{ w.focus(); w.print(); }catch(e){} }
-    w.onload=function(){ setTimeout(go,250); };
-    setTimeout(go,1200);
-    w.onafterprint=function(){ try{w.close();}catch(e){} };
   }
   var pr=document.getElementById("rovPrint"); if(pr)pr.addEventListener("click",printReport);
   var dp=document.getElementById("rovDepth");
