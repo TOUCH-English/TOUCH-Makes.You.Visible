@@ -3526,6 +3526,89 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sst-toggle input{accent-color:var(--blue-bright);width:15px;height:15px;cursor:pointer}
 .sst-toggle i{font-style:normal;color:var(--faint)}
 .sst-toggle:hover{background:rgba(42,91,215,.09);color:var(--ink);border-color:var(--line-strong)}
+/* ===== Student report generator ===== */
+.report-ov{position:fixed;inset:0;z-index:210;display:none;background:rgba(238,242,249,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);overflow:auto;padding:26px 20px 60px}
+.report-ov.is-open{display:block}
+.rov-top{max-width:1240px;margin:0 auto 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rov-top h2{font-family:var(--display);font-size:19px;color:var(--ink);margin:0}
+.rov-top h2 .zh{color:var(--faint);font-size:13px;font-weight:600;margin-left:8px}
+.rov-actions{display:flex;gap:10px}
+.rov-btn{font-family:var(--display);font-weight:700;font-size:13px;padding:9px 18px;border-radius:12px;border:1px solid var(--line-strong);background:rgba(255,255,255,.85);color:var(--ink);cursor:pointer;transition:.15s}
+.rov-btn:hover{background:#fff;border-color:var(--blue-bright);color:var(--blue-bright)}
+.rov-btn--pri{background:var(--blue-bright);border-color:var(--blue-bright);color:#fff;box-shadow:0 8px 18px -9px rgba(42,91,215,.6)}
+.rov-btn--pri:hover{background:var(--blue-deep);color:#fff}
+.rov-lang{display:inline-flex;gap:3px;padding:3px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--line)}
+.rov-lang button{font-family:var(--display);font-weight:700;font-size:12px;padding:6px 14px;border-radius:999px;border:0;background:transparent;color:var(--faint);cursor:pointer;transition:.15s}
+.rov-lang button.is-on{background:#fff;color:var(--blue);box-shadow:0 2px 8px -2px rgba(20,33,50,.18),inset 0 0 0 1px var(--line)}
+.report-panel{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
+@media(max-width:980px){.report-panel{grid-template-columns:1fr}}
+.rb-side{position:sticky;top:10px;border-radius:20px;padding:18px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.8);box-shadow:0 20px 44px -26px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.85)}
+.rb-h{font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:16px 0 8px}
+.rb-h:first-child{margin-top:0}
+.rb-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rb-field{display:block;margin-bottom:10px}
+.rb-field span{display:block;font-size:11.5px;font-weight:600;color:var(--muted);margin-bottom:4px}
+.rb-field input,.rb-field select,.rb-field textarea{width:100%;box-sizing:border-box;font:inherit;font-size:13px;color:var(--ink);padding:8px 11px;border-radius:10px;border:1px solid var(--line-strong);background:#fff;outline:none;transition:border .14s}
+.rb-field textarea{resize:vertical;min-height:54px;line-height:1.5}
+.rb-field input:focus,.rb-field select:focus,.rb-field textarea:focus{border-color:var(--blue-bright)}
+.rb-pain{display:flex;gap:9px;align-items:flex-start;padding:9px 10px;border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.7);margin-bottom:7px;cursor:pointer;transition:.14s}
+.rb-pain:hover{border-color:var(--line-strong)}
+.rb-pain input{margin-top:2px;accent-color:var(--blue-bright);width:15px;height:15px;flex:none;cursor:pointer}
+.rb-pain span{font-size:12px;line-height:1.5;color:var(--ink)}
+.rb-pain.is-on{border-color:rgba(42,91,215,.4);background:rgba(42,91,215,.05)}
+.rb-reset{font-size:11.5px;color:var(--faint);background:none;border:0;cursor:pointer;padding:6px 2px;font-family:inherit}
+.rb-reset:hover{color:var(--red)}
+/* ---- report sheet ---- */
+.rsheet{background:#fff;border-radius:18px;box-shadow:0 30px 70px -34px rgba(20,33,50,.4),0 2px 8px rgba(20,33,50,.06);padding:46px 52px 40px;color:var(--ink);font-size:13.5px;line-height:1.65}
+.rs-head{display:flex;align-items:center;gap:16px;border-bottom:3px solid var(--blue);padding-bottom:18px;margin-bottom:22px}
+.rs-logo{width:58px;height:58px;border-radius:50%;flex:none;display:grid;place-items:center;background:radial-gradient(85% 85% at 32% 24%,#fff,#eef3fb 70%,#e3ecf9);border:1px solid var(--line);box-shadow:0 6px 16px -8px rgba(20,33,50,.3)}
+.rs-logo img{width:78%;height:78%;object-fit:contain;display:block}
+.rs-logo b{font-family:var(--display);font-weight:800;color:var(--blue);font-size:15px}
+.rs-head__tx b{display:block;font-family:var(--display);font-weight:800;font-size:20px;color:var(--blue);letter-spacing:-.01em}
+.rs-head__tx span{font-size:11.5px;color:var(--faint);letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.rs-title{font-family:var(--display);font-weight:800;font-size:16px;color:var(--ink);margin:0 0 12px}
+.rs-info{width:100%;border-collapse:collapse;margin-bottom:18px}
+.rs-info td{border:1px solid var(--line);padding:8px 12px;font-size:13px}
+.rs-info td:first-child{width:130px;background:var(--blue-tint);font-weight:700;color:var(--blue);font-family:var(--display);font-size:12px}
+.rs-greet{background:#f7f9fd;border-left:4px solid var(--blue-bright);border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:22px;font-size:13px}
+.rs-sec{margin:22px 0 0}
+.rs-sec__h{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:14.5px;color:var(--blue);margin:0 0 10px}
+.rs-sec__h::before{content:"";width:5px;height:18px;border-radius:3px;background:linear-gradient(180deg,var(--blue-bright),var(--blue))}
+.rs-lvchips{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.rs-lv{border:1px solid var(--line);border-radius:13px;padding:10px 16px;background:#fbfcfe;min-width:190px}
+.rs-lv small{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:700}
+.rs-lv b{font-family:var(--display);font-size:15px;color:var(--ink)}
+.rs-lv i{display:block;font-style:normal;font-size:11.5px;color:var(--muted)}
+.rs-lv--tgt{border-color:rgba(42,91,215,.4);background:var(--blue-tint)}
+.rs-arrow{font-size:20px;color:var(--blue-bright);font-weight:800}
+.rs-table{width:100%;border-collapse:collapse;margin-top:6px}
+.rs-table th{background:var(--blue);color:#fff;font-family:var(--display);font-size:11.5px;font-weight:700;padding:8px 10px;text-align:left;letter-spacing:.03em}
+.rs-table td{border:1px solid var(--line);padding:9px 11px;font-size:12px;line-height:1.6;vertical-align:top}
+.rs-table tr td:first-child{background:#fbfcfe;font-weight:600;width:26%}
+.rs-route{margin:4px 0 0;padding:0;list-style:none}
+.rs-route li{position:relative;padding:0 0 12px 24px;font-size:12.5px}
+.rs-route li::before{content:"";position:absolute;left:6px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--blue-bright);box-shadow:0 0 0 3px var(--blue-tint)}
+.rs-route li::after{content:"";position:absolute;left:10px;top:17px;bottom:-2px;width:1.5px;background:var(--line)}
+.rs-route li:last-child::after{content:none}
+.rs-route b{font-family:var(--display);color:var(--ink)}
+.rs-course{display:inline-flex;align-items:baseline;gap:10px;border:1.5px solid var(--blue-bright);border-radius:13px;padding:10px 18px;background:var(--blue-tint)}
+.rs-course b{font-family:var(--display);font-weight:800;font-size:19px;color:var(--blue)}
+.rs-course span{font-size:12px;color:var(--muted)}
+.rs-extras{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.rs-extra{border:1px solid var(--line);border-radius:12px;padding:10px 13px;background:#fbfcfe}
+.rs-extra b{font-family:var(--display);font-size:12.5px;color:var(--blue);display:block;margin-bottom:2px}
+.rs-extra span{font-size:11.5px;color:var(--muted);line-height:1.5}
+.rs-note{margin-top:22px;font-size:11px;color:var(--faint);border-top:1px dashed var(--line-strong);padding-top:12px;line-height:1.6}
+.rs-foot{margin-top:16px;display:flex;justify-content:space-between;align-items:center;font-size:10.5px;color:var(--faint)}
+@media print{
+  body>*:not(#reportOv){display:none!important}
+  #reportOv{position:static!important;display:block!important;background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:0!important;overflow:visible!important}
+  #reportOv .rov-top,#reportOv .rb-side{display:none!important}
+  .report-panel{display:block!important;max-width:none!important}
+  .rsheet{box-shadow:none!important;border-radius:0!important;padding:0!important}
+  .rs-sec,.rs-table tr,.rs-extra{break-inside:avoid}
+  @page{size:A4;margin:13mm}
+}
 /* ---- price view switch (Course | IELTS) ---- */
 .pv-switch{display:flex;justify-content:flex-end;margin:-2px 2px 10px}
 .pv-switch__box{opacity:.72;transition:opacity .18s}
@@ -3742,6 +3825,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           <button class="present-btn" id="presentBtn" aria-pressed="false" title="Presentation mode — wider layout for Zoom / in-person">
             <svg viewBox="0 0 24 24"><path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/></svg>
             <span class="lbl">Present</span>
+          </button>
+          <button class="present-btn" id="reportBtn" title="Student report generator 学员报告生成器">
+            <svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>
+            <span class="lbl">Report</span>
           </button>
           <button class="advisor-toggle" id="advToggle" aria-pressed="false" title="Show advisor cue notes inside sections">
             <span class="switch"></span><span class="lbl">Advisor notes</span>
@@ -8489,5 +8576,227 @@ io.observe(er);})();
 })();
 </script>
 
+<div class="report-ov" id="reportOv" aria-hidden="true">
+  <div class="rov-top">
+    <h2>Student Report <span class="zh">学员英语测试报告</span><small style="display:block;font-family:var(--body);font-weight:500;font-size:11px;color:var(--faint);margin-top:3px">点击 Save as PDF 后，在对话框中选择「存储为 PDF / Save as PDF」即可导出。</small></h2>
+    <div class="rov-actions">
+      <div class="rov-lang" id="rovLang"><button type="button" data-rlang="zh" class="is-on">中文</button><button type="button" data-rlang="en">English</button></div>
+      <button type="button" class="rov-btn" id="rovClose">Close 关闭</button>
+      <button type="button" class="rov-btn rov-btn--pri" id="rovPrint"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px;margin-right:6px"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>Save as PDF 保存 PDF</button>
+    </div>
+  </div>
+  <div class="report-panel">
+    <aside class="rb-side" id="rbSide"></aside>
+    <div class="rsheet" id="rsSheet"></div>
+  </div>
+</div>
+
+<script>
+/* ===== Student Report Generator 学员报告生成器 ===== */
+(function(){
+  var LV=[
+    {code:"Level 0",cefr:"Pre-A1",en:"Copying Skill",zh:"模仿能力",
+     start:"你的英语属于入门阶段，建议从模仿与基础发音入手：通过模仿语音与简单句子建立语感，学习问候、请求、道谢等日常与职场常见表达，在真实场合能听懂并重复关键句型，逐步建立开口的信心。",
+     goal:"通过模仿学习发音、语调和节奏，培养语感；学会用简单句表达基本需求，如问候、自我介绍和日常请求。",
+     route:"模仿表达阶段 —— 通过模仿与重复简单句子，建立语音语调基础，培养语言清晰度（Clarity），为表达打好听说基础。",
+     done:"掌握基础发音、语调与常用句型，能进行自我介绍、打招呼、询问简单信息等基础沟通。",
+     pains:[
+      ["缺乏基础词汇和简单句子的使用能力，无法表达日常与职场需求","从实用句型复制开始学习：如 \u201cI need\u2026\u201d、\u201cThank you.\u201d、\u201cPlease help me with\u2026\u201d；每天模仿 1\u20132 组句型，重复说出口，逐步建立语感与信心。","老师会模拟点餐、同事沟通、请求帮助等真实情境，带你复制并运用句型，并提供即时反馈与纠正，帮助你在模仿中自然记忆与使用。"],
+      ["说英语时害怕出错，缺乏开口的勇气","采用模仿＋替换句法（Copy & Replace）训练：如 \u201cCan I\u2026?\u201d、\u201cCould you please repeat?\u201d；通过替换名词或动词，让同一句型变出多种用法，在没有\u201c造句\u201d压力下开口说。","课堂以轻松互动的角色扮演为主（向同事请求帮忙、餐厅点餐等），老师给出固定句型模板让你复制使用，帮助你突破\u201c怕讲错\u201d的心理障碍。"],
+      ["看到复杂的句子或词汇会感到困惑，难以理解或记住","以高频词复制法建立理解力：每天复制 2\u20133 个高频词（email, meeting, report\u2026），放进简单句练习，并用\u201c词汇＋图片＋情境\u201d联想记忆。","老师会带你拆解句子结构，用图像、情境、动作等方式帮助理解，并提供简短听力／阅读材料，让你在复制句子的同时自然掌握英文逻辑。"],
+      ["学过的单词容易忘记，难以在对话中活用","以循环复制法（Copy & Review）巩固记忆：复习前一天词汇并说出口，把同一单词放进不同情境反复使用，强化记忆点。","TEC 提供系统化的复习节奏与同伴练习（小组对话、接龙游戏等），老师也会教你用录音模仿、自我朗读等方法让记忆更持久。"]]},
+    {code:"Level 1",cefr:"A1\u2013A2",en:"Construction Skill",zh:"构句能力",
+     start:"你已能应对简单的日常对话，但句式单一、表达不够自然。此阶段聚焦句子结构与表达完整性：学会组合句子表达更完整的意思，练习介绍自己、询问任务、闲聊等常见情境，掌握礼貌表达与基本沟通技巧。",
+     goal:"提升基础词汇量与句型结构，建立开口说的自信；重点练习职场和社交场景中的常用表达，如打招呼、介绍同事、表达意见。",
+     route:"句型构建阶段 —— 学习更多词汇与句型，通过情境模拟增强语法运用与句子组织能力，提升自信（Confidence）。",
+     done:"能在日常及社交场景中使用完整句子表达需求与意见，扩展职场与社交常用表达，沟通更自然连贯。",
+     pains:[
+      ["可以使用基础的英语词汇和句子，但句式单一，表达不够自然","学习句子延伸技巧：使用连接词 \u201cand / but / because\u201d 延展句子，练习合并句子，每天用不同连接词造 1\u20132 个句型。","老师会设计小组互动活动，让你在真实情景对话中练习句子延展，并在对话后提供语言优化建议，让表达更自然顺畅。"],
+      ["表达需求时缺乏准确性或细节，影响交流","学习句子细节构建法：补充描述句型（\u201cIt\u2019s big, red, and useful.\u201d）与说明句型（\u201cIt\u2019s for\u2026 / I use it to\u2026\u201d），主动在对话中加入 2\u20133 个描述词。","通过角色扮演模拟真实场景（介绍物品、说明任务、提出请求），老师即时纠正用词和句子结构，让表达更贴近生活实际。"],
+      ["缺乏语音连贯性，容易卡顿或重复词汇","练习句子衔接技巧：学习过渡短语 \u201cFirst / Then / Finally\u201d，用多样表达替代重复，并通过朗读与录音模仿让发音更顺、更自然。","老师会带领听说结合练习（小组故事接龙、顺序讲述等），帮助你用自然衔接词连接句子，提升流畅与自信。"],
+      ["理解稍复杂的语法时感到困难，例如时态变化","学习句型结构与时态结合技巧：掌握高频时态句型（现在进行时、过去式），每天用 1 个新时态造 3 个实用句。","老师通过任务型句型练习（描述日常、汇报任务、讲述经历）引导你实际使用，课堂中即时纠正语法与词序，在用中学、在练中稳固。"]]},
+    {code:"Level 2",cefr:"A2\u2013B1",en:"Conveying Skill",zh:"传达能力",
+     start:"你已具备基本英语基础，但在表达复杂想法或维持对话上仍有挑战。此阶段帮助你组织观点、连接句子，让表达更顺畅自然；练习会议回应、表达意见、闲聊延续等职场与社交对话，培养主动表达与逻辑传达的能力。",
+     goal:"在更复杂的交流中组织思路、表达清晰有逻辑；练习职场沟通（会议发言、汇报进度）与社交互动（谈兴趣、分享看法）。",
+     route:"表达传达阶段 —— 学习清晰表达观点、原因与感受，提升逻辑与组织能力，强化传达力（Conveying）。",
+     done:"能更流畅地表达想法与情绪，在工作汇报、讨论中清晰传达信息，口语与书面表达更有条理。",
+     pains:[
+      ["能表达基本意思，但句子结构简单、语气较直接，不符合职场或社交场合的表达方式","学习更自然、礼貌的表达：用 \u201cCould you please\u2026\u201d 替代 \u201cGive me\u2026\u201d，用 \u201cI\u2019d like to share my idea.\u201d 替代 \u201cI want to say something.\u201d，练习缓和语气、增加亲和力。","老师会在角色扮演中模拟会议讨论、寒暄问候等职场与社交场景，帮助你自然、得体地表达观点。"],
+      ["表达意见时不太会衔接思路，讲话略显突然","学习衔接句子的逻辑词：\u201cActually / In my opinion / By the way\u201d，练习用过渡语让表达更流畅。","通过小组讨论和分享练习，教你在会议或朋友聊天中使用衔接语，使表达更顺畅自然。"],
+      ["不太会在职场或社交场合延伸话题","学习\u201c延伸式对话\u201d技巧：提问 \u201cHow about you?\u201d，补充观点 \u201cThat\u2019s interesting, I also think\u2026\u201d。","课堂互动中老师会指导你如何接话与延续对话，让你能在工作或聚会中自然交流。"],
+      ["对职场表达缺乏信心，容易紧张","练习常见职场句式模板：\u201cI suggest that we\u2026\u201d、\u201cLet\u2019s review this together.\u201d，通过重复练习提升熟练度。","通过模拟会议、汇报、同事闲聊等情境，让你在安全环境中反复练习，增强职场表达自信。"]]},
+    {code:"Level 3",cefr:"B1\u2013B2",en:"Convincing Skill",zh:"说服能力",
+     start:"你希望在工作场合、团队协作或正式表达中更自信、有影响力。此阶段专注于有逻辑、有层次地表达观点，掌握会议、汇报、面试、跨文化沟通等实用技巧，在社交场合自然表达情感与意见，展现成熟的沟通风格。",
+     goal:"在职场讨论、面试、演讲中有逻辑地表达观点、展现专业形象；同时强化社交英语，跨文化交流、表达赞同或分歧时更自然有礼。",
+     route:"说服沟通阶段 —— 学习表达立场、说服他人、以专业语气交流，培养说服力（Convincing）与人际影响力。",
+     done:"能自信参与会议、团队协作及跨文化交流，掌握正式与非正式场合的语言风格转换（演讲、谈判、社交对话）。",
+     pains:[
+      ["有一定的表达能力，但缺乏说服力","学习强调观点的技巧：使用强调短语 \u201cIt\u2019s absolutely essential that\u2026\u201d，练习支持观点句式 \u201cFor example\u2026 / This shows that\u2026\u201d，并融入日常对话。","通过案例分析和小组讨论练习用英语支持观点，老师提供反馈和建议，让表达更有条理和说服力。"],
+      ["在正式场合的表达中缺乏自信","学习常用正式表达：礼貌请求 \u201cWould you mind\u2026\u201d、介绍意见 \u201cIn my opinion\u2026\u201d，通过角色扮演适应正式场合。","通过模拟正式会议或工作场景练习，老师指导你用得体的语气表达观点，逐步增强自信心。"],
+      ["容易被复杂的问题或讨论打断思路","学习处理复杂问题：使用时间缓冲短语 \u201cLet me think\u2026\u201d，分步骤回答 \u201cFirst, we need to\u2026\u201d，通过实际案例增强应对能力。","老师通过情境演练帮助你有条理地回答问题，并提供即时反馈，逐步提升应对复杂问题的能力。"],
+      ["无法准确表达抽象或细腻的情感或想法","学习形容感受的词汇与表达：感谢 \u201cI truly appreciate\u2026\u201d、遗憾 \u201cIt\u2019s unfortunate that\u2026\u201d，每天用新表达描述自己的感受。","通过情感类活动与角色扮演练习描述感受和想法，老师引导你用更精确的词汇，让语言更生动具体。"]]},
+    {code:"Level 4",cefr:"B2\u2013C1",en:"Captivating Skill",zh:"吸引力表达",
+     start:"你已能流利表达复杂想法，希望进一步提升语言的专业度与影响力。此阶段将帮助你学习精准、地道、有感染力的表达，掌握演讲、谈判、主持、商务写作等高阶职场沟通技巧，在国际或社交环境中以自然、优雅的英语吸引听众。",
+     goal:"精准用词、自然表达与说服力并重，打造高级职场沟通能力；在会议主持、演讲、谈判中展现语言魅力，社交场合自如互动。",
+     route:"魅力表达阶段 —— 学习公开场合自信演讲，强化跨文化沟通，掌握国际职场与高层对话的表达技巧，提升吸引力（Captivating）。",
+     done:"具备高级流利度，能在国际职场与多文化环境自然交流，用故事化与情感化表达吸引听众，展现语言魅力与领导气场。",
+     pains:[
+      ["能够用英语表达复杂想法，但语言不够自然或缺乏吸引力","让表达更生动：用更精准有感染力的词汇替代简单词（\u201cgood\u201d \u2192 \u201cremarkable / insightful\u201d），学习地道习语（\u201cIt\u2019s a game changer.\u201d），加入自然语气与停顿。","TEC 提供口语演讲与表达工作坊，老师指导你用语气、词汇和结构吸引听众注意力，让表达更具感染力与说服力。"],
+      ["面对新话题或跨领域讨论时反应慢，难以灵活应对","学习跨领域实用词汇（collaboration, perspective, trend\u2026），每天在不同主题对话中使用新词，练习快速组织回应。","设计多主题对话训练与团队讨论活动，老师通过引导与即时反馈，帮助你在表达时保持思路清晰与自信。"],
+      ["写作或表达时无法灵活调整语言风格（正式／非正式）","学习按场合选择语气与风格：正式 \u201cI would like to highlight that\u2026\u201d，非正式 \u201cThat\u2019s really cool!\u201d，在邮件、会议、聊天间切换语域。","老师通过邮件写作与社交表达模拟练习，指导你掌握语气与风格的平衡，商务汇报或日常交流都能自然切换。"],
+      ["在快速讨论或多人对话中容易思路混乱，无法吸引注意","练习逻辑与节奏控制：用重点短语引导听众 \u201cThe key takeaway is\u2026\u201d，使用逻辑顺序词，通过提问与回应维持互动。","通过高互动的小组辩论与即兴对话训练掌握语言节奏和逻辑，老师引导你在多人对话中保持条理与魅力。"]]}
+  ];
+  var LVE=[
+    {start:"Your English is at the entry stage. We recommend starting from imitation and basic pronunciation: build a feel for the language by copying sounds and simple sentences, learn everyday and workplace expressions (greetings, requests, thanks), and gradually gain the confidence to speak up.",
+     goal:"Build pronunciation, intonation and rhythm through imitation; learn to express basic needs in simple sentences \u2014 greetings, self-introductions and everyday requests.",
+     route:"Copying stage \u2014 build a sound foundation by copying and repeating simple sentences, developing Clarity as the base for future speaking.",
+     done:"Master basic pronunciation, intonation and common sentence patterns; handle basic communication such as self-introductions, greetings and simple questions.",
+     pains:[
+      ["Limited basic vocabulary and simple sentences; unable to express everyday and workplace needs","Start by copying practical patterns such as \u201cI need\u2026\u201d, \u201cThank you.\u201d, \u201cPlease help me with\u2026\u201d \u2014 imitate 1\u20132 patterns a day and say them out loud to build feel and confidence.","Teachers simulate real situations (ordering food, talking to colleagues, asking for help) so you copy and use the patterns, with instant feedback and correction."],
+      ["Afraid of making mistakes and lacking the courage to speak","Use Copy & Replace training \u2014 e.g. \u201cCan I\u2026?\u201d, \u201cCould you please repeat?\u201d \u2014 swap nouns or verbs so one pattern becomes many, letting you speak without the pressure of \u201cbuilding\u201d sentences.","Lessons centre on relaxed role-play (asking a colleague for help, ordering at a restaurant) with fixed templates to copy, helping you break the fear of speaking wrongly."],
+      ["Confused by complex sentences or vocabulary; hard to understand or remember","Build comprehension with high-frequency copying: copy 2\u20133 common words a day (email, meeting, report\u2026), put them into simple sentences, and memorise with word + image + situation associations.","Teachers break down sentence structure using images, situations and actions, plus short listening/reading materials so you absorb English logic while copying sentences."],
+      ["Words learned are quickly forgotten and hard to use in conversation","Use Copy & Review cycles: review yesterday\u2019s words out loud and reuse the same word in different situations to strengthen memory.","TEC provides a structured review rhythm and partner practice (group dialogues, chain games), plus techniques like recording, shadowing and reading aloud for lasting memory."]]},
+    {start:"You can already handle simple daily conversations, but your sentences are repetitive and not yet natural. This stage focuses on sentence structure and complete expression: combine sentences to say more, practise common situations (introducing yourself, asking about tasks, small talk) and master polite, basic communication.",
+     goal:"Grow core vocabulary and sentence structures and build speaking confidence; focus on common workplace and social expressions such as greetings, introducing colleagues and giving opinions.",
+     route:"Construction stage \u2014 learn more vocabulary and patterns, strengthen grammar and sentence organisation through situational practice, and build Confidence.",
+     done:"Use complete sentences to express needs and opinions in daily and social settings, with a wider range of workplace and social expressions and more natural, connected communication.",
+     pains:[
+      ["Can use basic vocabulary and sentences, but the patterns are repetitive and expression is not natural","Learn sentence-extension techniques: connect ideas with \u201cand / but / because\u201d, practise merging sentences, and build 1\u20132 new patterns a day with different connectors.","Teachers design group activities so you practise extending sentences in real conversations, with language-polishing feedback afterwards."],
+      ["Lack of accuracy or detail when expressing needs, affecting communication","Learn detail-building: descriptive patterns (\u201cIt\u2019s big, red, and useful.\u201d) and explanatory patterns (\u201cIt\u2019s for\u2026 / I use it to\u2026\u201d); actively add 2\u20133 descriptive words in conversation.","Role-plays simulate real scenarios (introducing items, explaining tasks, making requests) while teachers correct wording and structure in real time."],
+      ["Speech lacks flow \u2014 frequent pauses or repeated words","Practise linking: transition phrases \u201cFirst / Then / Finally\u201d, richer alternatives to repeated words, plus reading-aloud and shadowing for smoother, more natural delivery.","Teachers lead listening-speaking activities (story chains, sequencing tasks) so you connect sentences naturally and speak with more fluency and confidence."],
+      ["Difficulty with slightly complex grammar, e.g. tense changes","Combine patterns with tenses: master high-frequency tense patterns (present continuous, past simple) and build 3 practical sentences a day with one new tense.","Task-based practice (describing your day, reporting tasks, telling experiences) puts the patterns to real use, with instant grammar and word-order correction \u2014 learn by using."]]},
+    {start:"You have a working foundation, but expressing complex ideas or keeping a conversation going is still challenging. This stage helps you organise your points and connect sentences so expression flows naturally; practise workplace and social conversation \u2014 responding in meetings, giving opinions, keeping small talk going \u2014 and build proactive, logical communication.",
+     goal:"Organise your thoughts and speak clearly and logically in more complex exchanges; practise workplace communication (speaking in meetings, progress updates) and social interaction (interests, opinions).",
+     route:"Conveying stage \u2014 learn to express opinions, reasons and feelings clearly, strengthening logic and organisation (Conveying).",
+     done:"Express ideas and feelings more fluently; convey information clearly in reports and discussions with better-organised spoken and written English.",
+     pains:[
+      ["Can express basic meaning, but sentences are simple and the tone too direct for workplace or social settings","Learn natural, polite phrasing: \u201cCould you please\u2026\u201d instead of \u201cGive me\u2026\u201d; \u201cI\u2019d like to share my idea.\u201d instead of \u201cI want to say something.\u201d \u2014 soften your tone and add warmth.","Teachers role-play meetings and social small talk so you learn to express opinions naturally and appropriately."],
+      ["Ideas don\u2019t connect well, so speech feels abrupt","Learn logical connectors \u2014 \u201cActually / In my opinion / By the way\u201d \u2014 and practise transitions that make your speech flow.","Group discussions and sharing practice teach you to use connectors in meetings and casual chats so your speech flows naturally."],
+      ["Unsure how to extend topics in workplace or social settings","Learn conversation-extension: ask back (\u201cHow about you?\u201d) and build on points (\u201cThat\u2019s interesting, I also think\u2026\u201d).","In class interaction, teachers coach you on picking up and continuing conversations so you can chat naturally at work or gatherings."],
+      ["Low confidence and nervousness in workplace expression","Practise common workplace templates \u2014 \u201cI suggest that we\u2026\u201d, \u201cLet\u2019s review this together.\u201d \u2014 with repetition until fluent.","Simulated meetings, reporting and colleague chat let you practise in a safe environment and build workplace confidence."]]},
+    {start:"You want to be more confident and influential at work, in teams and in formal settings. This stage focuses on logical, layered expression; practical skills for meetings, reporting, interviews and cross-cultural communication; and expressing feelings and opinions naturally in social settings with a mature style.",
+     goal:"Present opinions logically and professionally in discussions, interviews and presentations; strengthen social English \u2014 cross-cultural exchanges and expressing agreement or difference gracefully.",
+     route:"Convincing stage \u2014 learn to state positions, persuade others and communicate in a professional tone, building Convincing power and influence.",
+     done:"Confidently take part in meetings, teamwork and cross-cultural exchanges; switch between formal and informal styles in presentations, negotiations and social conversation.",
+     pains:[
+      ["Reasonable expression skills, but lacking persuasiveness","Learn emphasis techniques: \u201cIt\u2019s absolutely essential that\u2026\u201d, supporting patterns \u201cFor example\u2026 / This shows that\u2026\u201d \u2014 and weave them into daily conversation.","Case studies and group discussion train you to support your views in English, with feedback that makes your points structured and persuasive."],
+      ["Lack of confidence in formal settings","Learn formal staples: polite requests \u201cWould you mind\u2026\u201d, introducing opinions \u201cIn my opinion\u2026\u201d \u2014 and adapt through role-play.","Simulated formal meetings and work scenarios; teachers coach appropriate tone so confidence builds step by step."],
+      ["Train of thought easily broken by complex questions or discussion","Learn to handle complexity: buffer phrases \u201cLet me think\u2026\u201d, step-by-step answers \u201cFirst, we need to\u2026\u201d, practised on real cases.","Scenario drills teach you to answer in an organised way, with instant feedback to steadily grow your ability to handle complex questions."],
+      ["Unable to express abstract or nuanced feelings and ideas accurately","Learn feeling vocabulary: appreciation \u201cI truly appreciate\u2026\u201d, regret \u201cIt\u2019s unfortunate that\u2026\u201d \u2014 describe your feelings with new expressions daily.","Emotion-focused activities and role-play, with teachers guiding you toward more precise wording so your language is vivid and specific."]]},
+    {start:"You can already express complex ideas fluently and want to raise your professionalism and impact. This stage builds precise, idiomatic, compelling expression and advanced workplace skills \u2014 presentations, negotiation, hosting and business writing \u2014 so you engage audiences with natural, elegant English in international settings.",
+     goal:"Precision, natural delivery and persuasive power together \u2014 advanced workplace communication; show presence in hosting, presentations and negotiation, and interact effortlessly socially.",
+     route:"Captivating stage \u2014 speak confidently in public, strengthen cross-cultural communication and master expression for international, senior-level dialogue (Captivating).",
+     done:"Advanced fluency across international, multicultural settings; engage audiences with story-driven, emotionally resonant delivery, showing charisma and leadership presence.",
+     pains:[
+      ["Can express complex ideas, but the language lacks polish or appeal","Make it vivid: upgrade simple words (\u201cgood\u201d \u2192 \u201cremarkable / insightful\u201d), learn idioms (\u201cIt\u2019s a game changer.\u201d) and add natural tone and pauses.","TEC\u2019s speaking and presentation workshops coach tone, wording and structure that hold an audience\u2019s attention and add persuasive impact."],
+      ["Slow to respond on new or cross-domain topics","Learn versatile vocabulary (collaboration, perspective, trend\u2026), use new words across topics daily and practise organising quick responses.","Multi-topic conversation training and team discussions, with guidance and instant feedback to keep you clear and confident on unfamiliar ground."],
+      ["Unable to switch styles flexibly (formal / informal)","Choose tone by occasion: formal \u201cI would like to highlight that\u2026\u201d, informal \u201cThat\u2019s really cool!\u201d \u2014 switch registers across email, meetings and chat.","Email-writing and social-expression simulations teach the balance of tone and style so you switch naturally between business and casual."],
+      ["Loses the thread in fast or multi-person discussions and struggles to hold attention","Control logic and pace: signal key points (\u201cThe key takeaway is\u2026\u201d), use ordering words, and keep interaction going with questions and responses.","High-interaction debates and impromptu-dialogue training build rhythm and logic, with coaching to stay structured and compelling in group conversation."]]}
+  ];
+  var EXTE=[
+    ["EPI\u2122 Personality Analysis","Understand your personality and learning preferences \u2014 strengths, potential blockers and the learning style that suits you \u2014 so coaching can be truly personalised."],
+    ["Goal Setting","Based on your profile, your coach works with you to set concrete goals, action steps and a realistic pace, keeping your learning focused and motivated."],
+    ["Class Reviews & Feedback","Detailed feedback every 24 lessons \u2014 strengths, gaps and improvement advice \u2014 so you correct quickly, consolidate progress and grow in confidence."],
+    ["Upgradation Test","A comprehensive test that verifies your progress and readiness for the next level, keeping learning challenging and fresh."]
+  ];
+  var EXTRAS=[
+    ["EPI\u2122 性格分析","了解你的性格特点与学习偏好，揭示强项、潜在障碍及适合的学习方式，帮助教练提供更个性化的指导。"],
+    ["Goal Setting 目标设定","根据性格分析结果，教练与你一起制定具体学习目标、行动步骤与合理进度，让学习更有方向与动力。"],
+    ["Class Reviews & Feedback 课堂反馈","每 24 节课后提供详细反馈，指出优点与不足并给予改进建议，帮助你及时纠正、巩固效果、增强信心。"],
+    ["Upgradation Test 升级测试","通过综合测试评估学习进展，确保你具备进入下一级别的基础，让学习保持挑战性与新鲜感。"]
+  ];
+  var PKG={48:"Essential",96:"Standard",144:"Best Value",192:"Extra Sessions 1",240:"Extra Sessions 2"};
+  var KEY="te_report_v1";
+  var ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",lang:"zh"};
+  function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&typeof s==="object"&&s.lang)ST.lang=s.lang;}catch(e){}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify({lang:ST.lang}));}catch(e){}}
+  function esc(t){return String(t==null?"":t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+  function todayISO(){var d=new Date(),m=d.getMonth()+1,dd=d.getDate();return d.getFullYear()+"-"+(m<10?"0":"")+m+"-"+(dd<10?"0":"")+dd;}
+  function prettyDate(iso){var p=(iso||"").split("-");if(p.length!==3)return iso||"";var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];return (+p[2])+" "+(M[+p[1]-1]||"")+" "+p[0];}
+  var ov=document.getElementById("reportOv"),side=document.getElementById("rbSide"),sheet=document.getElementById("rsSheet");
+
+  function renderForm(){
+    var lv=LV[ST.cur];
+    var opts=function(sel){return LV.map(function(l,i){return '<option value="'+i+'"'+(i===sel?" selected":"")+'>'+l.code+" \u00b7 "+l.en+" "+l.zh+"</option>";}).join("");};
+    side.innerHTML=
+      '<div class="rb-h">Student 学员资料</div>'+
+      '<label class="rb-field"><span>学员姓名 Name</span><input type="text" data-f="name" value="'+esc(ST.name)+'" placeholder="e.g. Wei Ling"></label>'+
+      '<div class="rb-row">'+
+      '<label class="rb-field"><span>测试日期 Date</span><input type="date" data-f="date" value="'+esc(ST.date||todayISO())+'"></label>'+
+      '<label class="rb-field"><span>测试分数 Score / 60</span><input type="text" data-f="score" value="'+esc(ST.score)+'" placeholder="45"></label></div>'+
+      '<div class="rb-h">Levels 级别</div>'+
+      '<label class="rb-field"><span>现在的 Level 现况</span><select data-f="cur">'+opts(ST.cur)+'</select></label>'+
+      '<label class="rb-field"><span>建议达到的 Level 目标</span><select data-f="tgt">'+opts(ST.tgt)+'</select></label>'+
+      '<div class="rb-h">卡点 Pain points <small style="font-weight:500;text-transform:none;letter-spacing:0">\u00b7 勾选适用项</small></div>'+
+      lv.pains.map(function(pn,i){return '<label class="rb-pain'+(ST.checks[i]?" is-on":"")+'"><input type="checkbox" data-chk="'+i+'"'+(ST.checks[i]?" checked":"")+'><span>'+esc(pn[0])+'</span></label>';}).join("")+
+      '<div class="rb-h">自定义卡点 Custom（可留空）</div>'+
+      '<label class="rb-field"><span>个人分析</span><textarea data-f="ca" placeholder="学员的具体卡点\u2026">'+esc(ST.ca)+'</textarea></label>'+
+      '<label class="rb-field"><span>个性化建议</span><textarea data-f="cs">'+esc(ST.cs)+'</textarea></label>'+
+      '<label class="rb-field"><span>TEC 如何帮助你</span><textarea data-f="ch">'+esc(ST.ch)+'</textarea></label>'+
+      '<button type="button" class="rb-reset" id="rbReset">\u21ba 清空重来 Reset</button>';
+  }
+  function renderSheet(){
+    var EN=(ST.lang==="en");
+    function pk(zh,en){return EN?en:zh;}
+    var cur=LV[ST.cur],tgt=LV[ST.tgt],curE=LVE[ST.cur],tgtE=LVE[ST.tgt];
+    var name=ST.name.trim()||"\u2014\u2014";
+    var painSrc=EN?curE.pains:cur.pains;
+    var rows=[];
+    painSrc.forEach(function(pn,i){ if(ST.checks[i]) rows.push(pn); });
+    if(ST.ca.trim()) rows.push([ST.ca,ST.cs||"\u2014",ST.ch||"\u2014"]);
+    var lessons=Math.min(240,Math.max(48,(Math.max(1,ST.tgt-ST.cur))*48));
+    var route=[]; for(var i=ST.cur;i<=Math.max(ST.cur,ST.tgt);i++){ route.push(i); }
+    var greet=EN
+      ? esc(name)+', hello!<br>Thank you for joining our English sharing session and completing your assessment \u2014 we can feel how serious and committed you are about improving your English. This is your personal English assessment report; we hope it gives you clear guidance and direction for your learning journey.'
+      : esc(name)+' \u4f60\u597d\uff0c<br>\u611f\u8c22\u4f60\u53c2\u52a0\u82f1\u8bed\u5206\u4eab\u4f1a\u548c\u5b8c\u6210\u4e86\u4f60\u7684\u6d4b\u8bd5\uff01\u6211\u4eec\u611f\u53d7\u5230\u4f60\u5bf9\u5b66\u82f1\u8bed\u7684\u8fd9\u4efd\u8ba4\u771f\u548c\u7528\u5fc3\u3002\u8fd9\u662f\u5c5e\u4e8e\u4f60\u7684\u82f1\u8bed\u6d4b\u8bd5\u62a5\u544a\uff0c\u5e0c\u671b\u53ef\u4ee5\u4e3a\u4f60\u63d0\u4f9b\u82f1\u8bed\u5b66\u4e60\u7684\u53c2\u8003\u548c\u5efa\u8bae\u3002';
+    var lvLine=function(l){return EN? l.en : (l.en+' \u00b7 '+l.zh);};
+    sheet.innerHTML=
+      '<div class="rs-head"><span class="rs-logo"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH" onerror="this.outerHTML=\'<b>TE</b>\'"></span>'+
+      '<div class="rs-head__tx"><b>TOUCH English</b><span>'+pk('English Assessment Report \u00b7 \u82f1\u8bed\u6d4b\u8bd5\u62a5\u544a','English Assessment Report')+'</span></div></div>'+
+      '<table class="rs-info"><tr><td>'+pk('\u5b66\u5458\u59d3\u540d','Student Name')+'</td><td>'+esc(name)+'</td></tr>'+
+      '<tr><td>'+pk('\u6d4b\u8bd5\u65e5\u671f','Test Date')+'</td><td>'+esc(prettyDate(ST.date||todayISO()))+'</td></tr>'+
+      '<tr><td>'+pk('\u82f1\u8bed\u6d4b\u8bd5\u5206\u6570','Test Score')+'</td><td>'+esc(ST.score.trim()? ST.score+" / 60":"\u2014 / 60")+'</td></tr></table>'+
+      '<div class="rs-greet">'+greet+'</div>'+
+      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u4f60\u7684\u73b0\u51b5\u4e0e\u76ee\u6807 Current \u2192 Target','Where You Are \u2192 Where You\u2019re Going')+'</h4>'+
+      '<div class="rs-lvchips"><div class="rs-lv"><small>'+pk('Current \u73b0\u51b5','Current')+'</small><b>'+cur.code+' ('+cur.cefr+')</b><i>'+lvLine(cur)+'</i></div>'+
+      '<span class="rs-arrow">\u2192</span>'+
+      '<div class="rs-lv rs-lv--tgt"><small>'+pk('Target \u76ee\u6807','Target')+'</small><b>'+tgt.code+' ('+tgt.cefr+')</b><i>'+lvLine(tgt)+'</i></div></div></div>'+
+      (rows.length?'<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u76ee\u524d\u7684\u5361\u70b9\u4e0e\u6211\u4eec\u7684\u5e2e\u52a9 Analysis &amp; Support','Analysis &amp; How We Help')+'</h4>'+
+      '<table class="rs-table"><tr><th style="width:26%">'+pk('\u4e2a\u4eba\u5206\u6790','Personal Analysis')+'</th><th>'+pk('\u4e2a\u6027\u5316\u5efa\u8bae','Personalised Advice')+'</th><th>'+pk('TEC \u5982\u4f55\u5e2e\u52a9\u4f60','How TEC Helps You')+'</th></tr>'+
+      rows.map(function(r){return '<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td>'+esc(r[2])+'</td></tr>';}).join("")+'</table></div>':"")+
+      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u5b66\u4e60\u8d77\u70b9\u63a8\u8350 Recommended Starting Point','Recommended Starting Point')+'</h4><p style="margin:0;font-size:12.5px">'+esc(pk(cur.start,curE.start))+'</p></div>'+
+      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u63a8\u8350\u5b66\u4e60\u76ee\u6807 Learning Target','Learning Target')+'</h4><p style="margin:0;font-size:12.5px"><b style="font-family:var(--display)">'+tgt.code+' ('+tgt.cefr+') \u00b7 '+tgt.en+'</b><br>'+esc(pk(tgt.goal,tgtE.goal))+'</p></div>'+
+      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u5b66\u4e60\u8def\u7ebf Learning Route','Learning Route')+'</h4><ul class="rs-route">'+
+      route.map(function(i){var l=LV[i];return '<li><b>'+l.code+' ('+l.cefr+') \u00b7 '+lvLine(l)+'</b><br>'+esc(EN?LVE[i].route:l.route)+'</li>';}).join("")+'</ul></div>'+
+      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u5b8c\u6210\u76ee\u6807 Outcome','Outcome')+'</h4><p style="margin:0;font-size:12.5px">'+esc(pk(tgt.done,tgtE.done))+'</p></div>'+
+      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u5efa\u8bae\u8bfe\u7a0b Recommended Course','Recommended Course')+'</h4>'+
+      '<span class="rs-course"><b>'+lessons+pk(' \u5802\u8bfe',' lessons')+'</b><span>'+(PKG[lessons]||"")+pk(' \u00b7 \u6bcf\u4e2a Level 48 \u5802',' \u00b7 48 lessons per level')+'</span></span></div>'+
+      '<div class="rs-sec"><h4 class="rs-sec__h">'+pk('\u9644\u52a0\u670d\u52a1 What Else You Get','What Else You Get')+'</h4><div class="rs-extras">'+
+      (EN?EXTE:EXTRAS).map(function(x){return '<div class="rs-extra"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>';}).join("")+'</div></div>'+
+      '<p class="rs-note">'+pk('\u7279\u522b\u8bf4\u660e\uff1a\u5728\u6b63\u5f0f\u4e0a\u8bfe\u7684\u8fc7\u7a0b\u4e2d\uff0c\u6839\u636e\u8001\u5e08\u7684\u5efa\u8bae\uff0c\u5b66\u4e60\u7ea7\u522b\u4e5f\u4f1a\u6839\u636e\u4f60\u7684\u8bfe\u5802\u8868\u73b0\u4fdd\u7559\u8c03\u6574\uff0c\u4ee5\u786e\u4fdd\u4f60\u5728\u9002\u5408\u81ea\u5df1\u7684\u5b66\u4e60\u8282\u594f\u548c\u7a0b\u5ea6\u4e2d\u4e0d\u65ad\u8fdb\u6b65\u3002\u5b66\u4e60\u7ed3\u679c\u4e5f\u4f1a\u56e0\u4e00\u4e9b\u56e0\u7d20\u800c\u6709\u6240\u4e0d\u540c\u3002','Special note: during the course, your learning level may be adjusted based on teacher recommendations and your classroom performance, so you always progress at the pace and level that suit you. Individual results may vary.')+'</p>'+
+      '<div class="rs-foot"><span>TOUCH English \u00b7 makes you visible</span><span>tec.touchenglish.edu.my</span></div>';
+  }
+  function renderAll(){renderForm();renderSheet();}
+  function open(){load();ST.name="";ST.date=todayISO();ST.score="";ST.cur=0;ST.tgt=2;ST.checks=[true,true,false,false];ST.ca="";ST.cs="";ST.ch="";renderAll();var lg2=document.getElementById("rovLang");if(lg2)Array.prototype.forEach.call(lg2.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x.getAttribute("data-rlang")===(ST.lang||"zh"));});ov.classList.add("is-open");ov.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";}
+  function close(){ov.classList.remove("is-open");ov.setAttribute("aria-hidden","true");document.body.style.overflow="";}
+  var btn=document.getElementById("reportBtn");
+  if(btn)btn.addEventListener("click",open);
+  var x=document.getElementById("rovClose"); if(x)x.addEventListener("click",close);
+  var pr=document.getElementById("rovPrint"); if(pr)pr.addEventListener("click",function(){window.print();});
+  var lg=document.getElementById("rovLang");
+  if(lg)lg.addEventListener("click",function(e){var b=e.target.closest("button[data-rlang]");if(!b)return;ST.lang=b.getAttribute("data-rlang");save();Array.prototype.forEach.call(lg.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x===b);});renderSheet();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&ov.classList.contains("is-open"))close();});
+  side.addEventListener("input",function(e){
+    var t=e.target;
+    if(t.dataset&&t.dataset.f!==undefined){
+      var f=t.dataset.f;
+      if(f==="cur"||f==="tgt"){ST[f]=+t.value; if(f==="cur"){ST.checks=[true,true,false,false];} save(); renderAll(); return;}
+      ST[f]=t.value; save(); renderSheet(); return;
+    }
+    if(t.dataset&&t.dataset.chk!==undefined){ST.checks[+t.dataset.chk]=t.checked; t.closest(".rb-pain").classList.toggle("is-on",t.checked); save(); renderSheet();}
+  });
+  side.addEventListener("click",function(e){ if(e.target&&e.target.id==="rbReset"){ ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",lang:ST.lang||"zh"}; save(); renderAll(); } });
+})();
+</script>
 </body>
 </html>
