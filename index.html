@@ -3705,7 +3705,6 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rs-planx__card span{font-family:var(--display);font-weight:800;font-size:12px;color:var(--blue)}
 /* closing banner */
 .rs-close{margin-top:30px;border-radius:18px;padding:30px 28px 24px;text-align:center;position:relative;overflow:hidden;break-inside:avoid;background:linear-gradient(160deg,#f4f8ff,#fff 55%,#f8fbff);border:1px solid rgba(42,91,215,.26);box-shadow:0 14px 34px -24px rgba(21,53,123,.3),inset 0 1px 0 rgba(255,255,255,.9)}
-.rs-close::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(125deg,rgba(42,91,215,.045) 0 1.5px,transparent 1.5px 18px);opacity:.5;pointer-events:none}
 .rs-close__b{position:relative;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.01em;color:var(--ink)}
 .rs-close__m{position:relative;display:block;font-size:10.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--red);margin-top:5px}
 .rs-close__q{position:relative;font-style:italic;font-size:12.5px;color:var(--muted);max-width:440px;margin:15px auto 0;line-height:1.65}
@@ -9029,6 +9028,7 @@ io.observe(er);})();
       collectReportCSS()+"\n"+
       ".rsheet{box-shadow:none;border-radius:0;background:#fff;padding:14mm 14mm 16mm}\n"+
       "@page{size:A4;margin:0}\n"+
+      ".rs-close::before,.rs-close::after{display:none!important;content:none!important}\n"+
       "@media print{.rs-sec__h{break-after:avoid}.rs-chal,.rs-step,.rs-extra,.rs-sum__it,.rs-grow,.rs-gcard,.rs-planx,.rs-outcome,.rs-close,.rs-info,.rs-greet,.rs-adv,.rs-map,.rs-pills{break-inside:avoid}}";
     var fonts='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">';
     w.document.open();
