@@ -317,6 +317,18 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .cc-detail__lvl .lv{background:rgba(255,255,255,.14);padding:4px 10px;border-radius:7px;font-weight:600;color:#fff}
 
 /* ---------- Placement test ---------- */
+.lvlq{margin-top:14px;display:grid;gap:9px}
+.lvlq__h{font-family:var(--display);font-weight:800;font-size:12.5px;color:var(--ink);letter-spacing:.02em;margin-top:14px;padding-top:12px;border-top:1px dashed rgba(20,33,50,.16)}
+.lvlq__h .zh{font-weight:600;color:var(--muted);font-size:11.5px}
+.lvlq__it{background:rgba(255,255,255,.72);border:1px solid rgba(20,33,50,.09);border-radius:12px;padding:11px 14px;backdrop-filter:blur(4px)}
+.lvlq__k{display:inline-block;font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:.09em;color:#fff;background:var(--ci);border-radius:7px;padding:2.5px 9px;vertical-align:1px}
+.lvlq__nm{font-family:var(--display);font-weight:700;font-size:12px;color:var(--ci);margin-left:7px}
+.lvlq__ctx{font-size:12px;color:var(--muted);margin:7px 0 3px;line-height:1.55}
+.lvlq__q{font-size:13px;font-weight:600;color:var(--ink);margin-top:7px;line-height:1.55}
+.lvlq__fu{margin:8px 0 0;padding:0;list-style:none}
+.lvlq__fu li{font-size:12px;color:var(--muted);padding:2px 0 2px 16px;position:relative;line-height:1.5}
+.lvlq__fu li::before{content:"→";position:absolute;left:0;color:var(--ci);font-weight:700}
+.lvlq__ful{font-family:var(--display);font-weight:800;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ci);margin-top:8px}
 .test-hero{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
 .test-stats{background:linear-gradient(160deg,var(--blue),var(--blue-deep));color:#fff;border-radius:var(--r-lg);padding:30px;box-shadow:var(--shadow-lg)}
 .test-stats .row{display:flex;gap:24px;margin-bottom:22px}
@@ -4070,6 +4082,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           <div class="fivec" id="fivec"><!-- cards injected --></div>
           <div id="ccDetail"></div>
         </div>
+        <div class="adv-note-wrap" style="margin:12px 0 6px"><button type="button" class="adv-note" id="ccAdvBtn" aria-label="Advisor Note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button></div>
       </section>
 
       <!-- ===== 5. PLACEMENT TEST ===== -->
@@ -4867,6 +4880,45 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   renderLevel(0);
 
   /* ---------- PLACEMENT: where are you now ---------- */
+  var QBANK=[
+    [ /* Level 0 — Basic Communication */
+      {k:"Q1",q:"What is your hobby?",fu:["Why do you like it?","When do you usually do it?","Who do you usually do it with?"]},
+      {k:"Q2",q:"Do you like your job / university / course? Why?",fu:["What do you enjoy the most?","What do you dislike?","Would you change it in the future?"]}
+    ],
+    [ /* Level 1 — Daily Expression */
+      {k:"Q1",q:"What is your work or daily routine?"},
+      {k:"Q2",q:"Do you face any challenges currently in your job or life?"},
+      {k:"Q3",q:"Are you usually the one who solves problems at work or in your family? Why?"}
+    ],
+    [ /* Level 2 — Situation Handling */
+      {k:"Scenario 1",nm:"Workplace Conflict",ctx:"You and your team need to discuss a project, but an argument happens.",q:"How do you handle this situation?"},
+      {k:"Scenario 2",nm:"Work-Life Balance",ctx:"You are a parent.",q:"How do you manage your time between family and work?"},
+      {k:"Scenario 3",nm:"Presentation",ctx:"You are giving a presentation in a new team, but things do not go as planned (e.g. lack of preparation, disagreement, or technical issue).",q:"How do you handle it?"},
+      {k:"Q4",q:"How important is English in your work and daily life?"}
+    ],
+    [ /* Level 3 — Opinion & Professional Thinking */
+      {k:"Q1",q:"Do you think online learning is effective for university students? Why or why not?",fu:["Can you give an example?","What are the advantages and disadvantages?","Which method is better for long-term learning?"]},
+      {k:"Q2",q:"Do you think being an approachable leader is important in a workplace? Why?",fu:["What makes a leader approachable?","Can you share an example from your experience?"]},
+      {k:"Q3",q:"To what extent do you think English proficiency influences your career growth and professional opportunities in your current industry?",fu:["In what situations do you use English at work?","What challenges do you face when using English professionally?"]},
+      {k:"Q4",q:"How would your career change if your English improves significantly?"}
+    ],
+    [ /* Level 4 — Critical Thinking & Influence */
+      {k:"Q1",q:"How do you think artificial intelligence will transform the future workplace and redefine human roles?",fu:["Is it more beneficial or risky?","How should companies prepare for this change?","What skills will become essential in the future?"]},
+      {k:"Q2",q:"How do you ensure that you remain valuable and irreplaceable in an increasingly automated workplace?",fu:["What skills ensure long-term career security?","How do you continuously upgrade yourself?","Can your job be fully replaced by technology? Why or why not?"]},
+      {k:"Q3",q:"In an increasingly globalized and AI-driven working environment, how critical do you think English communication is in shaping leadership effectiveness, decision-making, and cross-border collaboration?",fu:["How does English affect your daily professional communication?","Can you share a situation where English directly impacted your work outcome?","Do you think English will still be necessary in the future workplace dominated by AI translation tools?"]}
+    ]
+  ];
+  function qbankHTML(i){
+    var qs=QBANK[i]; if(!qs) return "";
+    return '<div class="lvlq__h">Speaking questions <span class="zh">· 口试提问 · Advisor 按此程度提问</span></div>'+
+      '<div class="lvlq">'+qs.map(function(it){
+        return '<div class="lvlq__it"><span class="lvlq__k">'+it.k+'</span>'+(it.nm?'<span class="lvlq__nm">'+it.nm+'</span>':'')+
+          (it.ctx?'<div class="lvlq__ctx">'+it.ctx+'</div>':'')+
+          '<div class="lvlq__q">'+it.q+'</div>'+
+          (it.fu?('<div class="lvlq__ful">Follow-up · 追问</div><ul class="lvlq__fu">'+it.fu.map(function(f){return '<li>'+f+'</li>';}).join('')+'</ul>'):'')+
+        '</div>';
+      }).join('')+'</div>';
+  }
   var lvlScale=$("#lvlScale");
   if(lvlScale){
     LEVELS.forEach(function(l,i){
@@ -4888,6 +4940,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           '<div class="ttl"><span class="pill">'+l.lvl+'</span> '+l.name+' <span class="zh" style="color:var(--muted);font-weight:500">'+l.nameZh+'</span> <span class="tag" style="background:rgba(255,255,255,.6)">'+l.cefrFull+'</span></div>'+
           '<p>'+l.after+'</p>'+
           '<div class="scaffold">'+(next?('Recommended next step → <strong style="color:'+l.ci+'">'+next.lvl+' '+next.name+'</strong>. 建议下一步。'):'This is the highest level — full captivating, presentation-ready English. 已是最高程度。')+'</div>'+
+          qbankHTML(i)+
         '</div>';
       scrollToReveal($("#lvlScaleOut"));
     });
@@ -4923,6 +4976,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           '<span class="cc-learn__lv">'+c.lv+'</span>'+
           '<span class="cc-learn__more">Learn more <span class="zh">查看完整内容</span> →</span>'+
         '</button>'+
+        (function(){ var url=lvLink(i);
+          if(url){ return '<button type="button" class="lvvideo" data-lvl-video="'+i+'" style="--c:'+c.col+';--ci:'+c.ci+';margin-top:10px">'+YTIC+'<span>Success story <span class="zh">成功案例视频</span> · '+LEVELS[i].lvl+'</span></button>'; }
+          return '<button type="button" class="lvvideo lvvideo--soon" disabled style="margin-top:10px">'+YTIC+'<span>Video coming soon <span class="zh">视频即将上线</span></span></button>'; })()+
       '</div>';
   }
   fivec.addEventListener("click",function(e){
@@ -7597,7 +7653,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     escH=function(e){ if(e.key==="Escape"){e.stopPropagation();e.preventDefault();close();} };
     document.addEventListener("keydown",escH,true);
   }
-  (function(){ var rb=document.getElementById("rpAdvBtn"); if(rb)rb.addEventListener("click",openRPAdvNote); })();
+  (function(){ var rb=document.getElementById("rpAdvBtn"); if(rb)rb.addEventListener("click",openRPAdvNote); var cb=document.getElementById("ccAdvBtn"); if(cb)cb.addEventListener("click",openRPAdvNote); var cd=document.getElementById("ccDetail"); if(cd)cd.addEventListener("click",function(e){ var v=e.target.closest("[data-lvl-video]"); if(v){ openVideo(+v.getAttribute("data-lvl-video")); } }); })();
 
   /* ---------- DISPLAY MODE (Normal / Presentation) ---------- */
   (function(){
