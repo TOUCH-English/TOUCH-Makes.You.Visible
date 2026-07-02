@@ -3564,6 +3564,18 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rb-field input,.rb-field select,.rb-field textarea{width:100%;box-sizing:border-box;font:inherit;font-size:13px;color:var(--ink);padding:8px 11px;border-radius:10px;border:1px solid var(--line-strong);background:#fff;outline:none;transition:border .14s}
 .rb-field textarea{resize:vertical;min-height:54px;line-height:1.5}
 .rb-field input:focus,.rb-field select:focus,.rb-field textarea:focus{border-color:var(--blue-bright)}
+.rb-stg{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.rb-stg span{flex:1;font-size:12px;color:var(--ink);font-weight:600}
+.rb-stg input{width:74px;font:inherit;font-size:13px;color:var(--ink);padding:6px 9px;border-radius:9px;border:1px solid var(--line-strong);background:#fff;outline:none;text-align:center}
+.rb-stg input:focus{border-color:var(--blue-bright)}
+.rb-stg em{font-style:normal;font-size:11.5px;color:var(--faint)}
+.rb-stg-total{font-size:12px;color:var(--muted);margin:4px 0 10px;text-align:right}
+.rb-stg-total b{font-family:var(--display);color:var(--blue);font-size:13.5px}
+.rb-date{position:relative;display:block}
+.rb-date input{color:transparent}
+.rb-date input::-webkit-datetime-edit{color:transparent}
+.rb-date input::selection{background:transparent}
+.rb-date__v{position:absolute;left:12px;top:50%;transform:translateY(-50%);z-index:2;pointer-events:none;font-size:13px;color:var(--ink)}
 .rb-pain{display:flex;gap:9px;align-items:flex-start;padding:9px 10px;border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.7);margin-bottom:7px;cursor:pointer;transition:.14s}
 .rb-pain:hover{border-color:var(--line-strong)}
 .rb-pain input{margin-top:2px;accent-color:var(--blue-bright);width:15px;height:15px;flex:none;cursor:pointer}
@@ -8847,11 +8859,13 @@ io.observe(er);})();
     [["感染力表达","Captivating Delivery"],["跨领域应对","Cross-domain Agility"],["风格切换","Register Switching"],["节奏与逻辑","Pace & Logic"]]
   ];
   var KEY="te_report_v1";
-  var ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",lang:"zh",depth:"detail"};
+  var ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",stg:{},lang:"zh",depth:"detail"};
   function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&typeof s==="object"){if(s.lang)ST.lang=s.lang;if(s.depth)ST.depth=s.depth;}}catch(e){}}
   function save(){try{localStorage.setItem(KEY,JSON.stringify({lang:ST.lang,depth:ST.depth}));}catch(e){}}
   function esc(t){return String(t==null?"":t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
   function todayISO(){var d=new Date(),m=d.getMonth()+1,dd=d.getDate();return d.getFullYear()+"-"+(m<10?"0":"")+m+"-"+(dd<10?"0":"")+dd;}
+  function stgOf(i){var v=parseInt(ST.stg[i],10);return (v>=12&&v<=240)?v:48;}
+  function dmy(iso){var p=(iso||"").split("-");return p.length===3?(p[2]+"/"+p[1]+"/"+p[0]):"";}
   function prettyDate(iso){var p=(iso||"").split("-");if(p.length!==3)return iso||"";var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];return (+p[2])+" "+(M[+p[1]-1]||"")+" "+p[0];}
   var ov=document.getElementById("reportOv"),side=document.getElementById("rbSide"),sheet=document.getElementById("rsSheet");
 
@@ -8862,11 +8876,15 @@ io.observe(er);})();
       '<div class="rb-h">Student 学员资料</div>'+
       '<label class="rb-field"><span>学员姓名 Name</span><input type="text" data-f="name" value="'+esc(ST.name)+'" placeholder="e.g. Wei Ling"></label>'+
       '<div class="rb-row">'+
-      '<label class="rb-field"><span>测试日期 Date</span><input type="date" data-f="date" value="'+esc(ST.date||todayISO())+'"></label>'+
+      '<label class="rb-field"><span>测试日期 Date <small style="font-weight:500;color:var(--faint)">日/月/年</small></span><span class="rb-date"><input type="date" data-f="date" value="'+esc(ST.date||todayISO())+'"><i class="rb-date__v">'+dmy(ST.date||todayISO())+'</i></span></label>'+
       '<label class="rb-field"><span>测试分数 Score / 60</span><input type="text" data-f="score" value="'+esc(ST.score)+'" placeholder="45"></label></div>'+
       '<div class="rb-h">Levels 级别</div>'+
       '<label class="rb-field"><span>现在的 Level 现况</span><select data-f="cur">'+opts(ST.cur)+'</select></label>'+
       '<label class="rb-field"><span>建议达到的 Level 目标</span><select data-f="tgt">'+opts(ST.tgt)+'</select></label>'+
+      (function(){var r=[];for(var i=ST.cur;i<=Math.max(ST.cur,ST.tgt);i++)r.push(i);
+        return '<div class="rb-h">各 Level 堂数 Lessons <small style="font-weight:500;text-transform:none;letter-spacing:0">· 默认 48，可调整</small></div>'+
+          r.map(function(i){return '<div class="rb-stg"><span>'+LV[i].code+' · '+LV[i].zh+'</span><input type="number" min="12" max="240" step="12" data-stg="'+i+'" value="'+stgOf(i)+'"><em>堂</em></div>';}).join('')+
+          '<div class="rb-stg-total">总计 Total：<b id="rbStgTotal">'+r.reduce(function(a,i){return a+stgOf(i);},0)+'</b> 堂课</div>';})()+
       '<div class="rb-h">卡点 Pain points <small style="font-weight:500;text-transform:none;letter-spacing:0">\u00b7 勾选适用项</small></div>'+
       lv.pains.map(function(pn,i){return '<label class="rb-pain'+(ST.checks[i]?" is-on":"")+'"><input type="checkbox" data-chk="'+i+'"'+(ST.checks[i]?" checked":"")+'><span>'+esc(pn[0])+'</span></label>';}).join("")+
       '<div class="rb-h">自定义卡点 Custom（可留空）</div>'+
@@ -8887,7 +8905,8 @@ io.observe(er);})();
     var rows=[],tagIdx=[];
     painSrc.forEach(function(pn,i){ if(ST.checks[i]){rows.push(pn);tagIdx.push(i);} });
     if(ST.ca.trim()) rows.push([ST.ca,ST.cs||"\u2014",ST.ch||"\u2014"]);
-    var lessons=Math.min(240,Math.max(48,(Math.max(0,ST.tgt-ST.cur)+1)*48));
+    var lessons=0; (function(){for(var i=ST.cur;i<=Math.max(ST.cur,ST.tgt);i++) lessons+=stgOf(i);})();
+    var customStg=false; (function(){for(var i=ST.cur;i<=Math.max(ST.cur,ST.tgt);i++) if(stgOf(i)!==48){customStg=true;break;}})();
     var nlv=Math.max(0,ST.tgt-ST.cur)+1;
     var route=[]; for(var i=ST.cur;i<=Math.max(ST.cur,ST.tgt);i++){ route.push(i); }
     var journey=route.map(function(i){return JW[i];});
@@ -8944,11 +8963,11 @@ io.observe(er);})();
         '<div class="rs-outcome"><span class="rs-outcome__ic"><svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg></span><p>'+esc(pk(tgt.done,tgtE.done))+'</p></div></div>';
     }
     // plan premium block (both modes)
-    var stageRows='<div class="rs-planx__cards">'+route.map(function(i){var l=LV[i];return '<div class="rs-planx__card"><small>'+l.code+'</small><b>'+l.en+'</b>'+(EN?'':'<i>'+l.zh+'</i>')+'<span>48 '+pk('\u5802\u8bfe','Lessons')+'</span></div>';}).join('')+'</div>';
+    var stageRows='<div class="rs-planx__cards">'+route.map(function(i){var l=LV[i];return '<div class="rs-planx__card"><small>'+l.code+'</small><b>'+l.en+'</b>'+(EN?'':'<i>'+l.zh+'</i>')+'<span>'+stgOf(i)+' '+pk('\u5802\u8bfe','Lessons')+'</span></div>';}).join('')+'</div>';
     html+='<div class="rs-sec rs-keep">'+secH(pk('\u5efa\u8bae\u5b66\u4e60\u89c4\u5212 Recommended Learning Plan','Recommended Learning Plan'))+
       '<div class="rs-planx"><div class="rs-planx__lv">'+cur.code+' \u2192 '+tgt.code+'</div>'+
       '<div class="rs-planx__big"><b>'+lessons+'</b><span>'+pk('\u5802\u8bfe Lessons','Lessons')+'</span></div>'+
-      '<div class="rs-planx__stages">'+pk(nlv+' \u4e2a\u5b66\u4e60\u9636\u6bb5 \u00d7 \u6bcf\u4e2a Level 48 \u5802',nlv+' learning stage'+(nlv>1?'s':'')+' \u00d7 48 lessons per level')+'</div>'+
+      '<div class="rs-planx__stages">'+(customStg?pk(nlv+' \u4e2a\u5b66\u4e60\u9636\u6bb5 \u00b7 \u7531 Advisor \u6309\u4f60\u7684\u60c5\u51b5\u4e2a\u6027\u5316\u89c4\u5212',nlv+' learning stage'+(nlv>1?'s':'')+' \u00b7 personalised by your Advisor'):pk(nlv+' \u4e2a\u5b66\u4e60\u9636\u6bb5 \u00d7 \u6bcf\u4e2a Level 48 \u5802',nlv+' learning stage'+(nlv>1?'s':'')+' \u00d7 48 lessons per level'))+'</div>'+
       stageRows+
       '<p class="rs-plan-soft">'+pk('\u8fd9\u9879\u5efa\u8bae\u662f\u6839\u636e\u4f60\u76ee\u524d\u7684\u6d4b\u8bd5\u7ed3\u679c\u3001\u76ee\u6807\u6c34\u5e73\u548c\u5b66\u4e60\u8d77\u70b9\u5236\u5b9a\u3002\u6b63\u5f0f\u4e0a\u8bfe\u540e\uff0c\u8001\u5e08\u4f1a\u6839\u636e\u4f60\u7684\u8bfe\u5802\u8868\u73b0\u8c03\u6574\u5b66\u4e60\u8282\u594f\u3002','This recommendation is based on your assessment result, target level and starting point. Once classes begin, your teacher will adjust the pace based on your classroom performance.')+'</p></div></div>';
     // extras
@@ -8990,7 +9009,7 @@ io.observe(er);})();
       '<div class="rs-greet">'+greet+'</div>'+html;
   }
   function renderAll(){renderForm();renderSheet();}
-  function open(){load();ST.name="";ST.date=todayISO();ST.score="";ST.cur=0;ST.tgt=2;ST.checks=[true,true,false,false];ST.ca="";ST.cs="";ST.ch="";ST.an="";renderAll();setMode("edit");var dp2=document.getElementById("rovDepth");if(dp2)Array.prototype.forEach.call(dp2.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x.getAttribute("data-rdepth")===(ST.depth||"detail"));});var lg2=document.getElementById("rovLang");if(lg2)Array.prototype.forEach.call(lg2.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x.getAttribute("data-rlang")===(ST.lang||"zh"));});ov.classList.add("is-open");ov.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";}
+  function open(){load();ST.name="";ST.date=todayISO();ST.score="";ST.cur=0;ST.tgt=2;ST.checks=[true,true,false,false];ST.ca="";ST.cs="";ST.ch="";ST.an="";ST.stg={};renderAll();setMode("edit");var dp2=document.getElementById("rovDepth");if(dp2)Array.prototype.forEach.call(dp2.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x.getAttribute("data-rdepth")===(ST.depth||"detail"));});var lg2=document.getElementById("rovLang");if(lg2)Array.prototype.forEach.call(lg2.querySelectorAll("button"),function(x){x.classList.toggle("is-on",x.getAttribute("data-rlang")===(ST.lang||"zh"));});ov.classList.add("is-open");ov.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";}
   function close(){ov.classList.remove("is-open");ov.setAttribute("aria-hidden","true");document.body.style.overflow="";}
   var btn=document.getElementById("reportBtn");
   if(btn)btn.addEventListener("click",open);
@@ -9079,12 +9098,15 @@ io.observe(er);})();
     var t=e.target;
     if(t.dataset&&t.dataset.f!==undefined){
       var f=t.dataset.f;
-      if(f==="cur"||f==="tgt"){ST[f]=+t.value; if(f==="cur"){ST.checks=[true,true,false,false];} save(); renderAll(); return;}
-      ST[f]=t.value; save(); renderSheet(); return;
+      if(f==="cur"||f==="tgt"){ST[f]=+t.value; ST.stg={}; if(f==="cur"){ST.checks=[true,true,false,false];} save(); renderAll(); return;}
+      ST[f]=t.value;
+      if(f==="date"){var dv=t.parentNode&&t.parentNode.querySelector(".rb-date__v"); if(dv) dv.textContent=dmy(t.value||todayISO());}
+      save(); renderSheet(); return;
     }
+    if(t.dataset&&t.dataset.stg!==undefined){var iv=parseInt(t.value,10); ST.stg[+t.dataset.stg]=iv; var tot=document.getElementById("rbStgTotal"); if(tot){var r=[];for(var q=ST.cur;q<=Math.max(ST.cur,ST.tgt);q++)r.push(q); tot.textContent=r.reduce(function(a,i2){return a+stgOf(i2);},0);} renderSheet(); return;}
     if(t.dataset&&t.dataset.chk!==undefined){ST.checks[+t.dataset.chk]=t.checked; t.closest(".rb-pain").classList.toggle("is-on",t.checked); save(); renderSheet();}
   });
-  side.addEventListener("click",function(e){ if(e.target&&e.target.id==="rbReset"){ ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",lang:ST.lang||"zh",depth:ST.depth||"detail"}; save(); renderAll(); } });
+  side.addEventListener("click",function(e){ if(e.target&&e.target.id==="rbReset"){ ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",stg:{},lang:ST.lang||"zh",depth:ST.depth||"detail"}; save(); renderAll(); } });
 })();
 </script>
 </body>
