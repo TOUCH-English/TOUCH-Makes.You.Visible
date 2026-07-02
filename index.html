@@ -3644,6 +3644,17 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rs-next li i{flex:none;width:22px;height:22px;border-radius:7px;background:var(--blue-tint);color:var(--blue);display:grid;place-items:center;font-style:normal;font-family:var(--display);font-weight:800;font-size:11px}
 .rs-adv{border-left:4px solid #E6A81E;background:#fffdf4;border-radius:0 10px 10px 0;padding:11px 15px;margin-top:14px;font-size:12.5px;line-height:1.6}
 .rs-adv b{font-family:var(--display);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#B98A16;display:block;margin-bottom:3px}
+.rs-keep{break-inside:avoid}
+.rs-sec__h{break-after:avoid}
+.rs-chal,.rs-step,.rs-extra,.rs-sum__it,.rs-grow,.rs-gcard,.rs-planx,.rs-planx__card,.rs-outcome,.rs-close,.rs-info,.rs-greet,.rs-adv,.rs-map,.rs-pills{break-inside:avoid}
+.rs-compact .rs-sec{margin-top:18px}
+.rs-compact .rs-greet{padding:10px 14px;margin-bottom:18px}
+.rs-compact .rs-chal{padding:13px 15px;margin-bottom:9px}
+.rs-compact .rs-chal__k{margin-top:8px}
+.rs-compact .rs-chal__v{line-height:1.6;margin-top:4px}
+.rs-compact .rs-sum__it{padding:8px 12px}
+.rs-compact .rs-step{padding:10px 12px}
+.rs-compact .rs-extra{padding:9px 12px}
 .rs-quote{text-align:center;margin:26px auto 0;font-size:12.5px;color:var(--ink);font-style:italic;max-width:480px;line-height:1.6}
 .rs-quote .zh{display:block;font-style:normal;font-size:11px;color:var(--faint);margin-top:4px}
 /* growth visual */
@@ -3693,13 +3704,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rs-planx__card b+span{margin-top:7px;display:inline-block}
 .rs-planx__card span{font-family:var(--display);font-weight:800;font-size:12px;color:var(--blue)}
 /* closing banner */
-.rs-close{margin-top:30px;border-radius:18px;padding:32px 30px 26px;text-align:center;color:#fff;position:relative;overflow:hidden;break-inside:avoid;background:linear-gradient(150deg,#061a3d,#08245c 55%,#0e3178)}
-.rs-close::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 90% at 12% 0%,rgba(140,175,255,.10),transparent 60%),radial-gradient(55% 80% at 92% 100%,rgba(120,205,255,.06),transparent 60%);pointer-events:none}
-.rs-close__b{position:relative;font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.01em}
-.rs-close__m{position:relative;display:block;font-size:10.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.66);margin-top:5px}
-.rs-close__q{position:relative;font-style:italic;font-size:12.5px;color:rgba(255,255,255,.88);max-width:430px;margin:16px auto 0;line-height:1.65}
-.rs-close__qz{position:relative;display:block;font-style:normal;font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
-.rs-close__site{position:relative;display:block;font-size:10.5px;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-top:18px}
+.rs-close{margin-top:30px;border-radius:18px;padding:30px 28px 24px;text-align:center;position:relative;overflow:hidden;break-inside:avoid;background:linear-gradient(160deg,#f4f8ff,#fff 55%,#f8fbff);border:1px solid rgba(42,91,215,.26);box-shadow:0 14px 34px -24px rgba(21,53,123,.3),inset 0 1px 0 rgba(255,255,255,.9)}
+.rs-close::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(125deg,rgba(42,91,215,.045) 0 1.5px,transparent 1.5px 18px);opacity:.5;pointer-events:none}
+.rs-close__b{position:relative;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.01em;color:var(--ink)}
+.rs-close__m{position:relative;display:block;font-size:10.5px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--red);margin-top:5px}
+.rs-close__q{position:relative;font-style:italic;font-size:12.5px;color:var(--muted);max-width:440px;margin:15px auto 0;line-height:1.65}
+.rs-close__qz{position:relative;display:block;font-style:normal;font-size:11px;color:var(--faint);margin-top:5px}
+.rs-close__site{position:relative;display:block;font-family:var(--display);font-weight:700;font-size:10.5px;letter-spacing:.08em;color:var(--blue);margin-top:16px}
 /* pagination: modular, keep blocks whole, no forced pages */
 @media print{
   html,body{background:#fff!important}
@@ -8896,45 +8907,46 @@ io.observe(er);})();
         '<i class="rs-mean">'+(EN?MEAN[i][1]:MEAN[i][0])+'</i></div>';
     }
     // 01 growth hero
-    var html='<div class="rs-sec">'+secH(pk('\u4f60\u7684\u73b0\u51b5\u4e0e\u76ee\u6807 Current \u2192 Target','Where You Are \u2192 Where You\u2019re Going'))+
+    sheet.classList.toggle('rs-compact',rows.length>3);
+    var html='<div class="rs-sec rs-keep">'+secH(pk('\u4f60\u7684\u73b0\u51b5\u4e0e\u76ee\u6807 Current \u2192 Target','Where You Are \u2192 Where You\u2019re Going'))+
       '<div class="rs-grow">'+gcard(cur,ST.cur,false)+'<div class="rs-grow__mid"><span class="rs-grow__ar">\u2192</span></div>'+gcard(tgt,ST.tgt,true)+'</div>'+
       '<div class="rs-jline">'+pk('\u4f60\u7684\u6210\u957f\u8def\u7ebf Your journey','Your journey')+': <b>'+jline+'</b></div></div>';
     // 02 summary + focus pills
     if(rows.length){
       var pills=tagIdx.map(function(i){var tg=TAGS[ST.cur][i];return '<span class="rs-pill">'+(EN?tg[1]:(tg[0]+' '+tg[1]))+'</span>';}).join('');
-      html+='<div class="rs-sec">'+secH(pk('\u4f60\u7684\u82f1\u8bed\u73b0\u51b5\u6458\u8981 Your English Summary','Your English Summary'))+
+      html+='<div class="rs-sec rs-keep">'+secH(pk('\u4f60\u7684\u82f1\u8bed\u73b0\u51b5\u6458\u8981 Your English Summary','Your English Summary'))+
         (pills?'<div class="rs-pills">'+pills+'</div>':'')+
         '<div class="rs-sum">'+rows.slice(0,3).map(function(r,i){return '<div class="rs-sum__it"><i>'+(i+1)+'</i><span>'+esc(r[0])+'</span></div>';}).join('')+'</div></div>';
     }
     // 03 challenges
     if(rows.length){
-      html+='<div class="rs-sec">'+secH(pk('\u4e3b\u8981\u5361\u70b9\u4e0e\u6211\u4eec\u7684\u5e2e\u52a9 Main Challenges &amp; Support','Main Challenges &amp; How We Help'))+
-        rows.map(function(r,i){
+      var chalCards=rows.map(function(r,i){
           var c='<div class="rs-chal"><span class="rs-chal__tag">'+pk('\u5361\u70b9','Challenge')+' 0'+(i+1)+'</span>'+
             '<div class="rs-chal__a">'+esc(r[0])+'</div>';
           if(!SIMPLE) c+='<div class="rs-chal__k">'+pk('\u5efa\u8bae\u8bad\u7ec3\u65b9\u5f0f','Training focus')+'</div><div class="rs-chal__v">'+esc(r[1])+'</div>';
           c+='<div class="rs-chal__k">'+pk('\u8bfe\u5802\u5982\u4f55\u5e2e\u52a9\u4f60','How TEC supports you')+'</div><div class="rs-chal__v">'+esc(r[2])+'</div></div>';
           return c;
-        }).join('')+'</div>';
+        });
+      html+='<div class="rs-sec"><div class="rs-keep">'+secH(pk('\u4e3b\u8981\u5361\u70b9\u4e0e\u6211\u4eec\u7684\u5e2e\u52a9 Main Challenges &amp; Support','Main Challenges &amp; How We Help'))+(chalCards[0]||'')+'</div>'+chalCards.slice(1).join('')+'</div>';
     }
     if(!SIMPLE){
       // 04 starting point
-      html+='<div class="rs-sec">'+secH(pk('\u5b66\u4e60\u8d77\u70b9\u63a8\u8350 Recommended Starting Point','Recommended Starting Point'))+
+      html+='<div class="rs-sec rs-keep">'+secH(pk('\u5b66\u4e60\u8d77\u70b9\u63a8\u8350 Recommended Starting Point','Recommended Starting Point'))+
         '<p style="margin:0;font-size:12.5px">'+esc(pk(cur.start,curE.start))+'</p></div>';
       // 05 target
-      html+='<div class="rs-sec">'+secH(pk('\u63a8\u8350\u5b66\u4e60\u76ee\u6807 Learning Target','Learning Target'))+
+      html+='<div class="rs-sec rs-keep">'+secH(pk('\u63a8\u8350\u5b66\u4e60\u76ee\u6807 Learning Target','Learning Target'))+
         '<p style="margin:0;font-size:12.5px"><b style="font-family:var(--display)">'+tgt.code+' ('+tgt.cefr+') \u00b7 '+tgt.en+'</b><br>'+esc(pk(tgt.goal,tgtE.goal))+'</p></div>';
       // 06 journey map + step cards
       var map='<div class="rs-map">'+route.map(function(i,k){return '<span class="rs-map__pt"><span class="rs-map__n">L'+i+'</span><em>'+JW[i]+'</em></span>'+(k<route.length-1?'<span class="rs-map__l"></span>':'');}).join('')+'</div>';
       html+='<div class="rs-sec">'+secH(pk('\u5b66\u4e60\u8def\u7ebf Learning Route','Learning Route'))+map+
         '<div class="rs-steps">'+route.map(function(i,k){var l=LV[i];return '<div class="rs-step"><small>Step '+(k+1)+'</small><b>'+l.code+' \u00b7 '+(EN?l.en:(l.en+' '+l.zh))+'</b><span>'+esc(EN?LVE[i].route:l.route)+'</span><br><em class="rs-step__c5">'+CC[i]+'</em></div>';}).join('')+'</div></div>';
       // 07 outcome highlight
-      html+='<div class="rs-sec">'+secH(pk('\u5b8c\u6210\u76ee\u6807 Expected Outcome','Expected Outcome'))+
+      html+='<div class="rs-sec rs-keep">'+secH(pk('\u5b8c\u6210\u76ee\u6807 Expected Outcome','Expected Outcome'))+
         '<div class="rs-outcome"><span class="rs-outcome__ic"><svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg></span><p>'+esc(pk(tgt.done,tgtE.done))+'</p></div></div>';
     }
     // plan premium block (both modes)
     var stageRows='<div class="rs-planx__cards">'+route.map(function(i){var l=LV[i];return '<div class="rs-planx__card"><small>'+l.code+'</small><b>'+l.en+'</b>'+(EN?'':'<i>'+l.zh+'</i>')+'<span>48 '+pk('\u5802\u8bfe','Lessons')+'</span></div>';}).join('')+'</div>';
-    html+='<div class="rs-sec">'+secH(pk('\u5efa\u8bae\u5b66\u4e60\u89c4\u5212 Recommended Learning Plan','Recommended Learning Plan'))+
+    html+='<div class="rs-sec rs-keep">'+secH(pk('\u5efa\u8bae\u5b66\u4e60\u89c4\u5212 Recommended Learning Plan','Recommended Learning Plan'))+
       '<div class="rs-planx"><div class="rs-planx__lv">'+cur.code+' \u2192 '+tgt.code+'</div>'+
       '<div class="rs-planx__big"><b>'+lessons+'</b><span>'+pk('\u5802\u8bfe Lessons','Lessons')+'</span></div>'+
       '<div class="rs-planx__stages">'+pk(nlv+' \u4e2a\u5b66\u4e60\u9636\u6bb5 \u00d7 \u6bcf\u4e2a Level 48 \u5802',nlv+' learning stage'+(nlv>1?'s':'')+' \u00d7 48 lessons per level')+'</div>'+
@@ -8942,10 +8954,10 @@ io.observe(er);})();
       '<p class="rs-plan-soft">'+pk('\u8fd9\u9879\u5efa\u8bae\u662f\u6839\u636e\u4f60\u76ee\u524d\u7684\u6d4b\u8bd5\u7ed3\u679c\u3001\u76ee\u6807\u6c34\u5e73\u548c\u5b66\u4e60\u8d77\u70b9\u5236\u5b9a\u3002\u6b63\u5f0f\u4e0a\u8bfe\u540e\uff0c\u8001\u5e08\u4f1a\u6839\u636e\u4f60\u7684\u8bfe\u5802\u8868\u73b0\u8c03\u6574\u5b66\u4e60\u8282\u594f\u3002','This recommendation is based on your assessment result, target level and starting point. Once classes begin, your teacher will adjust the pace based on your classroom performance.')+'</p></div></div>';
     // extras
     if(SIMPLE){
-      html+='<div class="rs-sec">'+secH(pk('\u9644\u52a0\u670d\u52a1 What Else You Get','What Else You Get'))+
+      html+='<div class="rs-sec rs-keep">'+secH(pk('\u9644\u52a0\u670d\u52a1 What Else You Get','What Else You Get'))+
         '<p style="margin:0;font-size:12px;color:var(--muted)">'+pk('EPI\u2122 \u6027\u683c\u5206\u6790 \u00b7 Goal Setting \u76ee\u6807\u8bbe\u5b9a \u00b7 Class Reviews & Feedback \u8bfe\u5802\u53cd\u9988 \u00b7 Upgradation Test \u5347\u7ea7\u6d4b\u8bd5','EPI\u2122 Personality Analysis \u00b7 Goal Setting \u00b7 Class Reviews & Feedback \u00b7 Upgradation Test')+'</p></div>';
     }else{
-      html+='<div class="rs-sec">'+secH(pk('\u9644\u52a0\u670d\u52a1 What Else You Get','What Else You Get'))+
+      html+='<div class="rs-sec rs-keep">'+secH(pk('\u9644\u52a0\u670d\u52a1 What Else You Get','What Else You Get'))+
         '<div class="rs-extras">'+(EN?EXTE:EXTRAS).map(function(x){return '<div class="rs-extra"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>';}).join('')+'</div></div>';
     }
     // next step
@@ -8960,7 +8972,7 @@ io.observe(er);})();
       '\u5b89\u6392\u9002\u5408\u7684 Level \u4e0e\u4e0a\u8bfe\u65f6\u95f4',
       '\u5f00\u59cb\u4f60\u7684 '+jline+' \u5b66\u4e60\u8def\u7ebf'
     ];
-    html+='<div class="rs-sec">'+secH(pk('\u4e0b\u4e00\u6b65\u5efa\u8bae Your Next Step','Your Next Step'))+
+    html+='<div class="rs-sec rs-keep">'+secH(pk('\u4e0b\u4e00\u6b65\u5efa\u8bae Your Next Step','Your Next Step'))+
       '<ul class="rs-next">'+nsteps.map(function(t,i){return '<li><i>'+(i+1)+'</i><span>'+t+'</span></li>';}).join('')+'</ul>'+
       (ST.an.trim()?'<div class="rs-adv"><b>Advisor Notes \u987e\u95ee\u5efa\u8bae</b>'+esc(ST.an)+'</div>':'')+'</div>';
     // note + closing banner
