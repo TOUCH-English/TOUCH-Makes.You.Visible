@@ -426,6 +426,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .lang-seg:hover{color:var(--ink)}
 .lang-seg.is-on{background:#fff;color:var(--ink);box-shadow:0 2px 8px -3px rgba(20,33,50,.25)}
 body.te-en .zh,body.te-en .te-cjk{display:none!important}
+body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 /* mobile: keep last roadmap nodes above the fixed bottom dock */
 @media(max-width:600px){.sys{padding-bottom:120px}}
 .sys-scale{position:absolute;top:14px;right:14px;z-index:5;display:inline-flex;border-radius:11px;overflow:hidden;opacity:.5;
@@ -3597,6 +3598,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rov-top{max-width:1240px;margin:0 auto 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .rov-top h2{font-family:var(--display);font-size:19px;color:var(--ink);margin:0}
 .rov-top h2 .zh{color:var(--faint);font-size:13px;font-weight:600;margin-left:8px}
+.rov-x{position:fixed;top:18px;right:20px;z-index:60;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line-strong,rgba(20,33,50,.12));color:var(--muted,#6b7889);cursor:pointer;box-shadow:0 10px 26px -12px rgba(16,24,40,.4);transition:transform .15s,color .15s,border-color .15s}
+.rov-x svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.rov-x:hover{color:#E0303B;border-color:#E0303B;transform:scale(1.08)}
+@media(max-width:600px){.rov-x{top:12px;right:12px;width:36px;height:36px}}
 .rov-actions{display:flex;gap:10px}
 .rov-btn{font-family:var(--display);font-weight:700;font-size:13px;padding:9px 18px;border-radius:12px;border:1px solid var(--line-strong);background:rgba(255,255,255,.85);color:var(--ink);cursor:pointer;transition:.15s}
 .rov-btn:hover{background:#fff;border-color:var(--blue-bright);color:var(--blue-bright)}
@@ -3799,7 +3804,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   html,body{height:auto!important;min-height:0!important;overflow:visible!important}
   body>*:not(#reportOv){display:none!important}
   #reportOv{position:static!important;display:block!important;background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:0!important;overflow:visible!important}
-  #reportOv .rov-top,#reportOv .rb-side{display:none!important}
+  #reportOv .rov-top,#reportOv .rb-side,#reportOv .rov-x{display:none!important}
   .report-panel{display:block!important;max-width:none!important}
   .rsheet{box-shadow:none!important;border-radius:0!important;padding:14mm 14mm 16mm!important}
   .rs-sec,.rs-table tr,.rs-extra{break-inside:avoid}
@@ -4141,18 +4146,17 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
         </div>
         <div class="sysdl" data-advisor-only>
           <div class="fivedl">
-            <span class="fivedl__lab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="m7.5 10.5 4.5 4 4.5-4"/><path d="M5 20h14"/></svg>Download a level as PDF <span class="zh">下载单个 Level（详细·含例句，像海报一样）</span></span>
-            <div class="fivedl__row">
-              <button type="button" class="fivedl__lv" data-lv="0" style="--a:#9A6E00">P1 · Copy</button>
-              <button type="button" class="fivedl__lv" data-lv="1" style="--a:#1F7D3C">L1 · Construct</button>
-              <button type="button" class="fivedl__lv" data-lv="2" style="--a:#1276B5">L2 · Convey</button>
-              <button type="button" class="fivedl__lv" data-lv="3" style="--a:#C2351C">L3 · Convince</button>
-              <button type="button" class="fivedl__lv" data-lv="4" style="--a:#15335E">L4 · Captivate</button>
-              <button type="button" class="fivedl__all" id="fiveCPdfAll">All 5 levels <span class="zh">全部</span></button>
+            <span class="fivedl__lab"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="m21 14.5-5-5L5.5 20"/></svg>Level handout <span class="zh">分级讲义（含例句）</span></span>
+            <div class="lang-toggle" id="fiveCSel" data-nozh role="group" aria-label="Level">
+              <button type="button" class="lang-seg is-on" data-lv="0">P1</button>
+              <button type="button" class="lang-seg" data-lv="1">L1</button>
+              <button type="button" class="lang-seg" data-lv="2">L2</button>
+              <button type="button" class="lang-seg" data-lv="3">L3</button>
+              <button type="button" class="lang-seg" data-lv="4">L4</button>
             </div>
-            <div class="fivedl__prevbar">
-              <button type="button" class="fivedl__prev" id="fiveCPreview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>Preview on screen <span class="zh">屏幕预览</span></button>
-              <span class="fivedl__prevhint">Screenshot &amp; send to students — no Save-as-PDF, no URL. <span class="zh">直接截图发给学生，无需存 PDF、不出现网址。</span></span>
+            <div class="fivedl__row">
+              <button type="button" class="fivedl__prev" id="fiveCPreview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>Preview <span class="zh">预览</span></button>
+              <button type="button" class="fivedl__all" id="fiveCImg"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px;margin-right:4px"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="m21 14.5-5-5L5.5 20"/></svg>Save as image <span class="zh">存图</span></button>
             </div>
           </div>
         </div>
@@ -4219,7 +4223,18 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           <div class="sys-overview" id="sysOverview"><!-- journey nodes; also acts as mini roadmap when a step modal is open --></div>
         </div>
         <div class="sysdl" data-advisor-only>
-          <button type="button" class="sysdl__btn" id="sysFlowPdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="m7.5 10.5 4.5 4 4.5-4"/><path d="M5 20h14"/></svg>Download flow as PDF <span class="zh">下载学习流程图（PDF）</span></button>
+          <div class="fivedl">
+            <span class="fivedl__lab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="m7.5 10.5 4.5 4 4.5-4"/><path d="M5 20h14"/></svg>Learning-flow handout <span class="zh">学习流程讲义</span></span>
+            <div class="lang-toggle" id="sysLang" data-nozh role="group" aria-label="PDF language">
+              <button type="button" class="lang-seg is-on" data-slang="both">双语</button>
+              <button type="button" class="lang-seg" data-slang="zh">中文</button>
+              <button type="button" class="lang-seg" data-slang="en">EN</button>
+            </div>
+            <div class="fivedl__row">
+              <button type="button" class="fivedl__prev" id="sysPreview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>Preview <span class="zh">预览</span></button>
+              <button type="button" class="fivedl__all" id="sysImg"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px;margin-right:4px"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="m21 14.5-5-5L5.5 20"/></svg>Save as image <span class="zh">存图</span></button>
+            </div>
+          </div>
           <span class="sysdl__hint">A one-page handout you can send to students. <span class="zh">一页式学习流程说明，可直接发给学生。</span></span>
         </div>
         <div class="adv-cue" data-cue><strong>Advisor cue:</strong> show the full journey first so they see it's a guided system, not random classes. Then open each step and tie it to their goal.</div>
@@ -7433,72 +7448,109 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     /* ---- Downloadable learning-flow PDF (advisor handout) · isolated ---- */
     function _flEsc(x){return String(x==null?"":x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
     function _flPhase(p){var a=String(p).split(" \u00b7 ");return {en:a[0]||String(p),zh:a[1]||""};}
-    function printSystemFlow(){
-      var w=null; try{ w=window.open("","_blank"); }catch(e){}
-      if(!w){ alert("\u8bf7\u5141\u8bb8\u5f39\u51fa\u7a97\u53e3\u4ee5\u4e0b\u8f7d PDF"); return; }
-      var d=new Date(), dstr=d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
-      var order=[], grp={};
+    function _flBi(t){
+      t=String(t==null?"":t); var n=t.length, zh=new Array(n), i;
+      function cj(ch){var c=ch.charCodeAt(0);return (c>=0x3400&&c<=0x9fff)||(c>=0xf900&&c<=0xfaff)||(c>=0x3000&&c<=0x303f)||(c>=0xff00&&c<=0xffef);}
+      function cn(ch){return ch===" "||ch==="\t"||ch==="\u00b7"||ch==="\u2013"||ch==="\u2014"||ch==="/"||ch==="\uff0f"||ch==="|";}
+      for(i=0;i<n;i++) zh[i]=cj(t[i]);
+      i=0; while(i<n){ if(cn(t[i])){ var j=i; while(j<n&&cn(t[j])) j++; if((i>0&&zh[i-1])||(j<n&&zh[j])){ for(var k=i;k<j;k++) zh[k]=true; } i=j; } else i++; }
+      var en="",zs=""; for(i=0;i<n;i++){ if(zh[i]) zs+=t[i]; else en+=t[i]; }
+      return {en:en.replace(/\s+/g," ").trim(), zh:zs.replace(/\s+/g," ").trim()};
+    }
+    function _sysContent(LANG){
+      function L(en,zh){ return LANG==="en"?en:(LANG==="zh"?zh:(en+(en&&zh?" ":"")+zh)); }
+      var order=[],grp={};
       SYS.forEach(function(s,i){ if(!grp[s.phase]){grp[s.phase]=[];order.push(s.phase);} grp[s.phase].push({s:s,i:i}); });
       var no=0;
       var body=order.map(function(ph){
         var pp=_flPhase(ph);
         var cards=grp[ph].map(function(o){
-          no++; var s=o.s, col=SYS_MAPCOL[o.i]||s.col;
-          return '<div class="st">'+
-            '<div class="st__n" style="background:'+col+'">'+no+'</div>'+
-            '<div class="st__bd">'+
-              '<div class="st__t">'+_flEsc(s.t)+'<span class="st__zh">'+_flEsc(s.zh)+'</span></div>'+
-              '<div class="st__c">'+_flEsc(s.concept)+'</div>'+
-              '<div class="st__row"><b>What \u5185\u5bb9</b><span>'+_flEsc(s.what.en)+' '+_flEsc(s.what.zh)+'</span></div>'+
-              '<div class="st__row"><b>Helps \u5e2e\u52a9</b><span>'+_flEsc(s.helps.en)+' '+_flEsc(s.helps.zh)+'</span></div>'+
-            '</div>'+
-          '</div>';
+          no++; var s=o.s, col=SYS_MAPCOL[o.i]||s.col, bt=_flBi(s.t), bc=_flBi(s.concept);
+          var tEn=bt.en||s.t, tZh=s.zh||bt.zh;
+          var title = LANG==="zh" ? _flEsc(tZh) : (_flEsc(tEn)+(LANG==="both"?'<span class="st__zh">'+_flEsc(tZh)+'</span>':""));
+          var concept = LANG==="en"?bc.en:(LANG==="zh"?bc.zh:s.concept);
+          return '<div class="st"><div class="st__n" style="background:'+col+'">'+no+'</div><div class="st__bd">'+
+            '<div class="st__t">'+title+'</div>'+
+            '<div class="st__c">'+_flEsc(concept)+'</div>'+
+            '<div class="st__row"><b>'+L("What","\u5185\u5bb9")+'</b><span>'+_flEsc(L(s.what.en,s.what.zh))+'</span></div>'+
+            '<div class="st__row"><b>'+L("Helps","\u5e2e\u52a9")+'</b><span>'+_flEsc(L(s.helps.en,s.helps.zh))+'</span></div>'+
+          '</div></div>';
         }).join("");
-        return '<section class="ph"><div class="ph__h"><span class="ph__badge">'+_flEsc(pp.en)+'</span><span class="ph__zh">'+_flEsc(pp.zh)+'</span></div>'+cards+'</section>';
+        var phTxt = LANG==="zh"?(pp.zh||pp.en):pp.en;
+        var phZh = (LANG==="both"&&pp.zh)?'<span class="ph__zh">'+_flEsc(pp.zh)+'</span>':"";
+        return '<section class="ph"><div class="ph__h"><span class="ph__badge">'+_flEsc(phTxt)+'</span>'+phZh+'</div>'+cards+'</section>';
       }).join("");
-      var head='<div class="head"><div class="head__l"><div class="brand">TOUCH English</div>'+
-        '<h1>Your Learning Journey <span>\u4f60\u7684\u5b66\u4e60\u6d41\u7a0b</span></h1>'+
-        '<div class="sub">A guided system \u2014 from day one to your final goal. <b>\u4ece\u7b2c\u4e00\u5929\u5230\u6700\u7ec8\u76ee\u6807\u7684\u5b8c\u6574\u5b66\u4e60\u7cfb\u7edf\u3002</b></div></div>'+
-        '<div class="head__r">'+dstr+'<br>'+SYS.length+' steps \u00b7 '+SYS.length+' \u6b65</div></div>';
-      var foot='<div class="foot">Questions about your journey? Talk to your TOUCH advisor. <b>\u5bf9\u5b66\u4e60\u6d41\u7a0b\u6709\u7591\u95ee\uff1f\u6b22\u8fce\u8054\u7cfb\u4f60\u7684 TOUCH \u987e\u95ee\u3002</b><br>TOUCH English \u00b7 touchenglish.edu.my</div>';
-      var pcss=
-        '@page{size:A4;margin:14mm 13mm 15mm}'+
-        '*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}'+
-        'body{font-family:"Inter",system-ui,-apple-system,sans-serif;color:#142132;line-height:1.5;font-size:11px;-webkit-print-color-adjust:exact;print-color-adjust:exact}'+
-        '.wrap{max-width:184mm;margin:0 auto}'+
-        '.head{border-bottom:3px solid #16264d;padding-bottom:12px;margin-bottom:16px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}'+
-        '.head__l .brand{font-family:"Sora",sans-serif;font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#E0303B}'+
-        '.head__l h1{font-family:"Sora",sans-serif;font-weight:800;font-size:22px;margin:5px 0 3px;color:#16264d}'+
-        '.head__l h1 span{font-size:15px;color:#5b6b82;margin-left:6px}'+
-        '.head__l .sub{font-size:11px;color:#5b6b82}.head__l .sub b{color:#3a4a60;font-weight:600}'+
-        '.head__r{text-align:right;font-size:10px;color:#8592a6;white-space:nowrap;font-family:"Sora",sans-serif;font-weight:600}'+
-        '.ph{margin-bottom:14px;break-inside:avoid;page-break-inside:avoid}'+
-        '.ph__h{display:flex;align-items:center;gap:9px;margin:0 0 8px}'+
-        '.ph__badge{font-family:"Sora",sans-serif;font-weight:800;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#16264d;padding:4px 11px;border-radius:999px}'+
-        '.ph__zh{font-size:11.5px;color:#5b6b82;font-weight:700}'+
-        '.st{display:flex;gap:11px;padding:10px 13px;border:1px solid #e6ebf3;border-radius:12px;margin-bottom:8px;background:#fbfdff;break-inside:avoid;page-break-inside:avoid}'+
-        '.st__n{flex:none;width:27px;height:27px;border-radius:50%;color:#fff;font-family:"Sora",sans-serif;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px -3px rgba(20,33,50,.4)}'+
-        '.st__bd{flex:1;min-width:0}'+
-        '.st__t{font-family:"Sora",sans-serif;font-weight:700;font-size:13px;color:#16264d}'+
-        '.st__zh{font-weight:600;font-size:11px;color:#5b6b82;margin-left:6px}'+
-        '.st__c{font-size:11px;color:#2f3e54;margin:3px 0 6px}'+
-        '.st__row{display:flex;gap:8px;font-size:10.5px;margin-top:3px}'+
-        '.st__row b{flex:none;width:70px;font-family:"Sora",sans-serif;font-weight:700;font-size:9px;letter-spacing:.03em;text-transform:uppercase;color:#9aa6b8;padding-top:1px}'+
-        '.st__row span{color:#3a4a60;flex:1}'+
-        '.foot{margin-top:16px;border-top:1px solid #e6ebf3;padding-top:10px;font-size:10px;color:#8592a6;text-align:center;line-height:1.6}.foot b{color:#5b6b82;font-weight:600}';
-      var fonts='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">';
-      var pjs='(function(){'+
-        'function imgsReady(){var ps=[].slice.call(document.images).map(function(im){return im.complete?Promise.resolve():new Promise(function(r){im.onload=im.onerror=r;});});return Promise.all(ps);}'+
-        'var went=false;function go(){if(went)return;went=true;try{window.focus();window.print();}catch(e){}}'+
-        'function start(){var f=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();Promise.all([f,imgsReady()]).then(function(){setTimeout(go,150);});setTimeout(go,2600);}'+
-        'if(document.readyState==="complete")start();else window.addEventListener("load",start);'+
-        'window.onafterprint=function(){try{window.close();}catch(e){}};'+
-        '})();';
-      w.document.open();
-      w.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TOUCH English \u00b7 Learning Journey</title>'+fonts+'<style>'+pcss+'</style></head><body><div class="wrap">'+head+body+foot+'</div><scr'+'ipt>'+pjs+'</scr'+'ipt></body></html>');
-      w.document.close();
+      var d=new Date(), dstr=d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+      var h1 = LANG==="zh"?'<h1>\u4f60\u7684\u5b66\u4e60\u6d41\u7a0b</h1>':('<h1>Your Learning Journey'+(LANG==="both"?' <span>\u4f60\u7684\u5b66\u4e60\u6d41\u7a0b</span>':"")+'</h1>');
+      var sub = LANG==="zh"?'\u4ece\u7b2c\u4e00\u5929\u5230\u6700\u7ec8\u76ee\u6807\u7684\u5b8c\u6574\u5b66\u4e60\u7cfb\u7edf\u3002':(LANG==="en"?'A guided system \u2014 from day one to your final goal.':'A guided system \u2014 from day one to your final goal. <b>\u4ece\u7b2c\u4e00\u5929\u5230\u6700\u7ec8\u76ee\u6807\u7684\u5b8c\u6574\u5b66\u4e60\u7cfb\u7edf\u3002</b>');
+      var steps = LANG==="zh"?(SYS.length+' \u6b65'):(LANG==="en"?(SYS.length+' steps'):(SYS.length+' steps \u00b7 '+SYS.length+' \u6b65'));
+      var head='<div class="head"><div class="head__l"><div class="brand">TOUCH English</div>'+h1+'<div class="sub">'+sub+'</div></div><div class="head__r">'+dstr+'<br>'+steps+'</div></div>';
+      var ft = LANG==="zh"?'\u5bf9\u5b66\u4e60\u6d41\u7a0b\u6709\u7591\u95ee\uff1f\u6b22\u8fce\u8054\u7cfb\u4f60\u7684 TOUCH \u987e\u95ee\u3002':(LANG==="en"?'Questions about your journey? Talk to your TOUCH advisor.':'Questions about your journey? Talk to your TOUCH advisor. <b>\u5bf9\u5b66\u4e60\u6d41\u7a0b\u6709\u7591\u95ee\uff1f\u6b22\u8fce\u8054\u7cfb\u4f60\u7684 TOUCH \u987e\u95ee\u3002</b>');
+      var foot='<div class="foot">'+ft+'<br>TOUCH English \u00b7 touchenglish.edu.my</div>';
+      return '<div class="wrap">'+head+body+foot+'</div>';
     }
-    var _flowPdf=document.getElementById("sysFlowPdf"); if(_flowPdf)_flowPdf.addEventListener("click",printSystemFlow);
+    var _sysCSS=
+      '@page{size:A4;margin:14mm 13mm 15mm}'+
+      '*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}'+
+      'body{font-family:"Inter",system-ui,-apple-system,sans-serif;color:#142132;line-height:1.5;font-size:11px;-webkit-print-color-adjust:exact;print-color-adjust:exact}'+
+      '.wrap{max-width:184mm;margin:0 auto}'+
+      '.head{border-bottom:3px solid #16264d;padding-bottom:12px;margin-bottom:16px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}'+
+      '.head__l .brand{font-family:"Sora",sans-serif;font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#E0303B}'+
+      '.head__l h1{font-family:"Sora",sans-serif;font-weight:800;font-size:22px;margin:5px 0 3px;color:#16264d}'+
+      '.head__l h1 span{font-size:15px;color:#5b6b82;margin-left:6px}'+
+      '.head__l .sub{font-size:11px;color:#5b6b82}.head__l .sub b{color:#3a4a60;font-weight:600}'+
+      '.head__r{text-align:right;font-size:10px;color:#8592a6;white-space:nowrap;font-family:"Sora",sans-serif;font-weight:600}'+
+      '.ph{margin-bottom:14px;break-inside:avoid;page-break-inside:avoid}'+
+      '.ph__h{display:flex;align-items:center;gap:9px;margin:0 0 8px}'+
+      '.ph__badge{font-family:"Sora",sans-serif;font-weight:800;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#16264d;padding:4px 11px;border-radius:999px}'+
+      '.ph__zh{font-size:11.5px;color:#5b6b82;font-weight:700}'+
+      '.st{display:flex;gap:11px;padding:10px 13px;border:1px solid #e6ebf3;border-radius:12px;margin-bottom:8px;background:#fbfdff;break-inside:avoid;page-break-inside:avoid}'+
+      '.st__n{flex:none;width:27px;height:27px;border-radius:50%;color:#fff;font-family:"Sora",sans-serif;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px -3px rgba(20,33,50,.4)}'+
+      '.st__bd{flex:1;min-width:0}'+
+      '.st__t{font-family:"Sora",sans-serif;font-weight:700;font-size:13px;color:#16264d}'+
+      '.st__zh{font-weight:600;font-size:11px;color:#5b6b82;margin-left:6px}'+
+      '.st__c{font-size:11px;color:#2f3e54;margin:3px 0 6px}'+
+      '.st__row{display:flex;gap:8px;font-size:10.5px;margin-top:3px}'+
+      '.st__row b{flex:none;width:70px;font-family:"Sora",sans-serif;font-weight:700;font-size:9px;letter-spacing:.03em;text-transform:uppercase;color:#9aa6b8;padding-top:1px}'+
+      '.st__row span{color:#3a4a60;flex:1}'+
+      '.foot{margin-top:16px;border-top:1px solid #e6ebf3;padding-top:10px;font-size:10px;color:#8592a6;text-align:center;line-height:1.6}.foot b{color:#5b6b82;font-weight:600}';
+    var _sysFonts='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">';
+    var _sysPJS='(function(){function ir(){var ps=[].slice.call(document.images).map(function(im){return im.complete?Promise.resolve():new Promise(function(r){im.onload=im.onerror=r;});});return Promise.all(ps);}var w=false;function go(){if(w)return;w=true;try{window.focus();window.print();}catch(e){}}function st(){var f=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();Promise.all([f,ir()]).then(function(){setTimeout(go,150);});setTimeout(go,2600);}if(document.readyState==="complete")st();else window.addEventListener("load",st);window.onafterprint=function(){try{window.close();}catch(e){}};})();';
+    function _sysDoc(lang,withJS){ return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TOUCH English \u00b7 Learning Journey</title>'+_sysFonts+'<style>'+_sysCSS+'</style></head><body>'+_sysContent(lang)+(withJS?('<scr'+'ipt>'+_sysPJS+'</scr'+'ipt>'):'')+'</body></html>'; }
+    function _sysImage(lang,btn){ if(!window.__tePng){ alert("\u56fe\u7247\u5bfc\u51fa\u4e0d\u53ef\u7528"); return; } window.__tePng(_sysDoc(lang), ".wrap", "TOUCH-Learning-System-"+lang+".png", btn, 28); }
+    var _sysOv=null, _sysCur="both";
+    function _sysPrevBuild(){
+      if(_sysOv) return _sysOv;
+      var ov=document.createElement("div"); ov.className="lvprev"; ov.id="sysPrevOv";
+      ov.innerHTML='<div class="lvprev__bg"></div><div class="lvprev__card">'+
+        '<div class="lvprev__bar"><div class="lvprev__sw"><button type="button" data-sl="both">\u53cc\u8bed</button><button type="button" data-sl="zh">\u4e2d\u6587</button><button type="button" data-sl="en">EN</button></div>'+
+        '<div class="lvprev__actions"><button type="button" class="lvprev__img">Save as image <span class="zh">\u5b58\u4e3a\u56fe\u7247</span></button><button type="button" class="lvprev__x" aria-label="Close">\u2715</button></div></div>'+
+        '<div class="lvprev__hint">Screenshot to send \u2014 no PDF, no URL. <span class="zh">\u622a\u56fe\u53d1\u7ed9\u5b66\u751f\uff0c\u65e0\u9700 PDF\u3001\u4e0d\u51fa\u7f51\u5740\u3002</span></div>'+
+        '<div class="lvprev__stage"><iframe class="lvprev__frame" title="Learning system preview"></iframe></div></div>';
+      document.body.appendChild(ov);
+      ov.addEventListener("click",function(e){
+        if(e.target.closest(".lvprev__bg")||e.target.closest(".lvprev__x")){ _sysPrevClose(); return; }
+        var p=e.target.closest("[data-sl]"); if(p){ _sysPrevRender(p.getAttribute("data-sl")); return; }
+        var ib=e.target.closest(".lvprev__img"); if(ib){ _sysImage(_sysCur,ib); return; }
+      });
+      _sysOv=ov; return ov;
+    }
+    function _sysPrevRender(lang){
+      var ov=_sysPrevBuild(); _sysCur=lang;
+      var fr=ov.querySelector(".lvprev__frame");
+      fr.onload=function(){ function fit(){ try{ fr.style.height=(fr.contentDocument.body.scrollHeight+2)+"px"; }catch(e){} } fit(); setTimeout(fit,300); setTimeout(fit,900); };
+      fr.srcdoc=_sysDoc(lang,false);
+      ov.querySelectorAll("[data-sl]").forEach(function(b){ b.classList.toggle("is-on", b.getAttribute("data-sl")===lang); });
+      var st=ov.querySelector(".lvprev__stage"); if(st) st.scrollTop=0;
+    }
+    function _sysPrevOpen(lang){ _sysPrevBuild(); _sysPrevRender(lang||"both"); _sysOv.classList.add("open"); document.body.style.overflow="hidden"; }
+    function _sysPrevClose(){ if(_sysOv){ _sysOv.classList.remove("open"); var fr=_sysOv.querySelector(".lvprev__frame"); if(fr) fr.removeAttribute("srcdoc"); } document.body.style.overflow=""; }
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&_sysOv&&_sysOv.classList.contains("open")) _sysPrevClose(); });
+    var _sysBarLang="both";
+    var _slBar=document.getElementById("sysLang");
+    if(_slBar){ _slBar.addEventListener("click",function(e){ var b=e.target.closest("[data-slang]"); if(!b) return; _sysBarLang=b.getAttribute("data-slang"); _slBar.querySelectorAll("[data-slang]").forEach(function(x){ x.classList.toggle("is-on", x===b); }); }); }
+    var _sp=document.getElementById("sysPreview"); if(_sp)_sp.addEventListener("click",function(){ _sysPrevOpen(_sysBarLang); });
+    var _si=document.getElementById("sysImg"); if(_si)_si.addEventListener("click",function(){ _sysImage(_sysBarLang,_si); });
   })();
 
   /* ---------- STAGE NAVIGATION ---------- */
@@ -8913,14 +8965,14 @@ io.observe(er);})();
 })();
 </script>
 
-<div class="report-ov" id="reportOv" aria-hidden="true">
+<div class="report-ov" id="reportOv" data-nozh aria-hidden="true">
+  <button type="button" class="rov-x" id="rovClose" aria-label="Close 关闭" title="Close 关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <div class="rov-top">
     <h2>Student Report <span class="zh">学员英语测试报告</span><small style="display:block;font-family:var(--body);font-weight:500;font-size:11px;color:var(--faint);margin-top:3px">点击 Save as PDF 后，在对话框中选择「存储为 PDF / Save as PDF」即可导出。</small></h2>
     <div class="rov-actions">
       <div class="rov-lang" id="rovDepth"><button type="button" data-rdepth="detail" class="is-on">Detailed 详细</button><button type="button" data-rdepth="simple">Simple 简洁</button></div>
       <div class="rov-lang rov-mode" id="rovMode"><button type="button" data-rmode="edit" class="is-on">Edit 编辑</button><button type="button" data-rmode="preview">Preview 预览</button></div>
       <div class="rov-lang" id="rovLang"><button type="button" data-rlang="zh" class="is-on">中文</button><button type="button" data-rlang="en">English</button></div>
-      <button type="button" class="rov-btn" id="rovClose">Close 关闭</button>
       <button type="button" class="rov-btn rov-btn--pri" id="rovPrint"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px;margin-right:6px"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>Save as PDF 保存 PDF</button>
     </div>
   </div>
@@ -9481,14 +9533,35 @@ io.observe(er);})();
     '.out__g{display:grid;grid-template-columns:1fr 1fr;gap:4px 22px}.out__i{display:flex;gap:8px;align-items:baseline;font-size:9.3px;color:#3a4a60;line-height:1.32}.tick{flex:none;font-weight:800;font-size:9px}'+
     '.foot{margin-top:6px;text-align:center;font-size:8.5px;color:#aab4c1;letter-spacing:.02em}.foot b{color:#8592a6;font-weight:600}';
   var FONTS='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">';
-  var PJS='(function(){function ir(){var ps=[].slice.call(document.images).map(function(im){return im.complete?Promise.resolve():new Promise(function(r){im.onload=im.onerror=r;});});return Promise.all(ps);}var w=false;function go(){if(w)return;w=true;try{window.focus();window.print();}catch(e){}}function st(){var f=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();Promise.all([f,ir()]).then(function(){setTimeout(go,150);});setTimeout(go,2600);}if(document.readyState==="complete")st();else window.addEventListener("load",st);window.onafterprint=function(){try{window.close();}catch(e){}};})();';
-  function writeDoc(inner,title){
-    var win=null; try{ win=window.open("","_blank"); }catch(e){}
-    if(!win){ alert("\u8bf7\u5141\u8bb8\u5f39\u51fa\u7a97\u53e3\u4ee5\u4e0b\u8f7d PDF"); return; }
-    win.document.open();
-    win.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+title+'</title>'+FONTS+'<style>'+PCSS+'</style></head><body>'+inner+'<scr'+'ipt>'+PJS+'</scr'+'ipt></body></html>');
-    win.document.close();
+  function pngExport(html, sel, filename, btn, pad){
+    if(pngExport._busy) return; pngExport._busy=true; pad=pad||0;
+    var old=btn?btn.innerHTML:""; if(btn){ btn.disabled=true; btn.innerHTML="Generating\u2026"; }
+    function fin(ifr){ pngExport._busy=false; if(btn){ btn.disabled=false; btn.innerHTML=old; } if(ifr){ try{document.body.removeChild(ifr);}catch(e){} } }
+    function fail(ifr){ fin(ifr); alert("\u56fe\u7247\u751f\u6210\u5931\u8d25\uff0c\u8bf7\u6539\u7528\u622a\u56fe\u3002"); }
+    var ifr=document.createElement("iframe"); ifr.setAttribute("aria-hidden","true"); ifr.style.cssText="position:fixed;left:-10000px;top:0;width:794px;height:2200px;border:0;background:#fff";
+    document.body.appendChild(ifr);
+    var fired=false;
+    function run(){ if(fired) return; fired=true;
+      var d=ifr.contentDocument, el=d&&d.querySelector(sel); if(!el){ fin(ifr); return; }
+      (window.__teInlineFont?window.__teInlineFont():Promise.resolve("")).then(function(fontCSS){
+        try{
+          var w=Math.ceil(el.getBoundingClientRect().width), h=Math.ceil(el.scrollHeight), css=(d.querySelector("style")||{}).textContent||"";
+          var inner; try{ inner=new XMLSerializer().serializeToString(el); }catch(e){ inner=el.outerHTML.replace(/<br>/g,"<br/>").replace(/<hr>/g,"<hr/>"); }
+          var W=w+pad*2, H=h+pad*2;
+          var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+W+'" height="'+H+'"><foreignObject x="'+pad+'" y="'+pad+'" width="'+w+'" height="'+h+'"><div xmlns="http://www.w3.org/1999/xhtml"><style>'+(fontCSS||"")+css+'</style>'+inner+'</div></foreignObject></svg>';
+          var url="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg), img=new Image();
+          img.onload=function(){ try{ var sc=2,c=document.createElement("canvas"); c.width=W*sc; c.height=H*sc; var x=c.getContext("2d"); x.setTransform(sc,0,0,sc,0,0); x.fillStyle="#fff"; x.fillRect(0,0,W,H); x.drawImage(img,0,0);
+            c.toBlob(function(blob){ if(!blob){ fail(ifr); return; } var a=document.createElement("a"); a.download=filename; a.href=URL.createObjectURL(blob); document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href);},1500); fin(ifr); },"image/png");
+          }catch(e){ fail(ifr); } };
+          img.onerror=function(){ fail(ifr); };
+          img.src=url;
+        }catch(e){ fail(ifr); }
+      });
+    }
+    ifr.onload=function(){ var dd=ifr.contentDocument; var fr=(dd&&dd.fonts&&dd.fonts.ready)?dd.fonts.ready:Promise.resolve(); fr.then(function(){ setTimeout(run,120); }); setTimeout(run,2600); };
+    ifr.srcdoc=html;
   }
+  try{window.__tePng=pngExport;}catch(e){}
   function _isCJK(ch){var c=ch.charCodeAt(0);return (c>=0x3400&&c<=0x9fff)||(c>=0xf900&&c<=0xfaff)||(c>=0x3000&&c<=0x303f)||(c>=0xff00&&c<=0xffef);}
   function _isConn(ch){return ch===" "||ch==="\t"||ch==="\u00b7"||ch==="\u2013"||ch==="\u2014"||ch==="/"||ch==="\uff0f"||ch==="|";}
   var _CJKQ=/[\u3400-\u9fff\uf900-\ufaff\u3000-\u303f\uff00-\uffef]/;
@@ -9509,8 +9582,7 @@ io.observe(er);})();
     return d.innerHTML;
   }
   function EN(){ return document.body.classList.contains("te-en"); }
-  function printOne(i){ var o=LV[i]; if(!o)return; var h=levelHTML(o); if(EN())h=enStrip(h); writeDoc(h,"TOUCH English \u00b7 "+o.tag+" "+o.core); }
-  function printAll(){ var h=LV.map(levelHTML).join(""); if(EN())h=enStrip(h); writeDoc(h,"TOUCH English \u00b7 5C Levels (all)"); }
+  function pvImage(i, btn){ var o=LV[i]; if(!o) return; var h=docHTML(EN()?enStrip(levelHTML(o)):levelHTML(o),"TOUCH English \u00b7 "+o.tag); pngExport(h, ".page", "TOUCH-English-"+((o.lvNo||"Level").replace(/\s+/g,"-"))+".png", btn, 0); }
   function docHTML(inner,title){ return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+title+'</title>'+FONTS+'<style>'+PCSS+'</style></head><body>'+inner+'</body></html>'; }
   var DLIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"/><path d="m7.5 10.5 4.5 4 4.5-4"/><path d="M5 20h14"/></svg>';
   var IMGIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="m21 14.5-5-5L5.5 20"/></svg>';
@@ -9527,21 +9599,7 @@ io.observe(er);})();
       return Promise.all(jobs).then(function(arr){ _fontCSS=arr.filter(Boolean).join("\n"); return _fontCSS; });
     }).catch(function(){ _fontCSS=""; return _fontCSS; });
   }
-  function pvSaveImage(btn){
-    if(!pvOv) return; var fr=pvOv.querySelector(".lvprev__frame"); var doc=fr&&fr.contentDocument; var page=doc&&doc.querySelector(".page"); if(!page) return;
-    var old=btn?btn.innerHTML:""; if(btn){ btn.disabled=true; btn.innerHTML=IMGIC+'Generating\u2026'; }
-    function done(){ if(btn){ btn.disabled=false; btn.innerHTML=old; } }
-    inlineFontCSS().then(function(fontCSS){
-      var w=page.offsetWidth, h=page.offsetHeight, css=(doc.querySelector("style")||{}).textContent||"";
-      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml"><style>'+(fontCSS||"")+css+'</style>'+page.outerHTML+'</div></foreignObject></svg>';
-      var url="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg); var img=new Image();
-      img.onload=function(){ try{ var sc=2,c=document.createElement("canvas"); c.width=w*sc; c.height=h*sc; var x=c.getContext("2d"); x.setTransform(sc,0,0,sc,0,0); x.fillStyle="#fff"; x.fillRect(0,0,w,h); x.drawImage(img,0,0);
-        c.toBlob(function(blob){ if(!blob){ done(); alert("\u56fe\u7247\u751f\u6210\u5931\u8d25\uff0c\u8bf7\u6539\u7528\u622a\u56fe\u6216 PDF\u3002"); return; } var a=document.createElement("a"); a.download="TOUCH-English-"+((LV[pvCur].lvNo||"Level").replace(/\s+/g,"-"))+".png"; a.href=URL.createObjectURL(blob); document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href);},1500); done(); },"image/png");
-      }catch(e){ done(); alert("\u56fe\u7247\u751f\u6210\u5931\u8d25\uff0c\u8bf7\u6539\u7528\u622a\u56fe\u6216 PDF\u3002"); } };
-      img.onerror=function(){ done(); alert("\u56fe\u7247\u751f\u6210\u5931\u8d25\uff0c\u8bf7\u6539\u7528\u622a\u56fe\u6216 PDF\u3002"); };
-      img.src=url;
-    });
-  }
+  try{window.__teInlineFont=inlineFontCSS;}catch(e){}
   var pvOv=null, pvCur=0;
   function pvBuild(){
     if(pvOv) return pvOv;
@@ -9550,7 +9608,6 @@ io.observe(er);})();
     ov.innerHTML='<div class="lvprev__bg"></div><div class="lvprev__card">'+
       '<div class="lvprev__bar"><div class="lvprev__sw">'+sw+'</div>'+
       '<div class="lvprev__actions"><button type="button" class="lvprev__img">'+IMGIC+'Save as image <span class="zh">\u5b58\u4e3a\u56fe\u7247</span></button>'+
-      '<button type="button" class="lvprev__pdf">'+DLIC+'PDF</button>'+
       '<button type="button" class="lvprev__x" aria-label="Close">\u2715</button></div></div>'+
       '<div class="lvprev__hint">Screenshot to send \u2014 no PDF, no URL. <span class="zh">\u622a\u56fe\u53d1\u7ed9\u5b66\u751f\uff0c\u65e0\u9700 PDF\u3001\u4e0d\u51fa\u7f51\u5740\u3002</span></div>'+
       '<div class="lvprev__stage"><iframe class="lvprev__frame" title="Level preview"></iframe></div></div>';
@@ -9558,8 +9615,7 @@ io.observe(er);})();
     ov.addEventListener("click",function(e){
       if(e.target.closest(".lvprev__bg")||e.target.closest(".lvprev__x")){ pvClose(); return; }
       var pb=e.target.closest("[data-pv]"); if(pb){ pvRender(+pb.getAttribute("data-pv")); return; }
-      var ib=e.target.closest(".lvprev__img"); if(ib){ pvSaveImage(ib); return; }
-      if(e.target.closest(".lvprev__pdf")){ printOne(pvCur); return; }
+      var ib=e.target.closest(".lvprev__img"); if(ib){ pvImage(pvCur, ib); return; }
     });
     pvOv=ov; return ov;
   }
@@ -9574,12 +9630,10 @@ io.observe(er);})();
   function pvOpen(i){ pvBuild(); pvRender(i||0); pvOv.classList.add("open"); document.body.style.overflow="hidden"; }
   function pvClose(){ if(pvOv){ pvOv.classList.remove("open"); var fr=pvOv.querySelector(".lvprev__frame"); if(fr) fr.removeAttribute("srcdoc"); } document.body.style.overflow=""; }
   document.addEventListener("keydown",function(e){ if(e.key==="Escape" && pvOv && pvOv.classList.contains("open")) pvClose(); });
-  var row=document.querySelector(".fivedl__row");
-  if(row){ row.addEventListener("click",function(e){
-    var lv=e.target.closest(".fivedl__lv"); if(lv){ printOne(+lv.getAttribute("data-lv")); return; }
-    if(e.target.closest("#fiveCPdfAll")){ printAll(); }
-  }); }
-  var pvBtn=document.getElementById("fiveCPreview"); if(pvBtn) pvBtn.addEventListener("click",function(){ pvOpen(0); });
+  var fiveSel=0, selEl=document.getElementById("fiveCSel");
+  if(selEl){ selEl.addEventListener("click",function(e){ var b=e.target.closest("[data-lv]"); if(!b) return; fiveSel=+b.getAttribute("data-lv"); selEl.querySelectorAll("[data-lv]").forEach(function(x){ x.classList.toggle("is-on", x===b); }); }); }
+  var pvBtn=document.getElementById("fiveCPreview"); if(pvBtn) pvBtn.addEventListener("click",function(){ pvOpen(fiveSel); });
+  var imgBtn=document.getElementById("fiveCImg"); if(imgBtn) imgBtn.addEventListener("click",function(){ pvImage(fiveSel, imgBtn); });
 })();
 </script>
 <script>
@@ -9617,7 +9671,7 @@ io.observe(er);})();
   }
   function walk(el){ if(skip(el)) return; var ch=el.firstChild; while(ch){ var nx=ch.nextSibling; if(ch.nodeType===3){ wrapText(ch); } else if(ch.nodeType===1){ walk(ch); } ch=nx; } }
   var obs=null;
-  function wrapNodes(nodes){ if(obs) obs.disconnect(); try{ for(var i=0;i<nodes.length;i++){ var nd=nodes[i]; if(nd.nodeType===1) walk(nd); else if(nd.nodeType===3) wrapText(nd); } }catch(e){} if(obs) obs.observe(root,{childList:true,subtree:true}); }
+  function wrapNodes(nodes){ if(obs) obs.disconnect(); try{ for(var i=0;i<nodes.length;i++){ var nd=nodes[i]; if(nd.nodeType===1){ if(nd.closest&&nd.closest("[data-nozh]"))continue; walk(nd); } else if(nd.nodeType===3){ var pe=nd.parentElement; if(pe&&pe.closest&&pe.closest("[data-nozh]"))continue; wrapText(nd); } } }catch(e){} if(obs) obs.observe(root,{childList:true,subtree:true}); }
   function runAll(){ if(obs) obs.disconnect(); try{ walk(root); }catch(e){} if(obs) obs.observe(root,{childList:true,subtree:true}); }
   function setLang(en,persist){
     document.body.classList.toggle("te-en",!!en);
