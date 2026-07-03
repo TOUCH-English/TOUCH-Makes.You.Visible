@@ -7185,7 +7185,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
       }
     }
     // ===== Step 5 dynamic digital-support buttons (data-driven, advisor-editable) =====
-    var S5_DEFAULTS=[{name:"My Profile",link:"https://tec.touchenglish.edu.my/user/10965"},{name:"Booking System",link:"https://tec.touchenglish.edu.my/appointment/timetable"},{name:"Teacher Feedback",link:"https://tec.touchenglish.edu.my/user/10407/assessment/3"},{name:"Review Class",link:"https://tec.touchenglish.edu.my/user/10407/attendance/3"},{name:"After class",link:"https://tec.touchenglish.edu.my/appointment/184130"},{name:"E-Learning",link:"https://tec.touchenglish.edu.my/practice/user/10407"}];
+    var S5_DEFAULTS=[{name:"My Profile",link:"https://tec.touchenglish.edu.my/user/10965"},{name:"Booking System",link:"https://tec.touchenglish.edu.my/appointment/timetable"},{name:"Teacher Feedback",link:"https://tec.touchenglish.edu.my/user/10407/assessment/3"},{name:"Review Class",link:"https://tec.touchenglish.edu.my/user/10407/attendance/3"},{name:"After class",link:"https://tec.touchenglish.edu.my/appointment/184130"},{name:"E-Learning",link:"https://tec.touchenglish.edu.my/practice/learning-portal/18888"}];
     var S5_KEY="te_step5_links_v2";
     function s5esc(s){return (""+s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
     function s5Get(){try{var a=JSON.parse(localStorage.getItem(S5_KEY));if(Array.isArray(a)&&a.length)return a;}catch(e){} return S5_DEFAULTS.map(function(d){return {name:d.name,link:d.link};});}
