@@ -373,6 +373,24 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 
 /* ---------- Learning System (consultation journey) ---------- */
 .sys{margin-top:8px;position:relative}
+.sysdl{display:none;align-items:center;gap:14px;flex-wrap:wrap;margin:16px 0 4px}
+.sysdl.is-on{display:flex;animation:rise .3s ease}
+.sysdl__btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--ink);padding:11px 20px;border-radius:13px;cursor:pointer;border:1px solid var(--line-strong);background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);box-shadow:0 10px 24px -14px rgba(20,33,50,.34),inset 0 1px 0 rgba(255,255,255,.8);transition:.16s}
+.sysdl__btn:hover{border-color:var(--blue-bright);color:var(--blue-bright);transform:translateY(-1px);box-shadow:0 14px 30px -14px rgba(42,91,215,.4),inset 0 1px 0 rgba(255,255,255,.8)}
+.sysdl__btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sysdl__hint{font-size:11.5px;color:var(--faint);line-height:1.45;max-width:36ch}
+@media(max-width:600px){.sysdl__hint{max-width:none}}
+.fivedl{display:flex;flex-direction:column;gap:9px;width:100%}
+.fivedl__lab{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:13px;color:var(--ink)}
+.fivedl__lab svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.fivedl__lab .zh{font-weight:500;font-size:11.5px;color:var(--faint)}
+.fivedl__row{display:flex;flex-wrap:wrap;gap:8px}
+.fivedl__lv{font-family:var(--display);font-weight:700;font-size:12.5px;color:#fff;background:var(--a);border:0;border-radius:10px;padding:9px 15px;cursor:pointer;box-shadow:0 8px 18px -11px rgba(20,33,50,.5);transition:transform .15s,filter .15s,box-shadow .15s}
+.fivedl__lv:hover{transform:translateY(-1px);filter:brightness(1.08);box-shadow:0 12px 22px -11px rgba(20,33,50,.55)}
+.fivedl__lv:active{transform:translateY(0)}
+.fivedl__all{font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--ink);background:rgba(255,255,255,.72);border:1px solid var(--line-strong);border-radius:10px;padding:9px 15px;cursor:pointer;transition:.15s}
+.fivedl__all .zh{font-weight:500;color:var(--faint);margin-left:3px}
+.fivedl__all:hover{border-color:var(--blue-bright);color:var(--blue-bright)}
 /* mobile: keep last roadmap nodes above the fixed bottom dock */
 @media(max-width:600px){.sys{padding-bottom:120px}}
 .sys-scale{position:absolute;top:14px;right:14px;z-index:5;display:inline-flex;border-radius:11px;overflow:hidden;opacity:.5;
@@ -3549,20 +3567,13 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rov-btn:hover{background:#fff;border-color:var(--blue-bright);color:var(--blue-bright)}
 .rov-btn--pri{background:var(--blue-bright);border-color:var(--blue-bright);color:#fff;box-shadow:0 8px 18px -9px rgba(42,91,215,.6)}
 .rov-btn--pri:hover{background:var(--blue-deep);color:#fff}
-.rov-x{position:fixed;top:16px;right:18px;z-index:20;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--line-strong);background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);color:var(--muted);cursor:pointer;box-shadow:0 12px 28px -14px rgba(20,33,50,.42),inset 0 1px 0 rgba(255,255,255,.9);transition:background .16s,color .16s,border-color .16s,transform .16s}
-.rov-x:hover{background:#fff;color:var(--red);border-color:rgba(224,48,59,.5);transform:scale(1.06)}
-.rov-x:active{transform:scale(.96)}
-.rov-x svg{width:18px;height:18px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round}
 .rov-lang{display:inline-flex;gap:3px;padding:3px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--line)}
 .rov-lang button{font-family:var(--display);font-weight:700;font-size:12px;padding:6px 14px;border-radius:999px;border:0;background:transparent;color:var(--faint);cursor:pointer;transition:.15s}
 .rov-lang button.is-on{background:#fff;color:var(--blue);box-shadow:0 2px 8px -2px rgba(20,33,50,.18),inset 0 0 0 1px var(--line)}
 .rov-mode{display:none}
-@media(max-width:1320px){.rov-top{padding-right:58px}}
 @media(max-width:980px){
   .rov-mode{display:inline-flex}
-  .rov-top{flex-direction:column;align-items:stretch;gap:10px;padding-right:0}
-  .rov-top h2{padding-right:46px}
-  .rov-x{top:13px;right:13px;width:38px;height:38px}
+  .rov-top{flex-direction:column;align-items:stretch;gap:10px}
   .rov-actions{flex-wrap:wrap;justify-content:flex-start;gap:8px}
   .rov-actions button{white-space:nowrap}
   .rov-lang button{padding:6px 11px;font-size:11.5px}
@@ -3753,7 +3764,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   html,body{height:auto!important;min-height:0!important;overflow:visible!important}
   body>*:not(#reportOv){display:none!important}
   #reportOv{position:static!important;display:block!important;background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:0!important;overflow:visible!important}
-  #reportOv .rov-top,#reportOv .rb-side,#reportOv .rov-x{display:none!important}
+  #reportOv .rov-top,#reportOv .rb-side{display:none!important}
   .report-panel{display:block!important;max-width:none!important}
   .rsheet{box-shadow:none!important;border-radius:0!important;padding:14mm 14mm 16mm!important}
   .rs-sec,.rs-table tr,.rs-extra{break-inside:avoid}
@@ -4089,6 +4100,19 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           <div class="fivec" id="fivec"><!-- cards injected --></div>
           <div id="ccDetail"></div>
         </div>
+        <div class="sysdl" data-advisor-only>
+          <div class="fivedl">
+            <span class="fivedl__lab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="m7.5 10.5 4.5 4 4.5-4"/><path d="M5 20h14"/></svg>Download a level as PDF <span class="zh">下载单个 Level（详细·含例句，像海报一样）</span></span>
+            <div class="fivedl__row">
+              <button type="button" class="fivedl__lv" data-lv="0" style="--a:#9A6E00">P1 · Copy</button>
+              <button type="button" class="fivedl__lv" data-lv="1" style="--a:#1F7D3C">L1 · Construct</button>
+              <button type="button" class="fivedl__lv" data-lv="2" style="--a:#1276B5">L2 · Convey</button>
+              <button type="button" class="fivedl__lv" data-lv="3" style="--a:#C2351C">L3 · Convince</button>
+              <button type="button" class="fivedl__lv" data-lv="4" style="--a:#15335E">L4 · Captivate</button>
+              <button type="button" class="fivedl__all" id="fiveCPdfAll">All 5 levels <span class="zh">全部</span></button>
+            </div>
+          </div>
+        </div>
         <div class="adv-note-wrap" style="margin:12px 0 6px"><button type="button" class="adv-note" id="ccAdvBtn" aria-label="Advisor Note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button></div>
       </section>
 
@@ -4150,6 +4174,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
             <button class="sys-scale__b" type="button" data-scale="up" aria-label="Enlarge roadmap size">+</button>
           </div>
           <div class="sys-overview" id="sysOverview"><!-- journey nodes; also acts as mini roadmap when a step modal is open --></div>
+        </div>
+        <div class="sysdl" data-advisor-only>
+          <button type="button" class="sysdl__btn" id="sysFlowPdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="m7.5 10.5 4.5 4 4.5-4"/><path d="M5 20h14"/></svg>Download flow as PDF <span class="zh">下载学习流程图（PDF）</span></button>
+          <span class="sysdl__hint">A one-page handout you can send to students. <span class="zh">一页式学习流程说明，可直接发给学生。</span></span>
         </div>
         <div class="adv-cue" data-cue><strong>Advisor cue:</strong> show the full journey first so they see it's a guided system, not random classes. Then open each step and tie it to their goal.</div>
       </section>
@@ -4984,7 +5012,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
           '<span class="cc-learn__more">Learn more <span class="zh">查看完整内容</span> →</span>'+
         '</button>'+
         (function(){ var url=lvLink(i);
-          if(url){ return '<button type="button" class="lvvideo" data-lvl-video="'+i+'" style="--c:'+c.col+';--ci:'+c.ci+';margin-top:10px">'+YTIC+'<span>Success story <span class="zh">成功案例视频</span> · '+LEVELS[i].lvl+'</span></button>'; }
+          if(url){ return '<button type="button" class="lvvideo" data-lvl-video="'+i+'" style="--c:'+c.col+';--ci:'+c.ci+';margin-top:10px">'+YTIC+'<span>'+LEVELS[i].lvl+' Video</span></button>'; }
           return '<button type="button" class="lvvideo lvvideo--soon" disabled style="margin-top:10px">'+YTIC+'<span>Video coming soon <span class="zh">视频即将上线</span></span></button>'; })()+
       '</div>';
   }
@@ -7356,6 +7384,76 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
     fbody.addEventListener("click",function(e){var t=e.target.closest(".adv-note[data-advnote]");if(!t)return;openAdvNote(+t.getAttribute("data-advnote"));});
     focus.addEventListener("click",function(e){if(e.target===focus)closeFocus();});
     document.addEventListener("keydown",function(e){if(e.key==="Escape"&&focus.classList.contains("open"))closeFocus();});
+
+    /* ---- Downloadable learning-flow PDF (advisor handout) · isolated ---- */
+    function _flEsc(x){return String(x==null?"":x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+    function _flPhase(p){var a=String(p).split(" \u00b7 ");return {en:a[0]||String(p),zh:a[1]||""};}
+    function printSystemFlow(){
+      var w=null; try{ w=window.open("","_blank"); }catch(e){}
+      if(!w){ alert("\u8bf7\u5141\u8bb8\u5f39\u51fa\u7a97\u53e3\u4ee5\u4e0b\u8f7d PDF"); return; }
+      var d=new Date(), dstr=d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+      var order=[], grp={};
+      SYS.forEach(function(s,i){ if(!grp[s.phase]){grp[s.phase]=[];order.push(s.phase);} grp[s.phase].push({s:s,i:i}); });
+      var no=0;
+      var body=order.map(function(ph){
+        var pp=_flPhase(ph);
+        var cards=grp[ph].map(function(o){
+          no++; var s=o.s, col=SYS_MAPCOL[o.i]||s.col;
+          return '<div class="st">'+
+            '<div class="st__n" style="background:'+col+'">'+no+'</div>'+
+            '<div class="st__bd">'+
+              '<div class="st__t">'+_flEsc(s.t)+'<span class="st__zh">'+_flEsc(s.zh)+'</span></div>'+
+              '<div class="st__c">'+_flEsc(s.concept)+'</div>'+
+              '<div class="st__row"><b>What \u5185\u5bb9</b><span>'+_flEsc(s.what.en)+' '+_flEsc(s.what.zh)+'</span></div>'+
+              '<div class="st__row"><b>Helps \u5e2e\u52a9</b><span>'+_flEsc(s.helps.en)+' '+_flEsc(s.helps.zh)+'</span></div>'+
+            '</div>'+
+          '</div>';
+        }).join("");
+        return '<section class="ph"><div class="ph__h"><span class="ph__badge">'+_flEsc(pp.en)+'</span><span class="ph__zh">'+_flEsc(pp.zh)+'</span></div>'+cards+'</section>';
+      }).join("");
+      var head='<div class="head"><div class="head__l"><div class="brand">TOUCH English</div>'+
+        '<h1>Your Learning Journey <span>\u4f60\u7684\u5b66\u4e60\u6d41\u7a0b</span></h1>'+
+        '<div class="sub">A guided system \u2014 from day one to your final goal. <b>\u4ece\u7b2c\u4e00\u5929\u5230\u6700\u7ec8\u76ee\u6807\u7684\u5b8c\u6574\u5b66\u4e60\u7cfb\u7edf\u3002</b></div></div>'+
+        '<div class="head__r">'+dstr+'<br>'+SYS.length+' steps \u00b7 '+SYS.length+' \u6b65</div></div>';
+      var foot='<div class="foot">Questions about your journey? Talk to your TOUCH advisor. <b>\u5bf9\u5b66\u4e60\u6d41\u7a0b\u6709\u7591\u95ee\uff1f\u6b22\u8fce\u8054\u7cfb\u4f60\u7684 TOUCH \u987e\u95ee\u3002</b><br>TOUCH English \u00b7 touchenglish.edu.my</div>';
+      var pcss=
+        '@page{size:A4;margin:14mm 13mm 15mm}'+
+        '*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}'+
+        'body{font-family:"Inter",system-ui,-apple-system,sans-serif;color:#142132;line-height:1.5;font-size:11px;-webkit-print-color-adjust:exact;print-color-adjust:exact}'+
+        '.wrap{max-width:184mm;margin:0 auto}'+
+        '.head{border-bottom:3px solid #16264d;padding-bottom:12px;margin-bottom:16px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}'+
+        '.head__l .brand{font-family:"Sora",sans-serif;font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#E0303B}'+
+        '.head__l h1{font-family:"Sora",sans-serif;font-weight:800;font-size:22px;margin:5px 0 3px;color:#16264d}'+
+        '.head__l h1 span{font-size:15px;color:#5b6b82;margin-left:6px}'+
+        '.head__l .sub{font-size:11px;color:#5b6b82}.head__l .sub b{color:#3a4a60;font-weight:600}'+
+        '.head__r{text-align:right;font-size:10px;color:#8592a6;white-space:nowrap;font-family:"Sora",sans-serif;font-weight:600}'+
+        '.ph{margin-bottom:14px;break-inside:avoid;page-break-inside:avoid}'+
+        '.ph__h{display:flex;align-items:center;gap:9px;margin:0 0 8px}'+
+        '.ph__badge{font-family:"Sora",sans-serif;font-weight:800;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#16264d;padding:4px 11px;border-radius:999px}'+
+        '.ph__zh{font-size:11.5px;color:#5b6b82;font-weight:700}'+
+        '.st{display:flex;gap:11px;padding:10px 13px;border:1px solid #e6ebf3;border-radius:12px;margin-bottom:8px;background:#fbfdff;break-inside:avoid;page-break-inside:avoid}'+
+        '.st__n{flex:none;width:27px;height:27px;border-radius:50%;color:#fff;font-family:"Sora",sans-serif;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px -3px rgba(20,33,50,.4)}'+
+        '.st__bd{flex:1;min-width:0}'+
+        '.st__t{font-family:"Sora",sans-serif;font-weight:700;font-size:13px;color:#16264d}'+
+        '.st__zh{font-weight:600;font-size:11px;color:#5b6b82;margin-left:6px}'+
+        '.st__c{font-size:11px;color:#2f3e54;margin:3px 0 6px}'+
+        '.st__row{display:flex;gap:8px;font-size:10.5px;margin-top:3px}'+
+        '.st__row b{flex:none;width:70px;font-family:"Sora",sans-serif;font-weight:700;font-size:9px;letter-spacing:.03em;text-transform:uppercase;color:#9aa6b8;padding-top:1px}'+
+        '.st__row span{color:#3a4a60;flex:1}'+
+        '.foot{margin-top:16px;border-top:1px solid #e6ebf3;padding-top:10px;font-size:10px;color:#8592a6;text-align:center;line-height:1.6}.foot b{color:#5b6b82;font-weight:600}';
+      var fonts='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">';
+      var pjs='(function(){'+
+        'function imgsReady(){var ps=[].slice.call(document.images).map(function(im){return im.complete?Promise.resolve():new Promise(function(r){im.onload=im.onerror=r;});});return Promise.all(ps);}'+
+        'var went=false;function go(){if(went)return;went=true;try{window.focus();window.print();}catch(e){}}'+
+        'function start(){var f=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();Promise.all([f,imgsReady()]).then(function(){setTimeout(go,150);});setTimeout(go,2600);}'+
+        'if(document.readyState==="complete")start();else window.addEventListener("load",start);'+
+        'window.onafterprint=function(){try{window.close();}catch(e){}};'+
+        '})();';
+      w.document.open();
+      w.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TOUCH English \u00b7 Learning Journey</title>'+fonts+'<style>'+pcss+'</style></head><body><div class="wrap">'+head+body+foot+'</div><scr'+'ipt>'+pjs+'</scr'+'ipt></body></html>');
+      w.document.close();
+    }
+    var _flowPdf=document.getElementById("sysFlowPdf"); if(_flowPdf)_flowPdf.addEventListener("click",printSystemFlow);
   })();
 
   /* ---------- STAGE NAVIGATION ---------- */
@@ -8771,13 +8869,13 @@ io.observe(er);})();
 </script>
 
 <div class="report-ov" id="reportOv" aria-hidden="true">
-  <button type="button" class="rov-x" id="rovClose" aria-label="Close 关闭" title="Close 关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6 18 18M18 6 6 18"/></svg></button>
   <div class="rov-top">
     <h2>Student Report <span class="zh">学员英语测试报告</span><small style="display:block;font-family:var(--body);font-weight:500;font-size:11px;color:var(--faint);margin-top:3px">点击 Save as PDF 后，在对话框中选择「存储为 PDF / Save as PDF」即可导出。</small></h2>
     <div class="rov-actions">
       <div class="rov-lang" id="rovDepth"><button type="button" data-rdepth="detail" class="is-on">Detailed 详细</button><button type="button" data-rdepth="simple">Simple 简洁</button></div>
       <div class="rov-lang rov-mode" id="rovMode"><button type="button" data-rmode="edit" class="is-on">Edit 编辑</button><button type="button" data-rmode="preview">Preview 预览</button></div>
       <div class="rov-lang" id="rovLang"><button type="button" data-rlang="zh" class="is-on">中文</button><button type="button" data-rlang="en">English</button></div>
+      <button type="button" class="rov-btn" id="rovClose">Close 关闭</button>
       <button type="button" class="rov-btn rov-btn--pri" id="rovPrint"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px;margin-right:6px"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M4 19h16"/></svg>Save as PDF 保存 PDF</button>
     </div>
   </div>
@@ -9181,6 +9279,178 @@ io.observe(er);})();
     if(t.dataset&&t.dataset.chk!==undefined){ST.checks[+t.dataset.chk]=t.checked; t.closest(".rb-pain").classList.toggle("is-on",t.checked); save(); renderSheet();}
   });
   side.addEventListener("click",function(e){ if(e.target&&e.target.id==="rbReset"){ ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",stg:{},lang:ST.lang||"zh",depth:ST.depth||"detail"}; save(); renderAll(); } });
+})();
+/* ===== Downloadable per-level PDF handouts (advisor, poster-style detail) · isolated ===== */
+(function(){
+  var LV=[
+   {chip:"P1",tag:"Pre-A1 \u00b7 Level 0",name:"What Students Learn in Class",core:"Copying",coreZh:"\u6a21\u4eff",accent:"#EBB12A",badge:"#9A6E00",cefr:"CEFR Pre-A1",formula:"By Template",classes:"48 classes",
+    lvNo:"Level 0",who:"For complete beginners who want to start speaking English with confidence from zero. 适合从零开始、想自信开口说英语的学员。",intro:"A visual guide for learners with very basic English. \u9002\u5408\u82f1\u8bed\u975e\u5e38\u57fa\u7840\u7684\u5b66\u5458\u3002",
+    flow:[["Listen","\u804a\u542c"],["Repeat","\u8ddf\u8bfb"],["Copy","\u6a21\u4eff"],["Respond","\u56de\u5e94"]],
+    secs:[
+     {n:1,ten:"Greetings & Self-Introduction",tzh:"\u81ea\u6211\u4ecb\u7ecd",rows:[{t:"My name is Ali."},{t:"I am from Johor Bahru."},{t:"I work in a shop."},{t:"Nice to meet you."}]},
+     {n:2,ten:"Classroom English",tzh:"\u8bfe\u5802\u7528\u8bed",rows:[{t:"Open your book."},{t:"Listen and repeat."},{t:"Write your name."},{t:"I don't understand."},{t:"Can you repeat?"}]},
+     {n:3,ten:"Basic Vocabulary",tzh:"\u57fa\u7840\u8bcd\u6c47",rows:[{tag:"People \u4eba\u7269",t:"teacher \u00b7 student \u00b7 customer"},{tag:"Places \u5730\u70b9",t:"office \u00b7 home \u00b7 shop"},{tag:"Objects \u7269\u4ef6",t:"phone \u00b7 book \u00b7 pen"},{tag:"Actions \u52a8\u4f5c",t:"work \u00b7 read \u00b7 write"}]},
+     {n:4,ten:"Simple Questions & Short Answers",tzh:"\u7b80\u5355\u95ee\u7b54",rows:[{q:"What is your name?",a:"My name is Mei."},{q:"Do you work?",a:"Yes, I do."},{q:"Can you speak English?",a:"A little."},{q:"Are you ready?",a:"Yes, I am."}]},
+     {n:5,ten:"Numbers, Time & Daily Info",tzh:"\u6570\u5b57\u00b7\u65f6\u95f4\u00b7\u65e5\u5e38",rows:[{t:"It is 8 o'clock."},{t:"My class is at 8pm."},{t:"Today is Monday."},{t:"I finish work at 6pm."},{tag:"Numbers \u6570\u5b57",t:"1 2 3 4 5 6 7 8 9 10"}]},
+     {n:6,ten:"Simple Daily / Workplace Conversation",tzh:"\u65e5\u5e38\u00b7\u804c\u573a\u5bf9\u8bdd",rows:[{dlg:[["A","Can you help me?"],["B","Yes, I can."],["A","Please check this."],["B","Okay."]]}]}
+    ],
+    gain:["Recognise common English words \u8ba4\u8bc6\u5e38\u89c1\u82f1\u8bed\u5355\u8bcd","Understand simple instructions \u7406\u89e3\u7b80\u5355\u6307\u4ee4","Give short basic answers \u80fd\u7ed9\u7b80\u77ed\u56de\u7b54","Build confidence to speak \u5efa\u7acb\u5f00\u53e3\u4fe1\u5fc3","Prepare for Level 1 sentence construction \u4e3a Level 1 \u505a\u51c6\u5907"]},
+   {chip:"L1",tag:"Level 1",name:"Basic Expression",core:"Sentence Construction",coreZh:"\u6784\u53e5",accent:"#2E9E50",badge:"#1F7D3C",cefr:"CEFR A1\u2013A2",formula:"By Template",classes:"48 classes",
+    lvNo:"Level 1",who:"For learners who know some words but still find it hard to form full sentences. 适合会一些单词、但还组不成完整句子的学员。",intro:"A visual guide for learners ready to build and expand simple English sentences. \u9002\u5408\u51c6\u5907\u7ec4\u53e5\u3001\u6269\u53e5\u7684\u5b66\u5458\u3002",
+    flow:[["Word","\u5355\u8bcd"],["Phrase","\u77ed\u8bed"],["Simple Sentence","\u7b80\u5355\u53e5"],["Expand","\u6269\u5c55\u53e5"],["Combine","\u7ec4\u5408"],["Respond","\u56de\u5e94"]],
+    secs:[
+     {n:1,ten:"Greetings & Self-Introduction",tzh:"\u81ea\u6211\u4ecb\u7ecd",rows:[{t:"My name is Sarah and I work in an office."},{t:"I am from Johor Bahru, but I work in Singapore."},{t:"I am an admin assistant in a factory."},{t:"Nice to meet you. I'm happy to be here."}]},
+     {n:2,ten:"Building Sentence Patterns",tzh:"\u53e5\u578b\u516c\u5f0f",rows:[{formulas:["Subject + be + complement","Subject + verb + object","Subject + verb + place / time","Subject + verb + because + reason"]},{t:"She is very friendly."},{t:"I answer customer emails."},{t:"He works in the office every day."},{t:"I study English because I want to speak better at work."}]},
+     {n:3,ten:"From Simple to Expanded Sentences",tzh:"\u7b80\u5355\u2192\u6269\u5c55\u53e5",rows:[{flow:["I work.","I work in sales.","I work in sales in Johor Bahru."]},{flow:["She is tired.","She is tired after work.","She is tired after work because she had many meetings."]},{flow:["I like English.","I like English class.","I like English class because it helps me communicate better."]},{note:"Add details, reasons, places and time to expand your ideas. \u52a0\u4e0a\u7ec6\u8282\u3001\u539f\u56e0\u3001\u5730\u70b9\u548c\u65f6\u95f4\u6765\u6269\u5c55\u3002"}]},
+     {n:4,ten:"Questions & Fuller Answers",tzh:"\u66f4\u5b8c\u6574\u7684\u95ee\u7b54",rows:[{q:"What do you do?",a:"I work as an admin assistant."},{q:"Where do you work?",a:"I work in a factory in Pasir Gudang."},{q:"Do you like English?",a:"Yes, I do, because it helps me at work."},{q:"How are you today?",a:"I'm a little tired, but I'm okay."}]},
+     {n:5,ten:"Daily Life, Routines, Feelings & Preferences",tzh:"\u65e5\u5e38\u00b7\u611f\u53d7\u00b7\u504f\u597d",rows:[{tag:"Routines \u4f5c\u606f",t:"I usually wake up at 6am and go to work at 8am."},{tag:"Feelings \u611f\u53d7",t:"I feel nervous when I speak English, but I want to improve."},{tag:"Preferences \u504f\u597d",t:"I like spicy food, but I don't like very sweet drinks."},{tag:"Hobbies \u5174\u8da3",t:"My hobby is reading because it helps me relax."}]},
+     {n:6,ten:"Simple Conversation with Better Responses",tzh:"\u66f4\u597d\u7684\u5bf9\u8bdd\u56de\u5e94",rows:[{dlg:[["A","Can I help you?"],["B","Yes, I need this document for my manager."],["A","Okay, please wait a moment. I will check it for you."],["B","Thank you. I need it before 3pm."]]}]}
+    ],
+    gain:["Build complete sentences \u7ec4\u51fa\u5b8c\u6574\u53e5\u5b50","Add details and reasons \u52a0\u5165\u7ec6\u8282\u4e0e\u539f\u56e0","Give fuller answers \u7ed9\u66f4\u5b8c\u6574\u7684\u56de\u7b54","Use basic sentence patterns \u8fd0\u7528\u57fa\u672c\u53e5\u578b","Talk about daily life more clearly \u66f4\u6e05\u695a\u8c08\u65e5\u5e38","Prepare for Level 2 opinions & longer ideas \u4e3a Level 2 \u505a\u51c6\u5907"]},
+   {chip:"L2",tag:"Level 2",name:"Developing Confidence",core:"Conveying",coreZh:"\u8868\u8fbe",accent:"#1F9FE6",badge:"#1276B5",cefr:"CEFR A2\u2013B1",formula:"Formula O.R.E.O",classes:"48 classes",
+    lvNo:"Level 2",who:"For learners who can speak basic English but need to explain their ideas more clearly. 适合能说基础英语、但想把想法表达得更清楚的学员。",intro:"A visual guide for learners ready to convey ideas, share opinions, and explain themselves more clearly. \u9002\u5408\u51c6\u5907\u8868\u8fbe\u89c2\u70b9\u3001\u6e05\u695a\u8bf4\u660e\u7684\u5b66\u5458\u3002",
+    flow:[["Topic","\u4e3b\u9898"],["Opinion","\u89c2\u70b9"],["Reason","\u7406\u7531"],["Example","\u4f8b\u5b50"],["Objection / Response","\u5f02\u8bae\u00b7\u56de\u5e94"]],
+    secs:[
+     {n:1,ten:"Preferences & Personal Views",tzh:"\u504f\u597d\u4e0e\u770b\u6cd5",rows:[{t:"I prefer working in the office."},{t:"I like online learning because it is flexible."},{t:"In my opinion, English is important for career growth."},{t:"I enjoy group discussion, but I need more confidence."}]},
+     {n:2,ten:"Opinion Formulas",tzh:"\u8868\u8fbe\u516c\u5f0f",rows:[{formulas:["I think + idea","In my opinion, + idea","I prefer + option + because + reason","I agree because + reason","I don't agree because + reason"]},{t:"I think teamwork is important."},{t:"In my opinion, clear communication saves time."},{t:"I prefer face-to-face meetings because they are more effective."}]},
+     {n:3,ten:"From Reply to Better Explanation",tzh:"\u66f4\u597d\u7684\u89e3\u91ca",rows:[{flow:["I like this job.","I like this job because I learn new things."]},{flow:["I disagree.","I disagree because the plan may cost too much."]},{flow:["I prefer online class.","I prefer online class because I can save time and travel less."]},{note:"Add reasons, examples, and simple explanations to make your ideas clearer. \u52a0\u4e0a\u7406\u7531\u3001\u4f8b\u5b50\u548c\u7b80\u5355\u8bf4\u660e\uff0c\u8ba9\u60f3\u6cd5\u66f4\u6e05\u695a\u3002"}]},
+     {n:4,ten:"Questions, Opinions & Responses",tzh:"\u63d0\u95ee\u4e0e\u56de\u5e94",rows:[{q:"What do you do every day?",a:"I think it is sometimes necessary, but it should not happen too often."},{q:"Which do you prefer?",a:"I prefer email because it is clear and easy to check again."},{q:"Do you agree?",a:"Yes, I do, because it helps the team stay organised."},{q:"Why not?",a:"I don't think it is a good idea because the deadline is too short."}]},
+     {n:5,ten:"Expressing Preferences, Ideas & Objections",tzh:"\u8868\u8fbe\u60f3\u6cd5\u4e0e\u5f02\u8bae",rows:[{tag:"Preferences \u504f\u597d",t:"I would rather study in the evening."},{tag:"Ideas \u60f3\u6cd5",t:"Maybe we can solve this by discussing it first."},{tag:"Agreement \u8ba4\u540c",t:"That makes sense because everyone can follow the plan."},{tag:"Objections \u5f02\u8bae",t:"I understand your point, but I have a different view."}]},
+     {n:6,ten:"Discussion / Workplace Conversation",tzh:"\u8ba8\u8bba\u4e0e\u804c\u573a\u5bf9\u8bdd",rows:[{dlg:[["A","What do you think about the new schedule?"],["B","I think it is better because it gives us more time to prepare."],["A","Do you have any concerns?"],["B","Yes. I'm a bit worried that the team may need more support at the beginning."]]}]}
+    ],
+    gain:["Share opinions with reasons \u6709\u7406\u7531\u5730\u8868\u8fbe\u89c2\u70b9","Express preferences clearly \u6e05\u695a\u8868\u8fbe\u504f\u597d","Give better explanations \u7ed9\u66f4\u597d\u7684\u89e3\u91ca","Respond to ideas and objections \u56de\u5e94\u60f3\u6cd5\u4e0e\u5f02\u8bae","Speak with better flow \u8868\u8fbe\u66f4\u6d41\u7545","Prepare for Level 3 discussions \u4e3a Level 3 \u505a\u51c6\u5907"]},
+   {chip:"L3",tag:"Level 3",name:"Clear Communication",core:"Convincing",coreZh:"\u8bf4\u670d",accent:"#E8472B",badge:"#C2351C",cefr:"CEFR B1\u2013B2",formula:"Formula S.P.E.A.R",classes:"48 classes",
+    lvNo:"Level 3",who:"For learners who need to present, discuss and persuade more confidently at work. 适合需要在职场上更自信地陈述、讨论与说服的学员。",intro:"A visual guide for learners who want to present ideas clearly, defend their views, and communicate confidently. \u9002\u5408\u60f3\u6e05\u695a\u9648\u8ff0\u3001\u634d\u536b\u89c2\u70b9\u3001\u81ea\u4fe1\u6c9f\u901a\u7684\u5b66\u5458\u3002",
+    flow:[["Topic","\u8bae\u9898"],["Position","\u7acb\u573a"],["Reason","\u539f\u56e0"],["Evidence","\u8bc1\u636e"],["Respond","\u56de\u5e94"],["Influence","\u5f71\u54cd"]],
+    secs:[
+     {n:1,ten:"Presentations & Key Message Delivery",tzh:"\u91cd\u70b9\u9648\u8ff0",rows:[{t:"Today, I'd like to present three key points."},{t:"The main issue is unclear communication in the team."},{t:"First, it affects workflow. Second, it causes delays. Finally, it reduces confidence."},{t:"My main message is that clear communication leads to better results."}]},
+     {n:2,ten:"Negotiation & Persuasion Formulas",tzh:"\u8c08\u5224\u00b7\u8bf4\u670d\u516c\u5f0f",rows:[{formulas:["I understand your point, but\u2026","Would you be open to\u2026?","A better option might be\u2026 because\u2026","From our perspective,\u2026","If we do this, we can\u2026","Can we find a middle ground?"]},{t:"Would you be open to extending the deadline by one day?"},{t:"A better option might be weekly updates because they reduce confusion."},{t:"From our perspective, this plan is more practical."}]},
+     {n:3,ten:"From Simple Reply to Stronger Defence",tzh:"\u66f4\u6709\u529b\u7684\u56de\u5e94",rows:[{flow:["I think it is good.","I think it is effective because it saves time and improves coordination."]},{flow:["I disagree.","I disagree because the proposal may increase cost without solving the main problem."]},{flow:["We should change it.","We should change it so the process becomes clearer and easier for everyone to follow."]},{note:"Add reasons, evidence, and clear justification to defend your answers better. \u52a0\u4e0a\u7406\u7531\u3001\u8bc1\u636e\u548c\u6e05\u695a\u8bf4\u660e\uff0c\u628a\u7b54\u6848\u5b88\u5f97\u66f4\u7a33\u3002"}]},
+     {n:4,ten:"Debate, Questions & Defence",tzh:"\u8fa9\u8bba\u4e0e\u7b54\u8fa9",rows:[{q:"Why do you support this idea?",a:"I support it because it improves efficiency and helps the team avoid repeated mistakes."},{q:"What if someone disagrees?",a:"I would explain the benefits clearly and ask which part they are concerned about."},{q:"Can you justify your answer?",a:"Yes. My answer is based on the current workflow and the team's actual needs."},{q:"Do you still agree?",a:"Yes, because the solution is practical and easier to implement."}]},
+     {n:5,ten:"Impromptu, Clarifying & Public Speaking",tzh:"\u5373\u5174\u00b7\u6f84\u6e05\u00b7\u516c\u4f17\u8868\u8fbe",rows:[{tag:"Impromptu \u5373\u5174",t:"If I had to answer immediately, I would say communication is the key to teamwork."},{tag:"Clarifying \u6f84\u6e05",t:"What I mean is that the message should be simpler and more direct."},{tag:"Defending \u8fa9\u62a4",t:"I understand your concern, but I believe this approach is still more effective."},{tag:"Public Speaking \u516c\u4f17\u6f14\u8bf4",t:"Good afternoon everyone. Today I'd like to share a simple idea that can improve team communication."}]},
+     {n:6,ten:"Presentation Q&A / Professional Conversation",tzh:"\u6f14\u793a\u95ee\u7b54",rows:[{dlg:[["A","What do you suggest for the new workflow?"],["B","I suggest simplifying the process because the current steps are too complicated."],["A","How would that help the team?"],["B","It would help because the team could respond faster and make fewer mistakes."]]}]}
+    ],
+    gain:["Present ideas clearly \u6e05\u695a\u9648\u8ff0\u60f3\u6cd5","Negotiate more confidently \u66f4\u6709\u4fe1\u5fc3\u5730\u8c08\u5224","Defend answers with reasons \u6709\u7406\u7531\u5730\u7b54\u8fa9","Handle debate & questions \u5e94\u5bf9\u8fa9\u8bba\u4e0e\u63d0\u95ee","Speak more spontaneously \u66f4\u5373\u5174\u5730\u8868\u8fbe","Prepare for Level 4 professional communication \u4e3a Level 4 \u505a\u51c6\u5907"]},
+   {chip:"L4",tag:"Level 4",name:"Advanced Expression",core:"Captivating",coreZh:"\u5f71\u54cd",accent:"#15335E",badge:"#15335E",cefr:"CEFR B2\u2013C1",formula:"Formula T.A.R.G.E.T",classes:"48 classes",
+    lvNo:"Level 4",who:"For professionals who present, lead and negotiate, and want to speak with real impact. 适合需要演说、带领与谈判、想更有影响力的专业人士。",intro:"What students will actually learn in class. \u5b66\u5458\u5728\u8bfe\u5802\u4e0a\u771f\u6b63\u4f1a\u5b66\u5230\u7684\u5185\u5bb9\u3002",flow:null,
+    secs:[
+     {n:1,ten:"Executive Presentation & Message Structuring",tzh:"\u9ad8\u7ba1\u7ea7\u6f14\u793a",skills:["Open a presentation with impact","Signpost and set expectations","Sequence and develop key points","Support ideas with data / evidence","Close strongly with a key takeaway"],rows:[{phrase:"Today I'd like to highlight three key points."},{phrase:"First\u2026, next\u2026, finally\u2026"},{phrase:"My recommendation is\u2026"},{phrase:"In conclusion\u2026"}]},
+     {n:2,ten:"Strategic Negotiation & Diplomatic Language",tzh:"\u7b56\u7565\u8c08\u5224",skills:["Soften disagreement diplomatically","Propose alternatives constructively","Persuade and influence tactfully","Respond professionally to objections","Find common ground and close"],rows:[{phrase:"I understand your point, however\u2026"},{phrase:"Would you be open to\u2026?"},{phrase:"A better option might be\u2026"},{phrase:"Can we find a middle ground?"}]},
+     {n:3,ten:"High-Level Discussion, Debate & Defending",tzh:"\u9ad8\u9636\u8ba8\u8bba\u4e0e\u7b54\u8fa9",skills:["Give opinions with clarity and logic","Justify decisions and viewpoints","Respond to challenge questions","Defend a point respectfully","Explain reasons and implications"],rows:[{phrase:"My view is that\u2026"},{phrase:"The main reason is\u2026"},{phrase:"I would defend this point because\u2026"},{phrase:"I respectfully disagree because\u2026"}]},
+     {n:4,ten:"Executive Meeting Communication",tzh:"\u4f1a\u8bae\u6c9f\u901a\u4e3b\u5bfc",skills:["Lead and steer the discussion","Give updates clearly and concisely","Ask strategic, insightful questions","Summarise decisions and actions","Use follow-up and next-steps language"],rows:[{phrase:"To clarify our direction\u2026"},{phrase:"Can we agree on the next step?"},{phrase:"Let me summarise the discussion."},{phrase:"The key update is\u2026"}]},
+     {n:5,ten:"Public Speaking, Impromptu Response & Q&A",tzh:"\u516c\u4f17\u6f14\u8bf4\u4e0e\u5373\u5174",skills:["Think on your feet and respond","Answer unexpected questions","Speak with confidence and clarity","Structure quick, logical responses","Handle audience questions well"],rows:[{phrase:"My immediate response would be\u2026"},{phrase:"From my perspective\u2026"},{phrase:"If I had to answer directly\u2026"},{phrase:"That's an important question."}]},
+     {n:6,ten:"Advanced Expression & Audience Awareness",tzh:"\u7cbe\u70bc\u8868\u8fbe\u4e0e\u542c\u4f17\u610f\u8bc6",skills:["Use refined, precise vocabulary","Adjust tone to context and culture","Choose words for professionalism","Adapt to different audiences","Sound persuasive and polished"],rows:[{up:["good","effective"]},{up:["I disagree","I would challenge that view"]},{up:["change it","revise the process"]}]}
+    ],
+    gain:["Present with impact \u6709\u5f71\u54cd\u529b\u5730\u6f14\u793a","Negotiate with diplomacy \u5916\u4ea4\u5f0f\u8c08\u5224","Defend answers clearly \u6e05\u695a\u7b54\u8fa9","Lead discussions \u4e3b\u5bfc\u8ba8\u8bba","Speak more spontaneously \u66f4\u5373\u5174\u5730\u8868\u8fbe","Adapt tone to audience \u56e0\u4eba\u8c03\u6574\u8bed\u6c14"]}
+  ];
+  function esc(x){return String(x==null?"":x).replace(/&(?![a-zA-Z]+;|#)/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function rowHTML(r,o){
+    if(r.q!==undefined) return '<div class="qa"><span class="qa__q">'+esc(r.q)+'</span><span class="qa__ar" style="color:'+o.badge+'">\u2192</span><span class="qa__a">'+esc(r.a)+'</span></div>';
+    if(r.flow) return '<div class="prog">'+r.flow.map(function(x,i){return (i?'<span class="prog__ar" style="color:'+o.badge+'">\u2192</span>':'')+'<span class="prog__s">'+esc(x)+'</span>';}).join('')+'</div>';
+    if(r.dlg) return '<div class="dlg">'+r.dlg.map(function(pr){return '<div class="dlg__l"><span class="dlg__s" style="color:'+o.badge+'">'+esc(pr[0])+'</span><span>'+esc(pr[1])+'</span></div>';}).join('')+'</div>';
+    if(r.formulas) return '<div class="fmw">'+r.formulas.map(function(f){return '<span class="fmc">'+esc(f)+'</span>';}).join('')+'</div>';
+    if(r.note) return '<div class="note">'+esc(r.note)+'</div>';
+    if(r.tag!==undefined) return '<div class="tg"><span class="tg__l" style="background:'+o.badge+'16;color:'+o.badge+'">'+esc(r.tag)+'</span><span class="tg__t">'+esc(r.t)+'</span></div>';
+    return '<div class="line">'+esc(r.t)+'</div>';
+  }
+  function secHTML(sec,o){
+    var inner;
+    if(sec.skills){
+      inner='<ul class="skl">'+sec.skills.slice(0,4).map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
+      var ph=sec.rows.filter(function(r){return r.phrase!==undefined;});
+      var up=sec.rows.filter(function(r){return r.up;});
+      if(ph.length) inner+='<div class="phw"><span class="phw__l">Example phrases</span><div class="phw__c">'+ph.map(function(r){return '<span class="phc">'+esc(r.phrase)+'</span>';}).join('')+'</div></div>';
+      if(up.length) inner+='<div class="upw">'+up.map(function(r){return '<span class="up"><span class="up0">'+esc(r.up[0])+'</span><span class="uar" style="color:'+o.badge+'">\u2192</span><span class="up1" style="color:'+o.badge+'">'+esc(r.up[1])+'</span></span>';}).join('')+'</div>';
+    } else {
+      inner=sec.rows.map(function(r){return rowHTML(r,o);}).join('');
+    }
+    return '<section class="mod"><div class="mod__h"><span class="mod__n" style="background:'+o.badge+'1a;color:'+o.badge+'">'+sec.n+'</span><div class="mod__t"><b>'+esc(sec.ten)+'</b><span>'+esc(sec.tzh)+'</span></div></div><div class="mod__b">'+inner+'</div></section>';
+  }
+  function levelHTML(o){
+    var chips='<div class="chips"><span class="mchip"><i>CEFR</i>'+esc(o.cefr.replace("CEFR ",""))+'</span><span class="mchip"><i>Framework</i>'+esc(o.formula.replace("Formula ",""))+'</span><span class="mchip"><i>Duration</i>'+esc(o.classes)+'</span></div>';
+    var mods='<div class="mods">'+o.secs.map(function(sec){return secHTML(sec,o);}).join('')+'</div>';
+    var out='<div class="out"><div class="out__h"><span>What students gain</span><i>\u5b66\u4e60\u6210\u679c</i></div><div class="out__g">'+o.gain.map(function(g){return '<div class="out__i"><span class="tick" style="color:'+o.badge+'">\u2713</span><span>'+esc(g)+'</span></div>';}).join('')+'</div></div>';
+    return '<div class="page" style="--a:'+o.accent+';--b:'+o.badge+'">'+
+      '<header class="hero"><div class="hero__bar" style="background:'+o.accent+'"></div><div class="hero__in">'+
+        '<div class="hero__top"><span class="brand">TOUCH English</span><span class="hero__prog">Speaking Programme \u00b7 5C Framework</span></div>'+
+        '<div class="hero__main"><div class="hero__id">'+
+          '<div class="hero__lvrow"><span class="chip" style="border-color:'+o.accent+';color:'+o.badge+';background:'+o.accent+'12">'+esc(o.chip)+'</span><span class="hero__lvno">'+esc(o.lvNo)+'</span></div>'+
+          '<h1 class="hero__name">'+esc(o.name)+'</h1>'+
+          '<p class="hero__tag">'+esc(o.intro)+'</p></div>'+
+          '<div class="hero__skill" style="background:'+o.accent+'12;border-color:'+o.accent+'40"><span class="hero__sl">Core Skill</span><b class="hero__sc" style="color:'+o.badge+'">'+esc(o.core)+'</b><span class="hero__sz">'+esc(o.coreZh)+'</span></div>'+
+        '</div>'+chips+'</div></header>'+
+        '<div class="who" style="border-left-color:'+o.accent+';background:'+o.accent+'0c"><span class="who__l">Who is this level for?<i>\u8c01\u9002\u5408\u8fd9\u4e2a\u7ea7\u522b</i></span><span class="who__t">'+esc(o.who)+'</span></div>'+
+        '<div class="mods-h">What you\u2019ll learn <i>\u8bfe\u7a0b\u5185\u5bb9 \u00b7 6 modules</i></div>'+mods+out+
+        '<div class="foot"><b>TOUCH English</b> \u00b7 touchenglish.edu.my</div>'+
+      '</div>';
+  }
+  var PCSS=
+    '@page{size:A4 portrait;margin:0}'+
+    '*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}'+
+    'body{font-family:"Inter",system-ui,-apple-system,sans-serif;color:#33415c;font-size:10px;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact}'+
+    '.page{padding:10mm 13mm;page-break-after:always}.page:last-child{page-break-after:auto}'+
+    '.hero{border:1px solid #e9edf3;border-radius:16px;overflow:hidden;margin-bottom:9px;break-inside:avoid}'+
+    '.hero__bar{height:5px}'+
+    '.hero__in{padding:10px 18px}'+
+    '.hero__top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}'+
+    '.brand{font-family:"Sora",sans-serif;font-weight:800;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#16233c}'+
+    '.hero__prog{font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:#9aa6b5;font-weight:600}'+
+    '.hero__main{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}'+
+    '.hero__id{min-width:0}'+
+    '.hero__lvrow{display:flex;align-items:center;gap:9px;margin-bottom:6px}'+
+    '.chip{font-family:"Sora",sans-serif;font-weight:800;font-size:10.5px;padding:2px 9px;border-radius:6px;border:1.5px solid;letter-spacing:.02em}'+
+    '.hero__lvno{font-family:"Sora",sans-serif;font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8592a6}'+
+    '.hero__name{font-family:"Sora",sans-serif;font-weight:800;font-size:19px;line-height:1.14;color:#16233c;margin:0 0 4px}'+
+    '.hero__tag{font-size:10px;color:#6b7889;margin:0;max-width:110mm;line-height:1.45}'+
+    '.hero__skill{flex:none;text-align:center;border:1px solid;border-radius:13px;padding:9px 15px;min-width:104px}'+
+    '.hero__sl{display:block;font-family:"Sora",sans-serif;font-weight:700;font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;color:#9aa6b5}'+
+    '.hero__sc{display:block;font-family:"Sora",sans-serif;font-weight:800;font-size:16px;line-height:1.1;margin-top:4px}'+
+    '.hero__sz{display:block;font-size:10.5px;color:#7a8798;margin-top:1px}'+
+    '.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;padding-top:7px;border-top:1px solid #eef2f6}'+
+    '.mchip{display:inline-flex;align-items:center;gap:6px;background:#f6f8fb;border:1px solid #e9edf3;border-radius:999px;padding:4px 12px;font-size:9.5px;font-weight:600;color:#3a4a60}'+
+    '.mchip i{font-style:normal;font-family:"Sora",sans-serif;font-weight:700;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#9aa6b5}'+
+    '.who{display:flex;align-items:baseline;gap:11px;border-left:3px solid #16233c;border-radius:0 10px 10px 0;padding:7px 14px;margin-bottom:10px;break-inside:avoid}'+
+    '.who__l{flex:none;font-family:"Sora",sans-serif;font-weight:800;font-size:9.5px;color:#16233c}'+
+    '.who__l i{font-style:normal;font-weight:500;font-size:8.5px;color:#9aa6b5;margin-left:6px}'+
+    '.who__t{font-size:10.5px;color:#3a4a60;font-weight:500}'+
+    '.mods-h{font-family:"Sora",sans-serif;font-weight:800;font-size:11px;color:#16233c;margin:0 0 8px}'+
+    '.mods-h i{font-style:normal;font-weight:500;font-size:9px;color:#9aa6b5;margin-left:7px}'+
+    '.mods{display:grid;grid-template-columns:1fr 1fr;gap:6px}'+
+    '.mod{border:1px solid #e9edf3;border-radius:12px;padding:7px 12px 7px;background:#fff;break-inside:avoid;page-break-inside:avoid}'+
+    '.mod__h{display:flex;align-items:center;gap:9px;margin-bottom:6px;padding-bottom:5px;border-bottom:1px solid #f0f3f7}'+
+    '.mod__n{flex:none;width:22px;height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:"Sora",sans-serif;font-weight:800;font-size:11px}'+
+    '.mod__t{min-width:0}.mod__t b{display:block;font-family:"Sora",sans-serif;font-weight:700;font-size:10.5px;color:#16233c;line-height:1.2}.mod__t span{display:block;font-size:8.8px;color:#9aa6b5;margin-top:1px}'+
+    '.mod__b{display:flex;flex-direction:column;gap:3px}'+
+    '.line{font-size:9.2px;color:#2f3e54;line-height:1.28}'+
+    '.qa{font-size:9.2px;line-height:1.26}.qa__q{color:#8592a6}.qa__ar{font-weight:800;margin:0 5px}.qa__a{color:#22314a;font-weight:600}'+
+    '.prog{display:flex;flex-wrap:wrap;align-items:center;gap:4px}.prog__s{background:#f4f7fb;border:1px solid #eaf0f6;border-radius:7px;padding:2px 7px;font-size:8.9px;color:#33415c}.prog__ar{font-weight:800}'+
+    '.dlg{display:flex;flex-direction:column;gap:3px;border-left:2px solid #eef2f6;padding-left:10px}.dlg__l{font-size:9.2px;color:#2f3e54;display:flex;gap:7px}.dlg__s{flex:none;font-weight:800;font-family:"Sora",sans-serif}'+
+    '.fmw{display:flex;flex-wrap:wrap;gap:4px}.fmc{background:#fff;border:1px solid #dde5ee;border-radius:6px;padding:2px 8px;font-size:8.6px;color:#516074;font-family:"Sora",sans-serif;font-weight:600}'+
+    '.note{font-size:8.8px;color:#9aa6b5;font-style:italic;line-height:1.4}'+
+    '.tg{display:flex;align-items:baseline;gap:7px;font-size:9.2px}.tg__l{flex:none;font-family:"Sora",sans-serif;font-weight:700;font-size:7.5px;letter-spacing:.04em;padding:2px 8px;border-radius:999px;white-space:nowrap}.tg__t{color:#2f3e54}'+
+    '.skl{list-style:none;margin:0 0 8px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:3px 14px}.skl li{font-size:9.2px;color:#3a4a60;padding-left:13px;position:relative;line-height:1.3}.skl li:before{content:"";position:absolute;left:0;top:5px;width:5px;height:5px;border-radius:50%;background:var(--b)}'+
+    '.phw{margin-top:2px}.phw__l{display:block;font-family:"Sora",sans-serif;font-weight:700;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:#9aa6b5;margin-bottom:4px}.phw__c{display:flex;flex-wrap:wrap;gap:5px}.phc{background:#f4f7fb;border:1px solid #eaf0f6;border-radius:7px;padding:2px 9px;font-size:8.9px;color:#3a4a60;font-style:italic}'+
+    '.upw{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:7px}.up{display:inline-flex;align-items:center;gap:6px;font-size:9.3px}.up0{color:#98a4b4;text-decoration:line-through}.up1{font-weight:700}.uar{font-weight:800}'+
+    '.out{margin-top:8px;border:1px solid #e9edf3;border-radius:12px;padding:9px 15px 9px;background:#fbfcfd;break-inside:avoid}'+
+    '.out__h{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}.out__h span{font-family:"Sora",sans-serif;font-weight:800;font-size:11px;color:#16233c}.out__h i{font-style:normal;font-size:9px;color:#9aa6b5}'+
+    '.out__g{display:grid;grid-template-columns:1fr 1fr;gap:5px 22px}.out__i{display:flex;gap:8px;align-items:baseline;font-size:9.3px;color:#3a4a60;line-height:1.32}.tick{flex:none;font-weight:800;font-size:9px}'+
+    '.foot{margin-top:9px;text-align:center;font-size:8.5px;color:#aab4c1;letter-spacing:.02em}.foot b{color:#8592a6;font-weight:600}';
+  var FONTS='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">';
+  var PJS='(function(){function ir(){var ps=[].slice.call(document.images).map(function(im){return im.complete?Promise.resolve():new Promise(function(r){im.onload=im.onerror=r;});});return Promise.all(ps);}var w=false;function go(){if(w)return;w=true;try{window.focus();window.print();}catch(e){}}function st(){var f=(document.fonts&&document.fonts.ready)?document.fonts.ready:Promise.resolve();Promise.all([f,ir()]).then(function(){setTimeout(go,150);});setTimeout(go,2600);}if(document.readyState==="complete")st();else window.addEventListener("load",st);window.onafterprint=function(){try{window.close();}catch(e){}};})();';
+  function writeDoc(inner,title){
+    var win=null; try{ win=window.open("","_blank"); }catch(e){}
+    if(!win){ alert("\u8bf7\u5141\u8bb8\u5f39\u51fa\u7a97\u53e3\u4ee5\u4e0b\u8f7d PDF"); return; }
+    win.document.open();
+    win.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+title+'</title>'+FONTS+'<style>'+PCSS+'</style></head><body>'+inner+'<scr'+'ipt>'+PJS+'</scr'+'ipt></body></html>');
+    win.document.close();
+  }
+  function printOne(i){ var o=LV[i]; if(!o)return; writeDoc(levelHTML(o),"TOUCH English \u00b7 "+o.tag+" "+o.core); }
+  function printAll(){ writeDoc(LV.map(levelHTML).join(""),"TOUCH English \u00b7 5C Levels (all)"); }
+  var row=document.querySelector(".fivedl__row");
+  if(row){ row.addEventListener("click",function(e){
+    var lv=e.target.closest(".fivedl__lv"); if(lv){ printOne(+lv.getAttribute("data-lv")); return; }
+    if(e.target.closest("#fiveCPdfAll")){ printAll(); }
+  }); }
 })();
 </script>
 </body>
