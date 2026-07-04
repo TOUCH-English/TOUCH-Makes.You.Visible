@@ -329,6 +329,31 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .lvlq__fu li{font-size:12px;color:var(--muted);padding:2px 0 2px 16px;position:relative;line-height:1.5}
 .lvlq__fu li::before{content:"→";position:absolute;left:0;color:var(--ci);font-weight:700}
 .lvlq__ful{font-family:var(--display);font-weight:800;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ci);margin-top:8px}
+.lvlq__it--hid{display:none}
+.lvlq__it--in{animation:lvlqIn .32s cubic-bezier(.2,.7,.2,1) both}
+@keyframes lvlqIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.lvlq__more{display:flex;justify-content:center;margin-top:2px}
+.lvlq__next{font-family:var(--display);font-weight:700;font-size:12px;color:var(--ci,var(--blue));background:rgba(255,255,255,.78);border:1px solid rgba(20,33,50,.1);border-radius:999px;padding:7px 16px;cursor:pointer;box-shadow:0 4px 12px -6px rgba(20,33,50,.18);transition:transform .15s,box-shadow .15s,background .15s}
+.lvlq__next:hover{transform:translateY(-1px);background:#fff;box-shadow:0 8px 18px -8px rgba(20,33,50,.24)}
+.lvlq__next .lvlq__count{font-weight:600;font-size:10.5px;color:var(--muted);margin-left:7px}
+.lvlq__adv{display:none;margin-left:10px;vertical-align:1px;align-items:center;gap:5px;font-family:var(--display);font-weight:700;font-size:10.5px;color:var(--red);background:rgba(224,48,59,.06);border:1px dashed rgba(224,48,59,.4);border-radius:999px;padding:3px 10px;cursor:pointer;transition:background .15s}
+.lvlq__adv.is-on{display:inline-flex}
+.lvlq__adv:hover{background:rgba(224,48,59,.12)}
+.lvlqe{margin-top:12px;display:grid;gap:12px}
+.lvlqe__it{background:rgba(255,255,255,.8);border:1px solid rgba(20,33,50,.1);border-radius:12px;padding:12px;display:grid;gap:8px}
+.lvlqe__row{display:flex;gap:8px;align-items:center}
+.lvlqe__in{flex:1;font:inherit;font-size:12.5px;padding:7px 10px;border:1px solid rgba(20,33,50,.14);border-radius:9px;background:#fff;min-width:0}
+.lvlqe__in--k{flex:0 0 150px}
+.lvlqe__del{flex:none;width:28px;height:28px;border-radius:8px;border:1px solid rgba(224,48,59,.3);background:#fff;color:var(--red);cursor:pointer;font-size:12px}
+.lvlqe__del:hover{background:rgba(224,48,59,.08)}
+.lvlqe__ta{font:inherit;font-size:12.5px;line-height:1.5;padding:8px 10px;border:1px solid rgba(20,33,50,.14);border-radius:9px;background:#fff;resize:vertical;width:100%;box-sizing:border-box}
+.lvlqe__bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.lvlqe__sp{flex:1}
+.lvlqe__b{font-family:var(--display);font-weight:700;font-size:12px;padding:8px 15px;border-radius:999px;cursor:pointer;border:1px solid rgba(20,33,50,.12);background:#fff;color:var(--ink);transition:transform .15s,box-shadow .15s}
+.lvlqe__b:hover{transform:translateY(-1px);box-shadow:0 6px 14px -8px rgba(20,33,50,.28)}
+.lvlqe__b--ghost{color:var(--muted)}
+.lvlqe__b--save{background:var(--blue);border-color:var(--blue);color:#fff}
+.lvlqe__b.is-armed{background:rgba(224,48,59,.08);border-color:var(--red);color:var(--red);font-weight:800}
 .test-hero{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
 .test-stats{background:linear-gradient(160deg,var(--blue),var(--blue-deep));color:#fff;border-radius:var(--r-lg);padding:30px;box-shadow:var(--shadow-lg)}
 .test-stats .row{display:flex;gap:24px;margin-bottom:22px}
@@ -2991,7 +3016,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .lvsum__line{font-family:var(--display);font-size:11px;line-height:1.5;color:var(--muted);background:transparent;padding:1px 7px;border-radius:7px;border:1px solid rgba(20,33,50,.07)}
 .lvsum__line b{color:var(--blue);font-weight:700;margin-right:5px}
 .lvsum__arr{color:var(--faint);margin:0 2px}
-.lvsum__edit{font-family:var(--display);font-weight:600;font-size:11px;color:var(--blue);background:transparent;border:none;border-radius:7px;padding:3px 8px;cursor:pointer;white-space:nowrap;opacity:.65;transition:opacity .2s,background .2s}
+.lvsum__edit{display:inline-flex;align-items:center;justify-content:center;color:var(--blue);background:transparent;border:none;border-radius:7px;padding:5px;cursor:pointer;opacity:.65;transition:opacity .2s,background .2s}
+.lvsum__edit svg{display:block}
 .lvsum__edit:hover{opacity:1;background:rgba(31,159,230,.09)}
 .lvsum__edit .zh{font-weight:400;color:var(--muted);font-size:10px;margin-left:2px}
 .lvroad{min-width:0}
@@ -4002,6 +4028,53 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   .price-ext{grid-template-columns:1fr}
 }
 
+/* ===== roadmap: compact pillars while a level detail is open ===== */
+#roadmap .lvl-col__bar{transition:height .45s cubic-bezier(.2,.7,.2,1)}
+#roadmap.is-compact .lvl-col__bar{height:calc(var(--h) * .6px)}
+@media(max-width:860px){#roadmap.is-compact .lvl-col__bar{height:calc(var(--h) * .41px)}}
+@media (prefers-reduced-motion:reduce){#roadmap .lvl-col__bar{transition:none}}
+
+/* ===== IPA chart teaser bar + popup ===== */
+.ipachart-bar{display:flex;align-items:center;gap:14px;width:100%;margin:14px 0 2px;padding:13px 18px;border-radius:16px;cursor:pointer;text-align:left;font:inherit;
+  background:linear-gradient(150deg,rgba(76,203,255,.12),rgba(255,255,255,.7));border:1px solid rgba(76,203,255,.4);
+  box-shadow:0 10px 26px -14px rgba(31,127,214,.32),inset 0 1px 0 rgba(255,255,255,.85);transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s}
+.ipachart-bar:hover{transform:translateY(-2px);box-shadow:0 16px 34px -14px rgba(31,127,214,.4),inset 0 1px 0 rgba(255,255,255,.9)}
+.ipachart-bar__syms{display:flex;gap:5px;flex:none}
+.ipachart-bar__syms i{font-style:normal;font-family:var(--display);font-weight:700;font-size:14px;color:#1f9fd0;background:rgba(255,255,255,.85);border:1px solid rgba(76,203,255,.5);border-radius:8px;padding:4px 7px;line-height:1}
+.ipachart-bar__tx{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ipachart-bar__tx b{font-family:var(--display);font-weight:800;font-size:14px;color:var(--ink)}
+.ipachart-bar__tx small{font-size:11.5px;color:var(--muted)}
+.ipachart-bar__go{margin-left:auto;flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(150deg,#5BD7FF,#29A3E0);color:#fff;font-size:14px;box-shadow:0 6px 14px -6px rgba(41,163,224,.6)}
+.ipach{position:fixed;inset:0;z-index:150;display:flex;align-items:center;justify-content:center;padding:22px;opacity:0;transition:opacity .2s ease}
+.ipach.is-open{opacity:1}
+.ipach__bg{position:absolute;inset:0;background:rgba(14,36,86,.46);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.ipach__card{position:relative;width:min(860px,100%);max-height:88vh;overflow:auto;border-radius:22px;padding:24px 26px 22px;
+  background:linear-gradient(165deg,rgba(255,255,255,.97),rgba(242,250,255,.94));border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 34px 80px -30px rgba(16,24,60,.5),inset 0 1px 0 rgba(255,255,255,.95);transform:translateY(10px) scale(.985);transition:transform .22s cubic-bezier(.2,.7,.2,1)}
+.ipach.is-open .ipach__card{transform:none}
+.ipach__x{position:sticky;top:0;float:right;width:32px;height:32px;border-radius:50%;border:1px solid rgba(20,33,50,.12);background:#fff;color:var(--muted);cursor:pointer;font-size:13px;box-shadow:0 6px 16px -8px rgba(16,24,40,.3);z-index:2}
+.ipach__h{font-family:var(--display);font-weight:800;font-size:19px;color:var(--ink);margin-bottom:2px}
+.ipach__hs{display:block;font-family:var(--sans,inherit);font-weight:500;font-size:12.5px;color:var(--muted);margin-top:3px}
+.ipach__sec{margin-top:16px}
+.ipach__lab{display:inline-block;font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 12px;margin-bottom:6px}
+.ipach__lab--v{color:#1B87C9;background:rgba(76,203,255,.16)}
+.ipach__lab--c{color:#9A6A00;background:rgba(242,193,60,.18)}
+.ipach__sub{font-size:11.5px;font-weight:700;color:var(--muted);margin:8px 0 6px}
+.ipach__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:6px}
+.ipach__cell{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:11px;border:1px solid rgba(20,33,50,.08)}
+.ipach__cell b{font-family:var(--display);font-weight:800;font-size:16.5px;color:var(--ink);line-height:1.1}
+.ipach__cell i{font-style:normal;font-size:10.5px;color:var(--muted)}
+.ipach__cell.is-v{background:rgba(76,203,255,.1)}
+.ipach__cell.is-d{background:rgba(76,140,255,.08)}
+.ipach__cell.is-c{background:rgba(242,193,60,.1)}
+.ipach__try{margin-top:18px;padding:14px 16px;border-radius:14px;background:linear-gradient(150deg,rgba(76,203,255,.12),rgba(255,255,255,.6));border:1px dashed rgba(41,163,224,.42)}
+.ipach__tryh{display:block;font-weight:700;font-size:12.5px;color:var(--ink);margin-bottom:9px}
+.ipach__words{display:flex;gap:10px;flex-wrap:wrap}
+.ipach__word{display:inline-flex;align-items:baseline;gap:8px;background:#fff;border:1px solid rgba(41,163,224,.3);border-radius:11px;padding:8px 13px;box-shadow:0 5px 14px -8px rgba(31,127,214,.28)}
+.ipach__word b{font-family:var(--display);font-weight:800;font-size:14.5px;color:var(--ink)}
+.ipach__word em{font-style:normal;font-family:var(--display);font-weight:700;font-size:13.5px;color:#1f9fd0}
+@media(max-width:640px){.ipachart-bar{gap:10px;padding:11px 13px}.ipachart-bar__syms i:nth-child(n+4){display:none}.ipach__card{padding:18px 14px 16px}}
+
 /* perf: pause all animations when browser tab/window is hidden */
 html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after{animation-play-state:paused!important}
 </style>
@@ -4193,11 +4266,10 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
               <li><span class="ic">4</span><span><span class="en">Listening</span> · <span class="zh">聆听测试</span></span></li>
               <li><span class="ic">5</span><span><span class="en">Comprehension</span> · <span class="zh">理解实际含义</span></span></li>
             </ul>
-            <div class="test-foot">🎯 Your advisor reads the result with you and suggests the level that fits.</div>
           </div>
         </div>
         <h3 class="kicker" style="margin-top:30px;color:var(--ink);font-family:var(--display);font-size:17px">After the test — point to where you are now</h3>
-        <p class="note" style="margin:4px 0 14px">Advisor: tap the band that matches the result. <span class="zh">点一下学生目前的程度。</span></p>
+        <p class="note" style="margin:4px 0 14px">Let's see where you are right now. <span class="zh">来看看你现在的程度在哪里。</span></p>
         <div class="glass-stage">
           <span class="glow" style="background:var(--p1);left:2%;bottom:20%"></span>
           <span class="glow" style="background:var(--l1);left:26%;top:10%"></span>
@@ -4941,7 +5013,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
   var roadmap=$("#roadmap");
   LEVELS.forEach(function(l,i){
     var b=document.createElement("button");
-    b.className="lvl-col"+(i===0?" is-active":"");
+    b.className="lvl-col";
     b.setAttribute("data-lvl",i);
     b.style.cssText="--c:"+l.c+";--ci:"+l.ci+";--txt:"+l.txt+";--h:"+l.h;
     b.innerHTML=
@@ -4971,10 +5043,17 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
   }
   roadmap.addEventListener("click",function(e){
     var n=e.target.closest(".lvl-col"); if(!n)return;
+    if(n.classList.contains("is-active")){
+      n.classList.remove("is-active");
+      roadmap.classList.remove("is-compact");
+      $("#rmDetail").innerHTML='<div class="scale-hint">Tap any level to see details. <span class="zh">点任一 level 查看详情。</span></div>';
+      return;
+    }
     renderLevel(+n.getAttribute("data-lvl"));
+    roadmap.classList.add("is-compact");
     scrollToReveal($("#rmDetail"));
   });
-  renderLevel(0);
+  $("#rmDetail").innerHTML='<div class="scale-hint">Tap any level to see details. <span class="zh">点任一 level 查看详情。</span></div>';
 
   /* ---------- PLACEMENT: where are you now ---------- */
   var QBANK=[
@@ -5005,16 +5084,47 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       {k:"Q3",q:"In an increasingly globalized and AI-driven working environment, how critical do you think English communication is in shaping leadership effectiveness, decision-making, and cross-border collaboration?",fu:["How does English affect your daily professional communication?","Can you share a situation where English directly impacted your work outcome?","Do you think English will still be necessary in the future workplace dominated by AI translation tools?"]}
     ]
   ];
-  function qbankHTML(i){
-    var qs=QBANK[i]; if(!qs) return "";
-    return '<div class="lvlq__h">Speaking questions <span class="zh">· 口试提问 · Advisor 按此程度提问</span></div>'+
-      '<div class="lvlq">'+qs.map(function(it){
-        return '<div class="lvlq__it"><span class="lvlq__k">'+it.k+'</span>'+(it.nm?'<span class="lvlq__nm">'+it.nm+'</span>':'')+
-          (it.ctx?'<div class="lvlq__ctx">'+it.ctx+'</div>':'')+
-          '<div class="lvlq__q">'+it.q+'</div>'+
-          (it.fu?('<div class="lvlq__ful">Follow-up · 追问</div><ul class="lvlq__fu">'+it.fu.map(function(f){return '<li>'+f+'</li>';}).join('')+'</ul>'):'')+
+  var QB_KEY="te_qbank_v1", QBANK_DEF=JSON.parse(JSON.stringify(QBANK));
+  try{var _qsv=JSON.parse(localStorage.getItem(QB_KEY)||"null");if(Array.isArray(_qsv)&&_qsv.length===QBANK.length){QBANK=_qsv;}}catch(e){}
+  function qbankSave(){try{localStorage.setItem(QB_KEY,JSON.stringify(QBANK));}catch(e){}}
+  function qbankInner(i){
+    var qs=QBANK[i]; if(!qs||!qs.length) return "";
+    var advOn=(function(){var t=document.getElementById("advToggle");return !!(t&&t.classList.contains("on"));})();
+    return '<div class="lvlq__h">Speaking questions <span class="zh">· 口试提问</span>'+
+      '<button type="button" class="lvlq__adv'+(advOn?' is-on':'')+'" data-advisor-only data-qadv="'+i+'" title="Edit questions 编辑题目" aria-label="Edit questions 编辑题目"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg> Advisor edit <span class="zh">编辑题目</span></button></div>'+
+      '<div class="lvlq">'+qs.map(function(it,qi){
+        return '<div class="lvlq__it'+(qi>0?' lvlq__it--hid':'')+'"><span class="lvlq__k">'+esc(it.k||'Q'+(qi+1))+'</span>'+(it.nm?'<span class="lvlq__nm">'+esc(it.nm)+'</span>':'')+
+          (it.ctx?'<div class="lvlq__ctx">'+esc(it.ctx)+'</div>':'')+
+          '<div class="lvlq__q">'+esc(it.q||'')+'</div>'+
+          (it.fu&&it.fu.length?('<div class="lvlq__ful">Follow-up · 追问</div><ul class="lvlq__fu">'+it.fu.map(function(f){return '<li>'+esc(f)+'</li>';}).join('')+'</ul>'):'')+
         '</div>';
-      }).join('')+'</div>';
+      }).join('')+
+      (qs.length>1?'<div class="lvlq__more"><button type="button" class="lvlq__next" data-qnext>Next question <span class="zh">下一题</span> → <span class="lvlq__count">1 / '+qs.length+'</span></button></div>':'')+
+      '</div>';
+  }
+  function qbankHTML(i){
+    return '<div class="lvlqwrap" data-qwrap="'+i+'">'+qbankInner(i)+'</div>';
+  }
+  function qItemEditorHTML(it){
+    it=it||{};
+    return '<div class="lvlqe__it">'+
+      '<div class="lvlqe__row"><input class="lvlqe__in lvlqe__in--k" data-f="k" value="'+esc(it.k||'')+'" placeholder="标签 e.g. Q1 / Scenario 1"><input class="lvlqe__in" data-f="nm" value="'+esc(it.nm||'')+'" placeholder="小标题（可留空）"><button type="button" class="lvlqe__del" data-qdel title="Delete 删除">✕</button></div>'+
+      '<textarea class="lvlqe__ta" data-f="ctx" rows="2" placeholder="情境说明（可留空）">'+esc(it.ctx||'')+'</textarea>'+
+      '<textarea class="lvlqe__ta" data-f="q" rows="2" placeholder="问题（必填）">'+esc(it.q||'')+'</textarea>'+
+      '<textarea class="lvlqe__ta" data-f="fu" rows="2" placeholder="追问 Follow-up，每行一条（可留空）">'+esc((it.fu||[]).join("\n"))+'</textarea>'+
+    '</div>';
+  }
+  function qEditorInner(i){
+    var qs=QBANK[i]||[];
+    return '<div class="lvlq__h">Editing questions <span class="zh">· 编辑题目 · 只保存在这台电脑</span></div>'+
+      '<div class="lvlqe" data-qedit="'+i+'">'+qs.map(qItemEditorHTML).join('')+
+      '<div class="lvlqe__bar">'+
+        '<button type="button" class="lvlqe__b" data-qadd>+ Add question <span class="zh">新增题目</span></button>'+
+        '<span class="lvlqe__sp"></span>'+
+        '<button type="button" class="lvlqe__b lvlqe__b--ghost" data-qreset>Reset to default <span class="zh">恢复默认</span></button>'+
+        '<button type="button" class="lvlqe__b lvlqe__b--ghost" data-qcancel>Cancel <span class="zh">取消</span></button>'+
+        '<button type="button" class="lvlqe__b lvlqe__b--save" data-qsave>Save <span class="zh">保存</span></button>'+
+      '</div></div>';
   }
   var lvlScale=$("#lvlScale");
   if(lvlScale){
@@ -5040,6 +5150,58 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
           qbankHTML(i)+
         '</div>';
       scrollToReveal($("#lvlScaleOut"));
+    });
+    $("#lvlScaleOut").addEventListener("click",function(e){
+      var btn=e.target.closest("[data-qnext]");
+      if(btn){
+        var wrap=btn.closest(".lvlq"); if(!wrap)return;
+        var hid=wrap.querySelector(".lvlq__it--hid");
+        if(hid){hid.classList.remove("lvlq__it--hid");hid.classList.add("lvlq__it--in");}
+        var left=wrap.querySelectorAll(".lvlq__it--hid").length;
+        var total=wrap.querySelectorAll(".lvlq__it").length;
+        var cnt=btn.querySelector(".lvlq__count");
+        if(cnt)cnt.textContent=(total-left)+" / "+total;
+        if(!left){var mo=btn.closest(".lvlq__more");if(mo)mo.style.display="none";}
+        return;
+      }
+      var qwrapEl, idx;
+      var adv=e.target.closest("[data-qadv]");
+      if(adv){qwrapEl=adv.closest(".lvlqwrap");idx=+adv.getAttribute("data-qadv");qwrapEl.innerHTML=qEditorInner(idx);return;}
+      var add=e.target.closest("[data-qadd]");
+      if(add){var ed=add.closest(".lvlqe");var bar=ed.querySelector(".lvlqe__bar");bar.insertAdjacentHTML("beforebegin",qItemEditorHTML(null));return;}
+      var del=e.target.closest("[data-qdel]");
+      if(del){var itEl=del.closest(".lvlqe__it");if(itEl)itEl.remove();return;}
+      var cancel=e.target.closest("[data-qcancel]");
+      if(cancel){qwrapEl=cancel.closest(".lvlqwrap");idx=+qwrapEl.getAttribute("data-qwrap");qwrapEl.innerHTML=qbankInner(idx);return;}
+      var reset=e.target.closest("[data-qreset]");
+      if(reset){
+        if(!reset.classList.contains("is-armed")){
+          reset.classList.add("is-armed");
+          reset.innerHTML='Click again to confirm <span class="zh">再点一次确认恢复</span>';
+          setTimeout(function(){if(reset&&reset.classList){reset.classList.remove("is-armed");reset.innerHTML='Reset to default <span class="zh">恢复默认</span>';}},3500);
+          return;
+        }
+        qwrapEl=reset.closest(".lvlqwrap");idx=+qwrapEl.getAttribute("data-qwrap");
+        QBANK[idx]=JSON.parse(JSON.stringify(QBANK_DEF[idx]));qbankSave();
+        qwrapEl.innerHTML=qbankInner(idx);return;
+      }
+      var save=e.target.closest("[data-qsave]");
+      if(save){
+        qwrapEl=save.closest(".lvlqwrap");idx=+qwrapEl.getAttribute("data-qwrap");
+        var items=[];
+        qwrapEl.querySelectorAll(".lvlqe__it").forEach(function(el){
+          function fv(f){var x=el.querySelector('[data-f="'+f+'"]');return x?x.value.trim():"";}
+          var q=fv("q"); if(!q)return;
+          var it={k:fv("k")||("Q"+(items.length+1)),q:q};
+          var nm=fv("nm"); if(nm)it.nm=nm;
+          var ctx=fv("ctx"); if(ctx)it.ctx=ctx;
+          var fu=fv("fu").split("\n").map(function(s){return s.trim();}).filter(Boolean);
+          if(fu.length)it.fu=fu;
+          items.push(it);
+        });
+        QBANK[idx]=items;qbankSave();
+        qwrapEl.innerHTML=qbankInner(idx);return;
+      }
     });
   }
 
@@ -5326,7 +5488,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       var tl=single?LVSHORT[st.t]:((LEVELS[st.t]&&LEVELS[st.t].id)||LVSHORT[st.t]);
       lines+='<span class="lvsum__line"><b>'+esc(learnerName(i))+'</b>'+cl+' <span class="lvsum__arr">→</span> '+tl+'</span>';}
     box.innerHTML='<div class="lvsum__main"><div class="lvsum__lines">'+lines+'</div></div>'+
-      '<button type="button" class="lvsum__edit" id="lvEdit">Edit <span class="zh">编辑</span></button>';
+      '<button type="button" class="lvsum__edit" id="lvEdit" aria-label="Edit 编辑" title="Edit 编辑"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>';
   }
   function introInner(k){
     var c=FIVEC[k];
@@ -6225,6 +6387,11 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         '</header>'+
         '<div class="goal-body">'+
           '<div class="stage-cards">'+cards+'</div>'+
+          '<button type="button" class="ipachart-bar" onclick="event.stopPropagation(); if(window.openIPAChart)openIPAChart();" aria-label="Open IPA chart 打开音标总表">'+
+            '<span class="ipachart-bar__syms"><i>i\u02d0</i><i>\u0283</i><i>\u00e6</i><i>\u0259\u028a</i><i>\u03b8</i></span>'+
+            '<span class="ipachart-bar__tx"><b>IPA Chart <span class="zh">\u00b7 \u97f3\u6807\u603b\u8868</span></b><small>44 sounds of English <span class="zh">\u00b7 \u82f1\u6587\u4e00\u5171 44 \u4e2a\u97f3\uff0c\u70b9\u5f00\u67e5\u770b</span></small></span>'+
+            '<span class="ipachart-bar__go">\u2192</span>'+
+          '</button>'+
           '<div class="stage-advisor">'+
             '<span class="stage-advisor__ic">'+sv("mic")+'</span>'+
             '<div class="stage-advisor__tx"><p class="stage-advisor__lead">This is not just an IPA class. It is a learning recharge station. <span class="zh">这不只是音标课。这是学习充电站。</span></p>'+
@@ -7570,10 +7737,16 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     });
     $("#tbTitle").innerHTML=STAGES[i].t+' <span class="zh">'+STAGES[i].zh+'</span>';
     var _st=stages[i], _er=_st&&_st.querySelector(".eco-ring");
+    var _tg=_st&&_st.querySelector("#tierGrid");
     if(_er){
       requestAnimationFrame(function(){
         try{ _er.scrollIntoView({block:"center",inline:"nearest"}); }catch(e){}
         _er.classList.remove("is-on"); void _er.getBoundingClientRect(); _er.classList.add("is-on");
+      });
+    } else if(_tg){
+      requestAnimationFrame(function(){
+        if(_tg.offsetParent){ try{ _tg.scrollIntoView({block:"center",inline:"nearest"}); }catch(e){ window.scrollTo(0,0); } }
+        else { window.scrollTo({top:0,behavior:"auto"}); }
       });
     } else {
       window.scrollTo({top:0,behavior:"auto"});
@@ -9697,6 +9870,44 @@ io.observe(er);})();
   if(tg){ tg.addEventListener("click",function(e){ var b=e.target.closest("[data-lang]"); if(!b) return; setLang(b.getAttribute("data-lang")==="en",true); }); }
   var saved="both"; try{ saved=localStorage.getItem(KEY)||"both"; }catch(e){}
   setLang(saved==="en",false);
+})();
+</script>
+<script>
+/* ===== IPA Chart popup — self-contained ===== */
+(function(){
+  "use strict";
+  var MONO=[["i\u02d0","sheep"],["\u026a","ship"],["\u028a","good"],["u\u02d0","shoot"],["e","bed"],["\u0259","teacher"],["\u025c\u02d0","bird"],["\u0254\u02d0","door"],["\u00e6","cat"],["\u028c","up"],["\u0251\u02d0","far"],["\u0252","on"]];
+  var DIPH=[["\u026a\u0259","here"],["e\u026a","wait"],["\u028a\u0259","tourist"],["\u0254\u026a","boy"],["\u0259\u028a","show"],["e\u0259","hair"],["a\u026a","my"],["a\u028a","cow"]];
+  var CONS=[["p","pea"],["b","boat"],["t","tea"],["d","dog"],["t\u0283","cheese"],["d\u0292","June"],["k","car"],["g","go"],["f","fly"],["v","video"],["\u03b8","think"],["\u00f0","this"],["s","see"],["z","zoo"],["\u0283","shall"],["\u0292","television"],["m","man"],["n","now"],["\u014b","sing"],["h","hat"],["l","love"],["r","red"],["w","wet"],["j","yes"]];
+  var SURPRISE=[["Quay","/ki\u02d0/"],["Saliva","/s\u0259\u02c8la\u026av\u0259/"],["Chaos","/\u02c8ke\u026a\u0252s/"]];
+  function cells(arr,cls){return arr.map(function(x){return '<span class="ipach__cell '+cls+'"><b>'+x[0]+'</b><i>'+x[1]+'</i></span>';}).join('');}
+  window.openIPAChart=function(){
+    if(document.getElementById('ipaChartModal'))return;
+    var m=document.createElement('div');
+    m.className='ipach'; m.id='ipaChartModal'; m.setAttribute('role','dialog'); m.setAttribute('aria-label','IPA chart');
+    m.innerHTML='<div class="ipach__bg" data-ipacx></div>'+
+      '<div class="ipach__card">'+
+        '<button type="button" class="ipach__x" data-ipacx aria-label="Close">\u2715</button>'+
+        '<div class="ipach__h"><b>IPA Chart <span class="zh">\u00b7 \u56fd\u9645\u97f3\u6807\u603b\u8868</span></b><span class="ipach__hs">44 sounds of English <span class="zh">\u00b7 \u82f1\u6587\u4e00\u5171 44 \u4e2a\u97f3</span></span></div>'+
+        '<div class="ipach__sec"><span class="ipach__lab ipach__lab--v">Vowels <span class="zh">\u5143\u97f3</span></span>'+
+          '<div class="ipach__sub">Monophthongs <span class="zh">\u00b7 \u5355\u5143\u97f3</span></div><div class="ipach__grid">'+cells(MONO,'is-v')+'</div>'+
+          '<div class="ipach__sub">Diphthongs <span class="zh">\u00b7 \u53cc\u5143\u97f3</span></div><div class="ipach__grid">'+cells(DIPH,'is-d')+'</div>'+
+        '</div>'+
+        '<div class="ipach__sec"><span class="ipach__lab ipach__lab--c">Consonants <span class="zh">\u8f85\u97f3</span></span>'+
+          '<div class="ipach__grid">'+cells(CONS,'is-c')+'</div>'+
+        '</div>'+
+        '<div class="ipach__try"><span class="ipach__tryh">Spelling can\u2019t tell you the sound \u2014 IPA can. <span class="zh">\u62fc\u5199\u731c\u4e0d\u5230\u53d1\u97f3\uff0c\u97f3\u6807\u624d\u662f\u7b54\u6848\u3002</span></span>'+
+          '<div class="ipach__words">'+SURPRISE.map(function(w){return '<span class="ipach__word"><b>'+w[0]+'</b><em>'+w[1]+'</em></span>';}).join('')+'</div>'+
+        '</div>'+
+      '</div>';
+    document.body.appendChild(m);
+    document.body.style.overflow='hidden';
+    function esc(e){ if(e.key==='Escape')shut(); }
+    function shut(){ m.classList.remove('is-open'); document.removeEventListener('keydown',esc); document.body.style.overflow=''; setTimeout(function(){ if(m&&m.parentNode)m.remove(); },200); }
+    m.addEventListener('click',function(e){ if(e.target.closest('[data-ipacx]'))shut(); });
+    document.addEventListener('keydown',esc);
+    requestAnimationFrame(function(){ m.classList.add('is-open'); });
+  };
 })();
 </script>
 <script>
