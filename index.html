@@ -4109,12 +4109,33 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .ipach__cell.is-v{background:rgba(76,203,255,.1)}
 .ipach__cell.is-d{background:rgba(76,140,255,.08)}
 .ipach__cell.is-c{background:rgba(242,193,60,.1)}
-.ipach__try{margin-top:18px;padding:14px 16px;border-radius:14px;background:linear-gradient(150deg,rgba(76,203,255,.12),rgba(255,255,255,.6));border:1px dashed rgba(41,163,224,.42)}
-.ipach__tryh{display:block;font-weight:700;font-size:12.5px;color:var(--ink);margin-bottom:9px}
-.ipach__words{display:flex;gap:10px;flex-wrap:wrap}
-.ipach__word{display:inline-flex;align-items:baseline;gap:8px;background:#fff;border:1px solid rgba(41,163,224,.3);border-radius:11px;padding:8px 13px;box-shadow:0 5px 14px -8px rgba(31,127,214,.28)}
-.ipach__word b{font-family:var(--display);font-weight:800;font-size:14.5px;color:var(--ink)}
-.ipach__word em{font-style:normal;font-family:var(--display);font-weight:700;font-size:13.5px;color:#1f9fd0}
+.ipach__try{margin-top:18px;padding:14px 16px 16px;border-radius:14px;background:linear-gradient(150deg,rgba(76,203,255,.12),rgba(255,255,255,.6));border:1px dashed rgba(41,163,224,.42)}
+.ipatry__top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.ipatry__h{font-weight:800;font-family:var(--display);font-size:13px;color:var(--ink)}
+.ipatry__h .zh{font-weight:600;color:var(--muted)}
+.ipatry__meta{display:inline-flex;align-items:center;gap:8px}
+.ipatry__prog{font-family:var(--display);font-weight:800;font-size:11px;color:#1B87C9;background:rgba(76,203,255,.16);border-radius:999px;padding:3px 10px}
+.ipatry__reset{width:26px;height:26px;border-radius:50%;border:1px solid rgba(20,33,50,.14);background:#fff;color:var(--muted);cursor:pointer;font-size:13px;line-height:1}
+.ipatry__reset:hover{color:#1f9fd0;border-color:rgba(41,163,224,.4)}
+.ipatry__arch{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
+.ipatry__pill{display:inline-flex;align-items:baseline;gap:6px;font-family:var(--display);font-weight:700;font-size:12px;color:var(--ink);background:#fff;border:1px solid rgba(41,163,224,.3);border-radius:999px;padding:5px 12px;animation:ipatryIn .3s ease both}
+.ipatry__pill em{font-style:normal;font-weight:700;font-size:11.5px;color:#1f9fd0}
+.ipatry__card{display:flex;align-items:baseline;justify-content:center;gap:18px;width:100%;font:inherit;cursor:pointer;padding:18px 16px;border-radius:13px;background:#fff;border:1px solid rgba(41,163,224,.32);box-shadow:0 8px 20px -12px rgba(31,127,214,.35);transition:transform .16s,box-shadow .16s}
+.ipatry__card:hover{transform:translateY(-1px);box-shadow:0 12px 26px -12px rgba(31,127,214,.42)}
+.ipatry__card.is-rev{cursor:default}
+.ipatry__card.is-rev:hover{transform:none}
+.ipatry__word{font-family:var(--display);font-weight:800;font-size:29px;letter-spacing:-.01em;color:var(--ink)}
+.ipatry__q{font-style:normal;font-family:var(--display);font-weight:700;font-size:21px;color:rgba(20,33,50,.26)}
+.ipatry__ipa{font-style:normal;font-family:var(--display);font-weight:800;font-size:23px;color:#1f9fd0;animation:ipatryIn .32s cubic-bezier(.2,.7,.2,1) both}
+.ipatry__nextrow{display:flex;justify-content:center;margin-top:11px}
+.ipatry__next{font-family:var(--display);font-weight:700;font-size:12.5px;color:#fff;background:linear-gradient(150deg,#5BD7FF,#29A3E0);border:none;border-radius:999px;padding:9px 20px;cursor:pointer;box-shadow:0 8px 18px -8px rgba(41,163,224,.55);transition:transform .15s,box-shadow .15s;animation:ipatryIn .3s ease both}
+.ipatry__next:hover{transform:translateY(-1px);box-shadow:0 12px 24px -8px rgba(41,163,224,.6)}
+.ipatry__next .zh{color:rgba(255,255,255,.85)}
+.ipatry__punch{text-align:center;padding:14px 10px 8px;animation:ipatryPunch .5s cubic-bezier(.2,.7,.2,1) both}
+.ipatry__punch b{display:block;font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink);letter-spacing:-.01em}
+.ipatry__punch .zh{display:block;font-size:13px;font-weight:600;color:#1B87C9;margin-top:5px}
+@keyframes ipatryIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes ipatryPunch{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
 @media(max-width:640px){.ipachart-bar{gap:10px;padding:11px 13px}.ipachart-bar__syms i:nth-child(n+4){display:none}.ipach__card{padding:18px 14px 16px}}
 
 /* perf: pause all animations when browser tab/window is hidden */
@@ -10044,15 +10065,43 @@ io.observe(er);})();
         '<div class="ipach__sec"><span class="ipach__lab ipach__lab--c">Consonants <span class="zh">\u8f85\u97f3</span></span>'+
           '<div class="ipach__grid">'+cells(CONS,'is-c')+'</div>'+
         '</div>'+
-        '<div class="ipach__try"><span class="ipach__tryh">Spelling can\u2019t tell you the sound \u2014 IPA can. <span class="zh">\u62fc\u5199\u731c\u4e0d\u5230\u53d1\u97f3\uff0c\u97f3\u6807\u624d\u662f\u7b54\u6848\u3002</span></span>'+
-          '<div class="ipach__words">'+SURPRISE.map(function(w){return '<span class="ipach__word"><b>'+w[0]+'</b><em>'+w[1]+'</em></span>';}).join('')+'</div>'+
-        '</div>'+
+        '<div class="ipach__try" id="ipaTry"></div>'+
       '</div>';
     document.body.appendChild(m);
     document.body.style.overflow='hidden';
+    var TS={i:0,rev:false,done:false};
+    function tryRender(){
+      var el=m.querySelector('#ipaTry'); if(!el)return;
+      var arch=SURPRISE.slice(0,TS.i).map(function(w){return '<span class="ipatry__pill">'+w[0]+' <em>'+w[1]+'</em></span>';}).join('');
+      var h='<div class="ipatry__top"><span class="ipatry__h">Try to read these <span class="zh">\u00b7 \u4f60\u4f1a\u600e\u4e48\u8bfb\u8fd9\u4e09\u4e2a\u8bcd\uff1f</span></span>'+
+        '<span class="ipatry__meta"><span class="ipatry__prog">'+Math.min(TS.i+(TS.done?0:1),3)+' / 3</span>'+
+        '<button type="button" class="ipatry__reset" data-ipatry-reset title="Restart \u91cd\u6765" aria-label="Restart">\u21ba</button></span></div>'+
+        (arch?'<div class="ipatry__arch">'+arch+'</div>':'');
+      if(TS.done){
+        h+='<div class="ipatry__punch"><b>Spelling can\u2019t tell you the sound \u2014 IPA can.</b><span class="zh">\u62fc\u5199\u731c\u4e0d\u5230\u53d1\u97f3\uff0c\u97f3\u6807\u624d\u662f\u7b54\u6848\u3002</span></div>';
+      } else {
+        var w=SURPRISE[TS.i];
+        h+='<button type="button" class="ipatry__card'+(TS.rev?' is-rev':'')+'" data-ipatry-card>'+
+             '<b class="ipatry__word">'+w[0]+'</b>'+
+             (TS.rev?'<em class="ipatry__ipa">'+w[1]+'</em>':'<em class="ipatry__q">/ ? /</em>')+
+           '</button>'+
+           (TS.rev?'<div class="ipatry__nextrow"><button type="button" class="ipatry__next" data-ipatry-next>'+(TS.i<2?'Next word <span class="zh">\u4e0b\u4e00\u4e2a</span> \u2192':'The point <span class="zh">\u63ed\u6653\u7ed3\u8bba</span> \u2192')+'</button></div>':'');
+      }
+      el.innerHTML=h;
+    }
+    tryRender();
     function esc(e){ if(e.key==='Escape')shut(); }
     function shut(){ m.classList.remove('is-open'); document.removeEventListener('keydown',esc); document.body.style.overflow=''; setTimeout(function(){ if(m&&m.parentNode)m.remove(); },200); }
-    m.addEventListener('click',function(e){ if(e.target.closest('[data-ipacx]'))shut(); });
+    m.addEventListener('click',function(e){
+      if(e.target.closest('[data-ipacx]')){shut();return;}
+      if(e.target.closest('[data-ipatry-reset]')){TS={i:0,rev:false,done:false};tryRender();return;}
+      var c=e.target.closest('[data-ipatry-card]');
+      if(c&&!TS.rev){TS.rev=true;tryRender();return;}
+      if(e.target.closest('[data-ipatry-next]')){
+        if(TS.i<2){TS.i++;TS.rev=false;}else{TS.i=3;TS.done=true;}
+        tryRender();return;
+      }
+    });
     document.addEventListener('keydown',esc);
     requestAnimationFrame(function(){ m.classList.add('is-open'); });
   };
