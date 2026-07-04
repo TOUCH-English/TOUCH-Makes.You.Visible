@@ -178,8 +178,8 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 /* ===== Opening — branding hero ===== */
 .brandhero{position:relative;min-height:calc(100vh - 150px);display:flex;align-items:center;justify-content:center;padding:clamp(14px,2.4vh,24px) clamp(14px,2vw,28px)}
 .brandhero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(54% 60% at 20% 22%,rgba(31,120,210,.16),transparent 70%),radial-gradient(46% 52% at 86% 20%,rgba(224,72,80,.10),transparent 72%),radial-gradient(80% 56% at 50% 116%,rgba(21,53,123,.11),transparent 72%);
-  filter:blur(50px);animation:bhBreath 13s ease-in-out infinite}
+  background:radial-gradient(62% 68% at 20% 22%,rgba(31,120,210,.15),rgba(31,120,210,.06) 46%,transparent 78%),radial-gradient(54% 60% at 86% 20%,rgba(224,72,80,.09),rgba(224,72,80,.035) 46%,transparent 80%),radial-gradient(88% 64% at 50% 116%,rgba(21,53,123,.10),rgba(21,53,123,.04) 48%,transparent 80%);
+  animation:bhBreath 13s ease-in-out infinite}
 .brandhero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(38% 34% at 50% 40%,rgba(255,255,255,.46),transparent 66%),radial-gradient(130% 112% at 50% 48%,transparent 66%,rgba(16,28,54,.04) 100%)}
 @keyframes bhBreath{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
@@ -467,7 +467,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .sys-node__dot::before{content:"";position:absolute;left:8%;right:8%;top:6%;height:42%;z-index:1;pointer-events:none;border-radius:14px 14px 60% 60%/14px 14px 32% 32%;background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,0))}
 .sys-node__dot::after{content:"";position:absolute;top:-60%;left:-130%;width:55%;height:220%;transform:rotate(20deg);z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.7),rgba(255,255,255,0));animation:sysDotShine 3s ease-in-out infinite}
 .sys-node:active .sys-node__dot{transform:translateY(3px) scaleY(.94)}
-@keyframes sysDotBreath{0%,100%{filter:brightness(1)}50%{filter:brightness(1.06)}}
+@keyframes sysDotBreath{0%,100%{opacity:1}50%{opacity:.94}}
 @keyframes sysDotShine{0%{left:-130%}22%{left:150%}100%{left:150%}}
 @media (prefers-reduced-motion:reduce){.sys-node__dot{animation:none}.sys-node__dot::after{display:none}}
 .sys-node__t{font-family:var(--display);font-weight:700;font-size:calc(11.5px * var(--sys-scale,1));color:var(--ink);line-height:1.2;max-width:calc(104px * var(--sys-scale,1));opacity:.92}
@@ -795,7 +795,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
  .ipa-cta3d:hover{transform:translateY(-2px);filter:brightness(1.04);box-shadow:0 8px 0 color-mix(in srgb,var(--c,#7C5CFF) 26%,#fff),0 18px 30px -8px color-mix(in srgb,var(--c,#7C5CFF) 32%,transparent),inset 0 2px 3px rgba(255,255,255,.7),inset 0 -3px 6px color-mix(in srgb,var(--c,#7C5CFF) 12%,transparent)}
  .ipa-cta3d:active{transform:translateY(4px) scaleY(.92);box-shadow:0 1px 0 color-mix(in srgb,var(--c,#7C5CFF) 26%,#fff),0 4px 10px -6px color-mix(in srgb,var(--c,#7C5CFF) 24%,transparent),inset 0 2px 3px rgba(255,255,255,.6),inset 0 -2px 5px color-mix(in srgb,var(--c,#7C5CFF) 14%,transparent)}
 .ipa-cta3d:focus-visible{outline:3px solid #1F9FE6;outline-offset:3px}
-@keyframes ipaBreath{0%,100%{filter:brightness(1)}50%{filter:brightness(1.09)}}
+@keyframes ipaBreath{0%,100%{opacity:1}50%{opacity:.92}}
 @keyframes ipaShine{0%{left:-130%}20%{left:150%}100%{left:150%}}
 @media (prefers-reduced-motion:reduce){.ipa-cta3d{animation:none}.ipa-cta3d::after{display:none}}
 /* Learning Mindset Recharge — content popup (5C glass + top photo) */
@@ -1592,7 +1592,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sysFocus .review .rev-snap > .rev-head h3{text-shadow:0 1px 1px rgba(255,255,255,.8),0 2px 12px rgba(20,33,50,.07)}
 #sysFocus .review .rev-head__ic{box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 5px 12px -8px color-mix(in srgb,var(--c) 24%,transparent),0 0 8px rgba(76,203,255,.08)!important}
 /* 3) Before -> Now — Now hopeful (lighter glow) */
-#sysFocus .review .rev-ba__cell--now{background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 15%,#fff),color-mix(in srgb,var(--c) 3%,#fff));border-color:color-mix(in srgb,#4CCBFF 34%,#fff);box-shadow:0 12px 24px -16px color-mix(in srgb,var(--c) 38%,transparent),0 0 15px rgba(76,203,255,.11),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(170,238,255,.32);animation:gpNowAlive 4.5s ease-in-out infinite}
+#sysFocus .review .rev-ba__cell--now{background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 15%,#fff),color-mix(in srgb,var(--c) 3%,#fff));border-color:color-mix(in srgb,#4CCBFF 34%,#fff);box-shadow:0 12px 24px -16px color-mix(in srgb,var(--c) 38%,transparent),0 0 15px rgba(76,203,255,.11),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(170,238,255,.32)}
 @keyframes gpNowAlive{0%,100%{box-shadow:0 12px 24px -16px color-mix(in srgb,var(--c) 38%,transparent),0 0 13px rgba(76,203,255,.09),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(170,238,255,.32)}50%{box-shadow:0 12px 24px -16px color-mix(in srgb,var(--c) 38%,transparent),0 0 19px rgba(76,203,255,.15),inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(170,238,255,.4)}}
 #sysFocus .review .rev-ba__arrow{position:relative;opacity:1;color:#1fa8c8;overflow:visible}
 #sysFocus .review .rev-ba__arrow svg{filter:drop-shadow(0 0 6px rgba(76,203,255,.65))}
@@ -1603,7 +1603,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sysFocus .review .rev-high::before{content:"";position:absolute;z-index:-1;left:50%;top:-8px;width:103%;height:112%;transform:translateX(-50%);pointer-events:none;border-radius:28px;background:radial-gradient(64% 54% at 50% 24%,rgba(244,214,166,.06),rgba(244,214,166,.025) 46%,transparent 74%);filter:blur(14px)}
 #sysFocus .review .rev-high .rev-head__ic{color:#B0813C!important;background:linear-gradient(150deg,color-mix(in srgb,#E6C088 26%,#fff),color-mix(in srgb,#E6C088 10%,#fff))!important;border:1px solid color-mix(in srgb,#E6C088 30%,#fff)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.88),0 5px 13px -8px rgba(200,165,105,.28),0 0 11px rgba(240,214,160,.15)!important}
 #sysFocus .review .rev-badge{background:linear-gradient(150deg,color-mix(in srgb,#E6C088 12%,#fff),color-mix(in srgb,var(--c) 3%,#fff));border:1px solid color-mix(in srgb,#E6C088 24%,#fff);box-shadow:0 14px 30px -20px rgba(200,165,105,.3),0 0 15px rgba(240,214,160,.08),inset 0 1px 0 rgba(255,255,255,.93)}
-#sysFocus .review .rev-badge__ic{color:#fff!important;background:linear-gradient(150deg,#EFD3A2,#D4AA64)!important;border:1px solid rgba(255,255,255,.6)!important;box-shadow:0 7px 16px -6px rgba(190,155,90,.36),0 0 0 3px rgba(240,214,160,.09),0 0 12px rgba(242,216,164,.26),inset 0 1px 0 rgba(255,255,255,.6)!important;animation:gpMilestone 4.6s ease-in-out infinite}
+#sysFocus .review .rev-badge__ic{color:#fff!important;background:linear-gradient(150deg,#EFD3A2,#D4AA64)!important;border:1px solid rgba(255,255,255,.6)!important;box-shadow:0 7px 16px -6px rgba(190,155,90,.36),0 0 0 3px rgba(240,214,160,.09),0 0 12px rgba(242,216,164,.26),inset 0 1px 0 rgba(255,255,255,.6)!important}
 @keyframes gpMilestone{0%,100%{box-shadow:0 7px 16px -6px rgba(190,155,90,.36),0 0 0 3px rgba(240,214,160,.08),0 0 11px rgba(242,216,164,.22),inset 0 1px 0 rgba(255,255,255,.6)}50%{box-shadow:0 7px 16px -6px rgba(190,155,90,.36),0 0 0 3px rgba(240,214,160,.13),0 0 17px rgba(242,216,164,.34),inset 0 1px 0 rgba(255,255,255,.6)}}
 #sysFocus .review .rev-badge__ic svg{stroke:#fff!important}
 @media (prefers-reduced-motion:reduce){#sysFocus .review .rev-ba__arrow::before,#sysFocus .review .rev-ba__cell--now,#sysFocus .review .rev-badge__ic{animation:none}#sysFocus .review .rev-ba__arrow::before{opacity:.6}}
@@ -1618,7 +1618,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sysFocus .review .rev-obs > .rev-head h3{text-shadow:0 1px 1px rgba(255,255,255,.7),0 2px 11px rgba(20,33,50,.05)}
 #sysFocus .review .rev-obs__list li{-webkit-backdrop-filter:blur(13px) saturate(138%);backdrop-filter:blur(13px) saturate(138%);background:linear-gradient(150deg,rgba(255,255,255,.66),color-mix(in srgb,var(--c) 2%,rgba(255,255,255,.52)));border:1px solid color-mix(in srgb,var(--c) 12%,var(--line));box-shadow:0 14px 28px -22px color-mix(in srgb,var(--c) 26%,transparent),inset 0 1px 0 rgba(255,255,255,.85)}
 #sysFocus .review .rev-obs__q{box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 0 8px rgba(76,203,255,.1)}
-#sysFocus .review .goal-focus{position:relative;-webkit-backdrop-filter:blur(20px) saturate(146%);backdrop-filter:blur(20px) saturate(146%);background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 6%,rgba(255,255,255,.62)),rgba(255,255,255,.52));border:1px solid color-mix(in srgb,#4CCBFF 20%,rgba(255,255,255,.82));box-shadow:0 24px 46px -26px color-mix(in srgb,var(--c) 34%,transparent),0 0 22px rgba(76,203,255,.07),inset 0 1px 0 rgba(255,255,255,.96);animation:gpNextHope 5.5s ease-in-out infinite}
+#sysFocus .review .goal-focus{position:relative;-webkit-backdrop-filter:blur(20px) saturate(146%);backdrop-filter:blur(20px) saturate(146%);background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 6%,rgba(255,255,255,.62)),rgba(255,255,255,.52));border:1px solid color-mix(in srgb,#4CCBFF 20%,rgba(255,255,255,.82));box-shadow:0 24px 46px -26px color-mix(in srgb,var(--c) 34%,transparent),0 0 22px rgba(76,203,255,.07),inset 0 1px 0 rgba(255,255,255,.96)}
 @keyframes gpNextHope{0%,100%{box-shadow:0 24px 46px -26px color-mix(in srgb,var(--c) 34%,transparent),0 0 20px rgba(76,203,255,.06),inset 0 1px 0 rgba(255,255,255,.96)}50%{box-shadow:0 24px 46px -26px color-mix(in srgb,var(--c) 34%,transparent),0 0 30px rgba(76,203,255,.12),inset 0 1px 0 rgba(255,255,255,.96)}}
 #sysFocus .review .goal-focus::before{content:"";position:absolute;z-index:-1;left:50%;bottom:-14px;width:84%;height:56%;transform:translateX(-50%);pointer-events:none;border-radius:30px;background:radial-gradient(80% 100% at 50% 100%,rgba(76,203,255,.07),transparent 72%);filter:blur(15px)}
 #sysFocus .review .goal-focus__head h3{text-shadow:0 1px 1px rgba(255,255,255,.7),0 2px 12px rgba(20,33,50,.07)}
@@ -2138,7 +2138,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
 /* ---------- Movable nav dock (glass tab bar) ---------- */
 .bottom-dock{position:fixed;z-index:40;display:flex;align-items:center;
-  background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.68));-webkit-backdrop-filter:blur(26px) saturate(170%);backdrop-filter:blur(26px) saturate(170%);
+  background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.78));-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);
   border:1px solid rgba(255,255,255,.6);box-shadow:0 8px 34px rgba(20,33,50,.12);
   transition:box-shadow .2s ease, transform .15s ease}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
@@ -2173,8 +2173,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   padding:6px 11px;border-radius:13px;color:var(--faint);min-width:56px;transition:background .15s,color .15s,transform .16s ease,box-shadow .16s ease;position:relative}
 .tab-item:hover{color:var(--blue);background:rgba(42,91,215,.08);transform:translateY(-1px);box-shadow:0 5px 14px -7px rgba(42,91,215,.32)}
 .tab-item.is-active{color:var(--red);background:var(--red-tint);box-shadow:0 5px 16px -7px color-mix(in srgb,var(--red) 44%,transparent),0 0 16px color-mix(in srgb,var(--red) 15%,transparent),inset 0 1px 0 rgba(255,255,255,.55)}
-.tab-item.is-active .tab-item__ic{animation:dockActivePulse 3.2s ease-in-out infinite}
-@keyframes dockActivePulse{0%,100%{filter:drop-shadow(0 0 2px rgba(224,48,59,.3))}50%{filter:drop-shadow(0 0 7px rgba(224,48,59,.6))}}
+.tab-item.is-active .tab-item__ic{filter:drop-shadow(0 0 5px rgba(224,48,59,.45));animation:dockActivePulse 3.2s ease-in-out infinite}
+@keyframes dockActivePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
 @media (prefers-reduced-motion:reduce){.tab-item.is-active .tab-item__ic{animation:none}}
 .tab-item__ic{width:23px;height:23px;position:relative}
 .tab-item__ic svg{width:23px;height:23px;display:block;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
@@ -2749,7 +2749,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-card__msg{font-size:13px;line-height:1.6;color:var(--muted);margin-top:4px}
 .sumtr-card__msg .zh{display:block;color:var(--faint);margin-top:4px}
 
-#sumtr.is-complete .sumtr-card.is-full{animation:sumtrGlow 2.8s ease-in-out infinite}
+#sumtr.is-complete .sumtr-card.is-full{box-shadow:0 24px 55px -20px color-mix(in srgb,var(--cc) 58%,transparent),0 0 22px -6px color-mix(in srgb,var(--cc) 30%,transparent),inset 0 1px 0 rgba(255,255,255,.92)}
 @keyframes sumtrGlow{0%,100%{box-shadow:0 22px 50px -22px color-mix(in srgb,var(--cc) 48%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}50%{box-shadow:0 26px 60px -18px color-mix(in srgb,var(--cc) 70%,transparent),0 0 28px -6px color-mix(in srgb,var(--cc) 42%,transparent),inset 0 1px 0 rgba(255,255,255,.95)}}
 
 .sumtr-final{text-align:center;margin-top:32px;animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
@@ -3285,7 +3285,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 /* brain icon — AI "live" status indicator dot */
 #sysFocus .epi-cog__ic{position:relative}
 #sysFocus .epi-cog__ic::after{content:"";position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:50%;background:#2EE6C6;border:1.6px solid rgba(255,255,255,.92);box-shadow:0 0 9px rgba(46,230,198,.7);transform-origin:center;animation:epiLive 3s ease-in-out infinite}
-@keyframes epiLive{0%,100%{opacity:.65;transform:scale(1);box-shadow:0 0 6px rgba(46,230,198,.5)}50%{opacity:1;transform:scale(1.08);box-shadow:0 0 13px rgba(46,230,198,.95)}}
+@keyframes epiLive{0%,100%{opacity:.65;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
 /* TOUCH EPI Report — premium AI action gateway (glass depth + soft blue glow + ultra-subtle idle sweep) · scoped */
 #sysFocus .epi-cta{position:relative;overflow:hidden;opacity:.95;background:linear-gradient(180deg,color-mix(in srgb,var(--epi-theme) 10%,rgba(255,255,255,.72)),color-mix(in srgb,var(--epi-theme) 5%,rgba(255,255,255,.5)));border:1px solid color-mix(in srgb,var(--epi-theme) 30%,rgba(255,255,255,.7));-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 0 0 1px rgba(255,255,255,.4),0 6px 16px -10px color-mix(in srgb,var(--epi-theme) 42%,transparent),0 0 20px color-mix(in srgb,var(--epi-theme) 14%,transparent)}
 #sysFocus .epi-cta::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.42) 50%,transparent 62%);transform:translateX(-140%);animation:epiCtaSweep 4.6s ease-in-out infinite;pointer-events:none}
@@ -3303,7 +3303,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 /* 2) active module focus — stronger glow + slightly more focus + soft breathing */
 #sysFocus .focus-mini__item.is-active{transform:translateY(-4px) scale(1.13)}
 #sysFocus .focus-mini__item.is-active .focus-mini__tile{box-shadow:0 11px 26px -6px color-mix(in srgb,var(--c) 54%,transparent),0 0 22px color-mix(in srgb,var(--c) 30%,transparent),inset 0 1px 0 rgba(255,255,255,.7);animation:miniActiveBreath 3.4s ease-in-out infinite}
-@keyframes miniActiveBreath{0%,100%{box-shadow:0 11px 26px -6px color-mix(in srgb,var(--c) 50%,transparent),0 0 16px color-mix(in srgb,var(--c) 22%,transparent),inset 0 1px 0 rgba(255,255,255,.7)}50%{box-shadow:0 13px 30px -6px color-mix(in srgb,var(--c) 58%,transparent),0 0 28px color-mix(in srgb,var(--c) 36%,transparent),inset 0 1px 0 rgba(255,255,255,.7)}}
+@keyframes miniActiveBreath{0%,100%{opacity:1}50%{opacity:.9}}
 @media (prefers-reduced-motion:reduce){#sysFocus .epi-radar .rp,#sysFocus .epi-radar .rhalo,#sysFocus .epi-radar .rring,#sysFocus .epi-radar .rdot,#sysFocus .epi-cog__ic::after,#sysFocus .epi-cta::before,#sysFocus .focus-mini__item.is-active .focus-mini__tile{animation:none}#sysFocus .epi-bar__fill::after{animation:none;opacity:0}}
 /* ============ PRICING (Your Investment) — Block 1: data + cards + advisor editor ============ */
 .price-app{margin-top:6px}
@@ -4000,6 +4000,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   .tier-grid{grid-template-columns:1fr;gap:26px;margin-top:14px}
   .price-ext{grid-template-columns:1fr}
 }
+
+/* perf: pause all animations when browser tab/window is hidden */
+html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after{animation-play-state:paused!important}
 </style>
 </head>
 <body>
@@ -9686,6 +9689,13 @@ io.observe(er);})();
   if(tg){ tg.addEventListener("click",function(e){ var b=e.target.closest("[data-lang]"); if(!b) return; setLang(b.getAttribute("data-lang")==="en",true); }); }
   var saved="both"; try{ saved=localStorage.getItem(KEY)||"both"; }catch(e){}
   setLang(saved==="en",false);
+})();
+</script>
+<script>
+(function(){
+  function sync(){ document.documentElement.classList.toggle('te-anim-paused', document.hidden); }
+  document.addEventListener('visibilitychange', sync);
+  sync();
 })();
 </script>
 </body>
