@@ -1750,7 +1750,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   background:linear-gradient(150deg,color-mix(in srgb,var(--epi-theme) 14%,#fff),color-mix(in srgb,var(--epi-theme) 5%,#fff));border:1px solid color-mix(in srgb,var(--epi-theme) 16%,rgba(255,255,255,.8))}
 .epi-quote .zh{display:block;font-size:14px;font-weight:500;color:var(--muted);margin-top:9px}
 /* ---- subtle theme switcher (advisor): faint dots, no labels ---- */
-.epi-switch{display:flex;justify-content:center;align-items:center;gap:11px;margin-top:8px;opacity:.55;transition:opacity .2s ease}
+.epi-switch{display:flex;justify-content:center;align-items:center;gap:11px;margin:0 0 13px;opacity:.55;transition:opacity .2s ease}
 .epi-switch:hover{opacity:1}
 .epi-dot{width:8px;height:8px;border-radius:50%;padding:0;cursor:pointer;background:rgba(20,33,50,.16);border:1px solid rgba(255,255,255,.6);box-shadow:inset 0 1px 0 rgba(255,255,255,.5);transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s ease,box-shadow .25s ease}
 .epi-dot:hover{background:rgba(20,33,50,.3)}
@@ -4028,6 +4028,48 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   .price-ext{grid-template-columns:1fr}
 }
 
+/* ===== Next 24 · Skills You Master ===== */
+.n24sk__chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.n24sk__chip{display:inline-flex;align-items:center;gap:7px;font:inherit;cursor:pointer;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.72);border:1px solid rgba(20,33,50,.12);transition:transform .15s,box-shadow .15s,background .15s,border-color .15s}
+.n24sk__chip b{font-family:var(--display);font-weight:800;font-size:12px;color:var(--c)}
+.n24sk__chip span{font-size:11.5px;font-weight:600;color:var(--muted)}
+.n24sk__chip:hover{transform:translateY(-1px)}
+.n24sk__chip.is-on{background:linear-gradient(150deg,color-mix(in srgb,var(--c) 14%,#fff),rgba(255,255,255,.85));border-color:color-mix(in srgb,var(--c) 46%,#fff);box-shadow:0 8px 18px -10px color-mix(in srgb,var(--c) 55%,transparent)}
+.n24sk__chip.is-on span{color:var(--ink)}
+.n24sk__pills{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.n24sk__pill{font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--ink);background:rgba(255,255,255,.8);border:1px solid color-mix(in srgb,var(--c) 30%,rgba(255,255,255,.9));border-radius:999px;padding:9px 17px;box-shadow:0 6px 16px -10px color-mix(in srgb,var(--c) 45%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}
+.n24sk__pill--hero{font-size:16.5px;font-weight:800;color:#fff;background:linear-gradient(150deg,color-mix(in srgb,var(--c) 82%,#fff),var(--c));border-color:transparent;padding:11px 22px;box-shadow:0 12px 26px -10px color-mix(in srgb,var(--c) 65%,transparent),inset 0 1px 0 rgba(255,255,255,.4)}
+.n24v{display:flex;align-items:center;gap:14px;width:100%;margin-top:15px;padding:11px 14px;border-radius:15px;cursor:pointer;font:inherit;text-align:left;background:rgba(255,255,255,.72);border:1px solid color-mix(in srgb,var(--c) 26%,rgba(255,255,255,.9));box-shadow:0 8px 20px -12px color-mix(in srgb,var(--c) 45%,transparent);transition:transform .16s,box-shadow .16s}
+.n24v:hover{transform:translateY(-2px);box-shadow:0 14px 28px -12px color-mix(in srgb,var(--c) 55%,transparent)}
+.n24v__thumb{position:relative;flex:none;width:118px;height:66px;border-radius:10px;overflow:hidden;background:#0c1422}
+.n24v__thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.n24v__play{position:absolute;inset:0;display:grid;place-items:center}
+.n24v__play svg{filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+.n24v__cap{display:flex;flex-direction:column;gap:2px;min-width:0}
+.n24v__cap b{font-family:var(--display);font-weight:800;font-size:13.5px;color:var(--ink)}
+.n24v__cap small{font-size:11.5px;color:var(--muted)}
+.n24v--soon{cursor:default;color:var(--muted)}
+.n24v--soon:hover{transform:none}
+.n24v__soonic{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:12px;background:color-mix(in srgb,var(--c) 10%,#fff);color:var(--ci)}
+.n24v--soon b{font-family:var(--display);font-weight:800;font-size:13px;color:var(--ink)}
+.n24v--soon .zh{font-size:11.5px;margin-left:8px}
+.n24v__frame{margin-top:15px;border-radius:15px;overflow:hidden;aspect-ratio:16/9;background:#000;box-shadow:0 14px 34px -14px rgba(10,20,40,.5)}
+.n24v__frame iframe{width:100%;height:100%;border:0;display:block}
+.n24p__h{font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.n24p__h .zh{display:block;font-weight:600;font-size:10.5px;letter-spacing:0;text-transform:none;color:var(--muted);margin-top:2px}
+.n24p__row{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.n24p__tag{flex:none;font-family:var(--display);font-weight:800;font-size:11px;color:#fff;background:var(--c);border-radius:7px;padding:4px 9px}
+.n24p__in{flex:1;font:inherit;font-size:12px;padding:7px 10px;border:1px solid rgba(20,33,50,.14);border-radius:9px;background:#fff;min-width:0}
+.n24p__bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:11px}
+.n24p__lt{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--blue);text-decoration:none;background:rgba(31,159,230,.07);border:1px solid rgba(31,159,230,.28);border-radius:999px;padding:6px 13px}
+.n24p__lt:hover{background:rgba(31,159,230,.13)}
+.n24p__sp{flex:1}
+.n24p__b{font-family:var(--display);font-weight:700;font-size:11.5px;padding:7px 14px;border-radius:999px;cursor:pointer;border:1px solid rgba(20,33,50,.12);background:#fff;color:var(--ink)}
+.n24p__b--ghost{color:var(--muted)}
+.n24p__b--save{background:var(--blue);border-color:var(--blue);color:#fff}
+.n24p__b.is-armed{background:rgba(224,48,59,.08);border-color:var(--red);color:var(--red);font-weight:800}
+@media(max-width:640px){.n24v__thumb{width:96px;height:54px}.n24sk__pill--hero{font-size:15px;padding:10px 18px}}
+
 /* ===== roadmap: compact pillars while a level detail is open ===== */
 #roadmap .lvl-col__bar{transition:height .45s cubic-bezier(.2,.7,.2,1)}
 #roadmap.is-compact .lvl-col__bar{height:calc(var(--h) * .6px)}
@@ -5348,6 +5390,11 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
   var lvState=[{c:1,t:3,name:""},{c:0,t:2,name:""},{c:2,t:4,name:""},{c:0,t:3,name:""}];
   /* Extensible per-level advisor resources (room to add more than youtube later) */
   var advisorLinks={p1:{youtube:"https://youtu.be/dW0WfzzcQJY"},l1:{youtube:"https://youtu.be/_Na5XJUTZYE"},l2:{youtube:"https://youtu.be/tMJCH5m2H9g"},l3:{youtube:"https://youtu.be/Ggoq5G9avJ8"},l4:{youtube:"Z8ucszi9q2s"}};
+  var ADVL_KEY="te_lvvideos_v1";
+  try{var _al=JSON.parse(localStorage.getItem(ADVL_KEY)||"null");
+    if(_al&&typeof _al==="object"){Object.keys(advisorLinks).forEach(function(k){if(_al[k]&&typeof _al[k].youtube==="string")advisorLinks[k].youtube=_al[k].youtube;});}
+  }catch(e){}
+  function advLinksSave(){try{localStorage.setItem(ADVL_KEY,JSON.stringify(advisorLinks));}catch(e){}}
   function lvKey(k){return ((LEVELS[k]&&LEVELS[k].id)||"").toLowerCase();}
   function lvLink(k){var r=advisorLinks[lvKey(k)];return (r&&r.youtube)||"";}
   var RESIC='<svg viewBox="0 0 24 24"><path d="M4 7h8M16 7h4M4 12h4M12 12h8M4 17h6M14 17h6"/><circle cx="14" cy="7" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="12" cy="17" r="2"/></svg>';
@@ -5547,7 +5594,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       var zb=e.target.closest("[data-zoom]"); if(zb){ setZoom(zb.getAttribute("data-zoom")==="in"?1:-1); return; }
       if(e.target.closest("[data-lv-close]")){ closeInline(e.target.closest(".lvroad")); return; }
       var rtog=e.target.closest("[data-res-toggle]"); if(rtog){ var bx=rtog.closest(".lvres"); if(bx)bx.classList.toggle("is-open"); return; }
-      var rsave=e.target.closest("[data-res-save]"); if(rsave){ var kk=+rsave.getAttribute("data-res-save"); var inp=rsave.closest(".lvres").querySelector("[data-res-input]"); advisorLinks[lvKey(kk)].youtube=((inp&&inp.value)||"").trim(); var rd=rsave.closest(".lvroad"); var pa=rd&&rd.querySelector(".lvroad__detail"); if(pa){ pa.innerHTML=inlineDetail(kk); pa.classList.add("show"); } return; }
+      var rsave=e.target.closest("[data-res-save]"); if(rsave){ var kk=+rsave.getAttribute("data-res-save"); var inp=rsave.closest(".lvres").querySelector("[data-res-input]"); advisorLinks[lvKey(kk)].youtube=((inp&&inp.value)||"").trim(); advLinksSave(); var rd=rsave.closest(".lvroad"); var pa=rd&&rd.querySelector(".lvroad__detail"); if(pa){ pa.innerHTML=inlineDetail(kk); pa.classList.add("show"); } return; }
       var vid=e.target.closest("[data-lvl-video]"); if(vid){ openVideo(+vid.getAttribute("data-lvl-video")); return; }
       var more=e.target.closest("[data-lvl-full]"); if(more){ openCCModal(+more.getAttribute("data-lvl-full")); return; }
       var card=e.target.closest(".lvl-col"); if(!card)return;
@@ -5556,7 +5603,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     });}
     if(mbg){mbg.addEventListener("click",function(e){
       var rtog=e.target.closest("[data-res-toggle]"); if(rtog){var bx=rtog.closest(".lvres"); if(bx)bx.classList.toggle("is-open"); return;}
-      var rsave=e.target.closest("[data-res-save]"); if(rsave){var kk=+rsave.getAttribute("data-res-save"); var inp=rsave.closest(".lvres").querySelector("[data-res-input]"); advisorLinks[lvKey(kk)].youtube=((inp&&inp.value)||"").trim(); $("#modalBody").innerHTML=introInner(kk); return;}
+      var rsave=e.target.closest("[data-res-save]"); if(rsave){var kk=+rsave.getAttribute("data-res-save"); var inp=rsave.closest(".lvres").querySelector("[data-res-input]"); advisorLinks[lvKey(kk)].youtube=((inp&&inp.value)||"").trim(); advLinksSave(); $("#modalBody").innerHTML=introInner(kk); return;}
       var v=e.target.closest("[data-lvl-video]"); if(v){openVideo(+v.getAttribute("data-lvl-video"));return;}
       var b=e.target.closest("[data-lvl-full]"); if(b)openCCModal(+b.getAttribute("data-lvl-full"));});}
     var vbg=$("#videoBg"), vClose=$("#videoClose");
@@ -5579,7 +5626,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     var _rt; window.addEventListener("resize",function(){clearTimeout(_rt);_rt=setTimeout(fitRoads,120);});
     var adminRows=$("#lvAdminRows");
     if(adminRows){
-      adminRows.addEventListener("input",function(e){var n=e.target.closest("input[data-admin-link]"); if(!n)return; var key=n.getAttribute("data-admin-link"); if(advisorLinks[key])advisorLinks[key].youtube=n.value.trim();});
+      adminRows.addEventListener("input",function(e){var n=e.target.closest("input[data-admin-link]"); if(!n)return; var key=n.getAttribute("data-admin-link"); if(advisorLinks[key])advisorLinks[key].youtube=n.value.trim(); advLinksSave();});
     }
     renderAdminLinks();
     if($("#lvLearners")){renderLearners(); renderMods();}
@@ -5849,6 +5896,104 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
 
     function fblock(lab,zh,o){return '<div class="focus-block"><div class="focus-block__lab"><span class="focus-block__mk"></span>'+lab+' <span class="zh">'+zh+'</span></div><div class="focus-block__val">'+o.en+' <span class="zh">'+o.zh+'</span></div></div>';}
     function advBullets(arr){return '<ul class="advnote__list">'+arr.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>';}
+    /* ===== Next 24 — Skills You Master (per-level skills + editable teaching videos) ===== */
+    var N24_LV=[
+      {tag:"Lv 0", name:"Pre-Beginner", zh:"\u96f6\u57fa\u7840", c:"#EBB12A", ci:"#9A6E00",
+       skills:["Copying Skill","Repeating Skill","Pronunciation Skill","Basic Describing Skill","Basic Answering Technique"]},
+      {tag:"Lv 1", name:"Beginner", zh:"\u521d\u7ea7", c:"#2E9E50", ci:"#1C7A3A",
+       skills:["Sentence Construction Skill","Answering Technique","Tense Control Skill","Expanding Ideas Skill","Basic Summarising Skill"]},
+      {tag:"Lv 2", name:"Intermediate \u00b7 Conveying", zh:"\u4e2d\u7ea7", c:"#1F9FE6", ci:"#1877B5",
+       skills:["Conveying Skill","Explaining Skill","Summarising Skill","Paraphrasing Skill","Presentation Skill","Discussion Skill"]},
+      {tag:"Lv 3", name:"Upper Intermediate \u00b7 Convincing", zh:"\u4e2d\u9ad8\u7ea7", c:"#E8472B", ci:"#B5321C",
+       skills:["Convincing Skill","Persuasion Skill","Debate Skill","Negotiation Skill","Critical Thinking Skill","Question Handling Skill"]},
+      {tag:"Lv 4", name:"Advanced \u00b7 Captivating", zh:"\u9ad8\u7ea7", c:"#15335E", ci:"#15335E",
+       skills:["Captivating Skill","Storytelling Skill","Public Speaking Skill","Audience Engagement Skill","Leadership Communication Skill","Inspirational Speaking Skill","Impactful Presentation Skill"]}
+    ];
+    var N24V_KEY="te_n24vids_v1", N24V_DEF=["2SKhdb4JgPE","UEVXUXii09U","BPFa88X9laA","BngQV_xe0B4",""];
+    function n24Vids(){ try{var v=JSON.parse(localStorage.getItem(N24V_KEY)||"null"); if(Array.isArray(v)&&v.length===5)return v.map(function(x){return x||"";});}catch(e){} return N24V_DEF.slice(); }
+    function n24VidsSave(v){ try{localStorage.setItem(N24V_KEY,JSON.stringify(v));}catch(e){} }
+    function n24YtId(u){ if(!u)return ""; u=String(u).trim(); var m=u.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{6,})/); if(m)return m[1]; if(/^[A-Za-z0-9_-]{6,}$/.test(u))return u; return ""; }
+    function n24VideoHTML(li){
+      var id=n24Vids()[li];
+      if(!id) return '<div class="n24v n24v--soon"><span class="n24v__soonic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4.5"/><path d="M10 9.4l5 2.6-5 2.6z" fill="currentColor" stroke="none"/></svg></span><b>Teaching video coming soon</b><span class="zh">\u6559\u5b66\u89c6\u9891 \u00b7 \u5373\u5c06\u4e0a\u7ebf</span></div>';
+      return '<button type="button" class="n24v" data-n24play="'+li+'" aria-label="Play teaching video">'+
+        '<span class="n24v__thumb"><img loading="lazy" decoding="async" src="https://img.youtube.com/vi/'+id+'/hqdefault.jpg" alt="Teaching video"><span class="n24v__play"><svg viewBox="0 0 24 24" width="17" height="17"><path d="M8 5.5l11 6.5-11 6.5z" fill="#fff"/></svg></span></span>'+
+        '<span class="n24v__cap"><b>Teaching Video <span class="zh">\u00b7 \u6559\u5b66\u89c6\u9891</span></b><small>See how this level is taught <span class="zh">\u00b7 \u770b\u770b\u8fd9\u4e2a\u7a0b\u5ea6\u600e\u4e48\u6559</span></small></span>'+
+      '</button>';
+    }
+    function n24LevelHTML(li){
+      var L=N24_LV[li];
+      var hero=L.skills[0], rest=L.skills.slice(1);
+      return '<div class="n24sk__lvlwrap" style="--c:'+L.c+';--ci:'+L.ci+'">'+
+        '<div class="n24sk__pills"><span class="n24sk__pill n24sk__pill--hero">'+hero+'</span>'+
+          rest.map(function(s){return '<span class="n24sk__pill">'+s+'</span>';}).join('')+'</div>'+
+        n24VideoHTML(li)+
+      '</div>';
+    }
+    function n24SkillsBlock(){
+      var chips=N24_LV.map(function(L,i){return '<button type="button" class="n24sk__chip'+(i===0?' is-on':'')+'" data-n24lv="'+i+'" style="--c:'+L.c+'"><b>'+L.tag+'</b><span>'+L.name.split(' \u00b7 ')[0]+'</span></button>';}).join('');
+      return '<div class="focus-block n24sk" id="n24sk">'+
+        '<div class="focus-block__lab"><span class="focus-block__mk s3mk"><svg class="s3mk__svg" viewBox="0 0 24 24"><path d="M12 2.5l2.4 5 5.6.7-4.1 3.8 1.1 5.5-5-2.8-5 2.8 1.1-5.5L4 8.2l5.6-.7z"/></svg></span>Skills You Master <span class="zh">\u6280\u80fd\u5730\u56fe</span></div>'+
+        '<div class="n24sk__chips">'+chips+'</div>'+
+        '<div class="n24sk__stage" id="n24Stage">'+n24LevelHTML(0)+'</div>'+
+      '</div>';
+    }
+    function n24PanelHTML(){
+      var v=n24Vids();
+      return '<div class="n24p__h">Advisor only \u00b7 manage teaching video links <span class="zh">\u4ec5\u987e\u95ee\u53ef\u89c1\uff0c\u7ba1\u7406\u5404 Level \u6559\u5b66\u89c6\u9891\u94fe\u63a5\uff08\u4fdd\u5b58\u5728\u672c\u673a\uff09</span></div>'+
+        N24_LV.map(function(L,i){
+          return '<label class="n24p__row"><span class="n24p__tag" style="--c:'+L.c+'">'+L.tag+'</span><input class="n24p__in" data-n24url="'+i+'" value="'+(v[i]?'https://youtu.be/'+v[i]:'')+'" placeholder="\u8d34 YouTube \u94fe\u63a5\uff0c\u7559\u7a7a = \u663e\u793a Coming Soon"></label>';
+        }).join('')+
+        '<div class="n24p__bar">'+
+          '<a class="n24p__lt" href="https://linktr.ee/TouchEnglish_CN" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>Linktree \u00b7 \u627e\u6700\u65b0\u89c6\u9891</a>'+
+          '<span class="n24p__sp"></span>'+
+          '<button type="button" class="n24p__b n24p__b--ghost" data-n24reset>Reset to default <span class="zh">\u6062\u590d\u9ed8\u8ba4</span></button>'+
+          '<button type="button" class="n24p__b n24p__b--save" data-n24save>Save <span class="zh">\u4fdd\u5b58</span></button>'+
+        '</div>';
+    }
+    var n24Cur=0;
+    function n24Refresh(){ var st=document.querySelector("#n24sk #n24Stage"); if(st)st.innerHTML=n24LevelHTML(n24Cur); }
+    document.addEventListener("click",function(e){
+      var root=e.target.closest("#n24sk");
+      if(root){
+        var chip=e.target.closest("[data-n24lv]");
+        if(chip){
+          n24Cur=+chip.getAttribute("data-n24lv");
+          root.querySelectorAll("[data-n24lv]").forEach(function(c){c.classList.toggle("is-on",c===chip);});
+          n24Refresh();
+          return;
+        }
+        var play=e.target.closest("[data-n24play]");
+        if(play){
+          var li=+play.getAttribute("data-n24play"), id=n24Vids()[li]; if(!id)return;
+          var fr=document.createElement("div"); fr.className="n24v__frame";
+          fr.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?rel=0&autoplay=1" title="Teaching video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+          play.replaceWith(fr);
+          return;
+        }
+      }
+      var panel=e.target.closest(".n24p");
+      if(panel){
+        var save=e.target.closest("[data-n24save]");
+        if(save){
+          var vv=[];
+          panel.querySelectorAll("[data-n24url]").forEach(function(inp){ vv[+inp.getAttribute("data-n24url")]=n24YtId(inp.value); });
+          for(var qi=0;qi<5;qi++){ if(!vv[qi])vv[qi]=""; }
+          n24VidsSave(vv);
+          n24Refresh();
+          panel.innerHTML=n24PanelHTML();
+          return;
+        }
+        var rs=e.target.closest("[data-n24reset]");
+        if(rs){
+          if(!rs.classList.contains("is-armed")){ rs.classList.add("is-armed"); rs.innerHTML='Click again to confirm <span class="zh">\u518d\u70b9\u4e00\u6b21\u786e\u8ba4</span>'; setTimeout(function(){ if(rs&&rs.classList){rs.classList.remove("is-armed"); rs.innerHTML='Reset to default <span class="zh">\u6062\u590d\u9ed8\u8ba4</span>';} },3500); return; }
+          n24VidsSave(N24V_DEF.slice());
+          panel.innerHTML=n24PanelHTML();
+          n24Refresh();
+          return;
+        }
+      }
+    });
     function next24Page(){
       var s=SYS[6];
       return ''+
@@ -5887,6 +6032,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
                 '<div class="s3mast__item"><span class="s3mast__ic"><svg viewBox="0 0 24 24"><path d="M3 9c2.5-3 4.5 3 7 0s4.5-3 7 0"/><path d="M3 15c2.5-3 4.5 3 7 0s4.5-3 7 0"/></svg></span><div class="s3mast__tx"><b>Express ideas with better flow</b><span class="zh">\u66f4\u6d41\u7545\u5730\u8868\u8fbe\u60f3\u6cd5</span></div></div>'+
               '</div>'+
             '</div>'+
+            n24SkillsBlock()+
           '</div>'+
           '<aside class="focus-gain">'+
             '<div class="focus-gain__h"><span class="focus-gain__ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h7v7"/></svg></span>How it helps you progress <span class="zh">如何帮助你进步</span></div>'+
@@ -6066,6 +6212,8 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       return '<div class="epi">'+
         mirrorHero(1,"See Yourself","看见自己","Learning Profile Analysis","学习画像分析","See how you learn — your style, strengths, and how we guide you.","了解你的学习方式、优势与挑战，以及我们可以怎样更适合地引导你。")+
         '<div class="epi-body">'+
+          // ---- theme switcher (4 learning-style dots, moved above the identity card) ----
+          '<div class="epi-switch" id="epiSwitch" role="tablist" aria-label="Learning style theme">'+dots+'</div>'+
           // ---- Learning Identity card ----
           '<div class="epi-id" id="epiId">'+
             '<span class="epi-id__brain" aria-hidden="true">'+sv("brain")+'</span>'+
@@ -6092,8 +6240,6 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
           // ---- what the analysis reveals ----
           '<div class="epi-secs" id="epiSecs">'+secsRows(0)+'</div>'+
           '<div class="epi-quote"><button type="button" class="tk-iconbtn" data-epivid style="--c:#E0303B;margin:0 auto 14px" aria-label="Watch student stories"><svg viewBox="0 0 24 24" width="27" height="27" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4.5" fill="currentColor"></rect><path d="M10 9.4l5 2.6-5 2.6z" fill="#fff"></path></svg></button>This report is a mirror — it helps you see how you learn, so your plan can fit you. <span class="zh">这份报告像一面镜子，帮你看见自己的学习方式，让计划真正适合你。</span></div>'+
-          // ---- subtle theme switcher (advisor only) ----
-          '<div class="epi-switch" id="epiSwitch" role="tablist" aria-label="Learning style theme">'+dots+'</div>'+
         '</div>'+
       '</div>';
     }
@@ -7466,6 +7612,8 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     // ===== Reusable Advisor Note (standard presentation, same as "Step Onto The Stage") =====
     function next24AdvBody(){
       return '<div class="advnotes">'+
+        '<div class="advnote__sec advnote__sec--edit"><h4>Teaching video links <span class="zh">\u6559\u5b66\u89c6\u9891\u94fe\u63a5\uff08\u4fdd\u5b58\u5728\u672c\u673a\uff09</span></h4>'+
+          '<div class="n24p" id="n24AdvPanel">'+n24PanelHTML()+'</div></div>'+
         '<div class="advnote__sec"><h4>Core Message <span class="zh">核心概念</span></h4>'+
           '<p class="advnote__core">First 24 = Learn &amp; Adapt　·　Next 24 = Strengthen &amp; Stabilise</p>'+
           '<p class="zh">客户一定要听懂：前 24 堂课是适应。后 24 堂课是稳定输出。这是两个不同阶段。</p></div>'+
