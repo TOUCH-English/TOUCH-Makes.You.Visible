@@ -3656,6 +3656,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rb-h{font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:16px 0 8px}
 .rb-h:first-child{margin-top:0}
 .rb-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rb-row .rb-field{min-width:0}
+.rb-date input{min-width:0;width:100%}
+@media(max-width:430px){.rb-row{grid-template-columns:1fr}}
 .rb-field{display:block;margin-bottom:10px}
 .rb-field span{display:block;font-size:11.5px;font-weight:600;color:var(--muted);margin-bottom:4px}
 .rb-field input,.rb-field select,.rb-field textarea{width:100%;box-sizing:border-box;font:inherit;font-size:13px;color:var(--ink);padding:8px 11px;border-radius:10px;border:1px solid var(--line-strong);background:#fff;outline:none;transition:border .14s}
