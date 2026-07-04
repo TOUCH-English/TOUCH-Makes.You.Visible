@@ -4134,6 +4134,12 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .ipatry__punch{text-align:center;padding:14px 10px 8px;animation:ipatryPunch .5s cubic-bezier(.2,.7,.2,1) both}
 .ipatry__punch b{display:block;font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink);letter-spacing:-.01em}
 .ipatry__punch .zh{display:block;font-size:13px;font-weight:600;color:#1B87C9;margin-top:5px}
+.ipatry__start{display:flex;align-items:center;gap:12px;width:100%;font:inherit;text-align:left;cursor:pointer;padding:11px 15px;border-radius:12px;background:rgba(255,255,255,.75);border:1px solid rgba(41,163,224,.3);transition:transform .16s,box-shadow .16s}
+.ipatry__start:hover{transform:translateY(-1px);box-shadow:0 10px 22px -12px rgba(31,127,214,.4)}
+.ipatry__starttx{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
+.ipatry__starttx b{font-family:var(--display);font-weight:800;font-size:13px;color:var(--ink)}
+.ipatry__starttx small{font-size:11.5px;color:var(--muted)}
+.ipatry__startgo{flex:none;width:27px;height:27px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(150deg,#5BD7FF,#29A3E0);color:#fff;font-size:13px;box-shadow:0 6px 12px -6px rgba(41,163,224,.55)}
 @keyframes ipatryIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes ipatryPunch{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
 @media(max-width:640px){.ipachart-bar{gap:10px;padding:11px 13px}.ipachart-bar__syms i:nth-child(n+4){display:none}.ipach__card{padding:18px 14px 16px}}
@@ -10069,9 +10075,15 @@ io.observe(er);})();
       '</div>';
     document.body.appendChild(m);
     document.body.style.overflow='hidden';
-    var TS={i:0,rev:false,done:false};
+    var TS={on:false,i:0,rev:false,done:false};
     function tryRender(){
       var el=m.querySelector('#ipaTry'); if(!el)return;
+      if(!TS.on){
+        el.innerHTML='<button type="button" class="ipatry__start" data-ipatry-start>'+
+          '<span class="ipatry__starttx"><b>Mini test <span class="zh">\u00b7 \u5c0f\u6d4b\u8bd5</span></b><small>Can you read these words? <span class="zh">\u00b7 \u6d4b\u4e00\u6d4b\uff1a\u8fd9\u51e0\u4e2a\u8bcd\u4f60\u4f1a\u8bfb\u5417\uff1f</span></small></span>'+
+          '<span class="ipatry__startgo">\u2192</span></button>';
+        return;
+      }
       var arch=SURPRISE.slice(0,TS.i).map(function(w){return '<span class="ipatry__pill">'+w[0]+' <em>'+w[1]+'</em></span>';}).join('');
       var h='<div class="ipatry__top"><span class="ipatry__h">Try to read these <span class="zh">\u00b7 \u4f60\u4f1a\u600e\u4e48\u8bfb\u8fd9\u4e09\u4e2a\u8bcd\uff1f</span></span>'+
         '<span class="ipatry__meta"><span class="ipatry__prog">'+Math.min(TS.i+(TS.done?0:1),3)+' / 3</span>'+
@@ -10094,7 +10106,8 @@ io.observe(er);})();
     function shut(){ m.classList.remove('is-open'); document.removeEventListener('keydown',esc); document.body.style.overflow=''; setTimeout(function(){ if(m&&m.parentNode)m.remove(); },200); }
     m.addEventListener('click',function(e){
       if(e.target.closest('[data-ipacx]')){shut();return;}
-      if(e.target.closest('[data-ipatry-reset]')){TS={i:0,rev:false,done:false};tryRender();return;}
+      if(e.target.closest('[data-ipatry-start]')){TS={on:true,i:0,rev:false,done:false};tryRender();return;}
+      if(e.target.closest('[data-ipatry-reset]')){TS={on:false,i:0,rev:false,done:false};tryRender();return;}
       var c=e.target.closest('[data-ipatry-card]');
       if(c&&!TS.rev){TS.rev=true;tryRender();return;}
       if(e.target.closest('[data-ipatry-next]')){
