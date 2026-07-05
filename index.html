@@ -3655,10 +3655,14 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rb-side{position:sticky;top:10px;border-radius:20px;padding:18px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.8);box-shadow:0 20px 44px -26px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.85)}
 .rb-h{font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:16px 0 8px}
 .rb-h:first-child{margin-top:0}
-.rb-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.rb-row .rb-field{min-width:0}
-.rb-date input{min-width:0;width:100%}
-@media(max-width:430px){.rb-row{grid-template-columns:1fr}}
+.rb-row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-end}
+.rb-row .rb-field{margin-bottom:0;min-width:0;display:flex;flex-direction:column;justify-content:flex-end}
+.rb-row .rb-field:first-child{flex:1 1 auto}
+.rb-field--score{flex:0 0 108px}
+.rb-field--score input{text-align:center}
+.rb-row .rb-field input,.rb-row .rb-date{height:40px}
+.rb-row .rb-date input{height:100%}
+.rb-field .rb-date{margin-bottom:0}
 .rb-field{display:block;margin-bottom:10px}
 .rb-field span{display:block;font-size:11.5px;font-weight:600;color:var(--muted);margin-bottom:4px}
 .rb-field input,.rb-field select,.rb-field textarea{width:100%;box-sizing:border-box;font:inherit;font-size:13px;color:var(--ink);padding:8px 11px;border-radius:10px;border:1px solid var(--line-strong);background:#fff;outline:none;transition:border .14s}
@@ -3671,8 +3675,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rb-stg em{font-style:normal;font-size:11.5px;color:var(--faint)}
 .rb-stg-total{font-size:12px;color:var(--muted);margin:4px 0 10px;text-align:right}
 .rb-stg-total b{font-family:var(--display);color:var(--blue);font-size:13.5px}
-.rb-date{position:relative;display:block}
-.rb-date input{color:transparent}
+.rb-date{position:relative;display:block;overflow:hidden;border-radius:10px;max-width:100%}
+.rb-date input{color:transparent;min-width:0;width:100%;max-width:100%;-webkit-appearance:none;appearance:none}
 .rb-date input::-webkit-datetime-edit{color:transparent}
 .rb-date input::selection{background:transparent}
 .rb-date__v{position:absolute;left:12px;top:50%;transform:translateY(-50%);z-index:2;pointer-events:none;font-size:13px;color:var(--ink)}
@@ -9497,7 +9501,7 @@ io.observe(er);})();
       '<label class="rb-field"><span>学员姓名 Name</span><input type="text" data-f="name" value="'+esc(ST.name)+'" placeholder="e.g. Wei Ling"></label>'+
       '<div class="rb-row">'+
       '<label class="rb-field"><span>测试日期 Date <small style="font-weight:500;color:var(--faint)">日/月/年</small></span><span class="rb-date"><input type="date" data-f="date" value="'+esc(ST.date||todayISO())+'"><i class="rb-date__v">'+dmy(ST.date||todayISO())+'</i></span></label>'+
-      '<label class="rb-field"><span>测试分数 Score / 60</span><input type="text" data-f="score" value="'+esc(ST.score)+'" placeholder="45"></label></div>'+
+      '<label class="rb-field rb-field--score"><span>分数 Score/60</span><input type="text" inputmode="numeric" data-f="score" value="'+esc(ST.score)+'" placeholder="45"></label></div>'+
       '<div class="rb-h">Levels 级别</div>'+
       '<label class="rb-field"><span>现在的 Level 现况</span><select data-f="cur">'+opts(ST.cur)+'</select></label>'+
       '<label class="rb-field"><span>建议达到的 Level 目标</span><select data-f="tgt">'+opts(ST.tgt)+'</select></label>'+
