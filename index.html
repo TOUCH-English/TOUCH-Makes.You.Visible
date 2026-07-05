@@ -4079,6 +4079,55 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 @media(max-width:860px){#roadmap.is-compact .lvl-col__bar{height:calc(var(--h) * .41px)}}
 @media (prefers-reduced-motion:reduce){#roadmap .lvl-col__bar{transition:none}}
 
+/* ===== Timetable stage: six loc-pop cards, expanded (pricing-grid layout) ===== */
+.ttc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;max-width:930px;margin:0 auto}
+@media(max-width:980px){.ttc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.ttc-grid{grid-template-columns:1fr}}
+.ttc{position:relative;display:flex;flex-direction:column;border-radius:17px;overflow:hidden;
+  background:linear-gradient(170deg,rgba(255,255,255,.95),rgba(255,255,255,.84));
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:0 16px 34px -18px rgba(16,24,60,.26),inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s}
+.ttc:hover{transform:translateY(-4px);box-shadow:0 24px 44px -18px rgba(16,24,60,.34),inset 0 1px 0 rgba(255,255,255,.95)}
+.ttc__photo{position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(160deg,#B9C6E4,#8E9EC6)}
+.ttc__photo img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;display:block}
+.ttc__ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#20315B}
+.ttc__ph svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ttc__ph span{font-family:var(--display);font-weight:800;font-size:12.5px;text-shadow:0 1px 2px rgba(255,255,255,.4)}
+.ttc__body{display:flex;flex-direction:column;padding:8px 11px 10px;flex:1}
+.ttc__area{font-family:var(--display);font-weight:800;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--blue-bright)}
+.ttc__name{font-family:var(--display);font-weight:800;font-size:13px;color:var(--ink);margin-top:1px;line-height:1.2;letter-spacing:-.01em}
+.ttc__lvls{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.ttc__lv{display:inline-flex;align-items:center;font-family:var(--display);font-weight:800;font-size:8.5px;line-height:1.25;color:var(--lt,#fff);background:var(--lc,var(--blue-bright));padding:2px 6px;border-radius:6px;box-shadow:0 4px 10px -4px color-mix(in srgb,var(--lc,var(--blue-bright)) 60%,transparent)}
+.ttc__addr{display:flex;align-items:flex-start;gap:5px;margin-top:4px;font-size:10px;color:var(--muted);line-height:1.3;flex:1}
+.ttc__addr svg{flex:none;width:13px;height:13px;margin-top:1px;fill:#E0303B}
+.ttc__btns{display:flex;align-items:center;gap:6px;margin-top:7px;flex-wrap:wrap}
+.ttc__link{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:700;font-size:11px;color:#fff;border:none;cursor:pointer;
+  padding:5px 10px;border-radius:999px;background:var(--blue-bright);box-shadow:0 7px 16px -8px color-mix(in srgb,var(--blue-bright) 70%,transparent);transition:transform .15s,box-shadow .15s}
+.ttc__link:hover{transform:translateY(-1px);box-shadow:0 10px 20px -8px color-mix(in srgb,var(--blue-bright) 75%,transparent)}
+.ttc__link svg{width:12px;height:12px;fill:currentColor}
+.ttc__tt{display:inline-flex;align-items:center;gap:5px;font-family:var(--display);font-weight:700;font-size:10px;color:var(--blue-bright);cursor:pointer;padding:5px 9px;border-radius:9px;background:rgba(255,255,255,.6);border:1px solid color-mix(in srgb,var(--blue-bright) 24%,var(--line));transition:background .15s,border-color .15s,transform .15s}
+.ttc__tt:hover{background:color-mix(in srgb,var(--blue-bright) 10%,#fff);border-color:color-mix(in srgb,var(--blue-bright) 42%,#fff);transform:translateY(-1px)}
+.ttc__tt svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* PPT-style edge navigation hint chevrons */
+.edgenav{position:fixed;z-index:35;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#3E5A80;background:rgba(255,255,255,.85);border:1px solid rgba(20,33,50,.12);box-shadow:0 8px 20px -10px rgba(16,24,40,.35);opacity:0;pointer-events:none;transition:opacity .18s ease}
+.edgenav.is-on{opacity:.92}
+.edgenav--l{left:14px}
+.edgenav--r{right:14px}
+@media(max-width:860px){.edgenav{display:none}}
+
+/* iPad-style edge snap ghost for the dock */
+#dockSnapGhost{position:fixed;z-index:39;pointer-events:none;opacity:0;border:2px dashed rgba(31,120,210,.55);background:rgba(31,120,210,.07);border-radius:20px;transition:opacity .16s ease;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6)}
+#dockSnapGhost.is-on{opacity:1}
+#dockSnapGhost.ghost--bottom{left:50%;transform:translateX(-50%);bottom:12px;width:min(700px,88vw);height:60px}
+#dockSnapGhost.ghost--left{left:12px;top:50%;transform:translateY(-50%);width:60px;height:min(540px,72vh)}
+#dockSnapGhost.ghost--right{right:12px;left:auto;top:50%;transform:translateY(-50%);width:60px;height:min(540px,72vh)}
+
+/* dock drag: drop the glass while moving for a fluid drag */
+#dock.is-dragging{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(255,255,255,.97)!important;will-change:left,top}
+#dock.is-dragging *{animation-play-state:paused!important}
+
 /* ===== IPA chart teaser bar + popup ===== */
 .ipachart-bar{display:flex;align-items:center;gap:14px;width:100%;margin:14px 0 2px;padding:13px 18px;border-radius:16px;cursor:pointer;text-align:left;font:inherit;
   background:linear-gradient(150deg,rgba(76,203,255,.12),rgba(255,255,255,.7));border:1px solid rgba(76,203,255,.4);
@@ -4219,7 +4268,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       <section class="stage is-active" data-title="Opening" data-zh="开场" data-index="0">
         <div class="brandhero">
           <div class="brandhero__panel">
-          <button class="brandhero__logobtn" data-goto="4" aria-label="Begin · Placement test">
+          <button class="brandhero__logobtn" data-goto-next aria-label="Begin · Next page">
             <span class="logo-disc logo-disc--hero"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH English" onerror="this.style.display='none'"></span>
           </button>
           <h1 class="brandhero__vision"><span class="brandhero__lead">TOUCH English</span><span class="brandhero__big">makes you <span class="brandhero__vis">visible</span></span></h1>
@@ -4402,7 +4451,8 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
           <div class="why why--link" data-hrdc role="button" tabindex="0" onclick="openHRDC()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openHRDC();}"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18"/><circle cx="16.5" cy="14.5" r="1.3" fill="currentColor" stroke="none"/></svg></div><span class="badge">Corporate</span><div class="t">HRDC claimable</div><div class="d">Certified HRD Corp training provider — claimable for companies.</div><span class="why__view">View details <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></div>
           <div class="why why--link" data-results role="button" tabindex="0" onclick="openResults()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openResults();}"><div class="why-ic"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="m7.5 14 3-3 2.5 2 5-6"/></svg></div><span class="badge">Proven</span><div class="t">IELTS &amp; Cambridge Results</div><div class="d">View real learner results and English proficiency achievements.</div><span class="why__view">View Results <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span></div>
         </div>
-        <div class="locations">
+
+<div class="locations">
           <h4><span class="loc-pin"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Where you can learn · 上课地点</h4>
           <div class="loc-row">
             <span class="loc" data-loc data-area="Johor" data-name="Mount Austin" data-addr="7-02, Jalan Mutiara Emas 2A, Taman Mount Austin, 81100 Johor Bahru, Johor" data-img="assets/locations/austin.png" data-desc="Our Johor flagship centre in Mount Austin." data-map="https://maps.app.goo.gl/odkT1HQNE7pc4PTJ9"><b>Johor:</b> Mount Austin</span>
@@ -4700,6 +4750,18 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         </div>
       </section>
 
+      <!-- ===================== STAGE 11 · TIMETABLE ===================== -->
+      <section class="stage" data-title="Timetable" data-zh="课程时间表" data-index="11">
+        <span class="kicker"><span class="kicker-bar"></span>SIX CENTRES, ONE SCHEDULE VIEW</span>
+        <h2 class="stage-title">On-site or online — the stage is ready <span class="zh">线下或线上，舞台都为你准备好了</span></h2>
+        <p class="note" style="margin:4px 0 14px">Tap a centre for its weekly timetable. <span class="zh">点任一分行查看每周课表，鼠标滑到 Map 预览位置。</span></p>
+        <div class="glass-stage">
+          <span class="glow" style="background:var(--l2);left:4%;top:12%"></span>
+          <span class="glow" style="background:var(--p1);right:2%;bottom:14%"></span>
+          <div class="ttc-grid" id="ttLoc"><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Live Class</span></div><img loading="lazy" decoding="async" src="assets/locations/online.png" alt="Live Class" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Online</span><div class="ttc__name">Live Class</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#EBB12A;--lt:#4A3700">Level P1</span><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span><span class="ttc__lv" style="--lc:#15335E;--lt:#fff">Level 4</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>Online · Live Class</span></div><div class="ttc__btns"><button type="button" class="ttc__tt" data-ttctt="Live Class"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Mount Austin</span></div><img loading="lazy" decoding="async" src="assets/locations/austin.png" alt="Mount Austin" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Mount Austin</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>7-02, Jalan Mutiara Emas 2A, Taman Mount Austin, 81100 Johor Bahru, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Mount Austin" data-addr="7-02, Jalan Mutiara Emas 2A, Taman Mount Austin, 81100 Johor Bahru, Johor" data-map="https://maps.app.goo.gl/odkT1HQNE7pc4PTJ9"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Mount Austin"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Sutera Utama</span></div><img loading="lazy" decoding="async" src="assets/locations/sutera.png" alt="Sutera Utama" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Sutera Utama</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>90B, Jalan Sutera Tanjung 8/4, Taman Sutera Utama, 81300 Skudai, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Sutera Utama" data-addr="90B, Jalan Sutera Tanjung 8/4, Taman Sutera Utama, 81300 Skudai, Johor" data-map="https://maps.app.goo.gl/F8h74Aq7bNKcJCxZ6"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Sutera Utama"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Bukit Indah</span></div><img loading="lazy" decoding="async" src="assets/locations/bi.png" alt="Bukit Indah" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Bukit Indah</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>6A, Jalan Indah 15/1, Taman Bukit Indah, 79100 Iskandar Puteri, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Bukit Indah" data-addr="6A, Jalan Indah 15/1, Taman Bukit Indah, 79100 Iskandar Puteri, Johor" data-map="https://maps.app.goo.gl/MVGCp1yj9zMym4Zo7"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Bukit Indah"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Kulai</span></div><img loading="lazy" decoding="async" src="assets/locations/kulai.png" alt="Kulai" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Kulai</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>205A, Jalan Kenanga 29/2, Indahpura, 81000 Kulai, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Kulai" data-addr="205A, Jalan Kenanga 29/2, Indahpura, 81000 Kulai, Johor" data-map="https://maps.app.goo.gl/g6rKbcspsin6o1Nr7"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Kulai"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Setia Alam</span></div><img loading="lazy" decoding="async" src="assets/locations/sp.png" alt="Setia Alam" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Selangor</span><div class="ttc__name">Setia Alam</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>10-3-1, JALAN SETIA PRIMA P U13/P SETIA ALAM, SEKSYEN, U13, 40170 Shah Alam, Selangor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Setia Alam" data-addr="10-3-1, JALAN SETIA PRIMA P U13/P SETIA ALAM, SEKSYEN, U13, 40170 Shah Alam, Selangor" data-map="https://maps.app.goo.gl/BsvLzCFLFC91jNfa6"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Setia Alam"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article></div>
+        </div>
+      </section>
+
     </main>
 
     <!-- ===== FLOW NAV ===== -->
@@ -4761,7 +4823,8 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     {t:"Touch English Makes You Visible", zh:"让你被看见", short:"Visible"},
     {t:"Recommended path", zh:"推荐路线", short:"Path"},
     {t:"Learning journey", zh:"学习旅程", short:"Journey"},
-    {t:"Your Investment", zh:"你的投资", short:"Investment"}
+    {t:"Your Investment", zh:"你的投资", short:"Investment"},
+    {t:"Timetable", zh:"课程时间表", short:"Timetable"}
   ];
   /* compact inline icons (no external library) */
   var ICONS = [
@@ -4776,6 +4839,8 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-5 2.2L8.3 16l5-2.2 2.2-5.3Z"/></svg>',
     '<svg viewBox="0 0 24 24"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg>',
     '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.6 14.4 11 12l2 2 3.4-3.8"/><path d="M14 10.2h2.8V13"/></svg>'
+  ,
+    '<svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M8 13h3M8 17h5"/></svg>'
   ];
 
   var LEVELS = [
@@ -4955,7 +5020,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
   (function(){
     var tb=tabbar;
     var LSKEY="te_taborder_v1";
-    var DEFAULT=[0,4,2,3,5,6,8,9,7,10,1];                  /* default dock order (display only; data-jump still maps each tab to its real stage) */
+    var DEFAULT=[0,4,2,3,5,6,8,9,7,10,11,1];                  /* default dock order (display only; data-jump still maps each tab to its real stage) */
     if(DEFAULT.length!==STAGES.length||DEFAULT.slice().sort(function(a,b){return a-b;}).some(function(v,k){return v!==k;})){DEFAULT=STAGES.map(function(_,i){return i;});}
     function isMobile(){return window.matchMedia("(max-width:860px)").matches;}
     function curOrder(){return $$(".tab-item",tb).map(function(t){return +t.getAttribute("data-jump");});}
@@ -7360,6 +7425,12 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       var ttBranch=null, curName="", curAddr="", curMap="";
       ttBtn.addEventListener('click',function(e){ e.stopPropagation(); e.preventDefault(); if(ttBranch) openTimetable(ttBranch); });
       lEl.addEventListener('click',function(e){ e.stopPropagation(); e.preventDefault(); openMapModal(curName,curAddr,curMap); });
+      document.addEventListener('click',function(e){
+        var mb=e.target.closest('[data-ttcmap]');
+        if(mb){ e.preventDefault(); openMapModal(mb.getAttribute('data-name'),mb.getAttribute('data-addr'),mb.getAttribute('data-map')); return; }
+        var tb=e.target.closest('[data-ttctt]');
+        if(tb){ e.preventDefault(); openTimetable(tb.getAttribute('data-ttctt')); }
+      });
       function openMapModal(name,addr,mapLink){
         var m=document.createElement('div'); m.className='tt-modal map-modal'; m.id='mapModal';
         var hasLink=mapLink && mapLink!=='#';
@@ -7915,7 +7986,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     });
     $("#tbTitle").innerHTML=STAGES[i].t+' <span class="zh">'+STAGES[i].zh+'</span>';
     var _st=stages[i], _er=_st&&_st.querySelector(".eco-ring");
-    var _tg=_st&&_st.querySelector("#tierGrid");
+    var _tg=_st&&_st.querySelector("#tierGrid,#ttLoc");
     if(_er){
       requestAnimationFrame(function(){
         try{ _er.scrollIntoView({block:"center",inline:"nearest"}); }catch(e){}
@@ -7935,23 +8006,62 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
   }
   document.addEventListener("click",function(e){
     var j=e.target.closest("[data-jump]"); if(j){go(+j.getAttribute("data-jump"));return;}
+    var gn=e.target.closest("[data-goto-next]"); if(gn){e.preventDefault();var nt=relTarget(1);if(nt!=null)go(nt);return;}
     var g=e.target.closest("[data-goto]"); if(g){e.preventDefault();go(+g.getAttribute("data-goto"));}
   });
   /* relative next/prev follows the dock's visual order (not raw stage index) */
-  function goRel(dir){
-    var order=Array.prototype.slice.call(tabbar.querySelectorAll(".tab-item")).map(function(t){return +t.getAttribute("data-jump");});
+  function relTarget(dir){
+    var order=Array.prototype.slice.call(tabbar.querySelectorAll(".tab-item:not(.is-hidden)")).map(function(t){return +t.getAttribute("data-jump");});
     var pos=order.indexOf(current);
-    if(pos<0){ go(current+dir); return; }
+    if(pos<0) return null;
     var np=pos+dir;
-    if(np<0||np>=order.length) return;          /* clamp at the ends of the dock order */
-    go(order[np]);
+    if(np<0||np>=order.length) return null;     /* clamp at the ends of the dock order */
+    return order[np];
   }
+  function goRel(dir){ var t=relTarget(dir); if(t!=null) go(t); }
   document.addEventListener("keydown",function(e){
     if(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA")return;
     if($("#modalBg").classList.contains("open")){if(e.key==="Escape")closeModal();return;}
     if(e.key==="ArrowRight")goRel(1);
     if(e.key==="ArrowLeft")goRel(-1);
   });
+
+  /* ---------- PPT-style edge-click page turning ---------- */
+  (function(){
+    var EDGE=70;
+    var hintL=document.createElement("div"), hintR=document.createElement("div");
+    hintL.className="edgenav edgenav--l";
+    hintR.className="edgenav edgenav--r";
+    hintL.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6l-6 6 6 6"/></svg>';
+    hintR.innerHTML='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6l6 6-6 6"/></svg>';
+    document.body.appendChild(hintL); document.body.appendChild(hintR);
+    function overlayOpen(){
+      if(document.body.style.overflow==="hidden") return true;
+      var mb=$("#modalBg"); if(mb&&mb.classList.contains("open")) return true;
+      return false;
+    }
+    function isInteractive(t){
+      if(!t||t===document||t===document.documentElement||t===document.body) return false;
+      if(t.closest && t.closest("a,button,input,select,textarea,label,iframe,video,audio,summary,[contenteditable],[data-jump],[data-goto],[onclick],#dock,.bottom-dock")) return true;
+      try{ if(getComputedStyle(t).cursor==="pointer") return true; }catch(e){}
+      return false;
+    }
+    function zone(x){ if(x<=EDGE) return -1; if(x>=window.innerWidth-EDGE) return 1; return 0; }
+    document.addEventListener("mousemove",function(e){
+      if(overlayOpen()){ hintL.classList.remove("is-on"); hintR.classList.remove("is-on"); return; }
+      var z=zone(e.clientX), ok=!isInteractive(e.target);
+      hintL.classList.toggle("is-on", z===-1&&ok&&relTarget(-1)!=null);
+      hintR.classList.toggle("is-on", z===1&&ok&&relTarget(1)!=null);
+    },{passive:true});
+    document.addEventListener("click",function(e){
+      if(overlayOpen()) return;
+      var z=zone(e.clientX); if(!z) return;
+      if(isInteractive(e.target)) return;
+      var sel=window.getSelection&&window.getSelection();
+      if(sel&&String(sel).length) return;
+      goRel(z);
+    });
+  })();
 
   /* ---------- MOVABLE NAV DOCK + CUSTOMIZE LAYOUT ---------- */
   (function(){
@@ -8023,21 +8133,40 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       dock.classList.add("is-dragging");
       try{grip.setPointerCapture(e.pointerId);}catch(err){}
     });
-    grip.addEventListener("pointermove",function(e){
+    var snapGhost=document.createElement("div");
+    snapGhost.id="dockSnapGhost"; document.body.appendChild(snapGhost);
+    function snapZone(e){
+      var EDGE=96, W=window.innerWidth, H=window.innerHeight;
+      if(e.clientY>H-EDGE) return "bottom";
+      if(e.clientX<EDGE) return "left";
+      if(e.clientX>W-EDGE) return "right";
+      return null;
+    }
+    function showGhost(z){
+      snapGhost.className=z?("is-on ghost--"+z):"";
+    }
+    window.addEventListener("pointermove",function(e){
       if(!drag)return;
       var x=clamp(e.clientX-drag.dx,6,window.innerWidth-drag.w-6);
       var y=clamp(e.clientY-drag.dy,64,window.innerHeight-drag.h-6);
       dock.style.left=x+"px";dock.style.top=y+"px";dock.style.right="auto";dock.style.bottom="auto";dock.style.transform="";
       state.x=x;state.y=y;
-    });
+      drag.zone=snapZone(e);
+      showGhost(drag.zone);
+    },{passive:true});
     function endDrag(e){
-      if(!drag)return;drag=null;
+      if(!drag)return;
+      var zone=drag.zone||null;
+      drag=null;
       dock.classList.remove("is-dragging");
+      showGhost(null);
       try{grip.releasePointerCapture(e.pointerId);}catch(err){}
+      if(zone){ setMode(zone); return; }
       save();
     }
-    grip.addEventListener("pointerup",endDrag);
-    grip.addEventListener("pointercancel",endDrag);
+    window.addEventListener("pointerup",endDrag);
+    window.addEventListener("pointercancel",endDrag);
+    window.addEventListener("blur",function(){ if(drag){drag=null;dock.classList.remove("is-dragging");showGhost(null);save();} });
 
     // ----- customize menu -----
     lbtn.addEventListener("click",function(e){
