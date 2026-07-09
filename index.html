@@ -4083,6 +4083,35 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .focus-bg.is-entering .focus-card{background:linear-gradient(168deg,rgba(255,255,255,.98),rgba(255,255,255,.93))}
 .focus-bg.is-entering{background:rgba(13,28,64,.5)}
 
+/* ===== HRDC pricing view ===== */
+.hrdc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch}
+@media(max-width:1150px){.hrdc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.hrdc-grid{grid-template-columns:1fr}}
+.tcard.is-hrdc{position:relative;overflow:visible;border-top:5px solid var(--tc,var(--blue))}
+.hcard__best{position:absolute;top:-11px;left:50%;transform:translateX(-50%);z-index:3;white-space:nowrap;
+  font-family:var(--display);font-weight:800;font-size:10.5px;letter-spacing:.05em;color:#5A3E00;
+  background:linear-gradient(150deg,#FFE9A8,#F7C948);border:1px solid rgba(255,255,255,.85);border-radius:999px;padding:4px 13px;
+  box-shadow:0 8px 18px -8px rgba(247,201,72,.65),inset 0 1px 0 rgba(255,255,255,.7)}
+#pvTabHrdc img{height:20px;max-width:64px;object-fit:contain;display:block}
+.pv-fb--hrdc{color:#6B3FA0;font-size:11px;font-weight:800}
+
+.inst-open-btn.is-relocated{display:none!important}
+/* EN-only hide: elements that disappear in English mode (mirror of .zh) */
+body.te-en .en-hide{display:none!important}
+/* Stage 01 cards: when EN mode leaves a single card, center it instead of left-aligning */
+body.te-en .stage-cards{display:flex;flex-wrap:wrap;justify-content:center}
+body.te-en .stage-cards .stage-card{flex:0 1 340px;max-width:420px}
+
+.hrdc-claimrow{display:flex;justify-content:center;margin-top:16px}
+.hrdc-claimrow .inst-open-btn{max-width:420px;width:100%}
+
+/* ===== Thank You closer ===== */
+.thanks{position:relative;min-height:calc(100vh - 240px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.thanks__glow{position:absolute;width:560px;height:560px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-52%);background:radial-gradient(closest-side,rgba(74,124,255,.14),rgba(224,48,59,.05) 55%,transparent 75%);pointer-events:none}
+.thanks__t{position:relative;font-family:var(--display);font-weight:800;font-size:clamp(52px,8vw,96px);letter-spacing:-.03em;color:var(--ink);margin:0;line-height:1.05}
+.thanks__qa{position:relative;margin:18px 0 0;font-family:var(--display);font-weight:700;font-size:clamp(18px,2.4vw,26px);color:var(--blue-bright);letter-spacing:.01em}
+.thanks__qa .zh{font-weight:600;font-size:.72em;color:var(--muted)}
+
 /* ===== Zoom presentation mode (body.te-zoom): same colours, cheap effects ===== */
 body.te-zoom *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 /* baked stand-ins for the major glass surfaces */
@@ -4307,31 +4336,12 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       </section>
 
       <!-- ===== 2. PROBLEM AWARENESS ===== -->
-      <section class="stage" data-title="Does this sound like you?" data-zh="你是不是有这些情况" data-index="1">
-        <div class="section-intro">
-          <span class="eyebrow">Where you are now</span>
-          <h2 class="h2">Does any of this sound familiar?</h2>
-          <p class="lead zh">很多成人学了多年英文，但真正卡住的不是单词，而是「说不出来」。</p>
+      <section class="stage" data-title="Thank You" data-zh="谢谢" data-index="1">
+        <div class="thanks">
+          <span class="thanks__glow"></span>
+          <h2 class="thanks__t">Thank You</h2>
+          <p class="thanks__qa">Q&amp;A <span class="zh">· 欢迎提问</span></p>
         </div>
-        <p class="note">👆 <span class="tap">Tap the ones that feel like you</span> — we'll use them to shape your plan. 选出符合你的情况。</p>
-        <div class="pain-grid" id="painGrid">
-          <button class="pain" data-pain><span class="pain__check"></span><span class="pain__ic"><svg class="svg-ic" viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg></span><span class="en">Afraid to speak up</span><span class="zh">不敢开口</span></button>
-          <button class="pain" data-pain><span class="pain__check"></span><span class="pain__ic"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2.5" y="13" width="4" height="6" rx="1.4"/><rect x="17.5" y="13" width="4" height="6" rx="1.4"/></svg></span><span class="en">Understand a bit, but can't say it</span><span class="zh">听得懂一点，但说不出来</span></button>
-          <button class="pain" data-pain><span class="pain__check"></span><span class="pain__ic"><svg class="svg-ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 5.5a3 3 0 0 1 0 5.8"/><path d="M20.5 19a5.5 5.5 0 0 0-4-5.3"/></svg></span><span class="en">No confidence in meetings</span><span class="zh">开会没信心</span></button>
-          <button class="pain" data-pain><span class="pain__check"></span><span class="pain__ic"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.3L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5Z"/></svg></span><span class="en">Unsure how to talk to clients</span><span class="zh">面对客户不知道怎么表达</span></button>
-          <button class="pain" data-pain><span class="pain__check"></span><span class="pain__ic"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h7v7"/></svg></span><span class="en">Want better work opportunities</span><span class="zh">想提升工作机会</span></button>
-          <button class="pain" data-pain><span class="pain__check"></span><span class="pain__ic"><svg class="svg-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3 2"/></svg></span><span class="en">Studied for years, can't use it</span><span class="zh">学了很多年，但用不到</span></button>
-        </div>
-
-        <h3 class="kicker" style="margin-top:26px;color:var(--ink);font-family:var(--display);font-size:16px">What adults really want from learning</h3>
-        <div class="adult3">
-          <div class="adult"><div class="t">Fast result <span class="zh">快看到效果</span></div><div class="d">Practical progress you can feel, not years of theory.</div></div>
-          <div class="adult"><div class="t">Without pressure <span class="zh">不要太压力</span></div><div class="d">A supportive small group, step by step.</div></div>
-          <div class="adult"><div class="t">Memory-friendly <span class="zh">记忆力差也行</span></div><div class="d">Muscle-memory practice, not cramming.</div></div>
-        </div>
-        <div class="summary-bar"><span class="pill">In short</span><span>We don't solve a <b>vocabulary</b> problem — we solve a <b>communication</b> problem. <span class="zh">让你在真实场景说得出、接得住。</span></span></div>
-
-        <div class="adv-cue" data-cue><strong>Advisor cue:</strong> let the inquiry tap freely. The selections carry over to the <em>Recommended path</em> stage, so you can tie their pain points back to a concrete level.</div>
       </section>
 
       <!-- ===== 3. LEARNING ROADMAP ===== -->
@@ -4689,6 +4699,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
             <div class="pv-switch__box" role="tablist">
               <button type="button" class="pv-switch__opt is-on" id="pvTabCourse" role="tab" aria-selected="true" title="Course packages 课程配套"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH" onerror="this.outerHTML='<span class=\'pv-fb\'>TOUCH</span>'"></button>
               <button type="button" class="pv-switch__opt" id="pvTabIelts" role="tab" aria-selected="false" title="IELTS pricing IELTS 价格"><span class="pv-fb pv-fb--ielts">IELTS</span></button>
+              <button type="button" class="pv-switch__opt" id="pvTabHrdc" role="tab" aria-selected="false" title="HRDC pricing HRDC 价格"><img decoding="async" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.outerHTML='<span class=\'pv-fb pv-fb--hrdc\'>HRDC</span>'"></button>
             </div>
           </div>
           <div class="pv-view" id="pvCourse">
@@ -4717,7 +4728,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
                 <span class="inst-open-btn__lab">Payment<span class="zh">银行转账付款</span></span>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
               </button>
-              <button type="button" class="inst-open-btn inst-open-btn--hrdc" id="hrdcClaimOpen" aria-label="HRDC claim procedures HRDC 报销流程">
+              <button type="button" class="inst-open-btn inst-open-btn--hrdc is-relocated" id="hrdcClaimOpen" aria-label="HRDC claim procedures HRDC 报销流程">
                 <span class="inst-open-btn__pct inst-open-btn__pct--hrdc"><img decoding="async" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display='none';this.parentNode.textContent='HRDC'"></span>
                 <span class="inst-open-btn__lab">HRDC Claim<span class="zh">HRDC 报销流程</span></span>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
@@ -4726,6 +4737,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
           </div>
           </div>
           <div class="pv-view" id="pvIelts" hidden></div>
+          <div class="pv-view" id="pvHrdc" hidden></div>
           <div class="hpop" id="hrdcPop" aria-hidden="true">
             <div class="hpop__bd" id="hrdcBd"></div>
             <div class="hpop__card" role="dialog" aria-modal="true">
@@ -4842,7 +4854,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
   /* ---------- DATA ---------- */
   var STAGES = [
     {t:"Opening", zh:"开场", short:"Start"},
-    {t:"Your situation", zh:"你的情况", short:"You"},
+    {t:"Thank You · Q&A", zh:"谢谢 · 问答", short:"Q&A"},
     {t:"Learning roadmap", zh:"学习路线", short:"Levels"},
     {t:"5C framework", zh:"5C 框架", short:"5C"},
     {t:"Placement test", zh:"程度测试", short:"Test"},
@@ -5478,14 +5490,6 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
   fivec.parentNode.addEventListener("click",function(e){
     var btn=e.target.closest("[data-cc-modal]"); if(!btn)return;
     openCCModal(+btn.getAttribute("data-cc-modal"));
-  });
-
-  /* ---------- PAIN POINTS ---------- */
-  var painSel=[];
-  $("#painGrid").addEventListener("click",function(e){
-    var p=e.target.closest(".pain"); if(!p)return;
-    p.classList.toggle("is-sel");
-    painSel=$$(".pain.is-sel").map(function(x){return x.querySelector(".en").textContent;});
   });
 
   /* ---------- ADVISOR TOOLKIT ---------- */
@@ -6638,21 +6642,21 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       var wave='<svg viewBox="0 0 24 24">'+SI.wave+'</svg>';
       var cards=[
         {ic:"mic",  t:{en:"IPA Pronunciation System",zh:"院长亲录音标系统"}, v:{en:"Speak clearer, right from the basics.",zh:"从基础打稳发音，让开口更清楚。"}},
-        {ic:"clock",t:{en:"Monthly Online Class",zh:"每月线上教学"},       v:{en:"Learn directly from Mr. Fong every month.",zh:"每个月由院长亲自带领学习。"}},
-        {ic:"bolt", t:{en:"Learning Mindset Recharge",zh:"学习思维充电"},   v:{en:"Improve how you sound — and how you learn.",zh:"不只改善发音，也优化学习方式与学习态度。"}}
+        {ic:"clock",enHide:true,t:{en:"Monthly Online Class",zh:"每月线上教学"},       v:{en:"Learn directly from Mr. Fong every month.",zh:"每个月由院长亲自带领学习。"}},
+        {ic:"bolt", enHide:true,t:{en:"Learning Mindset Recharge",zh:"学习思维充电"},   v:{en:"Improve how you sound — and how you learn.",zh:"不只改善发音，也优化学习方式与学习态度。"}}
       ].map(function(c){var icHtml;
         if(c.ic==="mic"){ icHtml='<button type="button" class="ipa-cta3d" onclick="event.stopPropagation(); if(window.openIPA)openIPA();" aria-label="Open IPA Pronunciation System · 院长亲录音标系统">'+sv(c.ic)+'</button>'; }
         else if(c.ic==="clock"){ icHtml='<button type="button" class="ipa-cta3d" onclick="event.stopPropagation(); if(window.ipaPlay)ipaPlay();" aria-label="Open Monthly Online Class · 每月线上教学">'+sv(c.ic)+'</button>'; }
         else if(c.ic==="bolt"){ icHtml='<button type="button" class="ipa-cta3d" onclick="event.stopPropagation(); if(window.openRecharge)openRecharge();" aria-label="Open Learning Mindset Recharge · 学习思维充电">'+sv(c.ic)+'</button>'; }
         else { icHtml='<span class="stage-card__ic">'+sv(c.ic)+'</span>'; }
-        return '<div class="stage-card">'+icHtml+'<div class="stage-card__t">'+c.t.en+'<span class="zh">'+c.t.zh+'</span></div><div class="stage-card__v">'+c.v.en+'<span class="zh">'+c.v.zh+'</span></div></div>';}).join("");
+        return '<div class="stage-card'+(c.enHide?' en-hide':'')+'">'+icHtml+'<div class="stage-card__t">'+c.t.en+'<span class="zh">'+c.t.zh+'</span></div><div class="stage-card__v">'+c.v.en+'<span class="zh">'+c.v.zh+'</span></div></div>';}).join("");
       return '<div class="goal ipa">'+
         '<header class="mhero mhero--m1">'+
           glassLayerVis(1,true,true)+
           '<span class="mhero__label">Stage 01</span>'+
           '<h2 class="mhero__title">Find Your Voice<span class="zh">找到你的声音</span></h2>'+
           '<div class="mhero__fn">Learning Recharge Station <span class="zh">学习充电站</span></div>'+
-          '<p class="mhero__sub">Better pronunciation and a better mindset, with Mr. Fong each month. <span class="zh">音标发音 + 学习思维，由院长每月亲自带领的学习充电。</span></p>'+
+          '<p class="mhero__sub"><span class="en-hide">Better pronunciation and a better mindset, with Mr. Fong each month. </span><span class="zh">音标发音 + 学习思维，由院长每月亲自带领的学习充电。</span></p>'+
         '</header>'+
         '<div class="goal-body">'+
           '<div class="stage-cards">'+cards+'</div>'+
@@ -9422,7 +9426,7 @@ io.observe(er);})();
     }
     function open(){ render(); if(pop){ pop.classList.add('is-open'); pop.setAttribute('aria-hidden','false'); } }
     function close(){ if(pop){ pop.classList.remove('is-open'); pop.setAttribute('aria-hidden','true'); } }
-    if(openBtn) openBtn.addEventListener('click',open);
+    document.addEventListener('click',function(ev){ if(ev.target.closest&&ev.target.closest('#hrdcClaimOpen,#hrdcClaimOpen2')) open(); });
     if(x) x.addEventListener('click',close);
     if(bd) bd.addEventListener('click',close);
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&pop&&pop.classList.contains('is-open')) close(); });
@@ -9467,7 +9471,48 @@ io.observe(er);})();
       {k:'chat',c:'#2E9E50',t:'Speaking Skills',zh:'\u53e3\u8bed',pts:['Building confidence to speak naturally','Extending answers with examples','Handling all three parts of the speaking test','Improving fluency, pronunciation and vocabulary','Mock speaking interviews with feedback']}
     ];
     var iView=document.getElementById('pvIelts'), cView=document.getElementById('pvCourse');
-    var tC=document.getElementById('pvTabCourse'), tI=document.getElementById('pvTabIelts');
+    var hView=document.getElementById('pvHrdc');
+    var tC=document.getElementById('pvTabCourse'), tI=document.getElementById('pvTabIelts'), tH=document.getElementById('pvTabHrdc');
+    var HRDC_PKG=[
+      {cls:96,  price:"6,000",  topics:30, days:18, dur:"4 \u2013 6",  ext:"4",  best:false, ic:"seed"},
+      {cls:144, price:"8,100",  topics:30, days:25, dur:"4 \u2013 8",  ext:"6",  best:true,  ic:"gem"},
+      {cls:192, price:"10,200", topics:60, days:33, dur:"6 \u2013 12", ext:"8",  best:true,  ic:"scope"},
+      {cls:240, price:"12,300", topics:60, days:40, dur:"8 \u2013 16", ext:"12", best:false, ic:"up"}
+    ];
+    var hrdcRendered=false;
+    function hrdcCard(p){
+      var rows=[
+        ['book', 'Topics: '+p.topics, '\u4e3b\u9898\u6570'],
+        ['clock','Days: '+p.days, '\u4e0a\u8bfe\u5929\u6570'],
+        ['star', 'Lifelong Learning \u00b7 Practical English Programme', '\u7ec8\u8eab\u5b66\u4e60 \u00b7 \u5b9e\u7528\u82f1\u8bed\u8bfe\u7a0b'],
+        ['clock','Duration: '+p.dur+' months', '\u8bfe\u7a0b\u5468\u671f'],
+        ['gift', 'Free '+p.ext+'-month extension on expiry', '\u5230\u671f\u514d\u8d39\u5ef6\u957f '+p.ext+' \u4e2a\u6708']
+      ];
+      var feats=rows.map(function(r){
+        return '<li><span class="tfeat" style="cursor:default">'+
+          '<span class="tfeat__ic" style="--fc:'+(FIC_COL[r[0]]||'#2A5BD7')+'">'+(ICON[r[0]]||ICON.star)+'</span>'+
+          '<span class="tfeat__lab"><b>'+r[1]+'</b><span class="zh">'+r[2]+'</span></span></span></li>';
+      }).join('');
+      var best=p.best?'<span class="hcard__best">\u2605 Best Choice</span>':'';
+      return '<article class="tcard is-hrdc">'+best+
+        '<div class="tcard__head"><span class="tcard__ic">'+(ICON[p.ic]||ICON.star)+'</span>'+
+        '<div class="tcard__num"><b>'+p.cls+'</b><span>CLASSES</span></div>'+
+        '<p class="tcard__tag">E-Learning English Communication<span class="zh">\u542b\u514d\u8d39\u82f1\u8bed\u5ef6\u4f38\u5b66\u4e60\u8ba1\u5212 *T&amp;C Apply</span></p></div>'+
+        '<div class="tcard__body"><ul class="tfeats">'+feats+'</ul></div>'+
+        '<div class="tcard__price is-revealed"><div class="tcard__price-now"><span class="rm">RM</span><span class="n">'+p.price+'</span>'+
+        '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span></div>'+
+        '<span class="tcard__price-note">HRDC claimable <span class="zh">\u53ef\u7528 HRDC \u62a5\u9500</span></span></div>'+
+      '</article>';
+    }
+    function renderHrdc(){
+      if(!hView||hrdcRendered) return;
+      hrdcRendered=true;
+      hView.innerHTML='<div class="hrdc-grid">'+HRDC_PKG.map(hrdcCard).join('')+'</div>'+
+        '<div class="hrdc-claimrow"><button type="button" class="inst-open-btn inst-open-btn--hrdc" id="hrdcClaimOpen2" aria-label="HRDC claim procedures HRDC 报销流程">'+
+        '<span class="inst-open-btn__pct inst-open-btn__pct--hrdc"><img decoding="async" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\';this.parentNode.textContent=\'HRDC\'"></span>'+
+        '<span class="inst-open-btn__lab">HRDC Claim Procedures<span class="zh">HRDC \u62a5\u9500\u6d41\u7a0b</span></span>'+
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button></div>';
+    }
     var ieltsMoreShown=false;
     function renderIelts(){
       if(!iView) return;
@@ -9485,14 +9530,17 @@ io.observe(er);})();
     }
     window.__renderIelts=renderIelts;
     function setView(which){
-      var isI=which==='ielts';
-      if(cView) cView.hidden=isI;
+      var isI=which==='ielts', isH=which==='hrdc';
+      if(cView) cView.hidden=isI||isH;
       if(iView){ iView.hidden=!isI; if(isI) renderIelts(); }
-      if(tC){ tC.classList.toggle('is-on',!isI); tC.setAttribute('aria-selected',String(!isI)); }
+      if(hView){ hView.hidden=!isH; if(isH) renderHrdc(); }
+      if(tC){ tC.classList.toggle('is-on',!isI&&!isH); tC.setAttribute('aria-selected',String(!isI&&!isH)); }
       if(tI){ tI.classList.toggle('is-on',isI); tI.setAttribute('aria-selected',String(isI)); }
+      if(tH){ tH.classList.toggle('is-on',isH); tH.setAttribute('aria-selected',String(isH)); }
     }
     if(tC) tC.addEventListener('click',function(){ setView('course'); });
     if(tI) tI.addEventListener('click',function(){ setView('ielts'); });
+    if(tH) tH.addEventListener('click',function(){ setView('hrdc'); });
     if(iView) iView.addEventListener('input',function(e){ var t=e.target; if(t&&t.dataset&&t.dataset.sst!==undefined){ sstOn=t.checked; save(); refreshCards(); renderExt(); renderTable(); animateTable(); renderIelts(); } });
     var skPop=document.getElementById('ieltsSkillPop'), skBody=document.getElementById('ieltsSkillBody');
     function openSkill(i){ var sk=SKILLS[i]; if(!sk||!skBody) return;
