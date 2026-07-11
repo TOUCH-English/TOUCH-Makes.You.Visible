@@ -4097,6 +4097,53 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .pv-fb--hrdc{color:#6B3FA0;font-size:11px;font-weight:800}
 
 .inst-open-btn.is-relocated{display:none!important}
+/* ===== Recommended path: quiet class facts (90 min · small class) ===== */
+.pathfacts{display:inline-flex;align-items:center;flex-wrap:wrap;gap:14px;margin-top:14px;padding:8px 16px;border-radius:999px;
+  background:rgba(255,255,255,.55);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+.pathfact{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);line-height:1.35}
+.pathfact svg{flex:none;width:15px;height:15px;stroke:var(--blue-bright);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+.pathfact b{font-family:var(--display);font-weight:800;color:var(--ink);font-weight:700}
+.pathfact .zh{color:var(--faint);margin-left:4px}
+.pathfact__sep{width:1px;height:16px;background:var(--line)}
+@media(max-width:640px){.pathfacts{border-radius:16px;gap:8px;flex-direction:column;align-items:flex-start}.pathfact__sep{display:none}}
+
+/* clickable facts strip */
+.pathfacts{cursor:pointer;font:inherit;text-align:left;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s,border-color .18s}
+.pathfacts:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--blue-bright) 34%,var(--line));box-shadow:0 10px 22px -14px rgba(20,33,50,.4),inset 0 1px 0 rgba(255,255,255,.7)}
+.pathfacts__go{display:inline-flex;margin-left:2px}
+.pathfacts__go svg{width:14px;height:14px;stroke:var(--blue-bright);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* ===== "How a class works" popup ===== */
+.clspop{position:fixed;inset:0;z-index:96;display:flex;align-items:center;justify-content:center;padding:26px;opacity:0;pointer-events:none;transition:opacity .22s ease}
+.clspop.is-open{opacity:1;pointer-events:auto}
+.clspop__bd{position:absolute;inset:0;background:rgba(13,28,64,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.clspop__card{position:relative;width:min(860px,94vw);max-height:88vh;overflow:auto;padding:38px 40px 40px;border-radius:26px;text-align:center;
+  background:linear-gradient(168deg,rgba(255,255,255,.95),rgba(248,250,254,.88));
+  -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid rgba(255,255,255,.85);box-shadow:0 44px 90px -30px rgba(13,28,64,.55),inset 0 1px 0 rgba(255,255,255,.92);
+  transform:translateY(16px) scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.clspop.is-open .clspop__card{transform:none}
+.clspop__x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:12px;border:1px solid rgba(20,33,50,.12);background:rgba(255,255,255,.85);color:var(--muted);font-size:20px;cursor:pointer;z-index:2}
+.clspop__x:hover{color:var(--ink)}
+.clspop__eyebrow{display:block;font-family:var(--display);font-weight:800;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-bright)}
+.clspop__t{margin:8px 0 26px;font-family:var(--display);font-weight:800;font-size:clamp(23px,3vw,32px);letter-spacing:-.02em;color:var(--ink);line-height:1.18}
+.clspop__t .zh{display:block;font-size:.5em;font-weight:700;color:var(--muted);margin-top:7px;letter-spacing:0}
+.clspop__grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:680px){.clspop__grid{grid-template-columns:1fr}}
+.clscard{display:flex;flex-direction:column;align-items:center;gap:8px;padding:26px 22px 24px;border-radius:20px;
+  background:linear-gradient(170deg,rgba(255,255,255,.95),rgba(255,255,255,.8));border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 18px 38px -22px rgba(16,24,60,.4),inset 0 1px 0 rgba(255,255,255,.9);
+  opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1)}
+.clscard.is-on{opacity:1;transform:none}
+.clscard__ic{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:color-mix(in srgb,var(--blue-bright) 12%,#fff);border:1px solid color-mix(in srgb,var(--blue-bright) 20%,#fff)}
+.clscard__ic svg{width:20px;height:20px;stroke:var(--blue-bright);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.clscard__n{font-family:var(--display);font-weight:800;font-size:clamp(34px,4.4vw,46px);line-height:1;letter-spacing:-.03em;color:var(--ink);margin-top:2px}
+.clscard__n em{font-style:normal;font-size:.34em;font-weight:800;color:var(--muted);margin-left:5px;letter-spacing:.04em;text-transform:uppercase}
+.clscard__h{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink);line-height:1.3}
+.clscard__h .zh{display:block;font-size:.82em;font-weight:600;color:var(--muted);margin-top:3px}
+.clscard__p{margin:2px 0 0;font-size:13px;color:var(--muted);line-height:1.55;max-width:30ch}
+.clscard__p .zh{display:block;color:var(--faint);margin-top:3px}
+body.te-zoom .clspop__card{background:linear-gradient(168deg,rgba(255,255,255,.98),rgba(248,250,254,.96))!important}
+
 /* legend: multi-select + reset chip */
 .tt-leg--combine{font-size:10.5px;font-weight:700;color:var(--muted);border:1px dashed var(--line);padding:4px 11px}
 .tt-leg--combine:hover{color:var(--ink);border-color:rgba(20,33,50,.28)}
@@ -4590,6 +4637,20 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
           <span class="eyebrow">Level recommendation</span>
           <h2 class="h2">Where the learner is — and where they're going</h2>
           <p class="lead">Set each learner's current and target level to map the recommended path across the five TOUCH levels. <span class="zh">设置每位学员的当前与目标 Level，自动显示推荐路线。</span></p>
+          <button type="button" class="pathfacts" data-clspop aria-label="How a TOUCH class works">
+            <span class="pathfact">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 1.9"/></svg>
+              <span><b>90 minutes</b> per class <span class="zh">每堂课 90 分钟</span></span>
+            </span>
+            <span class="pathfact__sep" aria-hidden="true"></span>
+            <span class="pathfact">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15 19a4.6 4.6 0 0 1 5.6-4.4"/></svg>
+              <span><b>Small class</b> · 9–12 learners <span class="zh">小班制 · 每班 9–12 人</span></span>
+            </span>
+            <span class="pathfacts__go" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            </span>
+          </button>
         </div>
         <div class="lvtool" id="lvTool">
           <div class="lvtool__row">
@@ -10599,6 +10660,60 @@ io.observe(er);})();
     if(open){ e.preventDefault(); build(open.getAttribute('data-chuapop')); return; }
     if(!pop) return;
     if(e.target.closest('[data-chuax]')){ shut(); return; }
+  });
+})();
+</script>
+
+<script>
+/* ===== "How a class works" popup: 90 minutes + small class ===== */
+(function(){
+  var pop=null, timers=[];
+  function clearT(){ timers.forEach(clearTimeout); timers=[]; }
+  function build(){
+    pop=document.createElement('div');
+    pop.className='clspop';
+    pop.innerHTML='<div class="clspop__bd" data-clsx></div>'+
+      '<div class="clspop__card" role="dialog" aria-modal="true" aria-label="How a TOUCH class works">'+
+        '<button type="button" class="clspop__x" data-clsx aria-label="Close">\u00d7</button>'+
+        '<span class="clspop__eyebrow">Inside a TOUCH class</span>'+
+        '<h3 class="clspop__t">Every class is built for speaking<span class="zh">\u6bcf\u4e00\u5802\u8bfe\uff0c\u90fd\u4e3a\u201c\u5f00\u53e3\u201d\u800c\u8bbe\u8ba1</span></h3>'+
+        '<div class="clspop__grid">'+
+          '<div class="clscard" data-cls="0">'+
+            '<span class="clscard__ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 1.9"/></svg></span>'+
+            '<span class="clscard__n">90<em>min</em></span>'+
+            '<b class="clscard__h">One class \u00b7 90 minutes<span class="zh">\u4e00\u5802\u8bfe \u00b7 90 \u5206\u949f</span></b>'+
+            '<p class="clscard__p">Long enough to really practise \u2014 short enough to stay sharp.<span class="zh">\u8db3\u591f\u957f\uff0c\u80fd\u771f\u6b63\u7ec3\u4e60\uff1b\u4e0d\u8fc7\u957f\uff0c\u6ce8\u610f\u529b\u4e0d\u6d88\u8017\u3002</span></p>'+
+          '</div>'+
+          '<div class="clscard" data-cls="1">'+
+            '<span class="clscard__ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15 19a4.6 4.6 0 0 1 5.6-4.4"/></svg></span>'+
+            '<span class="clscard__n">9\u201312<em>pax</em></span>'+
+            '<b class="clscard__h">Small class \u00b7 9\u201312 learners<span class="zh">\u5c0f\u73ed\u5236 \u00b7 \u6bcf\u73ed 9\u201312 \u4eba</span></b>'+
+            '<p class="clscard__p">Small enough that everyone speaks \u2014 every single lesson.<span class="zh">\u73ed\u7ea7\u8db3\u591f\u5c0f\uff0c\u6bcf\u4e2a\u4eba\u6bcf\u5802\u8bfe\u90fd\u6709\u673a\u4f1a\u5f00\u53e3\u3002</span></p>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+    document.body.appendChild(pop);
+    document.body.style.overflow='hidden';
+    requestAnimationFrame(function(){ pop.classList.add('is-open'); });
+    var cards=pop.querySelectorAll('.clscard');
+    for(var i=0;i<cards.length;i++){
+      (function(el,k){ timers.push(setTimeout(function(){ el.classList.add('is-on'); }, 260+k*380)); })(cards[i],i);
+    }
+    document.addEventListener('keydown', esc);
+  }
+  function esc(e){ if(e.key==='Escape') shut(); }
+  function shut(){
+    if(!pop) return;
+    clearT();
+    pop.classList.remove('is-open');
+    document.removeEventListener('keydown', esc);
+    document.body.style.overflow='';
+    var p=pop; pop=null;
+    setTimeout(function(){ if(p&&p.parentNode) p.remove(); },220);
+  }
+  document.addEventListener('click',function(e){
+    if(e.target.closest('[data-clspop]')){ e.preventDefault(); if(!pop) build(); return; }
+    if(pop && e.target.closest('[data-clsx]')){ shut(); }
   });
 })();
 </script>
