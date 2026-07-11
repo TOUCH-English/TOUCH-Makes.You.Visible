@@ -4097,6 +4097,15 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .pv-fb--hrdc{color:#6B3FA0;font-size:11px;font-weight:800}
 
 .inst-open-btn.is-relocated{display:none!important}
+/* legend: multi-select + reset chip */
+.tt-leg--combine{font-size:10.5px;font-weight:700;color:var(--muted);border:1px dashed var(--line);padding:4px 11px}
+.tt-leg--combine:hover{color:var(--ink);border-color:rgba(20,33,50,.28)}
+.tt-leg--combine.is-on{color:#fff;background:var(--blue-bright);border:1px solid transparent;box-shadow:0 6px 14px -7px color-mix(in srgb,var(--blue-bright) 75%,transparent)}
+.tt-leg--all{display:none;font-size:10.5px;font-weight:700;color:var(--muted);border:1px dashed var(--line);padding:4px 11px}
+.tt-leg--all.is-shown{display:inline-flex}
+.tt-leg--all:hover{color:var(--ink);border-color:rgba(20,33,50,.28);border-style:solid}
+.tt-leg[aria-pressed="true"]{border-color:rgba(20,33,50,.2)}
+
 /* ===== Timetable modal: week toggle (6/4 days) + simple/detailed view ===== */
 .tt-ctrls{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;margin:0;flex:none}
 .tt-seg{display:inline-flex;padding:2px;border-radius:999px;background:rgba(20,33,50,.055);border:1px solid var(--line)}
@@ -7509,26 +7518,65 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
               '</div>'+
             '</div>'+
           '</div>'+
-          '<div class="tt-legend">'+legend+'</div>'+
+          '<div class="tt-legend">'+legend+
+            '<button type="button" class="tt-leg tt-leg--combine" data-ttcombine aria-pressed="false" title="Show more than one level at the same time">+ Combine</button>'+
+            '<button type="button" class="tt-leg tt-leg--all" data-ttall>\u21ba All levels</button></div>'+
           '<div class="tt-scroll">'+renderTimetable(b)+'</div>'+
         '</div>';
       document.body.appendChild(m); void m.offsetWidth; m.classList.add('is-open');
       (function(){
-        var grid=m.querySelector('.tt-grid'); var legBtns=[].slice.call(m.querySelectorAll('.tt-leg[data-filter]')); var activeFilter=null;
+        var grid=m.querySelector('.tt-grid'); var legBtns=[].slice.call(m.querySelectorAll('.tt-leg[data-filter]'));
+        var allBtn=m.querySelector('[data-ttall]');
+        var picked=[];                       /* multi-select: several levels can be combined */
+        function on(n){ return picked.indexOf(n)>-1; }
         function applyFilter(){
+          var none=picked.length===0;
           var chips=grid.querySelectorAll('a.tt-lv');
-          [].forEach.call(chips,function(ch){ ch.style.display=(activeFilter===null||ch.classList.contains('tt-lv--'+activeFilter))?'':'none'; });
+          [].forEach.call(chips,function(ch){
+            var keep=none||picked.some(function(n){ return ch.classList.contains('tt-lv--'+n); });
+            ch.style.display=keep?'':'none';
+          });
           /* a slot with no surviving level shows no time range */
           var slots=grid.querySelectorAll('.tt-slot');
           [].forEach.call(slots,function(s){
-            var has=(activeFilter===null)
+            var has=none
               ? s.querySelectorAll('a.tt-lv').length>0
-              : s.querySelectorAll('a.tt-lv--'+activeFilter).length>0;
+              : picked.some(function(n){ return s.querySelectorAll('a.tt-lv--'+n).length>0; });
             s.classList.toggle('is-nomatch',!has);
           });
-          legBtns.forEach(function(btn){ var n=+btn.getAttribute('data-filter'); btn.classList.toggle('is-active',activeFilter!==null&&n===activeFilter); btn.classList.toggle('is-dim',activeFilter!==null&&n!==activeFilter); btn.setAttribute('aria-pressed',(activeFilter!==null&&n===activeFilter)?'true':'false'); });
+          legBtns.forEach(function(btn){
+            var n=+btn.getAttribute('data-filter');
+            btn.classList.toggle('is-active',on(n));
+            btn.classList.toggle('is-dim',!none&&!on(n));
+            btn.setAttribute('aria-pressed',on(n)?'true':'false');
+          });
+          if(allBtn) allBtn.classList.toggle('is-shown',!none);
         }
-        legBtns.forEach(function(btn){ btn.addEventListener('click',function(){ var n=+btn.getAttribute('data-filter'); activeFilter=(activeFilter===n)?null:n; applyFilter(); }); });
+        var combineBtn=m.querySelector('[data-ttcombine]'), combine=false;
+        legBtns.forEach(function(btn){
+          btn.addEventListener('click',function(){
+            var n=+btn.getAttribute('data-filter');
+            var i=picked.indexOf(n);
+            if(combine){
+              /* Combine on: add / remove levels */
+              if(i>-1) picked.splice(i,1); else picked.push(n);
+            }else{
+              /* default: one level at a time — clicking another switches to it */
+              picked=(i>-1&&picked.length===1)?[]:[n];
+            }
+            applyFilter();
+          });
+        });
+        if(combineBtn) combineBtn.addEventListener('click',function(){
+          combine=!combine;
+          combineBtn.classList.toggle('is-on',combine);
+          combineBtn.setAttribute('aria-pressed',combine?'true':'false');
+          /* leaving Combine keeps only the level picked last */
+          if(!combine&&picked.length>1) picked=[picked[picked.length-1]];
+          applyFilter();
+        });
+        if(allBtn) allBtn.addEventListener('click',function(){ picked=[]; applyFilter(); });
+        applyFilter();
         /* week + view segmented controls. key=null -> always resets to default on open. */
         function seg(attr,cls,onVal,key){
           var btns=[].slice.call(m.querySelectorAll('['+attr+']'));
