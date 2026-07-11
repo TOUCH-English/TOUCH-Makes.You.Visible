@@ -4096,6 +4096,69 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .pv-fb--hrdc{color:#6B3FA0;font-size:11px;font-weight:800}
 
 .inst-open-btn.is-relocated{display:none!important}
+/* ===== Timetable modal: week toggle (6/4 days) + simple/detailed view ===== */
+.tt-ctrls{display:flex;flex-wrap:wrap;gap:7px;justify-content:flex-end;margin:0 0 10px}
+.tt-seg{display:inline-flex;padding:2px;border-radius:999px;background:rgba(20,33,50,.06);border:1px solid var(--line)}
+.tt-seg__b{display:inline-flex;align-items:center;gap:4px;font-family:var(--display);font-weight:700;font-size:10px;color:var(--muted);
+  cursor:pointer;border:none;background:none;padding:4px 9px;border-radius:999px;transition:background .18s,color .18s,box-shadow .18s;white-space:nowrap}
+.tt-seg__b:hover{color:var(--ink)}
+.tt-seg__b.is-on{color:var(--ink);background:#fff;box-shadow:0 4px 12px -5px rgba(18,34,64,.3)}
+.tt-seg__b .zh{font-weight:600;color:var(--faint);font-size:9.5px}
+.tt-seg__b.is-on .zh{color:var(--muted)}
+.tt-seg__n{font-weight:800;font-size:8.5px;letter-spacing:.03em;color:var(--blue-bright);background:color-mix(in srgb,var(--blue-bright) 12%,#fff);padding:1px 5px;border-radius:999px}
+.tt-seg__b.is-on .tt-seg__n{background:color-mix(in srgb,var(--blue-bright) 16%,#fff)}
+/* cell internals */
+.tt-slot .tt-lvs{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-items:center}
+.tt-range{display:none;font-family:var(--display);font-weight:700;font-size:10px;color:var(--muted);white-space:nowrap;letter-spacing:-.01em}
+.tt-off{display:none}
+/* --- short week (4 days): TUE (col 0) and SUN (col 5) have no class --- */
+.tt-grid.is-short .tt-col--0,.tt-grid.is-short .tt-col--5{background:rgba(20,33,50,.045)}
+.tt-grid.is-short .tt-slot.tt-col--0 .tt-lvs,.tt-grid.is-short .tt-slot.tt-col--5 .tt-lvs,
+.tt-grid.is-short .tt-slot.tt-col--0 .tt-range,.tt-grid.is-short .tt-slot.tt-col--5 .tt-range{display:none!important}
+.tt-grid.is-short .tt-cell--head.tt-col--0,.tt-grid.is-short .tt-cell--head.tt-col--5{color:var(--faint)}
+.tt-grid.is-short .tt-cell--head.tt-col--0 .tt-off,.tt-grid.is-short .tt-cell--head.tt-col--5 .tt-off{display:block;font-family:var(--display);font-weight:700;font-size:8.5px;letter-spacing:.04em;color:var(--faint);margin-top:2px;text-transform:none}
+.tt-grid.is-short .tt-cell--head.tt-col--0 .tt-off .zh,.tt-grid.is-short .tt-cell--head.tt-col--5 .tt-off .zh{display:inline;margin-left:3px}
+/* --- detailed view: badge shrinks to the top-left, time range sits under it --- */
+.tt-grid.is-detail .tt-slot{align-items:stretch;justify-content:flex-start;flex-direction:column;gap:3px;padding:6px 7px;min-height:52px}
+.tt-grid.is-detail .tt-slot .tt-lvs{justify-content:flex-start;gap:3px}
+.tt-grid.is-detail .tt-lv{width:19px;height:19px;font-size:9.5px;border-radius:6px}
+.tt-grid.is-detail .tt-slot:not(.is-empty):not(.is-nomatch) .tt-range{display:block}
+.tt-slot.is-nomatch .tt-range{display:none!important}
+
+/* ===== Mr. Chua entry card + PPT-style popup ===== */
+.chua-entryrow{display:flex;justify-content:center;margin-bottom:16px}
+.chua-entry{cursor:pointer;font:inherit;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s}
+.chua-entry:hover{transform:translateY(-2px)}
+.chua-entry__go{width:16px;height:16px;stroke:var(--blue-bright);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-left:6px;flex:none}
+.chuapop{position:fixed;inset:0;z-index:96;display:flex;align-items:center;justify-content:center;padding:26px;opacity:0;pointer-events:none;transition:opacity .22s ease}
+.chuapop.is-open{opacity:1;pointer-events:auto}
+.chuapop__bd{position:absolute;inset:0;background:rgba(13,28,64,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.chuapop__card{position:relative;display:flex;align-items:stretch;gap:36px;width:min(980px,94vw);max-height:88vh;padding:36px 42px;border-radius:26px;overflow:hidden;
+  background:linear-gradient(168deg,rgba(255,255,255,.94),rgba(248,250,254,.86));
+  -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid rgba(255,255,255,.85);box-shadow:0 44px 90px -30px rgba(13,28,64,.55),inset 0 1px 0 rgba(255,255,255,.92);
+  transform:translateY(16px) scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.chuapop.is-open .chuapop__card{transform:none}
+.chuapop__x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:12px;border:1px solid rgba(20,33,50,.12);background:rgba(255,255,255,.85);color:var(--muted);font-size:20px;cursor:pointer;z-index:2}
+.chuapop__x:hover{color:var(--ink)}
+.chuapop__left{flex:0 0 290px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px;min-width:0}
+.chuapop__photo{width:100%;aspect-ratio:4/4.35;border-radius:20px;overflow:hidden;background:radial-gradient(120% 100% at 50% 0%,rgba(42,91,215,.16),rgba(255,255,255,.4) 70%);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 18px 38px -20px rgba(18,34,64,.45)}
+.chuapop__photo img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.chuapop__id{text-align:center}
+.chuapop__id b{display:block;font-family:var(--display);font-weight:800;font-size:22px;color:var(--ink);letter-spacing:-.01em}
+.chuapop__id span{display:inline-block;margin-top:6px;font-family:var(--display);font-weight:800;font-size:12px;color:#5A3E00;background:linear-gradient(150deg,#FFE08A,#F5B921);border-radius:999px;padding:5px 15px;box-shadow:0 8px 18px -8px rgba(245,185,33,.55)}
+.chuapop__right{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.chuapop__t{margin:0 0 26px;font-family:var(--display);font-weight:800;font-size:clamp(24px,3vw,34px);letter-spacing:-.02em;color:var(--ink);line-height:1.15}
+.chuapop__t .zh{display:block;font-size:.52em;font-weight:700;color:var(--muted);margin-top:6px;letter-spacing:0}
+.chuapop__pts{display:flex;flex-direction:column;gap:20px}
+/* EN mode swaps the language of each point */
+.chuapop__en{display:none}
+body.te-en .chuapop__en{display:inline}
+.chuapop__pt{display:flex;align-items:flex-start;gap:13px;opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.chuapop__pt.is-on{opacity:1;transform:none}
+.chuapop__dot{flex:none;width:9px;height:9px;border-radius:50%;background:linear-gradient(150deg,#F5C332,#E8A317);margin-top:9px;box-shadow:0 0 0 4px rgba(245,195,50,.18)}
+.chuapop__ptx{font-weight:700;font-size:clamp(16px,1.8vw,20.5px);color:var(--ink);line-height:1.5}
+@media(max-width:760px){.chuapop__card{flex-direction:column;gap:18px;padding:24px 20px;overflow-y:auto}.chuapop__left{flex:none;flex-direction:row;align-items:center;text-align:left}.chuapop__photo{width:96px;flex:none;aspect-ratio:1}.chuapop__id{text-align:left}}
 /* EN-only hide: elements that disappear in English mode (mirror of .zh) */
 body.te-en .en-hide{display:none!important}
 /* Stage 01 cards: when EN mode leaves a single card, center it instead of left-aligning */
@@ -4123,6 +4186,7 @@ body.te-zoom .topbar{background:rgba(255,255,255,.97)!important}
 body.te-zoom .rev-snap,body.te-zoom .rev-grow__card,body.te-zoom .goal-focus,body.te-zoom .rev-close{background:rgba(255,255,255,.94)!important}
 body.te-zoom .loc-pop__card,body.te-zoom .adv-modal__card,body.te-zoom .tt-modal__card,body.te-zoom .map-modal__card,body.te-zoom .ipop__card,body.te-zoom .hpop__card,body.te-zoom .tpop__card{background:rgba(255,255,255,.98)!important}
 body.te-zoom .modal{background:linear-gradient(168deg,rgba(255,255,255,.99),rgba(250,251,254,.97))!important}
+body.te-zoom .chuapop__card{background:linear-gradient(168deg,rgba(255,255,255,.98),rgba(248,250,254,.96))!important}
 body.te-zoom .video-modal{background:rgba(16,22,34,.98)!important}
 /* park decorative loops: everything plays once then rests — entry reveals unaffected.
    .sumtr (Journey recap) is exempt: its avatar/mirror choreography must keep moving. */
@@ -6339,6 +6403,12 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       return '<div class="epi">'+
         mirrorHero(1,"See Yourself","看见自己","Learning Profile Analysis","学习画像分析","See how you learn — your style, strengths, and how we guide you.","了解你的学习方式、优势与挑战，以及我们可以怎样更适合地引导你。")+
         '<div class="epi-body">'+
+          // ---- Mr. Chua entry card (opens the PPT-style popup) ----
+          '<div class="chua-entryrow en-hide"><button type="button" class="dean-card chua-entry" data-chuapop="epi" aria-label="Meet Mr. Chua \u00b7 Mindset Coach">'+
+            '<span class="dean-ava"><span class="dean-ava__fallback">MC</span><img loading="lazy" decoding="async" src="assets/team/chua.png" alt="Mr. Chua" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'"></span>'+
+            '<span><span class="dean-card__tag">Guided by</span><span class="dean-card__name">Mr. Chua</span><span class="dean-card__role">Mindset Coach \u00b7 \u601d\u7ef4\u5bfc\u5e08</span></span>'+
+            '<svg class="chua-entry__go" viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>'+
+          '</button></div>'+
           // ---- theme switcher (4 learning-style dots, moved above the identity card) ----
           '<div class="epi-switch" id="epiSwitch" role="tablist" aria-label="Learning style theme">'+dots+'</div>'+
           // ---- Learning Identity card ----
@@ -6595,6 +6665,11 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       return '<div class="goal review">'+
         mirrorHero(3,"See Your Growth","看见成长中的自己","Growth Reflection Report","成长回顾报告","After 24 lessons, see your progress and what to work on next.","上完 24 堂课后，回顾你的进步与接下来可以继续加强的地方。")+
         '<div class="goal-body">'+
+          '<div class="chua-entryrow en-hide"><button type="button" class="dean-card chua-entry" data-chuapop="rev" aria-label="Meet Mr. Chua \u00b7 Learning Coach">'+
+            '<span class="dean-ava"><span class="dean-ava__fallback">MC</span><img loading="lazy" decoding="async" src="assets/team/chua.png" alt="Mr. Chua" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'"></span>'+
+            '<span><span class="dean-card__tag">Guided by</span><span class="dean-card__name">Mr. Chua</span><span class="dean-card__role">Learning Coach \u00b7 \u5b66\u4e60\u6559\u7ec3</span></span>'+
+            '<svg class="chua-entry__go" viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>'+
+          '</button></div>'+
           '<p class="rev-intro">After 24 lessons, let\'s look at how far you\'ve come. <span class="zh">完成 24 堂课后，我们一起回顾这段学习旅程。</span></p>'+
           // Reflection snapshot: what has changed (before -> now, no scores)
           '<div class="rev-snap">'+
@@ -7389,16 +7464,29 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       }
     };
     function ttLevels(b){var set={};b.grid.forEach(function(row){row.forEach(function(cell){(cell||[]).forEach(function(n){set[n]=1;});});});return Object.keys(set).map(Number).sort(function(a,b){return a-b;});}
+    function ttEnd(start){
+      var m=/^(\d{1,2}):(\d{2})\s*(am|pm)$/i.exec(String(start).trim());
+      if(!m) return "";
+      var h=+m[1]%12, mm=+m[2], pm=/pm/i.test(m[3]);
+      var mins=(h+(pm?12:0))*60+mm+90;                 /* every class runs 90 minutes */
+      mins=((mins%1440)+1440)%1440;
+      var H=Math.floor(mins/60), M=mins%60, ap=H>=12?'pm':'am', h12=H%12; if(h12===0)h12=12;
+      return h12+':'+(M<10?'0':'')+M+' '+ap;
+    }
     function renderTimetable(b){
       var isOnline=(b===TIMETABLES["Live Class"]);
       function lv(n){var t=(isOnline&&n===0)?'P1':n; return '<a class="tt-lv tt-lv--'+n+'" href="https://tec.touchenglish.edu.my/appointment/timetable#" target="_blank" rel="noopener noreferrer" aria-label="Open timetable system">'+t+'</a>';}
       var h='<div class="tt-grid"><div class="tt-cell tt-cell--head">TIME</div>';
-      b.days.forEach(function(d){h+='<div class="tt-cell tt-cell--head">'+d+'</div>';});
+      b.days.forEach(function(d,di){h+='<div class="tt-cell tt-cell--head tt-col--'+di+'">'+d+'<span class="tt-off">No class<span class="zh">\u4f11\u8bfe</span></span></div>';});
       b.times.forEach(function(t,ti){
+        var range=t.replace(/\s*(am|pm)$/i,'')+' \u2013 '+ttEnd(t);
         h+='<div class="tt-cell tt-time">'+t+'</div>';
         b.days.forEach(function(d,di){
           var ls=(b.grid[ti]&&b.grid[ti][di])||[];
-          h+='<div class="tt-cell tt-slot'+(ls.length?'':' is-empty')+'">'+ls.map(lv).join('')+'</div>';
+          h+='<div class="tt-cell tt-slot tt-col--'+di+(ls.length?'':' is-empty')+'">'+
+             '<span class="tt-lvs">'+ls.map(lv).join('')+'</span>'+
+             (ls.length?'<span class="tt-range">'+range+'</span>':'')+
+             '</div>';
         });
       });
       return h+'</div>';
@@ -7412,6 +7500,16 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         '<div class="tt-modal__card" role="dialog" aria-modal="true" aria-label="Class schedule">'+
           '<button type="button" class="tt-modal__x" data-ttx aria-label="Close">\u00d7</button>'+
           '<div class="tt-modal__head"><span class="tt-modal__title">'+name+' <span class="tt-modal__title-zh">\u65f6\u95f4\u8868</span></span><span class="tt-modal__sub">Class Schedule \u00b7 \u8bfe\u7a0b\u65f6\u95f4\u8868</span></div>'+
+          '<div class="tt-ctrls">'+
+            '<div class="tt-seg" role="group" aria-label="Week">'+
+              '<button type="button" class="tt-seg__b is-on" data-ttweek="full">This week <span class="tt-seg__n">6 days</span><span class="zh">\u672c\u5468 \u00b7 6 \u5929</span></button>'+
+              '<button type="button" class="tt-seg__b" data-ttweek="short">Next week <span class="tt-seg__n">4 days</span><span class="zh">\u4e0b\u5468 \u00b7 4 \u5929</span></button>'+
+            '</div>'+
+            '<div class="tt-seg" role="group" aria-label="View">'+
+              '<button type="button" class="tt-seg__b is-on" data-ttview="simple">Simple<span class="zh">\u7b80\u7ea6</span></button>'+
+              '<button type="button" class="tt-seg__b" data-ttview="detail">Detailed<span class="zh">\u8be6\u7ec6</span></button>'+
+            '</div>'+
+          '</div>'+
           '<div class="tt-legend">'+legend+'</div>'+
           '<div class="tt-scroll">'+renderTimetable(b)+'</div>'+
         '</div>';
@@ -7421,9 +7519,35 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         function applyFilter(){
           var chips=grid.querySelectorAll('a.tt-lv');
           [].forEach.call(chips,function(ch){ ch.style.display=(activeFilter===null||ch.classList.contains('tt-lv--'+activeFilter))?'':'none'; });
+          /* a slot with no surviving level shows no time range */
+          var slots=grid.querySelectorAll('.tt-slot');
+          [].forEach.call(slots,function(s){
+            var has=(activeFilter===null)
+              ? s.querySelectorAll('a.tt-lv').length>0
+              : s.querySelectorAll('a.tt-lv--'+activeFilter).length>0;
+            s.classList.toggle('is-nomatch',!has);
+          });
           legBtns.forEach(function(btn){ var n=+btn.getAttribute('data-filter'); btn.classList.toggle('is-active',activeFilter!==null&&n===activeFilter); btn.classList.toggle('is-dim',activeFilter!==null&&n!==activeFilter); btn.setAttribute('aria-pressed',(activeFilter!==null&&n===activeFilter)?'true':'false'); });
         }
         legBtns.forEach(function(btn){ btn.addEventListener('click',function(){ var n=+btn.getAttribute('data-filter'); activeFilter=(activeFilter===n)?null:n; applyFilter(); }); });
+        /* week + view segmented controls. key=null -> always resets to default on open. */
+        function seg(attr,cls,onVal,key){
+          var btns=[].slice.call(m.querySelectorAll('['+attr+']'));
+          function set(v,save){
+            btns.forEach(function(x){ x.classList.toggle('is-on', x.getAttribute(attr)===v); });
+            grid.classList.toggle(cls, v===onVal);
+            if(key&&save){ try{ localStorage.setItem(key,v); }catch(e){} }
+          }
+          btns.forEach(function(btn){
+            btn.addEventListener('click',function(){ set(btn.getAttribute(attr),true); });
+          });
+          if(key){
+            var saved=null; try{ saved=localStorage.getItem(key); }catch(e){}
+            if(saved) set(saved,false);
+          }
+        }
+        seg('data-ttweek','is-short','short',null);          /* week: always starts at 6 days */
+        seg('data-ttview','is-detail','detail','te_ttview_v1'); /* view: remembers simple/detailed */
       })();
       var escH; function close(){ if(escH)document.removeEventListener('keydown',escH,true); if(m){m.remove();m=null;} }
       m.querySelector('.tt-modal__bg').addEventListener('click',close);
@@ -10366,6 +10490,69 @@ io.observe(er);})();
   function sync(){ document.documentElement.classList.toggle('te-anim-paused', document.hidden); }
   document.addEventListener('visibilitychange', sync);
   sync();
+})();
+</script>
+
+<script>
+/* ===== Mr. Chua PPT-style popup (personality / class review) ===== */
+(function(){
+  var SETS={
+    epi:{title:"Personality Analysis", titleZh:"\u6027\u683c\u5206\u6790", role:"Mindset Coach", roleZh:"\u601d\u7ef4\u5bfc\u5e08",
+      pts:[{en:"Analyse your personality and find your strengths", zh:"\u5206\u6790\u4f60\u7684\u4e2a\u4eba\u6027\u683c \u627e\u51fa\u4f60\u7684\u4f18\u52bf"},
+           {en:"Match a learning approach that fits your personality", zh:"\u6839\u636e\u4f60\u7684\u6027\u683c\u63d0\u4f9b\u5408\u9002\u4f60\u7684\u5b66\u4e60\u65b9\u5f0f"},
+           {en:"Identify the challenges you may face", zh:"\u5206\u6790\u4f60\u53ef\u80fd\u4f1a\u9762\u5bf9\u5230\u7684\u6311\u6218"},
+           {en:"Set your long-term and short-term goals", zh:"\u5236\u5b9a\u957f\u671f\u76ee\u6807\u3001\u77ed\u671f\u76ee\u6807"}]},
+    rev:{title:"Review Session", titleZh:"\u6bcf 24 \u5802\u8bfe\u7684\u5b66\u4e60\u590d\u76d8", role:"Learning Coach", roleZh:"\u5b66\u4e60\u6559\u7ec3",
+      pts:[{en:"Review your goal progress and refocus your direction", zh:"\u5ba1\u6838\u76ee\u6807\u8fdb\u5ea6\uff0c\u518d\u6b21\u5bf9\u7126\u4f60\u7684\u65b9\u5411"},
+           {en:"Upgrade or refine your learning strategy", zh:"\u5347\u7ea7 or \u4f18\u5316\u4f60\u7684\u5b66\u4e60\u7b56\u7565"},
+           {en:"Refuel your confidence, turn it into momentum", zh:"\u8865\u7ed9\u4fe1\u5fc3\uff0c\u8f6c\u5316\u52a8\u529b"},
+           {en:"Find the breakthrough that speeds up your progress", zh:"\u627e\u5230\u52a0\u901f\u8fdb\u6b65\u7684\u7a81\u7834\u53e3"}]}
+  };
+  var pop=null, cur=null, timers=[];
+  function clearTimers(){ timers.forEach(clearTimeout); timers=[]; }
+  function build(key){
+    var S=SETS[key]; if(!S) return;
+    cur=key; clearTimers();
+    pop=document.createElement('div');
+    pop.className='chuapop';
+    pop.innerHTML='<div class="chuapop__bd" data-chuax></div>'+
+      '<div class="chuapop__card" role="dialog" aria-modal="true" aria-label="Mr. Chua \u00b7 '+S.title+'">'+
+        '<button type="button" class="chuapop__x" data-chuax aria-label="Close">\u00d7</button>'+
+        '<div class="chuapop__left">'+
+          '<div class="chuapop__photo"><img decoding="async" src="assets/team/chua.png" alt="Mr. Chua" onerror="this.style.display=\'none\'"></div>'+
+          '<div class="chuapop__id"><b>Mr. Chua</b><span>'+S.role+' \u00b7 '+S.roleZh+'</span></div>'+
+        '</div>'+
+        '<div class="chuapop__right">'+
+          '<h3 class="chuapop__t">'+S.title+'<span class="zh">'+S.titleZh+'</span></h3>'+
+          '<div class="chuapop__pts">'+S.pts.map(function(p,i){return '<div class="chuapop__pt" data-pt="'+i+'"><span class="chuapop__dot"></span><span class="chuapop__ptx"><span class="chuapop__en">'+p.en+'</span><span class="zh">'+p.zh+'</span></span></div>';}).join('')+'</div>'+
+        '</div>'+
+      '</div>';
+    document.body.appendChild(pop);
+    document.body.style.overflow='hidden';
+    requestAnimationFrame(function(){ pop.classList.add('is-open'); });
+    document.addEventListener('keydown', esc);
+    /* photo lands first, then the points fall in one by one */
+    var rows=pop.querySelectorAll('.chuapop__pt');
+    for(var i=0;i<rows.length;i++){
+      (function(el,k){ timers.push(setTimeout(function(){ el.classList.add('is-on'); }, 620+k*560)); })(rows[i],i);
+    }
+  }
+  function esc(e){ if(e.key==='Escape') shut(); }
+  function shut(){
+    if(!pop) return;
+    clearTimers();
+    pop.classList.remove('is-open');
+    document.removeEventListener('keydown', esc);
+    document.body.style.overflow='';
+    var p=pop; pop=null;
+    setTimeout(function(){ if(p&&p.parentNode) p.remove(); },220);
+  }
+  document.addEventListener('click',function(e){
+    var open=e.target.closest('[data-chuapop]');
+    if(open){ e.preventDefault(); build(open.getAttribute('data-chuapop')); return; }
+    if(!pop) return;
+    if(e.target.closest('[data-chuax]')){ shut(); return; }
+  });
 })();
 </script>
 </body>
