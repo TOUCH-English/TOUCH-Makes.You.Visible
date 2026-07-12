@@ -4107,6 +4107,48 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .pathfact__sep{width:1px;height:16px;background:var(--line)}
 @media(max-width:640px){.pathfacts{border-radius:16px;gap:8px;flex-direction:column;align-items:flex-start}.pathfact__sep{display:none}}
 
+/* ===== Learning System: advisor-only step editor ===== */
+.sysedit-btn{position:absolute;top:10px;right:12px;z-index:6;display:none;align-items:center;gap:6px;
+  font-family:var(--display);font-weight:700;font-size:11px;color:var(--muted);cursor:pointer;
+  padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid var(--line);
+  box-shadow:0 6px 14px -8px rgba(20,33,50,.3);transition:color .16s,border-color .16s,transform .16s}
+.sysedit-btn.is-on{display:inline-flex}
+.sysedit-btn:hover{color:var(--ink);border-color:rgba(20,33,50,.26);transform:translateY(-1px)}
+.sysedit-btn svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round}
+.sysedit{position:fixed;inset:0;z-index:130;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .22s ease}
+.sysedit.is-open{opacity:1;pointer-events:auto}
+.sysedit__bd{position:absolute;inset:0;background:rgba(13,28,64,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.sysedit__card{position:relative;width:min(480px,94vw);max-height:86vh;display:flex;flex-direction:column;padding:24px 22px 20px;border-radius:22px;
+  background:linear-gradient(168deg,rgba(255,255,255,.96),rgba(248,250,254,.9));
+  -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid rgba(255,255,255,.85);box-shadow:0 40px 80px -28px rgba(13,28,64,.5),inset 0 1px 0 rgba(255,255,255,.92);
+  transform:translateY(14px) scale(.975);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.sysedit.is-open .sysedit__card{transform:none}
+.sysedit__x{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:10px;border:1px solid rgba(20,33,50,.12);background:rgba(255,255,255,.85);color:var(--muted);font-size:18px;cursor:pointer}
+.sysedit__h{margin-bottom:14px;padding-right:34px}
+.sysedit__h b{display:block;font-family:var(--display);font-weight:800;font-size:16.5px;color:var(--ink)}
+.sysedit__h b .zh{font-weight:700;font-size:.8em;color:var(--muted);margin-left:5px}
+.sysedit__h span{display:block;font-size:11.5px;color:var(--faint);margin-top:3px}
+.sysedit__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;overflow:auto}
+.sysrow{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:13px;background:rgba(255,255,255,.72);border:1px solid var(--line);cursor:grab}
+.sysrow.is-drag{opacity:.45;cursor:grabbing}
+.sysrow.is-hidden{opacity:.5;background:rgba(20,33,50,.04)}
+.sysrow__grip{flex:none;display:grid;place-items:center;width:16px;color:var(--faint)}
+.sysrow__grip svg{width:16px;height:16px;fill:currentColor}
+.sysrow__n{flex:none;display:grid;place-items:center;width:20px;height:20px;border-radius:7px;font-family:var(--display);font-weight:800;font-size:10.5px;color:#fff;background:var(--c,var(--blue))}
+.sysrow.is-hidden .sysrow__n{background:var(--faint)}
+.sysrow__ic{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:9px;background:color-mix(in srgb,var(--c,#2A5BD7) 12%,#fff)}
+.sysrow__ic svg{width:14px;height:14px;stroke:var(--c,#2A5BD7);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sysrow__t{flex:1;min-width:0;font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--ink);line-height:1.25}
+.sysrow__t .zh{display:block;font-weight:600;font-size:10.5px;color:var(--muted);margin-top:1px}
+.sysrow__eye{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:9px;border:1px solid transparent;background:none;color:var(--faint);cursor:pointer;transition:.15s}
+.sysrow__eye:hover{color:var(--ink);background:rgba(20,33,50,.06)}
+.sysrow__eye svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sysedit__reset{margin-top:12px;font-family:var(--display);font-weight:700;font-size:11.5px;color:var(--muted);cursor:pointer;padding:8px 14px;border-radius:999px;background:none;border:1px dashed var(--line);align-self:flex-start}
+.sysedit__reset:hover{color:var(--ink);border-color:rgba(20,33,50,.28);border-style:solid}
+.sysedit__reset .zh{color:var(--faint);margin-left:3px}
+body.te-zoom .sysedit__card{background:linear-gradient(168deg,rgba(255,255,255,.98),rgba(248,250,254,.96))!important}
+
 /* clickable facts strip */
 .pathfacts{cursor:pointer;font:inherit;text-align:left;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s,border-color .18s}
 .pathfacts:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--blue-bright) 34%,var(--line));box-shadow:0 10px 22px -14px rgba(20,33,50,.4),inset 0 1px 0 rgba(255,255,255,.7)}
@@ -6115,6 +6157,28 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     // ----- build the journey map: winding path + floating icon cards + summit flag -----
     var NODES_WIDE=[[7,76],[19,50],[32,70],[45,38],[57,64],[69,32],[81,58],[93,26]];
     var NODES_TALL=[[32,8],[68,20],[32,32],[68,44],[32,56],[68,68],[32,80],[67,92]];
+    /* ---- advisor-configurable order + hidden steps ---- */
+    var SYS_OKEY="te_sysorder_v1", SYS_HKEY="te_syshidden_v1";
+    var sysOrder=(function(){
+      var d=SYS.map(function(_,i){return i;});
+      try{
+        var raw=JSON.parse(localStorage.getItem(SYS_OKEY));
+        if(Array.isArray(raw)&&raw.length===SYS.length&&raw.slice().sort(function(a,b){return a-b;}).join()===d.join()) return raw;
+      }catch(e){}
+      return d;
+    })();
+    var sysHidden=(function(){
+      try{
+        var raw=JSON.parse(localStorage.getItem(SYS_HKEY));
+        if(Array.isArray(raw)) return raw.filter(function(i){return i>=0&&i<SYS.length;});
+      }catch(e){}
+      return [];
+    })();
+    function sysSave(){
+      try{ localStorage.setItem(SYS_OKEY,JSON.stringify(sysOrder)); localStorage.setItem(SYS_HKEY,JSON.stringify(sysHidden)); }catch(e){}
+    }
+    function sysVisible(){ return sysOrder.filter(function(i){ return sysHidden.indexOf(i)<0; }); }
+
     var nodesHTML=SYS.map(function(s,i){
       return '<button class="sys-node" data-s="'+i+'" style="--c:'+(SYS_MAPCOL[i]||s.col)+'">'+
         '<span class="sys-node__dot"><span class="ic">'+sv(s.ic)+'</span><span class="n">'+(i+1)+'</span></span>'+
@@ -6144,13 +6208,115 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       return d;
     }
     function layoutMap(){
-      var pts=window.innerWidth<=860?NODES_TALL:NODES_WIDE;
-      nodeEls.forEach(function(n,i){n.style.left=pts[i][0]+"%";n.style.top=pts[i][1]+"%";});
-      var d=smoothD(pts); pathLine.setAttribute("d",d); pathGlow.setAttribute("d",d);
-      var last=pts[pts.length-1]; flag.style.left=last[0]+"%"; flag.style.top=(last[1])+"%";
+      var all=window.innerWidth<=860?NODES_TALL:NODES_WIDE;
+      var vis=sysVisible();
+      var pts=[];
+      if(vis.length>=2){
+        /* spread the visible stops evenly across the full trail so the path keeps its shape */
+        for(var k=0;k<vis.length;k++){
+          var t=(all.length-1)*k/(vis.length-1);
+          var a=Math.floor(t), b=Math.min(a+1,all.length-1), f=t-a;
+          pts.push([all[a][0]+(all[b][0]-all[a][0])*f, all[a][1]+(all[b][1]-all[a][1])*f]);
+        }
+      }else if(vis.length===1){ pts=[all[Math.floor(all.length/2)]]; }
+      nodeEls.forEach(function(n){
+        var idx=+n.getAttribute("data-s");
+        var pos=vis.indexOf(idx);
+        if(pos<0){ n.style.display="none"; return; }
+        n.style.display="";
+        n.style.left=pts[pos][0]+"%"; n.style.top=pts[pos][1]+"%";
+        var num=n.querySelector(".sys-node__dot .n"); if(num) num.textContent=(pos+1);
+      });
+      var d=pts.length>1?smoothD(pts):"";
+      pathLine.setAttribute("d",d); pathGlow.setAttribute("d",d);
+      if(pts.length){ var last=pts[pts.length-1]; flag.style.left=last[0]+"%"; flag.style.top=last[1]+"%"; flag.style.display=""; }
+      else { flag.style.display="none"; }
     }
     layoutMap();
     var rt; window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(layoutMap,150);});
+
+    /* ---------- advisor-only: reorder / hide the learning-system steps ---------- */
+    (function(){
+      var host=ov.parentNode||ov;
+      var btn=document.createElement('button');
+      btn.type='button'; btn.className='sysedit-btn'; btn.setAttribute('data-advisor-only','');
+      btn.innerHTML='<svg viewBox="0 0 24 24" fill="none"><path d="M4 7h8M16 7h4M4 12h4M12 12h8M4 17h6M14 17h6"/><circle cx="14" cy="7" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="12" cy="17" r="2"/></svg><span>Edit steps</span>';
+      host.appendChild(btn);
+
+      var modal=null, dragIdx=null;
+      function rowsHTML(){
+        return sysOrder.map(function(i,pos){
+          var s=SYS[i], hidden=sysHidden.indexOf(i)>-1;
+          return '<li class="sysrow'+(hidden?' is-hidden':'')+'" draggable="true" data-i="'+i+'">'+
+            '<span class="sysrow__grip" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg></span>'+
+            '<span class="sysrow__n" style="--c:'+(SYS_MAPCOL[i]||s.col)+'">'+(hidden?"\u2013":(sysVisible().indexOf(i)+1))+'</span>'+
+            '<span class="sysrow__ic" style="--c:'+(SYS_MAPCOL[i]||s.col)+'">'+sv(s.ic)+'</span>'+
+            '<span class="sysrow__t">'+s.t+'<span class="zh">'+s.zh+'</span></span>'+
+            '<button type="button" class="sysrow__eye" data-syseye="'+i+'" aria-label="Show or hide this step">'+
+              (hidden
+                ? '<svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18"/><path d="M10.6 6.2A9.9 9.9 0 0 1 12 6c5 0 9 6 9 6a15.8 15.8 0 0 1-3 3.4M6.6 6.7A15.6 15.6 0 0 0 3 12s4 6 9 6a9.6 9.6 0 0 0 3.4-.6"/></svg>'
+                : '<svg viewBox="0 0 24 24" fill="none"><path d="M3 12s4-6 9-6 9 6 9 6-4 6-9 6-9-6-9-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>')+
+            '</button>'+
+          '</li>';
+        }).join('');
+      }
+      function paint(){
+        if(modal) modal.querySelector('.sysedit__list').innerHTML=rowsHTML();
+        layoutMap(); buildMini(); sysSave();
+      }
+      function open(){
+        if(modal) return;
+        modal=document.createElement('div');
+        modal.className='sysedit';
+        modal.innerHTML='<div class="sysedit__bd" data-sysx></div>'+
+          '<div class="sysedit__card" role="dialog" aria-modal="true" aria-label="Edit learning system steps">'+
+            '<button type="button" class="sysedit__x" data-sysx aria-label="Close">\u00d7</button>'+
+            '<div class="sysedit__h"><b>Edit steps <span class="zh">\u7f16\u8f91\u73af\u8282</span></b>'+
+            '<span>Drag to reorder \u00b7 tap the eye to hide <span class="zh">\u62d6\u52a8\u6392\u5e8f \u00b7 \u70b9\u773c\u775b\u9690\u85cf</span></span></div>'+
+            '<ul class="sysedit__list">'+rowsHTML()+'</ul>'+
+            '<button type="button" class="sysedit__reset" data-sysreset>\u21ba Reset to default <span class="zh">\u6062\u590d\u9ed8\u8ba4</span></button>'+
+          '</div>';
+        document.body.appendChild(modal);
+        document.body.style.overflow='hidden';
+        requestAnimationFrame(function(){ modal.classList.add('is-open'); });
+        var list=modal.querySelector('.sysedit__list');
+        list.addEventListener('dragstart',function(e){ var li=e.target.closest('.sysrow'); if(!li)return; dragIdx=+li.getAttribute('data-i'); li.classList.add('is-drag'); });
+        list.addEventListener('dragend',function(e){ var li=e.target.closest('.sysrow'); if(li)li.classList.remove('is-drag'); dragIdx=null; });
+        list.addEventListener('dragover',function(e){ e.preventDefault();
+          var li=e.target.closest('.sysrow'); if(!li||dragIdx===null)return;
+          var over=+li.getAttribute('data-i'); if(over===dragIdx)return;
+          var from=sysOrder.indexOf(dragIdx), to=sysOrder.indexOf(over);
+          sysOrder.splice(from,1); sysOrder.splice(to,0,dragIdx);
+          paint();
+        });
+        modal.addEventListener('click',function(e){
+          if(e.target.closest('[data-sysx]')){ shut(); return; }
+          var eye=e.target.closest('[data-syseye]');
+          if(eye){
+            var i=+eye.getAttribute('data-syseye');
+            var k=sysHidden.indexOf(i);
+            if(k>-1) sysHidden.splice(k,1);
+            else if(sysVisible().length>1) sysHidden.push(i);   /* never hide the last one */
+            paint(); return;
+          }
+          if(e.target.closest('[data-sysreset]')){
+            sysOrder=SYS.map(function(_,i){return i;}); sysHidden=[];
+            paint(); return;
+          }
+        });
+        document.addEventListener('keydown',esc);
+      }
+      function esc(e){ if(e.key==='Escape') shut(); }
+      function shut(){
+        if(!modal) return;
+        modal.classList.remove('is-open');
+        document.removeEventListener('keydown',esc);
+        document.body.style.overflow='';
+        var m2=modal; modal=null;
+        setTimeout(function(){ if(m2&&m2.parentNode) m2.remove(); },220);
+      }
+      btn.addEventListener('click',open);
+    })();
 
     function fblock(lab,zh,o){return '<div class="focus-block"><div class="focus-block__lab"><span class="focus-block__mk"></span>'+lab+' <span class="zh">'+zh+'</span></div><div class="focus-block__val">'+o.en+' <span class="zh">'+o.zh+'</span></div></div>';}
     function advBullets(arr){return '<ul class="advnote__list">'+arr.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>';}
@@ -8122,9 +8288,13 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     function closeFocus(){focus.classList.remove("open");focus.setAttribute("aria-hidden","true");document.body.style.overflow="";$$(".sys-node",ov).forEach(function(n){n.classList.remove("is-active");});if(focusClearT)clearTimeout(focusClearT);focusClearT=setTimeout(function(){if(!focus.classList.contains("open"))fbody.innerHTML="";focusClearT=null;},480);}
 
     // build the bottom mini roadmap (its own crisp glass element)
-    fmini.innerHTML=SYS.map(function(s,i){
-      return '<button class="focus-mini__item" data-s="'+i+'" style="--c:'+(SYS_MAPCOL[i]||s.col)+'"><span class="focus-mini__tile">'+sv(s.ic)+'</span><span class="focus-mini__lbl">'+s.short+'</span></button>';
-    }).join("");
+    function buildMini(){
+      fmini.innerHTML=sysVisible().map(function(i){
+        var s=SYS[i];
+        return '<button class="focus-mini__item" data-s="'+i+'" style="--c:'+(SYS_MAPCOL[i]||s.col)+'"><span class="focus-mini__tile">'+sv(s.ic)+'</span><span class="focus-mini__lbl">'+s.short+'</span></button>';
+      }).join("");
+    }
+    buildMini();
 
     // open / switch — never navigate away, never scroll the page
     ov.addEventListener("click",function(e){var n=e.target.closest(".sys-node");if(!n)return;openFocus(+n.getAttribute("data-s"));});
