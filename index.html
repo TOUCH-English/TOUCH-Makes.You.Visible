@@ -4107,6 +4107,28 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .pathfact__sep{width:1px;height:16px;background:var(--line)}
 @media(max-width:640px){.pathfacts{border-radius:16px;gap:8px;flex-direction:column;align-items:flex-start}.pathfact__sep{display:none}}
 
+/* ===== Edit pages: keep the real dock on stage, live and draggable ===== */
+body.nav-edit-open #dock{z-index:140;pointer-events:auto}
+body.nav-edit-open #dock .tabbar.editing .tab-item{cursor:grab}
+body.nav-edit-open #dock::after{content:"";position:absolute;inset:-10px;border-radius:inherit;pointer-events:none;
+  border:1.5px dashed color-mix(in srgb,var(--blue-bright) 55%,transparent);opacity:.85}
+/* the panel steps aside so the dock stays fully visible */
+body.nav-edit-open .sysedit{align-items:flex-start;padding-top:76px}
+body.nav-edit-open .sysedit__card{max-height:min(62vh,560px)}
+body.nav-edit-open .sysedit__bd{background:rgba(13,28,64,.34)}
+.sysedit__live{display:flex;align-items:center;gap:7px;margin-top:10px;padding:8px 11px;border-radius:11px;
+  background:color-mix(in srgb,var(--blue-bright) 8%,#fff);border:1px dashed color-mix(in srgb,var(--blue-bright) 34%,var(--line));
+  font-size:11px;font-weight:600;color:var(--muted);line-height:1.4}
+.sysedit__live svg{flex:none;width:14px;height:14px;stroke:var(--blue-bright);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sysedit__live .zh{color:var(--faint);margin-left:3px}
+
+/* nav rows reuse the System editor look; dock icons are plain SVG */
+.sysrow__ic--nav{background:color-mix(in srgb,var(--blue-bright) 10%,#fff)}
+.sysrow__ic--nav svg{width:15px;height:15px;stroke:var(--blue-bright);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sysrow__n{background:var(--c,var(--blue-bright))}
+.lm-edit--open{display:flex;align-items:center;gap:9px;width:100%;cursor:pointer}
+.lm-edit__go{width:14px;height:14px;margin-left:auto;stroke:var(--blue-bright);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
 /* ===== Learning System: advisor-only step editor ===== */
 .sysedit-btn{position:absolute;top:10px;right:12px;z-index:6;display:none;align-items:center;gap:6px;
   font-family:var(--display);font-weight:700;font-size:11px;color:var(--muted);cursor:pointer;
@@ -4465,16 +4487,12 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         </div>
         <button class="lm-reset" id="lmReset">Reset to default</button>
         <div class="lm-sep"></div>
-        <button class="lm-edit" id="navEditToggle" aria-pressed="false">
-          <span class="lm-edit__box"><svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg></span>
-          <span class="lm-edit__tx">Edit navigation order <span class="zh">编辑导航顺序</span></span>
+        <button class="lm-edit lm-edit--open" id="navEditOpen">
+          <span class="lm-edit__box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h8M16 7h4M4 12h4M12 12h8M4 17h6M14 17h6"/><circle cx="14" cy="7" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="12" cy="17" r="2"/></svg></span>
+          <span class="lm-edit__tx">Edit pages <span class="zh">编辑页面</span></span>
+          <svg class="lm-edit__go" viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
         </button>
-        <button class="lm-reset lm-reset--ghost" id="navResetOrder">Reset order <span class="zh">恢复默认顺序</span></button>
-        <div class="lm-hint">Drag the ⠿ handle to move the bar. Turn on Edit to drag tabs into a new order.</div>
-        <div class="lm-sep"></div>
-        <div class="layout-menu__h">Show / hide pages <span class="zh">显示 / 隐藏页面</span></div>
-        <div class="lm-pages" id="lmPages"></div>
-        <button class="lm-reset lm-reset--ghost" id="lmShowAll">Show all pages <span class="zh">全部显示</span></button>
+        <div class="lm-hint">Drag the ⠿ handle to move the bar. Open Edit pages to reorder or hide pages.</div>
       </div>
     </header>
 
@@ -5252,10 +5270,6 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       if(btn){btn.classList.toggle("is-on",on);btn.setAttribute("aria-pressed",on);}
       document.dispatchEvent(new CustomEvent("nav-edit",{detail:{editing:on}}));
     }
-    var et=$("#navEditToggle");
-    if(et)et.addEventListener("click",function(e){e.stopPropagation();setEditing(!editing);});
-    var ro=$("#navResetOrder");
-    if(ro)ro.addEventListener("click",function(e){e.stopPropagation();applyOrder(DEFAULT);saveOrder();});
 
     /* ---- Show / hide pages (advisor can hide unused stages from the dock) ---- */
     var HKEY="te_tabhidden_v1";
@@ -5281,9 +5295,89 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         pg.appendChild(r);
       });
     }
-    buildPages(); loadHidden(); applyHidden();
-    var sa=$("#lmShowAll");
-    if(sa)sa.addEventListener("click",function(e){e.stopPropagation();hidden.clear();saveHidden();applyHidden();});
+    loadHidden(); applyHidden();
+
+    /* ---------- unified edit panel: drag to reorder + eye to hide (same model as the Learning System editor) ---------- */
+    (function(){
+      var openBtn=$("#navEditOpen"), modal=null, dragIdx=null, navObs=null;
+      function rowsHTML(){
+        var order=curOrder();
+        var visPos=0;
+        return order.map(function(i){
+          var s=STAGES[i], isHid=hidden.has(i);
+          if(!isHid) visPos++;
+          return '<li class="sysrow'+(isHid?' is-hidden':'')+'" draggable="true" data-i="'+i+'">'+
+            '<span class="sysrow__grip" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg></span>'+
+            '<span class="sysrow__n">'+(isHid?"\u2013":visPos)+'</span>'+
+            '<span class="sysrow__ic sysrow__ic--nav">'+ICONS[i]+'</span>'+
+            '<span class="sysrow__t">'+s.t+'<span class="zh">'+s.zh+'</span></span>'+
+            '<button type="button" class="sysrow__eye" data-naveye="'+i+'" aria-label="Show or hide this page">'+
+              (isHid
+                ? '<svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18"/><path d="M10.6 6.2A9.9 9.9 0 0 1 12 6c5 0 9 6 9 6a15.8 15.8 0 0 1-3 3.4M6.6 6.7A15.6 15.6 0 0 0 3 12s4 6 9 6a9.6 9.6 0 0 0 3.4-.6"/></svg>'
+                : '<svg viewBox="0 0 24 24" fill="none"><path d="M3 12s4-6 9-6 9 6 9 6-4 6-9 6-9-6-9-6Z"/><circle cx="12" cy="12" r="2.6"/></svg>')+
+            '</button>'+
+          '</li>';
+        }).join('');
+      }
+      function paint(){ if(modal) modal.querySelector('.sysedit__list').innerHTML=rowsHTML(); }
+      function open(e){
+        if(e)e.stopPropagation();
+        if(modal) return;
+        modal=document.createElement('div');
+        modal.className='sysedit';
+        modal.innerHTML='<div class="sysedit__bd" data-navx></div>'+
+          '<div class="sysedit__card" role="dialog" aria-modal="true" aria-label="Edit pages">'+
+            '<button type="button" class="sysedit__x" data-navx aria-label="Close">\u00d7</button>'+
+            '<div class="sysedit__h"><b>Edit pages <span class="zh">\u7f16\u8f91\u9875\u9762</span></b>'+
+            '<span>Drag to reorder \u00b7 tap the eye to hide <span class="zh">\u62d6\u52a8\u6392\u5e8f \u00b7 \u70b9\u773c\u775b\u9690\u85cf</span></span></div>'+
+            '<ul class="sysedit__list">'+rowsHTML()+'</ul>'+
+            '<div class="sysedit__live"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7"/></svg>'+
+              '<span>The dock below is live \u2014 drag the tabs there too. <span class="zh">\u4e0b\u65b9\u5bfc\u822a\u680f\u4e5f\u53ef\u4ee5\u76f4\u63a5\u62d6\u52a8\uff0c\u4e24\u8fb9\u5b9e\u65f6\u540c\u6b65\u3002</span></span></div>'+
+            '<button type="button" class="sysedit__reset" data-navreset>\u21ba Reset to default <span class="zh">\u6062\u590d\u9ed8\u8ba4</span></button>'+
+          '</div>';
+        document.body.appendChild(modal);
+        document.body.style.overflow='hidden';
+        document.body.classList.add('nav-edit-open');   /* keeps the dock visible + draggable underneath */
+        setEditing(true);
+        /* dragging the dock itself repaints the list, and vice versa */
+        if(!navObs){
+          navObs=new MutationObserver(function(){ if(modal) paint(); });
+        }
+        navObs.observe(tb,{childList:true});
+        requestAnimationFrame(function(){ modal.classList.add('is-open'); });
+        var list=modal.querySelector('.sysedit__list');
+        list.addEventListener('dragstart',function(ev){ var li=ev.target.closest('.sysrow'); if(!li)return; dragIdx=+li.getAttribute('data-i'); li.classList.add('is-drag'); });
+        list.addEventListener('dragend',function(ev){ var li=ev.target.closest('.sysrow'); if(li)li.classList.remove('is-drag'); dragIdx=null; });
+        list.addEventListener('dragover',function(ev){ ev.preventDefault();
+          var li=ev.target.closest('.sysrow'); if(!li||dragIdx===null)return;
+          var over=+li.getAttribute('data-i'); if(over===dragIdx)return;
+          var order=curOrder();
+          var from=order.indexOf(dragIdx), to=order.indexOf(over);
+          order.splice(from,1); order.splice(to,0,dragIdx);
+          applyOrder(order); saveOrder(); paint();
+        });
+        modal.addEventListener('click',function(ev){
+          if(ev.target.closest('[data-navx]')){ shut(); return; }
+          var eye=ev.target.closest('[data-naveye]');
+          if(eye){ toggleHidden(+eye.getAttribute('data-naveye')); paint(); return; }
+          if(ev.target.closest('[data-navreset]')){ applyOrder(DEFAULT); saveOrder(); hidden.clear(); saveHidden(); applyHidden(); paint(); return; }
+        });
+        document.addEventListener('keydown',esc);
+      }
+      function esc(ev){ if(ev.key==='Escape') shut(); }
+      function shut(){
+        if(!modal) return;
+        modal.classList.remove('is-open');
+        document.removeEventListener('keydown',esc);
+        document.body.style.overflow='';
+        document.body.classList.remove('nav-edit-open');
+        setEditing(false);
+        if(navObs) navObs.disconnect();
+        var m2=modal; modal=null;
+        setTimeout(function(){ if(m2&&m2.parentNode) m2.remove(); },220);
+      }
+      if(openBtn) openBtn.addEventListener('click',open);
+    })();
 
     // HTML5 drag-and-drop reorder (desktop, edit mode)
     var dragEl=null, pid=null, moved=false;
