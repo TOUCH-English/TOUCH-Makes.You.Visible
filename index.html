@@ -10364,7 +10364,7 @@ io.observe(er);})();
     [["感染力表达","Captivating Delivery"],["跨领域应对","Cross-domain Agility"],["风格切换","Register Switching"],["节奏与逻辑","Pace & Logic"]]
   ];
   var KEY="te_report_v1";
-  var ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",stg:{},lang:"zh",depth:"detail"};
+  var ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",stg:{},lang:"zh",depth:"detail",loc:"",due:"",start:""};
   function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&typeof s==="object"){if(s.lang)ST.lang=s.lang;if(s.depth)ST.depth=s.depth;}}catch(e){}}
   function save(){try{localStorage.setItem(KEY,JSON.stringify({lang:ST.lang,depth:ST.depth}));}catch(e){}}
   function esc(t){return String(t==null?"":t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
@@ -10373,6 +10373,56 @@ io.observe(er);})();
   function dmy(iso){var p=(iso||"").split("-");return p.length===3?(p[2]+"/"+p[1]+"/"+p[0]):"";}
   function prettyDate(iso){var p=(iso||"").split("-");if(p.length!==3)return iso||"";var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];return (+p[2])+" "+(M[+p[1]-1]||"")+" "+p[0];}
   var ov=document.getElementById("reportOv"),side=document.getElementById("rbSide"),sheet=document.getElementById("rsSheet");
+
+  /* ===== 学生页短链生成（复制 + 前往缩短） ===== */
+  var RP_SHORTENER_URL="https://tec.touchenglish.edu.my/web/url-short/index"; /* 自家短链系统；留空则不自动打开 */
+  var RP_SALES_URL="https://touchenglish.github.io/TOUCH-Register/student.html"; /* 学生页部署网址 */
+  var RP_ADVS=[
+    {k:"marco",n:"Mr Marco"},{k:"fish",n:"Ms Fish"},{k:"sijie",n:"Ms Sijie"},{k:"mitzy",n:"Ms Mitzy"},
+    {k:"xinying",n:"Ms XinYing"},{k:"elaine",n:"Ms Elaine"},{k:"fabien",n:"Mr Fabien"},{k:"huimin",n:"Ms HuiMin"},
+    {k:"alen",n:"Mr Alen"},{k:"wesley",n:"Mr Wesley"}
+  ];
+  function rpAdv(){try{return localStorage.getItem("te_rp_adv_v1")||RP_ADVS[0].k;}catch(e){return RP_ADVS[0].k;}}
+  function rpLvShort(i){var c=(LV[i]&&LV[i].code)||"";return c.replace("Level P1","P1").replace("Level ","L");}
+  function rpLinkPrevHTML(){
+    return '<b style="color:#2A5BD7">\u65C5\u7A0B\uFF1A'+rpLvShort(ST.cur)+' \u2192 '+rpLvShort(Math.max(ST.cur,ST.tgt))+'</b><br>'+esc(rpBuildLink());
+  }
+  function rpRefreshPrev(){var pv=document.getElementById("rbLinkPrev"); if(pv)pv.innerHTML=rpLinkPrevHTML();}
+  function rpB64u(str){
+    try{
+      var by=new TextEncoder().encode(str), bin="";
+      for(var i=0;i<by.length;i++)bin+=String.fromCharCode(by[i]);
+      return btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+    }catch(e){ return ""; }
+  }
+  function rpBuildLink(){
+    var f=Math.max(0,Math.min(4,ST.cur|0)), t=Math.max(f,Math.min(4,ST.tgt|0));
+    var les=0; for(var i3=f;i3<=t;i3++)les+=stgOf(i3);
+    var pk=[]; for(var i2=0;i2<4;i2++){ if(ST.checks[i2])pk.push(i2); }
+    var pStr=pk.length?pk.join(","):"";
+    var note=(ST.an||"").replace(/[~\s]+/g," ").trim();
+    if(note.length>220)note=note.slice(0,220)+"\u2026";
+    var due=(ST.due||"").replace(/-/g,"");
+    var start=(ST.start||"").replace(/[~]/g," ").trim().slice(0,40);
+    var parts=[];
+    function add(k,v){ if(v!==""&&v!==null&&v!==undefined)parts.push(k+":"+v); }
+    add("a",rpAdv()); add("n",(ST.name||"").trim()); add("f",f); add("t",t); add("l",les);
+    add("c",ST.loc||""); add("d",due); add("p",pStr); add("g",ST.lang==="en"?"en":"");
+    add("s",start); add("o",note);
+    var code=rpB64u(parts.join("~"));
+    if(code)return RP_SALES_URL+"?d="+code;
+    var u=RP_SALES_URL+"?adv="+encodeURIComponent(rpAdv());
+    if(ST.name)u+="&name="+encodeURIComponent(ST.name.trim());
+    u+="&from="+f+"&to="+t;
+    if(les>0)u+="&les="+les;
+    if(ST.loc)u+="&loc="+encodeURIComponent(ST.loc);
+    if(ST.due)u+="&due="+encodeURIComponent(ST.due);
+    if(pStr)u+="&p="+pStr;
+    if(ST.lang==="en")u+="&lang=en";
+    if(start)u+="&start="+encodeURIComponent(start);
+    if(note)u+="&note="+encodeURIComponent(note);
+    return u;
+  }
 
   function renderForm(){
     var lv=LV[ST.cur];
@@ -10398,6 +10448,17 @@ io.observe(er);})();
       '<label class="rb-field"><span>TEC 如何帮助你</span><textarea data-f="ch">'+esc(ST.ch)+'</textarea></label>'+
       '<div class="rb-h">Advisor Notes 顾问建议<small style="font-weight:500;text-transform:none;letter-spacing:0"> · 可留空</small></div>'+
       '<label class="rb-field"><textarea data-f="an" placeholder="例：建议先从句型模仿与信心建立开始…">'+esc(ST.an)+'</textarea></label>'+
+      '<div class="rb-h">学生专属链接 Student link</div>'+
+      '<div class="rb-row">'+
+      '<label class="rb-field"><span>上课方式 / 分行</span><select data-f="loc">'+
+        ['','online','austin','sutera','bi','kulai','sp'].map(function(k){var nm={'':'\u2014 不指定 \u2014','online':'Online Live Class','austin':'Mount Austin','sutera':'Sutera Utama','bi':'Bukit Indah','kulai':'Kulai','sp':'Setia Alam'}[k];return '<option value="'+k+'"'+(ST.loc===k?" selected":"")+'>'+nm+'</option>';}).join('')+'</select></label>'+
+      '<label class="rb-field"><span>助学金截止日 <small style="font-weight:500;color:var(--faint)">可留空</small></span><input type="date" data-f="due" value="'+esc(ST.due)+'"></label>'+
+      '</div>'+
+      '<label class="rb-field"><span>第一堂课 <small style="font-weight:500;color:var(--faint)">例：8月5日（周二）8:00pm</small></span><input type="text" data-f="start" value="'+esc(ST.start)+'" placeholder="8月5日（周二）8:00pm"></label>'+
+      '<label class="rb-field"><span>我是哪位顾问 Advisor</span><select id="rbAdvSel">'+
+        RP_ADVS.map(function(a){return '<option value="'+a.k+'"'+(rpAdv()===a.k?" selected":"")+'>'+a.n+'</option>';}).join('')+'</select></label>'+
+      '<div id="rbLinkPrev" style="margin:2px 0 8px;padding:10px 12px;border-radius:10px;background:rgba(42,91,215,.06);border:1px solid rgba(42,91,215,.16);font-size:11px;line-height:1.5;color:#3d4f7a;word-break:break-all">'+rpLinkPrevHTML()+'</div>'+
+      '<button type="button" class="rb-reset" id="rbCopyLink" style="border-color:rgba(42,91,215,.4);color:#2A5BD7">\uD83D\uDCCE 复制链接并前往缩短 Copy &amp; shorten</button>'+
       '<button type="button" class="rb-reset" id="rbReset">\u21ba 清空重来 Reset</button>';
   }
   function renderSheet(){
@@ -10617,12 +10678,28 @@ io.observe(er);})();
       if(f==="cur"||f==="tgt"){ST[f]=+t.value; ST.stg={}; if(f==="cur"){ST.checks=[true,true,false,false];} save(); renderAll(); return;}
       ST[f]=t.value;
       if(f==="date"){var dv=t.parentNode&&t.parentNode.querySelector(".rb-date__v"); if(dv) dv.textContent=dmy(t.value||todayISO());}
+      rpRefreshPrev();
       save(); renderSheet(); return;
     }
-    if(t.dataset&&t.dataset.stg!==undefined){var iv=parseInt(t.value,10); ST.stg[+t.dataset.stg]=iv; var tot=document.getElementById("rbStgTotal"); if(tot){var r=[];for(var q=ST.cur;q<=Math.max(ST.cur,ST.tgt);q++)r.push(q); tot.textContent=r.reduce(function(a,i2){return a+stgOf(i2);},0);} renderSheet(); return;}
-    if(t.dataset&&t.dataset.chk!==undefined){ST.checks[+t.dataset.chk]=t.checked; t.closest(".rb-pain").classList.toggle("is-on",t.checked); save(); renderSheet();}
+    if(t.dataset&&t.dataset.stg!==undefined){var iv=parseInt(t.value,10); ST.stg[+t.dataset.stg]=iv; var tot=document.getElementById("rbStgTotal"); if(tot){var r=[];for(var q=ST.cur;q<=Math.max(ST.cur,ST.tgt);q++)r.push(q); tot.textContent=r.reduce(function(a,i2){return a+stgOf(i2);},0);} rpRefreshPrev(); renderSheet(); return;}
+    if(t.dataset&&t.dataset.chk!==undefined){ST.checks[+t.dataset.chk]=t.checked; t.closest(".rb-pain").classList.toggle("is-on",t.checked); rpRefreshPrev(); save(); renderSheet();}
   });
-  side.addEventListener("click",function(e){ if(e.target&&e.target.id==="rbReset"){ ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",stg:{},lang:ST.lang||"zh",depth:ST.depth||"detail"}; save(); renderAll(); } });
+  side.addEventListener("change",function(e){
+    var t=e.target;
+    if(t&&t.id==="rbAdvSel"){ try{localStorage.setItem("te_rp_adv_v1",t.value);}catch(err){} rpRefreshPrev(); return; }
+    if(t&&t.dataset&&(t.dataset.f==="loc"||t.dataset.f==="due")){ ST[t.dataset.f]=t.value; save(); rpRefreshPrev(); }
+  });
+  side.addEventListener("click",function(e){
+    if(e.target&&e.target.id==="rbReset"){ ST={name:"",date:"",score:"",cur:0,tgt:2,checks:[true,true,false,false],ca:"",cs:"",ch:"",an:"",stg:{},lang:ST.lang||"zh",depth:ST.depth||"detail",loc:"",due:"",start:""}; save(); renderAll(); return; }
+    var cp=e.target.closest&&e.target.closest("#rbCopyLink");
+    if(cp){
+      var link=rpBuildLink();
+      var openShort=function(){ if(!RP_SHORTENER_URL)return; try{ window.open(RP_SHORTENER_URL,"_blank","noopener"); }catch(err){} };
+      var done=function(){ cp.textContent=RP_SHORTENER_URL?"\u2705 已复制 \u00b7 正在打开短链系统\u2026":"\u2705 已复制 Copied!"; setTimeout(function(){cp.innerHTML="\uD83D\uDCCE 复制链接并前往缩短 Copy &amp; shorten";},2200); openShort(); };
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(link).then(done,function(){window.prompt("复制这条链接 Copy this link:",link);openShort();});}
+      else{window.prompt("复制这条链接 Copy this link:",link);openShort();}
+    }
+  });
 })();
 /* ===== Downloadable per-level PDF handouts (advisor, poster-style detail) · isolated ===== */
 (function(){
