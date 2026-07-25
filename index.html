@@ -4122,6 +4122,18 @@ body.nav-edit-open .sysedit__bd{background:rgba(13,28,64,.34)}
 .sysedit__live svg{flex:none;width:14px;height:14px;stroke:var(--blue-bright);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .sysedit__live .zh{color:var(--faint);margin-left:3px}
 
+/* rename controls inside the edit panel */
+.sysrow__pen{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:8px;border:1px solid transparent;background:none;color:var(--faint);cursor:pointer;transition:.15s}
+.sysrow__pen:hover{color:var(--ink);background:rgba(20,33,50,.06)}
+.sysrow__pen.is-on{color:#fff;background:var(--blue-bright)}
+.sysrow__pen svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sysrow__t--edit{display:flex;flex-direction:column;gap:4px;padding:1px 0}
+.sysren{width:100%;font-family:inherit;font-size:12px;font-weight:600;color:var(--ink);padding:5px 8px;border-radius:8px;
+  border:1px solid color-mix(in srgb,var(--blue-bright) 30%,var(--line));background:#fff;outline:none}
+.sysren:focus{border-color:var(--blue-bright);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue-bright) 14%,transparent)}
+.sysren--short{max-width:120px;font-size:11px}
+.sysrow:has(.sysren){cursor:default}
+
 /* nav rows reuse the System editor look; dock icons are plain SVG */
 .sysrow__ic--nav{background:color-mix(in srgb,var(--blue-bright) 10%,#fff)}
 .sysrow__ic--nav svg{width:15px;height:15px;stroke:var(--blue-bright);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
@@ -5250,6 +5262,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
   /* ---------- TAB ITEM REORDERING (Edit navigation) ---------- */
   (function(){
     var tb=tabbar;
+    var DEFNAMES=STAGES.map(function(s){return {t:s.t,zh:s.zh,short:s.short};});
     var LSKEY="te_taborder_v1";
     var DEFAULT=[0,4,2,3,5,6,8,9,7,10,11,1];                  /* default dock order (display only; data-jump still maps each tab to its real stage) */
     if(DEFAULT.length!==STAGES.length||DEFAULT.slice().sort(function(a,b){return a-b;}).some(function(v,k){return v!==k;})){DEFAULT=STAGES.map(function(_,i){return i;});}
@@ -5299,7 +5312,37 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
 
     /* ---------- unified edit panel: drag to reorder + eye to hide (same model as the Learning System editor) ---------- */
     (function(){
-      var openBtn=$("#navEditOpen"), modal=null, dragIdx=null, navObs=null;
+      var openBtn=$("#navEditOpen"), modal=null, dragIdx=null, navObs=null, renaming=null;
+      var NKEY="te_tabnames_v1";
+      function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+      function loadNames(){
+        var o=null; try{ o=JSON.parse(localStorage.getItem(NKEY)); }catch(e){}
+        if(!o||typeof o!=="object") return;
+        Object.keys(o).forEach(function(k){
+          var i=+k; if(!(i>=0&&i<STAGES.length)) return;
+          var v=o[k]||{};
+          if(v.t) STAGES[i].t=v.t;
+          if(v.zh) STAGES[i].zh=v.zh;
+          if(v.short) STAGES[i].short=v.short;
+          paintStage(i);
+        });
+      }
+      function saveNames(){
+        var o={};
+        STAGES.forEach(function(s,i){
+          if(s.t!==DEFNAMES[i].t||s.zh!==DEFNAMES[i].zh||s.short!==DEFNAMES[i].short)
+            o[i]={t:s.t,zh:s.zh,short:s.short};
+        });
+        try{ localStorage.setItem(NKEY,JSON.stringify(o)); }catch(e){}
+      }
+      function paintStage(i){
+        var tab=tb.querySelector('.tab-item[data-jump="'+i+'"]');
+        if(tab){ var l=tab.querySelector(".tab-item__lbl"); if(l) l.textContent=STAGES[i].short; }
+        var act=tb.querySelector(".tab-item.is-active");
+        if(act&&+act.getAttribute("data-jump")===i){
+          var tt=$("#tbTitle"); if(tt) tt.innerHTML=esc(STAGES[i].t)+' <span class="zh">'+esc(STAGES[i].zh)+'</span>';
+        }
+      }
       function rowsHTML(){
         var order=curOrder();
         var visPos=0;
@@ -5310,7 +5353,16 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
             '<span class="sysrow__grip" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg></span>'+
             '<span class="sysrow__n">'+(isHid?"\u2013":visPos)+'</span>'+
             '<span class="sysrow__ic sysrow__ic--nav">'+ICONS[i]+'</span>'+
-            '<span class="sysrow__t">'+s.t+'<span class="zh">'+s.zh+'</span></span>'+
+            (renaming===i
+              ? '<span class="sysrow__t sysrow__t--edit">'+
+                  '<input class="sysren" data-nfield="t" value="'+esc(s.t)+'" placeholder="Name" aria-label="Page name">'+
+                  '<input class="sysren" data-nfield="zh" value="'+esc(s.zh)+'" placeholder="\u4e2d\u6587\u540d\u79f0" aria-label="Chinese name">'+
+                  '<input class="sysren sysren--short" data-nfield="short" value="'+esc(s.short)+'" placeholder="Tab" aria-label="Dock label">'+
+                '</span>'
+              : '<span class="sysrow__t">'+esc(s.t)+'<span class="zh">'+esc(s.zh)+'</span></span>')+
+            '<button type="button" class="sysrow__pen'+(renaming===i?' is-on':'')+'" data-navren="'+i+'" aria-label="Rename this page">'+
+              '<svg viewBox="0 0 24 24" fill="none"><path d="M4 20h4l10-10-4-4L4 16v4Z"/><path d="M14.5 5.5l4 4"/></svg>'+
+            '</button>'+
             '<button type="button" class="sysrow__eye" data-naveye="'+i+'" aria-label="Show or hide this page">'+
               (isHid
                 ? '<svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18"/><path d="M10.6 6.2A9.9 9.9 0 0 1 12 6c5 0 9 6 9 6a15.8 15.8 0 0 1-3 3.4M6.6 6.7A15.6 15.6 0 0 0 3 12s4 6 9 6a9.6 9.6 0 0 0 3.4-.6"/></svg>'
@@ -5346,6 +5398,24 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         navObs.observe(tb,{childList:true});
         requestAnimationFrame(function(){ modal.classList.add('is-open'); });
         var list=modal.querySelector('.sysedit__list');
+        list.addEventListener('input',function(ev){
+          var f=ev.target.closest('.sysren'); if(!f)return;
+          var li=f.closest('.sysrow'); if(!li)return;
+          var i=+li.getAttribute('data-i'), key=f.getAttribute('data-nfield');
+          var v=f.value.trim();
+          STAGES[i][key]=v||DEFNAMES[i][key];
+          paintStage(i); saveNames();
+        });
+        list.addEventListener('keydown',function(ev){
+          if(!ev.target.closest('.sysren'))return;
+          ev.stopPropagation();
+          if(ev.key==='Enter'){ renaming=null; paint(); }
+        });
+        /* a row being renamed must not start a drag */
+        list.addEventListener('mousedown',function(ev){
+          var li=ev.target.closest('.sysrow'); if(!li)return;
+          li.draggable=!ev.target.closest('.sysren');
+        });
         list.addEventListener('dragstart',function(ev){ var li=ev.target.closest('.sysrow'); if(!li)return; dragIdx=+li.getAttribute('data-i'); li.classList.add('is-drag'); });
         list.addEventListener('dragend',function(ev){ var li=ev.target.closest('.sysrow'); if(li)li.classList.remove('is-drag'); dragIdx=null; });
         list.addEventListener('dragover',function(ev){ ev.preventDefault();
@@ -5360,7 +5430,20 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
           if(ev.target.closest('[data-navx]')){ shut(); return; }
           var eye=ev.target.closest('[data-naveye]');
           if(eye){ toggleHidden(+eye.getAttribute('data-naveye')); paint(); return; }
-          if(ev.target.closest('[data-navreset]')){ applyOrder(DEFAULT); saveOrder(); hidden.clear(); saveHidden(); applyHidden(); paint(); return; }
+          var pen=ev.target.closest('[data-navren]');
+          if(pen){
+            var pi=+pen.getAttribute('data-navren');
+            renaming=(renaming===pi)?null:pi;
+            paint();
+            if(renaming!==null){ var f=modal.querySelector('.sysrow[data-i="'+renaming+'"] .sysren'); if(f){f.focus();f.select();} }
+            return;
+          }
+          if(ev.target.closest('[data-navreset]')){
+            applyOrder(DEFAULT); saveOrder(); hidden.clear(); saveHidden(); applyHidden();
+            STAGES.forEach(function(s,i){ s.t=DEFNAMES[i].t; s.zh=DEFNAMES[i].zh; s.short=DEFNAMES[i].short; paintStage(i); });
+            try{ localStorage.removeItem(NKEY); }catch(e){}
+            renaming=null; paint(); return;
+          }
         });
         document.addEventListener('keydown',esc);
       }
@@ -5372,11 +5455,13 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         document.body.style.overflow='';
         document.body.classList.remove('nav-edit-open');
         setEditing(false);
+        renaming=null;
         if(navObs) navObs.disconnect();
         var m2=modal; modal=null;
         setTimeout(function(){ if(m2&&m2.parentNode) m2.remove(); },220);
       }
       if(openBtn) openBtn.addEventListener('click',open);
+      loadNames();
     })();
 
     // HTML5 drag-and-drop reorder (desktop, edit mode)
@@ -6272,6 +6357,34 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       try{ localStorage.setItem(SYS_OKEY,JSON.stringify(sysOrder)); localStorage.setItem(SYS_HKEY,JSON.stringify(sysHidden)); }catch(e){}
     }
     function sysVisible(){ return sysOrder.filter(function(i){ return sysHidden.indexOf(i)<0; }); }
+    var SYS_NKEY="te_sysnames_v1";
+    var SYS_DEFN=SYS.map(function(s){return {t:s.t,zh:s.zh,short:s.short};});
+    function sesc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+    (function(){
+      var o=null; try{ o=JSON.parse(localStorage.getItem(SYS_NKEY)); }catch(e){}
+      if(!o||typeof o!=="object") return;
+      Object.keys(o).forEach(function(k){
+        var i=+k; if(!(i>=0&&i<SYS.length)) return;
+        var v=o[k]||{};
+        if(v.t) SYS[i].t=v.t;
+        if(v.zh) SYS[i].zh=v.zh;
+        if(v.short) SYS[i].short=v.short;
+      });
+    })();
+    function sysSaveNames(){
+      var o={};
+      SYS.forEach(function(s,i){
+        if(s.t!==SYS_DEFN[i].t||s.zh!==SYS_DEFN[i].zh||s.short!==SYS_DEFN[i].short)
+          o[i]={t:s.t,zh:s.zh,short:s.short};
+      });
+      try{ localStorage.setItem(SYS_NKEY,JSON.stringify(o)); }catch(e){}
+    }
+    function sysPaintName(i){
+      var node=ov.querySelector('.sys-node[data-s="'+i+'"]');
+      if(node){ var t=node.querySelector(".sys-node__t"); if(t) t.innerHTML=sesc(SYS[i].t)+'<span class="zh">'+sesc(SYS[i].zh)+'</span>'; }
+      var mi=fmini&&fmini.querySelector('.focus-mini__item[data-s="'+i+'"] .focus-mini__lbl');
+      if(mi) mi.textContent=SYS[i].short;
+    }
 
     var nodesHTML=SYS.map(function(s,i){
       return '<button class="sys-node" data-s="'+i+'" style="--c:'+(SYS_MAPCOL[i]||s.col)+'">'+
@@ -6337,7 +6450,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       btn.innerHTML='<svg viewBox="0 0 24 24" fill="none"><path d="M4 7h8M16 7h4M4 12h4M12 12h8M4 17h6M14 17h6"/><circle cx="14" cy="7" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="12" cy="17" r="2"/></svg><span>Edit steps</span>';
       host.appendChild(btn);
 
-      var modal=null, dragIdx=null;
+      var modal=null, dragIdx=null, renaming=null;
       function rowsHTML(){
         return sysOrder.map(function(i,pos){
           var s=SYS[i], hidden=sysHidden.indexOf(i)>-1;
@@ -6345,7 +6458,16 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
             '<span class="sysrow__grip" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg></span>'+
             '<span class="sysrow__n" style="--c:'+(SYS_MAPCOL[i]||s.col)+'">'+(hidden?"\u2013":(sysVisible().indexOf(i)+1))+'</span>'+
             '<span class="sysrow__ic" style="--c:'+(SYS_MAPCOL[i]||s.col)+'">'+sv(s.ic)+'</span>'+
-            '<span class="sysrow__t">'+s.t+'<span class="zh">'+s.zh+'</span></span>'+
+            (renaming===i
+              ? '<span class="sysrow__t sysrow__t--edit">'+
+                  '<input class="sysren" data-sfield="t" value="'+sesc(s.t)+'" placeholder="Name" aria-label="Step name">'+
+                  '<input class="sysren" data-sfield="zh" value="'+sesc(s.zh)+'" placeholder="\u4e2d\u6587\u540d\u79f0" aria-label="Chinese name">'+
+                  '<input class="sysren sysren--short" data-sfield="short" value="'+sesc(s.short)+'" placeholder="Tab" aria-label="Mini dock label">'+
+                '</span>'
+              : '<span class="sysrow__t">'+sesc(s.t)+'<span class="zh">'+sesc(s.zh)+'</span></span>')+
+            '<button type="button" class="sysrow__pen'+(renaming===i?' is-on':'')+'" data-sysren="'+i+'" aria-label="Rename this step">'+
+              '<svg viewBox="0 0 24 24" fill="none"><path d="M4 20h4l10-10-4-4L4 16v4Z"/><path d="M14.5 5.5l4 4"/></svg>'+
+            '</button>'+
             '<button type="button" class="sysrow__eye" data-syseye="'+i+'" aria-label="Show or hide this step">'+
               (hidden
                 ? '<svg viewBox="0 0 24 24" fill="none"><path d="M3 3l18 18"/><path d="M10.6 6.2A9.9 9.9 0 0 1 12 6c5 0 9 6 9 6a15.8 15.8 0 0 1-3 3.4M6.6 6.7A15.6 15.6 0 0 0 3 12s4 6 9 6a9.6 9.6 0 0 0 3.4-.6"/></svg>'
@@ -6357,6 +6479,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       function paint(){
         if(modal) modal.querySelector('.sysedit__list').innerHTML=rowsHTML();
         layoutMap(); buildMini(); sysSave();
+        SYS.forEach(function(_,i){ sysPaintName(i); });
       }
       function open(){
         if(modal) return;
@@ -6374,6 +6497,23 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         document.body.style.overflow='hidden';
         requestAnimationFrame(function(){ modal.classList.add('is-open'); });
         var list=modal.querySelector('.sysedit__list');
+        list.addEventListener('input',function(e){
+          var f=e.target.closest('.sysren'); if(!f)return;
+          var li=f.closest('.sysrow'); if(!li)return;
+          var i=+li.getAttribute('data-i'), key=f.getAttribute('data-sfield');
+          var v=f.value.trim();
+          SYS[i][key]=v||SYS_DEFN[i][key];
+          sysPaintName(i); sysSaveNames();
+        });
+        list.addEventListener('keydown',function(e){
+          if(!e.target.closest('.sysren'))return;
+          e.stopPropagation();
+          if(e.key==='Enter'){ renaming=null; paint(); }
+        });
+        list.addEventListener('mousedown',function(e){
+          var li=e.target.closest('.sysrow'); if(!li)return;
+          li.draggable=!e.target.closest('.sysren');
+        });
         list.addEventListener('dragstart',function(e){ var li=e.target.closest('.sysrow'); if(!li)return; dragIdx=+li.getAttribute('data-i'); li.classList.add('is-drag'); });
         list.addEventListener('dragend',function(e){ var li=e.target.closest('.sysrow'); if(li)li.classList.remove('is-drag'); dragIdx=null; });
         list.addEventListener('dragover',function(e){ e.preventDefault();
@@ -6393,9 +6533,19 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
             else if(sysVisible().length>1) sysHidden.push(i);   /* never hide the last one */
             paint(); return;
           }
+          var pen=e.target.closest('[data-sysren]');
+          if(pen){
+            var pi=+pen.getAttribute('data-sysren');
+            renaming=(renaming===pi)?null:pi;
+            paint();
+            if(renaming!==null){ var f=modal.querySelector('.sysrow[data-i="'+renaming+'"] .sysren'); if(f){f.focus();f.select();} }
+            return;
+          }
           if(e.target.closest('[data-sysreset]')){
             sysOrder=SYS.map(function(_,i){return i;}); sysHidden=[];
-            paint(); return;
+            SYS.forEach(function(s,i){ s.t=SYS_DEFN[i].t; s.zh=SYS_DEFN[i].zh; s.short=SYS_DEFN[i].short; sysPaintName(i); });
+            try{ localStorage.removeItem(SYS_NKEY); }catch(e2){}
+            renaming=null; paint(); return;
           }
         });
         document.addEventListener('keydown',esc);
@@ -6406,6 +6556,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         modal.classList.remove('is-open');
         document.removeEventListener('keydown',esc);
         document.body.style.overflow='';
+        renaming=null;
         var m2=modal; modal=null;
         setTimeout(function(){ if(m2&&m2.parentNode) m2.remove(); },220);
       }
@@ -9136,9 +9287,9 @@ io.observe(er);})();
     data=clone(DEF); misc=clone(MISC_DEF); sstOn=false;
   }
   function save(){try{localStorage.setItem(KEY,JSON.stringify({pkgs:data.map(function(d){return {orig:d.orig,combo:d.combo,hrdc:d.hrdc,lessons:d.lessons,na:d.na};}),misc:misc}));}catch(e){}}
-  function fmt(n){return (n||0).toLocaleString('en-US');}
+  function fmt(n){n=n||0; var hasCents=Math.abs(n-Math.round(n))>0.005; return n.toLocaleString('en-US',{minimumFractionDigits:hasCents?2:0,maximumFractionDigits:2});}
   function finalOf(d){return Math.max(0,d.orig-d.combo-(d.na?0:d.hrdc));}
-  var SST_RATE=0.06, sstOn=false; function taxed(n){ return sstOn?Math.round(n*(1+SST_RATE)):n; }
+  var SST_RATE=0.06, sstOn=false; function taxed(n){ return sstOn?Math.round(n*(1+SST_RATE)*100)/100:n; }
   /* ---------- card-inline price (combo -> after-subsidy) + reveal sync ---------- */
   var subsidyOn=false, subsidyDone=false;
   var priceShown=[false,false,false], slideIdx=-1;
