@@ -1299,6 +1299,79 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .loc-pop__tt:hover{background:color-mix(in srgb,var(--blue-bright) 10%,#fff);border-color:color-mix(in srgb,var(--blue-bright) 42%,#fff);transform:translateY(-1px)}
 .loc-pop__tt svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .loc-pop__tt[hidden]{display:none}
+
+/* 货币切换（顾问定价编辑器） */
+/* 货币下拉（与价格视图按钮同一行，靠左；低调，靠近才浮现） */
+.cur-switch{position:relative;display:inline-flex;align-items:center;gap:4px;margin-right:auto;
+  opacity:.42;transition:opacity .22s ease}
+.cur-switch:hover,.cur-switch.is-open{opacity:1}
+.cur-trg{font:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:5px;line-height:1;
+  padding:5px 9px 5px 11px;border-radius:999px;border:1px solid rgba(21,53,123,.1);background:rgba(255,255,255,.62);
+  color:var(--ink);transition:.16s}
+.cur-trg b{font-size:11.5px;font-weight:900}
+.cur-trg span{font-size:9.5px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.cur-trg svg{width:12px;height:12px;color:var(--muted);transition:transform .2s}
+.cur-switch:hover .cur-trg{background:#fff;border-color:rgba(42,91,215,.22);box-shadow:0 8px 18px -12px rgba(21,53,123,.4)}
+.cur-switch.is-open .cur-trg svg{transform:rotate(180deg)}
+.cur-menu{position:absolute;top:calc(100% + 6px);left:0;z-index:40;min-width:172px;padding:5px;border-radius:14px;
+  background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border:1px solid rgba(21,53,123,.1);box-shadow:0 20px 44px -20px rgba(21,53,123,.45);
+  opacity:0;visibility:hidden;transform:translateY(-4px);transition:.18s}
+.cur-switch.is-open .cur-menu{opacity:1;visibility:visible;transform:none}
+.cur-opt{font:inherit;cursor:pointer;display:flex;align-items:center;gap:9px;width:100%;text-align:left;
+  padding:8px 10px;border-radius:9px;border:none;background:none;color:var(--ink);transition:.14s}
+.cur-opt b{font-size:12.5px;font-weight:900;min-width:26px}
+.cur-opt span{font-size:11.5px;font-weight:600;color:var(--muted);flex:1}
+.cur-opt i{font-style:normal;font-size:11px;font-weight:900;color:#2A5BD7}
+.cur-opt:hover{background:rgba(42,91,215,.08)}
+.cur-opt.is-on{background:rgba(42,91,215,.06)}
+.cur-opt.is-on span{color:var(--ink);font-weight:700}
+.cur-sw__rate{font-size:9.5px;font-weight:700;color:var(--muted);white-space:nowrap;opacity:.85}
+@media(max-width:760px){.cur-switch{margin:0 auto 10px}}
+
+/* 看总额小图标（嵌在费用说明行） */
+.tcard__calc{display:inline-flex;align-items:center;justify-content:center;vertical-align:-3px;margin-right:5px;
+  width:20px;height:20px;padding:0;border-radius:6px;cursor:pointer;
+  border:1px solid rgba(42,91,215,.24);background:rgba(42,91,215,.07);color:#2A5BD7;transition:.16s}
+.tcard__calc svg{width:12px;height:12px}
+.tcard__calc:hover{background:#2A5BD7;border-color:#2A5BD7;color:#fff;transform:translateY(-1px)}
+/* 看总额按钮与弹窗 */
+.tcard__total{display:block;width:100%;margin:10px 0 2px;font:inherit;font-size:12px;font-weight:800;cursor:pointer;
+  padding:8px 12px;border-radius:10px;border:1px dashed rgba(42,91,215,.35);background:rgba(42,91,215,.06);color:#2A5BD7;transition:.18s}
+.tcard__total:hover{background:rgba(42,91,215,.12);border-style:solid}
+.tpop2{position:fixed;inset:0;z-index:240;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s}
+.tpop2.is-open{opacity:1}
+.tpop2__bg{position:absolute;inset:0;background:rgba(8,20,46,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.tpop2__card{position:relative;width:min(390px,100%);border-radius:22px;padding:26px 24px 24px;background:linear-gradient(165deg,#fff,#f6faff);
+  box-shadow:0 40px 90px -30px rgba(8,20,46,.6);transform:translateY(12px) scale(.985);transition:transform .24s cubic-bezier(.2,.9,.3,1)}
+.tpop2.is-open .tpop2__card{transform:none}
+.tpop2__x{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;border:none;cursor:pointer;background:rgba(21,53,123,.07);font-size:19px;color:var(--ink);line-height:1}
+.tpop2__hd{margin-bottom:16px;padding-right:28px}
+.tpop2__pkg{display:block;font-size:19px;font-weight:900;color:var(--ink)}
+.tpop2__sub{display:block;font-size:12px;color:var(--muted);font-weight:700;margin-top:3px}
+.tpop2__row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:9px 0;font-size:13.5px;color:var(--ink)}
+.tpop2__row span{font-weight:700}
+.tpop2__row i{font-style:normal;display:block;font-size:11px;color:var(--muted);font-weight:600;margin-top:1px}
+.tpop2__row b{font-size:15px;font-weight:800;white-space:nowrap}
+.tpop2__rule{height:1px;background:linear-gradient(90deg,transparent,rgba(21,53,123,.18),transparent);margin:8px 0 4px}
+.tpop2__row.is-total{padding-top:12px}
+.tpop2__row.is-total span{font-size:14.5px;font-weight:900}
+.tpop2__row.is-total b{font-size:23px;font-weight:900;color:#2A5BD7}
+.tpop2__save{margin-top:12px;text-align:center;font-size:12.5px;font-weight:800;color:#1F9E5A;background:rgba(31,158,90,.09);border-radius:999px;padding:7px 14px}
+.tpop2__fine{margin-top:8px;text-align:center;font-size:11px;color:var(--faint)}
+.pa-cur__bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 14px;padding:12px 14px;border-radius:12px;background:rgba(42,91,215,.05);border:1px solid rgba(42,91,215,.16)}
+.pa-cur__lb{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.pa-cur{font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;padding:7px 14px;border-radius:999px;border:1px solid rgba(42,91,215,.24);background:#fff;color:var(--ink);transition:.18s}
+.pa-cur:hover{border-color:rgba(42,91,215,.5)}
+.pa-cur.is-on{background:#2A5BD7;border-color:#2A5BD7;color:#fff;box-shadow:0 8px 18px -8px rgba(42,91,215,.6)}
+.pa-cur__rate{margin-left:auto;font-size:12px;font-weight:700;color:var(--ink);display:inline-flex;align-items:center;gap:6px}
+.pa-cur__rate input{width:78px;padding:6px 8px;border-radius:8px;border:1px solid rgba(42,91,215,.28);font:inherit;font-size:12.5px;text-align:right}
+.pa-cur__note{margin-left:auto;font-size:11.5px;color:var(--faint);font-weight:600}
+.pa-cur__src{font-size:10px;font-weight:800;letter-spacing:.04em;padding:3px 8px;border-radius:999px;background:rgba(42,91,215,.12);color:#2A5BD7}
+.pa-cur__auto{font:inherit;font-size:11px;font-weight:700;cursor:pointer;border:1px solid rgba(42,91,215,.28);background:#fff;color:#2A5BD7;border-radius:999px;padding:4px 10px}
+.pa-cur__auto:hover{background:rgba(42,91,215,.08)}
+.pa-misc__hint{display:block;width:100%;font-size:11px;color:var(--faint);font-weight:600;margin-bottom:8px}
+
 /* Branch timetable modal */
 .tt-modal{position:fixed;inset:0;z-index:135;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
 .tt-modal.is-open{opacity:1}
@@ -4899,6 +4972,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         <div class="price-app" id="priceApp">
           <div class="price-amb" aria-hidden="true"></div>
           <div class="pv-switch" aria-label="Pricing view 切换价格视图">
+            <div class="cur-switch" id="curSwitch" data-advisor-only aria-label="Currency"></div>
             <div class="pv-switch__box" role="tablist">
               <button type="button" class="pv-switch__opt is-on" id="pvTabCourse" role="tab" aria-selected="true" title="Course packages 课程配套"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH" onerror="this.outerHTML='<span class=\'pv-fb\'>TOUCH</span>'"></button>
               <button type="button" class="pv-switch__opt" id="pvTabIelts" role="tab" aria-selected="false" title="IELTS pricing IELTS 价格"><span class="pv-fb pv-fb--ielts">IELTS</span></button>
@@ -9287,7 +9361,100 @@ io.observe(er);})();
     data=clone(DEF); misc=clone(MISC_DEF); sstOn=false;
   }
   function save(){try{localStorage.setItem(KEY,JSON.stringify({pkgs:data.map(function(d){return {orig:d.orig,combo:d.combo,hrdc:d.hrdc,lessons:d.lessons,na:d.na};}),misc:misc}));}catch(e){}}
-  function fmt(n){n=n||0; var hasCents=Math.abs(n-Math.round(n))>0.005; return n.toLocaleString('en-US',{minimumFractionDigits:hasCents?2:0,maximumFractionDigits:2});}
+  function fmt(n){n=cx(n||0); var hasCents=Math.abs(n-Math.round(n))>0.005; return n.toLocaleString('en-US',{minimumFractionDigits:hasCents?2:0,maximumFractionDigits:2});}
+
+  /* ===== 货币切换：顾问面对不同国家的学员时可切换显示币别 =====
+     rate = 1 马币可兑换多少该币别；顾问可在定价编辑器里随时改汇率 */
+  var CUR_KEY='te_currency_v1';
+  var CURRENCIES=[
+    {code:'MYR', sym:'RM',  label:'马币 Ringgit',      rate:1,    dec:0},
+    {code:'CNY', sym:'¥',   label:'人民币 RMB',        rate:1.68, dec:0},
+    {code:'TWD', sym:'NT$', label:'新台币 TWD',        rate:7.40, dec:0},
+    {code:'SGD', sym:'S$',  label:'新币 SGD',          rate:0.30, dec:2}
+  ];
+  var curCode='MYR', curRates={};
+  function curNow(){ for(var i=0;i<CURRENCIES.length;i++) if(CURRENCIES[i].code===curCode) return CURRENCIES[i]; return CURRENCIES[0]; }
+  function curRate(){
+    var c=curNow();
+    /* 自动优先：每次打开都用当天汇率；顾问在本场手动改过才暂时覆盖（不留到下次） */
+    if(typeof curRates[c.code]==='number'&&curRates[c.code]>0)return curRates[c.code];
+    if(curAuto&&typeof curAuto[c.code]==='number'&&curAuto[c.code]>0)return Math.round(curAuto[c.code]*100)/100;
+    return c.rate;
+  }
+  function curLoad(){
+    /* 每次打开：币别回到马币，汇率一律用当天自动抓的值 */
+    curCode='MYR'; curRates={};
+  }
+  function curSave(){ /* 币别与手动汇率都不记忆：每次打开回到马币 + 当天自动汇率 */ }
+  /* 换算 + 格式化：MYR 原样，其它币别乘汇率后取整（避免奇怪的小数） */
+  function cx(n){ n=n||0; if(curCode==='MYR')return n; var v=n*curRate(); return Math.round(v); }
+  function money(n){ var c=curNow(); return c.sym+' '+fmt(n); }
+  /* ===== 自动抓取汇率（每天一次；抓不到就用上次的值，再不行用预设） =====
+     顾问手动改过的汇率优先，不会被自动值覆盖 */
+  var CUR_FETCH_KEY='te_currency_rates_v1';
+  function curAutoLoad(){
+    try{
+      var c=JSON.parse(localStorage.getItem(CUR_FETCH_KEY));
+      if(c&&c.rates&&c.at&&(Date.now()-c.at)<24*3600*1000){ curAuto=c.rates; return true; }
+      if(c&&c.rates)curAuto=c.rates;   /* 过期也先用着，等新的抓回来 */
+    }catch(e){}
+    return false;
+  }
+  var curAuto={};
+  function curFetch(){
+    if(curAutoLoad())return;                      /* 24 小时内抓过就不再抓 */
+    var srcs=[
+      {u:'https://open.er-api.com/v6/latest/MYR', pick:function(j){return j&&j.rates;}},
+      {u:'https://api.frankfurter.app/latest?from=MYR&to=CNY,TWD,SGD,HKD,USD', pick:function(j){return j&&j.rates;}},
+      {u:'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/myr.json',
+       pick:function(j){ if(!j||!j.myr)return null; var o={}; for(var k in j.myr)o[k.toUpperCase()]=j.myr[k]; return o; }}
+    ];
+    (function tryNext(i){
+      if(i>=srcs.length)return;
+      var ctl=null; try{ctl=new AbortController();setTimeout(function(){ctl.abort();},6000);}catch(e){}
+      fetch(srcs[i].u, ctl?{signal:ctl.signal}:{})
+        .then(function(r){return r.json();})
+        .then(function(j){
+          var rt=srcs[i].pick(j);
+          if(!rt||!rt.CNY){ tryNext(i+1); return; }
+          curAuto=rt;
+          try{ localStorage.setItem(CUR_FETCH_KEY,JSON.stringify({rates:rt,at:Date.now()})); }catch(e){}
+          curPaintRate(); repaintPrices();
+        })
+        .catch(function(){ tryNext(i+1); });
+    })(0);
+  }
+  /* 更新编辑器里的汇率输入框显示 */
+  function curPaintRate(){
+    var el=document.getElementById('paRate'); if(!el)return;
+    if(document.activeElement===el)return;         /* 顾问正在输入就别打断 */
+    el.value=curRate();
+    var tag=document.getElementById('paRateSrc');
+    if(tag)tag.textContent=curManual()?'\u672C\u573A\u624B\u6539':'\u4ECA\u65E5\u81EA\u52A8';
+  }
+  function curManual(){ return typeof curRates[curCode]==='number'&&curRates[curCode]>0; }
+
+  curLoad();
+  if(document.readyState!=='loading')setTimeout(function(){try{curPaintSyms(document);renderCurSwitch();curFetch();}catch(e){}},60);
+  else document.addEventListener('DOMContentLoaded',function(){try{curPaintSyms(document);renderCurSwitch();curFetch();}catch(e){}});
+
+  /* 所有货币符号统一更新（HTML 里写死的 RM 会被换成目前币别） */
+  function curPaintSyms(root){
+    var sym=curNow().sym;
+    var els=(root||document).querySelectorAll('.cur-sym, .tcard__price-now .rm, .ipop__result-amt .rm');
+    for(var i=0;i<els.length;i++){ if(els[i].textContent!==sym) els[i].textContent=sym; }
+  }
+  /* 任何时候新生成的价格元素，符号都自动跟上（弹窗、展开视图都涵盖） */
+  (function(){
+    if(!window.MutationObserver)return;
+    var pending=false;
+    var mo=new MutationObserver(function(){
+      if(pending)return; pending=true;
+      requestAnimationFrame(function(){ pending=false; try{curPaintSyms(document);}catch(e){} });
+    });
+    function start(){ try{ mo.observe(document.body,{childList:true,subtree:true}); }catch(e){} }
+    if(document.body)start(); else document.addEventListener('DOMContentLoaded',start);
+  })();
   function finalOf(d){return Math.max(0,d.orig-d.combo-(d.na?0:d.hrdc));}
   var SST_RATE=0.06, sstOn=false; function taxed(n){ return sstOn?Math.round(n*(1+SST_RATE)*100)/100:n; }
   /* ---------- card-inline price (combo -> after-subsidy) + reveal sync ---------- */
@@ -9306,12 +9473,12 @@ io.observe(er);})();
   function priceInner(i){
     var d=data[i], combo=comboOf(d), sub=finalOf(d), now=subsidyOn?sub:combo;
     var struck = subsidyOn ? (d.orig>sub) : (d.combo>0);
-    var orig = struck ? '<span class="tcard__price-orig">RM '+fmt(taxed(d.orig))+'</span>' : '';
+    var orig = struck ? '<span class="tcard__price-orig"><span class="cur-sym">RM</span> '+fmt(taxed(d.orig))+'</span>' : '';
     var tag = subsidyOn ? '<span class="tcard__price-tag">After subsidy<span class="zh">津贴后</span></span>' : '';
-    var save = (subsidyOn && d.orig-sub>0) ? '<span class="tcard__price-save">Save RM '+fmt(taxed(d.orig-sub))+'<span class="zh">省</span></span>' : '';
+    var save = (subsidyOn && d.orig-sub>0) ? '<span class="tcard__price-save">Save '+money(taxed(d.orig-sub))+'<span class="zh">省</span></span>' : '';
     var hrdc=(!subsidyOn && (i===1||i===2)) ? '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span>' : '';
-    return orig+'<div class="tcard__price-now"><span class="rm">RM</span><span class="n">'+fmt(taxed(now))+'</span>'+hrdc+'</div>'+tag+save+
-      '<span class="tcard__price-note">+ RM'+fmt(taxed(miscFee()))+' <span class="zh">报名＋系统费</span>'+(sstOn?' · <b style=\"color:var(--blue-bright)\">incl. 6% SST</b>':'')+'</span>';
+    return orig+'<div class="tcard__price-now"><span class="rm">'+curNow().sym+'</span><span class="n">'+fmt(taxed(now))+'</span>'+hrdc+'</div>'+tag+save+
+      '<span class="tcard__price-note"><button type="button" class="tcard__calc" data-total="'+i+'" title="看总额 See total" aria-label="See total"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5v3"/></svg></button>+ '+money(taxed(miscFee()))+' <span class="zh">报名＋系统费</span>'+(sstOn?' · <b style=\"color:var(--blue-bright)\">incl. 6% SST</b>':'')+'</span>';
   }
   function priceBlock(i){ return '<div class="tcard__price" data-pi="'+i+'">'+priceInner(i)+'</div>'; }
   function revealSubsidyPrices(){
@@ -9344,6 +9511,101 @@ io.observe(er);})();
     }
     hideInstCta();
   }
+  /* 切换币别后重绘页面上所有价格 */
+  function repaintPrices(){
+    try{ renderExt&&renderExt(); }catch(e){}
+    try{ renderAdmin&&renderAdmin(); }catch(e){}
+    /* 重绘三张价格卡（用它们自己的 data-pi 容器） */
+    try{
+      var blocks=document.querySelectorAll('.tcard__price[data-pi]');
+      for(var bi=0;bi<blocks.length;bi++){
+        var pi=+blocks[bi].getAttribute('data-pi');
+        if(pi>=0&&pi<data.length) blocks[bi].innerHTML=priceInner(pi);
+      }
+    }catch(e){}
+    /* 报名＋系统费的说明也要换币别 */
+    try{
+      var notes=document.querySelectorAll('.tcard__price-note, .mfee, .mfee2');
+      for(var ni=0;ni<notes.length;ni++){
+        var t=notes[ni]; if(!t) continue;
+        t.innerHTML=t.innerHTML.replace(/(?:RM|¥|NT\$)\s?[\d,]+/g, money(taxed(miscFee())));
+      }
+    }catch(e){}
+    curPaintSyms(document);
+    try{ renderCurSwitch(); }catch(e){}
+    /* 保险：说明文字若因重绘遗失，补回来（避免只剩数字） */
+    try{
+      var ns=document.querySelectorAll('.tcard__price-note');
+      for(var k=0;k<ns.length;k++){
+        if(!ns[k].querySelector('.zh')){
+          ns[k].insertAdjacentHTML('beforeend',' <span class="zh">\u62a5\u540d\uff0b\u7cfb\u7edf\u8d39</span>');
+        }
+      }
+    }catch(e){}
+  }
+  /* ===== 总额明细：学费 + 报名费 + 系统费（让学生看清楚不是只有课程费） ===== */
+  function showTotal(i){
+    var d=data[i]; if(!d)return;
+    var course = subsidyOn ? finalOf(d) : comboOf(d);
+    var reg = misc?misc.reg:150, sys = misc?misc.sys:150;
+    var total = course + reg + sys;
+    var saved = subsidyOn ? (d.orig - finalOf(d)) : (d.orig - comboOf(d));
+    var box=document.getElementById('totalPop');
+    if(!box){
+      box=document.createElement('div'); box.id='totalPop'; box.className='tpop2';
+      box.innerHTML='<div class="tpop2__bg"></div><div class="tpop2__card"><button type="button" class="tpop2__x" aria-label="close">&times;</button><div id="totalBody"></div></div>';
+      document.body.appendChild(box);
+      box.querySelector('.tpop2__bg').addEventListener('click',function(){box.classList.remove('is-open');setTimeout(function(){box.remove();},200);});
+      box.querySelector('.tpop2__x').addEventListener('click',function(){box.classList.remove('is-open');setTimeout(function(){box.remove();},200);});
+      document.addEventListener('keydown',function esc(e){ if(e.key==='Escape'){var bb=document.getElementById('totalPop'); if(bb){bb.classList.remove('is-open');setTimeout(function(){bb.remove();},200);} document.removeEventListener('keydown',esc);} });
+    }
+    function row(lb,zh,val,cls){
+      return '<div class="tpop2__row'+(cls?' '+cls:'')+'"><span>'+lb+'<i>'+zh+'</i></span><b>'+money(taxed(val))+'</b></div>';
+    }
+    document.getElementById('totalBody').innerHTML=
+      '<div class="tpop2__hd"><span class="tpop2__pkg">'+d.name+'</span><span class="tpop2__sub">'+d.sub+' \u00b7 '+d.lessons+' lessons</span></div>'+
+      row('Course fee','\u5b66\u8d39',course)+
+      row('Registration','\u62a5\u540d\u8d39',reg)+
+      row('System fee','\u7cfb\u7edf\u8d39',sys)+
+      '<div class="tpop2__rule"></div>'+
+      row('Total payable','\u5b9e\u9645\u603b\u989d',total,'is-total')+
+      (saved>0?'<p class="tpop2__save">\u2193 '+money(taxed(saved))+' <span class="zh">\u5df2\u4e3a\u4f60\u7701\u4e0b</span><span class="en">already saved</span></p>':'')+
+      (sstOn?'<p class="tpop2__fine">* incl. 6% SST</p>':'');
+    box.hidden=false; void box.offsetWidth; box.classList.add('is-open');
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('[data-total]');
+    if(b){ e.preventDefault(); e.stopPropagation(); showTotal(+b.getAttribute('data-total')); }
+  },true);
+
+  function renderCurSwitch(){
+    var box=document.getElementById('curSwitch'); if(!box)return;
+    var cur=curNow();
+    box.innerHTML=
+      (curCode!=='MYR' ? '<span class="cur-sw__rate">1 RM = '+curRate()+' '+curCode+(curManual()?'':' \u00b7 \u4ECA\u65E5')+'</span>' : '')+
+      '<button type="button" class="cur-trg" id="curTrg" aria-haspopup="listbox" aria-expanded="false" title="\u663E\u793A\u5E01\u522B Currency">'+
+        '<b>'+cur.sym+'</b><span>'+cur.code+'</span>'+
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>'+
+      '</button>'+
+      '<div class="cur-menu" id="curMenu" role="listbox">'+
+        CURRENCIES.map(function(c){
+          return '<button type="button" class="cur-opt'+(c.code===curCode?' is-on':'')+'" role="option" data-cur2="'+c.code+'">'+
+            '<b>'+c.sym+'</b><span>'+c.label+'</span>'+(c.code===curCode?'<i>\u2713</i>':'')+'</button>';
+        }).join('')+
+      '</div>';
+    if(!box.__b){
+      box.__b=1;
+      box.addEventListener('click',function(e){
+        var trg=e.target.closest&&e.target.closest('#curTrg');
+        if(trg){ e.stopPropagation(); box.classList.toggle('is-open');
+          trg.setAttribute('aria-expanded',box.classList.contains('is-open')?'true':'false'); return; }
+        var b=e.target.closest&&e.target.closest('[data-cur2]'); if(!b)return;
+        curCode=b.getAttribute('data-cur2'); box.classList.remove('is-open'); curSave(); repaintPrices();
+      });
+      document.addEventListener('click',function(e){ if(!box.contains(e.target)) box.classList.remove('is-open'); });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape') box.classList.remove('is-open'); });
+    }
+  }
   function renderAdmin(){
     if(!adminBody) return;
     var rows=data.map(function(d,i){
@@ -9352,22 +9614,38 @@ io.observe(er);})();
         '<td><input type="number" min="0" step="1" data-f="combo" value="'+d.combo+'"></td>'+
         '<td><input type="number" min="0" step="1" data-f="hrdc" value="'+d.hrdc+'"'+(d.na?' disabled':'')+'>'+
           '<label class="pa-na"><input type="checkbox" data-f="na"'+(d.na?' checked':'')+'> N.A.</label></td>'+
-        '<td class="pa-final">RM '+fmt(taxed(finalOf(d)))+'</td></tr>';
+        '<td class="pa-final">'+money(taxed(finalOf(d)))+'</td></tr>';
     }).join('');
-    adminBody.innerHTML='<table class="pa-table"><thead><tr><th>Package</th><th>Original (RM)</th><th>Combo discount</th><th>HRDC subsidy</th><th>Final</th></tr></thead><tbody>'+rows+'</tbody></table>'+
-      '<div class="pa-misc">Misc fees <label>Registration <input type="number" min="0" data-misc="reg" value="'+misc.reg+'"></label>'+
+    var curBtns=CURRENCIES.map(function(c){return '<button type="button" class="pa-cur'+(c.code===curCode?' is-on':'')+'" data-cur="'+c.code+'">'+c.sym+' '+c.label+'</button>';}).join('');
+    var rateBox = curCode==='MYR' ? '<span class="pa-cur__note">\u4EE5\u9A6C\u5E01\u539F\u4EF7\u663E\u793A</span>' :
+      '<label class="pa-cur__rate">1 RM = <input type="number" min="0" step="0.01" id="paRate" value="'+curRate()+'"> '+curNow().code+
+      '<span class="pa-cur__src" id="paRateSrc">'+(curManual()?'\u672C\u573A\u624B\u6539':'\u4ECA\u65E5\u81EA\u52A8')+'</span>'+
+      (curManual()?'<button type="button" class="pa-cur__auto" id="paRateAuto">\u21BA \u56DE\u5230\u4ECA\u65E5\u6C47\u7387</button>':'')+'</label>';
+    adminBody.innerHTML='<div class="pa-cur__bar"><span class="pa-cur__lb">\u663E\u793A\u5E01\u522B Currency</span>'+curBtns+rateBox+'</div>'+
+      '<table class="pa-table"><thead><tr><th>Package</th><th>Original ('+curNow().code+')</th><th>Combo discount</th><th>HRDC subsidy</th><th>Final</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+      '<div class="pa-misc"><span class="pa-misc__hint">\u2139\uFE0F \u4E0B\u65B9\u8F93\u5165\u6846\u59CB\u7EC8\u4EE5\u9A6C\u5E01\u586B\u5199</span>Misc fees <label>Registration <input type="number" min="0" data-misc="reg" value="'+misc.reg+'"></label>'+
       '<label>System <input type="number" min="0" data-misc="sys" value="'+misc.sys+'"></label>'+
       '<button type="button" class="pa-reset" id="priceReset">Reset to default</button></div>';
   }
   if(adminBody){
+    adminBody.addEventListener('click',function(e){
+      if(e.target&&e.target.id==='paRateAuto'){ delete curRates[curCode]; curSave(); renderAdmin(); repaintPrices(); return; }
+      var b=e.target.closest&&e.target.closest('[data-cur]');
+      if(b){ curCode=b.getAttribute('data-cur'); curSave(); repaintPrices(); }
+    });
     adminBody.addEventListener('input',function(e){
+      if(e.target&&e.target.id==='paRate'){
+        var v=parseFloat(e.target.value);
+        if(isFinite(v)&&v>0){ curRates[curCode]=v; curSave(); repaintPrices(); }
+        return;
+      }
       var t=e.target;
       if(t.dataset&&t.dataset.misc){misc[t.dataset.misc]=clampInt(t.value);save();renderExt();return;}
       var tr=t.closest&&t.closest('tr[data-i]'); if(!tr)return;
       var i=+tr.getAttribute('data-i'),f=t.dataset.f;
       if(f==='na'){data[i].na=t.checked;var hr=tr.querySelector('input[data-f="hrdc"]');if(hr)hr.disabled=t.checked;}
       else if(f){data[i][f]=clampInt(t.value);}
-      var fc=tr.querySelector('.pa-final');if(fc)fc.textContent='RM '+fmt(taxed(finalOf(data[i])));
+      var fc=tr.querySelector('.pa-final');if(fc)fc.textContent=money(taxed(finalOf(data[i])));
       save();renderExt();
     });
     adminBody.addEventListener('click',function(e){
@@ -9424,15 +9702,15 @@ io.observe(er);})();
 
   function renderExt(){
     if(!ext) return;
-    ext.innerHTML=data.slice(3).map(function(d){
+    ext.innerHTML=data.slice(3).map(function(d,xi){
       return '<article class="tcard is-ext"><div class="tcard__head"><span class="tcard__ic">'+ICON.up+'</span>'+
         '<div class="tcard__num"><b>'+d.lessons+'</b><span>LESSONS</span></div>'+
         '<p class="tcard__tag">'+d.name+' · '+d.sub+'<span class="zh">更多 Level，深入掌握。</span></p></div>'+
         '<div class="tcard__body"><p class="tcard__extnote">Beyond 144 lessons — combo discount only, no government subsidy. <span class="zh">144 堂以上仅配套折扣，无政府津贴。</span></p></div>'+
-        '<div class="tcard__price is-revealed"><span class="tcard__price-orig">RM '+fmt(taxed(d.orig))+'</span>'+
-        '<div class="tcard__price-now"><span class="rm">RM</span><span class="n">'+fmt(taxed(comboOf(d)))+'</span>'+
+        '<div class="tcard__price is-revealed"><span class="tcard__price-orig"><span class="cur-sym">RM</span> '+fmt(taxed(d.orig))+'</span>'+
+        '<div class="tcard__price-now"><span class="rm">'+curNow().sym+'</span><span class="n">'+fmt(taxed(comboOf(d)))+'</span>'+
         '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span></div>'+
-        '<span class="tcard__price-note">+ RM'+fmt(taxed(miscFee()))+' <span class="zh">报名＋系统费</span>'+(sstOn?' · +6% SST':'')+'</span></div></article>';
+        '<span class="tcard__price-note"><button type="button" class="tcard__calc" data-total="'+(xi+3)+'" title="看总额 See total" aria-label="See total"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5v3"/></svg></button>+ '+money(taxed(miscFee()))+' <span class="zh">报名＋系统费</span>'+(sstOn?' · +6% SST':'')+'</span></div></article>';
     }).join('');
   }
 
@@ -9807,7 +10085,7 @@ io.observe(er);})();
       '<div class="hpop__hint"><img loading="lazy" decoding="async" class="hpop__hintlogo" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"></div>'+
     '</div>';
   }
-  function feeI(){return '<i class="mfee">+RM'+fmt(taxed(miscFee()))+'*</i>';}
+  function feeI(){return '<i class="mfee">+'+money(taxed(miscFee()))+'*</i>';}
   function tableRow(d,i){
     var sub=finalOf(d), sv=d.orig-sub;
     if(advEdit){
@@ -9818,20 +10096,20 @@ io.observe(er);})();
         '<td class="ht-orig"><input type="number" min="0" step="50" data-f="orig" value="'+d.orig+'">'+feeI()+'</td>'+
         '<td class="ht-combo"><input type="number" min="0" step="50" data-f="combo" value="'+d.combo+'"></td>'+
         '<td class="ht-hrdc"><input type="number" min="0" step="50" data-f="hrdc" value="'+d.hrdc+'"'+(d.na?' disabled':'')+'>'+naChk+'</td>'+
-        '<td class="ht-final"><b><span data-out="final">RM '+fmt(taxed(sub))+'</span></b>'+feeI()+'</td>'+
-        '<td class="ht-save"><span data-out="save">RM '+fmt(taxed(sv))+'</span></td>'+
+        '<td class="ht-final"><b><span data-out="final"><span class="cur-sym">RM</span> '+fmt(taxed(sub))+'</span></b>'+feeI()+'</td>'+
+        '<td class="ht-save"><span data-out="save"><span class="cur-sym">RM</span> '+fmt(taxed(sv))+'</span></td>'+
       '</tr>';
     }
-    var comboCell = d.combo>0 ? '−RM '+fmt(taxed(d.combo)) : '–';
-    var hrdcCell = d.na ? '<span class="na">N.A.</span>' : '−RM '+fmt(taxed(d.hrdc));
+    var comboCell = d.combo>0 ? '−'+money(taxed(d.combo)) : '–';
+    var hrdcCell = d.na ? '<span class="na">N.A.</span>' : '−'+money(taxed(d.hrdc));
     return '<tr>'+
       '<td class="ht-pkg"><b>'+d.name+'</b><span>'+d.sub+'</span></td>'+
       '<td class="ht-cls">'+d.lessons+'</td>'+
-      '<td class="ht-orig"><s>RM '+fmt(taxed(d.orig))+'</s>'+feeI()+'</td>'+
+      '<td class="ht-orig"><s><span class="cur-sym">RM</span> '+fmt(taxed(d.orig))+'</s>'+feeI()+'</td>'+
       '<td class="ht-combo">'+comboCell+'</td>'+
       '<td class="ht-hrdc">'+hrdcCell+'</td>'+
-      '<td class="ht-final"><b><span class="hn" data-from="'+taxed(d.orig)+'" data-to="'+taxed(sub)+'">RM '+fmt(taxed(d.orig))+'</span></b>'+feeI()+'</td>'+
-      '<td class="ht-save">RM '+fmt(taxed(sv))+'</td>'+
+      '<td class="ht-final"><b><span class="hn" data-from="'+taxed(d.orig)+'" data-to="'+taxed(sub)+'"><span class="cur-sym">RM</span> '+fmt(taxed(d.orig))+'</span></b>'+feeI()+'</td>'+
+      '<td class="ht-save"><span class="cur-sym">RM</span> '+fmt(taxed(sv))+'</td>'+
     '</tr>';
   }
   function tableView(){
@@ -9845,7 +10123,7 @@ io.observe(er);})();
         '<th>You save<span class="zh">省</span></th>'+
       '</tr></thead><tbody>'+data.map(tableRow).join('')+'</tbody></table></div>'+
       miscEd+
-      '<p class="hpop__fine">+ RM<span class="mfee2">'+fmt(taxed(miscFee()))+'</span>* one-time registration &amp; system · 外籍学员另加 6% SST · 促销不与 HRDC 个人申领叠加</p>'+
+      '<p class="hpop__fine">+ <span class="cur-sym">RM</span><span class=\"mfee2\">'+fmt(taxed(miscFee()))+'</span>* one-time registration &amp; system · 外籍学员另加 6% SST · 促销不与 HRDC 个人申领叠加</p>'+
       '<div class="sst-row"><label class="sst-toggle"><input type="checkbox" data-sst'+(sstOn?' checked':'')+'> SST 6% <i>· foreign learner 外籍 +6%</i></label></div>'+
       '<div class="adv-note-wrap" style="margin:14px 0 2px"><button type="button" class="adv-note'+(advEdit?' is-on':'')+'" data-hrdcedit aria-pressed="'+(advEdit?'true':'false')+'" aria-label="Advisor Note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button></div>'+
     '</div>';
@@ -9855,14 +10133,14 @@ io.observe(er);})();
     renderExt();
   }
   function updateMiscTexts(){
-    Array.prototype.forEach.call(hstage.querySelectorAll('.mfee'),function(el){ el.textContent='+RM'+fmt(taxed(miscFee()))+'*'; });
+    Array.prototype.forEach.call(hstage.querySelectorAll('.mfee'),function(el){ el.textContent='+'+money(taxed(miscFee()))+'*'; });
     var m2=hstage.querySelector('.mfee2'); if(m2) m2.textContent=fmt(taxed(miscFee()));
   }
   function animateTable(){
     var cells=hstage.querySelectorAll('.hn');
     Array.prototype.forEach.call(cells,function(el,idx){
       var from=+el.getAttribute('data-from'), to=+el.getAttribute('data-to');
-      setTimeout(function(){ count(el,from,to,'RM '); }, idx*110);
+      setTimeout(function(){ count(el,from,to,curNow().sym+' '); }, idx*110);
     });
   }
   function renderTable(){ hstage.innerHTML=tableView(); }
@@ -9887,8 +10165,8 @@ io.observe(er);})();
       if(f==='na'){ data[i].na=t.checked; var hr=tr.querySelector('input[data-f="hrdc"]'); if(hr) hr.disabled=t.checked; }
       else if(f){ data[i][f]=clampInt(t.value); }
       var sub=finalOf(data[i]);
-      var fo=tr.querySelector('[data-out="final"]'); if(fo) fo.textContent='RM '+fmt(taxed(sub));
-      var so=tr.querySelector('[data-out="save"]'); if(so) so.textContent='RM '+fmt(taxed(data[i].orig-sub));
+      var fo=tr.querySelector('[data-out="final"]'); if(fo) fo.textContent=money(taxed(sub));
+      var so=tr.querySelector('[data-out="save"]'); if(so) so.textContent=money(taxed(data[i].orig-sub));
       save(); refreshCards();
     });
   }
@@ -9941,7 +10219,7 @@ io.observe(er);})();
   }
   function instPrincipalHTML(){
     var d=data[instSelPkg], sub=finalOf(d), pr=instPrincipal();
-    return 'Installment base <b>RM '+fmt(pr)+'</b> · <i>after-subsidy RM '+fmt(taxed(sub))+' + RM'+fmt(taxed(miscFee()))+' 报名＋系统费'+(sstOn?' · +6% SST':'')+'</i>';
+    return 'Installment base <b><span class="cur-sym">RM</span> '+fmt(pr)+'</b> · <i>after-subsidy '+money(taxed(sub))+' + '+money(taxed(miscFee()))+' 报名＋系统费'+(sstOn?' · +6% SST':'')+'</i>';
   }
   function instBanksHTML(){
     return INST_BANKS.map(function(b,bi){
@@ -9954,7 +10232,7 @@ io.observe(er);})();
   function instResultHTML(){
     if(!instRevealed||instSelBank===null||instSelTerm===null) return '';
     var b=INST_BANKS[instSelBank], pr=instPrincipal(), m=Math.round(pr/instSelTerm);
-    return '<div class="ipop__result"><div class="ipop__result-amt"><span class="rm">RM</span><span class="n" data-instn>'+fmt(m)+'</span><span class="per">/月 mo</span></div>'+
+    return '<div class="ipop__result"><div class="ipop__result-amt"><span class="rm">'+curNow().sym+'</span><span class="n" data-instn>'+fmt(m)+'</span><span class="per">/月 mo</span></div>'+
       '<div class="ipop__result-meta"><b>'+instSelTerm+' 期</b> · 0% interest-free 免息 · <b>'+b.name+'</b></div>'+
       '<div class="ipop__result-meta">Base 本金 RM '+fmt(pr)+' <span style="color:var(--faint)">（含报名＋系统 RM'+fmt(taxed(miscFee()))+(sstOn?' · +6% SST':'')+'）</span></div></div>';
   }
@@ -10107,8 +10385,8 @@ io.observe(er);})();
       var body='<div class="tcard__body">'+plus+
         '<div class="ielts-sec__h">Features \u8bfe\u7a0b\u5185\u5bb9</div><ul class="tfeats">'+feats+'</ul>'+
         '<div class="ielts-sec__h">Outcomes \u5b66\u4e60\u6210\u679c</div><div class="ielts-outs">'+outs+'</div></div>';
-      var price='<div class="tcard__price is-revealed"><div class="tcard__price-now"><span class="rm">RM</span><span class="n">'+fmt(taxed(d.price))+'</span></div>'+
-        '<span class="tcard__price-note">+ RM'+fmt(taxed(miscFee()))+' <span class="zh">\u62a5\u540d\uff0b\u7cfb\u7edf\u8d39</span>'+(sstOn?' \u00b7 <b style=\"color:var(--blue-bright)\">incl. 6% SST</b>':'')+'</span></div>';
+      var price='<div class="tcard__price is-revealed"><div class="tcard__price-now"><span class="rm">'+curNow().sym+'</span><span class="n">'+fmt(taxed(d.price))+'</span></div>'+
+        '<span class="tcard__price-note">+ '+money(taxed(miscFee()))+' <span class="zh">\u62a5\u540d\uff0b\u7cfb\u7edf\u8d39</span>'+(sstOn?' \u00b7 <b style=\"color:var(--blue-bright)\">incl. 6% SST</b>':'')+'</span></div>';
       return '<article class="tcard">'+head+body+price+'</article>';
     }
     var SKILLS=[
@@ -10146,7 +10424,7 @@ io.observe(er);})();
         '<div class="tcard__num"><b>'+p.cls+'</b><span>CLASSES</span></div>'+
         '<p class="tcard__tag">E-Learning English Communication<span class="zh">\u542b\u514d\u8d39\u82f1\u8bed\u5ef6\u4f38\u5b66\u4e60\u8ba1\u5212 *T&amp;C Apply</span></p></div>'+
         '<div class="tcard__body"><ul class="tfeats">'+feats+'</ul></div>'+
-        '<div class="tcard__price is-revealed"><div class="tcard__price-now"><span class="rm">RM</span><span class="n">'+p.price+'</span>'+
+        '<div class="tcard__price is-revealed"><div class="tcard__price-now"><span class="rm">'+curNow().sym+'</span><span class="n">'+p.price+'</span>'+
         '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span></div>'+
         '<span class="tcard__price-note">HRDC claimable <span class="zh">\u53ef\u7528 HRDC \u62a5\u9500</span></span></div>'+
       '</article>';
@@ -10172,7 +10450,7 @@ io.observe(er);})();
       iView.innerHTML=intro+free+'<div class="ielts-grid">'+IELTS.map(card).join('')+'</div>'+
         '<div class="ielts-more"'+(ieltsMoreShown?' hidden':'')+'><button type="button" class="ext-toggle-btn" id="ieltsMore">Show more IELTS pricing <span class="zh">\u663e\u793a\u66f4\u591a IELTS \u4ef7\u683c</span> <span class="ext-chev" aria-hidden="true">\u2304</span></button></div>'+
         '<div class="ielts-more-wrap"'+(ieltsMoreShown?'':' hidden')+'>'+card(IELTS36)+'</div>'+covers+
-        '<p class="ielts-fine">* RM300 one-time registration & system fee applies to all IELTS packages \u00b7 \u6bcf\u4e2a IELTS \u914d\u5957\u5747\u9700\u4e00\u6b21\u6027\u62a5\u540d\uff0b\u7cfb\u7edf\u8d39 RM300'+(sstOn?' \u00b7 incl. 6% SST':'')+'</p>'+
+        '<p class="ielts-fine">* '+money(300)+' one-time registration & system fee applies to all IELTS packages \u00b7 \u6bcf\u4e2a IELTS \u914d\u5957\u5747\u9700\u4e00\u6b21\u6027\u62a5\u540d\uff0b\u7cfb\u7edf\u8d39 RM300'+(sstOn?' \u00b7 incl. 6% SST':'')+'</p>'+
         '<div class="sst-row"><label class="sst-toggle"><input type="checkbox" data-sst'+(sstOn?' checked':'')+'> SST 6% <i>\u00b7 foreign learner \u5916\u7c4d +6%</i></label></div>';
     }
     window.__renderIelts=renderIelts;
