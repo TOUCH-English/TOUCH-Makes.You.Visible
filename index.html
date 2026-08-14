@@ -9467,7 +9467,11 @@ io.observe(er);})();
     var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
     if(reduce){ el.textContent=prefix+fmt(to); return; }
     var dur=820,t0=null;
-    function step(ts){ if(t0===null)t0=ts; var k=Math.min(1,(ts-t0)/dur); var e=1-Math.pow(1-k,3); el.textContent=prefix+fmt(Math.round(from+(to-from)*e)); if(k<1) requestAnimationFrame(step); }
+    function step(ts){ if(t0===null)t0=ts; var k=Math.min(1,(ts-t0)/dur); var e=1-Math.pow(1-k,3);
+      /* 动画过程取整（跳动才好看），最后一帧显示精确值，含 SST 的小数不会被抹掉 */
+      var v = (k>=1) ? to : Math.round(from+(to-from)*e);
+      el.textContent=prefix+fmt(v);
+      if(k<1) requestAnimationFrame(step); }
     requestAnimationFrame(step);
   }
   function priceInner(i){
