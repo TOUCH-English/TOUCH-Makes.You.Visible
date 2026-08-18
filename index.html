@@ -11520,14 +11520,22 @@ io.observe(er);})();
 
 <style id="perf-lite">
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-iteration-count:1!important;transition-duration:.01ms!important}}
-html.lite *,html.lite *::before,html.lite *::after{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 </style>
 <script id="perf-detect">
 (function(){
+  /* Auto-enable the site's own Zoom (cheap-effects) mode on weak devices; ?lite=1/0 forces it for testing */
+  function setZoom(on){
+    document.body.classList.toggle('te-zoom', on);
+    var b = document.getElementById('zoomModeBtn');
+    if (b){ b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+  }
   var q = new URLSearchParams(location.search).get('lite');
+  var saved = null; try { saved = localStorage.getItem('te_perf_v1'); } catch(e){}
   var weak = (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
              (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
-  if (q === '1' || (q !== '0' && weak)) document.documentElement.classList.add('lite');
+  if (q === '1') setZoom(true);
+  else if (q === '0') setZoom(false);
+  else if (saved === null && weak) setZoom(true);
 })();
 </script>
 </body>
