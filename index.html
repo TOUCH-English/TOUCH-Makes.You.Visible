@@ -276,9 +276,9 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .tag{font-size:12px;font-weight:600;padding:5px 11px;border-radius:20px;background:var(--blue-tint);color:var(--blue)}
 .tag.red{background:var(--red-tint);color:var(--red-deep)}
 .fx{position:relative;display:inline-flex;cursor:help;outline:none;vertical-align:middle}
-.fx-tip{position:absolute;top:calc(100% + 10px);left:50%;z-index:60;width:296px;max-width:84vw;text-align:left;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2);border:1px solid rgba(255,255,255,.82);box-shadow:0 22px 46px -18px rgba(20,33,50,.42),0 2px 6px rgba(20,33,50,.08),inset 0 1px 0 rgba(255,255,255,.85);opacity:0;visibility:hidden;transform:translate(-50%,-4px);transition:opacity .16s ease,transform .16s ease,visibility .16s;pointer-events:none}
+.fx-tip{position:absolute;top:calc(100% + 10px);left:50%;z-index:60;width:296px;max-width:84vw;text-align:left;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2);border:1px solid rgba(255,255,255,.82);box-shadow:0 22px 46px -18px rgba(20,33,50,.42),0 2px 6px rgba(20,33,50,.08),inset 0 1px 0 rgba(255,255,255,.85);opacity:0;visibility:hidden;transform:translate(-50%,-4px);transition:opacity .16s ease,transform .16s ease,visibility .16s;pointer-events:none}
 .fx .fx-tip{display:none}
-#fxTip{position:fixed;z-index:3000;left:-9999px;top:0;width:296px;max-width:92vw;text-align:left;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(20px) saturate(1.2);backdrop-filter:blur(20px) saturate(1.2);border:1px solid rgba(255,255,255,.82);box-shadow:0 22px 46px -18px rgba(20,33,50,.42),0 2px 6px rgba(20,33,50,.08),inset 0 1px 0 rgba(255,255,255,.85);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s ease,transform .15s ease,visibility .15s;pointer-events:none}
+#fxTip{position:fixed;z-index:3000;left:-9999px;top:0;width:296px;max-width:92vw;text-align:left;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2);border:1px solid rgba(255,255,255,.82);box-shadow:0 22px 46px -18px rgba(20,33,50,.42),0 2px 6px rgba(20,33,50,.08),inset 0 1px 0 rgba(255,255,255,.85);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s ease,transform .15s ease,visibility .15s;pointer-events:none}
 #fxTip.is-on{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
 .fx-tip__t{display:block;font-family:var(--display);font-weight:800;font-size:12.5px;color:var(--ink);letter-spacing:.01em}
 .fx-tip__s{display:block;font-size:10.5px;color:var(--muted);margin:3px 0 10px;line-height:1.45}
@@ -400,7 +400,7 @@ body.nav-left .stage-area,body.nav-right .stage-area,body.nav-floating .stage-ar
 .sys{margin-top:8px;position:relative}
 .sysdl{display:none;align-items:center;gap:14px;flex-wrap:wrap;margin:16px 0 4px}
 .sysdl.is-on{display:flex;animation:rise .3s ease}
-.sysdl__btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--ink);padding:11px 20px;border-radius:13px;cursor:pointer;border:1px solid var(--line-strong);background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);box-shadow:0 10px 24px -14px rgba(20,33,50,.34),inset 0 1px 0 rgba(255,255,255,.8);transition:.16s}
+.sysdl__btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--display);font-weight:700;font-size:13.5px;color:var(--ink);padding:11px 20px;border-radius:13px;cursor:pointer;border:1px solid var(--line-strong);background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px) saturate(1.4);backdrop-filter:blur(10px) saturate(1.4);box-shadow:0 10px 24px -14px rgba(20,33,50,.34),inset 0 1px 0 rgba(255,255,255,.8);transition:.16s}
 .sysdl__btn:hover{border-color:var(--blue-bright);color:var(--blue-bright);transform:translateY(-1px);box-shadow:0 14px 30px -14px rgba(42,91,215,.4),inset 0 1px 0 rgba(255,255,255,.8)}
 .sysdl__btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .sysdl__hint{font-size:11.5px;color:var(--faint);line-height:1.45;max-width:36ch}
@@ -475,7 +475,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .sys-path .glow{stroke:color-mix(in srgb,var(--blue-bright) 40%,#fff);stroke-width:7;stroke-dasharray:none;opacity:.22;filter:blur(3px)}
 /* a step on the map = a floating glass icon card */
 .sys-node{position:absolute;transform:translate(-50%,-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:calc(9px * var(--sys-scale,1));width:calc(118px * var(--sys-scale,1));padding:calc(14px * var(--sys-scale,1)) calc(10px * var(--sys-scale,1)) calc(12px * var(--sys-scale,1));border-radius:20px;text-align:center;cursor:pointer;
-  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.1);
   transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,background .22s ease,border-color .22s ease}
 .sys-node::after{display:none}
@@ -528,7 +528,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .sys-rail__item.is-active{background:color-mix(in srgb,var(--c) 12%,#fff)}
 .sys-rail__item.is-active .n{background:var(--c);border-color:var(--c);color:#fff}
 .sys-rail__item.is-active .t{color:var(--c)}
-.sysd{position:relative;border-radius:22px;padding:30px 32px;overflow:hidden;background:rgba(255,255,255,.62);border:1px solid var(--line);border-top:4px solid var(--c);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.sysd{position:relative;border-radius:22px;padding:30px 32px;overflow:hidden;background:rgba(255,255,255,.62);border:1px solid var(--line);border-top:4px solid var(--c);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .sysd__head{display:flex;flex-direction:column;gap:14px;margin-bottom:22px}
 .sysd__num{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
 .sysd__title{display:flex;align-items:center;gap:15px}
@@ -631,7 +631,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 @keyframes s3glow{0%,100%{opacity:.72;transform:scale(.95)}50%{opacity:1;transform:scale(1.07)}}
 @media(prefers-reduced-motion:reduce){#sysFocus .focus-card:has([data-advnote="6"]) .m1glowc,#sysFocus .focus-card:has([data-advnote="6"]) .focus-main::before{animation:none}}
 /* Advisor Note — collapsible, advisor-facing (5C glass) */
-.advnote{margin:22px 38px 6px;border-radius:16px;overflow:hidden;border:1px solid rgba(20,33,50,.1);background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
+.advnote{margin:22px 38px 6px;border-radius:16px;overflow:hidden;border:1px solid rgba(20,33,50,.1);background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
 .advnote__toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px;cursor:pointer;background:transparent;border:none;text-align:left}
 .advnote__toggle-l{display:inline-flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink)}
 .advnote__toggle-l .zh{font-weight:500;font-size:12.5px;color:var(--muted)}
@@ -798,7 +798,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .stage-scene .valance{fill:color-mix(in srgb,var(--mc) 82%,#fff)}
 .stage-scene .curtain{fill:color-mix(in srgb,var(--mc) 72%,#fff)}
 .stage-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.stage-card{border-radius:18px;padding:22px 18px;text-align:center;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+.stage-card{border-radius:18px;padding:22px 18px;text-align:center;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid color-mix(in srgb,var(--c) 14%,rgba(255,255,255,.82));box-shadow:0 14px 32px -22px color-mix(in srgb,var(--c) 48%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}
 .stage-card__ic{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;margin:0 auto 14px;color:#fff;background:linear-gradient(150deg,var(--c),color-mix(in srgb,var(--c) 64%,#000));box-shadow:0 11px 24px -7px color-mix(in srgb,var(--c) 55%,transparent),inset 0 1px 0 rgba(255,255,255,.4)}
 .stage-card__ic svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
@@ -828,7 +828,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .rcpop.is-open{display:flex}
 .rcpop__bd{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,rgba(20,33,50,.42),rgba(20,33,50,.62));-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
 .rcpop__card{position:relative;width:100%;max-width:560px;max-height:90vh;overflow:auto;border-radius:24px;
-  background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
   border:1px solid rgba(255,255,255,.7);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);animation:rise .3s ease}
 .rcpop__x{position:absolute;top:13px;right:13px;z-index:3;width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;background:rgba(255,255,255,.88);color:var(--muted);font-size:20px;line-height:1;box-shadow:0 4px 12px -4px rgba(20,33,50,.32);transition:.18s}
 .rcpop__x:hover{color:var(--ink);transform:scale(1.06)}
@@ -915,7 +915,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .portal-card__go svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .portal-eb-ic{display:inline-grid;place-items:center;width:18px;height:18px}
 .portal-eb-ic svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.stage-advisor{display:flex;gap:14px;align-items:flex-start;border-radius:20px;padding:22px 24px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+.stage-advisor{display:flex;gap:14px;align-items:flex-start;border-radius:20px;padding:22px 24px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid color-mix(in srgb,var(--c) 14%,rgba(255,255,255,.85));box-shadow:0 16px 42px -24px color-mix(in srgb,var(--c) 50%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}
 .stage-advisor__ic{flex:none;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(150deg,var(--c),color-mix(in srgb,var(--c) 64%,#000));box-shadow:0 9px 20px -6px color-mix(in srgb,var(--c) 55%,transparent)}
 .stage-advisor__ic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -934,7 +934,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .dean-sign{margin-top:24px;padding-top:24px;text-align:center;border-top:1px solid color-mix(in srgb,var(--c) 14%,var(--line))}
 .dean-sign__eyebrow{display:block;font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in srgb,var(--c) 65%,var(--muted));margin-bottom:14px}
 .dean-card{display:inline-flex;align-items:center;gap:16px;padding:15px 24px;border-radius:20px;text-align:left;
-  background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+  background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid rgba(255,255,255,.85);box-shadow:0 18px 44px -22px color-mix(in srgb,var(--c) 52%,transparent),0 0 26px -10px color-mix(in srgb,var(--c) 32%,transparent),inset 0 1px 0 rgba(255,255,255,.92)}
 .dean-card .dean-ava{width:56px;height:56px}
 .dean-card .dean-ava__fallback{font-size:18px}
@@ -943,7 +943,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .dean-card__role{display:block;font-size:12.5px;color:var(--muted);margin-top:1px}
 /* ===== First 24 Lessons — Learn / Use / Reflect flow ===== */
 .les-flow{display:flex;flex-direction:column;gap:5px}
-.les-card{position:relative;border-radius:20px;padding:22px 24px;overflow:hidden;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+.les-card{position:relative;border-radius:20px;padding:22px 24px;overflow:hidden;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid color-mix(in srgb,var(--cc) 16%,rgba(255,255,255,.85));box-shadow:0 16px 40px -24px color-mix(in srgb,var(--cc) 52%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}
 .les-card__n{position:absolute;top:14px;right:22px;font-family:var(--display);font-weight:800;font-size:40px;line-height:1;color:color-mix(in srgb,var(--cc) 15%,transparent);pointer-events:none}
 .les-card__head{display:flex;align-items:center;gap:14px}
@@ -975,7 +975,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 @keyframes twinkle{0%,100%{opacity:.1;transform:translateY(0)}50%{opacity:.55;transform:translateY(-1.5px)}}
 .lcells{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .lcell{display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;cursor:pointer;border-radius:16px;padding:18px 14px;
-  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);
+  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(8px) saturate(150%);backdrop-filter:blur(8px) saturate(150%);
   border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 28px -18px rgba(20,33,50,.3);transition:transform .18s,border-color .18s,box-shadow .18s,background .18s}
 .lcell:hover{transform:translateY(-3px)}
 .lcell.is-active{background:rgba(255,255,255,.78);box-shadow:0 0 0 3px rgba(255,255,255,.8),0 18px 40px -14px rgba(20,33,50,.3)}
@@ -1005,7 +1005,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .adv-modal.is-open{opacity:1}
 .adv-modal__bg{position:absolute;inset:0;background:rgba(14,28,56,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .adv-modal__card{position:relative;width:100%;max-width:440px;max-height:calc(100vh - 60px);overflow-y:auto;border-radius:22px;padding:24px 24px 20px;
-  background:linear-gradient(170deg,rgba(255,255,255,.9),rgba(255,255,255,.78));-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  background:linear-gradient(170deg,rgba(255,255,255,.9),rgba(255,255,255,.78));-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
   border:1px solid rgba(255,255,255,.9);box-shadow:0 32px 80px -28px rgba(14,36,86,.5),inset 0 1px 0 rgba(255,255,255,.95);transform:translateY(8px) scale(.99);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
 .adv-modal.is-open .adv-modal__card{transform:none}
 .adv-modal__head{margin-bottom:16px}
@@ -1113,7 +1113,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .yt-modal.is-open{opacity:1}
 .yt-modal__bg{position:absolute;inset:0;background:rgba(10,18,40,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .yt-modal__card{position:relative;width:88vw;max-width:760px;border-radius:22px;padding:14px;
-  background:linear-gradient(170deg,rgba(255,255,255,.85),rgba(255,255,255,.72));-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  background:linear-gradient(170deg,rgba(255,255,255,.85),rgba(255,255,255,.72));-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
   border:1px solid rgba(255,255,255,.9);box-shadow:0 32px 80px -28px rgba(14,36,86,.6),inset 0 1px 0 rgba(255,255,255,.95);
   transform:translateY(8px) scale(.99);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
 .yt-modal.is-open .yt-modal__card{transform:none}
@@ -1133,7 +1133,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
     radial-gradient(64% 54% at 102% -4%, color-mix(in srgb,#7C5CFF 12%,transparent), transparent 56%),
     radial-gradient(92% 66% at 50% 122%, color-mix(in srgb,var(--ok) 10%,transparent), transparent 60%),
     linear-gradient(168deg, rgba(255,255,255,.95), rgba(244,248,255,.88));
-  -webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);
+  -webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
   border:1px solid rgba(255,255,255,.92);
   box-shadow:0 42px 104px -36px rgba(14,36,86,.42), inset 0 1px 0 rgba(255,255,255,.96);
   transform:translateY(14px) scale(.99);transition:transform .26s cubic-bezier(.2,.8,.2,1)}
@@ -1167,7 +1167,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .gstory{position:relative;display:flex;flex-direction:column;text-align:left;cursor:pointer;padding:0;
   border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.72);
   background:linear-gradient(165deg, rgba(255,255,255,.86), rgba(255,255,255,.56));
-  -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   box-shadow:0 16px 36px -24px rgba(20,33,50,.3), inset 0 1px 0 rgba(255,255,255,.92);
   transition:transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s, border-color .22s}
 .gstory::before{content:"";position:absolute;inset:0;border-radius:18px;padding:1.2px;pointer-events:none;z-index:5;
@@ -1220,7 +1220,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .gallery-player__frame iframe{position:absolute;inset:7px;width:calc(100% - 14px);height:calc(100% - 14px);border:0;border-radius:15px;display:block;background:#000;box-shadow:0 8px 22px -8px rgba(14,36,86,.45)}
 .gallery-player__meta{margin-top:16px;padding:17px 19px;border-radius:17px;
   background:linear-gradient(165deg, rgba(255,255,255,.84), rgba(255,255,255,.56));
-  -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid rgba(255,255,255,.72);box-shadow:0 14px 36px -24px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.92),0 0 26px -14px color-mix(in srgb,var(--gc,var(--blue-bright)) 36%,transparent)}
 .gallery-player__top{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
 .gallery-player__name{font-family:var(--display);font-weight:800;font-size:21px;color:var(--ink);letter-spacing:-.01em}
@@ -1270,7 +1270,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .loc-pop{position:fixed;z-index:125;width:262px;max-width:84vw;opacity:0;pointer-events:none;transform:translateY(6px) scale(.99);transition:opacity .18s ease,transform .18s cubic-bezier(.2,.8,.2,1)}
 .loc-pop.is-open{opacity:1;pointer-events:auto;transform:none}
 .loc-pop__card{position:relative;border-radius:17px;overflow:hidden;
-  background:linear-gradient(170deg,rgba(255,255,255,.95),rgba(255,255,255,.84));-webkit-backdrop-filter:blur(24px) saturate(165%);backdrop-filter:blur(24px) saturate(165%);
+  background:linear-gradient(170deg,rgba(255,255,255,.95),rgba(255,255,255,.84));-webkit-backdrop-filter:blur(12px) saturate(165%);backdrop-filter:blur(12px) saturate(165%);
   border:1px solid rgba(255,255,255,.92);box-shadow:0 24px 58px -24px rgba(14,36,86,.5),0 0 30px -14px color-mix(in srgb,var(--blue-bright) 45%,transparent),inset 0 1px 0 rgba(255,255,255,.96)}
 /* photo slot + glass placeholder fallback */
 .loc-pop__photo{position:relative;aspect-ratio:16/10;overflow:hidden;
@@ -1314,7 +1314,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .cur-switch:hover .cur-trg{background:#fff;border-color:rgba(42,91,215,.22);box-shadow:0 8px 18px -12px rgba(21,53,123,.4)}
 .cur-switch.is-open .cur-trg svg{transform:rotate(180deg)}
 .cur-menu{position:absolute;top:calc(100% + 6px);left:0;z-index:40;min-width:172px;padding:5px;border-radius:14px;
-  background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
   border:1px solid rgba(21,53,123,.1);box-shadow:0 20px 44px -20px rgba(21,53,123,.45);
   opacity:0;visibility:hidden;transform:translateY(-4px);transition:.18s}
 .cur-switch.is-open .cur-menu{opacity:1;visibility:visible;transform:none}
@@ -1376,7 +1376,7 @@ body.te-en #reportOv .zh,body.te-en #reportOv .te-cjk{display:revert!important}
 .tt-modal{position:fixed;inset:0;z-index:135;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
 .tt-modal.is-open{opacity:1}
 .tt-modal__bg{position:absolute;inset:0;background:rgba(14,36,86,.46);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.tt-modal__card{position:relative;width:100%;max-width:760px;max-height:88vh;overflow-y:auto;border-radius:22px;padding:24px 26px 24px;background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--blue);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);transform:scale(.97);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.tt-modal__card{position:relative;width:100%;max-width:760px;max-height:88vh;overflow-y:auto;border-radius:22px;padding:24px 26px 24px;background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--blue);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);transform:scale(.97);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
 .tt-modal.is-open .tt-modal__card{transform:none}
 .tt-modal__x{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:9px;border:0;cursor:pointer;background:rgba(20,33,50,.06);color:var(--muted);font-size:18px;line-height:1;transition:.15s}
 .tt-modal__x:hover{background:rgba(20,33,50,.12);color:var(--ink)}
@@ -1423,7 +1423,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .site-modal.is-open{opacity:1}
 .site-modal__bg{position:absolute;inset:0;background:rgba(10,18,40,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .site-modal__card{position:relative;width:90vw;max-width:960px;height:78vh;display:flex;flex-direction:column;border-radius:22px;overflow:hidden;
-  background:linear-gradient(170deg,rgba(255,255,255,.9),rgba(255,255,255,.8));-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  background:linear-gradient(170deg,rgba(255,255,255,.9),rgba(255,255,255,.8));-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
   border:1px solid rgba(255,255,255,.9);box-shadow:0 32px 80px -28px rgba(14,36,86,.55),inset 0 1px 0 rgba(255,255,255,.95);
   transform:translateY(10px) scale(.99);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
 .site-modal.is-open .site-modal__card{transform:none}
@@ -1445,7 +1445,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .site-modal__fallback p{font-family:var(--display);font-weight:700;color:var(--ink);font-size:15px;margin:0}
 .ldetail{margin-top:16px}
 .ldetail__in{border-radius:20px;padding:24px 26px;animation:rise .4s cubic-bezier(.2,.8,.2,1);
-  background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);
+  background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid rgba(255,255,255,.7);border-left:5px solid var(--c);box-shadow:0 16px 44px -24px color-mix(in srgb,var(--c) 50%,transparent),inset 0 1px 0 rgba(255,255,255,.85)}
 .ldetail__head{margin-bottom:18px}
 .ldetail__ph{display:inline-block;font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ci)}
@@ -1476,7 +1476,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   border:1px solid color-mix(in srgb,var(--epi-theme) 24%,#fff);box-shadow:0 20px 44px -22px color-mix(in srgb,var(--epi-theme) 50%,transparent),inset 0 1px 0 rgba(255,255,255,.85)}
 .epi-id__row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:15px}
 /* Step 6 popup skin: unify content panels to soft white glass, theme color stays in icons/text/accents */
-#sysFocus .epi-id,#sysFocus .rev-close,#sysFocus .rev-mirror{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);border:1px solid rgba(255,255,255,.72);box-shadow:0 16px 44px -20px rgba(20,33,50,.16),inset 0 1px 0 rgba(255,255,255,.82)}
+#sysFocus .epi-id,#sysFocus .rev-close,#sysFocus .rev-mirror{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);border:1px solid rgba(255,255,255,.72);box-shadow:0 16px 44px -20px rgba(20,33,50,.16),inset 0 1px 0 rgba(255,255,255,.82)}
 .epi-id__label{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--epi-theme)}
 .epi-id__label .zh{letter-spacing:0;text-transform:none;color:var(--muted);font-weight:500}
 .epi-id__tag{font-size:10px;font-weight:700;color:var(--muted);background:rgba(255,255,255,.75);border:1px solid var(--line);padding:3px 9px;border-radius:999px}
@@ -1499,7 +1499,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .epivid{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s ease}
 .epivid.is-open{opacity:1}
 .epivid__bg{position:absolute;inset:0;background:rgba(16,24,40,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.epivid__card{position:relative;width:min(560px,94vw);max-height:90vh;overflow:auto;border-radius:24px;background:rgba(255,255,255,.93);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);border:1px solid rgba(255,255,255,.7);box-shadow:0 30px 70px -20px rgba(16,24,40,.5);padding:16px;transform:translateY(10px);transition:transform .22s cubic-bezier(.34,1.4,.64,1)}
+.epivid__card{position:relative;width:min(560px,94vw);max-height:90vh;overflow:auto;border-radius:24px;background:rgba(255,255,255,.93);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);border:1px solid rgba(255,255,255,.7);box-shadow:0 30px 70px -20px rgba(16,24,40,.5);padding:16px;transform:translateY(10px);transition:transform .22s cubic-bezier(.34,1.4,.64,1)}
 .epivid.is-open .epivid__card{transform:none}
 .epivid__x{position:absolute;top:14px;right:14px;z-index:3;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.9);color:#16202E;font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center;box-shadow:0 4px 12px rgba(16,24,40,.18)}
 .epivid__frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#0c1118}
@@ -1531,7 +1531,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .epivid__back:hover{background:rgba(16,24,40,.1)}
 .epi-eyebrow svg{width:15px;height:15px;vertical-align:-3px;margin-right:5px;stroke:currentColor;fill:none;stroke-width:1.7}
 /* Cognitive Analysis panel */
-.epi-cog{border-radius:20px;padding:22px 24px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+.epi-cog{border-radius:20px;padding:22px 24px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid color-mix(in srgb,var(--epi-theme) 14%,rgba(255,255,255,.85));box-shadow:0 16px 42px -24px color-mix(in srgb,var(--epi-theme) 50%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}
 .epi-cog__head{display:flex;align-items:center;gap:13px}
 .epi-cog__ic{flex:none;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(150deg,var(--epi-theme),color-mix(in srgb,var(--epi-theme) 64%,#000));box-shadow:0 9px 20px -6px color-mix(in srgb,var(--epi-theme) 55%,transparent)}
@@ -1568,7 +1568,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   background:linear-gradient(180deg,color-mix(in srgb,var(--c) 6%,#fff),#fff 55%)}
 /* future identity / vision card */
 /* Today -> Future self reflection */
-.goal-reflect{border-radius:20px;padding:22px 24px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+.goal-reflect{border-radius:20px;padding:22px 24px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid color-mix(in srgb,var(--c) 14%,rgba(255,255,255,.85));box-shadow:0 16px 42px -24px color-mix(in srgb,var(--c) 50%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}
 .goal-reflect__head{display:flex;align-items:center;gap:13px;margin-bottom:18px}
 .goal-reflect__hic{flex:none;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(150deg,var(--c),color-mix(in srgb,var(--c) 64%,#000));box-shadow:0 9px 20px -6px color-mix(in srgb,var(--c) 55%,transparent)}
@@ -1636,7 +1636,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .goal-cta svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
 /* ===== Mirror 2 · light future-projection refinement (visual only · scoped #sysFocus .goal--m2) ===== */
 /* 1) hero projection status strip */
-#sysFocus .goal--m2 .goal-pstrip{position:relative;z-index:3;width:max-content;max-width:calc(100% - 48px);margin:-10px auto 2px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:9px;padding:7px 17px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.82),color-mix(in srgb,var(--c) 6%,rgba(255,255,255,.5))),radial-gradient(130% 200% at 50% -55%,rgba(255,255,255,.55),transparent 60%);border:1px solid color-mix(in srgb,var(--c) 15%,rgba(255,255,255,.82));box-shadow:inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 13px rgba(255,255,255,.4),0 12px 30px -14px color-mix(in srgb,var(--c) 38%,transparent),0 0 34px rgba(90,140,255,.14);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);font-family:var(--display)}
+#sysFocus .goal--m2 .goal-pstrip{position:relative;z-index:3;width:max-content;max-width:calc(100% - 48px);margin:-10px auto 2px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:9px;padding:7px 17px;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.82),color-mix(in srgb,var(--c) 6%,rgba(255,255,255,.5))),radial-gradient(130% 200% at 50% -55%,rgba(255,255,255,.55),transparent 60%);border:1px solid color-mix(in srgb,var(--c) 15%,rgba(255,255,255,.82));box-shadow:inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 13px rgba(255,255,255,.4),0 12px 30px -14px color-mix(in srgb,var(--c) 38%,transparent),0 0 34px rgba(90,140,255,.14);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);font-family:var(--display)}
 #sysFocus .goal--m2 .goal-pstrip__dot{flex:none;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 38% 34%,#cdf6ff,#4CCBFF 70%);box-shadow:0 0 0 3px rgba(76,203,255,.13),0 0 11px rgba(76,203,255,.95);animation:gpDot 2.8s ease-in-out infinite}
 @keyframes gpDot{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.28)}}
 #sysFocus .goal--m2 .goal-pstrip__t{font-weight:800;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--c)}
@@ -1715,9 +1715,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sysFocus .review .rev-obs{position:relative}
 #sysFocus .review .rev-obs::before{content:"";position:absolute;z-index:-1;left:50%;top:-6px;width:103%;height:110%;transform:translateX(-50%);pointer-events:none;border-radius:26px;background:radial-gradient(66% 52% at 50% 24%,rgba(244,214,166,.04),transparent 72%);filter:blur(15px)}
 #sysFocus .review .rev-obs > .rev-head h3{text-shadow:0 1px 1px rgba(255,255,255,.7),0 2px 11px rgba(20,33,50,.05)}
-#sysFocus .review .rev-obs__list li{-webkit-backdrop-filter:blur(13px) saturate(138%);backdrop-filter:blur(13px) saturate(138%);background:linear-gradient(150deg,rgba(255,255,255,.66),color-mix(in srgb,var(--c) 2%,rgba(255,255,255,.52)));border:1px solid color-mix(in srgb,var(--c) 12%,var(--line));box-shadow:0 14px 28px -22px color-mix(in srgb,var(--c) 26%,transparent),inset 0 1px 0 rgba(255,255,255,.85)}
+#sysFocus .review .rev-obs__list li{-webkit-backdrop-filter:blur(8px) saturate(138%);backdrop-filter:blur(8px) saturate(138%);background:linear-gradient(150deg,rgba(255,255,255,.66),color-mix(in srgb,var(--c) 2%,rgba(255,255,255,.52)));border:1px solid color-mix(in srgb,var(--c) 12%,var(--line));box-shadow:0 14px 28px -22px color-mix(in srgb,var(--c) 26%,transparent),inset 0 1px 0 rgba(255,255,255,.85)}
 #sysFocus .review .rev-obs__q{box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 0 8px rgba(76,203,255,.1)}
-#sysFocus .review .goal-focus{position:relative;-webkit-backdrop-filter:blur(20px) saturate(146%);backdrop-filter:blur(20px) saturate(146%);background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 6%,rgba(255,255,255,.62)),rgba(255,255,255,.52));border:1px solid color-mix(in srgb,#4CCBFF 20%,rgba(255,255,255,.82));box-shadow:0 24px 46px -26px color-mix(in srgb,var(--c) 34%,transparent),0 0 22px rgba(76,203,255,.07),inset 0 1px 0 rgba(255,255,255,.96)}
+#sysFocus .review .goal-focus{position:relative;-webkit-backdrop-filter:blur(10px) saturate(146%);backdrop-filter:blur(10px) saturate(146%);background:linear-gradient(150deg,color-mix(in srgb,#4CCBFF 6%,rgba(255,255,255,.62)),rgba(255,255,255,.52));border:1px solid color-mix(in srgb,#4CCBFF 20%,rgba(255,255,255,.82));box-shadow:0 24px 46px -26px color-mix(in srgb,var(--c) 34%,transparent),0 0 22px rgba(76,203,255,.07),inset 0 1px 0 rgba(255,255,255,.96)}
 @keyframes gpNextHope{0%,100%{box-shadow:0 24px 46px -26px color-mix(in srgb,var(--c) 34%,transparent),0 0 20px rgba(76,203,255,.06),inset 0 1px 0 rgba(255,255,255,.96)}50%{box-shadow:0 24px 46px -26px color-mix(in srgb,var(--c) 34%,transparent),0 0 30px rgba(76,203,255,.12),inset 0 1px 0 rgba(255,255,255,.96)}}
 #sysFocus .review .goal-focus::before{content:"";position:absolute;z-index:-1;left:50%;bottom:-14px;width:84%;height:56%;transform:translateX(-50%);pointer-events:none;border-radius:30px;background:radial-gradient(80% 100% at 50% 100%,rgba(76,203,255,.07),transparent 72%);filter:blur(15px)}
 #sysFocus .review .goal-focus__head h3{text-shadow:0 1px 1px rgba(255,255,255,.7),0 2px 12px rgba(20,33,50,.07)}
@@ -1735,7 +1735,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rev-head h3 .zh{font-weight:600;font-size:12.5px;color:var(--muted)}
 .rev-head p{font-size:12.5px;color:var(--muted);margin:2px 0 0}
 /* snapshot before -> now */
-.rev-snap{border-radius:20px;padding:22px 24px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);border:1px solid color-mix(in srgb,var(--c) 14%,rgba(255,255,255,.85));box-shadow:0 16px 42px -24px color-mix(in srgb,var(--c) 50%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}
+.rev-snap{border-radius:20px;padding:22px 24px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);border:1px solid color-mix(in srgb,var(--c) 14%,rgba(255,255,255,.85));box-shadow:0 16px 42px -24px color-mix(in srgb,var(--c) 50%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}
 .rev-snaprow{display:flex;align-items:center;gap:16px;padding:14px 0;border-top:1px solid var(--faint)}
 .rev-snaprow:first-of-type{border-top:0}
 .rev-snaprow__dim{flex:none;width:128px;display:flex;align-items:center;gap:10px}
@@ -1797,7 +1797,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .epi-cta:hover{opacity:1;background:color-mix(in srgb,var(--epi-theme) 14%,#fff);border-color:color-mix(in srgb,var(--epi-theme) 42%,#fff);box-shadow:0 8px 18px -8px color-mix(in srgb,var(--epi-theme) 48%,transparent);transform:translateY(-1px)}
 .epi-cta svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
 /* advisor floating glass note */
-.epi-note{border-radius:20px;padding:23px 25px;background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+.epi-note{border-radius:20px;padding:23px 25px;background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid color-mix(in srgb,var(--epi-theme) 14%,rgba(255,255,255,.85));box-shadow:0 16px 42px -24px color-mix(in srgb,var(--epi-theme) 50%,transparent),inset 0 1px 0 rgba(255,255,255,.9)}
 .epi-note__h{display:flex;gap:13px;align-items:flex-start;font-family:var(--display);font-weight:700;font-size:16px;line-height:1.4;color:var(--ink)}
 .epi-note__h .zh{display:block;font-weight:500;font-size:13px;color:var(--muted);margin-top:3px}
@@ -1833,7 +1833,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .focus-mini{position:absolute;left:50%;transform:translateX(-50%);bottom:22px;z-index:2;display:flex;align-items:center;gap:6px;max-width:calc(100vw - 36px);overflow-x:auto;
   padding:10px 12px;border-radius:22px;
   background:linear-gradient(130deg,rgba(245,241,255,.82),rgba(236,244,255,.78) 48%,rgba(255,242,249,.82));
-  -webkit-backdrop-filter:blur(26px) saturate(150%);backdrop-filter:blur(26px) saturate(150%);
+  -webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
   border:1px solid rgba(255,255,255,.95);box-shadow:0 14px 38px -16px rgba(124,92,255,.4),inset 0 1px 0 rgba(255,255,255,.95)}
 .focus-mini::-webkit-scrollbar{display:none}
 .focus-mini__item{flex:none;display:grid;place-items:center;padding:4px;border-radius:15px;cursor:pointer;background:none;transition:transform .18s cubic-bezier(.2,.8,.2,1)}
@@ -1861,7 +1861,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .team-modal__bg{position:absolute;inset:0;background:rgba(10,18,40,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .team-modal__card{position:relative;display:flex;width:94vw;max-width:1040px;max-height:90vh;border-radius:22px;overflow:hidden;
   background:linear-gradient(170deg,rgba(255,255,255,.9),rgba(255,255,255,.8));
-  -webkit-backdrop-filter:blur(18px) saturate(135%);backdrop-filter:blur(18px) saturate(135%);
+  -webkit-backdrop-filter:blur(10px) saturate(135%);backdrop-filter:blur(10px) saturate(135%);
   border:1px solid rgba(255,255,255,.9);box-shadow:0 32px 80px -28px rgba(14,36,86,.55),inset 0 1px 0 rgba(255,255,255,.95);
   transform:translateY(10px) scale(.99);opacity:0;transition:transform .22s cubic-bezier(.2,.8,.2,1),opacity .22s ease}
 .team-modal.is-open .team-modal__card{transform:none;opacity:1}
@@ -1899,7 +1899,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 @keyframes tmnetRipple{0%{r:6;opacity:.5}70%{opacity:.12}100%{r:62;opacity:0}}
 @media(prefers-reduced-motion:reduce){.team-modal__net .tmnet-nodes circle,.team-modal__net .tmnet-core,.team-modal__net .tmnet-ripple{animation:none;opacity:0}.team-modal__net .tmnet-nodes circle{opacity:.5}.team-modal__net .tmnet-core{opacity:.7}}
 @media(prefers-reduced-motion:reduce){.team-box::after{animation:none;opacity:.5}.team-grid::before{animation:none;opacity:.06}}
-.team-hovercard{position:fixed;z-index:60;min-width:172px;max-width:236px;padding:12px 14px;border-radius:14px;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .16s ease,transform .16s ease;background:linear-gradient(168deg,rgba(255,255,255,.97),rgba(255,255,255,.9));-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);border:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 24%,rgba(255,255,255,.9));box-shadow:0 22px 46px -20px rgba(14,36,86,.52),inset 0 1px 0 rgba(255,255,255,.96)}
+.team-hovercard{position:fixed;z-index:60;min-width:172px;max-width:236px;padding:12px 14px;border-radius:14px;pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .16s ease,transform .16s ease;background:linear-gradient(168deg,rgba(255,255,255,.97),rgba(255,255,255,.9));-webkit-backdrop-filter:blur(10px) saturate(160%);backdrop-filter:blur(10px) saturate(160%);border:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 24%,rgba(255,255,255,.9));box-shadow:0 22px 46px -20px rgba(14,36,86,.52),inset 0 1px 0 rgba(255,255,255,.96)}
 .team-hovercard.is-shown{opacity:1;transform:translateY(0)}
 .team-hovercard::after{content:"";position:absolute;left:50%;bottom:-6px;width:11px;height:11px;transform:translateX(-50%) rotate(45deg);background:rgba(255,255,255,.95);border-right:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 24%,rgba(255,255,255,.9));border-bottom:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 24%,rgba(255,255,255,.9))}
 .team-hovercard.below::after{top:-6px;bottom:auto;border-right:0;border-bottom:0;border-left:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 24%,rgba(255,255,255,.9));border-top:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 24%,rgba(255,255,255,.9))}
@@ -1923,7 +1923,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .team-hovercard__tags span{font-size:10px;font-weight:600;color:#54607a;padding:3px 8px;border-radius:999px;background:rgba(247,249,252,.9);border:1px solid var(--line);white-space:nowrap}
 .team-modal__exp{position:relative;isolation:isolate;display:flex;align-items:center;gap:14px;margin-top:24px;padding:16px 18px;border-radius:18px;
   background:linear-gradient(165deg, rgba(255,255,255,.86), color-mix(in srgb,var(--blue-bright) 6%, rgba(255,255,255,.56)));
-  -webkit-backdrop-filter:blur(18px) saturate(155%);backdrop-filter:blur(18px) saturate(155%);
+  -webkit-backdrop-filter:blur(10px) saturate(155%);backdrop-filter:blur(10px) saturate(155%);
   border:1px solid rgba(255,255,255,.85);
   box-shadow:0 18px 40px -24px rgba(14,36,86,.36),0 0 30px -8px color-mix(in srgb,var(--blue-bright) 22%,transparent),inset 0 1px 0 rgba(255,255,255,.95);
   transition:transform .26s cubic-bezier(.2,.8,.2,1),box-shadow .26s,border-color .26s}
@@ -1949,7 +1949,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 /* clean white glass team boxes — colour appears only as a soft hover glow */
 .team-box{position:relative;border-radius:20px;padding:15px 17px 17px;
   background:linear-gradient(165deg, rgba(255,255,255,.85), color-mix(in srgb,var(--gc,var(--blue-bright)) 4%, rgba(250,251,253,.55)));
-  -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);
   border:1px solid rgba(255,255,255,.82);box-shadow:0 18px 40px -30px rgba(14,36,86,.22),0 4px 12px -10px rgba(14,36,86,.1),inset 0 1px 0 rgba(255,255,255,.92);
   transition:transform .26s cubic-bezier(.2,.8,.2,1),box-shadow .26s,border-color .26s,background .26s}
 .team-box::before{content:"";position:absolute;inset:0;border-radius:20px;padding:1px;pointer-events:none;z-index:2;
@@ -2063,7 +2063,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   background:radial-gradient(22% 24% at 42% 41%, color-mix(in srgb,#7CC4FF 9%,transparent), transparent 72%),radial-gradient(20% 22% at 60% 40%, color-mix(in srgb,#F4C969 8%,transparent), transparent 74%),radial-gradient(20% 22% at 61% 60%, color-mix(in srgb,#F2A6B3 8%,transparent), transparent 74%),radial-gradient(20% 22% at 40% 60%, color-mix(in srgb,#5FD0C8 8%,transparent), transparent 74%),radial-gradient(40% 48% at 50% 48%, color-mix(in srgb,var(--gc,var(--blue-bright)) 7%,transparent), transparent 76%),rgba(22,30,48,.42)}
 .profile-pop__card{position:relative;isolation:isolate;width:392px;max-width:90vw;max-height:88vh;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;border-radius:26px;padding:30px 28px 28px;
   background:linear-gradient(168deg, rgba(255,255,255,.9), rgba(255,255,255,.85));
-  -webkit-backdrop-filter:blur(28px) saturate(1.05);backdrop-filter:blur(28px) saturate(1.05);
+  -webkit-backdrop-filter:blur(12px) saturate(1.05);backdrop-filter:blur(12px) saturate(1.05);
   border:1px solid rgba(255,255,255,.7);box-shadow:0 0 34px rgba(255,255,255,.42),0 0 92px 6px rgba(116,168,228,.2),0 26px 64px -26px rgba(14,24,44,.52),inset 0 1px 0 rgba(255,255,255,.88),inset 0 0 0 1px rgba(255,255,255,.34);
   transform:scale(.95) translateY(10px);opacity:.4;transition:transform .3s cubic-bezier(.2,.85,.25,1),opacity .3s}
 .profile-pop.is-open .profile-pop__card{transform:none;opacity:1}
@@ -2139,7 +2139,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .profile-pop__tip{position:absolute;left:0;right:0;margin-left:auto;margin-right:auto;width:auto;max-width:260px;bottom:calc(100% + 10px);z-index:6;
   padding:11px 13px;border-radius:14px;text-align:left;font-family:var(--body);font-weight:400;font-size:11.5px;line-height:1.5;color:var(--ink);
   background:linear-gradient(165deg,rgba(255,255,255,.93),color-mix(in srgb,var(--gc,var(--blue-bright)) 7%,rgba(247,250,255,.72)));
-  -webkit-backdrop-filter:blur(22px) saturate(165%);backdrop-filter:blur(22px) saturate(165%);
+  -webkit-backdrop-filter:blur(12px) saturate(165%);backdrop-filter:blur(12px) saturate(165%);
   border:1px solid color-mix(in srgb,var(--gc,var(--blue-bright)) 18%,rgba(255,255,255,.85));
   box-shadow:0 20px 44px -24px rgba(14,36,86,.42),0 0 22px -10px color-mix(in srgb,var(--gc,var(--blue-bright)) 32%,transparent),inset 0 1px 0 rgba(255,255,255,.9);
   opacity:0;transform:translateY(4px);pointer-events:none;transition:opacity .18s,transform .18s}
@@ -2237,7 +2237,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
 /* ---------- Movable nav dock (glass tab bar) ---------- */
 .bottom-dock{position:fixed;z-index:40;display:flex;align-items:center;
-  background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.78));-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);
+  background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.78));-webkit-backdrop-filter:blur(8px) saturate(150%);backdrop-filter:blur(8px) saturate(150%);
   border:1px solid rgba(255,255,255,.6);box-shadow:0 8px 34px rgba(20,33,50,.12);
   transition:box-shadow .2s ease, transform .15s ease}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
@@ -2326,7 +2326,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .present-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .present-btn.is-on{background:var(--blue);border-color:var(--blue);color:#fff}
 .layout-menu{position:absolute;top:54px;right:18px;z-index:50;width:210px;padding:10px;border-radius:16px;
-  background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);
+  background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
   border:1px solid rgba(255,255,255,.7);box-shadow:var(--shadow-lg);display:none;animation:rise .2s ease}
 .layout-menu.open{display:block}
 .layout-menu__h{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--faint);padding:4px 8px 8px}
@@ -2393,7 +2393,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   opacity:0;visibility:hidden;transition:opacity .26s ease, visibility .26s ease}
 .modal-bg.open{opacity:1;visibility:visible}
 .modal{position:relative;max-width:540px;width:100%;max-height:86vh;overflow-y:auto;padding:30px;border-radius:var(--r-lg);
-  background:rgba(255,255,255,.74);-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  background:rgba(255,255,255,.74);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
   border:1px solid rgba(255,255,255,.7);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);
   border-top:5px solid var(--c,var(--blue));
   transform:translateY(16px) scale(.97);transition:transform .28s cubic-bezier(.2,.7,.2,1)}
@@ -2474,7 +2474,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .glass-stage>*{position:relative;z-index:1}
 .glass-stage>.sys-scale{position:absolute;z-index:6}
 .glass{background:rgba(255,255,255,.46);
-  -webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);
+  -webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid rgba(255,255,255,.72);
   box-shadow:0 16px 46px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.75)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
@@ -2506,7 +2506,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 
 /* ---- level detail (glass, ref-image-2 style) ---- */
 .rm-detail{margin-top:26px;border-radius:22px;padding:26px;animation:rise .35s ease;
-  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);
+  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid rgba(255,255,255,.7);border-top:4px solid var(--c);
   box-shadow:0 16px 46px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.7)}
 .rm-detail__lvl{background:var(--c)!important;color:var(--txt,#fff)!important}
@@ -2516,7 +2516,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .rm-detail .tag.red{background:var(--c);color:var(--txt)}
 
 /* ---- 5C cards as glass, colour-coded by level ---- */
-.fivec .cc{background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+.fivec .cc{background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.1)}
 .fivec .cc::before{color:rgba(255,255,255,.6)}
 .fivec .cc .c-en{color:var(--ci)}
@@ -2527,7 +2527,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .fivec .cc.is-active .c-en{color:var(--ci)}
 .fivec .cc__chip{display:inline-block;margin-top:10px;font-family:var(--display);font-weight:800;font-size:10.5px;
   letter-spacing:.04em;padding:3px 9px;border-radius:7px;background:var(--c);color:var(--txt)}
-#ccDetail .cc-detail{background:rgba(255,255,255,.52);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);
+#ccDetail .cc-detail{background:rgba(255,255,255,.52);-webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
   border:1px solid rgba(255,255,255,.7);border-left:5px solid var(--c);color:var(--ink);
   box-shadow:0 16px 46px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.7)}
 #ccDetail .cc-detail__c{color:var(--ci)}
@@ -2540,7 +2540,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 /* ---- Class flow: clickable Before/During/After cards (5C-style) ---- */
 .cflow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .cf-card{text-align:left;border-radius:var(--r);padding:22px 20px;position:relative;cursor:pointer;
-  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.1);transition:transform .18s,border-color .18s,box-shadow .18s,background .18s}
 .cf-card::before{content:attr(data-step);position:absolute;top:14px;right:16px;font-family:var(--display);
   font-weight:800;font-size:30px;color:rgba(255,255,255,.6);transition:.18s}
@@ -2552,7 +2552,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .cf-card__t{font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);margin-top:8px}
 .cf-card__zh{font-size:13px;color:var(--muted);margin-top:3px}
 .cf-detail{margin-top:18px;border-radius:var(--r-lg);padding:28px;animation:rise .35s ease;
-  background:rgba(255,255,255,.52);-webkit-backdrop-filter:blur(22px) saturate(150%);backdrop-filter:blur(22px) saturate(150%);
+  background:rgba(255,255,255,.52);-webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
   border:1px solid rgba(255,255,255,.7);border-left:5px solid var(--c);
   box-shadow:0 16px 46px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.7)}
 .cf-detail__top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
@@ -2575,7 +2575,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .cf-hint .zh{display:block;font-size:13px;color:var(--faint);margin-top:4px}
 
 /* ---- recommended path (glass result + colour-coded chips) ---- */
-#recResult{background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);
+#recResult{background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);
   border:1px solid rgba(255,255,255,.7);box-shadow:0 16px 46px rgba(20,33,50,.14)}
 .rec-step{border:1.5px solid transparent}
 .rec-step.start{background:rgba(255,255,255,.6);color:var(--muted);border-style:dashed;border-color:var(--line-strong)}
@@ -2693,7 +2693,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 /* floating glass buttons (to the RIGHT of the hero visual) */
 .sumtr-card__feats{display:none;flex-direction:column;gap:13px;width:272px}
 .sumtr-card.is-feats .sumtr-card__feats{display:flex}
-.sumtr-feat{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 18px;border-radius:16px;background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.6);box-shadow:0 16px 44px -20px rgba(20,45,80,.22),inset 0 1px 0 rgba(255,255,255,.7);-webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);cursor:pointer;transition:transform .22s,box-shadow .22s,background .22s;animation:sumtrFeatIn .55s cubic-bezier(.2,.7,.2,1) both}
+.sumtr-feat{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 18px;border-radius:16px;background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.6);box-shadow:0 16px 44px -20px rgba(20,45,80,.22),inset 0 1px 0 rgba(255,255,255,.7);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);cursor:pointer;transition:transform .22s,box-shadow .22s,background .22s;animation:sumtrFeatIn .55s cubic-bezier(.2,.7,.2,1) both}
 .sumtr-card.is-feats .sumtr-feat:nth-child(2){animation-delay:.1s}
 .sumtr-card.is-feats .sumtr-feat:nth-child(3){animation-delay:.2s}
 @keyframes sumtrFeatIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
@@ -2769,7 +2769,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-card.has-dsc .dsc-node:hover{background:none;transform:translate(-50%,-50%) scale(1)}
 .sumtr-card.has-dsc.is-feats .dsc-node:hover{transform:translate(-50%,-50%) scale(1.03)}
 .dsc-node .sumtr-feat__ic{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
-  background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);-webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);
+  background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);-webkit-backdrop-filter:blur(10px) saturate(170%);backdrop-filter:blur(10px) saturate(170%);
   box-shadow:0 16px 34px -16px rgba(20,45,80,.4),inset 0 1px 0 rgba(255,255,255,.8);transition:transform .22s,box-shadow .22s,background .22s}
 .dsc-node:hover .sumtr-feat__ic{background:rgba(255,255,255,.82);box-shadow:0 20px 40px -16px rgba(20,33,50,.36)}
 .dsc-node .sumtr-feat__ic svg{width:24px;height:24px;stroke:color-mix(in srgb,var(--cc) 70%,#46566f);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -2823,7 +2823,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-pop{position:absolute;inset:0;z-index:40;display:none;align-items:center;justify-content:center;padding:24px}
 .sumtr-pop.is-open{display:flex}
 .sumtr-pop__bd{position:absolute;inset:0;background:radial-gradient(54% 58% at 50% 47%,rgba(248,250,255,.5) 0%,rgba(248,250,255,.18) 42%,rgba(248,250,255,0) 74%);-webkit-backdrop-filter:blur(7px) saturate(112%);backdrop-filter:blur(7px) saturate(112%);-webkit-mask:radial-gradient(62% 66% at 50% 47%,#000 0%,#000 36%,transparent 82%);mask:radial-gradient(62% 66% at 50% 47%,#000 0%,#000 36%,transparent 82%);animation:sumtrFade .3s ease}
-.sumtr-pop__card{position:relative;z-index:1;max-width:360px;width:100%;border-radius:22px;padding:24px 22px 22px;text-align:left;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.58));-webkit-backdrop-filter:blur(30px) saturate(180%);backdrop-filter:blur(30px) saturate(180%);border:1px solid rgba(255,255,255,.6);box-shadow:0 22px 54px -24px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.7);animation:sumtrPopIn .3s cubic-bezier(.2,.7,.2,1)}
+.sumtr-pop__card{position:relative;z-index:1;max-width:360px;width:100%;border-radius:22px;padding:24px 22px 22px;text-align:left;background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(255,255,255,.58));-webkit-backdrop-filter:blur(12px) saturate(180%);backdrop-filter:blur(12px) saturate(180%);border:1px solid rgba(255,255,255,.6);box-shadow:0 22px 54px -24px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.7);animation:sumtrPopIn .3s cubic-bezier(.2,.7,.2,1)}
 .sumtr-pop__ic{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--cc,var(--blue-bright)) 12%,#fff);box-shadow:inset 0 0 0 1px rgba(20,33,50,.05),0 6px 16px -8px color-mix(in srgb,var(--cc,var(--blue-bright)) 40%,transparent)}
 .sumtr-pop__ic svg{width:24px;height:24px;stroke:var(--cc,var(--blue-bright));fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .sumtr-pop__t{font-family:var(--display);font-weight:800;font-size:19px;color:var(--ink);margin-top:14px;line-height:1.2}
@@ -3035,7 +3035,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 @media (prefers-reduced-motion:reduce){.eco-disc,.eco-core,.eco-core-glow,.eco-lab,.eco-node-ic{opacity:1!important;animation:none!important;transform:none!important}}
 
 /* level recommendation tool (stage 9) */
-.lvtool{background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.1);border-radius:20px;padding:18px 20px;margin-top:6px}
+.lvtool{background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.1);border-radius:20px;padding:18px 20px;margin-top:6px}
 .lvtool__row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .lvtool__lab{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink)}
 .lvtool__lab .zh{font-weight:500;color:var(--muted);font-size:12.5px}
@@ -3060,7 +3060,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .lvpath__arr{color:var(--faint);font-weight:700}
 .lvmap{display:flex;align-items:stretch;gap:6px;overflow-x:auto;padding-bottom:4px}
 .lvmap::-webkit-scrollbar{height:0}
-.lvcard{flex:1 1 0;min-width:128px;border-radius:16px;padding:13px;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.08);transition:opacity .35s,filter .35s,box-shadow .35s}
+.lvcard{flex:1 1 0;min-width:128px;border-radius:16px;padding:13px;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);border:1.5px solid rgba(255,255,255,.72);box-shadow:0 10px 30px rgba(20,33,50,.08);transition:opacity .35s,filter .35s,box-shadow .35s}
 .lvcard.is-active{background:color-mix(in srgb,var(--c) 11%,rgba(255,255,255,.66));border-color:color-mix(in srgb,var(--c) 52%,#fff);box-shadow:0 16px 36px -12px color-mix(in srgb,var(--c) 42%,transparent)}
 .lvcard.is-faded{opacity:.24;filter:blur(1.4px) saturate(.7);min-width:86px;flex:0 0 auto;align-self:center}
 .lvcard__head{display:flex;align-items:center;gap:8px}
@@ -3124,7 +3124,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .lvroad__detail{margin-top:0}
 .lvroad__detail{position:relative}
 .lvroad__detail.show{margin-top:0}
-.lvinline{position:relative;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);border:1px solid rgba(255,255,255,.72);box-shadow:0 16px 46px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.75);border-radius:22px;padding:24px;animation:rise .3s ease}
+.lvinline{position:relative;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);border:1px solid rgba(255,255,255,.72);box-shadow:0 16px 46px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.75);border-radius:22px;padding:24px;animation:rise .3s ease}
 .lvinline__x{position:absolute;top:12px;right:12px;width:30px;height:30px;border:none;border-radius:50%;background:rgba(20,33,50,.06);color:var(--muted);font-size:18px;cursor:pointer;line-height:1}
 .lvinline__x:hover{background:rgba(20,33,50,.12)}
 .lvinline__title{font-family:var(--display);font-weight:800;font-size:20px;color:var(--ink);margin:0 40px 4px 0}
@@ -3132,7 +3132,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .lvroad .lvl-col.is-faded.is-open{opacity:.6;filter:none}
 
 /* level recommendation v4 — light inline intro strip */
-.lvstrip{display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:relative;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);border:1px solid rgba(255,255,255,.7);border-top:3px solid color-mix(in srgb,var(--c) 70%,#fff);box-shadow:0 10px 26px -12px color-mix(in srgb,var(--c) 32%,transparent);border-radius:14px;padding:13px 16px;animation:rise .28s ease}
+.lvstrip{display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:relative;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%);border:1px solid rgba(255,255,255,.7);border-top:3px solid color-mix(in srgb,var(--c) 70%,#fff);box-shadow:0 10px 26px -12px color-mix(in srgb,var(--c) 32%,transparent);border-radius:14px;padding:13px 16px;animation:rise .28s ease}
 .lvstrip__chip{font-family:var(--display);font-weight:800;font-size:13px;padding:5px 11px;border-radius:9px;flex:none}
 .lvstrip__txt{display:flex;flex-direction:column;gap:1px;min-width:0}
 .lvstrip__name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink)}
@@ -3171,7 +3171,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .lvvideo--soon:hover{transform:none;background:rgba(20,33,50,.05)}
 .video-bg{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(12,20,34,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .video-bg.open{display:flex}
-.video-modal{position:relative;width:100%;max-width:880px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:14px;box-shadow:0 40px 90px rgba(0,0,0,.5);-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%)}
+.video-modal{position:relative;width:100%;max-width:880px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:14px;box-shadow:0 40px 90px rgba(0,0,0,.5);-webkit-backdrop-filter:blur(10px) saturate(150%);backdrop-filter:blur(10px) saturate(150%)}
 .video-modal .close{position:absolute;top:-14px;right:-14px;width:38px;height:38px;border:none;border-radius:50%;background:#fff;color:var(--ink);font-size:20px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:2}
 .video-frame{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000}
 .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -3200,7 +3200,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .lvres__save .zh{font-weight:500;opacity:.85;margin-left:4px}
 
 /* level recommendation v8 - advisor-only global Level Resource Settings panel */
-.lvadmin{display:none;margin-top:24px;border-radius:18px;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border:1px solid var(--line);box-shadow:0 10px 30px rgba(20,33,50,.08);padding:18px 20px}
+.lvadmin{display:none;margin-top:24px;border-radius:18px;background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(8px) saturate(140%);backdrop-filter:blur(8px) saturate(140%);border:1px solid var(--line);box-shadow:0 10px 30px rgba(20,33,50,.08);padding:18px 20px}
 .lvadmin.is-on{display:block;animation:rise .3s ease}
 .lvadmin.in-modal{display:block;margin:0;padding:0;border:0;background:transparent;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;animation:none}
 .adv-modal--rp .adv-modal__card{max-width:560px}
@@ -3224,7 +3224,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
    ============================================================ */
 /* ---- Shell: copy .modal-bg / .modal ---- */
 #sysFocus.focus-bg{background:linear-gradient(135deg,rgba(234,241,255,.46),rgba(220,231,255,.46),rgba(191,211,255,.46));-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
-#sysFocus .focus-card{background:radial-gradient(162% 120% at -6% -8%,rgba(86,132,255,.12),rgba(86,132,255,.05) 42%,transparent 72%),radial-gradient(150% 116% at 106% 110%,rgba(76,203,255,.09),rgba(76,203,255,.04) 44%,transparent 70%),rgba(255,255,255,.74);-webkit-backdrop-filter:blur(20px) saturate(135%);backdrop-filter:blur(20px) saturate(135%);border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--blue);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);border-radius:var(--r-lg)}
+#sysFocus .focus-card{background:radial-gradient(162% 120% at -6% -8%,rgba(86,132,255,.12),rgba(86,132,255,.05) 42%,transparent 72%),radial-gradient(150% 116% at 106% 110%,rgba(76,203,255,.09),rgba(76,203,255,.04) 44%,transparent 70%),rgba(255,255,255,.74);-webkit-backdrop-filter:blur(10px) saturate(135%);backdrop-filter:blur(10px) saturate(135%);border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--blue);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);border-radius:var(--r-lg)}
 #sysFocus .focus-x{top:18px;right:18px;width:34px;height:34px;border-radius:10px;background:rgba(20,33,50,.06);border:none;color:var(--muted);box-shadow:none}
 #sysFocus .focus-x:hover{background:rgba(20,33,50,.12);color:var(--ink);transform:none}
 /* ---- Heroes: sit on the glass shell (no big colour block) ---- */
@@ -3302,15 +3302,15 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sysFocus .ipa .stage-cards .stage-card:nth-child(3) .ipa-cta3d{--o1:#FFD98A;--o2:#F2683B}   /* energy — gold -> coral */
 
 /* ---------- Part 2 + 4 · SURFACES — UI cards -> product cards: thicker white, bevel, inner light, neutral shadow, less glow, softer corners ---------- */
-#sysFocus .ipa .stage-card{background:rgba(255,255,255,.76)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important;backdrop-filter:blur(22px) saturate(145%)!important;border:1px solid rgba(255,255,255,.92)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(255,255,255,.45),0 20px 38px -24px rgba(18,34,64,.3),0 6px 14px -10px color-mix(in srgb,#2E96E8 32%,transparent)!important}
+#sysFocus .ipa .stage-card{background:rgba(255,255,255,.76)!important;-webkit-backdrop-filter:blur(12px) saturate(145%)!important;backdrop-filter:blur(12px) saturate(145%)!important;border:1px solid rgba(255,255,255,.92)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(255,255,255,.45),0 20px 38px -24px rgba(18,34,64,.3),0 6px 14px -10px color-mix(in srgb,#2E96E8 32%,transparent)!important}
 #sysFocus .ipa .stage-card__t{text-shadow:0 1px 0 rgba(255,255,255,.7)}
 
-#sysFocus .ipa .stage-advisor{background:rgba(255,255,255,.76)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important;backdrop-filter:blur(22px) saturate(145%)!important;border:1px solid rgba(255,255,255,.9)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 20px 40px -24px rgba(18,34,64,.28),0 6px 14px -10px color-mix(in srgb,#2E96E8 28%,transparent)!important}
+#sysFocus .ipa .stage-advisor{background:rgba(255,255,255,.76)!important;-webkit-backdrop-filter:blur(12px) saturate(145%)!important;backdrop-filter:blur(12px) saturate(145%)!important;border:1px solid rgba(255,255,255,.9)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 20px 40px -24px rgba(18,34,64,.28),0 6px 14px -10px color-mix(in srgb,#2E96E8 28%,transparent)!important}
 #sysFocus .ipa .stage-advisor__ic{background:linear-gradient(157deg,#9CEBFF,#2B9BEA 78%,#1E7BC8)!important;border:1px solid rgba(255,255,255,.72)!important;color:#fff!important;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.9),0 8px 14px -7px color-mix(in srgb,#2B9BEA 52%,transparent),0 12px 18px -12px rgba(18,34,64,.4)!important}
 #sysFocus .ipa .stage-advisor__ic svg{stroke:#fff!important;filter:drop-shadow(0 1px 1px rgba(12,30,60,.3))}
 #sysFocus .ipa .stage-advisor__lead{font-weight:800;letter-spacing:-.01em;color:var(--ink)}
 
-#sysFocus .ipa .goal-quote{position:relative;background:rgba(255,255,255,.62)!important;border:1px solid rgba(255,255,255,.85)!important;-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 18px 38px -26px rgba(18,34,64,.26)!important;text-shadow:none}
+#sysFocus .ipa .goal-quote{position:relative;background:rgba(255,255,255,.62)!important;border:1px solid rgba(255,255,255,.85)!important;-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 18px 38px -26px rgba(18,34,64,.26)!important;text-shadow:none}
 #sysFocus .ipa .goal-quote::after{display:none}
 #sysFocus .ipa .goal-quote__ic{opacity:1;filter:drop-shadow(0 2px 3px rgba(18,34,64,.18))}
 
@@ -3328,10 +3328,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sysFocus .lessons .lcell .ipa-cta3d::before{left:7%;right:7%;top:4%;height:52%;border-radius:13px 13px 72% 72%/13px 13px 54% 54%;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,255,255,.38) 50%,rgba(255,255,255,0))}
 #sysFocus .lessons .lcell .ipa-cta3d::after{top:-10%;left:auto;right:13%;width:26%;height:128%;transform:rotate(20deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));animation:none;opacity:.7}
 /* CELLS + DETAIL — UI cards -> clean white product surfaces */
-#sysFocus .lessons .lcell{background:rgba(255,255,255,.74)!important;-webkit-backdrop-filter:blur(20px) saturate(145%)!important;backdrop-filter:blur(20px) saturate(145%)!important;border:1px solid rgba(255,255,255,.9)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(255,255,255,.45),0 20px 38px -24px rgba(18,34,64,.3)!important}
+#sysFocus .lessons .lcell{background:rgba(255,255,255,.74)!important;-webkit-backdrop-filter:blur(10px) saturate(145%)!important;backdrop-filter:blur(10px) saturate(145%)!important;border:1px solid rgba(255,255,255,.9)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),inset 0 0 0 1px rgba(255,255,255,.45),0 20px 38px -24px rgba(18,34,64,.3)!important}
 #sysFocus .lessons .lcell.is-active{background:rgba(255,255,255,.86)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,1),0 0 0 1px color-mix(in srgb,var(--c) 28%,#fff),0 24px 46px -22px color-mix(in srgb,var(--c) 38%,transparent),0 8px 18px -12px rgba(18,34,64,.28)!important}
 #sysFocus .lessons .lcell__t{text-shadow:0 1px 0 rgba(255,255,255,.7)}
-#sysFocus .lessons .ldetail__in{background:rgba(255,255,255,.76)!important;-webkit-backdrop-filter:blur(22px) saturate(145%)!important;backdrop-filter:blur(22px) saturate(145%)!important;border:1px solid rgba(255,255,255,.9)!important;border-left:5px solid var(--c)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 20px 40px -24px rgba(18,34,64,.28),0 6px 14px -10px color-mix(in srgb,var(--c) 26%,transparent)!important}
+#sysFocus .lessons .ldetail__in{background:rgba(255,255,255,.76)!important;-webkit-backdrop-filter:blur(12px) saturate(145%)!important;backdrop-filter:blur(12px) saturate(145%)!important;border:1px solid rgba(255,255,255,.9)!important;border-left:5px solid var(--c)!important;border-radius:20px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.96),0 20px 40px -24px rgba(18,34,64,.28),0 6px 14px -10px color-mix(in srgb,var(--c) 26%,transparent)!important}
 #sysFocus .lessons .ldetail__item{background:rgba(255,255,255,.7)!important;border:1px solid rgba(255,255,255,.85)!important;border-radius:14px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 8px 18px -14px rgba(18,34,64,.2)!important}
 /* ----- During Class · embedded 5C cards (reuses original .fivec/.cc framework + colours + frosted feel; tap a card -> popup of what that level teaches) ----- */
 #sysFocus .lessons .lc5{margin-top:22px;padding-top:18px;border-top:1px solid rgba(20,33,50,.08)}
@@ -3384,7 +3384,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sysFocus .epi-radar .rdot{fill:#fff;stroke:var(--epi-theme);stroke-width:2;animation:epiNodeGlow 3.2s ease-in-out infinite}
 @keyframes epiNodeGlow{0%,100%{opacity:.82}50%{opacity:1}}
 /* TOUCH EPI Report — premium AI action gateway (glass depth + soft blue glow + ultra-subtle idle sweep) · scoped */
-#sysFocus .epi-cta{position:relative;overflow:hidden;opacity:.95;background:linear-gradient(180deg,color-mix(in srgb,var(--epi-theme) 10%,rgba(255,255,255,.72)),color-mix(in srgb,var(--epi-theme) 5%,rgba(255,255,255,.5)));border:1px solid color-mix(in srgb,var(--epi-theme) 30%,rgba(255,255,255,.7));-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 0 0 1px rgba(255,255,255,.4),0 6px 16px -10px color-mix(in srgb,var(--epi-theme) 42%,transparent),0 0 20px color-mix(in srgb,var(--epi-theme) 14%,transparent)}
+#sysFocus .epi-cta{position:relative;overflow:hidden;opacity:.95;background:linear-gradient(180deg,color-mix(in srgb,var(--epi-theme) 10%,rgba(255,255,255,.72)),color-mix(in srgb,var(--epi-theme) 5%,rgba(255,255,255,.5)));border:1px solid color-mix(in srgb,var(--epi-theme) 30%,rgba(255,255,255,.7));-webkit-backdrop-filter:blur(8px) saturate(140%);backdrop-filter:blur(8px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 0 0 1px rgba(255,255,255,.4),0 6px 16px -10px color-mix(in srgb,var(--epi-theme) 42%,transparent),0 0 20px color-mix(in srgb,var(--epi-theme) 14%,transparent)}
 #sysFocus .epi-cta::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 38%,rgba(255,255,255,.42) 50%,transparent 62%);transform:translateX(-140%);animation:epiCtaSweep 4.6s ease-in-out infinite;pointer-events:none}
 @keyframes epiCtaSweep{0%{transform:translateX(-140%)}45%{transform:translateX(140%)}100%{transform:translateX(140%)}}
 #sysFocus .epi-cta>span,#sysFocus .epi-cta>svg{position:relative;z-index:1}
@@ -3392,7 +3392,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 #sysFocus .epi-cta:active{transform:translateY(-1px)}
 /* ===== MIRROR mini dock — premium AI module navigator (visual only · scoped) ===== */
 /* 1) glass depth — floating glass panel with shadow separation + deeper blur */
-#sysFocus .focus-mini{-webkit-backdrop-filter:blur(30px) saturate(160%);backdrop-filter:blur(30px) saturate(160%);box-shadow:0 22px 52px -18px rgba(124,92,255,.44),0 6px 18px -10px rgba(20,33,50,.16),inset 0 1px 0 rgba(255,255,255,.98),inset 0 0 0 1px rgba(255,255,255,.4)}
+#sysFocus .focus-mini{-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);box-shadow:0 22px 52px -18px rgba(124,92,255,.44),0 6px 18px -10px rgba(20,33,50,.16),inset 0 1px 0 rgba(255,255,255,.98),inset 0 0 0 1px rgba(255,255,255,.4)}
 /* 3) internal lighting — soft inner reflection on idle tiles */
 #sysFocus .focus-mini__tile{box-shadow:inset 0 1px 0 rgba(255,255,255,.92),inset 0 -7px 11px -9px color-mix(in srgb,var(--c) 24%,transparent)}
 /* 4) hover response — refined lift + soft module glow */
@@ -3533,10 +3533,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .tcard.is-masked{cursor:default}
 .tcard__frost{position:absolute;inset:0;z-index:2;display:grid;place-items:center;
   background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(244,247,252,.55));
-  -webkit-backdrop-filter:blur(16px) saturate(1.1);backdrop-filter:blur(16px) saturate(1.1)}
+  -webkit-backdrop-filter:blur(10px) saturate(1.1);backdrop-filter:blur(10px) saturate(1.1)}
 .tcard.is-next{cursor:pointer}
 .tcard.is-next .tcard__frost{background:linear-gradient(180deg,rgba(255,255,255,.42),rgba(244,247,252,.48));
-  -webkit-backdrop-filter:blur(13px);backdrop-filter:blur(13px)}
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .tcard.is-next:hover .tcard__frost{background:linear-gradient(180deg,rgba(255,255,255,.32),rgba(244,247,252,.4))}
 .tcard__hint{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.75);
   border-radius:999px;padding:9px 17px;font-weight:600;font-size:12.5px;color:var(--blue);
@@ -3546,7 +3546,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 /* extension cards (192/240) */
 .price-ext{display:grid;grid-template-columns:repeat(2,minmax(0,360px));gap:18px;justify-content:center}
 .tcard.is-ext{padding:20px 16px;background:rgba(255,255,255,.74);
-  -webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  -webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
   border:1px solid rgba(255,255,255,.7);border-top:5px solid var(--blue);border-radius:var(--r-lg);
   box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7)}
 .tcard.is-ext .tcard__num b{font-size:30px}
@@ -3637,7 +3637,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .hpop.is-open{display:flex}
 .hpop__bd{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,rgba(20,33,50,.4),rgba(20,33,50,.6));-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
 .hpop__card{position:relative;width:100%;max-width:920px;max-height:88vh;overflow:auto;
-  background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(26px) saturate(160%);backdrop-filter:blur(26px) saturate(160%);
+  background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);
   border:1px solid rgba(255,255,255,.7);border-radius:24px;border-top:5px solid var(--blue);
   box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.7);animation:rise .3s ease}
 .hpop__x{position:absolute;top:14px;right:16px;width:34px;height:34px;border-radius:10px;border:0;cursor:pointer;background:rgba(20,33,50,.06);color:var(--muted);font-size:20px;line-height:1;z-index:3}
@@ -3689,7 +3689,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sst-toggle i{font-style:normal;color:var(--faint)}
 .sst-toggle:hover{background:rgba(42,91,215,.09);color:var(--ink);border-color:var(--line-strong)}
 /* ===== Student report generator ===== */
-.report-ov{position:fixed;inset:0;z-index:210;display:none;background:rgba(238,242,249,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);overflow:auto;padding:26px 20px 60px}
+.report-ov{position:fixed;inset:0;z-index:210;display:none;background:rgba(238,242,249,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);overflow:auto;padding:26px 20px 60px}
 .report-ov.is-open{display:block}
 .rov-top{max-width:1240px;margin:0 auto 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .rov-top h2{font-family:var(--display);font-size:19px;color:var(--ink);margin:0}
@@ -3721,7 +3721,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 }
 .report-panel{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:380px minmax(0,1fr);gap:22px;align-items:start}
 @media(max-width:980px){.report-panel{grid-template-columns:1fr}}
-.rb-side{position:sticky;top:10px;border-radius:20px;padding:18px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.8);box-shadow:0 20px 44px -26px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.85)}
+.rb-side{position:sticky;top:10px;border-radius:20px;padding:18px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.8);box-shadow:0 20px 44px -26px rgba(20,33,50,.3),inset 0 1px 0 rgba(255,255,255,.85)}
 .rb-h{font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:16px 0 8px}
 .rb-h:first-child{margin-top:0}
 .rb-row{display:flex;gap:10px;margin-bottom:10px;align-items:flex-end}
@@ -3944,7 +3944,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .ielts-intro .zh{color:var(--faint);font-size:11.5px}
 .ielts-logo-row{display:flex;justify-content:center;margin:0 0 18px}
 .ielts-logo-btn{display:inline-flex;align-items:center;gap:14px;padding:10px 22px 10px 16px;border-radius:16px;cursor:pointer;font:inherit;text-align:left;
-  background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.75);
+  background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.75);
   box-shadow:0 10px 26px -16px rgba(20,33,50,.25),inset 0 1px 0 rgba(255,255,255,.8);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
 .ielts-logo-btn:hover{transform:translateY(-2px);border-color:rgba(42,91,215,.35);box-shadow:0 16px 34px -16px rgba(20,33,50,.32),0 0 0 4px rgba(42,91,215,.05),inset 0 1px 0 rgba(255,255,255,.85)}
 .ielts-logo-btn img{height:34px;max-width:86px;object-fit:contain;display:block}
@@ -3998,7 +3998,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 @media(max-width:600px){.hrdc-steps{grid-template-columns:1fr}}
 .inst-cta[hidden]{display:none}
 .inst-open-btn{display:inline-flex;align-items:center;gap:11px;font:inherit;cursor:pointer;
-  background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(16px) saturate(160%);backdrop-filter:blur(16px) saturate(160%);
+  background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(10px) saturate(160%);backdrop-filter:blur(10px) saturate(160%);
   border:1px solid rgba(255,255,255,.82);border-radius:999px;padding:8px 20px 8px 8px;
   box-shadow:0 12px 30px -14px rgba(14,36,86,.45),inset 0 1px 0 rgba(255,255,255,.9);transition:transform .2s ease,box-shadow .2s ease}
 .inst-open-btn:hover{transform:translateY(-2px);box-shadow:0 18px 38px -14px rgba(14,36,86,.55),inset 0 1px 0 rgba(255,255,255,.95)}
@@ -4012,7 +4012,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .ipop.is-open{display:flex}
 .ipop__bd{position:absolute;inset:0;background:radial-gradient(circle at 50% 36%,rgba(20,33,50,.32),rgba(20,33,50,.54));-webkit-backdrop-filter:blur(7px) saturate(120%);backdrop-filter:blur(7px) saturate(120%)}
 .ipop__card{position:relative;width:100%;max-width:560px;max-height:88vh;overflow:auto;
-  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(34px) saturate(180%);backdrop-filter:blur(34px) saturate(180%);
+  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(12px) saturate(180%);backdrop-filter:blur(12px) saturate(180%);
   border:1px solid rgba(255,255,255,.75);border-radius:28px;
   box-shadow:0 44px 96px -34px rgba(14,36,86,.6),inset 0 1px 0 rgba(255,255,255,.85);animation:priceRise .42s cubic-bezier(.22,.61,.36,1) both}
 .ipop__x{position:absolute;top:15px;right:16px;width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;
@@ -4088,7 +4088,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .tpop.is-open{display:flex}
 .tpop__bd{position:absolute;inset:0;background:radial-gradient(circle at 50% 38%,rgba(20,33,50,.36),rgba(20,33,50,.55));
   -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-.tpop__card{position:relative;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(24px) saturate(1.4);backdrop-filter:blur(24px) saturate(1.4);
+.tpop__card{position:relative;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(12px) saturate(1.4);backdrop-filter:blur(12px) saturate(1.4);
   border:1px solid rgba(255,255,255,.6);border-radius:24px;max-width:420px;width:100%;padding:28px 26px 24px;
   box-shadow:0 24px 60px rgba(14,36,86,.22);animation:rise .25s ease}
 .tpop__x{position:absolute;top:13px;right:15px;background:none;border:none;font-size:22px;line-height:1;color:var(--faint);cursor:pointer}
@@ -4227,7 +4227,7 @@ body.nav-edit-open .sysedit__bd{background:rgba(13,28,64,.34)}
 .sysedit__bd{position:absolute;inset:0;background:rgba(13,28,64,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .sysedit__card{position:relative;width:min(480px,94vw);max-height:86vh;display:flex;flex-direction:column;padding:24px 22px 20px;border-radius:22px;
   background:linear-gradient(168deg,rgba(255,255,255,.96),rgba(248,250,254,.9));
-  -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(8px) saturate(140%);backdrop-filter:blur(8px) saturate(140%);
   border:1px solid rgba(255,255,255,.85);box-shadow:0 40px 80px -28px rgba(13,28,64,.5),inset 0 1px 0 rgba(255,255,255,.92);
   transform:translateY(14px) scale(.975);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 .sysedit.is-open .sysedit__card{transform:none}
@@ -4267,7 +4267,7 @@ body.te-zoom .sysedit__card{background:linear-gradient(168deg,rgba(255,255,255,.
 .clspop__bd{position:absolute;inset:0;background:rgba(13,28,64,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .clspop__card{position:relative;width:min(860px,94vw);max-height:88vh;overflow:auto;padding:38px 40px 40px;border-radius:26px;text-align:center;
   background:linear-gradient(168deg,rgba(255,255,255,.95),rgba(248,250,254,.88));
-  -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(8px) saturate(140%);backdrop-filter:blur(8px) saturate(140%);
   border:1px solid rgba(255,255,255,.85);box-shadow:0 44px 90px -30px rgba(13,28,64,.55),inset 0 1px 0 rgba(255,255,255,.92);
   transform:translateY(16px) scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 .clspop.is-open .clspop__card{transform:none}
@@ -4337,7 +4337,7 @@ body.te-zoom .clspop__card{background:linear-gradient(168deg,rgba(255,255,255,.9
 .chuapop__bd{position:absolute;inset:0;background:rgba(13,28,64,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .chuapop__card{position:relative;display:flex;align-items:stretch;gap:36px;width:min(980px,94vw);max-height:88vh;padding:36px 42px;border-radius:26px;overflow:hidden;
   background:linear-gradient(168deg,rgba(255,255,255,.94),rgba(248,250,254,.86));
-  -webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(8px) saturate(140%);backdrop-filter:blur(8px) saturate(140%);
   border:1px solid rgba(255,255,255,.85);box-shadow:0 44px 90px -30px rgba(13,28,64,.55),inset 0 1px 0 rgba(255,255,255,.92);
   transform:translateY(16px) scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 .chuapop.is-open .chuapop__card{transform:none}
@@ -4527,8 +4527,8 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     <header class="topbar">
       <div class="topbar__inner">
         <div class="tb-brand">
-          <!-- Replace .brand__mark with: <img decoding="async" src="assets/logo.png" class="brand__mark" alt="TOUCH English"> -->
-          <span class="logo-disc logo-disc--mark"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH English" onerror="this.style.display='none'"></span>
+          <!-- Replace .brand__mark with: <img loading="lazy" decoding="async" decoding="async" src="assets/logo.png" class="brand__mark" alt="TOUCH English"> -->
+          <span class="logo-disc logo-disc--mark"><img loading="lazy" decoding="async" decoding="async" src="assets/logo/touch.webp" alt="TOUCH English" onerror="this.style.display='none'"></span>
           <div class="tb-brand__name">TOUCH English<span>makes you visible</span></div>
         </div>
         <div class="tb-divider"></div>
@@ -4588,7 +4588,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         <div class="brandhero">
           <div class="brandhero__panel">
           <button class="brandhero__logobtn" data-goto-next aria-label="Begin · Next page">
-            <span class="logo-disc logo-disc--hero"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH English" onerror="this.style.display='none'"></span>
+            <span class="logo-disc logo-disc--hero"><img loading="lazy" decoding="async" decoding="async" src="assets/logo/touch.webp" alt="TOUCH English" onerror="this.style.display='none'"></span>
           </button>
           <h1 class="brandhero__vision"><span class="brandhero__lead">TOUCH English</span><span class="brandhero__big">makes you <span class="brandhero__vis">visible</span></span></h1>
           <p class="brandhero__tag zh">看得见的进步，说得出的自信。</p>
@@ -4755,12 +4755,12 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
 <div class="locations">
           <h4><span class="loc-pin"><svg class="svg-ic" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>Where you can learn · 上课地点</h4>
           <div class="loc-row">
-            <span class="loc" data-loc data-area="Johor" data-name="Mount Austin" data-addr="7-02, Jalan Mutiara Emas 2A, Taman Mount Austin, 81100 Johor Bahru, Johor" data-img="assets/locations/austin.png" data-desc="Our Johor flagship centre in Mount Austin." data-map="https://maps.app.goo.gl/odkT1HQNE7pc4PTJ9"><b>Johor:</b> Mount Austin</span>
-            <span class="loc" data-loc data-area="Johor" data-name="Sutera Utama" data-addr="90B, Jalan Sutera Tanjung 8/4, Taman Sutera Utama, 81300 Skudai, Johor" data-img="assets/locations/sutera.png" data-desc="Centre in Sutera Utama, near Skudai." data-map="https://maps.app.goo.gl/F8h74Aq7bNKcJCxZ6"><b>Johor:</b> Sutera Utama</span>
-            <span class="loc" data-loc data-area="Johor" data-name="Bukit Indah" data-addr="6A, Jalan Indah 15/1, Taman Bukit Indah, 79100 Iskandar Puteri, Johor" data-img="assets/locations/bi.png" data-desc="Westside centre serving Bukit Indah &amp; Iskandar Puteri." data-map="https://maps.app.goo.gl/MVGCp1yj9zMym4Zo7"><b>Johor:</b> Bukit Indah</span>
-            <span class="loc" data-loc data-area="Johor" data-name="Kulai" data-addr="205A, Jalan Kenanga 29/2, Indahpura, 81000 Kulai, Johor" data-img="assets/locations/kulai.png" data-desc="Northern Johor centre in Kulai town." data-map="https://maps.app.goo.gl/g6rKbcspsin6o1Nr7"><b>Johor:</b> Kulai</span>
-            <span class="loc" data-loc data-area="Selangor" data-name="Setia Alam" data-addr="10-3-1, JALAN SETIA PRIMA P U13/P SETIA ALAM, SEKSYEN, U13, 40170 Shah Alam, Selangor" data-img="assets/locations/sp.png" data-desc="Klang Valley centre in Setia Alam." data-map="https://maps.app.goo.gl/BsvLzCFLFC91jNfa6"><b>Selangor:</b> Setia Alam</span>
-            <span class="loc" data-loc data-area="Online" data-name="Live Class" data-addr="Online · Live Class" data-img="assets/locations/online.png" data-desc="Join live, interactive lessons online." data-map="#"><b>Online:</b> Live Class</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Mount Austin" data-addr="7-02, Jalan Mutiara Emas 2A, Taman Mount Austin, 81100 Johor Bahru, Johor" data-img="assets/locations/austin.webp" data-desc="Our Johor flagship centre in Mount Austin." data-map="https://maps.app.goo.gl/odkT1HQNE7pc4PTJ9"><b>Johor:</b> Mount Austin</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Sutera Utama" data-addr="90B, Jalan Sutera Tanjung 8/4, Taman Sutera Utama, 81300 Skudai, Johor" data-img="assets/locations/sutera.webp" data-desc="Centre in Sutera Utama, near Skudai." data-map="https://maps.app.goo.gl/F8h74Aq7bNKcJCxZ6"><b>Johor:</b> Sutera Utama</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Bukit Indah" data-addr="6A, Jalan Indah 15/1, Taman Bukit Indah, 79100 Iskandar Puteri, Johor" data-img="assets/locations/bi.webp" data-desc="Westside centre serving Bukit Indah &amp; Iskandar Puteri." data-map="https://maps.app.goo.gl/MVGCp1yj9zMym4Zo7"><b>Johor:</b> Bukit Indah</span>
+            <span class="loc" data-loc data-area="Johor" data-name="Kulai" data-addr="205A, Jalan Kenanga 29/2, Indahpura, 81000 Kulai, Johor" data-img="assets/locations/kulai.webp" data-desc="Northern Johor centre in Kulai town." data-map="https://maps.app.goo.gl/g6rKbcspsin6o1Nr7"><b>Johor:</b> Kulai</span>
+            <span class="loc" data-loc data-area="Selangor" data-name="Setia Alam" data-addr="10-3-1, JALAN SETIA PRIMA P U13/P SETIA ALAM, SEKSYEN, U13, 40170 Shah Alam, Selangor" data-img="assets/locations/sp.webp" data-desc="Klang Valley centre in Setia Alam." data-map="https://maps.app.goo.gl/BsvLzCFLFC91jNfa6"><b>Selangor:</b> Setia Alam</span>
+            <span class="loc" data-loc data-area="Online" data-name="Live Class" data-addr="Online · Live Class" data-img="assets/locations/online.webp" data-desc="Join live, interactive lessons online." data-map="#"><b>Online:</b> Live Class</span>
           </div>
         </div>
         <div class="adv-cue" data-cue><strong>Advisor cue:</strong> match the proof to their worry — MOE/awards for "is this legit?", HRDC for company-sponsored learners, workplace-focus for career-driven inquiries.</div>
@@ -4974,9 +4974,9 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
           <div class="pv-switch" aria-label="Pricing view 切换价格视图">
             <div class="cur-switch" id="curSwitch" data-advisor-only aria-label="Currency"></div>
             <div class="pv-switch__box" role="tablist">
-              <button type="button" class="pv-switch__opt is-on" id="pvTabCourse" role="tab" aria-selected="true" title="Course packages 课程配套"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH" onerror="this.outerHTML='<span class=\'pv-fb\'>TOUCH</span>'"></button>
+              <button type="button" class="pv-switch__opt is-on" id="pvTabCourse" role="tab" aria-selected="true" title="Course packages 课程配套"><img loading="lazy" decoding="async" decoding="async" src="assets/logo/touch.webp" alt="TOUCH" onerror="this.outerHTML='<span class=\'pv-fb\'>TOUCH</span>'"></button>
               <button type="button" class="pv-switch__opt" id="pvTabIelts" role="tab" aria-selected="false" title="IELTS pricing IELTS 价格"><span class="pv-fb pv-fb--ielts">IELTS</span></button>
-              <button type="button" class="pv-switch__opt" id="pvTabHrdc" role="tab" aria-selected="false" title="HRDC pricing HRDC 价格"><img decoding="async" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.outerHTML='<span class=\'pv-fb pv-fb--hrdc\'>HRDC</span>'"></button>
+              <button type="button" class="pv-switch__opt" id="pvTabHrdc" role="tab" aria-selected="false" title="HRDC pricing HRDC 价格"><img loading="lazy" decoding="async" decoding="async" src="assets/logo/hrdc.webp" alt="HRDC" onerror="this.outerHTML='<span class=\'pv-fb pv-fb--hrdc\'>HRDC</span>'"></button>
             </div>
           </div>
           <div class="pv-view" id="pvCourse">
@@ -4993,7 +4993,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
             <button type="button" class="ext-toggle-btn" id="extToggle" aria-expanded="false">Show more packages <span class="zh">显示更多配套</span> <span class="ext-chev" aria-hidden="true">⌄</span></button>
           </div>
           <div class="price-reveal-cta">
-            <button type="button" class="reveal-open-btn reveal-open-btn--logo" id="hrdcOpen" aria-label="See your subsidised price 查看津贴后价格"><img decoding="async" class="reveal-open-logo" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display='none'"></button>
+            <button type="button" class="reveal-open-btn reveal-open-btn--logo" id="hrdcOpen" aria-label="See your subsidised price 查看津贴后价格"><img loading="lazy" decoding="async" decoding="async" class="reveal-open-logo" src="assets/logo/hrdc.webp" alt="HRDC" onerror="this.style.display='none'"></button>
             <div class="inst-cta" id="instCta" hidden>
               <button type="button" class="inst-open-btn" id="instOpen" aria-label="0% interest-free installment plans 0% 免息分期">
                 <span class="inst-open-btn__pct">0%</span>
@@ -5006,7 +5006,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
               </button>
               <button type="button" class="inst-open-btn inst-open-btn--hrdc is-relocated" id="hrdcClaimOpen" aria-label="HRDC claim procedures HRDC 报销流程">
-                <span class="inst-open-btn__pct inst-open-btn__pct--hrdc"><img decoding="async" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display='none';this.parentNode.textContent='HRDC'"></span>
+                <span class="inst-open-btn__pct inst-open-btn__pct--hrdc"><img loading="lazy" decoding="async" decoding="async" src="assets/logo/hrdc.webp" alt="HRDC" onerror="this.style.display='none';this.parentNode.textContent='HRDC'"></span>
                 <span class="inst-open-btn__lab">HRDC Claim<span class="zh">HRDC 报销流程</span></span>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
               </button>
@@ -5075,7 +5075,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         <div class="glass-stage">
           <span class="glow" style="background:var(--l2);left:4%;top:12%"></span>
           <span class="glow" style="background:var(--p1);right:2%;bottom:14%"></span>
-          <div class="ttc-grid" id="ttLoc"><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Live Class</span></div><img loading="lazy" decoding="async" src="assets/locations/online.png" alt="Live Class" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Online</span><div class="ttc__name">Live Class</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#EBB12A;--lt:#4A3700">Level P1</span><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span><span class="ttc__lv" style="--lc:#15335E;--lt:#fff">Level 4</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>Online · Live Class</span></div><div class="ttc__btns"><button type="button" class="ttc__tt" data-ttctt="Live Class"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Mount Austin</span></div><img loading="lazy" decoding="async" src="assets/locations/austin.png" alt="Mount Austin" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Mount Austin</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>7-02, Jalan Mutiara Emas 2A, Taman Mount Austin, 81100 Johor Bahru, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Mount Austin" data-addr="7-02, Jalan Mutiara Emas 2A, Taman Mount Austin, 81100 Johor Bahru, Johor" data-map="https://maps.app.goo.gl/odkT1HQNE7pc4PTJ9"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Mount Austin"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Sutera Utama</span></div><img loading="lazy" decoding="async" src="assets/locations/sutera.png" alt="Sutera Utama" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Sutera Utama</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>90B, Jalan Sutera Tanjung 8/4, Taman Sutera Utama, 81300 Skudai, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Sutera Utama" data-addr="90B, Jalan Sutera Tanjung 8/4, Taman Sutera Utama, 81300 Skudai, Johor" data-map="https://maps.app.goo.gl/F8h74Aq7bNKcJCxZ6"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Sutera Utama"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Bukit Indah</span></div><img loading="lazy" decoding="async" src="assets/locations/bi.png" alt="Bukit Indah" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Bukit Indah</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>6A, Jalan Indah 15/1, Taman Bukit Indah, 79100 Iskandar Puteri, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Bukit Indah" data-addr="6A, Jalan Indah 15/1, Taman Bukit Indah, 79100 Iskandar Puteri, Johor" data-map="https://maps.app.goo.gl/MVGCp1yj9zMym4Zo7"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Bukit Indah"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Kulai</span></div><img loading="lazy" decoding="async" src="assets/locations/kulai.png" alt="Kulai" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Kulai</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>205A, Jalan Kenanga 29/2, Indahpura, 81000 Kulai, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Kulai" data-addr="205A, Jalan Kenanga 29/2, Indahpura, 81000 Kulai, Johor" data-map="https://maps.app.goo.gl/g6rKbcspsin6o1Nr7"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Kulai"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Setia Alam</span></div><img loading="lazy" decoding="async" src="assets/locations/sp.png" alt="Setia Alam" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Selangor</span><div class="ttc__name">Setia Alam</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>10-3-1, JALAN SETIA PRIMA P U13/P SETIA ALAM, SEKSYEN, U13, 40170 Shah Alam, Selangor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Setia Alam" data-addr="10-3-1, JALAN SETIA PRIMA P U13/P SETIA ALAM, SEKSYEN, U13, 40170 Shah Alam, Selangor" data-map="https://maps.app.goo.gl/BsvLzCFLFC91jNfa6"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Setia Alam"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article></div>
+          <div class="ttc-grid" id="ttLoc"><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Live Class</span></div><img loading="lazy" decoding="async" src="assets/locations/online.webp" alt="Live Class" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Online</span><div class="ttc__name">Live Class</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#EBB12A;--lt:#4A3700">Level P1</span><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span><span class="ttc__lv" style="--lc:#15335E;--lt:#fff">Level 4</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>Online · Live Class</span></div><div class="ttc__btns"><button type="button" class="ttc__tt" data-ttctt="Live Class"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Mount Austin</span></div><img loading="lazy" decoding="async" src="assets/locations/austin.webp" alt="Mount Austin" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Mount Austin</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>7-02, Jalan Mutiara Emas 2A, Taman Mount Austin, 81100 Johor Bahru, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Mount Austin" data-addr="7-02, Jalan Mutiara Emas 2A, Taman Mount Austin, 81100 Johor Bahru, Johor" data-map="https://maps.app.goo.gl/odkT1HQNE7pc4PTJ9"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Mount Austin"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Sutera Utama</span></div><img loading="lazy" decoding="async" src="assets/locations/sutera.webp" alt="Sutera Utama" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Sutera Utama</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>90B, Jalan Sutera Tanjung 8/4, Taman Sutera Utama, 81300 Skudai, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Sutera Utama" data-addr="90B, Jalan Sutera Tanjung 8/4, Taman Sutera Utama, 81300 Skudai, Johor" data-map="https://maps.app.goo.gl/F8h74Aq7bNKcJCxZ6"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Sutera Utama"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Bukit Indah</span></div><img loading="lazy" decoding="async" src="assets/locations/bi.webp" alt="Bukit Indah" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Bukit Indah</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>6A, Jalan Indah 15/1, Taman Bukit Indah, 79100 Iskandar Puteri, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Bukit Indah" data-addr="6A, Jalan Indah 15/1, Taman Bukit Indah, 79100 Iskandar Puteri, Johor" data-map="https://maps.app.goo.gl/MVGCp1yj9zMym4Zo7"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Bukit Indah"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Kulai</span></div><img loading="lazy" decoding="async" src="assets/locations/kulai.webp" alt="Kulai" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Johor</span><div class="ttc__name">Kulai</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span><span class="ttc__lv" style="--lc:#E8472B;--lt:#fff">Level 3</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>205A, Jalan Kenanga 29/2, Indahpura, 81000 Kulai, Johor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Kulai" data-addr="205A, Jalan Kenanga 29/2, Indahpura, 81000 Kulai, Johor" data-map="https://maps.app.goo.gl/g6rKbcspsin6o1Nr7"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Kulai"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article><article class="ttc"><div class="ttc__photo"><div class="ttc__ph"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Setia Alam</span></div><img loading="lazy" decoding="async" src="assets/locations/sp.webp" alt="Setia Alam" onerror="this.style.display=&#39;none&#39;"></div><div class="ttc__body"><span class="ttc__area">Selangor</span><div class="ttc__name">Setia Alam</div><div class="ttc__lvls"><span class="ttc__lv" style="--lc:#2E9E50;--lt:#fff">Level 1</span><span class="ttc__lv" style="--lc:#1F9FE6;--lt:#fff">Level 2</span></div><div class="ttc__addr"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>10-3-1, JALAN SETIA PRIMA P U13/P SETIA ALAM, SEKSYEN, U13, 40170 Shah Alam, Selangor</span></div><div class="ttc__btns"><button type="button" class="ttc__link" data-ttcmap data-name="Setia Alam" data-addr="10-3-1, JALAN SETIA PRIMA P U13/P SETIA ALAM, SEKSYEN, U13, 40170 Shah Alam, Selangor" data-map="https://maps.app.goo.gl/BsvLzCFLFC91jNfa6"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg><span>View Location</span></button><button type="button" class="ttc__tt" data-ttctt="Setia Alam"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Timetable</button></div></div></article></div>
         </div>
       </section>
 
@@ -6957,7 +6957,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         '<div class="epi-body">'+
           // ---- Mr. Chua entry card (opens the PPT-style popup) ----
           '<div class="chua-entryrow en-hide"><button type="button" class="dean-card chua-entry" data-chuapop="epi" aria-label="Meet Mr. Chua \u00b7 Mindset Coach">'+
-            '<span class="dean-ava"><span class="dean-ava__fallback">MC</span><img loading="lazy" decoding="async" src="assets/team/chua.png" alt="Mr. Chua" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'"></span>'+
+            '<span class="dean-ava"><span class="dean-ava__fallback">MC</span><img loading="lazy" decoding="async" src="assets/team/chua.webp" alt="Mr. Chua" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'"></span>'+
             '<span><span class="dean-card__tag">Guided by</span><span class="dean-card__name">Mr. Chua</span><span class="dean-card__role">Mindset Coach \u00b7 \u601d\u7ef4\u5bfc\u5e08</span></span>'+
             '<svg class="chua-entry__go" viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>'+
           '</button></div>'+
@@ -7218,7 +7218,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         mirrorHero(3,"See Your Growth","看见成长中的自己","Growth Reflection Report","成长回顾报告","After 24 lessons, see your progress and what to work on next.","上完 24 堂课后，回顾你的进步与接下来可以继续加强的地方。")+
         '<div class="goal-body">'+
           '<div class="chua-entryrow en-hide"><button type="button" class="dean-card chua-entry" data-chuapop="rev" aria-label="Meet Mr. Chua \u00b7 Learning Coach">'+
-            '<span class="dean-ava"><span class="dean-ava__fallback">MC</span><img loading="lazy" decoding="async" src="assets/team/chua.png" alt="Mr. Chua" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'"></span>'+
+            '<span class="dean-ava"><span class="dean-ava__fallback">MC</span><img loading="lazy" decoding="async" src="assets/team/chua.webp" alt="Mr. Chua" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'"></span>'+
             '<span><span class="dean-card__tag">Guided by</span><span class="dean-card__name">Mr. Chua</span><span class="dean-card__role">Learning Coach \u00b7 \u5b66\u4e60\u6559\u7ec3</span></span>'+
             '<svg class="chua-entry__go" viewBox="0 0 24 24" fill="none"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>'+
           '</button></div>'+
@@ -7299,10 +7299,10 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
           '</div>'+
           '<div class="goal-quote"><span class="goal-quote__ic">'+wave+'</span>Stage helps you practise. IPA helps you find your voice. <span class="zh">舞台帮助你练习。音标帮助你找到自己的声音。</span></div>'+
 
-          '<div class="dean-sign"><!-- Dean photo: upload to assets/characters/enzo.png -->'+
+          '<div class="dean-sign"><!-- Dean photo: upload to assets/characters/enzo.webp -->'+
             '<span class="dean-sign__eyebrow">From the Dean · 院长亲自带领</span>'+
             '<div class="dean-card">'+
-              '<span class="dean-ava"><span class="dean-ava__fallback">EF</span><img loading="lazy" decoding="async" src="assets/characters/enzo.png" alt="Mr. Enzo Fong" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'"></span>'+
+              '<span class="dean-ava"><span class="dean-ava__fallback">EF</span><img loading="lazy" decoding="async" src="assets/characters/enzo.webp" alt="Mr. Enzo Fong" onload="this.parentNode.classList.add(\'has-img\')" onerror="this.style.display=\'none\'"></span>'+
               '<span><span class="dean-card__tag">Guided by</span><span class="dean-card__name">Mr. Enzo Fong</span><span class="dean-card__role">Founder &amp; Dean · TOUCH English</span></span>'+
             '</div>'+
           '</div>'+
@@ -7397,8 +7397,8 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
           '<div class="rcpop__card" role="dialog" aria-modal="true" style="--c:#7C5CFF">',
             '<button class="rcpop__x" type="button" data-rcclose aria-label="Close">\u00d7</button>',
             '<div class="rcpop__hero">',
-              '<img loading="lazy" decoding="async" src="assets/characters/ipa.jpg" alt="学习充电站 · 院长 Mr. Fong">',
-              '<div class="rcpop__hero-fallback" style="display:none"><b>院长 Mr. Fong 现场教学</b><span>海报图片待上传 · assets/characters/ipa.jpg</span></div>',
+              '<img loading="lazy" decoding="async" src="assets/characters/ipa.webp" alt="学习充电站 · 院长 Mr. Fong">',
+              '<div class="rcpop__hero-fallback" style="display:none"><b>院长 Mr. Fong 现场教学</b><span>海报图片待上传 · assets/characters/ipa.webp</span></div>',
             '</div>',
             '<div class="rcpop__body">',
               '<span class="rcpop__eyebrow">📢 2026 年第六场学习充电站</span>',
@@ -7422,36 +7422,36 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     // ----- "Teaching experience" card -> TOUCH Team intro modal -----
     var TEAM=[
       {group:"Teaching Team", c:"#5E8AA6", o1:"#9CEBFF", o2:"#2B9BEA", role:"English Educator", url:"#", desc:"A growing team of dedicated educators.", members:[
-        {n:"Rajan",img:"assets/team/rajan.png",url:"https://tec.touchenglish.edu.my/user/9037",role:"Senior Teacher · IELTS Trainer",joined:"2014",spec:"IELTS Preparation",mbti:"ESTJ",mtype:"Organizer",edu:"LLB (Hons) & English Teaching — University of Wolverhampton, UK",style:"Traditional, trusted fundamentals — reading for sentence structure, speaking for confidence, grammar for writing, and vocabulary for word choice.",passion:"Teaching; Lecturing",hobbies:"Reading & news; watching sports (esp. Premier League)",rating:"4.92",about:"Teaches with sincere dedication to students' educational needs, aiming to enrich young minds and help them grasp the fine intricacies of English.",quote:"To educate is an act of love, not a problem.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."},{t:"IELTS Coaching",d:"Deliver targeted IELTS preparation classes, focusing on exam strategies and high-score techniques."}]},
-        {n:"Simran",img:"assets/team/simran.png",url:"https://tec.touchenglish.edu.my/user/14004",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"INFP",mtype:"Inspirer",rating:"4.97",edu:"B.ED Teaching English as a Second Language (TESL) — University of Selangor (UNISEL)",style:"Humour and interactive activities for a fun, engaging and collaborative classroom.",passion:"Teaching; cooking different cuisines; learning about car models",hobbies:"Cooking; music; modifying small car parts",about:"A lifelong dreamer of becoming a teacher who connects with students through laughter and conversation, believing humour enriches learning.",quote:"Life is not a problem to be solved but a reality to be experienced.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
-        {n:"Mai",img:"assets/team/mai.png",url:"https://tec.touchenglish.edu.my/user/15407",role:"Teacher",joined:"2024",spec:"Adult English Communication",mbti:"ENFP",mtype:"Inspirer",rating:"4.94",about:"Passionate about helping adult learners build confidence through practical communication and immersive learning experiences.",quote:"Believe you can and you're already halfway there.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
-        {n:"Darshni",img:"assets/team/darshni.png",url:"https://tec.touchenglish.edu.my/user/12774",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ENFJ",mtype:"Inspirer",edu:"Bachelor of Arts in TESL — Quest International University, Ipoh",style:"Dynamic methods that foster critical thinking and meaningful discussion in a supportive, inclusive classroom.",passion:"Teaching and sharing knowledge; building social skills and character",hobbies:"Painting; Research; Outdoor activities",rating:"4.96",about:"An enthusiastic, passionate teacher from Ipoh, highly effective with students of all backgrounds in reaching their learning goals.",quote:"Thoughts become things.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
-        {n:"Yaamini",img:"assets/team/yaamini.png",url:"https://tec.touchenglish.edu.my/user/14083",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ISFJ",mtype:"Organizer",edu:"Bachelor's in Teaching English as a Second Language (Hons) — City University of Malaysia",style:"Rooted in Vygotsky's Cognitive Development theory — clear grammar explanation before practice to build confidence and understanding.",passion:"Helping students become proficient, confident English speakers",hobbies:"Netflix (psychological thrillers & documentaries); relaxing",rating:"4.89",about:"A dedicated, easy-going teacher known for a positive nature and strong, friendly teacher-student relationships.",quote:"Own your throne, queen, and rule your realm with unapologetic power.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
-        {n:"Yoha",img:"assets/team/yoha.png",url:"https://tec.touchenglish.edu.my/user/18504",role:"Teacher",joined:"2025",spec:"Adult English Communication",mbti:"INFJ",mtype:"Inspirer",rating:"4.92",edu:"BA in English Literature — Universiti Putra Malaysia (UPM)",exp:"3 years 8 months",colour:"Off-white",about:"I create a warm, engaging learning environment where students feel comfortable, confident and encouraged to express themselves — believing every mistake is a chance to learn and grow.",quote:"The trouble is, you think you have time.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
-        {n:"Nita",img:"assets/team/nita.png",url:"https://tec.touchenglish.edu.my/user/7005",role:"Head of Curriculum",joined:"2017",spec:"Curriculum Design",mbti:"INFJ",mtype:"Inspirer",edu:"Masters in English Linguistics — University of Malaya (UM)",style:"Inquiry approach that builds strong rapport between teacher and learners.",passion:"Ancient civilizations & architecture",hobbies:"Postcrossing",rating:"4.95",about:"Over 7 years guiding mixed-ability learners and exam prep (IELTS, MUET) plus Business English company training; loves supporting learners to impact their wider community.",quote:"Let us not pray to be sheltered from dangers, but to be fearless in facing them. — Rabindranath Tagore",skills:[{t:"Curriculum Architecture",d:"Design and update tiered lesson materials using proprietary formulas and templates."},{t:"Pedagogical Alignment",d:"Ensure all content drives the PWE vision through effective pedagogical approaches."},{t:"Quality Audit",d:"Maintain the reliability of assessment tests and monitor teaching quality through recorded observations."},{t:"Cross-Functional",d:"Actively assist other departments during peak periods, events, or when specialized expertise is required."}]},
-        {n:"Valar",img:"assets/team/valar.png",url:"https://tec.touchenglish.edu.my/user/7327",role:"Head of Student Affairs",joined:"2018",spec:"Student Affairs",mbti:"INFP",mtype:"Inspirer",edu:"Bachelor of English (TESOL) Hons. — UNITAR International University",style:"Conventional methods with a sprinkle of modern technology; student-centred with a jovial environment.",passion:"Writing; Dancing",hobbies:"People-watching over a good coffee",rating:"4.95",about:"Full of burning passion for both teaching and cooking; loves to talk yet a self-described introvert who treats every student as if their opinion matters most.",quote:"The best brains of the nation can be found on the last benches of the classroom. — A.P.J. Abdul Kalam",skills:[{t:"Performance Monitoring",d:"Oversee student performance via assessments, star ratings, and upgradation."},{t:"Crisis Support",d:"Provide guidance and crisis intervention to resolve student and teacher related challenges."},{t:"Student\u2013Teacher Liaison",d:"Address concerns from both remote students and advisors regarding teacher-student dynamics."},{t:"Cross-Functional",d:"Actively assist other departments during peak periods, events, or when specialized expertise is required."}]},
-        {n:"Tiera",img:"assets/team/tiera.png",url:"https://tec.touchenglish.edu.my/user/7006",role:"Head of Professional Development",joined:"2018",spec:"Teacher Training",mbti:"INFP",mtype:"Inspirer",edu:"Masters in Education (Management & Administration) - TESL — Universiti Teknologi Malaysia (UTM)",style:"A facilitator who develops critical thinking; a great listener who uses humour — students say it feels like a therapy session.",passion:"Teaching; understanding people",hobbies:"Reading; Vlogging",rating:"4.96",about:"Enthusiastic, dynamic trainer with strong communication, management and team-building skills, designing varied programs and her own methods so learners truly absorb the material.",quote:"Wheresoever you go, go with all your heart. If you always give, you will always get.",skills:[{t:"Training Programs",d:"Design and implement high-impact training programs and workshops for the teaching team."},{t:"Needs Analysis",d:"Identify areas for improvement based on TEC goals, teacher feedback, and global educational trends."},{t:"PLC & Recognition",d:"Promote best-practice sharing (PLC) and celebrate teacher milestones to drive morale and excellence."},{t:"Cross-Functional",d:"Actively assist other departments during peak periods, events, or when specialized expertise is required."}]},
-        {n:"Lala",img:"assets/team/lala.png",url:"https://tec.touchenglish.edu.my/user/6626",role:"Senior Teacher",joined:"2022",spec:"Adult English Communication",mbti:"INTJ",mtype:"Strategist",edu:"Masters of Education (TESL) — Universiti Teknologi Malaysia (UTM)",style:"Humorous and active for a stress-free classroom; encourages students to converse naturally with one another.",passion:"Connecting with students; art, especially crochet and architecture",hobbies:"Watching YouTube videos",rating:"4.90",about:"An ambivert — active and talkative in class, relaxed at home — who loves bonding with students and building genuine connections.",quote:"No act of kindness, no matter how small, is ever wasted.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."},{t:"PLC Leadership",d:"Conduct PLC sessions to share best practices and drive teacher development."}]},
-        {n:"Kuna",img:"assets/team/kuna.png",url:"https://tec.touchenglish.edu.my/user/11410",role:"Senior Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ENFJ",mtype:"Inspirer",edu:"Master of Science (Chemical Engineering) — Universiti Teknologi MARA (UiTM)",style:"Compliment first, then challenge; Self-Determination Theory, rubrics, constructive feedback, roleplay and VARK (Visual / Auditory / Read-Write / Kinaesthetic) methods.",passion:"Skincare, wellness, classical music & books, the sound of waves",hobbies:"Meditation; reading; piano; learning languages",rating:"4.94",about:"Always learning and being her own student; believes kindness is free and focuses on helping every student think outside the box.",quote:"Being highly intellectual and well-mannered is really seductive and attractive.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
-        {n:"Mima",img:"assets/team/mima.png",url:"https://tec.touchenglish.edu.my/user/13279",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ENFP",mtype:"Inspirer",rating:"4.95",edu:"Diploma — Politeknik Mukah",style:"Demonstrator (pictures, music, activities, role play) and open discussion across varied topics.",passion:"Singing — her first love and the secret of her energy",hobbies:"Singing & reading",about:"Reliable, conscientious and caring — open-minded, patient, prompt, and always approachable, encouraging and supportive.",quote:"The dream begins with a teacher who believes in you, who leads you to the next plateau, sometimes poking you with a sharp stick called 'truth.' — Dan Rather",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]}
+        {n:"Rajan",img:"assets/team/rajan.webp",url:"https://tec.touchenglish.edu.my/user/9037",role:"Senior Teacher · IELTS Trainer",joined:"2014",spec:"IELTS Preparation",mbti:"ESTJ",mtype:"Organizer",edu:"LLB (Hons) & English Teaching — University of Wolverhampton, UK",style:"Traditional, trusted fundamentals — reading for sentence structure, speaking for confidence, grammar for writing, and vocabulary for word choice.",passion:"Teaching; Lecturing",hobbies:"Reading & news; watching sports (esp. Premier League)",rating:"4.92",about:"Teaches with sincere dedication to students' educational needs, aiming to enrich young minds and help them grasp the fine intricacies of English.",quote:"To educate is an act of love, not a problem.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."},{t:"IELTS Coaching",d:"Deliver targeted IELTS preparation classes, focusing on exam strategies and high-score techniques."}]},
+        {n:"Simran",img:"assets/team/simran.webp",url:"https://tec.touchenglish.edu.my/user/14004",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"INFP",mtype:"Inspirer",rating:"4.97",edu:"B.ED Teaching English as a Second Language (TESL) — University of Selangor (UNISEL)",style:"Humour and interactive activities for a fun, engaging and collaborative classroom.",passion:"Teaching; cooking different cuisines; learning about car models",hobbies:"Cooking; music; modifying small car parts",about:"A lifelong dreamer of becoming a teacher who connects with students through laughter and conversation, believing humour enriches learning.",quote:"Life is not a problem to be solved but a reality to be experienced.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
+        {n:"Mai",img:"assets/team/mai.webp",url:"https://tec.touchenglish.edu.my/user/15407",role:"Teacher",joined:"2024",spec:"Adult English Communication",mbti:"ENFP",mtype:"Inspirer",rating:"4.94",about:"Passionate about helping adult learners build confidence through practical communication and immersive learning experiences.",quote:"Believe you can and you're already halfway there.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
+        {n:"Darshni",img:"assets/team/darshni.webp",url:"https://tec.touchenglish.edu.my/user/12774",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ENFJ",mtype:"Inspirer",edu:"Bachelor of Arts in TESL — Quest International University, Ipoh",style:"Dynamic methods that foster critical thinking and meaningful discussion in a supportive, inclusive classroom.",passion:"Teaching and sharing knowledge; building social skills and character",hobbies:"Painting; Research; Outdoor activities",rating:"4.96",about:"An enthusiastic, passionate teacher from Ipoh, highly effective with students of all backgrounds in reaching their learning goals.",quote:"Thoughts become things.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
+        {n:"Yaamini",img:"assets/team/yaamini.webp",url:"https://tec.touchenglish.edu.my/user/14083",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ISFJ",mtype:"Organizer",edu:"Bachelor's in Teaching English as a Second Language (Hons) — City University of Malaysia",style:"Rooted in Vygotsky's Cognitive Development theory — clear grammar explanation before practice to build confidence and understanding.",passion:"Helping students become proficient, confident English speakers",hobbies:"Netflix (psychological thrillers & documentaries); relaxing",rating:"4.89",about:"A dedicated, easy-going teacher known for a positive nature and strong, friendly teacher-student relationships.",quote:"Own your throne, queen, and rule your realm with unapologetic power.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
+        {n:"Yoha",img:"assets/team/yoha.webp",url:"https://tec.touchenglish.edu.my/user/18504",role:"Teacher",joined:"2025",spec:"Adult English Communication",mbti:"INFJ",mtype:"Inspirer",rating:"4.92",edu:"BA in English Literature — Universiti Putra Malaysia (UPM)",exp:"3 years 8 months",colour:"Off-white",about:"I create a warm, engaging learning environment where students feel comfortable, confident and encouraged to express themselves — believing every mistake is a chance to learn and grow.",quote:"The trouble is, you think you have time.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
+        {n:"Nita",img:"assets/team/nita.webp",url:"https://tec.touchenglish.edu.my/user/7005",role:"Head of Curriculum",joined:"2017",spec:"Curriculum Design",mbti:"INFJ",mtype:"Inspirer",edu:"Masters in English Linguistics — University of Malaya (UM)",style:"Inquiry approach that builds strong rapport between teacher and learners.",passion:"Ancient civilizations & architecture",hobbies:"Postcrossing",rating:"4.95",about:"Over 7 years guiding mixed-ability learners and exam prep (IELTS, MUET) plus Business English company training; loves supporting learners to impact their wider community.",quote:"Let us not pray to be sheltered from dangers, but to be fearless in facing them. — Rabindranath Tagore",skills:[{t:"Curriculum Architecture",d:"Design and update tiered lesson materials using proprietary formulas and templates."},{t:"Pedagogical Alignment",d:"Ensure all content drives the PWE vision through effective pedagogical approaches."},{t:"Quality Audit",d:"Maintain the reliability of assessment tests and monitor teaching quality through recorded observations."},{t:"Cross-Functional",d:"Actively assist other departments during peak periods, events, or when specialized expertise is required."}]},
+        {n:"Valar",img:"assets/team/valar.webp",url:"https://tec.touchenglish.edu.my/user/7327",role:"Head of Student Affairs",joined:"2018",spec:"Student Affairs",mbti:"INFP",mtype:"Inspirer",edu:"Bachelor of English (TESOL) Hons. — UNITAR International University",style:"Conventional methods with a sprinkle of modern technology; student-centred with a jovial environment.",passion:"Writing; Dancing",hobbies:"People-watching over a good coffee",rating:"4.95",about:"Full of burning passion for both teaching and cooking; loves to talk yet a self-described introvert who treats every student as if their opinion matters most.",quote:"The best brains of the nation can be found on the last benches of the classroom. — A.P.J. Abdul Kalam",skills:[{t:"Performance Monitoring",d:"Oversee student performance via assessments, star ratings, and upgradation."},{t:"Crisis Support",d:"Provide guidance and crisis intervention to resolve student and teacher related challenges."},{t:"Student\u2013Teacher Liaison",d:"Address concerns from both remote students and advisors regarding teacher-student dynamics."},{t:"Cross-Functional",d:"Actively assist other departments during peak periods, events, or when specialized expertise is required."}]},
+        {n:"Tiera",img:"assets/team/tiera.webp",url:"https://tec.touchenglish.edu.my/user/7006",role:"Head of Professional Development",joined:"2018",spec:"Teacher Training",mbti:"INFP",mtype:"Inspirer",edu:"Masters in Education (Management & Administration) - TESL — Universiti Teknologi Malaysia (UTM)",style:"A facilitator who develops critical thinking; a great listener who uses humour — students say it feels like a therapy session.",passion:"Teaching; understanding people",hobbies:"Reading; Vlogging",rating:"4.96",about:"Enthusiastic, dynamic trainer with strong communication, management and team-building skills, designing varied programs and her own methods so learners truly absorb the material.",quote:"Wheresoever you go, go with all your heart. If you always give, you will always get.",skills:[{t:"Training Programs",d:"Design and implement high-impact training programs and workshops for the teaching team."},{t:"Needs Analysis",d:"Identify areas for improvement based on TEC goals, teacher feedback, and global educational trends."},{t:"PLC & Recognition",d:"Promote best-practice sharing (PLC) and celebrate teacher milestones to drive morale and excellence."},{t:"Cross-Functional",d:"Actively assist other departments during peak periods, events, or when specialized expertise is required."}]},
+        {n:"Lala",img:"assets/team/lala.webp",url:"https://tec.touchenglish.edu.my/user/6626",role:"Senior Teacher",joined:"2022",spec:"Adult English Communication",mbti:"INTJ",mtype:"Strategist",edu:"Masters of Education (TESL) — Universiti Teknologi Malaysia (UTM)",style:"Humorous and active for a stress-free classroom; encourages students to converse naturally with one another.",passion:"Connecting with students; art, especially crochet and architecture",hobbies:"Watching YouTube videos",rating:"4.90",about:"An ambivert — active and talkative in class, relaxed at home — who loves bonding with students and building genuine connections.",quote:"No act of kindness, no matter how small, is ever wasted.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."},{t:"PLC Leadership",d:"Conduct PLC sessions to share best practices and drive teacher development."}]},
+        {n:"Kuna",img:"assets/team/kuna.webp",url:"https://tec.touchenglish.edu.my/user/11410",role:"Senior Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ENFJ",mtype:"Inspirer",edu:"Master of Science (Chemical Engineering) — Universiti Teknologi MARA (UiTM)",style:"Compliment first, then challenge; Self-Determination Theory, rubrics, constructive feedback, roleplay and VARK (Visual / Auditory / Read-Write / Kinaesthetic) methods.",passion:"Skincare, wellness, classical music & books, the sound of waves",hobbies:"Meditation; reading; piano; learning languages",rating:"4.94",about:"Always learning and being her own student; believes kindness is free and focuses on helping every student think outside the box.",quote:"Being highly intellectual and well-mannered is really seductive and attractive.",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]},
+        {n:"Mima",img:"assets/team/mima.webp",url:"https://tec.touchenglish.edu.my/user/13279",role:"Teacher",joined:"2023",spec:"Adult English Communication",mbti:"ENFP",mtype:"Inspirer",rating:"4.95",edu:"Diploma — Politeknik Mukah",style:"Demonstrator (pictures, music, activities, role play) and open discussion across varied topics.",passion:"Singing — her first love and the secret of her energy",hobbies:"Singing & reading",about:"Reliable, conscientious and caring — open-minded, patient, prompt, and always approachable, encouraging and supportive.",quote:"The dream begins with a teacher who believes in you, who leads you to the next plateau, sometimes poking you with a sharp stick called 'truth.' — Dan Rather",skills:[{t:"Teaching Design",d:"Develop immersive, student-centered lessons tailored to diverse learning styles and goals."},{t:"Facilitation",d:"Encourage active participation to build confidence in real-life English communication."},{t:"Educational Content",d:"Produce educational videos and experiment with creative teaching methods."},{t:"Event-Based Learning",d:"Lead events and activities that allow students to practice English in practical settings."}]}
       ]},
       {group:"Advisor Team", c:"#5F77A8", o1:"#FFD3AE", o2:"#4F97E6", role:"Education Advisor", url:"#", desc:"A learner-focused support team guiding every journey.", members:[
-        {n:"Fabien",img:"assets/team/fabien.png",role:"Education Advisor",joined:"2022",spec:"Learning Advisory",mbti:"ESTJ",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Have the courage to face problems, not escape them.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
-        {n:"Alen",img:"assets/team/alen.png",role:"Education Advisor",joined:"2023",spec:"Learning Advisory",mbti:"ESTJ",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"I just want it easy peasy.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
-        {n:"Xin Ying",img:"assets/team/xinying.png",role:"Education Advisor",joined:"2021",spec:"Learning Advisory",mbti:"ESFJ",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Some things happen so you can become someone new.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
-        {n:"Hui Min",img:"assets/team/huimin.png",role:"Education Advisor",joined:"2022",spec:"Learning Advisory",mbti:"INFJ",mtype:"Inspirer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Above all else, guard your heart, for everything you do flows from it.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
-        {n:"Fish",img:"assets/team/fish.png",role:"Education Advisor",joined:"2019",spec:"Learning Advisory",mbti:"INFP",mtype:"Inspirer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Do what you love, love what you do.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
-        {n:"Mizy",img:"assets/team/mizy.png",role:"Education Advisor",joined:"2018",spec:"Learning Advisory",mbti:"INTJ",mtype:"Strategist",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"A positive mind creates a powerful life.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
-        {n:"Si Jie",img:"assets/team/sijie.png",role:"Education Advisor",joined:"2019",spec:"Learning Advisory",mbti:"ESFP",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Be a free and gentle person.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
-        {n:"Elaine",img:"assets/team/elaine.png",role:"Education Advisor",joined:"2015",spec:"Learning Advisory",mbti:"ENTJ",mtype:"Strategist",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Happiness gives me the motivation to grow, work hard and enjoy life.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]}
+        {n:"Fabien",img:"assets/team/fabien.webp",role:"Education Advisor",joined:"2022",spec:"Learning Advisory",mbti:"ESTJ",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Have the courage to face problems, not escape them.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
+        {n:"Alen",img:"assets/team/alen.webp",role:"Education Advisor",joined:"2023",spec:"Learning Advisory",mbti:"ESTJ",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"I just want it easy peasy.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
+        {n:"Xin Ying",img:"assets/team/xinying.webp",role:"Education Advisor",joined:"2021",spec:"Learning Advisory",mbti:"ESFJ",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Some things happen so you can become someone new.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
+        {n:"Hui Min",img:"assets/team/huimin.webp",role:"Education Advisor",joined:"2022",spec:"Learning Advisory",mbti:"INFJ",mtype:"Inspirer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Above all else, guard your heart, for everything you do flows from it.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
+        {n:"Fish",img:"assets/team/fish.webp",role:"Education Advisor",joined:"2019",spec:"Learning Advisory",mbti:"INFP",mtype:"Inspirer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Do what you love, love what you do.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
+        {n:"Mizy",img:"assets/team/mizy.webp",role:"Education Advisor",joined:"2018",spec:"Learning Advisory",mbti:"INTJ",mtype:"Strategist",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"A positive mind creates a powerful life.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
+        {n:"Si Jie",img:"assets/team/sijie.webp",role:"Education Advisor",joined:"2019",spec:"Learning Advisory",mbti:"ESFP",mtype:"Organizer",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Be a free and gentle person.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]},
+        {n:"Elaine",img:"assets/team/elaine.webp",role:"Education Advisor",joined:"2015",spec:"Learning Advisory",mbti:"ENTJ",mtype:"Strategist",about:"Guides learners from first enquiry through enrolment — matching them to the right programme and supporting a smooth, confident learning journey.",quote:"Happiness gives me the motivation to grow, work hard and enjoy life.",skills:[{t:"Programme Consulting",d:"Guide prospects toward the right programs for their needs."},{t:"Growth Advising",d:"Help students map out their academic and professional growth."},{t:"Community Building",d:"Build strong student communities to improve the learning experience."},{t:"Journey Support",d:"Facilitate a seamless journey from enrolment to completion."},{t:"Programme Matching",d:"Connect new learners to the school's diverse educational offerings."}]}
       ]},
       {group:"Management Team", c:"#7C8398", o1:"#FFD98A", o2:"#F2683B", role:"Management", url:"#", desc:"The leadership team behind TOUCH English.", members:[
-        {n:"Elise",img:"assets/team/elise.png",role:"Branding & Marketing Manager",joined:"2010",spec:"Brand & Media",mbti:"ENFP",mtype:"Inspirer",about:"Shapes the TOUCH brand through creative media and storytelling, producing educational content and showcasing real student talent.",quote:"When you understand human nature, everything becomes clearer.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Content Production",d:"Direct the end-to-end process for video shooting, editing, and educational content."},{t:"Brand Storytelling",d:"Use creative media to enhance the student learning experience and brand storytelling."},{t:"Talent Scouting",d:"Identify and showcase student talent, highlighting their progress and unique skills through media."}]},
-        {n:"Wesley",img:"assets/team/wesley.png",role:"Sales & Marketing Manager",joined:"2014",spec:"Sales & Growth",mbti:"ESTJ",mtype:"Organizer",about:"Drives TOUCH's market presence and growth, leading the sales team to turn interest into enrolments through strategic campaigns.",quote:"Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Brand Presence",d:"Drive the organization's public image and market presence through strategic campaigns."},{t:"Enrolment Conversion",d:"Lead the sales team to turn prospective interest into active student enrollments."},{t:"Market Growth",d:"Analyze market trends to identify new opportunities for student recruitment."}]},
-        {n:"Enzo",img:"assets/team/enzo.png",role:"Chief Executive Officer",joined:"2010",spec:"Strategy & Vision",mbti:"ENFJ",mtype:"Inspirer",about:"Leads TOUCH English with a clear long-term vision, aligning every department to the mission while driving sustainable growth and partnerships.",quote:"Life may feel hard or challenging, but once you know it's the right thing to do, moving forward wholeheartedly is where growth begins.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Vision Setting",d:"Set the long-term strategic direction and ensure all departments align with the mission."},{t:"Performance Oversight",d:"Monitor daily operations and high-level performance to ensure organizational health."},{t:"Growth & Partnerships",d:"Lead large-scale initiatives for sustainable growth and institutional partnerships."}]},
-        {n:"Marco",img:"assets/team/marco.png",role:"Chief Financial Officer",joined:"2012",spec:"Finance & Systems",mbti:"ENTJ",mtype:"Strategist",about:"Oversees finance and the TEC systems at TOUCH, streamlining workflows and ensuring stable, efficient operations across the organization.",quote:"Don't be a giant in thought, but a dwarf in action.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Systems & TEC",d:"Oversee the TEC system, ensuring online applications and databases run efficiently."},{t:"Workflow Optimization",d:"Optimize workflows and digital tools to reduce administrative friction for staff."},{t:"Technical Leadership",d:"Provide technical leadership and ensure system stability for all users."}]},
-        {n:"Joyce",img:"assets/team/joyce.png",role:"HR Manager",joined:"2012",spec:"People & Culture",mbti:"ISFP",mtype:"Actionist",about:"Builds a motivated, people-first culture at TOUCH — leading recruitment, onboarding, and fair, smooth internal operations.",quote:"Don't limit your challenges, challenge your limits.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Culture Building",d:"Cultivate a supportive culture where teams feel motivated and valued."},{t:"Talent Acquisition",d:"Lead recruitment and onboarding to bring top talent into the organization."},{t:"Payroll & Policy",d:"Manage payroll, claims, and internal policies to ensure smooth and fair operations."}]},
-        {n:"Chua",img:"assets/team/chua.png",role:"Learning Coach",joined:"2015",spec:"Learning Coaching",mbti:"INFJ",mtype:"Inspirer",about:"A learning coach who uses the English Personality Index to understand each student, building confidence and momentum toward English mastery.",quote:"Life calls not for perfection, but for completeness.",skills:[{t:"EPI Analysis",d:"Use the English Personality Index to identify student strengths and learning preferences."},{t:"Student Motivation",d:"Advise students on leveraging strengths and overcoming challenges to sustain momentum."},{t:"Class Evaluation",d:"Conduct class evaluations and provide practical guidance for consistent progress."},{t:"Confidence Building",d:"Build student confidence and encourage a proactive approach to mastering English."}]},
+        {n:"Elise",img:"assets/team/elise.webp",role:"Branding & Marketing Manager",joined:"2010",spec:"Brand & Media",mbti:"ENFP",mtype:"Inspirer",about:"Shapes the TOUCH brand through creative media and storytelling, producing educational content and showcasing real student talent.",quote:"When you understand human nature, everything becomes clearer.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Content Production",d:"Direct the end-to-end process for video shooting, editing, and educational content."},{t:"Brand Storytelling",d:"Use creative media to enhance the student learning experience and brand storytelling."},{t:"Talent Scouting",d:"Identify and showcase student talent, highlighting their progress and unique skills through media."}]},
+        {n:"Wesley",img:"assets/team/wesley.webp",role:"Sales & Marketing Manager",joined:"2014",spec:"Sales & Growth",mbti:"ESTJ",mtype:"Organizer",about:"Drives TOUCH's market presence and growth, leading the sales team to turn interest into enrolments through strategic campaigns.",quote:"Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Brand Presence",d:"Drive the organization's public image and market presence through strategic campaigns."},{t:"Enrolment Conversion",d:"Lead the sales team to turn prospective interest into active student enrollments."},{t:"Market Growth",d:"Analyze market trends to identify new opportunities for student recruitment."}]},
+        {n:"Enzo",img:"assets/team/enzo.webp",role:"Chief Executive Officer",joined:"2010",spec:"Strategy & Vision",mbti:"ENFJ",mtype:"Inspirer",about:"Leads TOUCH English with a clear long-term vision, aligning every department to the mission while driving sustainable growth and partnerships.",quote:"Life may feel hard or challenging, but once you know it's the right thing to do, moving forward wholeheartedly is where growth begins.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Vision Setting",d:"Set the long-term strategic direction and ensure all departments align with the mission."},{t:"Performance Oversight",d:"Monitor daily operations and high-level performance to ensure organizational health."},{t:"Growth & Partnerships",d:"Lead large-scale initiatives for sustainable growth and institutional partnerships."}]},
+        {n:"Marco",img:"assets/team/marco.webp",role:"Chief Financial Officer",joined:"2012",spec:"Finance & Systems",mbti:"ENTJ",mtype:"Strategist",about:"Oversees finance and the TEC systems at TOUCH, streamlining workflows and ensuring stable, efficient operations across the organization.",quote:"Don't be a giant in thought, but a dwarf in action.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Systems & TEC",d:"Oversee the TEC system, ensuring online applications and databases run efficiently."},{t:"Workflow Optimization",d:"Optimize workflows and digital tools to reduce administrative friction for staff."},{t:"Technical Leadership",d:"Provide technical leadership and ensure system stability for all users."}]},
+        {n:"Joyce",img:"assets/team/joyce.webp",role:"HR Manager",joined:"2012",spec:"People & Culture",mbti:"ISFP",mtype:"Actionist",about:"Builds a motivated, people-first culture at TOUCH — leading recruitment, onboarding, and fair, smooth internal operations.",quote:"Don't limit your challenges, challenge your limits.",skills:[{t:"Operational Strategy",d:"Align daily operations with the organization's long-term mission and vision."},{t:"Cross-Team Integration",d:"Facilitate cross-departmental collaboration to ensure all teams work in harmony."},{t:"Culture Building",d:"Cultivate a supportive culture where teams feel motivated and valued."},{t:"Talent Acquisition",d:"Lead recruitment and onboarding to bring top talent into the organization."},{t:"Payroll & Policy",d:"Manage payroll, claims, and internal policies to ensure smooth and fair operations."}]},
+        {n:"Chua",img:"assets/team/chua.webp",role:"Learning Coach",joined:"2015",spec:"Learning Coaching",mbti:"INFJ",mtype:"Inspirer",about:"A learning coach who uses the English Personality Index to understand each student, building confidence and momentum toward English mastery.",quote:"Life calls not for perfection, but for completeness.",skills:[{t:"EPI Analysis",d:"Use the English Personality Index to identify student strengths and learning preferences."},{t:"Student Motivation",d:"Advise students on leveraging strengths and overcoming challenges to sustain momentum."},{t:"Class Evaluation",d:"Conduct class evaluations and provide practical guidance for consistent progress."},{t:"Confidence Building",d:"Build student confidence and encourage a proactive approach to mastering English."}]},
         {n:"Ling",img:"assets/team/ling.png",role:"Admin",joined:"2011",spec:"Operations & Admin",mbti:"ISFJ",mtype:"Organizer",about:"Keeps TOUCH running smoothly — managing daily operations, facilities, and logistics so every department has what it needs to perform.",quote:"Action brings answers.",skills:[{t:"Operations Execution",d:"Manage daily operations including payroll, claims, and essential documentation."},{t:"Facilities Management",d:"Oversee office resources, equipment, and facilities to maintain a high-standard work environment."},{t:"Process Streamlining",d:"Refine administrative processes to maximize organizational efficiency and data organization."},{t:"Logistics Coordination",d:"Act as the central hub for logistics, ensuring all departments have the tools they need."}]}
       ]}
     ];
@@ -9480,7 +9480,7 @@ io.observe(er);})();
     var orig = struck ? '<span class="tcard__price-orig"><span class="cur-sym">RM</span> '+fmt(taxed(d.orig))+'</span>' : '';
     var tag = subsidyOn ? '<span class="tcard__price-tag">After subsidy<span class="zh">津贴后</span></span>' : '';
     var save = (subsidyOn && d.orig-sub>0) ? '<span class="tcard__price-save">Save '+money(taxed(d.orig-sub))+'<span class="zh">省</span></span>' : '';
-    var hrdc=(!subsidyOn && (i===1||i===2)) ? '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span>' : '';
+    var hrdc=(!subsidyOn && (i===1||i===2)) ? '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.webp" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span>' : '';
     return orig+'<div class="tcard__price-now"><span class="rm">'+curNow().sym+'</span><span class="n">'+fmt(taxed(now))+'</span>'+hrdc+'</div>'+tag+save+
       '<span class="tcard__price-note"><button type="button" class="tcard__calc" data-total="'+i+'" title="看总额 See total" aria-label="See total"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5v3"/></svg></button>+ '+money(taxed(miscFee()))+' <span class="zh">报名＋系统费</span>'+(sstOn?' · <b style=\"color:var(--blue-bright)\">incl. 6% SST</b>':'')+'</span>';
   }
@@ -9697,7 +9697,7 @@ io.observe(er);})();
     var body='<div class="tcard__body">'+plus+'<ul class="tfeats">'+feats+'</ul></div>';
     var frost=masked?'<div class="tcard__frost">'+(next?'<span class="tcard__hint">Tap to reveal <span class="zh">点击展开</span></span>':'')+'</div>':'';
     var subCls=subsidyOn?' is-subsidy':'';
-    var corner=(i===1||i===2) ? '<button type="button" class="tcard__hrdc-corner" data-i="'+i+'" title="Back to HRDC claim price · 回到 claim 价" aria-label="Back to HRDC claim price"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.3"/><path d="M21 4v5h-5"/></svg></button>' : '';
+    var corner=(i===1||i===2) ? '<button type="button" class="tcard__hrdc-corner" data-i="'+i+'" title="Back to HRDC claim price · 回到 claim 价" aria-label="Back to HRDC claim price"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.webp" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.3"/><path d="M21 4v5h-5"/></svg></button>' : '';
     var pcls = priceShown[i] ? (' is-revealed'+(i===slideIdx?' is-sliding':'')) : '';
     var priceEl = '<div class="tcard__price'+pcls+'" data-pi="'+i+'">'+priceInner(i)+'</div>';
     return '<article class="tcard'+(masked?' is-masked':'')+(next?' is-next':'')+subCls+'" data-i="'+i+'">'+head+body+priceEl+corner+frost+'</article>';
@@ -9713,7 +9713,7 @@ io.observe(er);})();
         '<div class="tcard__body"><p class="tcard__extnote">Beyond 144 lessons — combo discount only, no government subsidy. <span class="zh">144 堂以上仅配套折扣，无政府津贴。</span></p></div>'+
         '<div class="tcard__price is-revealed"><span class="tcard__price-orig"><span class="cur-sym">RM</span> '+fmt(taxed(d.orig))+'</span>'+
         '<div class="tcard__price-now"><span class="rm">'+curNow().sym+'</span><span class="n">'+fmt(taxed(comboOf(d)))+'</span>'+
-        '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span></div>'+
+        '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.webp" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span></div>'+
         '<span class="tcard__price-note"><button type="button" class="tcard__calc" data-total="'+(xi+3)+'" title="看总额 See total" aria-label="See total"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5v3"/></svg></button>+ '+money(taxed(miscFee()))+' <span class="zh">报名＋系统费</span>'+(sstOn?' · +6% SST':'')+'</span></div></article>';
     }).join('');
   }
@@ -9740,8 +9740,8 @@ io.observe(er);})();
         '<div class="rcpop__card" role="dialog" aria-modal="true" style="--c:#1F9FE6">',
           '<button class="rcpop__x" type="button" data-tkclose aria-label="Close">\u00d7</button>',
           '<div class="rcpop__hero">',
-            '<img loading="lazy" decoding="async" src="assets/characters/ipa.jpg" alt="4 IPA Course Tickets · 4 张国际音标课门票">',
-            '<div class="rcpop__hero-fallback" style="display:none"><b>4 张国际音标课门票</b><span>海报图片待上传 · assets/characters/ipa.jpg</span></div>',
+            '<img loading="lazy" decoding="async" src="assets/characters/ipa.webp" alt="4 IPA Course Tickets · 4 张国际音标课门票">',
+            '<div class="rcpop__hero-fallback" style="display:none"><b>4 张国际音标课门票</b><span>海报图片待上传 · assets/characters/ipa.webp</span></div>',
           '</div>',
           '<div class="rcpop__body">',
             '<span class="rcpop__eyebrow">🎟️ Course Bonus · 课程礼遇</span>',
@@ -9773,8 +9773,8 @@ io.observe(er);})();
         '<div class="rcpop__card" role="dialog" aria-modal="true" style="--c:#1F9FE6">',
           '<button class="rcpop__x" type="button" data-wsclose aria-label="Close">×</button>',
           '<div class="rcpop__hero">',
-            '<img loading="lazy" decoding="async" src="assets/characters/workshop.jpg" alt="8 Extra Workshop Tickets · 8 张额外工作坊门票">',
-            '<div class="rcpop__hero-fallback" style="display:none"><b>8 张额外工作坊门票</b><span>海报图片待上传 · assets/characters/workshop.jpg</span></div>',
+            '<img loading="lazy" decoding="async" src="assets/characters/workshop.webp" alt="8 Extra Workshop Tickets · 8 张额外工作坊门票">',
+            '<div class="rcpop__hero-fallback" style="display:none"><b>8 张额外工作坊门票</b><span>海报图片待上传 · assets/characters/workshop.webp</span></div>',
           '</div>',
           '<div class="rcpop__body">',
             '<span class="rcpop__eyebrow">🎟️ Course Bonus · 课程礼遇</span>',
@@ -9848,8 +9848,8 @@ io.observe(er);})();
         '<div class="rcpop__card" role="dialog" aria-modal="true" style="--c:#E0303B">',
           '<button class="rcpop__x" type="button" data-vbclose aria-label="Close">\u00d7</button>',
           '<div class="rcpop__hero">',
-            '<img loading="lazy" decoding="async" src="assets/characters/video.jpg" alt="20+ Extra Videos \u00b7 20+ \u989d\u5916\u8bfe\u7a0b\u89c6\u9891">',
-            '<div class="rcpop__hero-fallback" style="display:none"><b>20+ \u989d\u5916\u8bfe\u7a0b\u89c6\u9891</b><span>\u6d77\u62a5\u56fe\u7247\u5f85\u4e0a\u4f20 \u00b7 assets/characters/video.jpg</span></div>',
+            '<img loading="lazy" decoding="async" src="assets/characters/video.webp" alt="20+ Extra Videos \u00b7 20+ \u989d\u5916\u8bfe\u7a0b\u89c6\u9891">',
+            '<div class="rcpop__hero-fallback" style="display:none"><b>20+ \u989d\u5916\u8bfe\u7a0b\u89c6\u9891</b><span>\u6d77\u62a5\u56fe\u7247\u5f85\u4e0a\u4f20 \u00b7 assets/characters/video.webp</span></div>',
           '</div>',
           '<div class="rcpop__body">',
             '<span class="rcpop__eyebrow">\ud83d\udcf9 Course Bonus \u00b7 \u8bfe\u7a0b\u793c\u9047</span>',
@@ -10086,7 +10086,7 @@ io.observe(er);})();
       '<div style="text-align:center"><button type="button" class="pr-hrdc__badge pr-hrdc__badge--btn" onclick="event.stopPropagation(); if(window.openHRDC)openHRDC();" aria-label="Open HRDC claimable details"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4 3 7 7 8 4-1 7-4 7-8V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg> HRDC <i>Bursary · 助学金</i> <svg class="pr-hrdc__chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>'+
       '<p class="hpop__story">We have trained many HRDC-sponsored learners, so we receive government HRDC funding. Instead of keeping it as profit, TOUCH turned it into a bursary — to subsidise individual learners like you.</p>'+
       '<p class="hpop__story zh">我们培训了许多 HRDC 企业学员，因此获得政府的 HRDC 资金。公司没有把它变成利润，而是设立成助学金，用来津贴像你这样的个人学员。</p>'+
-      '<div class="hpop__hint"><img loading="lazy" decoding="async" class="hpop__hintlogo" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"></div>'+
+      '<div class="hpop__hint"><img loading="lazy" decoding="async" class="hpop__hintlogo" src="assets/logo/hrdc.webp" alt="HRDC" onerror="this.style.display=\'none\'"></div>'+
     '</div>';
   }
   function feeI(){return '<i class="mfee">+'+money(taxed(miscFee()))+'*</i>';}
@@ -10287,8 +10287,8 @@ io.observe(er);})();
   /* ---------- Payment (bank transfer) — QR + bank details, TOUCH / TOUCH SP selector; same .ipop glass skin ---------- */
   (function(){
     var PAY=[
-      {tab:'TOUCH',    s:'Public Bank', company:'Touch Learning & Edu Advisory Sdn Bhd', bank:'Public Bank', acct:'3171405201',  qr:'assets/payment/touch-qr.jpg'},
-      {tab:'TOUCH SP', s:'OCBC Bank',   company:'Touch English Sdn Bhd',                  bank:'OCBC Bank',   acct:'710-135206-6', qr:'assets/payment/touch-sp-qr.jpg'}
+      {tab:'TOUCH',    s:'Public Bank', company:'Touch Learning & Edu Advisory Sdn Bhd', bank:'Public Bank', acct:'3171405201',  qr:'assets/payment/touch-qr.webp'},
+      {tab:'TOUCH SP', s:'OCBC Bank',   company:'Touch English Sdn Bhd',                  bank:'OCBC Bank',   acct:'710-135206-6', qr:'assets/payment/touch-sp-qr.webp'}
     ];
     var paySel=0;
     var payPop=document.getElementById('paymentPop'), payBody=document.getElementById('payBody');
@@ -10297,7 +10297,7 @@ io.observe(er);})();
     function payContentHTML(){
       var d=PAY[paySel];
       return '<div class="pay-grid">'+
-          '<div class="pay-qr"><img decoding="async" src="'+esc(d.qr)+'" alt="'+esc(d.tab)+' payment QR" onerror="this.style.display=\'none\';var f=this.nextElementSibling;if(f)f.style.display=\'flex\'">'+
+          '<div class="pay-qr"><img loading="lazy" decoding="async" decoding="async" src="'+esc(d.qr)+'" alt="'+esc(d.tab)+' payment QR" onerror="this.style.display=\'none\';var f=this.nextElementSibling;if(f)f.style.display=\'flex\'">'+
             '<div class="pay-qr__fb"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3M20 14v.01M14 20v.01M20 20v.01M17 17v.01M20 17h.01"/></svg><b>QR 待上传</b><span>'+esc(d.qr)+'</span></div></div>'+
           '<div class="pay-info">'+
             '<div class="pay-row"><div class="pay-row__k">Company 公司</div><div class="pay-row__v">'+esc(d.company)+'</div></div>'+
@@ -10429,7 +10429,7 @@ io.observe(er);})();
         '<p class="tcard__tag">E-Learning English Communication<span class="zh">\u542b\u514d\u8d39\u82f1\u8bed\u5ef6\u4f38\u5b66\u4e60\u8ba1\u5212 *T&amp;C Apply</span></p></div>'+
         '<div class="tcard__body"><ul class="tfeats">'+feats+'</ul></div>'+
         '<div class="tcard__price is-revealed"><div class="tcard__price-now"><span class="rm">'+curNow().sym+'</span><span class="n">'+p.price+'</span>'+
-        '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span></div>'+
+        '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.webp" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span></div>'+
         '<span class="tcard__price-note">HRDC claimable <span class="zh">\u53ef\u7528 HRDC \u62a5\u9500</span></span></div>'+
       '</article>';
     }
@@ -10438,7 +10438,7 @@ io.observe(er);})();
       hrdcRendered=true;
       hView.innerHTML='<div class="hrdc-grid">'+HRDC_PKG.map(hrdcCard).join('')+'</div>'+
         '<div class="hrdc-claimrow"><button type="button" class="inst-open-btn inst-open-btn--hrdc" id="hrdcClaimOpen2" aria-label="HRDC claim procedures HRDC 报销流程">'+
-        '<span class="inst-open-btn__pct inst-open-btn__pct--hrdc"><img decoding="async" src="assets/logo/hrdc.png" alt="HRDC" onerror="this.style.display=\'none\';this.parentNode.textContent=\'HRDC\'"></span>'+
+        '<span class="inst-open-btn__pct inst-open-btn__pct--hrdc"><img loading="lazy" decoding="async" decoding="async" src="assets/logo/hrdc.webp" alt="HRDC" onerror="this.style.display=\'none\';this.parentNode.textContent=\'HRDC\'"></span>'+
         '<span class="inst-open-btn__lab">HRDC Claim Procedures<span class="zh">HRDC \u62a5\u9500\u6d41\u7a0b</span></span>'+
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button></div>';
     }
@@ -10881,7 +10881,7 @@ io.observe(er);})();
       '<span class="rs-close__site">touchenglish.edu.my</span></div>';
     // head + info + greeting
     sheet.innerHTML=
-      '<div class="rs-head"><span class="rs-logo"><img decoding="async" src="assets/logo/touch.png" alt="TOUCH" onerror="this.outerHTML=\'<b>TE</b>\'"></span><span class="rs-head__div"></span>'+
+      '<div class="rs-head"><span class="rs-logo"><img loading="lazy" decoding="async" decoding="async" src="assets/logo/touch.webp" alt="TOUCH" onerror="this.outerHTML=\'<b>TE</b>\'"></span><span class="rs-head__div"></span>'+
       '<div class="rs-head__tx"><span class="rs-head__eyebrow">TOUCH English</span><b>Personal English <span style=\"white-space:nowrap\">Growth Report</span></b><span>'+pk('English Assessment Report \u00b7 \u82f1\u8bed\u6d4b\u8bd5\u62a5\u544a','English Assessment Report')+'</span></div></div>'+
       '<table class="rs-info"><tr><td>'+pk('\u5b66\u5458\u59d3\u540d','Student Name')+'</td><td>'+esc(name)+'</td></tr>'+
       '<tr><td>'+pk('\u6d4b\u8bd5\u65e5\u671f','Test Date')+'</td><td>'+esc(prettyDate(ST.date||todayISO()))+'</td></tr>'+
@@ -11427,7 +11427,7 @@ io.observe(er);})();
       '<div class="chuapop__card" role="dialog" aria-modal="true" aria-label="Mr. Chua \u00b7 '+S.title+'">'+
         '<button type="button" class="chuapop__x" data-chuax aria-label="Close">\u00d7</button>'+
         '<div class="chuapop__left">'+
-          '<div class="chuapop__photo"><img decoding="async" src="assets/team/chua.png" alt="Mr. Chua" onerror="this.style.display=\'none\'"></div>'+
+          '<div class="chuapop__photo"><img loading="lazy" decoding="async" decoding="async" src="assets/team/chua.webp" alt="Mr. Chua" onerror="this.style.display=\'none\'"></div>'+
           '<div class="chuapop__id"><b>Mr. Chua</b><span>'+S.role+' \u00b7 '+S.roleZh+'</span></div>'+
         '</div>'+
         '<div class="chuapop__right">'+
@@ -11515,6 +11515,19 @@ io.observe(er);})();
     if(e.target.closest('[data-clspop]')){ e.preventDefault(); if(!pop) build(); return; }
     if(pop && e.target.closest('[data-clsx]')){ shut(); }
   });
+})();
+</script>
+
+<style id="perf-lite">
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-iteration-count:1!important;transition-duration:.01ms!important}}
+html.lite *,html.lite *::before,html.lite *::after{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+</style>
+<script id="perf-detect">
+(function(){
+  var q = new URLSearchParams(location.search).get('lite');
+  var weak = (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+             (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
+  if (q === '1' || (q !== '0' && weak)) document.documentElement.classList.add('lite');
 })();
 </script>
 </body>
