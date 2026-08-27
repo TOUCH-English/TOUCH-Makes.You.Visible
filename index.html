@@ -8728,6 +8728,125 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     if(_slBar){ _slBar.addEventListener("click",function(e){ var b=e.target.closest("[data-slang]"); if(!b) return; _sysBarLang=b.getAttribute("data-slang"); _slBar.querySelectorAll("[data-slang]").forEach(function(x){ x.classList.toggle("is-on", x===b); }); }); }
     var _sp=document.getElementById("sysPreview"); if(_sp)_sp.addEventListener("click",function(){ _sysPrevOpen(_sysBarLang); });
     var _si=document.getElementById("sysImg"); if(_si)_si.addEventListener("click",function(){ _sysImage(_sysBarLang,_si); });
+
+    /* ---- Downloadable IELTS handout (advisor) · isolated ---- */
+    (function(){
+      var IE_SKILLS=[
+        {c:'#7C5CFF',t:'Listening Skills',zh:'听力',pts:[
+          ['Understanding different English accents','读懂不同英语口音'],
+          ['Identifying keywords and important details','抓住关键词与重要细节'],
+          ['Note-taking techniques','笔记技巧'],
+          ['Time-management strategies','时间分配策略'],
+          ['Practice with real IELTS listening tasks','真题听力实战练习']]},
+        {c:'#14A2B8',t:'Reading Skills',zh:'阅读',pts:[
+          ['Skimming and scanning techniques','快速浏览与定位技巧'],
+          ['Locating answers quickly and accurately','快速准确找到答案'],
+          ['Handling different question types','应对各类题型'],
+          ['Improving reading speed and comprehension','提升阅读速度与理解']]},
+        {c:'#2A5BD7',t:'Writing Skills',zh:'写作',pts:[
+          ['Task 1: graphs, charts, reports and letters','Task 1：图表、报告与书信'],
+          ['Task 2: essay writing and idea development','Task 2：论文写作与思路展开'],
+          ['Essay structure and organisation','文章结构与段落安排'],
+          ['Grammar, vocabulary, coherence and cohesion','语法、词汇、连贯与衔接'],
+          ['Feedback and corrections from instructors','导师批改与反馈']]},
+        {c:'#2E9E50',t:'Speaking Skills',zh:'口语',pts:[
+          ['Building confidence to speak naturally','建立自然开口的自信'],
+          ['Extending answers with examples','用例子扩展回答'],
+          ['Handling all three parts of the speaking test','应对口语三个部分'],
+          ['Improving fluency, pronunciation and vocabulary','提升流利度、发音与词汇'],
+          ['Mock speaking interviews with feedback','模拟口试与反馈']]}
+      ];
+      function esc(x){return String(x==null?"":x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+      function content(LANG){
+        function L(en,zh){ return LANG==="en"?en:(LANG==="zh"?zh:(en+(en&&zh?" ":"")+zh)); }
+        var cards=IE_SKILLS.map(function(sk,ix){
+          var title = LANG==="zh" ? esc(sk.zh) : (esc(sk.t)+(LANG==="both"?'<span class="st__zh">'+esc(sk.zh)+'</span>':""));
+          var lis=sk.pts.map(function(p){
+            return '<li>'+esc(LANG==="en"?p[0]:(LANG==="zh"?p[1]:p[0]))+
+                   (LANG==="both"?'<span class="li__zh">'+esc(p[1])+'</span>':'')+'</li>';
+          }).join("");
+          return '<div class="sk"><div class="sk__h"><span class="sk__n" style="background:'+sk.c+'">'+(ix+1)+'</span>'+
+                 '<span class="sk__t">'+title+'</span></div><ul class="sk__l">'+lis+'</ul></div>';
+        }).join("");
+        var d=new Date(), dstr=d.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+        var h1 = LANG==="zh"?'<h1>雅思备考课程</h1>':('<h1>IELTS Preparation'+(LANG==="both"?' <span>雅思备考课程</span>':"")+'</h1>');
+        var sub = LANG==="zh"?'一对一专属教学 · 每堂 3 小时 · 最新考试格式 · 线上或 Sutera 中心上课':
+          (LANG==="en"?'1-to-1 personalised coaching · 3-hour sessions · latest IELTS exam format · online or in-centre (Sutera)':
+          '1-to-1 personalised coaching · 3-hour sessions · latest IELTS exam format · online or in-centre (Sutera)<br><b>一对一专属教学 · 每堂 3 小时 · 最新考试格式 · 线上或 Sutera 中心上课</b>');
+        var meta = LANG==="zh"?'4 项技能':(LANG==="en"?'4 skill areas':'4 skill areas · 4 项技能');
+        var head='<div class="head"><div class="head__l"><div class="brand">TOUCH English</div>'+h1+'<div class="sub">'+sub+'</div></div><div class="head__r">'+dstr+'<br>'+meta+'</div></div>';
+        var covh = LANG==="zh"?'课程涵盖':(LANG==="en"?'What the course covers':'What the course covers · 课程涵盖');
+        var ft = LANG==="zh"?'想了解适合你的雅思方案？欢迎联系你的 TOUCH 顾问。':
+          (LANG==="en"?'Want an IELTS plan that fits you? Talk to your TOUCH advisor.':
+          'Want an IELTS plan that fits you? Talk to your TOUCH advisor. <b>想了解适合你的雅思方案？欢迎联系你的 TOUCH 顾问。</b>');
+        return '<div class="wrap">'+head+
+          '<div class="covh">'+esc(covh)+'</div><div class="grid">'+cards+'</div>'+
+          '<div class="foot">'+ft+'<br>TOUCH English · touchenglish.edu.my</div></div>';
+      }
+      var CSS=
+        '@page{size:A4;margin:14mm 13mm 15mm}'+
+        '*{box-sizing:border-box}html,body{margin:0;padding:0;background:#fff}'+
+        'body{font-family:"Inter",system-ui,-apple-system,sans-serif;color:#142132;line-height:1.5;font-size:11px;-webkit-print-color-adjust:exact;print-color-adjust:exact}'+
+        '.wrap{max-width:184mm;margin:0 auto}'+
+        '.head{border-bottom:3px solid #16264d;padding-bottom:12px;margin-bottom:15px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}'+
+        '.head__l .brand{font-family:"Sora",sans-serif;font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#E0303B}'+
+        '.head__l h1{font-family:"Sora",sans-serif;font-weight:800;font-size:22px;margin:5px 0 3px;color:#16264d}'+
+        '.head__l h1 span{font-size:15px;color:#5b6b82;margin-left:6px}'+
+        '.head__l .sub{font-size:10.5px;color:#5b6b82;line-height:1.55}.head__l .sub b{color:#3a4a60;font-weight:600}'+
+        '.head__r{text-align:right;font-size:10px;color:#8592a6;white-space:nowrap;font-family:"Sora",sans-serif;font-weight:600}'+
+        '.covh{font-family:"Sora",sans-serif;font-weight:800;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#16264d;padding:4px 11px;border-radius:999px;display:inline-block;margin-bottom:10px}'+
+        '.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}'+
+        '.sk{border:1px solid #e6ebf3;border-radius:12px;padding:10px 13px 11px;background:#fbfdff;break-inside:avoid;page-break-inside:avoid}'+
+        '.sk__h{display:flex;align-items:center;gap:9px;margin-bottom:6px}'+
+        '.sk__n{flex:none;width:24px;height:24px;border-radius:50%;color:#fff;font-family:"Sora",sans-serif;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px -3px rgba(20,33,50,.4)}'+
+        '.sk__t{font-family:"Sora",sans-serif;font-weight:700;font-size:13px;color:#16264d}'+
+        '.st__zh{font-weight:600;font-size:11px;color:#5b6b82;margin-left:6px}'+
+        '.sk__l{margin:0;padding-left:15px}'+
+        '.sk__l li{font-size:10.5px;color:#3a4a60;margin-bottom:3px;line-height:1.45}'+
+        '.li__zh{display:block;font-size:9.5px;color:#8592a6}'+
+        '.foot{margin-top:15px;border-top:1px solid #e6ebf3;padding-top:10px;font-size:10px;color:#8592a6;text-align:center;line-height:1.6}.foot b{color:#5b6b82;font-weight:600}';
+      var FONTS='<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">';
+      function doc(lang){ return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TOUCH English · IELTS Preparation</title>'+FONTS+'<style>'+CSS+'</style></head><body>'+content(lang)+'</body></html>'; }
+      function img(lang,btn){ if(!window.__tePng){ alert("图片导出不可用"); return; } window.__tePng(doc(lang), ".wrap", "TOUCH-IELTS-"+lang+".png", btn, 28); }
+
+      var ov=null, cur="both";
+      function build(){
+        if(ov) return ov;
+        ov=document.createElement("div"); ov.className="lvprev"; ov.id="ieltsPrevOv";
+        ov.innerHTML='<div class="lvprev__bg"></div><div class="lvprev__card">'+
+          '<div class="lvprev__bar"><div class="lvprev__sw"><button type="button" data-il="both">双语</button><button type="button" data-il="zh">中文</button><button type="button" data-il="en">EN</button></div>'+
+          '<div class="lvprev__actions"><button type="button" class="lvprev__img">Save as image <span class="zh">存为图片</span></button><button type="button" class="lvprev__x" aria-label="Close">✕</button></div></div>'+
+          '<div class="lvprev__hint">Screenshot to send — no PDF, no URL. <span class="zh">截图发给学生，无需 PDF、不出网址。</span></div>'+
+          '<div class="lvprev__stage"><iframe class="lvprev__frame" title="IELTS handout preview"></iframe></div></div>';
+        document.body.appendChild(ov);
+        ov.addEventListener("click",function(e){
+          if(e.target.closest(".lvprev__bg")||e.target.closest(".lvprev__x")){ close_(); return; }
+          var p=e.target.closest("[data-il]"); if(p){ render(p.getAttribute("data-il")); return; }
+          var ib=e.target.closest(".lvprev__img"); if(ib){ img(cur,ib); return; }
+        });
+        return ov;
+      }
+      function render(lang){
+        var o=build(); cur=lang;
+        var fr=o.querySelector(".lvprev__frame");
+        fr.onload=function(){ function fit(){ try{ fr.style.height=(fr.contentDocument.body.scrollHeight+2)+"px"; }catch(e){} } fit(); setTimeout(fit,300); setTimeout(fit,900); };
+        fr.srcdoc=doc(lang);
+        o.querySelectorAll("[data-il]").forEach(function(b){ b.classList.toggle("is-on", b.getAttribute("data-il")===lang); });
+        var st=o.querySelector(".lvprev__stage"); if(st) st.scrollTop=0;
+      }
+      function open_(lang){ build(); render(lang||"both"); ov.classList.add("open"); document.body.style.overflow="hidden"; }
+      function close_(){ if(ov){ ov.classList.remove("open"); var fr=ov.querySelector(".lvprev__frame"); if(fr) fr.removeAttribute("srcdoc"); } document.body.style.overflow=""; }
+      document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&ov&&ov.classList.contains("open")) close_(); });
+
+      var barLang="both";
+      document.addEventListener("click",function(e){
+        var seg=e.target.closest("#ieltsLang [data-ielang]");
+        if(seg){ barLang=seg.getAttribute("data-ielang");
+          document.querySelectorAll("#ieltsLang [data-ielang]").forEach(function(x){ x.classList.toggle("is-on", x===seg); }); return; }
+        if(e.target.closest("#ieltsPreview")){ open_(barLang); return; }
+        var ib=e.target.closest("#ieltsImg"); if(ib){ img(barLang,ib); return; }
+      });
+    })();
   })();
 
   /* ---------- STAGE NAVIGATION ---------- */
@@ -10449,7 +10568,7 @@ io.observe(er);})();
         '<b class="ielts-logo-fb">IELTS</b>'+
         '<span class="ielts-logo-btn__tx"><b>IELTS &amp; Cambridge Results</b><small>Proven Results \u00b7 \u771f\u5b9e\u6210\u7ee9 \u00b7 Tap to view \u70b9\u51fb\u67e5\u770b</small></span></button></div>';
       var covers='<div class="ielts-covers-h"><b>What the course covers</b><span class="zh">\u8bfe\u7a0b\u6db5\u76d6</span></div>'+
-        '<div class="ielts-covers">'+SKILLS.map(function(sk,i){return '<button type="button" class="ielts-cover" data-skill="'+i+'"><span class="tfeat__ic" style="--fc:'+sk.c+';width:44px;height:44px">'+(ICON[sk.k]||ICON.star)+'</span><b>'+sk.t+'</b><small>'+sk.zh+' \u00b7 Tap for details \u70b9\u51fb\u770b\u8be6\u60c5</small></button>';}).join('')+'</div>';
+        '<div class="ielts-covers">'+SKILLS.map(function(sk,i){return '<button type="button" class="ielts-cover" data-skill="'+i+'"><span class="tfeat__ic" style="--fc:'+sk.c+';width:44px;height:44px">'+(ICON[sk.k]||ICON.star)+'</span><b>'+sk.t+'</b><small>'+sk.zh+' \u00b7 Tap for details \u70b9\u51fb\u770b\u8be6\u60c5</small></button>';}).join('')+'</div>'+'<div class="sysdl" data-advisor-only style="margin-top:20px">'+'<div class="fivedl">'+'<span class="fivedl__lab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="m7.5 10.5 4.5 4 4.5-4"/><path d="M5 20h14"/></svg>IELTS handout <span class="zh">\u96c5\u601d\u8bfe\u7a0b\u8bb2\u4e49</span></span>'+'<div class="lang-toggle" id="ieltsLang" data-nozh role="group" aria-label="Handout language">'+'<button type="button" class="lang-seg is-on" data-ielang="both">\u53cc\u8bed</button>'+'<button type="button" class="lang-seg" data-ielang="zh">\u4e2d\u6587</button>'+'<button type="button" class="lang-seg" data-ielang="en">EN</button>'+'</div>'+'<div class="fivedl__row">'+'<button type="button" class="fivedl__prev" id="ieltsPreview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>Preview <span class="zh">\u9884\u89c8</span></button>'+'<button type="button" class="fivedl__all" id="ieltsImg"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px;margin-right:4px"><rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="m21 14.5-5-5L5.5 20"/></svg>Save as image <span class="zh">\u5b58\u56fe</span></button>'+'</div>'+'</div>'+'<span class="sysdl__hint">A one-page IELTS handout you can send to students. <span class="zh">\u4e00\u9875\u5f0f\u96c5\u601d\u8bfe\u7a0b\u8bf4\u660e\uff0c\u53ef\u76f4\u63a5\u53d1\u7ed9\u5b66\u751f\u3002</span></span>'+'</div>';
       iView.innerHTML=intro+free+'<div class="ielts-grid">'+IELTS.map(card).join('')+'</div>'+
         '<div class="ielts-more"'+(ieltsMoreShown?' hidden':'')+'><button type="button" class="ext-toggle-btn" id="ieltsMore">Show more IELTS pricing <span class="zh">\u663e\u793a\u66f4\u591a IELTS \u4ef7\u683c</span> <span class="ext-chev" aria-hidden="true">\u2304</span></button></div>'+
         '<div class="ielts-more-wrap"'+(ieltsMoreShown?'':' hidden')+'>'+card(IELTS36)+'</div>'+covers+
