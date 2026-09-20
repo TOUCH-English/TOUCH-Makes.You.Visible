@@ -4520,12 +4520,14 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
 
 /* ===== apple-design skill: press feedback + transparency/contrast a11y ===== */
 /* §1 Response — feedback on pointer-down, not on release. Fast ease-out. */
+.tabbar:not(.editing) .tab-item.is-pressed,
 .tabbar:not(.editing) .tab-item:active{
   transform:translateY(0) scale(.955)!important;
   background:var(--red-tint);
   box-shadow:0 2px 8px -5px rgba(20,33,50,.3);
   transition:transform 100ms ease-out,background 100ms ease-out,box-shadow 100ms ease-out;
 }
+.tabbar:not(.editing) .tab-item.is-pressed .tab-item__ic,
 .tabbar:not(.editing) .tab-item:active .tab-item__ic{transform:scale(.94)!important;transition:transform 100ms ease-out}
 /* §10 — no blue tap flash, and taps must not wait on scroll disambiguation */
 .tab-item,.btn,button,[role="button"]{-webkit-tap-highlight-color:transparent}
@@ -11879,6 +11881,22 @@ io.observe(er);})();
   if (q === '1') setZoom(true);
   else if (q === '0') setZoom(false);
   else if (saved === null && weak) setZoom(true);
+})();
+</script>
+<script id="tab-press">
+(function(){
+  var tb=document.querySelector('.tabbar'); if(!tb) return;
+  var cur=null;
+  function clear(){ if(cur){ cur.classList.remove('is-pressed'); cur=null; } }
+  tb.addEventListener('pointerdown',function(e){
+    if(tb.classList.contains('editing')) return;
+    var it=e.target.closest && e.target.closest('.tab-item'); if(!it) return;
+    clear(); cur=it; it.classList.add('is-pressed');
+  },true);
+  ['pointerup','pointercancel','pointerleave','dragstart','blur'].forEach(function(ev){
+    window.addEventListener(ev,clear,true);
+  });
+  document.addEventListener('visibilitychange',clear);
 })();
 </script>
 </body>
