@@ -4560,6 +4560,33 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
   transform:scale(.975)!important;
   transition:transform 90ms ease-out;
 }
+
+/* §1 Response, batch 2 — cards answer more softly than buttons: a smaller
+   scale, a touch slower. Cards whose own base rules already animate or
+   transform them (system nodes, level scale segments, class cards, the hero
+   logo) stay out. */
+.tfeat.is-pressed,.cf-card.is-pressed,.lvtool__present.is-pressed,.profile-pop__av.is-pressed,
+.tfeat:active,.cf-card:active,.lvtool__present:active,.profile-pop__av:active{
+  transform:scale(.985)!important;
+  transition:transform 110ms ease-out;
+}
+.tcard.is-pressed,.why.is-pressed,.lvl-col.is-pressed,.cc.is-pressed,.team-box.is-pressed,.gstory.is-pressed,
+.tcard:active,.why:active,.lvl-col:active,.cc:active,.team-box:active,.gstory:active{
+  transform:scale(.99)!important;
+  transition:transform 110ms ease-out;
+}
+/* pressing a control inside a card should move the control, not the card */
+.tfeat:has(:is(button,[role="button"],a,input,select):active),
+.cf-card:has(:is(button,[role="button"],a,input,select):active),
+.lvtool__present:has(:is(button,[role="button"],a,input,select):active),
+.tcard:has(:is(button,[role="button"],a,input,select):active),
+.why:has(:is(button,[role="button"],a,input,select):active),
+.lvl-col:has(:is(button,[role="button"],a,input,select):active),
+.cc:has(:is(button,[role="button"],a,input,select):active),
+.team-box:has(:is(button,[role="button"],a,input,select):active),
+.gstory:has(:is(button,[role="button"],a,input,select):active){
+  transform:none!important;
+}
 </style>
 </head>
 <body>
@@ -11883,17 +11910,26 @@ io.observe(er);})();
   else if (saved === null && weak) setZoom(true);
 })();
 </script>
-<script id="tab-press">
+<script id="press-feedback">
 (function(){
-  var tb=document.querySelector('.tabbar'); if(!tb) return;
+  /* Safari only gives :active to buttons and links, and the tab bar owns its
+     own pointer events for drag reordering — so mirror the press state with a
+     class set on pointerdown. */
+  var CARDS='.tfeat,.cf-card,.lvtool__present,.profile-pop__av,.tcard,.why,.lvl-col,.cc,.team-box,.gstory';
+  var CTRL='button,[role="button"],a,input,select,textarea';
   var cur=null;
   function clear(){ if(cur){ cur.classList.remove('is-pressed'); cur=null; } }
-  tb.addEventListener('pointerdown',function(e){
-    if(tb.classList.contains('editing')) return;
-    var it=e.target.closest && e.target.closest('.tab-item'); if(!it) return;
-    clear(); cur=it; it.classList.add('is-pressed');
+  function press(el){ clear(); cur=el; el.classList.add('is-pressed'); }
+  document.addEventListener('pointerdown',function(e){
+    var t=e.target; if(!t||!t.closest) return;
+    var tab=t.closest('.tab-item');
+    if(tab){ var bar=tab.closest('.tabbar'); if(bar&&!bar.classList.contains('editing')) press(tab); return; }
+    var card=t.closest(CARDS); if(!card) return;
+    var ctrl=t.closest(CTRL);
+    if(ctrl && ctrl!==card && card.contains(ctrl)) return;   /* let the control answer, not the card */
+    press(card);
   },true);
-  ['pointerup','pointercancel','pointerleave','dragstart','blur'].forEach(function(ev){
+  ['pointerup','pointercancel','pointerleave','dragstart','blur','scroll'].forEach(function(ev){
     window.addEventListener(ev,clear,true);
   });
   document.addEventListener('visibilitychange',clear);
