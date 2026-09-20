@@ -4539,6 +4539,25 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
   .tab-item.is-active{outline:2px solid var(--red);outline-offset:-2px}
   .btn{border-color:currentColor}
 }
+
+/* §1 Response, batch 1 — buttons and small controls answer on pointer-down.
+   Elements that already carry a base transform (dock bubble, system nodes,
+   summary tiles, hero logo) are deliberately left out. */
+.dock-collapse:active,.focus-x:active,.lvprev__x:active,.sys-scale__b:active,.lvzoom__b:active,
+.focus-mini__item:active{
+  transform:scale(.94)!important;
+  transition:transform 90ms ease-out;
+}
+.present-btn:active,.layout-btn:active,.lang-seg:active,.pv-switch__opt:active,.cur-opt:active,
+.adv-note:active,.rov-btn:active,.ext-toggle-btn:active,.fivedl__prev:active,.fivedl__all:active,
+.lvprev__img:active,.lvprev__pdf:active,.ttc__link:active{
+  transform:scale(.96)!important;
+  transition:transform 90ms ease-out;
+}
+.loc:active,.ttc__tt:active,.ielts-logo-btn:active,.ielts-cover:active{
+  transform:scale(.975)!important;
+  transition:transform 90ms ease-out;
+}
 </style>
 </head>
 <body>
