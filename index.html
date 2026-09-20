@@ -4521,12 +4521,12 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
 /* ===== apple-design skill: press feedback + transparency/contrast a11y ===== */
 /* §1 Response — feedback on pointer-down, not on release. Fast ease-out. */
 .tabbar:not(.editing) .tab-item:active{
-  transform:translateY(0) scale(.955);
+  transform:translateY(0) scale(.955)!important;
   background:var(--red-tint);
   box-shadow:0 2px 8px -5px rgba(20,33,50,.3);
   transition:transform 100ms ease-out,background 100ms ease-out,box-shadow 100ms ease-out;
 }
-.tabbar:not(.editing) .tab-item:active .tab-item__ic{transform:scale(.94);transition:transform 100ms ease-out}
+.tabbar:not(.editing) .tab-item:active .tab-item__ic{transform:scale(.94)!important;transition:transform 100ms ease-out}
 /* §10 — no blue tap flash, and taps must not wait on scroll disambiguation */
 .tab-item,.btn,button,[role="button"]{-webkit-tap-highlight-color:transparent}
 
