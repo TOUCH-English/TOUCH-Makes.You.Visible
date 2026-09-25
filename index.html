@@ -12101,11 +12101,13 @@ io.observe(er);})();
 .tt-modal__x:hover,.adv-modal__x:hover,.rcpop__x:hover,.ipop__x:hover,.lvprev__x:hover,.sysedit__x:hover,.site-modal__x:hover,.tpop__x:hover,.tpop2__x:hover,.team-modal__x:hover,.sumtr-pop__x:hover,.rov-x:hover,.profile-pop__x:hover{
   background:rgba(118,118,128,.24);color:rgba(60,60,67,.85);transform:none}
 
+/* these two sat on a hairline edge before — keep it */
+.lvprev__x,.site-modal__x{border:1px solid rgba(255,255,255,.85);box-shadow:0 0 0 .5px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.6)}
 /* 2 · segmented controls */
 /* keep the glass rim the tracks had: a light hairline edge that catches the light on the translucent card */
-.lang-toggle,.tt-seg{background:var(--ios-fill);box-shadow:inset 0 1px 0 rgba(255,255,255,.55)}
-.tt-seg{border:1px solid var(--line);border-radius:999px;padding:2px}
-.lang-toggle{border:1px solid rgba(20,33,50,.08);border-radius:11px;padding:3px;gap:2px}
+.lang-toggle,.tt-seg{background:var(--ios-fill);border:1px solid rgba(255,255,255,.85);box-shadow:0 0 0 .5px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.6)}
+.tt-seg{border-radius:999px;padding:2px}
+.lang-toggle{border-radius:11px;padding:3px;gap:2px}
 .tt-seg__b{border-radius:999px}
 .lang-seg,.tt-seg__b{font-family:var(--ios-font);font-weight:500;color:#1c1c1e;border-radius:7px;letter-spacing:0}
 .lang-seg:hover,.tt-seg__b:hover{color:#1c1c1e}
@@ -12115,10 +12117,11 @@ io.observe(er);})();
 /* 3 · toolbar + secondary buttons: gray capsule, tinted label */
 .present-btn,.layout-btn,.rov-btn,.fivedl__all,.lvprev__pdf,.lvprev__img,.adv-btn--ghost,.sysedit__reset,.rb-reset,.pa-reset{
   font-family:var(--ios-font);font-weight:600;letter-spacing:0;color:var(--blue);background:var(--ios-fill);
-  border:1px solid transparent;border-radius:999px;box-shadow:none;transition:background-color .15s,color .15s,transform .12s ease-out}
+  border-radius:999px;border:1px solid rgba(255,255,255,.85);box-shadow:0 0 0 .5px rgba(20,33,50,.14),inset 0 1px 0 rgba(255,255,255,.6);   /* glass rim: bright edge + hairline */
+  transition:background-color .15s,color .15s,border-color .15s,transform .12s ease-out}
 .present-btn:hover,.layout-btn:hover,.rov-btn:hover,.fivedl__all:hover,.lvprev__pdf:hover,.lvprev__img:hover,.adv-btn--ghost:hover,.sysedit__reset:hover,.rb-reset:hover,.pa-reset:hover{
-  background:var(--ios-fill-hi);border-color:transparent;color:var(--blue);transform:none}
-.present-btn.is-on{background:var(--blue);color:#fff}
+  background:var(--ios-fill-hi);border-color:rgba(255,255,255,.95);color:var(--blue);transform:none}
+.present-btn.is-on{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
 
 /* 4 · primary buttons: filled capsule, no gradient, no drop shadow */
 .lvtool__present,.adv-btn--save,.reveal-open-btn:not(.reveal-open-btn--logo){
