@@ -8143,13 +8143,13 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       });
       return h+'</div>';
     }
-    /* shown under the grid and carried into the saved photo */
-    var TT_NOTE='<div class="tt-note">'+
-      '<p>We run a 5-day work week, so Monday is our fixed rest day. Each month, two class days fall on Tuesdays and Sundays.'+
-        '<span class="zh">\u6211\u4eec\u5b9e\u884c\u6bcf\u5468\u4e94\u5929\u5de5\u4f5c\u5236\uff0c\u661f\u671f\u4e00\u56fa\u5b9a\u4f11\u606f\uff1b\u6bcf\u4e2a\u6708\u4f1a\u6709\u4e24\u5929\u7684\u8bfe\u5b89\u6392\u5728\u661f\u671f\u4e8c\u548c\u661f\u671f\u65e5\u3002</span></p>'+
-      '<p class="tt-note__key">This is the full class view, for reference only. Always check your TEC System for the latest updates or changes.'+
-        '<span class="zh">\u8fd9\u662f\u5b8c\u6574\u8bfe\u8868\uff0c\u4ec5\u4f9b\u53c2\u8003\uff1b\u5b9e\u9645\u4e0a\u8bfe\u65f6\u95f4\u4ee5\u4f60\u7684 TEC System \u4e3a\u51c6\u3002</span></p>'+
-    '</div>';
+    /* notes for the timetable */
+    var TT_REST='<p>We run a 5-day work week, so Monday is our fixed rest day. Each month, two class days fall on Tuesdays and Sundays.'+
+        '<span class="zh">\u6211\u4eec\u5b9e\u884c\u6bcf\u5468\u4e94\u5929\u5de5\u4f5c\u5236\uff0c\u661f\u671f\u4e00\u56fa\u5b9a\u4f11\u606f\uff1b\u6bcf\u4e2a\u6708\u4f1a\u6709\u4e24\u5929\u7684\u8bfe\u5b89\u6392\u5728\u661f\u671f\u4e8c\u548c\u661f\u671f\u65e5\u3002</span></p>';
+    var TT_KEY='<p class="tt-note__key">This is the full class view, for reference only. Always check your TEC System for the latest updates or changes.'+
+        '<span class="zh">\u8fd9\u662f\u5b8c\u6574\u8bfe\u8868\uff0c\u4ec5\u4f9b\u53c2\u8003\uff1b\u5b9e\u9645\u4e0a\u8bfe\u65f6\u95f4\u4ee5\u4f60\u7684 TEC System \u4e3a\u51c6\u3002</span></p>';
+    /* on screen: only the yellow reminder, to keep the slide light; the photo carries both lines */
+    var TT_NOTE='<div class="tt-note">'+TT_KEY+'</div>', TT_NOTE_FULL='<div class="tt-note">'+TT_REST+TT_KEY+'</div>';
     /* the photo gets the same frosted look the advisor sees on screen: page glows, a soft brand
        watermark behind, and the translucent card with its blue top edge */
     function ttGlass(card,sc,done){
@@ -8202,7 +8202,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
           '<div class="ttshot__tags"><span class="ttshot__tag">'+(picked.length?picked.join('  \u00b7  '):'All levels')+'</span>'+
             (weekTx?'<span class="ttshot__tag ttshot__tag--soft">'+weekTx+'</span>':'')+'</div>'+
         '</div>'+
-        grid.outerHTML+TT_NOTE+
+        grid.outerHTML+TT_NOTE_FULL+
         '<div class="ttshot__foot">TOUCH English \u00b7 Makes You Visible</div>'+
       '</div>';
       /* EN mode: the snapshot only carries .ttshot, not body.te-en, so drop the Chinese here */
