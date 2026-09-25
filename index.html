@@ -12102,7 +12102,11 @@ io.observe(er);})();
   background:rgba(118,118,128,.24);color:rgba(60,60,67,.85);transform:none}
 
 /* 2 · segmented controls */
-.lang-toggle,.tt-seg{background:var(--ios-fill);border:0;border-radius:9px;padding:2px;gap:0}
+/* keep the glass rim the tracks had: a light hairline edge that catches the light on the translucent card */
+.lang-toggle,.tt-seg{background:var(--ios-fill);box-shadow:inset 0 1px 0 rgba(255,255,255,.55)}
+.tt-seg{border:1px solid var(--line);border-radius:999px;padding:2px}
+.lang-toggle{border:1px solid rgba(20,33,50,.08);border-radius:11px;padding:3px;gap:2px}
+.tt-seg__b{border-radius:999px}
 .lang-seg,.tt-seg__b{font-family:var(--ios-font);font-weight:500;color:#1c1c1e;border-radius:7px;letter-spacing:0}
 .lang-seg:hover,.tt-seg__b:hover{color:#1c1c1e}
 .lang-seg.is-on,.tt-seg__b.is-on{font-weight:600;color:#000;background:#fff;
