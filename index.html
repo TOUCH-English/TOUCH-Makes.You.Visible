@@ -8143,6 +8143,47 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       });
       return h+'</div>';
     }
+    /* shown under the grid and carried into the saved photo */
+    var TT_NOTE='<div class="tt-note">'+
+      '<p>We run a 5-day work week, so Monday is our fixed rest day. Each month, two class days fall on Tuesdays and Sundays.'+
+        '<span class="zh">\u6211\u4eec\u5b9e\u884c\u6bcf\u5468\u4e94\u5929\u5de5\u4f5c\u5236\uff0c\u661f\u671f\u4e00\u56fa\u5b9a\u4f11\u606f\uff1b\u6bcf\u4e2a\u6708\u4f1a\u6709\u4e24\u5929\u7684\u8bfe\u5b89\u6392\u5728\u661f\u671f\u4e8c\u548c\u661f\u671f\u65e5\u3002</span></p>'+
+      '<p class="tt-note__key">This is the full class view, for reference only. Always check your TEC System for the latest updates or changes.'+
+        '<span class="zh">\u8fd9\u662f\u5b8c\u6574\u8bfe\u8868\uff0c\u4ec5\u4f9b\u53c2\u8003\uff1b\u5b9e\u9645\u4e0a\u8bfe\u65f6\u95f4\u4ee5\u4f60\u7684 TEC System \u4e3a\u51c6\u3002</span></p>'+
+    '</div>';
+    /* Save photo: the grid exactly as it is on screen — levels, week and view — plus the notes */
+    function ttShot(m,name,btn){
+      if(!window.__tePng){ alert('\u56fe\u7247\u5bfc\u51fa\u4e0d\u53ef\u7528'); return; }
+      var grid=m.querySelector('.tt-grid'); if(!grid)return;
+      var picked=[].slice.call(m.querySelectorAll('.tt-leg[data-filter].is-active'))
+        .map(function(x){ return (x.lastChild&&x.lastChild.nodeType===3?x.lastChild.textContent:x.textContent).trim(); });   /* the label, not the number chip */
+      var week=m.querySelector('[data-ttweek].is-on'), weekTx=week?week.textContent.trim():'';
+      /* only the rules the sheet needs: the full page CSS is ~490KB and has characters an SVG snapshot cannot parse */
+      var KEEP=/tt-|ttshot|:root|\.zh|te-en|\bbody\b|\bhtml\b|^\*/;
+      function pick(rules){ var out=''; [].forEach.call(rules,function(r){
+        if(r.type===1){ if(KEEP.test(r.selectorText)) out+=r.cssText+'\n'; }
+        else if(r.type===4){ var inner=pick(r.cssRules); if(inner) out+='@media '+r.conditionText+'{'+inner+'}\n'; }
+      }); return out; }
+      var css=''; [].forEach.call(document.styleSheets,function(sh){ try{ css+=pick(sh.cssRules); }catch(e){} });
+      css=css.replace(/&/g,'\\26 ').replace(/</g,'\\3C ');
+      var shot='<div class="ttshot">'+
+        '<div class="ttshot__top">'+
+          '<div><span class="ttshot__brand">TOUCH ENGLISH</span>'+
+            '<b class="ttshot__title">'+name+' <span class="zh">\u65f6\u95f4\u8868</span></b>'+
+            '<span class="ttshot__sub">Class Schedule<span class="zh"> \u00b7 \u8bfe\u7a0b\u65f6\u95f4\u8868</span></span></div>'+
+          '<div class="ttshot__tags"><span class="ttshot__tag">'+(picked.length?picked.join('  \u00b7  '):'All levels')+'</span>'+
+            (weekTx?'<span class="ttshot__tag ttshot__tag--soft">'+weekTx+'</span>':'')+'</div>'+
+        '</div>'+
+        grid.outerHTML+TT_NOTE+
+        '<div class="ttshot__foot">TOUCH English \u00b7 Makes You Visible</div>'+
+      '</div>';
+      /* EN mode: the snapshot only carries .ttshot, not body.te-en, so drop the Chinese here */
+      if(document.body.classList.contains('te-en')){ var tmp=document.createElement('div'); tmp.innerHTML=shot;
+        [].forEach.call(tmp.querySelectorAll('.zh,.te-cjk'),function(z){ z.remove(); }); shot=tmp.innerHTML; }
+      var html='<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">'+
+        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'+
+        '<style>'+css+'</style></head><body class="'+document.body.className+'" style="background:#fff">'+shot+'</body></html>';
+      window.__tePng(html,'.ttshot','TOUCH-'+name.replace(/[^A-Za-z0-9]+/g,'-')+'-Timetable.png',btn,18);
+    }
     function openTimetable(name){
       var b=TIMETABLES[name]; if(!b)return;
       var isOnline=(name==="Live Class");
@@ -8162,12 +8203,17 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
                 '<button type="button" class="tt-seg__b is-on" data-ttview="simple">Simple</button>'+
                 '<button type="button" class="tt-seg__b" data-ttview="detail">Detailed</button>'+
               '</div>'+
+              '<button type="button" class="tt-save" data-ttshot title="Save this timetable as a photo to send to students">'+
+                '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4"/><path d="M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V17"/></svg>'+
+                '<span class="lbl">Save photo<span class="zh">\u5b58\u56fe</span></span>'+
+              '</button>'+
             '</div>'+
           '</div>'+
           '<div class="tt-legend">'+legend+
             '<button type="button" class="tt-leg tt-leg--combine" data-ttcombine aria-pressed="false" title="Show more than one level at the same time">+ Combine</button>'+
             '<button type="button" class="tt-leg tt-leg--all" data-ttall>\u21ba All levels</button></div>'+
           '<div class="tt-scroll">'+renderTimetable(b)+'</div>'+
+          TT_NOTE+
         '</div>';
       document.body.appendChild(m); void m.offsetWidth; m.classList.add('is-open');
       (function(){
@@ -8239,6 +8285,8 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
             if(saved) set(saved,false);
           }
         }
+        var shotBtn=m.querySelector('[data-ttshot]');
+        if(shotBtn) shotBtn.addEventListener('click',function(){ ttShot(m,name,shotBtn); });
         seg('data-ttweek','is-short','short',null);          /* week: always starts at 6 days */
         seg('data-ttview','is-detail','detail','te_ttview_v1'); /* view: remembers simple/detailed */
       })();
@@ -11963,5 +12011,38 @@ io.observe(er);})();
   document.addEventListener('visibilitychange',clear);
 })();
 </script>
+<style id="tt-share">
+/* note under the timetable — the second line is the one students must not miss */
+.tt-note{margin-top:14px;display:flex;flex-direction:column;gap:7px}
+.tt-note p{margin:0;font-size:11.5px;line-height:1.55;color:var(--muted);padding-left:14px;position:relative}
+.tt-note p::before{content:"";position:absolute;left:3px;top:7px;width:4px;height:4px;border-radius:50%;background:var(--line-strong,#c9d3e3)}
+.tt-note .zh{display:block;color:var(--faint);margin-top:2px}
+.tt-note p.tt-note__key{color:var(--ink);font-weight:600;background:rgba(255,184,0,.10);border:1px solid rgba(255,184,0,.34);
+  border-radius:10px;padding:9px 12px 9px 26px}
+.tt-note p.tt-note__key::before{left:12px;top:16px;background:#E8A400}
+.tt-note__key .zh{color:var(--muted)}
+/* Save photo button */
+.tt-save{display:inline-flex;align-items:center;gap:5px;cursor:pointer;font-family:var(--display);font-weight:700;font-size:9.5px;
+  color:var(--blue);background:rgba(47,123,224,.08);border:1px solid rgba(47,123,224,.28);border-radius:999px;padding:4px 11px;
+  transition:background .18s,color .18s,border-color .18s,transform .12s ease-out;white-space:nowrap}
+.tt-save:hover{background:rgba(47,123,224,.16)}
+.tt-save:active,.tt-save.is-pressed{transform:scale(.96)}
+.tt-save[disabled]{opacity:.6;cursor:default}
+.tt-save svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tt-save .zh{margin-left:4px;font-weight:600}
+/* the saved photo */
+.ttshot{width:940px;box-sizing:border-box;padding:26px 28px 20px;background:#fff}
+.ttshot__top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:16px}
+.ttshot__brand{display:block;font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:.18em;color:var(--faint)}
+.ttshot__title{display:block;font-family:var(--display);font-weight:800;font-size:23px;color:var(--ink);margin-top:5px;line-height:1.2}
+.ttshot__title .zh{font-weight:600;font-size:16px;color:var(--muted);margin-left:6px}
+.ttshot__sub{display:block;font-size:11.5px;color:var(--muted);margin-top:3px}
+.ttshot__tags{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex:none}
+.ttshot__tag{font-family:var(--display);font-weight:700;font-size:11px;color:#fff;background:var(--blue);border-radius:999px;padding:6px 14px;white-space:nowrap}
+.ttshot__tag--soft{color:var(--muted);background:rgba(20,33,50,.06)}
+.ttshot .tt-grid{min-width:0}
+.ttshot .tt-note{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.ttshot__foot{margin-top:14px;text-align:center;font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.14em;color:#b8c2d0}
+</style>
 </body>
 </html>
