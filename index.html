@@ -12087,5 +12087,55 @@ io.observe(er);})();
 .ttshot .tt-note{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
 .ttshot__foot{margin-top:14px;text-align:center;font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.14em;color:#b8c2d0}
 </style>
+<style id="ios-controls">
+/* ===== iOS-native controls — one layer over the existing button styles =====
+   Close = gray circle, toggles = segmented control, secondary = gray capsule, primary = filled capsule,
+   switch = iOS switch. Labels use the system font (SF on Apple devices); page text keeps its fonts. */
+:root{--ios-font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro","Helvetica Neue","PingFang SC","Hiragino Sans GB",system-ui,sans-serif;
+  --ios-fill:rgba(118,118,128,.12);--ios-fill-hi:rgba(118,118,128,.2);--ios-label2:rgba(60,60,67,.62)}
+
+/* 1 · close buttons */
+.tt-modal__x,.adv-modal__x,.rcpop__x,.ipop__x,.lvprev__x,.sysedit__x,.site-modal__x,.tpop__x,.tpop2__x,.team-modal__x,.sumtr-pop__x,.rov-x,.profile-pop__x{
+  width:30px;height:30px;padding:0;border:0;border-radius:50%;box-shadow:none;background:rgba(118,118,128,.16);color:var(--ios-label2);
+  display:grid;place-items:center;font-family:var(--ios-font);font-size:17px;font-weight:600;line-height:1;transition:background-color .15s,color .15s,transform .12s ease-out}
+.tt-modal__x:hover,.adv-modal__x:hover,.rcpop__x:hover,.ipop__x:hover,.lvprev__x:hover,.sysedit__x:hover,.site-modal__x:hover,.tpop__x:hover,.tpop2__x:hover,.team-modal__x:hover,.sumtr-pop__x:hover,.rov-x:hover,.profile-pop__x:hover{
+  background:rgba(118,118,128,.24);color:rgba(60,60,67,.85);transform:none}
+
+/* 2 · segmented controls */
+.lang-toggle,.tt-seg{background:var(--ios-fill);border:0;border-radius:9px;padding:2px;gap:0}
+.lang-seg,.tt-seg__b{font-family:var(--ios-font);font-weight:500;color:#1c1c1e;border-radius:7px;letter-spacing:0}
+.lang-seg:hover,.tt-seg__b:hover{color:#1c1c1e}
+.lang-seg.is-on,.tt-seg__b.is-on{font-weight:600;color:#000;background:#fff;
+  box-shadow:0 3px 8px rgba(0,0,0,.12),0 3px 1px rgba(0,0,0,.04),0 0 0 .5px rgba(0,0,0,.04)}
+
+/* 3 · toolbar + secondary buttons: gray capsule, tinted label */
+.present-btn,.layout-btn,.rov-btn,.fivedl__all,.lvprev__pdf,.lvprev__img,.adv-btn--ghost,.sysedit__reset,.rb-reset,.pa-reset{
+  font-family:var(--ios-font);font-weight:600;letter-spacing:0;color:var(--blue);background:var(--ios-fill);
+  border:1px solid transparent;border-radius:999px;box-shadow:none;transition:background-color .15s,color .15s,transform .12s ease-out}
+.present-btn:hover,.layout-btn:hover,.rov-btn:hover,.fivedl__all:hover,.lvprev__pdf:hover,.lvprev__img:hover,.adv-btn--ghost:hover,.sysedit__reset:hover,.rb-reset:hover,.pa-reset:hover{
+  background:var(--ios-fill-hi);border-color:transparent;color:var(--blue);transform:none}
+.present-btn.is-on{background:var(--blue);color:#fff}
+
+/* 4 · primary buttons: filled capsule, no gradient, no drop shadow */
+.lvtool__present,.adv-btn--save,.reveal-open-btn:not(.reveal-open-btn--logo){
+  font-family:var(--ios-font);font-weight:600;letter-spacing:0;background:var(--blue);color:#fff;border:0;border-radius:999px;box-shadow:none;
+  transition:background-color .15s,opacity .15s,transform .12s ease-out}
+.lvtool__present:hover,.adv-btn--save:hover,.reveal-open-btn:not(.reveal-open-btn--logo):hover{background:var(--blue);box-shadow:none;transform:none;opacity:.88}
+
+/* 5 · switch (iOS proportions, green when on) */
+.switch{width:42px;height:26px;border-radius:13px;background:rgba(120,120,128,.16);transition:background-color .25s ease}
+.switch::after{top:2px;left:2px;width:22px;height:22px;box-shadow:0 3px 8px rgba(0,0,0,.15),0 3px 1px rgba(0,0,0,.06);
+  transition:transform .3s cubic-bezier(.3,1.3,.5,1)}
+.advisor-toggle.on .switch{background:#34C759}
+.advisor-toggle.on .switch::after{transform:translateX(16px)}
+.advisor-toggle{font-family:var(--ios-font)}
+
+/* press: iOS dims the label/fill the instant a finger lands */
+.present-btn:active,.layout-btn:active,.rov-btn:active,.fivedl__all:active,.lvprev__pdf:active,.lvprev__img:active,.adv-btn--ghost:active,
+.lvtool__present:active,.adv-btn--save:active,.tt-modal__x:active,.adv-modal__x:active,.ipop__x:active,.rcpop__x:active,.lvprev__x:active{opacity:.6}
+@media (prefers-contrast:more){
+  .present-btn,.layout-btn,.rov-btn,.fivedl__all,.lvprev__pdf,.lvprev__img,.adv-btn--ghost,.lang-toggle,.tt-seg{border:1px solid currentColor}
+}
+</style>
 </body>
 </html>
