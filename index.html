@@ -6164,8 +6164,8 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       for(p=lo;p<=hi;p++){path+='<span class="lvpath__chip" style="--c:'+LEVELS[p].c+'">'+LVSHORT[p]+'</span>'+(p<hi?'<span class="lvpath__arr">→</span>':'');}
       html+='<div class="lvroad" data-learner="'+i+'">'+
         '<div class="lvroad__head"><span class="lvroad__who">'+lvAvatar(i)+'<span class="lvroad__name">'+esc(learnerName(i))+'</span></span><span class="lvroad__path">'+path+'</span>'+
-          (i===lvCount-1?'<button type="button" class="lv-save" data-lvsave data-noshot data-nozh aria-label="Save photo for students" title="Save photo for students \u00b7 \u5b58\u56fe\u53d1\u7ed9\u5b66\u751f">'+
-            '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10m0 0 4-4m-4 4-4-4"/><path d="M5 17v1.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V17"/></svg></button>':'')+
+          ('<button type="button" class="lv-save" data-lvsave="'+i+'" data-noshot data-nozh aria-label="Save photo for students" title="Save photo for students \u00b7 \u5b58\u56fe\u53d1\u7ed9\u5b66\u751f">'+
+            '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10m0 0 4-4m-4 4-4-4"/><path d="M5 17v1.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V17"/></svg></button>')+
         '</div>'+
         '<div class="glass-stage lvstage">'+
           '<span class="glow" style="background:var(--p1);left:1%;bottom:30%"></span>'+
@@ -6283,19 +6283,27 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     if(sum){sum.addEventListener("click",function(e){if(e.target.closest("#lvEdit")){if(tool)tool.hidden=false; sum.hidden=true;}});}
     if(mods){mods.addEventListener("click",function(e){var sv=e.target.closest("[data-lvsave]"); if(!sv)return;
       if(!window.__teGlassShot){ alert("\u56fe\u7247\u5bfc\u51fa\u4e0d\u53ef\u7528"); return; }
-      var names=[]; for(var k=0;k<lvCount;k++){ var nm=(lvState[k].name||"").trim(); if(nm) names.push(nm); }
-      window.__teGlassShot({node:(lvCount===1&&mods.querySelector('.lvroad'))||mods, btn:sv, title:"Level Recommendation", zh:"\u7ea7\u522b\u5efa\u8bae",
+      /* one learner per photo — students get their own path, never a side-by-side */
+      var li=+sv.getAttribute("data-lvsave")||0, road=mods.querySelector('.lvroad[data-learner="'+li+'"]'); if(!road)return;
+      var nm=(lvState[li].name||"").trim(), HERO=740;
+      window.__teGlassShot({node:road, width:HERO, btn:sv, title:"Level Recommendation", zh:"\u7ea7\u522b\u5efa\u8bae",
         sub:"Your personal learning path", subZh:"\u4e3a\u4f60\u5b9a\u5236\u7684\u5b66\u4e60\u8def\u7ebf",
-        filename:"TOUCH-Level-Recommendation"+(names.length?"-"+names.join("-").replace(/[^A-Za-z0-9\u3400-\u9fff-]+/g,"-"):"")+".png",
+        filename:"TOUCH-Level-Recommendation"+(nm?"-"+nm.replace(/[^A-Za-z0-9\u3400-\u9fff-]+/g,"-"):"-Learner-"+(li+1))+".png",
         prep:function(clone,orig){
           [].forEach.call(clone.querySelectorAll(".lvzoom,[data-zoom-ctl]"),function(x){ x.remove(); });
+          /* an open level detail is for the advisor's walkthrough, not the photo */
+          clone.classList.remove("is-compact"); var dt=clone.querySelector(".lvroad__detail"); if(dt){ dt.innerHTML=""; dt.className="lvroad__detail"; }
+          [].forEach.call(clone.querySelectorAll(".lvl-col.is-active"),function(x){ x.classList.remove("is-active"); });
+          /* re-fit the map to single-learner width (side-by-side maps are drawn at half size) */
+          var ost=orig.querySelector(".glass-stage"), osc=orig.querySelector(".lvroad__sc"), cvp=clone.querySelector(".lvroad__vp"), csc=clone.querySelector(".lvroad__sc");
+          if(ost&&osc&&cvp&&csc){ var cs=getComputedStyle(ost), inner=HERO-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight),
+              k=inner/900, natH=osc.offsetHeight; csc.style.transform="scale("+k+")"; cvp.style.height=(natH*k)+"px"; }
           /* blurred glows -> soft radial gradients (Safari drops CSS filters in snapshots) */
           var og=orig.querySelectorAll(".glass-stage .glow"), cg=clone.querySelectorAll(".glass-stage .glow");
           [].forEach.call(cg,function(g,n){ var c=og[n]?getComputedStyle(og[n]).backgroundColor:"rgba(120,150,220,1)";
             g.style.cssText+=";filter:none;opacity:.55;width:460px;height:460px;margin:-80px;background:radial-gradient(closest-side,"+c+",transparent)"; });
-          /* sizes that depend on the viewport are frozen at their on-screen value */
-          var on=orig.querySelectorAll(".lvl-col__name"), cn=clone.querySelectorAll(".lvl-col__name");
-          [].forEach.call(cn,function(x,n){ if(on[n]) x.style.fontSize=getComputedStyle(on[n]).fontSize; });
+          /* the level names size with the window on screen; in the photo use the single-learner size */
+          [].forEach.call(clone.querySelectorAll(".lvl-col__name"),function(x){ x.style.fontSize="21px"; });
         }});
     });}
     if(mods){mods.addEventListener("click",function(e){var a=e.target.closest(".lvme"); if(!a)return;
@@ -12224,7 +12232,7 @@ io.observe(er);})();
   }
   window.__teGlassShot=function(o){
     if(!window.__tePng||!window.__teGlass){ alert("\u56fe\u7247\u5bfc\u51fa\u4e0d\u53ef\u7528"); return; }
-    var src=o.node, W=Math.ceil(src.getBoundingClientRect().width);
+    var src=o.node, W=o.width||Math.ceil(src.getBoundingClientRect().width);
     var clone=src.cloneNode(true); clone.removeAttribute("id");
     [].forEach.call(clone.querySelectorAll("[data-noshot]"),function(x){ x.remove(); });
     if(o.prep) o.prep(clone,src);
