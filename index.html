@@ -6163,7 +6163,10 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       var path="";
       for(p=lo;p<=hi;p++){path+='<span class="lvpath__chip" style="--c:'+LEVELS[p].c+'">'+LVSHORT[p]+'</span>'+(p<hi?'<span class="lvpath__arr">→</span>':'');}
       html+='<div class="lvroad" data-learner="'+i+'">'+
-        '<div class="lvroad__head"><span class="lvroad__who">'+lvAvatar(i)+'<span class="lvroad__name">'+esc(learnerName(i))+'</span></span><span class="lvroad__path">'+path+'</span></div>'+
+        '<div class="lvroad__head"><span class="lvroad__who">'+lvAvatar(i)+'<span class="lvroad__name">'+esc(learnerName(i))+'</span></span><span class="lvroad__path">'+path+'</span>'+
+          (i===lvCount-1?'<button type="button" class="lv-save" data-lvsave data-noshot data-nozh aria-label="Save photo for students" title="Save photo for students \u00b7 \u5b58\u56fe\u53d1\u7ed9\u5b66\u751f">'+
+            '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10m0 0 4-4m-4 4-4-4"/><path d="M5 17v1.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V17"/></svg></button>':'')+
+        '</div>'+
         '<div class="glass-stage lvstage">'+
           '<span class="glow" style="background:var(--p1);left:1%;bottom:30%"></span>'+
           '<span class="glow" style="background:var(--l1);left:22%;bottom:18%"></span>'+
@@ -6278,6 +6281,23 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         if(sum && !sum.hidden) buildSummary();});}
     if(present){present.addEventListener("click",function(){lvZoom=1; buildSummary(); if(tool)tool.hidden=true; if(sum)sum.hidden=false; renderMods(); if(typeof scrollToReveal==="function")scrollToReveal($("#lvMods"));});}
     if(sum){sum.addEventListener("click",function(e){if(e.target.closest("#lvEdit")){if(tool)tool.hidden=false; sum.hidden=true;}});}
+    if(mods){mods.addEventListener("click",function(e){var sv=e.target.closest("[data-lvsave]"); if(!sv)return;
+      if(!window.__teGlassShot){ alert("\u56fe\u7247\u5bfc\u51fa\u4e0d\u53ef\u7528"); return; }
+      var names=[]; for(var k=0;k<lvCount;k++){ var nm=(lvState[k].name||"").trim(); if(nm) names.push(nm); }
+      window.__teGlassShot({node:(lvCount===1&&mods.querySelector('.lvroad'))||mods, btn:sv, title:"Level Recommendation", zh:"\u7ea7\u522b\u5efa\u8bae",
+        sub:"Your personal learning path", subZh:"\u4e3a\u4f60\u5b9a\u5236\u7684\u5b66\u4e60\u8def\u7ebf",
+        filename:"TOUCH-Level-Recommendation"+(names.length?"-"+names.join("-").replace(/[^A-Za-z0-9\u3400-\u9fff-]+/g,"-"):"")+".png",
+        prep:function(clone,orig){
+          [].forEach.call(clone.querySelectorAll(".lvzoom,[data-zoom-ctl]"),function(x){ x.remove(); });
+          /* blurred glows -> soft radial gradients (Safari drops CSS filters in snapshots) */
+          var og=orig.querySelectorAll(".glass-stage .glow"), cg=clone.querySelectorAll(".glass-stage .glow");
+          [].forEach.call(cg,function(g,n){ var c=og[n]?getComputedStyle(og[n]).backgroundColor:"rgba(120,150,220,1)";
+            g.style.cssText+=";filter:none;opacity:.55;width:460px;height:460px;margin:-80px;background:radial-gradient(closest-side,"+c+",transparent)"; });
+          /* sizes that depend on the viewport are frozen at their on-screen value */
+          var on=orig.querySelectorAll(".lvl-col__name"), cn=clone.querySelectorAll(".lvl-col__name");
+          [].forEach.call(cn,function(x,n){ if(on[n]) x.style.fontSize=getComputedStyle(on[n]).fontSize; });
+        }});
+    });}
     if(mods){mods.addEventListener("click",function(e){var a=e.target.closest(".lvme"); if(!a)return;
       if(tool)tool.hidden=false; if(sum)sum.hidden=true;
       var n=$$("#lvLearners input.lvname")[+a.getAttribute("data-lvme")];
@@ -8186,6 +8206,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       x.drawImage(card,X,Y,cw,ch);
       done(o);
     }
+    try{ window.__teGlass=ttGlass; }catch(e){}
     /* Save photo: the grid exactly as it is on screen — levels, week and view — plus the notes */
     function ttShot(m,name,btn){
       if(!window.__tePng){ alert('\u56fe\u7247\u5bfc\u51fa\u4e0d\u53ef\u7528'); return; }
@@ -12165,6 +12186,83 @@ io.observe(er);})();
 .lvme:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 .lvme svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 @media (prefers-reduced-motion:reduce){.lvme{transition:none}}
+</style>
+<script id="glass-shot">
+/* Glass photo: snapshot any on-screen block onto the same frosted card as the timetable photo.
+   Only the CSS the block uses is carried over; media queries are resolved as they are on screen now. */
+(function(){
+  var ALWAYS=/:root|\.zh\b|te-en|^\s*(html|body)\b|^\*/;
+  var STATE=/:(hover|active|focus|focus-visible|focus-within)\b/;
+  /* split a selector list on top-level commas only (not inside :is()/:not()/:has()) */
+  function parts(sel){ var out=[],d=0,cur=""; for(var k=0;k<sel.length;k++){ var ch=sel.charAt(k);
+      if(ch==="(")d++; else if(ch===")")d--; if(ch===","&&!d){ out.push(cur); cur=""; } else cur+=ch; }
+    out.push(cur); return out; }
+  function hitter(root){ return function(sel){ return parts(sel).some(function(one){ one=one.trim(); if(!one) return false;
+      if(STATE.test(one)) return false;                     /* hover/press looks never go into a photo */
+      if(ALWAYS.test(one)) return true;
+      one=one.replace(/::?(before|after|placeholder|selection|marker|first-line|first-letter|-webkit-[a-z-]+)\b(\([^)]*\))?/g,"").trim();
+      if(!one) return false;
+      try{ return root.matches(one)||!!root.querySelector(one); }catch(e){ return false; } }); }; }
+  /* walk the page's own CSS text (the CSSOM mangles shorthands that use var()); keep matching rules,
+     resolve @media / @supports as they are on screen right now, drop keyframes/font-face/etc. */
+  function walk(txt,hit){ var out="",k=0,n=txt.length;
+    while(k<n){ var b=txt.indexOf("{",k); if(b<0) break;
+      var pre=txt.slice(k,b).trim(), d=1, e=b+1;
+      while(e<n&&d){ var ch=txt.charAt(e); if(ch==="{")d++; else if(ch==="}")d--; e++; }
+      var body=txt.slice(b+1,e-1);
+      if(pre.charAt(0)==="@"){
+        var m=/^@media\s+([\s\S]+)$/i.exec(pre), ok=false;
+        if(m){ try{ ok=matchMedia(m[1]).matches; }catch(x){} if(ok) out+=walk(body,hit); }
+        else if(/^@supports/i.test(pre)){ try{ ok=CSS.supports(pre.replace(/^@supports\s*/i,"")); }catch(x){} if(ok) out+=walk(body,hit); }
+      } else if(pre && hit(pre)) out+=pre+"{"+body+"}\n";
+      k=e; }
+    return out; }
+  function cssFor(root){
+    var txt=[].map.call(document.querySelectorAll("style"),function(t){ return t.textContent; }).join("\n")
+      .replace(/\/\*[\s\S]*?\*\//g,"").replace(/@(import|charset)[^;]*;/gi,"");
+    return walk(txt,hitter(root)).replace(/&/g,"\\26 ").replace(/</g,"\\3C ");
+  }
+  window.__teGlassShot=function(o){
+    if(!window.__tePng||!window.__teGlass){ alert("\u56fe\u7247\u5bfc\u51fa\u4e0d\u53ef\u7528"); return; }
+    var src=o.node, W=Math.ceil(src.getBoundingClientRect().width);
+    var clone=src.cloneNode(true); clone.removeAttribute("id");
+    [].forEach.call(clone.querySelectorAll("[data-noshot]"),function(x){ x.remove(); });
+    if(o.prep) o.prep(clone,src);
+    var wrap=document.createElement("div"); wrap.className="gshot"; wrap.style.width=(W+60)+"px";
+    wrap.innerHTML='<div class="gshot__top"><span class="gshot__brand">TOUCH ENGLISH</span>'+
+      '<b class="gshot__title">'+o.title+(o.zh?' <span class="zh">'+o.zh+'</span>':'')+'</b>'+
+      (o.sub?'<span class="gshot__sub">'+o.sub+(o.subZh?'<span class="zh"> \u00b7 '+o.subZh+'</span>':'')+'</span>':'')+'</div>'+
+      '<div class="gshot__body"></div><div class="gshot__foot">TOUCH English \u00b7 Makes You Visible</div>';
+    wrap.querySelector(".gshot__body").appendChild(clone);
+    if(document.body.classList.contains("te-en")) [].forEach.call(wrap.querySelectorAll(".zh,.te-cjk"),function(z){ z.remove(); });
+    wrap.style.position="fixed"; wrap.style.left="-99999px"; wrap.style.top="0"; document.body.appendChild(wrap);
+    var css=cssFor(wrap); document.body.removeChild(wrap); wrap.style.position=""; wrap.style.left=""; wrap.style.top="";
+    css+="\n*{animation:none!important;transition:none!important}";
+    var html='<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><style>'+css+'</style></head>'+
+      '<body class="'+document.body.className+'" style="margin:0">'+wrap.outerHTML+'</body></html>';
+    window.__tePng(html,".gshot",o.filename,o.btn,0,{transparent:true,compose:window.__teGlass});
+  };
+})();
+</script>
+<style id="glass-shot-css">
+.gshot{box-sizing:border-box;padding:30px 30px 20px;background:transparent}
+.gshot__top{margin-bottom:18px}
+.gshot__brand{display:block;font-family:var(--display);font-weight:800;font-size:10px;letter-spacing:.18em;color:var(--faint)}
+.gshot__title{display:block;font-family:var(--display);font-weight:800;font-size:24px;color:var(--ink);margin-top:5px;line-height:1.2}
+.gshot__title .zh{font-weight:600;font-size:16px;color:var(--muted);margin-left:6px}
+.gshot__sub{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.gshot__foot{margin-top:18px;text-align:center;font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.14em;color:#b8c2d0}
+.gshot .lvmods{margin-top:0}
+/* in a photo the avatar ring is a border (Safari drops box-shadows in snapshots) */
+.gshot .lvme{box-shadow:none;border:2px solid color-mix(in srgb,var(--lc) 60%,#fff)}
+/* the roadmap's save icon: same quiet circle as the timetable one */
+.lv-save{margin-left:auto;width:28px;height:28px;flex:none;padding:0;border:0;border-radius:50%;cursor:pointer;display:grid;place-items:center;
+  background:transparent;color:var(--faint);font-size:0;opacity:.7;transition:opacity .15s,background-color .15s,color .15s,transform .12s ease-out}
+.lv-save:hover{opacity:1;background:rgba(20,33,50,.06);color:var(--blue)}
+.lv-save:active{transform:scale(.9)}
+.lv-save svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.lv-save[disabled]{opacity:1;cursor:default}
+.lv-save[disabled]::after{content:"";width:13px;height:13px;border-radius:50%;border:2px solid rgba(47,123,224,.25);border-top-color:var(--blue);animation:ttSpin .7s linear infinite}
 </style>
 </body>
 </html>
