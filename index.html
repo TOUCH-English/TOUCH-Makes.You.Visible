@@ -6190,9 +6190,9 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     var w=n.split(/\s+/).filter(Boolean); return (w[0].charAt(0)+(w.length>1?w[1].charAt(0):"")).toUpperCase(); }
   var LVV=["--p1","--l1","--l2","--l3","--l4"];
   var LV_PERSON='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.2" r="3.6"/><path d="M5 19.5c1.1-3.4 3.8-5.2 7-5.2s5.9 1.8 7 5.2"/></svg>';
-  function lvAvatar(i){ var st=lvState[i], ini=lvInitials(st.name);
+  function lvAvatar(i){ var st=lvState[i];   /* always the person glyph — the name sits right beside it */
     return '<button type="button" class="lvme" data-lvme="'+i+'" style="--lc:var('+LVV[st.t]+')" aria-label="'+esc(learnerName(i))+' \u2014 adjust this path" title="'+esc(learnerName(i))+'">'+
-      (ini?esc(ini):LV_PERSON)+'</button>'; }
+      LV_PERSON+'</button>'; }
   function buildSummary(){ var box=$("#lvSummary"); if(box) box.innerHTML=""; }
   function introInner(k){
     var c=FIVEC[k];
