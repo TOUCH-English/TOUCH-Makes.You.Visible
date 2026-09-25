@@ -6163,7 +6163,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       var path="";
       for(p=lo;p<=hi;p++){path+='<span class="lvpath__chip" style="--c:'+LEVELS[p].c+'">'+LVSHORT[p]+'</span>'+(p<hi?'<span class="lvpath__arr">→</span>':'');}
       html+='<div class="lvroad" data-learner="'+i+'">'+
-        '<div class="lvroad__head"><span class="lvroad__name">'+esc(learnerName(i))+'</span><span class="lvroad__path">'+path+'</span></div>'+
+        '<div class="lvroad__head"><span class="lvroad__who">'+lvAvatar(i)+'<span class="lvroad__name">'+esc(learnerName(i))+'</span></span><span class="lvroad__path">'+path+'</span></div>'+
         '<div class="glass-stage lvstage">'+
           '<span class="glow" style="background:var(--p1);left:1%;bottom:30%"></span>'+
           '<span class="glow" style="background:var(--l1);left:22%;bottom:18%"></span>'+
@@ -6180,23 +6180,17 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
     box.innerHTML=html;
     applyZoom();
   }
-  /* after "Present roadmap": the editor folds into a small avatar — the learner's initial, ringed in
-     their target-level colour — so on screen it reads "this path is yours", not "edit". Tap to adjust. */
+  /* the learner's avatar sits in front of their name on the roadmap: initial(s), ringed in the
+     target-level colour. It reads "this path is yours"; tapping it opens the editor for that learner. */
   function lvInitials(n){ n=(n||"").trim(); if(!n) return "";
     if(/[\u3400-\u9fff]/.test(n)) return n.charAt(0);
     var w=n.split(/\s+/).filter(Boolean); return (w[0].charAt(0)+(w.length>1?w[1].charAt(0):"")).toUpperCase(); }
-  function buildSummary(){
-    var box=$("#lvSummary"); if(!box)return;
-    var LVV=["--p1","--l1","--l2","--l3","--l4"], avs="", tips="", who=[];
-    var person='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.2" r="3.6"/><path d="M5 19.5c1.1-3.4 3.8-5.2 7-5.2s5.9 1.8 7 5.2"/></svg>';
-    for(var i=0;i<lvCount;i++){var st=lvState[i], nm=((st.name)||"").trim(), ini=lvInitials(nm);
-      avs+='<span class="lvme__av" style="--lc:var('+LVV[st.t]+');z-index:'+(lvCount-i)+'">'+(ini?esc(ini):person)+'</span>';
-      tips+='<span class="lvme__row"><b>'+esc(learnerName(i))+'</b>'+LVSHORT[st.c]+' <i>\u2192</i> '+LVSHORT[st.t]+'</span>';
-      who.push(learnerName(i)+", "+LVSHORT[st.c]+" to "+LVSHORT[st.t]);}
-    box.innerHTML='<button type="button" class="lvme" id="lvEdit" aria-label="'+esc("Your learning path: "+who.join("; ")+". Tap to adjust.")+'">'+
-      '<span class="lvme__stack">'+avs+'</span>'+
-      '<span class="lvme__tip"><span class="lvme__h">Your path <span class="zh">\u4e3a\u4f60\u5b9a\u5236</span></span>'+tips+'</span></button>';
-  }
+  var LVV=["--p1","--l1","--l2","--l3","--l4"];
+  var LV_PERSON='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.2" r="3.6"/><path d="M5 19.5c1.1-3.4 3.8-5.2 7-5.2s5.9 1.8 7 5.2"/></svg>';
+  function lvAvatar(i){ var st=lvState[i], ini=lvInitials(st.name);
+    return '<button type="button" class="lvme" data-lvme="'+i+'" style="--lc:var('+LVV[st.t]+')" aria-label="'+esc(learnerName(i))+' \u2014 adjust this path" title="'+esc(learnerName(i))+'">'+
+      (ini?esc(ini):LV_PERSON)+'</button>'; }
+  function buildSummary(){ var box=$("#lvSummary"); if(box) box.innerHTML=""; }
   function introInner(k){
     var c=FIVEC[k];
     var gainRows=c.gain.slice(0,5).map(function(x,j){var col=COLPAL[j%COLPAL.length];
@@ -6280,9 +6274,15 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       learners.addEventListener("input",function(e){var n=e.target.closest("input.lvname"); if(!n)return;
         var li=parseInt(n.getAttribute("data-learner"),10); lvState[li].name=n.value;
         var nm=$('#lvMods .lvroad[data-learner="'+li+'"] .lvroad__name'); if(nm)nm.textContent=learnerName(li);
+        var av=$('#lvMods .lvroad[data-learner="'+li+'"] .lvme'); if(av)av.outerHTML=lvAvatar(li);
         if(sum && !sum.hidden) buildSummary();});}
     if(present){present.addEventListener("click",function(){lvZoom=1; buildSummary(); if(tool)tool.hidden=true; if(sum)sum.hidden=false; renderMods(); if(typeof scrollToReveal==="function")scrollToReveal($("#lvMods"));});}
     if(sum){sum.addEventListener("click",function(e){if(e.target.closest("#lvEdit")){if(tool)tool.hidden=false; sum.hidden=true;}});}
+    if(mods){mods.addEventListener("click",function(e){var a=e.target.closest(".lvme"); if(!a)return;
+      if(tool)tool.hidden=false; if(sum)sum.hidden=true;
+      var n=$$("#lvLearners input.lvname")[+a.getAttribute("data-lvme")];
+      if(typeof scrollToReveal==="function")scrollToReveal(tool);
+      if(n)setTimeout(function(){try{n.focus({preventScroll:true});n.select();}catch(x){}},260);});}
     var _rt; window.addEventListener("resize",function(){clearTimeout(_rt);_rt=setTimeout(fitRoads,120);});
     var adminRows=$("#lvAdminRows");
     if(adminRows){
@@ -12152,36 +12152,19 @@ io.observe(er);})();
 }
 </style>
 <style id="lv-avatar">
-/* the folded learner summary: one small avatar (or a stack) at the top-right of the roadmap */
-.lvsummary{justify-content:flex-end;background:none;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0;opacity:1}
-.lvme{position:relative;display:inline-flex;align-items:center;padding:3px;border:0;background:none;border-radius:999px;cursor:pointer;
-  -webkit-tap-highlight-color:transparent;transition:transform .15s ease-out}
-.lvme:hover{transform:scale(1.06)}
-.lvme:active{transform:scale(.94)}
-.lvme:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
-.lvme__stack{display:flex}
-.lvme__av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;flex:none;
-  font:700 13px/1 -apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",system-ui,sans-serif;letter-spacing:.01em;
+/* the old summary row is no longer shown — the roadmap header already says who and where */
+#lvSummary{display:none!important}
+.lvroad__who{display:inline-flex;align-items:center;gap:9px}
+.lvme{width:28px;height:28px;flex:none;padding:0;border:0;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  font:700 11.5px/1 -apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",system-ui,sans-serif;letter-spacing:.01em;
   color:var(--lc);background:color-mix(in srgb,var(--lc) 13%,#fff);
-  box-shadow:0 0 0 2px #fff,0 0 0 3.5px color-mix(in srgb,var(--lc) 60%,transparent),0 6px 14px -6px rgba(20,33,50,.35)}
-.lvme__av{position:relative}
-.lvme__av+.lvme__av{margin-left:-4px}
-.lvme__av svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-/* hover / focus: a quiet glass label says whose path this is */
-.lvme__tip{position:absolute;right:0;top:calc(100% + 8px);z-index:6;display:flex;flex-direction:column;gap:3px;text-align:left;white-space:nowrap;
-  padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-  border:1px solid rgba(255,255,255,.9);box-shadow:0 0 0 .5px rgba(20,33,50,.12),0 12px 28px -12px rgba(14,36,86,.35);
-  font:500 11.5px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",system-ui,sans-serif;color:var(--muted);
-  opacity:0;transform:translateY(-4px) scale(.98);transform-origin:top right;pointer-events:none;transition:opacity .16s,transform .16s}
-.lvme:hover .lvme__tip,.lvme:focus-visible .lvme__tip{opacity:1;transform:none}
-.lvme__h{font-weight:700;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
-.lvme__h .zh{letter-spacing:0;margin-left:4px}
-.lvme__row b{color:var(--ink);font-weight:700;margin-right:6px}
-.lvme__row i{font-style:normal;color:var(--faint);margin:0 2px}
-/* it arrives with a small pop so the advisor sees where the editor went */
-.lvsummary:not([hidden]) .lvme{animation:lvmeIn .42s cubic-bezier(.2,.9,.3,1.25) both}
-@keyframes lvmeIn{from{opacity:0;transform:scale(.6)}}
-@media (prefers-reduced-motion:reduce){.lvsummary:not([hidden]) .lvme{animation:none}.lvme,.lvme__tip{transition:none}}
+  box-shadow:0 0 0 2px #fff,0 0 0 3.5px color-mix(in srgb,var(--lc) 55%,transparent),0 5px 12px -6px rgba(20,33,50,.35);
+  -webkit-tap-highlight-color:transparent;transition:transform .16s ease-out,box-shadow .16s ease-out}
+.lvme:hover{transform:scale(1.1);box-shadow:0 0 0 2px #fff,0 0 0 3.5px var(--lc),0 0 0 8px color-mix(in srgb,var(--lc) 14%,transparent),0 8px 16px -6px rgba(20,33,50,.4)}
+.lvme:active{transform:scale(.93)}
+.lvme:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.lvme svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+@media (prefers-reduced-motion:reduce){.lvme{transition:none}}
 </style>
 </body>
 </html>
