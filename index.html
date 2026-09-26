@@ -9831,10 +9831,10 @@ io.observe(er);})();
   function vsNumbers(i){
     var n=i+1, one=data[0], bundle=finalOf(data[i]), first=finalOf(one), later=one.orig;
     var total=first+later*(n-1), saved=total-bundle, perLesson=one.lessons?one.orig/one.lessons:0;
-    /* each side's "省" is measured the same way as the price table's YOU SAVE column (against the original price),
-       so the sheet never introduces a third saving figure — the gap between the two is the extra paid by waiting */
+    /* the band's "总共省" is the price table's YOU SAVE figure (against the original price), so the two always agree;
+       the grey side's "少省" is the gap between bundling now and splitting */
     return {n:n, bundle:bundle, first:first, later:later, total:total, saved:saved, lessons:perLesson?Math.round(saved/perLesson):0,
-      saveNow:data[i].orig-bundle, saveLater:one.orig*n-total};
+      saveNow:data[i].orig-bundle};
   }
   function vsBody(i){
     var v=vsNumbers(i), steps='';
@@ -9845,14 +9845,14 @@ io.observe(er);})();
         '<div class="vs-tabs" role="group" aria-label="Levels">'+tabs+'</div></div>'+
       '<div class="vs-grid">'+
         '<div class="vs-side is-now"><span class="vs-pill">推荐 · 现在一起拿</span><span class="vs-lbl">'+v.n+' Levels · '+data[i].lessons+' 堂 · 津贴后</span>'+
-          '<b class="vs-amt">'+money(taxed(v.bundle))+'</b><span class="vs-save">省 '+money(taxed(v.saveNow))+'</span><p>所有 Level 都用<b>这一期的津贴价</b>锁定，一次安排好整条学习路线。</p>'+
+          '<b class="vs-amt">'+money(taxed(v.bundle))+'</b><p>所有 Level 都用<b>这一期的津贴价</b>锁定，一次安排好整条学习路线。</p>'+
           '<div class="vs-bar"><i style="width:'+Math.round(v.bundle/v.total*100)+'%"></i></div></div>'+
         '<div class="vs-mid"><span>VS</span></div>'+
         '<div class="vs-side is-later"><span class="vs-pill">先拿 1 级，之后再拿</span>'+steps+
-          '<div class="vs-sum"><span>合计</span><b class="vs-amt">'+money(taxed(v.total))+'</b></div><span class="vs-save is-less">只省 '+money(taxed(v.saveLater))+'</span>'+
+          '<div class="vs-sum"><span>合计</span><b class="vs-amt">'+money(taxed(v.total))+'</b></div><span class="vs-save is-less">少省 '+money(taxed(v.saved))+'</span>'+(v.lessons>0?'<span class="vs-less-l">≈ '+v.lessons+' 堂课的学费</span>':'')+
           '<div class="vs-bar"><i style="width:100%"></i></div></div>'+
       '</div>'+
-      '<div class="vs-band"><span>分开拿，要<b>多付</b><small>省 '+money(taxed(v.saveNow))+' − 只省 '+money(taxed(v.saveLater))+'</small></span><span class="vs-band__r"><b>'+money(taxed(v.saved))+'</b>'+(v.lessons>0?'<i>≈ '+v.lessons+' 堂课的学费</i>':'')+'</span></div>'+
+      '<div class="vs-band"><span>现在一起拿，<b>总共省</b></span><span class="vs-band__r"><b>'+money(taxed(v.saveNow))+'</b></span></div>'+
       '<p class="vs-fine">以上价格不含 '+money(taxed(miscFee()))+' 报名＋系统费（只收一次）· 分开拿时，之后的 Level 以原价 '+money(taxed(v.later))+' 计算（不含津贴）'+(sstOn?' · incl. 6% SST':'')+'</p>';
   }
   var vsBox=null;
@@ -12374,8 +12374,8 @@ io.observe(er);})();
 .vs-mid{display:flex;align-items:center;justify-content:center}
 .vs-mid span{width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;font-family:var(--display);font-weight:800;font-size:15px;display:grid;place-items:center;box-shadow:0 0 0 5px #fff}
 .vs-band{margin-top:16px;border-radius:16px;background:var(--ink);color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14.5px;font-weight:600}
-.vs-band b{color:#FFB0A8}
-.vs-band small{display:block;font-size:12px;font-weight:500;color:rgba(255,255,255,.62);margin-top:3px}
+.vs-band b{color:#7EE2A0}
+.vs-less-l{align-self:flex-end;font-size:12px;color:#A08A55;margin-top:-4px}
 /* same gold as the price table's YOU SAVE column, so the two read as one figure */
 .vs-save{align-self:flex-start;font-family:var(--display);font-size:14px;font-weight:800;color:#8A6400;background:#FBF1D9;border-radius:999px;padding:4px 12px}
 .vs-save.is-less{align-self:flex-end;color:#A08A55;background:#F6F0E2}
