@@ -9818,11 +9818,61 @@ io.observe(er);})();
     var orig = struck ? '<span class="tcard__price-orig"><span class="cur-sym">RM</span> '+fmt(taxed(d.orig))+'</span>' : '';
     var tag = subsidyOn ? '<span class="tcard__price-tag">After subsidy<span class="zh">津贴后</span></span>' : '';
     var save = (subsidyOn && d.orig-sub>0) ? '<span class="tcard__price-save">Save '+money(taxed(d.orig-sub))+'<span class="zh">省</span></span>' : '';
+    /* together-vs-separately: only where there is something to compare, and only once the subsidy price is showing */
+    if(subsidyOn && (i===1||i===2) && vsNumbers(i).saved>0) save+='<button type="button" class="tcard__vs" data-vs="'+i+'" data-nozh aria-label="Compare: all levels now vs one level at a time" title="\u4e00\u6b21\u62ff vs \u5206\u5f00\u62ff">'+
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M7 20h10M5 8h14"/><path d="M5 8l-3 6a3 3 0 0 0 6 0z"/><path d="M19 8l-3 6a3 3 0 0 0 6 0z"/></svg></button>';
     var hrdc=(!subsidyOn && (i===1||i===2)) ? '<span class="tcard__hrdc-inline"><img loading="lazy" decoding="async" class="tcard__hrdc-img" src="assets/logo/hrdc.webp" alt="HRDC" onerror="this.style.display=\'none\'"><b>HRDC</b></span>' : '';
     return orig+'<div class="tcard__price-now"><span class="rm">'+curNow().sym+'</span><span class="n">'+fmt(taxed(now))+'</span>'+hrdc+'</div>'+tag+save+
       '<span class="tcard__price-note"><button type="button" class="tcard__calc" data-total="'+i+'" title="看总额 See total" aria-label="See total"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5v3"/></svg></button>+ '+money(taxed(miscFee()))+' <span class="zh">报名＋系统费</span>'+(sstOn?' · <b style=\"color:var(--blue-bright)\">incl. 6% SST</b>':'')+'</span>';
   }
   function priceBlock(i){ return '<div class="tcard__price" data-pi="'+i+'">'+priceInner(i)+'</div>'; }
+  /* one level now at the subsidy price, each later level at the full single-level price (no subsidy, no bundle);
+     the registration + system fee is paid once either way, so it is left out of both sides */
+  function vsNumbers(i){
+    var n=i+1, one=data[0], bundle=finalOf(data[i]), first=finalOf(one), later=one.orig;
+    var total=first+later*(n-1), saved=total-bundle, perLesson=one.lessons?one.orig/one.lessons:0;
+    return {n:n, bundle:bundle, first:first, later:later, total:total, saved:saved, lessons:perLesson?Math.round(saved/perLesson):0};
+  }
+  function vsBody(i){
+    var v=vsNumbers(i), steps='';
+    steps+='<div class="vs-step"><span>Level 1<i>现在 · 津贴后</i></span><b>'+money(taxed(v.first))+'</b></div>';
+    for(var k=2;k<=v.n;k++) steps+='<div class="vs-step is-later"><span>Level '+k+'<i>之后 · 原价</i></span><b>'+money(taxed(v.later))+'</b></div>';
+    var tabs=[1,2].map(function(t){ return '<button type="button" class="vs-tab'+(t===i?' is-on':'')+'" data-vstab="'+t+'">'+(t+1)+' Levels · '+data[t].lessons+' 堂</button>'; }).join('');
+    return '<div class="vs-head"><div><span class="vs-eb">YOUR INVESTMENT</span><b class="vs-title">一次拿，还是分开拿？</b><span class="vs-sub">All levels now vs. one level at a time</span></div>'+
+        '<div class="vs-tabs" role="group" aria-label="Levels">'+tabs+'</div></div>'+
+      '<div class="vs-grid">'+
+        '<div class="vs-side is-now"><span class="vs-pill">推荐 · 现在一起拿</span><span class="vs-lbl">'+v.n+' Levels · '+data[i].lessons+' 堂 · 津贴后</span>'+
+          '<b class="vs-amt">'+money(taxed(v.bundle))+'</b><p>所有 Level 都用<b>这一期的津贴价</b>锁定，一次安排好整条学习路线。</p>'+
+          '<div class="vs-bar"><i style="width:'+Math.round(v.bundle/v.total*100)+'%"></i></div></div>'+
+        '<div class="vs-mid"><span>VS</span></div>'+
+        '<div class="vs-side is-later"><span class="vs-pill">先拿 1 级，之后再拿</span>'+steps+
+          '<div class="vs-sum"><span>合计</span><b class="vs-amt">'+money(taxed(v.total))+'</b></div>'+
+          '<div class="vs-bar"><i style="width:100%"></i></div></div>'+
+      '</div>'+
+      '<div class="vs-band"><span>现在一起拿，比分开拿<b>少付</b></span><span class="vs-band__r"><b>'+money(taxed(v.saved))+'</b>'+(v.lessons>0?'<i>≈ '+v.lessons+' 堂课的学费</i>':'')+'</span></div>'+
+      '<p class="vs-fine">以上价格不含 '+money(taxed(miscFee()))+' 报名＋系统费（只收一次）· 分开拿时，之后的 Level 以原价 '+money(taxed(v.later))+' 计算（不含津贴）'+(sstOn?' · incl. 6% SST':'')+'</p>';
+  }
+  var vsBox=null;
+  function vsOpen(i){
+    if(!vsBox){
+      vsBox=document.createElement('div'); vsBox.className='tt-modal vs-modal'; vsBox.setAttribute('data-nozh','');
+      vsBox.innerHTML='<div class="tt-modal__bg"></div><div class="tt-modal__card vs-card" role="dialog" aria-modal="true" aria-label="All levels now vs one level at a time">'+
+        '<button type="button" class="tt-modal__x" data-vsx aria-label="Close">\u00d7</button><div class="vs-body"></div></div>';
+      document.body.appendChild(vsBox);
+      vsBox.addEventListener('click',function(e){
+        var t=e.target.closest('[data-vstab]'); if(t){ vsBox.querySelector('.vs-body').innerHTML=vsBody(+t.getAttribute('data-vstab')); return; }
+        if(e.target.closest('[data-vsx]')||e.target.classList.contains('tt-modal__bg')) vsClose();
+      });
+      document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&vsBox&&vsBox.classList.contains('is-open')){ e.preventDefault(); e.stopPropagation(); vsClose(); } },true);   /* Esc closes the sheet only — never turns the slide */
+    }
+    vsBox.querySelector('.vs-body').innerHTML=vsBody(i);
+    vsBox.hidden=false; void vsBox.offsetWidth; vsBox.classList.add('is-open');
+  }
+  function vsClose(){ vsBox.classList.remove('is-open'); setTimeout(function(){ if(!vsBox.classList.contains('is-open')) vsBox.hidden=true; },220); }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('[data-vs]');
+    if(b){ e.preventDefault(); e.stopPropagation(); vsOpen(+b.getAttribute('data-vs')); }
+  },true);
   function revealSubsidyPrices(){
     if(subsidyDone) return;
     subsidyOn=true; subsidyDone=true;
@@ -12131,10 +12181,10 @@ io.observe(er);})();
   --ios-fill:rgba(118,118,128,.12);--ios-fill-hi:rgba(118,118,128,.2);--ios-label2:rgba(60,60,67,.62)}
 
 /* 1 · close buttons */
-.tt-modal__x,.adv-modal__x,.rcpop__x,.ipop__x,.lvprev__x,.sysedit__x,.site-modal__x,.tpop__x,.tpop2__x,.team-modal__x,.sumtr-pop__x,.rov-x,.profile-pop__x{
+.tt-modal__x,.adv-modal__x,.rcpop__x,.ipop__x,.lvprev__x,.sysedit__x,.site-modal__x,.tpop__x,.tpop2__x,.team-modal__x,.sumtr-pop__x,.rov-x,.profile-pop__x,.hpop__x{
   width:30px;height:30px;padding:0;border:0;border-radius:50%;box-shadow:none;background:rgba(118,118,128,.16);color:var(--ios-label2);
   display:grid;place-items:center;font-family:var(--ios-font);font-size:17px;font-weight:600;line-height:1;transition:background-color .15s,color .15s,transform .12s ease-out}
-.tt-modal__x:hover,.adv-modal__x:hover,.rcpop__x:hover,.ipop__x:hover,.lvprev__x:hover,.sysedit__x:hover,.site-modal__x:hover,.tpop__x:hover,.tpop2__x:hover,.team-modal__x:hover,.sumtr-pop__x:hover,.rov-x:hover,.profile-pop__x:hover{
+.tt-modal__x:hover,.adv-modal__x:hover,.rcpop__x:hover,.ipop__x:hover,.lvprev__x:hover,.sysedit__x:hover,.site-modal__x:hover,.tpop__x:hover,.tpop2__x:hover,.team-modal__x:hover,.sumtr-pop__x:hover,.rov-x:hover,.profile-pop__x:hover,.hpop__x:hover{
   background:rgba(118,118,128,.24);color:rgba(60,60,67,.85);transform:none}
 
 /* these two sat on a hairline edge before — keep it */
@@ -12275,6 +12325,61 @@ io.observe(er);})();
 .lv-save svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .lv-save[disabled]{opacity:1;cursor:default}
 .lv-save[disabled]::after{content:"";width:13px;height:13px;border-radius:50%;border:2px solid rgba(47,123,224,.25);border-top-color:var(--blue);animation:ttSpin .7s linear infinite}
+</style>
+<style id="vs-compare">
+/* the quiet compare icon beside "Save RM …": faint until hovered, no label */
+.tcard__vs{display:inline-grid;place-items:center;vertical-align:middle;width:26px;height:26px;margin:8px 0 0 6px;padding:0;border:0;border-radius:50%;
+  background:transparent;color:var(--faint);opacity:.7;cursor:pointer;transition:opacity .15s,background-color .15s,color .15s,transform .12s ease-out;position:relative}
+.tcard__vs::after{content:"";position:absolute;inset:-6px;border-radius:50%}
+.tcard__vs:hover{opacity:1;background:rgba(20,33,50,.06);color:var(--blue)}
+.tcard__vs:active{transform:scale(.9)}
+.tcard__vs svg{width:15px;height:15px}
+/* the VS sheet (kept in the page; hidden means gone, or the invisible layer would swallow clicks) */
+.vs-modal[hidden]{display:none!important}
+.vs-card{max-width:860px;padding:28px 32px 24px}
+.vs-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-right:44px;margin-bottom:18px}
+.vs-eb{display:block;font-size:10.5px;font-weight:800;letter-spacing:.16em;color:var(--faint)}
+.vs-title{display:block;font-family:var(--display);font-size:24px;font-weight:800;color:var(--ink);margin-top:5px;line-height:1.2}
+.vs-sub{display:block;font-size:13px;color:var(--muted);margin-top:3px}
+.vs-tabs{display:inline-flex;padding:3px;border-radius:11px;background:rgba(118,118,128,.12);border:1px solid rgba(255,255,255,.85);box-shadow:0 0 0 .5px rgba(20,33,50,.14)}
+.vs-tab{border:0;background:transparent;cursor:pointer;border-radius:8px;padding:6px 13px;font:600 12.5px -apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",system-ui,sans-serif;color:#1c1c1e}
+.vs-tab.is-on{background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.12),0 3px 1px rgba(0,0,0,.04)}
+.vs-grid{display:grid;grid-template-columns:1fr 54px 1fr;align-items:stretch}
+.vs-side{border-radius:20px;padding:20px 20px 18px;display:flex;flex-direction:column;gap:9px}
+.vs-side.is-now{background:linear-gradient(160deg,#EAF6EE,#F7FBF8);border:2px solid #2E9E50}
+.vs-side.is-later{background:#F6F7FA;border:1px solid var(--line)}
+.vs-pill{align-self:flex-start;font-size:11.5px;font-weight:800;border-radius:999px;padding:4px 11px}
+.is-now .vs-pill{color:#fff;background:#2E9E50}
+.is-later .vs-pill{color:var(--muted);background:rgba(118,118,128,.14)}
+.vs-lbl{font-size:13.5px;font-weight:600;color:#3C4A5E}
+.vs-amt{font-family:var(--display);font-weight:800;line-height:1;letter-spacing:-.01em}
+.is-now .vs-amt{font-size:42px;color:#1B6E37}
+.is-later .vs-amt{font-size:30px;color:#B42330}
+.vs-side p{margin:0;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.vs-side p b{color:#1B6E37}
+.vs-step{display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:13.5px}
+.vs-step span{font-weight:600;color:#3C4A5E}
+.vs-step i{font-style:normal;font-weight:500;color:var(--faint);margin-left:6px}
+.vs-step b{font-family:var(--display);font-weight:700;color:var(--ink)}
+.vs-step.is-later b{color:#B42330}
+.vs-sum{display:flex;align-items:baseline;justify-content:space-between;border-top:1px dashed #C9D3E3;padding-top:8px}
+.vs-sum span{font-size:13.5px;font-weight:600;color:#3C4A5E}
+.vs-bar{margin-top:auto;height:12px;border-radius:6px;overflow:hidden}
+.is-now .vs-bar{background:rgba(46,158,80,.14)}.is-now .vs-bar i{background:#2E9E50}
+.is-later .vs-bar{background:rgba(198,38,48,.12)}.is-later .vs-bar i{background:#C62630}
+.vs-bar i{display:block;height:100%;border-radius:6px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.vs-mid{display:flex;align-items:center;justify-content:center}
+.vs-mid span{width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;font-family:var(--display);font-weight:800;font-size:15px;display:grid;place-items:center;box-shadow:0 0 0 5px #fff}
+.vs-band{margin-top:16px;border-radius:16px;background:var(--ink);color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14.5px;font-weight:600}
+.vs-band b{color:#7EE2A0}
+.vs-band__r{display:flex;align-items:baseline;gap:12px}
+.vs-band__r b{font-family:var(--display);font-size:30px;font-weight:800;line-height:1}
+.vs-band__r i{font-style:normal;font-size:12.5px;color:rgba(255,255,255,.72)}
+.vs-fine{margin:12px 0 0;font-size:11px;color:var(--faint);line-height:1.5}
+@media (max-width:720px){
+  .vs-grid{grid-template-columns:1fr;gap:10px}.vs-mid{height:30px}.vs-mid span{width:38px;height:38px;font-size:13px}
+  .vs-card{padding:24px 18px 20px}.is-now .vs-amt{font-size:34px}
+}
 </style>
 </body>
 </html>
