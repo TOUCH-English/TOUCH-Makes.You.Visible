@@ -9976,26 +9976,31 @@ io.observe(er);})();
     return {n:n, bundle:bundle, first:first, later:later, total:total, saved:saved, lessons:perLesson?Math.round(saved/perLesson):0,
       saveNow:data[i].orig-bundle};
   }
+  /* the sheet is built outside the bilingual wrapper (data-nozh), so it carries its own English for EN mode */
+  function vsEn(){ return document.body.classList.contains('te-en'); }
   function vsBody(i){
-    var v=vsNumbers(i), steps='';
-    steps+='<div class="vs-step"><span>Level 1<i>\u73b0\u5728 \u00b7 \u6d25\u8d34\u540e</i></span><b>'+money(taxed(v.first))+'</b></div>';
-    for(var k=2;k<=v.n;k++) steps+='<div class="vs-step is-later"><span>Level '+k+'<i>\u4e4b\u540e \u00b7 \u539f\u4ef7</i></span><b>'+money(taxed(v.later))+'</b></div>';
-    var tabs=[1,2].map(function(t){ return '<button type="button" class="vs-tab'+(t===i?' is-on':'')+'" data-vstab="'+t+'">'+(t+1)+' Levels \u00b7 '+data[t].lessons+' \u5802</button>'; }).join('');
-    return '<div class="vs-head"><div><span class="vs-eb">YOUR INVESTMENT</span><b class="vs-title">\u4e00\u6b21\u62ff\uff0c\u8fd8\u662f\u5206\u5f00\u62ff\uff1f</b><span class="vs-sub">All levels now vs. one level at a time</span></div>'+
+    var v=vsNumbers(i), en=vsEn(), steps='', L=function(zh,e){ return en?e:zh; };
+    var unit=L(' \u5802',' lessons');
+    steps+='<div class="vs-step"><span>Level 1<i>'+L('\u73b0\u5728 \u00b7 \u6d25\u8d34\u540e','now \u00b7 after subsidy')+'</i></span><b>'+money(taxed(v.first))+'</b></div>';
+    for(var k=2;k<=v.n;k++) steps+='<div class="vs-step is-later"><span>Level '+k+'<i>'+L('\u4e4b\u540e \u00b7 \u539f\u4ef7','later \u00b7 full price')+'</i></span><b>'+money(taxed(v.later))+'</b></div>';
+    var tabs=[1,2].map(function(t){ return '<button type="button" class="vs-tab'+(t===i?' is-on':'')+'" data-vstab="'+t+'">'+(t+1)+' Levels \u00b7 '+data[t].lessons+unit+'</button>'; }).join('');
+    return '<div class="vs-head"><div><span class="vs-eb">YOUR INVESTMENT</span><b class="vs-title">'+L('\u4e00\u6b21\u62ff\uff0c\u8fd8\u662f\u5206\u5f00\u62ff\uff1f','All levels now, or one at a time?')+'</b>'+(en?'':'<span class="vs-sub">All levels now vs. one level at a time</span>')+'</div>'+
         '<div class="vs-tabs" role="group" aria-label="Levels">'+tabs+'</div></div>'+
       '<div class="vs-grid">'+
-        '<div class="vs-side is-now"><span class="vs-pill">\u63a8\u8350 \u00b7 \u73b0\u5728\u4e00\u8d77\u62ff</span><span class="vs-lbl">'+v.n+' Levels \u00b7 '+data[i].lessons+' \u5802 \u00b7 \u6d25\u8d34\u540e</span>'+
-          '<b class="vs-amt">'+money(taxed(v.bundle))+'</b><p>\u6240\u6709 Level \u90fd\u7528<b>\u8fd9\u4e00\u671f\u7684\u6d25\u8d34\u4ef7</b>\u9501\u5b9a\uff0c\u4e00\u6b21\u5b89\u6392\u597d\u6574\u6761\u5b66\u4e60\u8def\u7ebf\u3002</p>'+
+        '<div class="vs-side is-now"><span class="vs-pill">'+L('\u63a8\u8350 \u00b7 \u73b0\u5728\u4e00\u8d77\u62ff','Recommended \u00b7 all levels now')+'</span><span class="vs-lbl">'+v.n+' Levels \u00b7 '+data[i].lessons+unit+' \u00b7 '+L('\u6d25\u8d34\u540e','after subsidy')+'</span>'+
+          '<b class="vs-amt">'+money(taxed(v.bundle))+'</b><p>'+L('\u6240\u6709 Level \u90fd\u7528<b>\u8fd9\u4e00\u671f\u7684\u6d25\u8d34\u4ef7</b>\u9501\u5b9a\uff0c\u4e00\u6b21\u5b89\u6392\u597d\u6574\u6761\u5b66\u4e60\u8def\u7ebf\u3002','Every level is locked in at <b>this intake\u2019s subsidy price</b>, with the whole learning path planned in one go.')+'</p>'+
           '<div class="vs-bar"><i style="width:'+Math.round(v.bundle/v.total*100)+'%"></i></div></div>'+
         '<div class="vs-mid"><span>VS</span></div>'+
-        '<div class="vs-side is-later"><span class="vs-pill">\u5148\u62ff 1 \u7ea7\uff0c\u4e4b\u540e\u518d\u62ff</span>'+steps+
-          '<div class="vs-sum"><span>\u5408\u8ba1</span><b class="vs-amt">'+money(taxed(v.total))+'</b></div><span class="vs-save is-less">\u5c11\u7701 '+money(taxed(v.saved))+'</span>'+(v.lessons>0?'<span class="vs-less-l">\u2248 '+v.lessons+' \u5802\u8bfe\u7684\u5b66\u8d39</span>':'')+
+        '<div class="vs-side is-later"><span class="vs-pill">'+L('\u5148\u62ff 1 \u7ea7\uff0c\u4e4b\u540e\u518d\u62ff','One level now, the rest later')+'</span>'+steps+
+          '<div class="vs-sum"><span>'+L('\u5408\u8ba1','Total')+'</span><b class="vs-amt">'+money(taxed(v.total))+'</b></div><span class="vs-save is-less">'+L('\u5c11\u7701 '+money(taxed(v.saved)),money(taxed(v.saved))+' less saved')+'</span>'+(v.lessons>0?'<span class="vs-less-l">\u2248 '+v.lessons+L(' \u5802\u8bfe\u7684\u5b66\u8d39',' lessons\u2019 fees')+'</span>':'')+
           '<div class="vs-bar"><i style="width:100%"></i></div></div>'+
       '</div>'+
-      '<div class="vs-band"><span>\u73b0\u5728\u4e00\u8d77\u62ff\uff0c<b>\u603b\u5171\u7701</b></span><span class="vs-band__r"><b>'+money(taxed(v.saveNow))+'</b></span></div>'+
-      '<p class="vs-fine">\u4ee5\u4e0a\u4ef7\u683c\u4e0d\u542b '+money(taxed(miscFee()))+' \u62a5\u540d\uff0b\u7cfb\u7edf\u8d39\uff08\u53ea\u6536\u4e00\u6b21\uff09\u00b7 \u5206\u5f00\u62ff\u65f6\uff0c\u4e4b\u540e\u7684 Level \u4ee5\u539f\u4ef7 '+money(taxed(v.later))+' \u8ba1\u7b97\uff08\u4e0d\u542b\u6d25\u8d34\uff09'+(sstOn?' \u00b7 incl. 6% SST':'')+'</p>';
+      '<div class="vs-band"><span>'+L('\u73b0\u5728\u4e00\u8d77\u62ff\uff0c<b>\u603b\u5171\u7701</b>','All levels now \u2014 <b>you save</b>')+'</span><span class="vs-band__r"><b>'+money(taxed(v.saveNow))+'</b></span></div>'+
+      '<p class="vs-fine">'+L('\u4ee5\u4e0a\u4ef7\u683c\u4e0d\u542b '+money(taxed(miscFee()))+' \u62a5\u540d\uff0b\u7cfb\u7edf\u8d39\uff08\u53ea\u6536\u4e00\u6b21\uff09\u00b7 \u5206\u5f00\u62ff\u65f6\uff0c\u4e4b\u540e\u7684 Level \u4ee5\u539f\u4ef7 '+money(taxed(v.later))+' \u8ba1\u7b97\uff08\u4e0d\u542b\u6d25\u8d34\uff09',
+                               'Prices exclude the one-time '+money(taxed(miscFee()))+' registration & system fee \u00b7 Taken separately, later levels are charged at the full price of '+money(taxed(v.later))+' (no subsidy)')+(sstOn?' \u00b7 incl. 6% SST':'')+'</p>';
   }
-  var vsBox=null;
+  var vsBox=null, vsCur=1;
+  document.addEventListener('click',function(e){ if(vsBox&&vsBox.classList.contains('is-open')&&e.target.closest&&e.target.closest('#langToggle [data-lang]')) setTimeout(function(){ vsBox.querySelector('.vs-body').innerHTML=vsBody(vsCur); },0); });
   function vsOpen(i){
     if(!vsBox){
       vsBox=document.createElement('div'); vsBox.className='tt-modal vs-modal'; vsBox.setAttribute('data-nozh','');
@@ -10003,12 +10008,12 @@ io.observe(er);})();
         '<button type="button" class="tt-modal__x" data-vsx aria-label="Close">\u00d7</button><div class="vs-body"></div></div>';
       document.body.appendChild(vsBox);
       vsBox.addEventListener('click',function(e){
-        var t=e.target.closest('[data-vstab]'); if(t){ vsBox.querySelector('.vs-body').innerHTML=vsBody(+t.getAttribute('data-vstab')); return; }
+        var t=e.target.closest('[data-vstab]'); if(t){ vsCur=+t.getAttribute('data-vstab'); vsBox.querySelector('.vs-body').innerHTML=vsBody(vsCur); return; }
         if(e.target.closest('[data-vsx]')||e.target.classList.contains('tt-modal__bg')) vsClose();
       });
       document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&vsBox&&vsBox.classList.contains('is-open')){ e.preventDefault(); e.stopPropagation(); vsClose(); } },true);   /* Esc closes the sheet only \u2014 never turns the slide */
     }
-    vsBox.querySelector('.vs-body').innerHTML=vsBody(i);
+    vsCur=i; vsBox.querySelector('.vs-body').innerHTML=vsBody(i);
     vsBox.hidden=false; void vsBox.offsetWidth; vsBox.classList.add('is-open');
   }
   function vsClose(){ vsBox.classList.remove('is-open'); setTimeout(function(){ if(!vsBox.classList.contains('is-open')) vsBox.hidden=true; },220); }
