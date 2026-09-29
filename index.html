@@ -3594,6 +3594,8 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .tier-grid .tcard:nth-child(3) .tfeat__lab .zh{font-size:12px}
 /* ===== Card-inline price (combo -> after-subsidy) ===== */
 .tcard__price{margin-top:14px;padding-top:14px;border-top:1px dashed rgba(20,33,50,.12);text-align:center;position:relative;z-index:1;display:none}
+.tcard__price--top{margin:4px 0 14px;padding:12px 0 14px;border-top:0;border-bottom:1px dashed rgba(20,33,50,.12);text-align:left}
+.tcard__price--top .tcard__price-now{justify-content:flex-start}
 .tcard__price.is-revealed{display:block}
 .tcard__price.is-sliding{animation:priceRise .5s cubic-bezier(.22,.61,.36,1) both}
 .tcard__price-orig{display:inline-block;font-size:13px;color:var(--faint);text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px}
@@ -10916,7 +10918,8 @@ io.observe(er);})();
         '<div class="ielts-sec__h">Outcomes \u5b66\u4e60\u6210\u679c</div><div class="ielts-outs">'+outs+'</div></div>';
       var price='<div class="tcard__price is-revealed"><div class="tcard__price-now"><span class="rm">'+curNow().sym+'</span><span class="n">'+fmt(taxed(d.price))+'</span></div>'+
         '<span class="tcard__price-note">+ '+money(taxed(miscFee()))+' <span class="zh">\u62a5\u540d\uff0b\u7cfb\u7edf\u8d39</span>'+(sstOn?' \u00b7 <b style=\"color:var(--blue-bright)\">incl. 6% SST</b>':'')+'</span></div>';
-      return '<article class="tcard">'+head+body+price+'</article>';
+      /* IELTS: price sits right under the hours, so hours and price read together without scrolling */
+      return '<article class="tcard tcard--ielts">'+head+price.replace('class="tcard__price is-revealed"','class="tcard__price tcard__price--top is-revealed"')+body+'</article>';
     }
     var SKILLS=[
       {k:'ear',c:'#7C5CFF',t:'Listening Skills',zh:'\u542c\u529b',pts:['Understanding different English accents','Identifying keywords and important details','Note-taking techniques','Time-management strategies','Practice with real IELTS listening tasks']},
@@ -12777,6 +12780,10 @@ body.ie-gt [data-ie-conv="R"] input,body.ie-gt [data-ie-conv="R"] .ie-read,body.
     var want=mode==='ielts'?'pvTabIelts':'pvTabCourse', t=document.getElementById(want);
     var ieOn=document.getElementById('pvTabIelts'); ieOn=ieOn&&ieOn.classList.contains('is-on');
     if(t && ((mode==='ielts')!==ieOn)) t.click();
+    if(mode==='ielts') setTimeout(function(){          /* land on the IELTS cards: hours and prices in one view */
+      var el=document.querySelector('#pvIelts .ielts-intro'), bar=document.querySelector('.topbar');
+      if(el&&el.offsetParent) window.scrollTo({top:Math.max(0,window.pageYOffset+el.getBoundingClientRect().top-(bar?bar.getBoundingClientRect().height:0)-12),behavior:'smooth'});
+    },80);
   }
   if(window.MutationObserver && stages[INVEST]) new MutationObserver(syncPrice).observe(stages[INVEST],{attributes:true,attributeFilter:['class']});
 
