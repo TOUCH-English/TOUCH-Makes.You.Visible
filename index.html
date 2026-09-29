@@ -10888,32 +10888,31 @@ io.observe(er);})();
   /* ---------- IELTS pricing view (single prices, no promo/HRDC) ---------- */
   (function(){
     var IELTS=[
-      {hours:'12',name:'IELTS Focus',price:1580,
-       feats:[['live','Live IELTS Coaching'],['persona','IELTS Assessment'],['chat','Speaking Practice'],['book','Writing Feedback'],['refresh','Practice Materials']],
+      {hours:'12',name:'IELTS Focus <span class="zh">\u4e86\u89e3\u8003\u8bd5\uff0c\u6253\u597d\u5e94\u8bd5\u57fa\u7840</span>',price:1580,
+       feats:[['live','Live IELTS Coaching','\u771f\u4eba IELTS \u8f85\u5bfc'],['persona','IELTS Assessment','IELTS \u7a0b\u5ea6\u8bc4\u4f30'],['chat','Speaking Practice','\u53e3\u8bed\u7ec3\u4e60'],['book','Writing Feedback','\u5199\u4f5c\u6279\u6539'],['refresh','Practice Materials','\u7ec3\u4e60\u6750\u6599']],
        outs:['Understand the IELTS format','Build core exam strategies','Identify your weak areas','Improve exam confidence']},
-      {hours:'24',name:'IELTS Intensive',plus:'EVERYTHING IN 12, PLUS',price:2980,
-       feats:[['book','Full Writing Reviews'],['persona','Speaking Mock Tests'],['level','Personal Study Plan'],['up','Band Score Analysis'],['refresh','Extra Practice Papers']],
+      {hours:'24',name:'IELTS Intensive <span class="zh">\u5b8c\u6574\u6279\u6539\uff0b\u6a21\u62df\u8003\uff0c\u7a33\u6b65\u63d0\u5206</span>',plus:'EVERYTHING IN 12, PLUS',price:2980,
+       feats:[['book','Full Writing Reviews','\u5b8c\u6574\u5199\u4f5c\u6279\u6539'],['persona','Speaking Mock Tests','\u53e3\u8bed\u6a21\u62df\u8003'],['level','Personal Study Plan','\u4e2a\u4eba\u5b66\u4e60\u8ba1\u5212'],['up','Band Score Analysis','\u5206\u6570\u5206\u6790'],['refresh','Extra Practice Papers','\u989d\u5916\u7ec3\u4e60\u5377']],
        outs:['Sharpen answers with full reviews','Perform under exam conditions','Follow a personalised plan','Track your band progress']},
       {hours:'12+',addN:'20',addU:'CLASSES',name:'IELTS + English combo <span class="zh">12 \u5c0f\u65f6 IELTS \uff0b 20 \u5802\u82f1\u8bed\u8bfe</span>',plus:'EVERYTHING IN IELTS 12, PLUS',price:2980,
-       feats:[['live','20 Practical English Classes'],['chat','Speaking Confidence Training'],['persona','Daily Conversation Practice'],['star','Workplace Communication'],['book','Vocabulary Expansion']],
+       feats:[['live','20 Practical English Classes','20 \u5802\u5b9e\u7528\u82f1\u8bed\u8bfe'],['chat','Speaking Confidence Training','\u53e3\u8bed\u81ea\u4fe1\u8bad\u7ec3'],['persona','Daily Conversation Practice','\u65e5\u5e38\u5bf9\u8bdd\u7ec3\u4e60'],['star','Workplace Communication','\u804c\u573a\u6c9f\u901a'],['book','Vocabulary Expansion','\u8bcd\u6c47\u6269\u5145']],
        outs:['Exam skills + real-life fluency','Speak with more confidence','Use English at work daily','Grow an active vocabulary']}
     ];
-    var IELTS36={hours:'36',name:'IELTS Mastery',plus:'EVERYTHING IN 24, PLUS',price:4380,
-       feats:[['cert','Full IELTS Mock Test'],['chat','Weekly Speaking Practice'],['book','Advanced Writing Coaching'],['star','Exam Strategies'],['refresh','Final Readiness Review'],['up','Band Prediction']],
+    var IELTS36={hours:'36',name:'IELTS Mastery <span class="zh">\u5168\u9762\u51c6\u5907\uff0c\u51b2\u523a\u76ee\u6807\u5206\u6570</span>',plus:'EVERYTHING IN 24, PLUS',price:4380,
+       feats:[['cert','Full IELTS Mock Test','\u5b8c\u6574 IELTS \u6a21\u62df\u8003'],['chat','Weekly Speaking Practice','\u6bcf\u5468\u53e3\u8bed\u7ec3\u4e60'],['book','Advanced Writing Coaching','\u8fdb\u9636\u5199\u4f5c\u6307\u5bfc'],['star','Exam Strategies','\u8003\u8bd5\u7b56\u7565'],['refresh','Final Readiness Review','\u8003\u524d\u603b\u590d\u4e60'],['up','Band Prediction','\u5206\u6570\u9884\u6d4b']],
        outs:['Complete exam simulation','Peak-ready speaking & writing','A clear final strategy','Know your predicted band']};
     function ic(k){ return '<span class="tfeat__ic" style="--fc:'+(FIC_COL[k]||'#2A5BD7')+'">'+(ICON[k]||ICON.star)+'</span>'; }
     var CIC={'12':'book','24':'up','12+':'chat','36':'cert'};
     function card(d){
-      var feats=d.feats.map(function(f){return '<li><div class="tfeat"><span class="tfeat__ic" style="--fc:'+(FIC_COL[f[0]]||'#2A5BD7')+'">'+(ICON[f[0]]||ICON.star)+'</span><span class="tfeat__lab"><b>'+f[1]+'</b></span></div></li>';}).join('');
+      var feats=d.feats.map(function(f){return '<li><div class="tfeat"><span class="tfeat__ic" style="--fc:'+(FIC_COL[f[0]]||'#2A5BD7')+'">'+(ICON[f[0]]||ICON.star)+'</span><span class="tfeat__lab"><b>'+f[1]+'</b>'+(f[2]?'<span class="zh">'+f[2]+'</span>':'')+'</span></div></li>';}).join('');
       var outs=d.outs.map(function(t){return '<div class="ielts-out"><svg viewBox="0 0 24 24"><path d="m5 12 5 5L19 7"/></svg><span>'+t+'</span></div>';}).join('');
       var head='<div class="tcard__head"><span class="tcard__ic">'+(ICON[CIC[d.hours]]||ICON.book)+'</span>'+
         (d.addN ? '<div class="tcard__num tcard__num--combo"><b>'+parseInt(d.hours,10)+'</b><span>HOURS<small>IELTS</small></span><i>+</i><b>'+d.addN+'</b><span>'+d.addU+'<small>ENGLISH</small></span></div>'   /* combo: two different units, so never one "12+" */
                 : '<div class="tcard__num"><b>'+d.hours+'</b><span>HOURS</span></div>')+
         '<p class="tcard__tag">'+d.name+'</p></div>';
       var plus=d.plus?'<div class="tcard__plus">'+d.plus+'</div>':'';
-      var body='<div class="tcard__body">'+plus+
-        '<div class="ielts-sec__h">Features \u8bfe\u7a0b\u5185\u5bb9</div><ul class="tfeats">'+feats+'</ul>'+
-        '<div class="ielts-sec__h">Outcomes \u5b66\u4e60\u6210\u679c</div><div class="ielts-outs">'+outs+'</div></div>';
+      /* same shape as the English course cards: tagline, features (EN + \u4e2d\u6587), price \u2014 no section headings, no outcomes list */
+      var body='<div class="tcard__body">'+plus+'<ul class="tfeats">'+feats+'</ul></div>';
       var price='<div class="tcard__price is-revealed"><div class="tcard__price-now"><span class="rm">'+curNow().sym+'</span><span class="n">'+fmt(taxed(d.price))+'</span></div>'+
         '<span class="tcard__price-note">+ '+money(taxed(miscFee()))+' <span class="zh">\u62a5\u540d\uff0b\u7cfb\u7edf\u8d39</span>'+(sstOn?' \u00b7 <b style=\"color:var(--blue-bright)\">incl. 6% SST</b>':'')+'</span></div>';
       return '<article class="tcard">'+head+body+price+'</article>';
@@ -12777,6 +12776,10 @@ body.ie-gt [data-ie-conv="R"] input,body.ie-gt [data-ie-conv="R"] .ie-read,body.
     var want=mode==='ielts'?'pvTabIelts':'pvTabCourse', t=document.getElementById(want);
     var ieOn=document.getElementById('pvTabIelts'); ieOn=ieOn&&ieOn.classList.contains('is-on');
     if(t && ((mode==='ielts')!==ieOn)) t.click();
+    if(mode==='ielts') setTimeout(function(){          /* land on the IELTS cards, as the English view lands on its package grid */
+      var el=document.querySelector('#pvIelts .ielts-grid'), bar=document.querySelector('.topbar');
+      if(el&&el.offsetParent) window.scrollTo({top:Math.max(0,window.pageYOffset+el.getBoundingClientRect().top-(bar?bar.getBoundingClientRect().height:0)-40),behavior:'smooth'});
+    },80);
   }
   if(window.MutationObserver && stages[INVEST]) new MutationObserver(syncPrice).observe(stages[INVEST],{attributes:true,attributeFilter:['class']});
 
