@@ -5250,8 +5250,8 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
             <div class="ie-ends"><span>Non-user</span><span>Expert user</span></div>
           </div>
           <div class="ie-card">
-            <b class="ie-card__h">Overall = average of the four, rounded to the nearest 0.5 <span class="zh">四科平均，进位到最近的 0.5</span></b>
-            <div class="ie-avg"><span>6.0</span><i>+</i><span>6.5</span><i>+</i><span>6.5</span><i>+</i><span>6.0</span><i>÷ 4 = 6.25 →</i><em>6.5</em></div>
+            <b class="ie-card__h">Overall = average of the four, rounded to the nearest 0.5 <span class="zh">四科平均，进位到最近的 0.5</span> <span class="ie-adv">Tap a box to type <span class="zh">点格子填分数</span></span></b>
+            <div class="ie-avg" data-ie-avg><label><input type="text" inputmode="decimal" value="6.0" aria-label="Listening score"><small>Listening <span class="zh">听力</span></small></label><i>+</i><label><input type="text" inputmode="decimal" value="6.5" aria-label="Reading score"><small>Reading <span class="zh">阅读</span></small></label><i>+</i><label><input type="text" inputmode="decimal" value="6.5" aria-label="Writing score"><small>Writing <span class="zh">写作</span></small></label><i>+</i><label><input type="text" inputmode="decimal" value="6.0" aria-label="Speaking score"><small>Speaking <span class="zh">口语</span></small></label><i>÷ 4 = <b data-avg>6.25</b> →</i><em data-ov>6.5</em></div>
             <p class="ie-note">One weak skill pulls the overall down — and universities usually set a minimum per skill too. <span class="zh">一科弱会把总分拉下来；学校通常还规定每一科的最低分。</span></p>
           </div>
         </div>
@@ -12649,10 +12649,15 @@ io.observe(er);})();
 .ie-bands span{flex:1;text-align:center;font-family:var(--ie-display);font-weight:900;font-size:15px;padding:9px 0;border-radius:8px;background:rgba(195,3,44,calc(.05 + var(--i)*.11));color:var(--ie)}
 .ie-bands span:nth-child(n+6){color:#fff}
 .ie-ends{display:flex;justify-content:space-between;font-size:12px;color:var(--faint);margin-top:6px}
-.ie-avg{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
-.ie-avg span{font-family:var(--ie-display);font-weight:800;font-size:18px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:6px 10px}
-.ie-avg i{font-style:normal;color:var(--faint);font-weight:700}
-.ie-avg em{font-style:normal;font-family:var(--ie-display);font-weight:900;font-size:22px;color:#fff;background:var(--ie);border-radius:10px;padding:6px 12px}
+.ie-avg{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;margin-top:12px}
+.ie-avg label{display:flex;flex-direction:column;align-items:center;gap:4px}
+.ie-avg input{width:66px;text-align:center;font-family:var(--ie-display);font-weight:800;font-size:20px;line-height:1;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:8px 4px;color:var(--ink);-webkit-appearance:none;appearance:none}
+.ie-avg input:focus{outline:0;border-color:var(--ie);box-shadow:0 0 0 3px rgba(195,3,44,.14)}
+.ie-avg input.is-bad{border-color:#E0A33A;background:#FFF9E8}
+.ie-avg small{font-size:10.5px;color:var(--faint);white-space:nowrap}
+.ie-avg i{font-style:normal;color:var(--faint);font-weight:700;line-height:40px;white-space:nowrap}
+.ie-avg i b{font-family:var(--ie-display);color:var(--ink);font-weight:800}
+.ie-avg em{font-style:normal;font-family:var(--ie-display);font-weight:900;font-size:24px;line-height:1;color:#fff;background:var(--ie);border-radius:10px;padding:8px 14px;min-width:64px;text-align:center}
 /* converter */
 .ie-conv{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .ie-conv .ie-card{display:flex;flex-direction:column;gap:12px}
@@ -12852,6 +12857,38 @@ body.ie-gt [data-ie-conv="R"] input,body.ie-gt [data-ie-conv="R"] .ie-read,body.
       n.textContent=v; b.textContent=band; $$('div',lad).forEach(function(d,i){ d.classList.toggle('on',i===idx); }); }
     r.addEventListener('input',up); up();
   });
+
+
+  /* ---------- Exam page: type four band scores, see the average and the overall ---------- */
+  (function(){
+    var box=$('[data-ie-avg]'); if(!box) return;
+    var ins=$$('input',box), av=$('[data-avg]',box), ov=$('[data-ov]',box);
+    function val(i){ var t=String(i.value).replace(',','.').trim(); if(t==='') return null; var v=parseFloat(t); return (isFinite(v)&&v>=0&&v<=9)?v:NaN; }
+    function calc(){
+      var vs=ins.map(val), ok=true;
+      ins.forEach(function(i,k){ var bad=vs[k]!==null&&isNaN(vs[k]); i.classList.toggle('is-bad',bad); if(vs[k]===null||bad) ok=false; });
+      if(!ok){ av.textContent='\u2014'; ov.textContent='\u2014'; return; }
+      var a=(vs[0]+vs[1]+vs[2]+vs[3])/4, t=parseFloat(a.toFixed(3)).toString();
+      av.textContent=t.indexOf('.')<0?t+'.0':t;
+      ov.textContent=(Math.round(a*2)/2).toFixed(1);          /* .25 rounds up to .5, .75 rounds up to the next whole band */
+    }
+    ins.forEach(function(i,k){
+      i.addEventListener('input',function(){ var t=i.value.replace(',','.').replace(/[^0-9.]/g,'').slice(0,3); if(t!==i.value) i.value=t; calc(); });
+      /* tapping a box (or tabbing into it) arms it: the next thing typed replaces the score, whatever the browser did with the selection */
+      var fresh=false;
+      function sel(){ try{ i.select(); }catch(e){} }
+      function arm(){ fresh=true; sel(); setTimeout(function(){ if(fresh&&document.activeElement===i) sel(); },0); }   /* Safari drops the selection after the tap; Chrome needs the beforeinput step below */
+      i.addEventListener('focus',arm); i.addEventListener('click',arm);
+      i.addEventListener('beforeinput',function(e){ if(!fresh) return; fresh=false; var t=e.inputType||''; if(t.indexOf('insert')===0||t.indexOf('delete')===0){ try{ i.setSelectionRange(0,i.value.length); }catch(er){} } });
+      i.addEventListener('blur',function(){ var v=val(i); if(v!==null&&!isNaN(v)) i.value=(Math.round(v*2)/2).toFixed(1); calc(); });   /* bands move in halves */
+      i.addEventListener('keydown',function(e){
+        e.stopPropagation();                                   /* typing here never turns the slide */
+        if(e.key==='Enter'){ e.preventDefault(); (ins[k+1]||i).focus(); if(!ins[k+1]) i.blur(); }
+        else if(e.key==='ArrowUp'||e.key==='ArrowDown'){ e.preventDefault(); var v=val(i); if(v===null||isNaN(v)) v=5; v=Math.min(9,Math.max(0,v+(e.key==='ArrowUp'?0.5:-0.5))); i.value=v.toFixed(1); calc(); }
+      });
+    });
+    calc();
+  })();
 
   /* ---------- the gap (mock tests cover Listening, Reading, Writing; Speaking is the advisor's estimate or blank) ---------- */
   var SK=[{k:'L',t:'Listening',zh:'\u542c\u529b'},{k:'R',t:'Reading',zh:'\u9605\u8bfb'},{k:'W',t:'Writing',zh:'\u5199\u4f5c'},{k:'S',t:'Speaking',zh:'\u53e3\u8bed'}];
