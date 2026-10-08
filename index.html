@@ -9816,8 +9816,8 @@ io.observe(er);})();
     {id:'basic', name:'Essential',  sub:'Foundation \u00b7 1 Level', lessons:48,  orig:3300,  combo:0,    hrdc:903,  na:false},
     {id:'comboA',name:'Standard',sub:'2 Levels',             lessons:96,  orig:6600,  combo:900,  hrdc:1503, na:false},
     {id:'comboB',name:'Best Value',sub:'3 Levels',             lessons:144, orig:9900,  combo:2100, hrdc:1903, na:false},
-    {id:'comboC',name:'Extra Sessions 1',sub:'4 Levels',             lessons:192, orig:13200, combo:3930, hrdc:0,    na:true},
-    {id:'comboD',name:'Extra Sessions 2',sub:'5 Levels',             lessons:240, orig:16500, combo:5230, hrdc:0,    na:true}
+    {id:'comboC',name:'Extra Sessions 1',sub:'4 Levels',             lessons:192, orig:13200, combo:3300, hrdc:0,    na:true},   /* RM 9,900 + RM 300 fee = RM 10,200 (HRDC price sheet, Oct 2026) */
+    {id:'comboD',name:'Extra Sessions 2',sub:'5 Levels',             lessons:240, orig:16500, combo:4500, hrdc:0,    na:true}    /* RM 12,000 + RM 300 fee = RM 12,300 */
   ];
   var MISC_DEF={reg:150,sys:150};
   var data, misc;
@@ -9830,6 +9830,7 @@ io.observe(er);})();
       if(s&&Array.isArray(s.pkgs)&&s.pkgs.length===DEF.length){
         data=DEF.map(function(d,i){var o=clone(d),v=s.pkgs[i]||{};
           ['orig','combo','hrdc','lessons'].forEach(function(k){if(isNum(v[k]))o[k]=v[k];});
+          var OLD={comboC:3930,comboD:5230}; if(OLD[o.id]!==undefined&&o.combo===OLD[o.id]&&o.orig===d.orig) o.combo=d.combo;   /* superseded defaults, Oct 2026 */
           if(typeof v.na==='boolean')o.na=v.na; return o;});
         misc=clone(MISC_DEF);
         if(s.misc){if(isNum(s.misc.reg))misc.reg=s.misc.reg;if(isNum(s.misc.sys))misc.sys=s.misc.sys;}
