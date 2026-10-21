@@ -5104,7 +5104,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
           </div>
           <div class="price-reveal-cta">
             <button type="button" class="reveal-open-btn reveal-open-btn--logo" id="hrdcOpen" aria-label="See your subsidised price 查看津贴后价格"><img loading="lazy" decoding="async" class="reveal-open-logo" src="assets/logo/hrdc.webp" alt="HRDC" onerror="this.style.display='none'"></button>
-            <div class="inst-cta" id="instCta" hidden>
+            <div class="inst-cta" id="instCta">
               <button type="button" class="inst-open-btn" id="instOpen" aria-label="0% interest-free installment plans 0% 免息分期">
                 <span class="inst-open-btn__pct">0%</span>
                 <span class="inst-open-btn__lab">Interest-free installment<span class="zh">免息分期付款</span></span>
@@ -10750,17 +10750,19 @@ io.observe(er);})();
   var instBody=document.getElementById('instBody');
   var instOpenBtn=document.getElementById('instOpen');
   var instSelPkg=0, instSelBank=null, instSelTerm=null, instRevealed=false;
+  /* installment + payment are available from the start (not every student still has a subsidy) */
   function showInstCta(){ if(instCta) instCta.removeAttribute('hidden'); }
-  function hideInstCta(){ if(instCta) instCta.setAttribute('hidden',''); }
-  function instPrincipal(){ return taxed(finalOf(data[instSelPkg]) + miscFee()); }
+  function hideInstCta(){}
+  function instBase(d){ return subsidyOn?finalOf(d):comboOf(d); }
+  function instPrincipal(){ return taxed(instBase(data[instSelPkg]) + miscFee()); }
   function instSegHTML(){
     return INST_PKG.map(function(i){
       return '<button type="button" data-pkg="'+i+'" class="'+(i===instSelPkg?'is-on':'')+'">'+data[i].lessons+'<span class="s">LESSONS</span></button>';
     }).join('');
   }
   function instPrincipalHTML(){
-    var d=data[instSelPkg], sub=finalOf(d), pr=instPrincipal();
-    return 'Installment base <b><span class="cur-sym">RM</span> '+fmt(pr)+'</b> \u00b7 <i>after-subsidy '+money(taxed(sub))+' + '+money(taxed(miscFee()))+' \u62a5\u540d\uff0b\u7cfb\u7edf\u8d39'+(sstOn?' \u00b7 +6% SST':'')+'</i>';
+    var d=data[instSelPkg], sub=instBase(d), pr=instPrincipal();
+    return 'Installment base <b><span class="cur-sym">RM</span> '+fmt(pr)+'</b> \u00b7 <i>'+(subsidyOn?'after-subsidy ':'package price \u914d\u5957\u4ef7 ')+money(taxed(sub))+' + '+money(taxed(miscFee()))+' \u62a5\u540d\uff0b\u7cfb\u7edf\u8d39'+(sstOn?' \u00b7 +6% SST':'')+'</i>';
   }
   function instBanksHTML(){
     return INST_BANKS.map(function(b,bi){
