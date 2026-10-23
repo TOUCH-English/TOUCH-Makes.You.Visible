@@ -5658,7 +5658,8 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
         }
       }
       function rowsHTML(){
-        var order=curOrder();
+        /* only the pages of the current mode (TOUCH or IELTS) - the other mode's pages are not in the dock, so hiding them would look like nothing happened */
+        var order=curOrder().filter(function(i){ var t=tb.querySelector('.tab-item[data-jump="'+i+'"]'); return !(t&&t.classList.contains('is-modeoff')); });
         var visPos=0;
         return order.map(function(i){
           var s=STAGES[i], isHid=hidden.has(i);
@@ -5759,13 +5760,13 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
             renaming=null; paint(); return;
           }
         });
-        document.addEventListener('keydown',esc);
+        document.addEventListener('keydown',escKey);
       }
-      function esc(ev){ if(ev.key==='Escape') shut(); }
+      function escKey(ev){ if(ev.key==='Escape') shut(); }
       function shut(){
         if(!modal) return;
         modal.classList.remove('is-open');
-        document.removeEventListener('keydown',esc);
+        document.removeEventListener('keydown',escKey);
         document.body.style.overflow='';
         document.body.classList.remove('nav-edit-open');
         setEditing(false);
@@ -6897,13 +6898,13 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
             renaming=null; paint(); return;
           }
         });
-        document.addEventListener('keydown',esc);
+        document.addEventListener('keydown',escKey);
       }
-      function esc(e){ if(e.key==='Escape') shut(); }
+      function escKey(e){ if(e.key==='Escape') shut(); }
       function shut(){
         if(!modal) return;
         modal.classList.remove('is-open');
-        document.removeEventListener('keydown',esc);
+        document.removeEventListener('keydown',escKey);
         document.body.style.overflow='';
         renaming=null;
         var m2=modal; modal=null;
