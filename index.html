@@ -13004,10 +13004,10 @@ body.ie-gt [data-ie-conv="R"] input,body.ie-gt [data-ie-conv="R"] .ie-read,body.
 /* Advisor suggestions, the same idea as the Level 2 materials' Feedback button: each note is tied to the page
    on screen, has a kind (problem / suggestion / idea) and free text; no names are asked for.
    Notes are kept on this device and, when SUGGEST_ENDPOINT is set, sent there (same body as the platform's
-   /api/lesson-feedback). Until a destination is chosen the endpoint is empty and notes stay on the device. */
+   /api/lesson-feedback). Notes that fail to send stay on the device and are retried on the next visit. */
 (function(){
   "use strict";
-  var SUGGEST_ENDPOINT="";
+  var SUGGEST_ENDPOINT="https://touch-platform-qa.vercel.app/api/lesson-feedback";   /* the platform's note store (QA database, where the Level 2 lesson notes are read too); lesson_id "myv" marks these */
   var KEY="te_suggestions_v1";
   var KINDS=[["problem","Problem","Something is wrong or does not work","\u95ee\u9898"],
              ["suggestion","Suggestion","Change this to make it better","\u5efa\u8bae"],
