@@ -12962,5 +12962,130 @@ body.ie-gt [data-ie-conv="R"] input,body.ie-gt [data-ie-conv="R"] .ie-read,body.
   paintCrit('w');
 })();
 </script>
+
+<style id="suggest-css">
+/* advisor suggestion box: a button in the opened Tools row, a sheet tied to the page on screen */
+.tb-suggest{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.85);background:rgba(118,118,128,.10);box-shadow:0 0 0 .5px rgba(20,33,50,.14);
+  font:600 13.5px -apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",system-ui,sans-serif;color:var(--navy,#15357B);cursor:pointer;flex:none}
+.tb-suggest svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tb-suggest:active{transform:scale(.96)}
+.sg-modal[hidden]{display:none!important}
+.sg-card{max-width:520px;padding:24px 24px 20px}
+.sg-h{font-family:var(--display);font-weight:800;font-size:18px;color:var(--ink);margin:0 40px 2px 0}
+.sg-page{display:block;font-size:12.5px;color:var(--muted);margin:0 0 16px}
+.sg-page b{color:var(--ink);font-weight:600}
+.sg-kinds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 14px}
+.sg-kind{position:relative;cursor:pointer}
+.sg-kind input{position:absolute;opacity:0;pointer-events:none}
+.sg-kind > span{display:block;height:100%;border-radius:12px;padding:10px 11px;border:1px solid var(--line);background:#fff;transition:border-color .15s,box-shadow .15s}
+.sg-kind b{display:block;font-size:13.5px;color:var(--ink)}
+.sg-kind i{display:block;font-style:normal;font-size:11.5px;color:var(--faint);margin-top:2px;line-height:1.35}
+.sg-kind input:checked + span{border-color:var(--blue-bright,#2A5BD7);box-shadow:0 0 0 2px color-mix(in srgb,var(--blue-bright,#2A5BD7) 22%,transparent)}
+.sg-kind input:focus-visible + span{outline:2px solid var(--blue-bright,#2A5BD7);outline-offset:2px}
+.sg-l{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin:0 0 6px}
+.sg-text{width:100%;box-sizing:border-box;min-height:118px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:11px 13px;font:15px/1.5 -apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;color:var(--ink);background:#fff}
+.sg-text:focus{outline:0;border-color:var(--blue-bright,#2A5BD7);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue-bright,#2A5BD7) 18%,transparent)}
+.sg-row{display:flex;align-items:center;gap:12px;margin-top:14px}
+.sg-send{border:0;border-radius:12px;padding:11px 20px;font:700 14px -apple-system,BlinkMacSystemFont,"PingFang SC",system-ui,sans-serif;color:#fff;background:var(--blue-bright,#2A5BD7);cursor:pointer}
+.sg-send:disabled{opacity:.45;cursor:default}
+.sg-msg{font-size:13px;color:var(--muted)}
+.sg-msg.ok{color:#1B6E37}
+.sg-foot{font-size:11.5px;color:var(--faint);margin:14px 0 0;line-height:1.5}
+@media (max-width:540px){ .sg-kinds{grid-template-columns:1fr} .tb-suggest .tb-suggest__lbl{display:none} .tb-suggest{width:36px;padding:0;justify-content:center} }
+/* phones: the opened Tools row scrolls sideways inside the top bar instead of widening the page; the close button stays in reach */
+@media (max-width:860px){
+  .topbar__right.is-open{flex:1 1 0;min-width:0;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px 2px 2px 0}
+  .topbar__right.is-open::-webkit-scrollbar{display:none}
+  .topbar__right.is-open > *{flex:none}
+  .topbar__right.is-open .tb-tools{position:sticky;right:0;z-index:1;background:rgba(240,243,248,.96)}
+}
+</style>
+<script id="suggest-js">
+/* Advisor suggestions, the same idea as the Level 2 materials' Feedback button: each note is tied to the page
+   on screen, has a kind (problem / suggestion / idea) and free text; no names are asked for.
+   Notes are kept on this device and, when SUGGEST_ENDPOINT is set, sent there (same body as the platform's
+   /api/lesson-feedback). Until a destination is chosen the endpoint is empty and notes stay on the device. */
+(function(){
+  "use strict";
+  var SUGGEST_ENDPOINT="";
+  var KEY="te_suggestions_v1";
+  var KINDS=[["problem","Problem","Something is wrong or does not work","\u95ee\u9898"],
+             ["suggestion","Suggestion","Change this to make it better","\u5efa\u8bae"],
+             ["idea","Idea","What worked when I presented","\u597d\u70b9\u5b50"]];
+  var right=document.querySelector(".topbar__right"), tools=document.querySelector(".tb-tools");
+  if(!right) return;
+  function all(){ try{ return JSON.parse(localStorage.getItem(KEY)||"[]"); }catch(e){ return []; } }
+  function keep(list){ try{ localStorage.setItem(KEY,JSON.stringify(list)); }catch(e){} }
+  function send(n){
+    if(!SUGGEST_ENDPOINT||!window.fetch) return Promise.resolve(false);
+    var body={lesson:"myv",code:"MYV",screen:n.stage+1,step:0,kind:n.kind,text:n.text,page:"prep"};
+    return fetch(SUGGEST_ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify(body)})
+      .then(function(r){ return r.status>=200&&r.status<300; },function(){ return false; });
+  }
+  function flush(){
+    var list=all(), pend=list.filter(function(n){ return !n.sent; });
+    if(!pend.length||!SUGGEST_ENDPOINT) return;
+    pend.reduce(function(p,n){ return p.then(function(){ return send(n).then(function(ok){ if(ok) n.sent=1; }); }); },Promise.resolve()).then(function(){ keep(list); });
+  }
+  function current(){
+    var st=[].slice.call(document.querySelectorAll("main .stage")), i=0;
+    for(var k=0;k<st.length;k++) if(st[k].classList.contains("is-active")){ i=k; break; }
+    var t=document.getElementById("tbTitle");
+    return { stage:i, title:(t?t.textContent:"").replace(/\s+/g," ").trim(), mode:document.body.classList.contains("te-ielts")?"IELTS":"TOUCH" };
+  }
+
+  var btn=document.createElement("button"); btn.type="button"; btn.className="tb-suggest"; btn.setAttribute("data-nozh","");
+  btn.title="Suggestion \u00b7 \u5efa\u8bae";
+  btn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5Z"/><path d="M12 7v5M9.5 9.5h5"/></svg><span class="tb-suggest__lbl">Suggestion</span>';
+  right.insertBefore(btn,tools||null);
+
+  var box=null, page=null;
+  function build(){
+    box=document.createElement("div"); box.className="tt-modal sg-modal"; box.hidden=true;
+    box.innerHTML='<div class="tt-modal__bg" data-sgx></div><div class="tt-modal__card sg-card" role="dialog" aria-modal="true" aria-label="Suggestion">'+
+      '<button type="button" class="tt-modal__x" data-sgx aria-label="Close">\u00d7</button>'+
+      '<p class="sg-h">Suggestion <span class="zh">\u5efa\u8bae</span></p><span class="sg-page" data-sgpage></span>'+
+      '<form class="sg-form"><div class="sg-kinds" role="radiogroup" aria-label="Kind">'+KINDS.map(function(k,i){
+        return '<label class="sg-kind"><input type="radio" name="kind" value="'+k[0]+'"'+(i===1?' checked':'')+'><span><b>'+k[1]+' <span class="zh">'+k[3]+'</span></b><i>'+k[2]+'</i></span></label>';
+      }).join("")+'</div>'+
+      '<label class="sg-l" for="sgText">What should change, and why? <span class="zh">\u60f3\u6539\u4ec0\u4e48\u3001\u4e3a\u4ec0\u4e48\uff1f</span></label>'+
+      '<textarea class="sg-text" id="sgText" name="text" maxlength="5000" required placeholder="e.g. On this page students often ask about the fee \u2014 a line about installments would help."></textarea>'+
+      '<div class="sg-row"><button type="submit" class="sg-send" disabled>Send</button><span class="sg-msg" role="status"></span></div></form>'+
+      '<p class="sg-foot">No names needed. Notes are read by the presentation team. <span class="zh">\u4e0d\u7528\u7559\u540d\u5b57\uff0c\u7531\u7b80\u62a5\u56e2\u961f\u7edf\u4e00\u67e5\u770b\u3002</span></p></div>';
+    document.body.appendChild(box);
+    var form=box.querySelector(".sg-form"), ta=box.querySelector(".sg-text"), go=box.querySelector(".sg-send"), msg=box.querySelector(".sg-msg");
+    ta.addEventListener("input",function(){ go.disabled=!ta.value.trim(); });
+    ta.addEventListener("keydown",function(e){ e.stopPropagation(); if(e.key==="Escape") close(); });   /* typing never turns the slide */
+    box.addEventListener("click",function(e){ if(e.target.closest("[data-sgx]")) close(); });
+    form.addEventListener("submit",function(e){
+      e.preventDefault();
+      var text=ta.value.trim(); if(!text) return;
+      var n={stage:page.stage,title:page.title,mode:page.mode,kind:form.elements.kind.value,text:text,at:new Date().toISOString()};
+      var list=all(); list.push(n); keep(list);
+      go.disabled=true; msg.className="sg-msg"; msg.textContent="Sending\u2026";
+      send(n).then(function(ok){
+        if(ok){ n.sent=1; keep(list); }
+        msg.className="sg-msg ok";
+        msg.textContent= ok ? "Sent. Thank you! \u5df2\u9001\u51fa\uff0c\u8c22\u8c22\uff01" : "Saved. Thank you! \u5df2\u4fdd\u5b58\uff0c\u8c22\u8c22\uff01";
+        ta.value="";
+        setTimeout(close,1100);
+      });
+    });
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&box&&!box.hidden){ e.preventDefault(); e.stopPropagation(); close(); } },true);
+  }
+  function open(){
+    if(!box) build();
+    page=current();
+    box.querySelector("[data-sgpage]").innerHTML='About this page <span class="zh">\u8fd9\u4e00\u9875</span>: <b>'+page.title.replace(/</g,"&lt;")+'</b>'+(page.mode==="IELTS"?' \u00b7 IELTS':'');
+    box.querySelector(".sg-msg").textContent=""; box.querySelector(".sg-send").disabled=!box.querySelector(".sg-text").value.trim();
+    box.hidden=false; void box.offsetWidth; box.classList.add("is-open");
+    setTimeout(function(){ try{ box.querySelector(".sg-text").focus(); }catch(e){} },60);
+  }
+  function close(){ if(!box) return; box.classList.remove("is-open"); setTimeout(function(){ if(!box.classList.contains("is-open")) box.hidden=true; },220); }
+  btn.addEventListener("click",open);
+  window.__teSuggestions=all;   /* for the team: copy(JSON.stringify(__teSuggestions(),null,1)) in the console */
+  flush();
+})();
+</script>
 </body>
 </html>
