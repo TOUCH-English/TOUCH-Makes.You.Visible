@@ -2711,7 +2711,9 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
   border:1px solid rgba(255,255,255,.62);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 30px 64px -30px rgba(20,45,80,.4)}
 .sumtr-card.has-dsc.is-hero .dsc-scene{opacity:1}
 /* ambient colour glows — copied feel from eco-stage (.glass-stage .glow) */
-.dsc-blob{position:absolute;width:52%;aspect-ratio:1;border-radius:50%;filter:blur(46px);opacity:.42;z-index:0;pointer-events:none}
+/* soft colour light: a radial gradient shaped like the old 46px blur, scaled out past the box it used to bleed over */
+.dsc-blob{position:absolute;width:52%;aspect-ratio:1;border-radius:50%;opacity:.42;z-index:0;pointer-events:none;transform:scale(1.65);
+  background:radial-gradient(closest-side,var(--b) 0%,var(--b) 24%,color-mix(in srgb,var(--b) 84%,transparent) 42%,color-mix(in srgb,var(--b) 50%,transparent) 60%,color-mix(in srgb,var(--b) 16%,transparent) 80%,transparent 100%)}
 /* concentric half-rings (svg) rising from the learner */
 .dsc-ring{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible;z-index:1}
 .dsc-arc,.dsc-core,.dsc-glow{transform-box:view-box;transform-origin:460px 430px}
@@ -2731,22 +2733,20 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-card--system.has-dsc.is-hero .dsc-core{animation-delay:1.45s}
 .sumtr-card--system.has-dsc.is-hero .dsc-glow{animation-delay:1.5s}
 /* soft glow path connections (premium / VisionOS feel) — glowing track + subtle flowing light */
-.dsc-link{fill:none;stroke:color-mix(in srgb,var(--cc) 34%,#ffffff);stroke-width:6;stroke-linecap:round;opacity:0;filter:url(#dsLinkGlow)}
+.dsc-link{fill:none;stroke:color-mix(in srgb,var(--cc) 34%,#ffffff);stroke-width:6;stroke-linecap:round;opacity:0}
 .dsc-link--spoke{stroke-width:4.6}
-/* The glows on the Grow lines and dots are SVG filters, not CSS drop-shadow(): Safari composites
-   CSS filters on SVG children as separate rectangles, which showed as pale blocks over the card. */
-.dsc-net .dsc-fl{flood-color:var(--cc)}
-.dsc-net .dsc-fl--w{flood-color:#fff}
+/* No filters anywhere in these scenes (no blurred blobs, no glows on the lines): Safari repaints the
+   animated lines in rectangles and redrew the filtered layers under them wrongly, leaving pale blocks. */
 .sumtr-card.has-dsc.is-hero .dsc-link{animation:dscGlowPathIn .85s ease var(--d,0s) both}
 @keyframes dscGlowPathIn{from{opacity:0}to{opacity:.7}}
-.dsc-flow{fill:none;stroke:color-mix(in srgb,var(--cc) 16%,#ffffff);stroke-width:6.5;stroke-linecap:round;stroke-dasharray:.16 .84;stroke-dashoffset:1;opacity:0;filter:url(#dsFlowGlow)}
+.dsc-flow{fill:none;stroke:color-mix(in srgb,var(--cc) 16%,#ffffff);stroke-width:6.5;stroke-linecap:round;stroke-dasharray:.16 .84;stroke-dashoffset:1;opacity:0}
 .dsc-flow--spoke{stroke-width:5.2}
 .sumtr-card.has-dsc.is-hero .dsc-flow{animation:dscFlowIn .7s ease var(--d,0s) both,dscFlowMove 3.6s linear var(--d,0s) infinite}
 @keyframes dscFlowIn{from{opacity:0}to{opacity:.5}}
 @keyframes dscFlowMove{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){.sumtr-card.has-dsc.is-hero .dsc-flow{animation:dscFlowIn .7s ease var(--d,0s) both}}
 @media (prefers-reduced-motion:reduce){.sumtr-card.has-dsc.is-hero .dsc-core,.sumtr-card.has-dsc.is-hero .dsc-glow{opacity:1!important;transform:none!important;animation:none!important}.dsc-person{opacity:1!important}}
-.dsc-dot{fill:#fff;opacity:0;transform-box:view-box;filter:url(#dsDotGlow)}
+.dsc-dot{fill:#fff;opacity:0;transform-box:view-box}
 .sumtr-card.has-dsc.is-hero .dsc-dot{animation:dscDotIn .42s cubic-bezier(.2,.8,.2,1) var(--d,0s) both}
 @keyframes dscDotIn{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
 .dsc-person{fill:#46566f}
@@ -4959,7 +4959,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
               <div class="sumtr-card__main">
                 <div class="sumtr-card__slot" role="group" aria-label="Discover — interactive learning cards">
             <div class="dsc-scene">
-              <span class="dsc-blob" style="background:var(--p1);left:6%;top:46%"></span><span class="dsc-blob" style="background:var(--l3);left:14%;bottom:4%"></span><span class="dsc-blob" style="background:var(--l4);left:42%;bottom:-14%;opacity:.3"></span><span class="dsc-blob" style="background:var(--l2);right:6%;top:44%"></span><span class="dsc-blob" style="background:var(--l1);right:14%;bottom:4%"></span>
+              <span class="dsc-blob" style="--b:var(--p1);left:6%;top:46%"></span><span class="dsc-blob" style="--b:var(--l3);left:14%;bottom:4%"></span><span class="dsc-blob" style="--b:var(--l4);left:42%;bottom:-14%;opacity:.3"></span><span class="dsc-blob" style="--b:var(--l2);right:6%;top:44%"></span><span class="dsc-blob" style="--b:var(--l1);right:14%;bottom:4%"></span>
               <svg class="dsc-ring" viewBox="0 0 920 470" role="img" aria-label="Concentric learning rings rising from the learner">
                 <defs>
                   <radialGradient id="dscOrb" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient>
@@ -4990,7 +4990,7 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
               <div class="sumtr-card__main">
                 <div class="sumtr-card__slot" role="group" aria-label="Practice — interactive learning cards">
             <div class="dsc-scene">
-              <span class="dsc-blob" style="background:var(--p1);left:6%;top:46%"></span><span class="dsc-blob" style="background:var(--l3);left:14%;bottom:4%"></span><span class="dsc-blob" style="background:var(--l4);left:42%;bottom:-14%;opacity:.3"></span><span class="dsc-blob" style="background:var(--l2);right:6%;top:44%"></span><span class="dsc-blob" style="background:var(--l1);right:14%;bottom:4%"></span>
+              <span class="dsc-blob" style="--b:var(--p1);left:6%;top:46%"></span><span class="dsc-blob" style="--b:var(--l3);left:14%;bottom:4%"></span><span class="dsc-blob" style="--b:var(--l4);left:42%;bottom:-14%;opacity:.3"></span><span class="dsc-blob" style="--b:var(--l2);right:6%;top:44%"></span><span class="dsc-blob" style="--b:var(--l1);right:14%;bottom:4%"></span>
               <svg class="dsc-ring" viewBox="0 0 920 470" role="img" aria-label="Concentric stage rings spreading below the performer">
                 <defs><radialGradient id="dscOrb2" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient><radialGradient id="dscGlow2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient><filter id="dscLift2" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter><clipPath id="dpc"><circle cx="460" cy="44" r="84"/></clipPath><linearGradient id="dpHi" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".3" stop-color="#fff" stop-opacity=".12"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="dpSh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".42" stop-color="#fff" stop-opacity=".2"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset=".58" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
                 <path class="dsc-arc" style="--d:.06s" d="M110,44 A350,350 0 0 0 810,44 Z" fill="rgba(255,255,255,0.34)" stroke="rgba(255,255,255,.55)" stroke-width="1" filter="url(#dscLift2)"/>
@@ -5017,9 +5017,9 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
               <div class="sumtr-card__main">
                 <div class="sumtr-card__slot" role="group" aria-label="Grow — interactive learning system">
               <div class="dsc-scene">
-              <span class="dsc-blob" style="background:var(--p1);left:6%;top:46%"></span><span class="dsc-blob" style="background:var(--l3);left:14%;bottom:4%"></span><span class="dsc-blob" style="background:var(--l4);left:42%;bottom:-14%;opacity:.3"></span><span class="dsc-blob" style="background:var(--l2);right:6%;top:44%"></span><span class="dsc-blob" style="background:var(--l1);right:14%;bottom:4%"></span>
+              <span class="dsc-blob" style="--b:var(--p1);left:6%;top:46%"></span><span class="dsc-blob" style="--b:var(--l3);left:14%;bottom:4%"></span><span class="dsc-blob" style="--b:var(--l4);left:42%;bottom:-14%;opacity:.3"></span><span class="dsc-blob" style="--b:var(--l2);right:6%;top:44%"></span><span class="dsc-blob" style="--b:var(--l1);right:14%;bottom:4%"></span>
               <svg class="dsc-ring dsc-net" viewBox="0 0 920 470" role="img" aria-label="Learning system connecting toward the learner">
-                <defs><radialGradient id="dscOrb3" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient><radialGradient id="dscGlow3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient><filter id="dsLinkGlow" x="-15%" y="-80%" width="130%" height="260%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="b0"/><feFlood class="dsc-fl" flood-opacity="0.36"/><feComposite in2="b0" operator="in" result="g0"/><feGaussianBlur in="SourceAlpha" stdDeviation="7.5" result="b1"/><feFlood class="dsc-fl" flood-opacity="0.18"/><feComposite in2="b1" operator="in" result="g1"/><feMerge><feMergeNode in="g1"/><feMergeNode in="g0"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="dsFlowGlow" x="-15%" y="-80%" width="130%" height="260%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="b0"/><feFlood class="dsc-fl" flood-opacity="0.46"/><feComposite in2="b0" operator="in" result="g0"/><feMerge><feMergeNode in="g0"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="dsDotGlow" x="-250%" y="-250%" width="600%" height="600%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="b0"/><feFlood class="dsc-fl dsc-fl--w" flood-opacity="0.95"/><feComposite in2="b0" operator="in" result="g0"/><feGaussianBlur in="SourceAlpha" stdDeviation="7.5" result="b1"/><feFlood class="dsc-fl" flood-opacity="0.55"/><feComposite in2="b1" operator="in" result="g1"/><feMerge><feMergeNode in="g1"/><feMergeNode in="g0"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="dscLift3" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter><clipPath id="dsHc"><circle cx="460" cy="360" r="62"/></clipPath><linearGradient id="dsHg" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".3" stop-color="#fff" stop-opacity=".12"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="dsHs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".42" stop-color="#fff" stop-opacity=".2"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset=".58" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+                <defs><radialGradient id="dscOrb3" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="#f9fcfe"/><stop offset="48%" stop-color="#eef4fa"/><stop offset="100%" stop-color="#e7eef6"/></radialGradient><radialGradient id="dscGlow3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/><stop offset="60%" stop-color="#eef5fb" stop-opacity="0.45"/><stop offset="100%" stop-color="#eef5fb" stop-opacity="0"/></radialGradient><filter id="dscLift3" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="8" flood-color="#16243f" flood-opacity="0.06"/></filter><clipPath id="dsHc"><circle cx="460" cy="360" r="62"/></clipPath><linearGradient id="dsHg" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".3" stop-color="#fff" stop-opacity=".12"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="dsHs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".42" stop-color="#fff" stop-opacity=".2"/><stop offset=".5" stop-color="#fff" stop-opacity=".9"/><stop offset=".58" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
                 <path class="dsc-link" style="--d:.35s" d="M160,165 L160,142 Q160,120 182,120 L460,120"/>
                 <path class="dsc-flow" pathLength="1" style="--d:.9s" d="M160,165 L160,142 Q160,120 182,120 L460,120"/>
                 <path class="dsc-link" style="--d:.7s" d="M460,120 L738,120 Q760,120 760,142 L760,165"/>
