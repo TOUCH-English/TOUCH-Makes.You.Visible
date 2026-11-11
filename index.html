@@ -2669,7 +2669,7 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-card--system{--slot:none}
 .sumtr-card::before{content:none}
 .sumtr-cards{display:flex;align-items:center;justify-content:center;gap:30px;min-height:470px;flex-wrap:nowrap}
-.sumtr-card{flex:0 1 200px;display:flex;flex-direction:column;align-items:center;text-align:center;background:none;border:0;box-shadow:none;padding:0;border-radius:0;overflow:visible;opacity:.34;filter:blur(1.5px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),filter .55s ease,flex-basis .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
+.sumtr-card{flex:0 1 200px;display:flex;flex-direction:column;align-items:center;text-align:center;background:none;border:0;box-shadow:none;padding:0;border-radius:0;overflow:visible;opacity:.34;filter:blur(1.5px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),flex-basis .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)} /* no filter transition: animating blur on a card that is resizing flashes in tiles */
 .sumtr-card.is-side{opacity:.12;filter:blur(10px) saturate(.65);transform:scale(.8)}
 .sumtr-card.is-hero{flex:0 0 auto;opacity:1;filter:none;flex-direction:row;align-items:center;gap:40px}
 .sumtr-card.is-summary{opacity:1;filter:none;flex:0 1 220px}
@@ -2748,14 +2748,16 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .dsc-person{fill:#46566f}
 /* Journey Discover — Mirror-03 layered glass; Practice — Stage head glow */
 .sumtr-card--mirror.has-dsc.is-hero .dsc-arc--g{animation:dscArcIn .72s cubic-bezier(.2,.7,.2,1) var(--d,0s) both,dscBreath 3s ease-in-out var(--bd,1.6s) infinite}
-.dsc-shine{transform-box:view-box;transform-origin:460px 430px;animation:dscShine 4.8s ease-in-out var(--shd,0s) infinite}
+.dsc-shine{transform-box:view-box;transform-origin:460px 430px}
+.sumtr-card.is-hero .dsc-shine{animation:dscShine 4.8s ease-in-out var(--shd,0s) infinite}
 @keyframes dscBreath{0%,100%{opacity:1}50%{opacity:.74}}
 @keyframes dscShine{0%{transform:translateX(-900px) rotate(14deg)}70%{transform:translateX(900px) rotate(14deg)}100%{transform:translateX(900px) rotate(14deg)}}
-.dsc-head-hi{animation:dscBreath 3s ease-in-out 1.2s infinite}
-.dsc-head-shine{transform-box:view-box;transform-origin:460px 44px;animation:dscHeadShine 4.4s ease-in-out infinite}
+.sumtr-card.is-hero .dsc-head-hi{animation:dscBreath 3s ease-in-out 1.2s infinite}
+.dsc-head-shine{transform-box:view-box;transform-origin:460px 44px}
+.sumtr-card.is-hero .dsc-head-shine{animation:dscHeadShine 4.4s ease-in-out infinite}
 .sumtr-card--system .dsc-head-shine{transform-origin:460px 360px}
 @keyframes dscHeadShine{0%{transform:translateX(-170px) rotate(16deg)}58%{transform:translateX(170px) rotate(16deg)}100%{transform:translateX(170px) rotate(16deg)}}
-@media (prefers-reduced-motion:reduce){.dsc-shine,.dsc-head-shine{display:none}.dsc-head-hi{animation:none}}
+@media (prefers-reduced-motion:reduce){.dsc-shine,.dsc-head-shine{display:none}.sumtr-card.is-hero .dsc-head-hi{animation:none}}
 /* clickable feature nodes on the fan (keep .sumtr-feat -> existing popup) */
 .sumtr-card.has-dsc .dsc-node{position:absolute;left:var(--nx);top:var(--ny);transform:translate(-50%,-50%) scale(.85);z-index:3;
   display:flex;flex-direction:column;align-items:center;gap:7px;width:max-content;max-width:40%;
@@ -2769,9 +2771,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 .sumtr-card.has-dsc .dsc-node:hover{background:none;transform:translate(-50%,-50%) scale(1)}
 .sumtr-card.has-dsc.is-feats .dsc-node:hover{transform:translate(-50%,-50%) scale(1.03)}
 .dsc-node .sumtr-feat__ic{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
-  background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);-webkit-backdrop-filter:blur(10px) saturate(170%);backdrop-filter:blur(10px) saturate(170%);
+  /* solid, not glass: these sit on the endlessly animating flow lines, and a backdrop blur there is re-sampled every frame */
+  background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.8);
   box-shadow:0 16px 34px -16px rgba(20,45,80,.4),inset 0 1px 0 rgba(255,255,255,.8);transition:transform .22s,box-shadow .22s,background .22s}
-.dsc-node:hover .sumtr-feat__ic{background:rgba(255,255,255,.82);box-shadow:0 20px 40px -16px rgba(20,33,50,.36)}
+.dsc-node:hover .sumtr-feat__ic{background:rgba(255,255,255,.96);box-shadow:0 20px 40px -16px rgba(20,33,50,.36)}
 .dsc-node .sumtr-feat__ic svg{width:24px;height:24px;stroke:color-mix(in srgb,var(--cc) 70%,#46566f);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .dsc-node .sumtr-feat__ic svg [fill="currentColor"]{fill:color-mix(in srgb,var(--cc) 70%,#46566f);stroke:none}
 .dsc-node__tx{display:flex;flex-direction:column;gap:1px;line-height:1.15;opacity:0;transform:translateY(-3px);transition:opacity .4s ease .12s,transform .4s ease .12s}
@@ -4162,8 +4165,10 @@ a.tt-lv:active{transform:translateY(-1px) scale(1.02)}
 @media(max-width:860px){#roadmap.is-compact .lvl-col__bar{height:calc(var(--h) * .41px)}}
 @media (prefers-reduced-motion:reduce){#roadmap .lvl-col__bar{transition:none}}
 
-/* focus entry: park every backdrop while the door swings, glass fades back once settled */
-.focus-bg.is-entering,.focus-bg.is-entering .focus-card,.focus-bg.is-entering .focus-card *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* focus entry: park the card's own backdrops while the door swings. The scrim keeps its blur and
+   fades in with its opacity; parking it too made the page behind snap from sharp to blurred 460ms
+   after opening. */
+.focus-bg.is-entering .focus-card,.focus-bg.is-entering .focus-card *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 .focus-bg.is-entering .focus-card{background:linear-gradient(168deg,rgba(255,255,255,.98),rgba(255,255,255,.93))}
 .focus-bg.is-entering{background:rgba(13,28,64,.5)}
 
@@ -9573,7 +9578,9 @@ html.te-anim-paused *,html.te-anim-paused *::before,html.te-anim-paused *::after
       try{ if(getComputedStyle(t).cursor==="pointer") return true; }catch(e){}
       return false;
     }
-    function zone(x){ if(x<=EDGE) return -1; if(x>=window.innerWidth-EDGE) return 1; return 0; }
+    /* On a phone two fixed 70px strips are over a third of the screen, so ordinary taps near the
+       sides turned the page. Keep the strip to 7% of the width, capped at 70px. */
+    function zone(x){ var w=window.innerWidth, e=Math.min(EDGE,w*0.07); if(x<=e) return -1; if(x>=w-e) return 1; return 0; }
     document.addEventListener("mousemove",function(e){
       if(overlayOpen()){ hintL.classList.remove("is-on"); hintR.classList.remove("is-on"); return; }
       var z=zone(e.clientX), ok=!isInteractive(e.target);
@@ -10502,7 +10509,36 @@ io.observe(er);})();
     var priceEl = '<div class="tcard__price'+pcls+'" data-pi="'+i+'">'+priceInner(i)+'</div>';
     return '<article class="tcard'+(masked?' is-masked':'')+(next?' is-next':'')+subCls+'" data-i="'+i+'">'+head+body+priceEl+corner+frost+'</article>';
   }
-  function renderTiers(){ grid.innerHTML=TIERS.map(tierCard).join(''); }
+  /* Patch the three cards in place. Rebuilding the grid with innerHTML on every tap destroyed
+     and recreated every glass (backdrop-filter) layer, so the whole row flashed. */
+  function renderTiers(){
+    var html=TIERS.map(tierCard).join('');
+    if(grid.children.length!==TIERS.length){ grid.innerHTML=html; return; }
+    var tpl=document.createElement('div'); tpl.innerHTML=html;
+    var fresh=[].slice.call(tpl.children);
+    for(var i=0;i<fresh.length;i++) patchCard(grid.children[i],fresh[i]);
+  }
+  function patchCard(cur,nw){
+    if(cur.className!==nw.className) cur.className=nw.className;
+    var old={}, c, k, prev=null;
+    for(c=cur.firstElementChild;c;c=c.nextElementSibling) old[c.classList[0]]=c;
+    var kids=[].slice.call(nw.children);
+    for(var j=0;j<kids.length;j++){
+      var n=kids[j], o; k=n.classList[0]; o=old[k]; delete old[k];
+      if(o){
+        /* a finished price slide-in leaves is-sliding behind; that alone is not a change */
+        var stale=o.classList.contains('is-sliding')&&!n.classList.contains('is-sliding');
+        if(stale) n.classList.add('is-sliding');
+        if(o.isEqualNode(n)){ prev=o; continue; }
+        if(stale) n.classList.remove('is-sliding');
+        cur.replaceChild(n,o);
+      } else {
+        cur.insertBefore(n,prev?prev.nextSibling:cur.firstChild);
+      }
+      prev=n;
+    }
+    for(k in old) cur.removeChild(old[k]);
+  }
 
   function renderExt(){
     if(!ext) return;
@@ -11032,7 +11068,7 @@ io.observe(er);})();
       var chips=b.terms.map(function(t){
         return '<button type="button" class="iterm'+((instSelBank===bi&&instSelTerm===t)?' is-on':'')+'" data-bi="'+bi+'" data-t="'+t+'">'+t+'<small>\u6708</small></button>';
       }).join('');
-      return '<div class="ibank"><span class="ibank__logobox"><img loading="lazy" decoding="async" class="ibank__logo" style="--lscale:'+((b.s||1.3)*(b.mul||1.7)).toFixed(3)+';--ldx:'+(b.dx||0)+'" src="assets/logo/'+b.id+'.png" alt="'+b.name+'" onerror="this.classList.add(\'is-off\')"><b class="ibank__name">'+b.name+'</b></span><div class="ibank__terms">'+chips+'</div></div>';
+      return '<div class="ibank"><span class="ibank__logobox"><img loading="lazy" decoding="async" class="ibank__logo" style="--lscale:'+((b.s||1.3)*(b.mul||1.7)).toFixed(3)+';--ldx:'+(b.dx||0)+'" src="assets/logo/'+b.id+'.webp" alt="'+b.name+'" onerror="this.classList.add(\'is-off\')"><b class="ibank__name">'+b.name+'</b></span><div class="ibank__terms">'+chips+'</div></div>';
     }).join('');
   }
   function instResultHTML(){
