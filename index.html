@@ -13846,6 +13846,119 @@ body.ie-k-ac .ie-fee tr[data-row~="ac"] td,body.ie-k-gt .ie-fee tr[data-row~="gt
 })();
 </script>
 <style>
+/* IELTS speaking: Advisor Note with sample answers under each question list */
+.ie-ans-wrap{margin:10px 0 0}
+.ie-ans .adv-modal__card{max-width:560px}
+.ie-ans__list{display:flex;flex-direction:column;gap:16px}
+.ie-ans__q{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 10px;align-items:baseline}
+.ie-ans__n{font:800 11px/1 var(--display);color:var(--ie,#C3032C)}
+.ie-ans__q b{font-size:14.5px;font-weight:600;line-height:1.4;color:var(--ink)}
+.ie-ans__q textarea{grid-column:2;width:100%;min-height:68px;resize:vertical;font:14px/1.5 var(--body);color:var(--ink);padding:9px 11px;border-radius:11px;background:rgba(255,255,255,.75);border:1px solid var(--line);outline:none;transition:border-color .15s,box-shadow .15s}
+.ie-ans__q textarea:focus{border-color:var(--blue-bright);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue-bright) 16%,transparent)}
+.ie-ans__st{font-family:var(--display);font-weight:600;font-size:12px;color:var(--muted);min-height:16px;margin:14px 2px 12px}
+.ie-ans__st.ok{color:#2E9E50}
+.ie-ans__out{display:block;width:100%;height:120px;margin:0 0 12px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;padding:8px 10px;border-radius:10px;border:1px solid var(--line)}
+.ie-ans__reset.is-armed{color:#E0303B;border-color:rgba(224,48,59,.45)}
+@media (max-width:480px){.ie-ans .adv-modal__btns,.ie-ans .adv-modal__btns-r{flex-direction:column;align-items:stretch;width:100%}}
+</style>
+<script>
+/* ===== IELTS speaking: sample answers in an Advisor Note under each question list =====
+   Answers are keyed by the question text and kept on this device (localStorage), like the other advisor
+   settings. STANDARD is the team's shared set, shipped with the page; an advisor's own edit takes its place
+   on their device until they reset. "Copy all answers" lets an advisor send their set in to become STANDARD. */
+(function(){
+  var KEY="te_ie_answers_v1";
+  var STANDARD={};
+  var own={}; try{ var o=JSON.parse(localStorage.getItem(KEY)); if(o&&typeof o==="object") own=o; }catch(e){}
+  function save(){ try{ if(Object.keys(own).length) localStorage.setItem(KEY,JSON.stringify(own)); else localStorage.removeItem(KEY); }catch(e){} }
+  function ans(q){ return Object.prototype.hasOwnProperty.call(own,q)?own[q]:(STANDARD[q]||""); }
+  function qtext(li){ return li.textContent.replace(/\s+/g," ").trim(); }
+  function esc(t){ return String(t).replace(/[&<>"]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  var fmt=document.getElementById("ieFmt"); if(!fmt) return;
+  function label(btn){ return btn?btn.childNodes[0].textContent.trim():""; }
+  function partOf(card){ var sec=card.closest(".ie-fsec"), t=sec&&sec.querySelector(".ie-fsec__t"); return t?t.textContent.trim():"Speaking"; }
+  function topicOf(card,ol){
+    var k=ol.getAttribute("data-p1v"); if(k) return label(fmt.querySelector('[data-ie-p1] [data-k="'+k+'"]'));
+    k=ol.getAttribute("data-p2v"); if(k) return label(fmt.querySelector('[data-ie-p2] [data-k="'+k+'"]'));
+    return "";
+  }
+  Array.prototype.forEach.call(fmt.querySelectorAll(".ie-qs"),function(card){
+    var w=document.createElement("div"); w.className="adv-note-wrap ie-ans-wrap";
+    w.innerHTML='<button type="button" class="adv-note" aria-label="Advisor Note: sample answers"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8.5v.01M12 11v4.5"/><circle cx="12" cy="12" r="9"/></svg><span>Advisor Note</span></button>';
+    card.appendChild(w);
+    w.querySelector("button").addEventListener("click",function(){ open(card); });
+  });
+
+  function allText(){
+    var out=[];
+    Array.prototype.forEach.call(fmt.querySelectorAll(".ie-qs"),function(card){
+      Array.prototype.forEach.call(card.querySelectorAll("ol"),function(ol){
+        var lis=Array.prototype.slice.call(ol.children);
+        out.push(partOf(card)+(topicOf(card,ol)?" \u00b7 "+topicOf(card,ol):""));
+        lis.forEach(function(li,i){ var q=qtext(li); out.push("0"+(i+1)+" "+q); out.push("   "+(ans(q)||"\u2014")); });
+        out.push("");
+      });
+    });
+    return out.join("\n");
+  }
+
+  var m=null, escH=null;
+  function close(){ if(!m) return; document.removeEventListener("keydown",escH,true); m.remove(); m=null; }
+  function open(card){
+    var ol=card.querySelector("ol:not([hidden])"); if(!ol||m) return;
+    var qs=Array.prototype.map.call(ol.children,qtext), topic=topicOf(card,ol);
+    m=document.createElement("div"); m.className="adv-modal adv-modal--note ie-ans"; m.id="ieAnsModal";
+    m.innerHTML='<div class="adv-modal__bg"></div>'+
+      '<div class="adv-modal__card" role="dialog" aria-modal="true" aria-label="Advisor Note: sample answers">'+
+        '<button type="button" class="adv-modal__x" data-ansx aria-label="Close">\u00d7</button>'+
+        '<div class="adv-modal__head"><span class="adv-modal__title">Advisor Note <span class="adv-modal__title-zh">\u53c2\u8003\u7b54\u6848</span></span>'+
+        '<span class="adv-modal__sub">'+esc(partOf(card))+(topic?' \u00b7 '+esc(topic):'')+'<br>Changes save automatically on this device. <span class="zh">\u6539\u5b8c\u81ea\u52a8\u4fdd\u5b58\uff08\u5b58\u5728\u8fd9\u53f0\u8bbe\u5907\uff09\u3002</span></span></div>'+
+        '<div class="ie-ans__list">'+qs.map(function(q,i){
+          return '<label class="ie-ans__q"><span class="ie-ans__n">0'+(i+1)+'</span><b>'+esc(q)+'</b>'+
+            '<textarea data-q="'+esc(q)+'" placeholder="Sample answer, 2\u20133 sentences \u00b7 \u53c2\u8003\u7b54\u6848\uff0c2\u20133 \u53e5">'+esc(ans(q))+'</textarea></label>';
+        }).join('')+'</div>'+
+        '<div class="ie-ans__st" data-ansst></div>'+
+        '<div class="adv-modal__btns"><div class="adv-modal__btns-r">'+
+          '<button type="button" class="adv-btn adv-btn--ghost" data-anscopy>Copy all answers <span class="zh">\u590d\u5236\u5168\u90e8\u7b54\u6848</span></button>'+
+          '<button type="button" class="adv-btn adv-btn--ghost ie-ans__reset" data-ansreset>Reset <span class="zh">\u6062\u590d\u6807\u51c6\u7b54\u6848</span></button></div>'+
+          '<button type="button" class="adv-btn adv-btn--save" data-ansx>Done <span class="zh">\u5b8c\u6210</span></button></div>'+
+      '</div>';
+    document.body.appendChild(m);
+    void m.offsetWidth; m.classList.add("is-open");
+    var st=m.querySelector("[data-ansst]"), tmr=0, tas=Array.prototype.slice.call(m.querySelectorAll("textarea"));
+    function say(t,ok){ st.className="ie-ans__st"+(ok?" ok":""); st.textContent=t; }
+    function grow(ta){ ta.style.height="auto"; ta.style.height=Math.max(68,ta.scrollHeight+2)+"px"; }
+    tas.forEach(grow);
+    m.addEventListener("input",function(e){
+      var ta=e.target.closest("textarea[data-q]"); if(!ta) return;
+      var q=ta.getAttribute("data-q"), v=ta.value;
+      if(v.trim()===(STANDARD[q]||"").trim()) delete own[q]; else own[q]=v;
+      save(); grow(ta);
+      say("Saved \u2713 \u00b7 \u5df2\u81ea\u52a8\u4fdd\u5b58",true); clearTimeout(tmr); tmr=setTimeout(function(){ if(m) say(""); },2200);
+    });
+    m.addEventListener("keydown",function(e){ e.stopPropagation(); });   /* typing here never turns the slide */
+    var reset=m.querySelector("[data-ansreset]");
+    reset.addEventListener("click",function(){
+      if(!reset.classList.contains("is-armed")){ reset.classList.add("is-armed"); reset.innerHTML='Tap again to reset <span class="zh">\u518d\u6309\u4e00\u6b21\u786e\u8ba4</span>';
+        setTimeout(function(){ if(m&&reset.classList.contains("is-armed")){ reset.classList.remove("is-armed"); reset.innerHTML='Reset <span class="zh">\u6062\u590d\u6807\u51c6\u7b54\u6848</span>'; } },3000); return; }
+      tas.forEach(function(ta){ var q=ta.getAttribute("data-q"); delete own[q]; ta.value=STANDARD[q]||""; grow(ta); });
+      save(); reset.classList.remove("is-armed"); reset.innerHTML='Reset <span class="zh">\u6062\u590d\u6807\u51c6\u7b54\u6848</span>';
+      say("Back to the standard answers \u00b7 \u5df2\u6062\u590d\u6807\u51c6\u7b54\u6848",true);
+    });
+    m.querySelector("[data-anscopy]").addEventListener("click",function(){
+      var text=allText();
+      function fallback(){ var out=m.querySelector(".ie-ans__out"); if(!out){ out=document.createElement("textarea"); out.className="ie-ans__out"; out.readOnly=true; st.parentNode.insertBefore(out,st.nextSibling); }
+        out.value=text; out.focus(); out.select(); say("Select all and copy \u00b7 \u8bf7\u5168\u9009\u540e\u590d\u5236",true); }
+      try{ navigator.clipboard.writeText(text).then(function(){ say("Copied, every topic \u00b7 \u5df2\u590d\u5236\u5168\u90e8\u9898\u76ee\u548c\u7b54\u6848",true); },fallback); }catch(e){ fallback(); }
+    });
+    m.querySelector(".adv-modal__bg").addEventListener("click",close);
+    Array.prototype.forEach.call(m.querySelectorAll("[data-ansx]"),function(b){ b.addEventListener("click",close); });
+    escH=function(e){ if(e.key==="Escape"){ e.stopPropagation(); e.preventDefault(); close(); } };
+    document.addEventListener("keydown",escH,true);
+  }
+})();
+</script>
+<style>
 /* IELTS exam fees editor (Tools -> Exam fees) */
 .ief-card{max-width:460px}
 .ief-sec{font-family:var(--display);font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:16px 2px 8px}
